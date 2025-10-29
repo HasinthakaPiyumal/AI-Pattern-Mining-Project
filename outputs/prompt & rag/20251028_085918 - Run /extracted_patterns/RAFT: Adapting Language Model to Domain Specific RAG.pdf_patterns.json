@@ -1,0 +1,68 @@
+[
+  {
+    "Pattern Name": "Retrieval Augmented Fine-Tuning (RAFT)",
+    "Problem": "Pretrained Large Language Models (LLMs) struggle to effectively adapt to specialized domains for Retrieval Augmented Generation (RAG). They often fail to leverage fixed domain learning opportunities, account for imperfect retrieval during training, or robustly handle distracting information while maximizing accuracy based on provided documents.",
+    "Context": "Adapting LLMs for high-accuracy question answering in specialized, fixed domains (e.g., legal, medical, enterprise documents, code APIs) where external documents are provided at inference time (an 'open-book' setting). The primary goal is to improve the LLM's ability to effectively use retrieved documents and ignore irrelevant ones.",
+    "Solution": "RAFT is a training recipe that combines instruction finetuning with RAG. It involves preparing training data with questions (Q), a set of retrieved documents (Dk) including both relevant 'golden' documents and irrelevant 'distractor' documents, and a Chain-of-Thought style answer (A). The model is trained to generate answers by citing verbatim sequences from relevant documents and to ignore distractors. A key aspect is varying the proportion (P) of training instances that include golden documents, sometimes presenting only distractors to enhance robustness.",
+    "Result": "Consistently and significantly improves LLM performance in domain-specific RAG across various datasets (PubMed, HotpotQA, Gorilla). It enhances the model's ability to read, extract information, align answering style, and be robust against distractors, outperforming standard supervised finetuning with or without RAG.",
+    "Related Patterns": "Supervised Finetuning (SFT), Retrieval Augmented Generation (RAG), Instruction Finetuning (IFT), Distractor-Aware Finetuning, Chain-of-Thought Finetuning.",
+    "Category": "LLM-specific",
+    "Uses": "Adapting pretrained LLMs for high-accuracy, context-grounded question answering in specialized domains, particularly when robustness to noisy or imperfect retrieval is critical.",
+    "Thinking": "This is the central contribution of the paper, explicitly named and detailed as a novel adaptation strategy and training recipe. It addresses a specific AI problem (LLM adaptation for RAG) with a comprehensive AI-specific solution involving data preparation and training methodology."
+  },
+  {
+    "Pattern Name": "Distractor-Aware Finetuning",
+    "Problem": "Large Language Models (LLMs) are vulnerable to irrelevant text in retrieved documents, which is a common occurrence in Retrieval Augmented Generation (RAG) settings. Training only with highly relevant documents can diminish the model's ability to discern and disregard irrelevant information, leading to decreased performance when distractors are present.",
+    "Context": "Finetuning LLMs for RAG tasks where the retrieval mechanism might provide a mix of relevant and irrelevant documents. The model needs to be robust to noise and effectively identify pertinent information within a potentially noisy context.",
+    "Solution": "During finetuning, integrate both golden (highly relevant) documents and distractor (irrelevant) documents into the training context. The model is explicitly trained to process this mixed context, learning to identify and utilize the relevant information while ignoring the irrelevant parts. This can involve varying the number of distractors and even presenting contexts with only distractors for a portion of the training data (e.g., 1-P fraction in RAFT).",
+    "Result": "Enhances the LLM's robustness against irrelevant text, making it more resilient to fluctuations in the number of documents encountered during testing. Improves performance on RAG tasks compared to training solely with golden documents, as the model learns to sift through noise.",
+    "Related Patterns": "Retrieval Augmented Fine-Tuning (RAFT), Retrieval Augmented Generation (RAG).",
+    "Category": "LLM-specific",
+    "Uses": "Improving the reliability and accuracy of LLMs in RAG systems by making them robust to imperfect retrieval, ensuring they can effectively extract answers even when surrounded by irrelevant or misleading information.",
+    "Thinking": "The paper dedicates sections (4.4, 5, 5.1) to the problem of distractors and the solution of training with them, including specific findings about the optimal proportion of golden vs. distractor documents. This is a distinct, actionable AI-specific training technique for robustness."
+  },
+  {
+    "Pattern Name": "Chain-of-Thought Finetuning",
+    "Problem": "Training LLMs with only concise question-answer pairs can lead to superficial learning, overfitting to short answers, and a reduced ability to reason or explain answers, especially in complex tasks requiring multi-step inference or grounding in context.",
+    "Context": "Finetuning LLMs for question-answering or reasoning tasks where transparency, explainability, and robust understanding are desired. This is particularly relevant in RAG settings where answers need to be logically derived from and grounded in provided context.",
+    "Solution": "Prepare finetuning data by generating not just the final answer, but also a detailed Chain-of-Thought (CoT) reasoning process that logically leads to the answer. This reasoning should explicitly reference or cite the source context when applicable (e.g., verbatim quotations). The LLM is then trained to produce these CoT responses alongside the final answer.",
+    "Result": "Significantly enhances training robustness, improves overall accuracy, and prevents overfitting to concise answers. It guides the model to a deeper understanding of the problem and its solution, improving its ability to reason and ground answers in context.",
+    "Related Patterns": "Chain-of-Thought Prompting, Retrieval Augmented Fine-Tuning (RAFT).",
+    "Category": "Prompt Design",
+    "Uses": "Enhancing the reasoning capabilities, explainability, and accuracy of LLMs by explicitly teaching them to generate step-by-step logical derivations, making their outputs more transparent and verifiable.",
+    "Thinking": "The paper has a dedicated section 'Effect of CoT' (4.2) and Figure 3 illustrating the prompt for generating CoT answers. It clearly states the problem (overfitting with simple answers) and the benefits of CoT. While part of RAFT, CoT is a widely recognized AI pattern, and its application in finetuning data generation is a specific, identifiable technique related to structuring prompts for training."
+  },
+  {
+    "Pattern Name": "Domain-Specific Finetuning (DSF)",
+    "Problem": "General-purpose Large Language Models (LLMs) may not align with the specific answering style, terminology, or nuances required for specialized domains, leading to suboptimal performance or inappropriate responses.",
+    "Context": "Adapting a pretrained LLM to a specific domain (e.g., medical, legal, code APIs, enterprise documents) where the primary goal is to align its output style and familiarize it with domain-specific knowledge, without necessarily relying on external retrieval at inference time (though it can be combined with RAG).",
+    "Solution": "Apply standard supervised finetuning (SFT) to a pretrained LLM using a dataset of question-answer pairs (or other task-specific data) that are entirely within the target specialized domain. This training is typically done without providing external documents in the context during the finetuning phase, allowing the model to internalize domain knowledge and adapt its generation style.",
+    "Result": "Improves the LLM's performance by aligning its answering style with the domain's requirements and familiarizing it with domain-specific context. It serves as a strong baseline for domain adaptation and can significantly enhance performance compared to a base model.",
+    "Related Patterns": "Supervised Finetuning (SFT), Instruction Finetuning (IFT), Retrieval Augmented Fine-Tuning (RAFT).",
+    "Category": "LLM-specific",
+    "Uses": "Initial adaptation of a general LLM to a new domain, establishing a baseline for domain-specific performance, or when the primary need is style alignment and knowledge internalization rather than real-time external document grounding.",
+    "Thinking": "The paper explicitly defines 'DomainSpecific Finetuning (DSF)' as a baseline, detailing its purpose ('align the answering style... as well as get familiar with the domain context') and how it's applied ('without documents in context'). This is a distinct and widely recognized AI pattern for LLM adaptation."
+  },
+  {
+    "Pattern Name": "Retrieval Augmented Generation (RAG) - Inference",
+    "Problem": "Large Language Models (LLMs) suffer from knowledge cutoffs, hallucination, and lack of domain-specific expertise, making them unreliable for tasks requiring up-to-date, factual, or specialized information not present in their training data.",
+    "Context": "When an LLM needs to answer questions or generate text based on external, dynamic, or specialized knowledge sources that are not part of its original training corpus. This often involves providing the LLM with relevant documents at inference time (an 'open-book' setting).",
+    "Solution": "Pair a pretrained LLM with a retrieval mechanism (retriever). Given a user query, the retriever fetches a set of relevant documents or document segments from an external knowledge base. These retrieved documents are then appended to the user's prompt and fed into the LLM, which uses this augmented context to generate a more informed, grounded, and accurate response.",
+    "Result": "Significantly improves the LLM's ability to answer questions and generate text with up-to-date, factual, and domain-specific information, reducing hallucinations and increasing trustworthiness. It allows LLMs to access and leverage external knowledge in real-time.",
+    "Related Patterns": "Retrieval Augmented Fine-Tuning (RAFT), Distractor-Aware Finetuning, Open-Book Exam (analogy).",
+    "Category": "LLM-specific",
+    "Uses": "Enhancing LLMs for factual question answering, knowledge-intensive tasks, domain-specific applications, and reducing reliance on memorized training data by providing external context at inference time.",
+    "Thinking": "The paper frequently refers to RAG as a core concept and a baseline for inference ('LLaMA2-7Bchat model with RAG'). While RAFT is about *training for* RAG, RAG itself is a distinct and fundamental AI pattern for how LLMs interact with external knowledge at runtime, making it a true AI design pattern."
+  },
+  {
+    "Pattern Name": "Instruction Finetuning (IFT)",
+    "Problem": "Pretrained Large Language Models (LLMs) may not consistently follow user instructions or generate responses in a desired format, even if they possess the underlying knowledge. Their outputs might be generic or not aligned with specific task requirements.",
+    "Context": "Adapting a general-purpose pretrained LLM to better understand and execute human instructions, perform specific tasks (like QA), and align its output style and behavior with user expectations. This is often a prerequisite for effective zero-shot or few-shot prompting.",
+    "Solution": "Finetune the LLM on a dataset composed of diverse instructions paired with their desired outputs. This dataset teaches the model to interpret and respond to instructions effectively, often leading to improved performance on a wide range of downstream tasks without further task-specific finetuning. The training data can include examples of questions and answers, or other instruction-response pairs.",
+    "Result": "Enhances the LLM's ability to follow instructions, improves its performance on various tasks (especially in zero-shot settings), and aligns its behavior with human preferences, making it more usable and versatile.",
+    "Related Patterns": "Supervised Finetuning (SFT), Domain-Specific Finetuning (DSF), Prompt Design.",
+    "Category": "LLM-specific",
+    "Uses": "Creating more obedient and capable LLMs that can perform a wide array of tasks based on natural language instructions, forming the basis for many chatbot and general-purpose AI applications.",
+    "Thinking": "The paper mentions 'instruction finetuning IFT' and 'LLaMA2-7Bchat model with 0shot prompting this is the commonly used instructionfinetuned model for QA tasks'. IFT is a distinct and crucial AI pattern for LLM behavior alignment, separate from just general supervised finetuning."
+  }
+]

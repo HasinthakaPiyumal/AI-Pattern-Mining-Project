@@ -1,0 +1,112 @@
+[
+  {
+    "Pattern Name": "Tool-Integrated Reasoning Agent (TORA)",
+    "Problem": "Large language models (LLMs) struggle with complex mathematics, as natural language reasoning is suitable for semantic analysis and planning but struggles with precise computation, while program-based methods excel in rigorous operations but face challenges in nuanced reasoning and planning.",
+    "Context": "Solving challenging mathematical problems using LLMs where both abstract reasoning and precise computation are required.",
+    "Solution": "Design an agent that synergistically interleaves natural language reasoning with program-based tool use. The agent generates a natural language rationale, then a program for tool use (e.g., computation libraries, symbolic solvers), executes the program, and incorporates the output back into its reasoning process, repeating until the answer is finalized.",
+    "Result": "TORA models significantly outperform open-source models (13-19% absolute improvements on average across 10 mathematical reasoning datasets). TORA7B surpasses WizardMath70B by 22% absolute on MATH. TORACODE 34B is competitive with GPT4 solving problems with code. Displays superior generalization and fast zero-shot inference speed.",
+    "Related Patterns": "Chain-of-Thought (CoT) Prompting, Program-Aided Language Models (PAL) Prompting, Toolformer, Tool-Integrated Reasoning Loop, Multi-Round Self-Correction.",
+    "Category": "Agentic AI",
+    "Uses": "Mathematical problem-solving, complex quantitative tasks, scenarios requiring a blend of abstract reasoning and precise computational execution.",
+    "Thinking": "This is the central contribution of the paper, explicitly named 'TORA A TOOL INTEGRATED REASONING AGENT'. It describes a novel agent architecture and interaction flow for LLMs, making it an Agentic AI pattern."
+  },
+  {
+    "Pattern Name": "Interactive Tool Use Trajectory Curation",
+    "Problem": "Training tool-integrated agents is challenging due to the absence of interactive tool-use annotations in existing mathematical reasoning datasets.",
+    "Context": "Preparing high-quality training data for LLMs designed to perform tool-integrated reasoning.",
+    "Solution": "Utilize a powerful LLM (e.g., GPT4) to synthesize interactive tool-use trajectories. This involves crafting detailed prompts with few-shot examples demonstrating the interleaved rationale-program-output format, then using the LLM with greedy decoding and nucleus sampling to generate trajectories, filtering for correct answers and absence of tool-use errors.",
+    "Result": "Creation of TORACORPUS, a dataset of 16k high-quality interactive tool-use annotations for mathematical problems (GSM8k and MATH), enabling the training of TORA models.",
+    "Related Patterns": "Imitation Learning for Tool-Use Trajectories, Few-Shot Prompting for Structured Trajectory Generation.",
+    "Category": "MLOps",
+    "Uses": "Generating synthetic, interactive tool-use training data for LLMs when human-annotated datasets are unavailable or insufficient.",
+    "Thinking": "The paper dedicates a section '2.2 COLLECTING INTERACTIVE TOOL USE TRAJECTORIES' to this process, detailing a specific methodology for data generation for AI training, which falls under MLOps."
+  },
+  {
+    "Pattern Name": "Output Space Shaping",
+    "Problem": "Imitation learning on datasets with limited valid trajectories (e.g., mostly one per question) restricts a model's output space, hindering its flexibility in exploring plausible reasoning paths during testing and leading to improper tool-use behavior.",
+    "Context": "Refining the reasoning behavior and improving the robustness of LLMs trained with imitation learning on interactive tool-use trajectories.",
+    "Solution": "1. Sampling: Generate diverse trajectories by applying nucleus sampling to the imitation-learned model, retaining valid ones. 2. Correction: For invalid trajectories, identify plausible preceding portions and use a teacher model to complete and correct the subsequent steps, generating new valid trajectories. 3. Retraining: Retrain the model on the combined dataset of the initial corpus, sampled valid trajectories, and corrected trajectories.",
+    "Result": "Yields considerable average improvements (3.4% on GSM8k, 4.0% on MATH), especially for smaller models and difficult problems. Encourages diversity of plausible reasoning steps and reduces improper tool-use behavior.",
+    "Related Patterns": "Imitation Learning for Tool-Use Trajectories, Knowledge Distillation, Data Augmentation, Teacher-Assisted Trajectory Correction.",
+    "Category": "MLOps",
+    "Uses": "Enhancing the diversity, flexibility, and robustness of an LLM's reasoning output by expanding its training data with varied and corrected reasoning paths.",
+    "Thinking": "This is a specific training methodology described in '2.3 TRAINING' under 'Output Space Shaping', designed to improve the performance and generalization of the AI model, thus an MLOps pattern."
+  },
+  {
+    "Pattern Name": "Chain-of-Thought (CoT) Prompting",
+    "Problem": "Large Language Models (LLMs) often struggle with complex multi-step reasoning tasks, leading to incorrect or superficial answers when prompted directly.",
+    "Context": "Improving the reasoning capabilities of LLMs, particularly for tasks requiring logical deduction or step-by-step problem-solving.",
+    "Solution": "Instruct the LLM to generate a series of intermediate reasoning steps or a 'thought process' in natural language before providing the final answer. This guides the model through the problem-solving process.",
+    "Result": "Elicits more robust and accurate reasoning, allowing LLMs to tackle more complex problems by breaking them down into manageable sub-problems. Improves performance on mathematical reasoning and other complex language tasks.",
+    "Related Patterns": "Program-Aided Language Models (PAL) Prompting, Tool-Integrated Reasoning Loop.",
+    "Category": "Prompt Design",
+    "Uses": "Enhancing LLM performance on complex reasoning tasks by making the model's thought process explicit and sequential.",
+    "Thinking": "Explicitly mentioned and illustrated in Figure 2a as 'Rationale-based methods e.g. CoT prompting generate step-by-step natural language rationales' and discussed in the introduction as an existing approach, making it a Prompt Design pattern."
+  },
+  {
+    "Pattern Name": "Program-Aided Language Models (PAL) Prompting",
+    "Problem": "LLMs, while capable of natural language reasoning, often lack precision in numerical computation, symbolic manipulation, and executing complex algorithms, leading to errors in tasks requiring exact results.",
+    "Context": "Enabling LLMs to perform tasks that require rigorous computation or interaction with external computational tools.",
+    "Solution": "The LLM generates executable code (e.g., Python) as part of its reasoning process. This code is then executed by an external interpreter, and the numerical or symbolic output is used by the LLM to formulate the final answer.",
+    "Result": "Leverages the strengths of programming languages for precise computation and external tools for complex operations, overcoming the computational limitations of natural language reasoning.",
+    "Related Patterns": "Chain-of-Thought (CoT) Prompting, Tool-Integrated Reasoning Agent (TORA), Toolformer, Tool-Integrated Reasoning Loop.",
+    "Category": "Prompt Design",
+    "Uses": "Solving tasks that demand high computational accuracy, symbolic manipulation, or the execution of specific algorithms, by offloading these operations to a programming environment.",
+    "Thinking": "Explicitly mentioned and illustrated in Figure 2b as 'Program-based methods e.g. PAL prompting solve tasks with program synthesis' and discussed in the introduction as an existing approach, making it a Prompt Design pattern."
+  },
+  {
+    "Pattern Name": "Tool-Integrated Reasoning Loop",
+    "Problem": "LLMs struggle with tasks requiring both abstract reasoning (natural language) and precise computation/symbolic manipulation (programs/tools), as neither rationale-only nor program-only approaches fully leverage both strengths.",
+    "Context": "Designing the operational flow for an LLM agent to solve complex problems that necessitate a dynamic interplay between natural language reasoning and external computational tools.",
+    "Solution": "Implement a cyclical process where the LLM first generates a natural language rationale (r_i), then, based on the rationale, generates a program (a_i) for an external tool. The tool executes the program, producing an output (o_i). This output is then fed back to the LLM, which uses it to generate the next rationale or finalize the answer, repeating the cycle until the problem is solved.",
+    "Result": "Enables the LLM to synergistically combine high-level reasoning and planning with precise, external computation, leading to superior performance on complex quantitative tasks compared to methods relying solely on one modality.",
+    "Related Patterns": "Tool-Integrated Reasoning Agent (TORA), Chain-of-Thought (CoT) Prompting, Program-Aided Language Models (PAL) Prompting, Toolformer, Multi-Round Self-Correction.",
+    "Category": "Tools Integration",
+    "Uses": "Mathematical problem-solving, scientific reasoning, complex data analysis, or any domain where LLMs need to orchestrate reasoning with external computational or symbolic tools.",
+    "Thinking": "This pattern describes the fundamental interactive mechanism of TORA, explicitly highlighted in the paper's overview (Section 2.1) and Algorithm 1. It's about *how* the LLM integrates and uses tools in a continuous loop, making it a Tools Integration pattern."
+  },
+  {
+    "Pattern Name": "Imitation Learning for Tool-Use Trajectories",
+    "Problem": "Training LLMs to effectively perform multi-step, interactive tool-use requires extensive demonstrations of such complex behaviors, which are typically scarce or non-existent in standard datasets.",
+    "Context": "Developing LLMs capable of interactive tool utilization, where the desired behavior involves a sequence of natural language reasoning, program generation, and processing of tool outputs.",
+    "Solution": "Curate a dataset of high-quality, interactive tool-use trajectories (sequences of problem, rationale, program, tool output, next rationale, etc.). Then, train the LLM using imitation learning, minimizing the negative log-likelihood loss on these trajectories. This teaches the model to predict the next step (rationale or program) given the problem and the preceding interaction history.",
+    "Result": "Enables LLMs to acquire complex interactive tool-use capabilities, leading to improved performance on tasks requiring such interactions, even when starting from a relatively small corpus of expert demonstrations.",
+    "Related Patterns": "Interactive Tool Use Trajectory Curation, Output Space Shaping, Knowledge Distillation, Teacher-Assisted Trajectory Correction.",
+    "Category": "MLOps",
+    "Uses": "Training LLMs for tasks that involve sequential decision-making, interactive problem-solving, and dynamic tool invocation, particularly when expert demonstrations are available or can be synthetically generated.",
+    "Thinking": "The paper explicitly states 'We then apply imitation learning on the resulting annotations as well as output space shaping to further refine models reasoning behavior' and 'Imitation Learning We apply imitation learning on TORACORPUS by minimizing negative loglikelihood loss on the trajectory conditioned on the problem q'. This is a specific ML training workflow for a particular type of data (tool-use trajectories), making it an MLOps pattern."
+  },
+  {
+    "Pattern Name": "Teacher-Assisted Trajectory Correction",
+    "Problem": "Sampled trajectories from a student model may contain errors or be incomplete, limiting the diversity and quality of training data for complex interactive tool-use behaviors.",
+    "Context": "Enhancing the training dataset for LLMs by correcting and diversifying synthetically generated interactive tool-use trajectories, especially when the initial samples from a student model are imperfect.",
+    "Solution": "For invalid or incomplete trajectories sampled from an imitation-learned model (student model), identify the plausible initial segments. A more capable 'teacher model' (e.g., a larger or more refined LLM) is then used to complete or correct the subsequent steps of these trajectories through greedy decoding, generating new, valid, and diverse training examples.",
+    "Result": "Significantly boosts reasoning performance, particularly for smaller models, by expanding the training data with high-quality, corrected reasoning paths, thereby shaping the model's output space and reducing improper tool-use behavior.",
+    "Related Patterns": "Output Space Shaping, Knowledge Distillation, Data Augmentation, Self-Correction.",
+    "Category": "MLOps",
+    "Uses": "Improving the robustness and diversity of LLM reasoning, especially in interactive tool-use scenarios, by leveraging a teacher model for data refinement.",
+    "Thinking": "This is a specific technique described within 'Output Space Shaping' that involves a teacher model to correct and complete trajectories, which is a distinct AI/ML pattern for data generation/refinement."
+  },
+  {
+    "Pattern Name": "Multi-Round Self-Correction",
+    "Problem": "LLMs can make errors during complex reasoning or tool execution (e.g., syntax errors, runtime errors, inappropriate tool use, incorrect reasoning steps), and a single-pass approach does not allow for recovery or refinement.",
+    "Context": "Designing an agent to robustly solve complex, multi-step problems that involve external tools, where intermediate feedback and error recovery are crucial.",
+    "Solution": "The agent operates in an iterative loop. After generating a rationale and executing a program with an external tool, it processes the tool's output. If the output indicates an error (e.g., `SyntaxError`, `RuntimeError`, unexpected result) or if the reasoning path is suboptimal, the agent generates a new rationale to analyze the feedback, identify the error, and formulate a correction or an alternative plan for the next step, then attempts tool use again. This process continues until a correct answer is derived or a maximum number of attempts is reached.",
+    "Result": "Enhances the agent's ability to recover from errors, refine its problem-solving approach, and adapt to unexpected tool feedback, leading to higher accuracy and robustness in complex tasks like mathematical reasoning.",
+    "Related Patterns": "Tool-Integrated Reasoning Loop, Agentic AI, Feedback Loop, Error Handling.",
+    "Category": "Agentic AI",
+    "Uses": "Complex problem-solving, interactive systems, tasks requiring dynamic adaptation and error recovery, especially when integrating external tools.",
+    "Thinking": "The text explicitly mentions 'rationale aids in planning, multi-round self-correction and finalizing answers' (Section 3.6) and details failure modes like 'Syntax Error' and 'Runtime Error' that the agent *attempts* to correct. This describes a core intelligent behavior of the agent."
+  },
+  {
+    "Pattern Name": "Few-Shot Prompting for Structured Trajectory Generation",
+    "Problem": "Generating high-quality, structured, and interactive tool-use trajectories from a powerful LLM (e.g., GPT-4) for data curation can be challenging without clear guidance on the desired format and interaction flow.",
+    "Context": "Leveraging a capable LLM to synthesize complex, multi-modal (natural language and code) interactive demonstrations for training smaller models or for data augmentation, where the output needs to follow a specific interleaved structure.",
+    "Solution": "Craft a detailed prompt that includes explicit instructions on the desired interleaved format (e.g., natural language rationale, program, tool output, next rationale) and provides several diverse, high-quality few-shot examples. These examples serve as demonstrations, guiding the LLM to generate new trajectories that adhere to the specified structure and effectively showcase tool integration and reasoning steps.",
+    "Result": "Improves the success rate and quality of synthetic data generation, yielding structured and high-quality interactive tool-use trajectories that are crucial for training tool-integrated agents.",
+    "Related Patterns": "Prompt Engineering, Interactive Tool Use Trajectory Curation, Data Augmentation.",
+    "Category": "Prompt Design",
+    "Uses": "Generating synthetic training data for LLMs, especially for complex tasks requiring structured, multi-modal outputs and interactive behaviors.",
+    "Thinking": "The paper states 'Prompt Curation: We compose instructions along with diverse fewshot examples utilizing an interleaved format as depicted in Fig 2 c.' This is a specific prompt engineering technique for *data generation*, distinct from inference-time prompting, making it a Prompt Design pattern."
+  }
+]

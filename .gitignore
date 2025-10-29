@@ -1,4 +1,4 @@
-outputs/
+# outputs/
 .venv/
 __pycache__/
 *.pyc
@@ -6,3 +6,5 @@ __pycache__/
 logs/
 data/cleaned/
 data/processed/
+*.csv
+models/

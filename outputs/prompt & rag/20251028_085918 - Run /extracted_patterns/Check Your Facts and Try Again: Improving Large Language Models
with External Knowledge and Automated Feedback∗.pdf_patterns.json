@@ -1,0 +1,112 @@
+[
+  {
+    "Pattern Name": "Retrieval-Augmented Generation (RAG)",
+    "Problem": "Large Language Models (LLMs) tend to hallucinate and lack access to up-to-date or domain-specific external knowledge, making them unsuitable for mission-critical applications without expensive fine-tuning.",
+    "Context": "Deploying blackbox LLMs for tasks requiring factual accuracy, grounding in external data (e.g., news, proprietary databases, Wikipedia), or handling time-sensitive information.",
+    "Solution": "Augment the LLM with a 'Knowledge Consolidator' module. This module first retrieves raw evidence from various external knowledge sources (e.g., Web search APIs, task-specific databases) based on the user query and dialog history. It then enriches this raw evidence by linking entities to related context and prunes irrelevant information to form consolidated evidence chains. This consolidated evidence is then included in the prompt sent to the LLM, enabling it to generate responses grounded in this external knowledge.",
+    "Result": "Significantly reduces LLM hallucinations, improves factual accuracy, and allows LLMs to leverage dynamic and specific external knowledge without requiring expensive fine-tuning.",
+    "Related Patterns": "Knowledge Graph Augmentation, External Tool Use",
+    "Category": "Knowledge & Reasoning",
+    "Uses": "Open-domain question answering, information-seeking dialog, customer service, any task requiring LLMs to access and synthesize external, dynamic, or proprietary information.",
+    "Thinking": "The text explicitly describes the 'Knowledge Consolidator' module which retrieves, links, and chains evidence from external sources (Web, databases, Wiki) and includes it in the prompt to ground LLM responses. This is the core mechanism of Retrieval-Augmented Generation."
+  },
+  {
+    "Pattern Name": "Iterative Self-Correction with Automated Feedback",
+    "Problem": "Initial LLM-generated responses may not meet desired quality standards (e.g., factuality, coherence, alignment with task-specific rules) and require refinement, but manual correction is not scalable.",
+    "Context": "Improving the quality and alignment of responses from a fixed, blackbox LLM for tasks where accuracy and adherence to specific criteria are crucial, without modifying the LLM's parameters.",
+    "Solution": "Implement a 'Utility Module' that evaluates candidate LLM responses against a set of task-specific utility functions (e.g., factuality score, adherence to conversational rules). If a response fails to meet the criteria, the Utility Module generates verbalized feedback (e.g., 'The response is inconsistent with the knowledge. Please generate again' or 'self-criticism' feedback). This feedback is then incorporated into a revised prompt, and the LLM is queried again to generate an improved candidate response. This process can iterate until a satisfactory response is produced.",
+    "Result": "Leads to substantial improvements in response quality, groundedness, and alignment with user expectations or business requirements by iteratively guiding the LLM's generation process.",
+    "Related Patterns": "Prompt Engineering, Reinforcement Learning from Human Feedback (automated version), Agentic Loop",
+    "Category": "LLM-specific",
+    "Uses": "Reducing hallucinations, ensuring responses are grounded in evidence, aligning responses with specific conversational styles or business logic, improving overall response quality in multi-turn interactions.",
+    "Thinking": "The paper details how the 'Utility' module generates a score and feedback, which is then used by the 'Prompt Engine' to revise the prompt and query the LLM again. Figure 1 clearly illustrates this iterative revision process, which is a distinct pattern for improving LLM output through self-correction."
+  },
+  {
+    "Pattern Name": "Agentic Policy for LLM Orchestration",
+    "Problem": "In complex, multi-step AI systems involving LLMs and external tools, there's a need for a mechanism to intelligently decide the next action to take (e.g., when to retrieve knowledge, when to query the LLM, when to send a final response).",
+    "Context": "Building an AI agent that dynamically interacts with a blackbox LLM and other plug-and-play modules (like knowledge bases or utility functions) to achieve a goal in a conversational or task-oriented environment.",
+    "Solution": "Introduce a 'Policy' module that, based on the current dialog state stored in 'Working Memory' (including user query, history, evidence, candidate responses, and feedback), selects the most appropriate next system action. This policy can be implemented using manually crafted rules (for initial deployment) or trained using reinforcement learning (e.g., REINFORCE) to maximize an expected reward (e.g., utility score). Actions include calling the Knowledge Consolidator, calling the Prompt Engine to query the LLM, or sending a verified response to the user.",
+    "Result": "Enables flexible, adaptive, and optimized control over the interaction flow within an LLM-augmented system, allowing the system to make strategic decisions about tool use and response generation.",
+    "Related Patterns": "Tool Use, Multi-Agent Systems, Reinforcement Learning",
+    "Category": "Agentic AI",
+    "Uses": "Managing complex dialog flows, optimizing resource usage (e.g., when to access external knowledge), improving overall task completion efficiency and accuracy in agentic systems.",
+    "Thinking": "The 'Policy' module is explicitly defined in Section 2.2 as selecting actions (acquiring evidence, calling LLM, sending response) based on the dialog state, and it can be trainable via RL. This is a clear agentic pattern for controlling the flow of an AI system. The ablation study on 'Alwaysuse' vs 'Selfask' policies further highlights this decision-making aspect."
+  },
+  {
+    "Pattern Name": "Contextual Prompt Engineering",
+    "Problem": "Generic prompts for LLMs often lead to ungrounded, irrelevant, or low-quality responses, especially in dynamic or knowledge-intensive tasks.",
+    "Context": "Maximizing the effectiveness of a blackbox LLM by providing it with all necessary and relevant information to generate high-quality, grounded, and task-aligned responses.",
+    "Solution": "Utilize a 'Prompt Engine' module that dynamically constructs prompts for the LLM. These prompts are not static but are enriched with various contextual elements from the system's 'Working Memory,' including: 1) Task instructions (e.g., 'act as a chatbot AI for travel planning'), 2) The current user query, 3) Dialog history, 4) Consolidated external evidence (from the Knowledge Consolidator), and 5) Automated feedback (from the Utility Module) for iterative refinement.",
+    "Result": "Enables the LLM to generate more relevant, accurate, and grounded responses by providing it with a rich, dynamic context and specific guidance, leading to better performance across various tasks.",
+    "Related Patterns": "In-Context Learning, Few-Shot Prompting",
+    "Category": "Prompt Design",
+    "Uses": "Improving factual accuracy, guiding conversational flow, adapting LLM behavior to specific task requirements, enabling iterative refinement of responses.",
+    "Thinking": "The 'Prompt Engine' (Section 2.3.2) is described as generating prompts that consist of 'task instruction, user query q, dialog history hq, evidence e if it is made available by Knowledge Consolidator and feedback f if it is made available by the Utility module.' This is a clear pattern of dynamically constructing prompts with rich, task-specific context."
+  },
+  {
+    "Pattern Name": "Plug-and-Play LLM Augmentation Framework",
+    "Problem": "Blackbox LLMs are hard to improve for mission-critical tasks due to hallucinations and lack of external knowledge, and fine-tuning is prohibitively expensive.",
+    "Context": "When needing to enhance a fixed, blackbox LLM's capabilities (e.g., factual grounding, iterative refinement, dynamic decision-making) without modifying its internal parameters.",
+    "Solution": "Design an architecture around the LLM with a set of independent, interchangeable 'plug-and-play' modules (e.g., Working Memory, Policy, Action Executor, Utility). These modules interact with the LLM and the environment, allowing for flexible integration of external knowledge, automated feedback, and dynamic control over the LLM's operation.",
+    "Result": "Enables significant improvement in LLM performance (e.g., reduced hallucination, increased usefulness) for mission-critical tasks, offering flexibility and cost-effectiveness compared to fine-tuning. The modularity allows for easy updates and customization of individual components.",
+    "Related Patterns": "Agentic Architecture, Microservices (for component design)",
+    "Category": "Tools Integration",
+    "Uses": "Enhancing blackbox LLMs, building adaptable AI systems, rapid prototyping of LLM applications, integrating diverse AI capabilities.",
+    "Thinking": "The abstract and Section 2 explicitly describe LLMAUGMENTER as a 'system which augments a blackbox LLM with a set of plug-and-play modules.' This describes a general architectural pattern for enhancing LLMs by orchestrating external components around them."
+  },
+  {
+    "Pattern Name": "Agentic Working Memory",
+    "Problem": "AI agents interacting with LLMs need to maintain a coherent and comprehensive understanding of the ongoing conversation or task state across multiple turns and interactions with various modules.",
+    "Context": "Designing an AI agent that orchestrates an LLM and other tools in a multi-turn, dynamic environment (e.g., dialog systems, complex question answering) where context persistence is crucial.",
+    "Solution": "Implement a 'Working Memory' module that tracks and stores all essential information related to the current interaction. This includes the user query, consolidated external evidence, LLM-generated candidate responses, utility scores, verbalized feedback, and the complete dialog history. This memory serves as the central state for the 'Policy' module to make decisions and for other modules (like the Prompt Engine) to access relevant context.",
+    "Result": "Provides a persistent and structured representation of the agent's state, enabling informed decision-making by the policy, consistent context for the LLM, and effective iterative refinement, leading to more coherent and goal-oriented interactions.",
+    "Related Patterns": "Context Management, State Management, Dialog State Tracking",
+    "Category": "Agentic AI",
+    "Uses": "Maintaining context in dialog, supporting multi-step reasoning, enabling iterative refinement loops, facilitating policy learning in conversational AI.",
+    "Thinking": "Section 2.1 describes 'Working Memory' as tracking the dialog state, capturing 'all essential information in the conversation so far' using a sixtuple (q, e, o, u, f, hq). This is a specific AI pattern for managing an agent's operational state and context."
+  },
+  {
+    "Pattern Name": "Hybrid Utility Function Design",
+    "Problem": "Evaluating LLM responses for complex tasks requires assessing multiple dimensions (e.g., factuality, fluency, adherence to rules) and generating actionable feedback, which might not be achievable with a single evaluation method.",
+    "Context": "Developing a robust evaluation and feedback mechanism for LLM-generated content, especially in scenarios with specific business requirements, human preferences, or a need for both objective and subjective quality assessment.",
+    "Solution": "Design the 'Utility' module to incorporate a hybrid approach to evaluation, combining: 1) Model-based utility functions, trained on human preference data or annotated logs to assign scores for subjective dimensions like fluency, informativeness, or factuality. 2) Rule-based utility functions, implemented using heuristics or programmed functions to measure compliance with specific, objective rules or business logic. Additionally, develop a utility function (e.g., a text generation model or rule-based NLG) to generate informative and actionable textual feedback based on these evaluations.",
+    "Result": "Provides a comprehensive and flexible way to evaluate LLM responses, combining subjective quality assessment with objective rule compliance, and generates specific feedback to guide iterative improvement, leading to better alignment with desired outcomes.",
+    "Related Patterns": "Evaluation Metrics, Feedback Loop, Quality Gates",
+    "Category": "LLM-specific",
+    "Uses": "Quality assurance for LLM outputs, automated feedback generation, aligning LLM behavior with complex criteria, supporting iterative refinement processes.",
+    "Thinking": "Section 2.4 explicitly distinguishes between 'Modelbased utility functions' and 'Rulebased utility functions' and describes their role in generating scores and feedback. This hybrid approach for evaluation and feedback generation is a distinct pattern for LLM-specific quality control."
+  },
+  {
+    "Pattern Name": "Staged Policy Learning for Agentic LLMs",
+    "Problem": "Training an effective policy for an LLM-orchestrating agent often requires large amounts of human-machine interaction data, which is costly and time-consuming to collect from scratch.",
+    "Context": "Developing a trainable 'Policy' module for an AI agent that controls a blackbox LLM and other tools, especially when real-user interaction data is scarce or expensive to obtain.",
+    "Solution": "Implement policy learning in multiple stages to mitigate data scarcity and progressively build a robust policy: 1) Bootstrapping from a rule-based policy, where domain experts encode initial task-specific knowledge and business logic into IF-THEN rules to provide a baseline. 2) Learning with user simulators, using a language model to simulate human user interactions, generating synthetic training examples for the policy to self-improve. 3) Refinement with human users, where the LLM-augmented agent finally interacts with real human users to further refine and optimize its policy.",
+    "Result": "Enables the development of robust and effective policies for agentic LLM systems by progressively leveraging expert knowledge, synthetic data, and real-world interactions, significantly reducing the cost and time associated with data collection and improving policy performance.",
+    "Related Patterns": "Reinforcement Learning, Transfer Learning, Simulation-Based Training, Curriculum Learning",
+    "Category": "Agentic AI",
+    "Uses": "Training conversational AI agents, optimizing resource allocation in LLM systems, developing robust decision-making for complex tasks, reducing reliance on expensive human data.",
+    "Thinking": "Section 2.2, under 'Policy,' explicitly outlines 'three stages' for policy learning: 'Bootstrapping from a rule-based policy,' 'Learning with user simulators,' and 'Finally LLMAUGMENTER interacts with human users.' This structured approach to training an agent's decision-making policy is a clear AI design pattern."
+  },
+  {
+    "Pattern Name": "Modular Knowledge Consolidation Pipeline",
+    "Problem": "Raw evidence retrieved from external sources is often noisy, incomplete, or too broad, making it difficult for LLMs to effectively ground their responses and leading to potential hallucinations or irrelevant outputs.",
+    "Context": "Implementing Retrieval-Augmented Generation (RAG) systems where external knowledge needs structured preprocessing and refinement before being incorporated into LLM prompts. This is particularly relevant for complex queries requiring information from diverse sources (e.g., web, databases, Wikipedia) and multi-hop reasoning.",
+    "Solution": "Decompose the knowledge consolidation process into a pipeline of specialized, plug-and-play modules: 1) Knowledge Retriever: Generates targeted search queries based on the user's input and dialog history, then calls various APIs (e.g., Bing Search, REST APIs for task-specific databases) to fetch raw evidence. 2) Entity Linker: Enriches the raw evidence by identifying and linking entities mentioned within it to related contextual information (e.g., Wikipedia descriptions), forming a more interconnected 'evidence graph.' 3) Evidence Chainer: Prunes irrelevant information from the evidence graph and synthesizes the most pertinent pieces into concise 'evidence chains' that are highly relevant to the user's query. This consolidated and refined evidence is then passed to the Prompt Engine for inclusion in the LLM's input.",
+    "Result": "Provides the LLM with high-quality, relevant, and structured external knowledge, significantly improving the factual grounding, accuracy, and coherence of its generated responses, especially for complex, knowledge-intensive tasks. It mitigates hallucination by ensuring the LLM operates on verified and consolidated information.",
+    "Related Patterns": "Retrieval-Augmented Generation (RAG), Knowledge Graph Construction, Information Extraction, Data Preprocessing",
+    "Category": "Knowledge & Reasoning",
+    "Uses": "Open-domain question answering, information-seeking dialog, customer service, any application where LLMs need to synthesize information from multiple, potentially noisy, external knowledge sources.",
+    "Thinking": "The text explicitly describes the Knowledge Consolidator as having a 'modular fashion consisting of a knowledge retriever an entity linker and an evidence chainer' (Section 2.3.1). This breakdown into distinct, sequential steps for processing external knowledge is a clear, actionable design pattern for how to prepare knowledge for LLMs."
+  },
+  {
+    "Pattern Name": "Progressive Response Disclosure",
+    "Problem": "AI systems that employ iterative refinement or multi-step reasoning with LLMs can introduce noticeable latency, as the system might query the LLM multiple times or perform complex processing before delivering a final, high-quality response. This delay can negatively impact user experience, especially for impatient users.",
+    "Context": "Interactive AI applications (e.g., chatbots, conversational agents) where response quality (e.g., accuracy, groundedness) is critical, but achieving that quality requires time-consuming internal processes (like iterative feedback loops or extensive knowledge consolidation).",
+    "Solution": "Implement a user interface and interaction flow that progressively discloses information to the user. 1) Immediate Initial Response: Display the LLM's first-pass, unrefined response to the user as soon as it's generated, providing immediate feedback. 2) Transparency and Choice: Simultaneously, inform the user that a more accurate or refined response is being processed or is available (e.g., 'A more accurate response is available,' or 'Checking facts...'). 3) Optional Refined Response: Offer the user the choice to either accept the immediate response or wait for the improved, more accurate version. In high-stakes scenarios, the system might automatically present the refined response once ready.",
+    "Result": "Improves user satisfaction by managing expectations and providing agency. Users can choose between speed and accuracy based on their immediate needs, mitigating the perceived latency of complex AI operations and enhancing the overall human-AI interaction experience.",
+    "Related Patterns": "Latency Hiding, User Feedback Loops, Human-in-the-Loop (for decision on waiting), Asynchronous Processing",
+    "Category": "AI\u2013Human Interaction",
+    "Uses": "Conversational AI, decision support systems, any interactive application where AI processing time can vary and users might prioritize either speed or accuracy.",
+    "Thinking": "Section 6, 'Limitations and Future Directions,' discusses the latency issue of querying ChatGPT twice and suggests: 'For example the initial ChatGPT response can be shown to the user as it is being decoded and the user could then be informed that a more accurate response is available depending on the utility function Then an impatient user can decide to ignore this option while a user more mindful of response accuracy may decide to see the improved ChatGPT response.' This is a clear description of a human-AI interaction pattern designed to address a specific AI system limitation."
+  }
+]

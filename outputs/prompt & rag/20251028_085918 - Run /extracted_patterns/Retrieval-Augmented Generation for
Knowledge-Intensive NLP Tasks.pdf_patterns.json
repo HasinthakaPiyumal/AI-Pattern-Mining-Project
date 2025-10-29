@@ -1,0 +1,145 @@
+[
+  {
+    "Pattern Name": "Retrieval-Augmented Generation (RAG)",
+    "Problem": "Large pretrained language models (LLMs) have limited ability to access and precisely manipulate factual knowledge, leading to performance lags on knowledge-intensive tasks, difficulty in providing provenance for decisions, issues with updating world knowledge, and a tendency to produce hallucinations.",
+    "Context": "Knowledge-intensive NLP tasks (e.g., open-domain QA, fact verification, factual generation) where factual accuracy, up-to-date information, and interpretability are crucial, and purely parametric models are insufficient.",
+    "Solution": "Combine a pretrained parametric memory (a seq2seq model like BART) with a nonparametric memory (a dense vector index of an external knowledge source like Wikipedia) accessed via a pretrained neural retriever (like Dense Passage Retriever - DPR). The entire system is fine-tuned end-to-end, treating retrieved documents as latent variables and marginalizing over them during the generation process.",
+    "Result": "Achieves state-of-the-art results on open-domain QA tasks, generates more specific, diverse, and factual language compared to parametric-only baselines, and allows for easy updating of world knowledge by simply replacing the nonparametric memory.",
+    "Related Patterns": "RAGSequence, RAGToken, Dense Passage Retrieval (DPR), Pretrained Component Integration, End-to-End Joint Training, Marginalization over Latent Documents, Index Hotswapping.",
+    "Category": "Generative AI",
+    "Uses": "Open-domain Question Answering, Abstractive Question Answering, Jeopardy Question Generation, Fact Verification.",
+    "Thinking": "This is the core architectural pattern described in the paper, addressing fundamental limitations of LLMs by augmenting them with external, retrievable knowledge. It's a distinct AI system design."
+  },
+  {
+    "Pattern Name": "RAGSequence",
+    "Problem": "How to ensure a consistent and coherent context from retrieved documents is used for generating an entire output sequence in retrieval-augmented generation.",
+    "Context": "Retrieval-augmented generation tasks where the complete target sequence should ideally be conditioned on a single, unified context derived from retrieved information.",
+    "Solution": "The model uses the same retrieved document (or set of top-K documents) to generate the complete target sequence. It treats the retrieved document as a single latent variable that is marginalized to compute the sequence-to-sequence probability. During decoding, beam search is performed for each document, and the probabilities are then marginalized across these document-specific hypotheses.",
+    "Result": "Produces coherent and factually grounded complete sequences. In some cases, it leads to more diverse generations compared to RAGToken.",
+    "Related Patterns": "Retrieval-Augmented Generation (RAG), RAGToken (its counterpart), Thorough Decoding (RAGSequence), Fast Decoding (RAGSequence).",
+    "Category": "LLM-specific",
+    "Uses": "Open-domain Question Answering, Abstractive Question Answering, Fact Verification.",
+    "Thinking": "This is a specific architectural choice within the RAG framework, defining *how* the retrieved information conditions the generation process across the entire output sequence. It's an AI pattern because it dictates the conditioning strategy for generation."
+  },
+  {
+    "Pattern Name": "RAGToken",
+    "Problem": "How to allow the generator maximum flexibility to draw information from different retrieved documents at different points in the output sequence, enabling more granular control and synthesis of facts.",
+    "Context": "Retrieval-augmented generation tasks where different parts of the output sequence might benefit from distinct pieces of retrieved evidence, or when combining information from multiple sources is advantageous for a richer response.",
+    "Solution": "The model can draw a different latent document for each target token and marginalize accordingly. This allows the generator to dynamically select content from several documents when producing each token. During decoding, it functions as a standard autoregressive seq2seq generator, where the transition probability for the next token marginalizes over the retrieved documents.",
+    "Result": "Often performs better on tasks requiring the combination of information from multiple sources (e.g., Jeopardy question generation, where questions might contain two separate pieces of information).",
+    "Related Patterns": "Retrieval-Augmented Generation (RAG), RAGSequence (its counterpart).",
+    "Category": "LLM-specific",
+    "Uses": "Open-domain Question Answering, Abstractive Question Answering, Jeopardy Question Generation, Fact Verification.",
+    "Thinking": "Similar to RAGSequence, this is a specific architectural choice within RAG, defining a different conditioning strategy for generation, allowing token-level document selection and dynamic knowledge integration."
+  },
+  {
+    "Pattern Name": "End-to-End Joint Training (Retriever-Generator)",
+    "Problem": "Optimizing the entire retrieval-augmented generation pipeline where both the retrieval mechanism and the generation model need to be aligned and improved for the downstream task, especially when direct supervision for the retrieval step (e.g., which document is 'best') is unavailable.",
+    "Context": "Hybrid AI systems combining distinct components (e.g., a retriever and a generator) where the performance of one heavily influences the other, and the goal is to optimize the overall system for a specific task.",
+    "Solution": "Jointly train the retriever and generator components by minimizing the negative marginal log-likelihood of the target sequence, treating the retrieved document as a latent variable. The retriever's query encoder and the generator are fine-tuned, while the document encoder and its index can be kept fixed for computational efficiency during training.",
+    "Result": "Significantly improves results for all tasks compared to freezing the retriever, demonstrating the effectiveness of learning to retrieve relevant information specifically for the downstream generation task.",
+    "Related Patterns": "Retrieval-Augmented Generation (RAG), Pretrained Component Integration, Fixed Document Index (during Fine-tuning).",
+    "Category": "MLOps",
+    "Uses": "Training RAG models for various knowledge-intensive NLP tasks.",
+    "Thinking": "This describes a specific training methodology for a complex AI system, where the interaction and optimization of multiple AI components are crucial. It's an MLOps pattern because it's about the *workflow* of training an ML system, but it's highly specific to the ML architecture and its components."
+  },
+  {
+    "Pattern Name": "Index Hotswapping (for Knowledge Updates)",
+    "Problem": "Parametric-only language models struggle to update their world knowledge as information changes, requiring expensive and time-consuming retraining of the entire model, which can also lead to catastrophic forgetting.",
+    "Context": "AI systems that rely on external knowledge bases for factual accuracy, where the underlying world knowledge is dynamic and needs to be kept up-to-date without incurring high computational costs or risking model degradation.",
+    "Solution": "For models with a nonparametric memory (like a dense vector index), simply replace the old document index with a new, updated index at test time. The parametric memory (generator) does not require retraining or fine-tuning, as its ability to access knowledge is inherent to the architecture.",
+    "Result": "Enables dynamic updating of the model's world knowledge, allowing it to answer questions based on the most current information (e.g., about recent world leaders) without the need for costly retraining. This provides a form of 'human-writable' memory.",
+    "Related Patterns": "Retrieval-Augmented Generation (RAG), Human-Readable/Writable Nonparametric Memory.",
+    "Category": "Knowledge & Reasoning",
+    "Uses": "Maintaining factual accuracy in knowledge-intensive AI applications, adapting to evolving information, providing interpretability through inspectable knowledge sources.",
+    "Thinking": "This is a pattern for managing and updating the knowledge base of an AI system, directly addressing a significant limitation of traditional LLMs. It's about how the AI's knowledge is maintained and updated in a practical, efficient manner."
+  },
+  {
+    "Pattern Name": "Pretrained Component Integration (Retriever & Generator)",
+    "Problem": "Developing complex AI systems from scratch for knowledge-intensive tasks is resource-intensive, time-consuming, and may not leverage the extensive general knowledge already encoded in large pretrained models.",
+    "Context": "Building hybrid AI systems that combine different functionalities (e.g., retrieval and generation) where high-quality, broadly knowledgeable components already exist from large-scale pretraining efforts.",
+    "Solution": "Initialize the retriever component with a pretrained neural retriever (e.g., DPR, which is a bi-encoder trained to retrieve documents containing answers to QA questions) and the generator component with a pretrained seq2seq model (e.g., BART, trained with a denoising objective). These pretrained components are then jointly fine-tuned for the specific downstream task.",
+    "Result": "Leverages extensive knowledge already present in pretrained models, allowing the system to access knowledge without additional training for the access mechanisms, and achieving strong performance with less task-specific pretraining. This approach unifies previous successes in incorporating retrieval into individual tasks.",
+    "Related Patterns": "Retrieval-Augmented Generation (RAG), Dense Passage Retrieval (DPR), Denoising Sequence-to-Sequence Pretraining (BART-like).",
+    "Category": "Tools Integration",
+    "Uses": "Building efficient and high-performing hybrid AI systems for knowledge-intensive NLP, reducing development time and computational cost.",
+    "Thinking": "This pattern describes a strategy for constructing AI systems by combining powerful, off-the-shelf pretrained models, which is a common and effective approach in modern AI development. It's about how different AI tools are brought together to form a more capable system."
+  },
+  {
+    "Pattern Name": "Marginalization over Latent Documents",
+    "Problem": "How to robustly integrate information from multiple potentially relevant retrieved documents into a single generation process, accounting for uncertainty or varying relevance of each document, rather than relying on a single 'best' document.",
+    "Context": "Retrieval-augmented generation where multiple documents are retrieved for a given query, and the model needs to synthesize or select the most appropriate information from these documents to generate an output, especially when no single document contains the complete answer.",
+    "Solution": "Treat the retrieved documents as latent variables. The final probability of the generated sequence (or next token) is obtained by summing (marginalizing) the probabilities conditioned on each retrieved document, weighted by the retriever's probability of that document given the query. This is typically approximated using the top-K retrieved documents.",
+    "Result": "Allows the model to leverage information from multiple sources, leading to more robust and accurate generation. It can even generate correct answers when the exact answer is not explicitly present in any single retrieved document, by combining clues.",
+    "Related Patterns": "Retrieval-Augmented Generation (RAG), RAGSequence, RAGToken.",
+    "Category": "Knowledge & Reasoning",
+    "Uses": "Probabilistic integration of multiple retrieved contexts in language generation, enhancing robustness and completeness of generated responses.",
+    "Thinking": "This is a core probabilistic modeling technique specific to how RAG handles multiple retrieved pieces of information, making it an AI design pattern for knowledge integration and reasoning under uncertainty during generation."
+  },
+  {
+    "Pattern Name": "Dense Passage Retrieval (DPR)",
+    "Problem": "Efficiently and effectively retrieving relevant text passages from a large corpus based on a query, especially for knowledge-intensive tasks, where simple keyword matching (like BM25) might be insufficient.",
+    "Context": "Open-domain question answering, fact verification, or any knowledge-intensive NLP task requiring semantic matching between a query and a vast collection of documents to find relevant evidence.",
+    "Solution": "Employ a bi-encoder architecture where a query encoder (e.g., BERT-based) produces a dense vector representation of the query, and a document encoder (e.g., BERT-based) produces dense vector representations for all documents. Retrieval is then performed by finding documents whose dense representations have the highest inner product similarity with the query's dense representation (Maximum Inner Product Search - MIPS). The document index is built using these dense embeddings.",
+    "Result": "Enables semantic retrieval, outperforming word-overlap based methods (like BM25) for many knowledge-intensive tasks. It forms the nonparametric memory component in RAG models.",
+    "Related Patterns": "Retrieval-Augmented Generation (RAG), Pretrained Component Integration, Maximum Inner Product Search (MIPS).",
+    "Category": "Knowledge & Reasoning",
+    "Uses": "Retriever component in RAG, Open-domain Question Answering, Fact Verification.",
+    "Thinking": "This describes a specific, well-defined neural architecture and method for information retrieval, which is a core AI task. It's a design for a retrieval system, not just a tool."
+  },
+  {
+    "Pattern Name": "Denoising Sequence-to-Sequence Pretraining (BART-like)",
+    "Problem": "Training a robust and versatile sequence-to-sequence model that can perform well across a diverse set of generation, translation, and comprehension tasks, and serve as a strong parametric memory component in hybrid systems.",
+    "Context": "Developing a general-purpose language model capable of both understanding and generating text, often used as a base for fine-tuning on specific downstream tasks.",
+    "Solution": "Pretrain an encoder-decoder transformer model using a denoising objective. This involves corrupting text with various noising functions (e.g., token masking, token deletion, text infilling, sentence permutation) and then training the model to reconstruct the original uncorrupted text. The encoder processes the corrupted input, and the decoder generates the original sequence.",
+    "Result": "Produces a powerful pretrained seq2seq model (parametric memory) that achieves state-of-the-art results on diverse generation tasks and can be effectively integrated into hybrid architectures like RAG.",
+    "Related Patterns": "Pretrained Component Integration, Encoder-Decoder Transformer.",
+    "Category": "LLM-specific",
+    "Uses": "Generator component in RAG, general text generation, translation, comprehension, fine-tuning for various NLP tasks.",
+    "Thinking": "This describes a specific and influential pretraining strategy for a type of LLM (seq2seq transformer), which is a fundamental AI design choice for building powerful generative models."
+  },
+  {
+    "Pattern Name": "Fixed Document Index (during Fine-tuning)",
+    "Problem": "Updating the document encoder and rebuilding the entire document index during fine-tuning of a retrieval-augmented model is computationally costly and time-consuming, especially for large document corpora.",
+    "Context": "Fine-tuning a retrieval-augmented generation (RAG) model where the document corpus is large, and the document encoder is part of the end-to-end training loop.",
+    "Solution": "Keep the document encoder (e.g., BERT_d) and the associated document index fixed during the fine-tuning phase. Only the query encoder (e.g., BERT_q) and the generator (e.g., BART) are fine-tuned. The document index is built once before fine-tuning.",
+    "Result": "Reduces computational cost and training time significantly, making fine-tuning more practical, while still achieving strong performance. This strategy is found to be 'not necessary for strong performance' in this context.",
+    "Related Patterns": "End-to-End Joint Training, Dense Passage Retrieval (DPR).",
+    "Category": "MLOps",
+    "Uses": "Optimizing the fine-tuning process for RAG models, reducing computational overhead.",
+    "Thinking": "This is a practical optimization strategy for training a specific type of AI system (RAG), directly addressing a computational challenge in the ML workflow. It's an MLOps pattern because it's about the *process* of training and managing the ML model."
+  },
+  {
+    "Pattern Name": "Thorough Decoding (RAGSequence)",
+    "Problem": "Accurately approximating arg max_y p(y|x) for the RAGSequence model, where the likelihood p(y|x) does not break into a conventional per-token likelihood, making standard beam search insufficient.",
+    "Context": "Decoding for the RAGSequence model, which marginalizes over a single latent document for the entire output sequence, requiring a more complex approach than standard autoregressive decoding.",
+    "Solution": "Run beam search independently for each of the top-K retrieved documents. This yields a set of candidate hypotheses. For any hypothesis y that did not appear in the beam of all documents, run an additional forward pass for each document z for which y was not generated. Then, multiply the generator probability p(y|x, z) with the retriever probability p(z|x) and sum these probabilities across all documents to estimate the marginal probability p(y|x).",
+    "Result": "Provides a more accurate estimation of the marginal likelihood for RAGSequence, leading to potentially better decoding quality, but at the cost of higher computational expense due to multiple forward passes.",
+    "Related Patterns": "RAGSequence, Beam Search, Marginalization over Latent Documents.",
+    "Category": "LLM-specific",
+    "Uses": "High-quality decoding for RAGSequence models when computational resources allow.",
+    "Thinking": "This is a specific algorithmic design for how an LLM (RAGSequence) produces its output, directly addressing the unique probabilistic structure of the model."
+  },
+  {
+    "Pattern Name": "Fast Decoding (RAGSequence)",
+    "Problem": "The computational cost of Thorough Decoding for RAGSequence can be prohibitive for longer output sequences, as it requires many additional forward passes.",
+    "Context": "Decoding for the RAGSequence model, where a more efficient, albeit approximate, decoding strategy is needed to manage computational resources.",
+    "Solution": "Make an approximation that p(y|x, z) = 0 if hypothesis y was not generated during beam search from x and document z. This avoids the need to run additional forward passes for hypotheses that did not appear in the beam of a particular document. The candidate set Y is generated from the initial beam searches.",
+    "Result": "Significantly more efficient decoding for RAGSequence models, reducing runtime, especially for longer sequences, by trading off some accuracy for speed.",
+    "Related Patterns": "RAGSequence, Thorough Decoding (RAGSequence), Beam Search.",
+    "Category": "LLM-specific",
+    "Uses": "Efficient decoding for RAGSequence models, particularly when speed is critical or output sequences are long.",
+    "Thinking": "Similar to Thorough Decoding, this is an algorithmic design for LLM output generation, focusing on efficiency for a specific model type."
+  },
+  {
+    "Pattern Name": "Human-Readable/Writable Nonparametric Memory",
+    "Problem": "Traditional parametric language models lack interpretability regarding their factual knowledge and are difficult to update or inspect. Their knowledge is implicitly stored in parameters, making it opaque and hard to modify.",
+    "Context": "AI systems requiring transparency, auditability, and dynamic knowledge updates, especially in knowledge-intensive applications where users might need to understand or modify the underlying factual basis.",
+    "Solution": "Store external knowledge in a nonparametric memory comprised of raw, human-readable text documents (e.g., Wikipedia articles split into chunks). This memory is accessed via a retrieval mechanism. The raw text format allows for direct inspection of the evidence used by the model and enables dynamic updates by simply editing or replacing the document index.",
+    "Result": "Provides a form of interpretability by allowing inspection of the retrieved evidence. Enables easy and dynamic updating of the model's world knowledge (human-writable) without retraining the parametric components. Reduces hallucinations by grounding generation in explicit facts.",
+    "Related Patterns": "Retrieval-Augmented Generation (RAG), Index Hotswapping.",
+    "Category": "AI\u2013Human Interaction",
+    "Uses": "Fact verification, open-domain QA, applications requiring explainability and up-to-date factual information.",
+    "Thinking": "This pattern describes a fundamental design choice for the *nature* of the knowledge base in an AI system, emphasizing its human-centric properties (readability, writability) which directly impact AI-human interaction and trust."
+  }
+]

@@ -1,0 +1,200 @@
+[
+  {
+    "Pattern Name": "Tool Use / Tool Augmentation",
+    "Problem": "Large Language Models (LLMs) have limited inherent capabilities, access to real-world, up-to-date information, and ability to perform complex calculations or external actions.",
+    "Context": "Language agents need to interact with external systems, databases, or APIs to gather information, perform calculations, or execute actions beyond their internal knowledge.",
+    "Solution": "Equip the language agent with a 'Toolbox' of external tools (e.g., search engines, calculators, APIs like FlightSearch, CitySearch, RestaurantSearch, DistanceMatrix, AccommodationSearch, AttractionSearch) and the ability to select and use the appropriate tool based on the current task and context. The agent formulates tool calls and processes their observations.",
+    "Result": "Expands the agent's capabilities, allows access to dynamic and specific information, and enables interaction with the environment, significantly improving performance in real-world tasks.",
+    "Related Patterns": "ReAct, Agentic Architecture",
+    "Category": "Tools Integration",
+    "Uses": "Information collection (e.g., searching flights, cities, restaurants, attractions, accommodations), calculations (e.g., distance and cost), interacting with external data sources.",
+    "Thinking": "The text explicitly mentions 'tool use' as a core capability of language agents and refers to a 'tool-augmentation paradigm'. It details specific tools within the TravelPlanner benchmark and discusses 'Tooluse' as a module in LLM-powered agents."
+  },
+  {
+    "Pattern Name": "Memory Management (Working Memory / Short-Term Memory / Long-Term Memory)",
+    "Problem": "LLMs have limited context windows (short-term memory) and may struggle to retain and recall relevant information over long interactions or complex, long-horizon tasks (long-term memory), leading to 'Lost in the Middle' issues.",
+    "Context": "Language agents need to keep track of intermediate plans, collected information, past interactions, and constraints to inform future decisions and maintain coherence over extended tasks.",
+    "Solution": "Implement distinct memory modules: Short-term memory (working memory/in-context learning) utilizes the LLM's context window, often managed by explicit mechanisms like a 'NotebookWrite' tool to record necessary information. Long-term memory (parametric memory/retrieval) leverages the LLM's inherent knowledge or external retrieval mechanisms (e.g., RAG) and techniques like 'memory summarization' to access broader or previously learned information.",
+    "Result": "Improves the agent's ability to manage information, maintain context, avoid repetition, and make coherent decisions over extended interactions, preventing context overflow and information confusion.",
+    "Related Patterns": "Retrieval Augmented Generation, Agentic Architecture",
+    "Category": "Knowledge & Reasoning",
+    "Uses": "Recording necessary information for planning, keeping track of multiple constraints, remembering past actions and observations, managing context in long-horizon tasks.",
+    "Thinking": "The text explicitly discusses 'Memory' as a module in language agents, dividing it into 'long-term memory' and 'short-term memory'. It mentions techniques like 'memory summarization' and 'retrieval' and introduces the 'NotebookWrite' tool as a mechanism for working memory management."
+  },
+  {
+    "Pattern Name": "Task Decomposition",
+    "Problem": "Complex, long-horizon tasks are often too difficult for an LLM to solve in a single step or prompt, leading to failures in planning and execution.",
+    "Context": "An agent is faced with a multi-faceted goal that requires breaking down into smaller, more manageable sub-problems or a sequence of actions.",
+    "Solution": "The language agent uses its reasoning capabilities to break down the main task into a sequence of smaller, more tractable sub-tasks or steps. Each sub-task can then be addressed individually, often involving tool use or further reasoning, before integrating the sub-solutions into a complete plan.",
+    "Result": "Simplifies complex problems, makes them solvable by iterative steps, and improves the agent's ability to achieve long-term goals by managing complexity.",
+    "Related Patterns": "Chain-of-Thought, Planning, Long-Horizon Planning",
+    "Category": "Planning",
+    "Uses": "Breaking down travel planning into steps like analyzing constraints, collecting information through tools, and planning daily itineraries.",
+    "Thinking": "The text states that 'language agents have the capability to decompose complex tasks' and 'language agents can effectively decompose tasks and engage in step-by-step reasoning' as a core planning skill."
+  },
+  {
+    "Pattern Name": "Step-by-Step Reasoning (Chain-of-Thought / CoT)",
+    "Problem": "LLMs can struggle with complex reasoning tasks, especially when direct answers require multiple logical steps or when the reasoning process needs to be explicit.",
+    "Context": "An LLM needs to perform a multi-step reasoning process to arrive at a solution, to justify its actions, or to guide subsequent steps in a complex task.",
+    "Solution": "Prompt the LLM to generate intermediate reasoning steps, explaining its thought process before providing the final answer or action. This can be done with specific prompting techniques, such as adding 'Let's think step by step' (Zero-Shot Chain-of-Thought, ZSCoT).",
+    "Result": "Improves the LLM's reasoning capabilities, makes its decision-making process more transparent, and often leads to more accurate and robust solutions by guiding the model through a logical progression.",
+    "Related Patterns": "ReAct, Planning, Task Decomposition",
+    "Category": "LLM-specific",
+    "Uses": "Enhancing the reasoning process in planning, as demonstrated by the ZSCoT strategy, to improve problem-solving accuracy.",
+    "Thinking": "The text explicitly mentions 'ZSCoT (Zero-Shot Chain-of-Thought)' as a planning strategy and describes it as enhancing 'the reasoning process by requiring intermediate steps'. It also notes that language agents 'engage in step-by-step reasoning'."
+  },
+  {
+    "Pattern Name": "ReAct (Reasoning and Acting)",
+    "Problem": "Language agents need to dynamically interact with their environment, reason about observations, and decide on subsequent actions in an iterative loop to solve complex, interactive tasks.",
+    "Context": "An agent is performing a task that requires both internal reasoning ('Thought') and external interaction ('Action') with tools or the environment, followed by processing the outcome ('Observation').",
+    "Solution": "The agent alternates between 'Thought' steps (where it reasons about the current situation, plans the next action), 'Action' steps (where it executes a tool call or an environmental interaction), and 'Observation' steps (where it processes the feedback from the environment/tool). This forms a continuous iterative loop.",
+    "Result": "Enables dynamic, adaptive behavior, effective tool use, and improved performance in interactive tasks by tightly integrating reasoning with environmental feedback, allowing agents to correct course and make informed decisions.",
+    "Related Patterns": "Tool Use, Feedback Loop / Self-Correction, Agentic Architecture",
+    "Category": "Agentic AI",
+    "Uses": "Information collection in the 'twostage mode' of TravelPlanner, general interactive task execution, and dynamic problem-solving in partially observable environments.",
+    "Thinking": "ReAct is explicitly mentioned as a 'planning strategy' and described as a framework that 'incorporates environmental feedback into the reasoning process'. The prompt example in Appendix B31 clearly illustrates the 'Thought', 'Action', and 'Observation' steps."
+  },
+  {
+    "Pattern Name": "Reflexion",
+    "Problem": "Language agents can make errors, get stuck in loops, or produce suboptimal plans, and need a mechanism to learn from and correct these mistakes over multiple attempts.",
+    "Context": "An agent has attempted a task, but its execution resulted in failure, suboptimal outcomes, or violations of constraints, requiring a meta-level correction mechanism.",
+    "Solution": "After an attempt, a 'reflection model' (often another LLM call) analyzes the agent's past trajectory, identifies errors or inefficiencies, and generates 'high-level insights' or verbal reinforcement. This feedback is then used to guide subsequent attempts or refine the agent's strategy for future planning and execution.",
+    "Result": "Improves the agent's ability to self-correct, learn from failures, and refine its planning and execution over multiple attempts, leading to more robust and successful task completion.",
+    "Related Patterns": "Feedback Loop / Self-Correction, ReAct, Agentic Architecture",
+    "Category": "Agentic AI",
+    "Uses": "Providing 'high-level insights on previous erroneous attempts' to improve planning, especially in scenarios where initial plans fail or are suboptimal.",
+    "Thinking": "Reflexion is explicitly mentioned as a 'planning strategy' and described as utilizing 'a reflection model to provide high-level insights on previous erroneous attempts'."
+  },
+  {
+    "Pattern Name": "Feedback Loop / Self-Correction",
+    "Problem": "Agents may make errors, get stuck in dead loops, or produce plans that violate constraints, requiring a mechanism to detect and rectify these issues dynamically.",
+    "Context": "An agent's actions or generated plan needs to be evaluated against criteria (e.g., environmental feedback, constraints, commonsense), and adjustments are needed if discrepancies are found.",
+    "Solution": "The agent receives feedback from the environment or an evaluation mechanism (e.g., 'Observation' in ReAct, 'reflection model' in Reflexion, or explicit constraint checks). Based on this feedback, the agent modifies its internal state, reasoning, or subsequent actions/plans to correct errors or improve adherence to requirements.",
+    "Result": "Enhances the agent's adaptability, robustness, and ability to converge on a correct solution by iteratively refining its approach based on observed outcomes, preventing persistent errors and dead loops.",
+    "Related Patterns": "ReAct, Reflexion, Constraint Satisfaction",
+    "Category": "Agentic AI",
+    "Uses": "Dynamically adjusting plans based on environment feedback (e.g., unavailable flights), rectifying persistent errors, optimizing costs, and ensuring plans adhere to commonsense and hard constraints.",
+    "Thinking": "This pattern is strongly implied by ReAct and Reflexion. The text explicitly states problems like 'agents fail to dynamically adjust their plans based on environment feedback' and 'inability to rectify persistent errors', highlighting the need for such a mechanism. It also mentions 'methods involving feedback from the environment' as beneficial."
+  },
+  {
+    "Pattern Name": "Constraint Satisfaction",
+    "Problem": "Real-world planning tasks involve numerous explicit and implicit constraints that an agent's plan must adhere to simultaneously, making plan generation complex.",
+    "Context": "An agent is generating a plan (e.g., a travel itinerary) that must satisfy multiple conditions, such as budget, user preferences (hard constraints), logical consistency, and commonsense rules (commonsense constraints).",
+    "Solution": "The agent incorporates mechanisms to perceive, understand, and integrate various types of constraints (e.g., 'Environment Constraints', 'Commonsense Constraints', 'Hard Constraints') throughout its planning process. This involves checking proposed actions/plans against these constraints and adjusting if violations occur, often requiring a holistic approach.",
+    "Result": "Produces feasible and acceptable plans that meet all specified requirements, improving the utility, reliability, and user satisfaction of the agent's output.",
+    "Related Patterns": "Planning, Feedback Loop / Self-Correction, Long-Horizon Planning",
+    "Category": "Planning",
+    "Uses": "Adhering to budget, room rules, cuisine preferences, reasonable city routes, diverse restaurants/attractions, non-conflicting transportation, and minimum night stays in travel planning.",
+    "Thinking": "The TravelPlanner benchmark is explicitly designed for 'complex planning within multiple constraints'. The text details 'Environment Constraints', 'Commonsense Constraints', and 'Hard Constraints' that agents must satisfy, and notes that agents 'fail to consider multiple constraints holistically'."
+  },
+  {
+    "Pattern Name": "Long-Horizon Planning",
+    "Problem": "Planning tasks that span many steps or a long duration involve a large number of interdependent decisions, making it difficult for agents to maintain coherence, optimality, and manage information over time.",
+    "Context": "An agent needs to create a plan for an extended period (e.g., a multi-day trip) where early decisions significantly impact later options and overall feasibility, and the complexity increases with duration.",
+    "Solution": "The agent employs strategies to manage the complexity of long sequences of actions, such as task decomposition, maintaining a robust working memory of intermediate states, and potentially using forward-looking heuristics or backtracking to explore future implications of current decisions. This addresses the challenge of managing 'a large number of interdependent decisions'.",
+    "Result": "Enables the agent to generate comprehensive, consistent, and feasible plans for extended periods, overcoming the limitations of short-sighted decision-making and improving performance in complex, multi-step scenarios.",
+    "Related Patterns": "Task Decomposition, Memory Management, Planning, Constraint Satisfaction",
+    "Category": "Planning",
+    "Uses": "Planning multi-day travel itineraries (e.g., 3-day, 5-day, 7-day trips) where decisions on places, lodging, transportation, and dining are interdependent.",
+    "Thinking": "The text explicitly identifies 'Planning a multiday itinerary is inherently long-horizon involving a large number of interdependent decisions' as a key challenge. It also notes that agent performance deteriorates 'with an increase in the duration of travel', emphasizing the need for improved capabilities in 'long-horizon tasks'."
+  },
+  {
+    "Pattern Name": "Tree of Thoughts (ToT) / Graph of Thoughts (GoT)",
+    "Problem": "Linear reasoning approaches (like Chain-of-Thought) can be insufficient for problems requiring exploration of multiple reasoning paths, evaluation of intermediate thoughts, or backtracking to find an optimal solution.",
+    "Context": "An agent needs to solve complex problems that benefit from exploring diverse reasoning trajectories, evaluating the quality of intermediate thoughts, and potentially backtracking to more promising paths.",
+    "Solution": "Represent the reasoning process as a tree or graph, where nodes are individual thoughts or states, and edges represent transitions between them. The agent can generate multiple 'thoughts' at each step, evaluate their potential, and prune less promising branches, allowing for more deliberate, robust, and exhaustive problem-solving through search.",
+    "Result": "Improves the agent's ability to solve complex problems that require exploration, evaluation, and backtracking, leading to more robust and accurate solutions compared to linear reasoning.",
+    "Related Patterns": "Step-by-Step Reasoning, Planning",
+    "Category": "Planning",
+    "Uses": "Deliberate problem solving with large language models, exploring complex search spaces for optimal solutions (though noted as prohibitively costly for TravelPlanner in this paper).",
+    "Thinking": "The text explicitly mentions 'ToT Yao et al 2023 and GoT Besta et al 2023' as existing planning strategies, even though they were not included in the experiments due to their computational cost for the benchmark's complexity. This acknowledges them as established AI design patterns for planning."
+  },
+  {
+    "Pattern Name": "World Model / Simulation-based Planning",
+    "Problem": "Traditional AI agents often operate without a comprehensive understanding of the environment's dynamics, limiting their ability to anticipate outcomes and explore alternative futures.",
+    "Context": "An agent needs to make complex decisions in a dynamic environment where predicting the consequences of actions is crucial for effective planning.",
+    "Solution": "The agent maintains or constructs an internal 'world model' that represents the environment's state and dynamics. It uses this model to run 'simulations' of potential action sequences, predicting their outcomes without actual execution. This allows for exploration of alternative plans and deliberation.",
+    "Result": "Enables more robust and informed planning by allowing the agent to 'try out' actions virtually, anticipate future states, and select optimal or near-optimal plans, especially in complex, uncertain, or long-horizon scenarios.",
+    "Related Patterns": "Planning, Long-Horizon Planning, Agentic AI",
+    "Category": "Planning",
+    "Uses": "Exploring alternative plans, deliberation, anticipating outcomes of actions in complex planning scenarios like travel.",
+    "Thinking": "Explicitly mentioned in the introduction: 'exploring alternative plans by running simulations which in turn depends on a world model'. This is a fundamental concept in AI planning and agent design."
+  },
+  {
+    "Pattern Name": "Commonsense Reasoning",
+    "Problem": "Language agents, despite their vast knowledge, may fail to incorporate implicit, real-world knowledge and common-sense rules into their plans, leading to illogical or impractical outcomes.",
+    "Context": "An agent is generating plans for human users in real-world scenarios where adherence to unstated, generally accepted rules and expectations (e.g., not visiting the same attraction repeatedly, not teletransporting) is crucial for plan feasibility and user satisfaction.",
+    "Solution": "The agent is designed or prompted to explicitly consider and apply 'commonsense constraints' during the planning process. This involves understanding implicit rules of the world and human behavior, beyond explicit instructions, to ensure the generated plan is logical and practical.",
+    "Result": "Produces more realistic, practical, and human-aligned plans by preventing violations of common-sense expectations, thereby increasing the plan's feasibility and user acceptance.",
+    "Related Patterns": "Constraint Satisfaction, Planning, AI\u2013Human Interaction",
+    "Category": "Knowledge & Reasoning",
+    "Uses": "Ensuring travel plans include reasonable city routes, diverse restaurants/attractions, non-conflicting transportation, and other implicit logical rules.",
+    "Thinking": "The paper dedicates a section to 'Commonsense Constraints' and evaluates 'agents understanding and utilization of commonsense during planning'. This highlights it as a specific and critical AI capability for real-world applications."
+  },
+  {
+    "Pattern Name": "Cognitive Load Management",
+    "Problem": "Language agents, like humans, have limited cognitive capacity, and their performance deteriorates significantly when tasked with multiple complex, interdependent responsibilities simultaneously (e.g., information collection and planning).",
+    "Context": "An agent is required to perform a task that involves several distinct but interconnected sub-tasks, such as gathering information from external tools while simultaneously constructing a coherent plan based on that information and adhering to multiple constraints.",
+    "Solution": "Design the agent's architecture or workflow to manage cognitive load by potentially separating or sequencing complex sub-tasks (e.g., a 'twostage mode' for information collection followed by planning). This might involve dedicated modules for different functions or explicit strategies to reduce the simultaneous demands on the core LLM.",
+    "Result": "Improves overall performance and reduces failure rates by preventing the agent from being overwhelmed by concurrent complex demands, allowing it to focus its 'cognitive capacity' more effectively on each stage or type of task.",
+    "Related Patterns": "Agentic Architecture, Task Decomposition, Memory Management",
+    "Category": "Agentic AI",
+    "Uses": "Separating information collection from planning (as in the 'twostage mode') to prevent performance degradation when multitasking.",
+    "Thinking": "The text explicitly states: 'Similar to humans, language agents also seem to have a limited cognitive capacity and their performance deteriorates when multitasking.' This identifies a specific problem and implies a design consideration for agent robustness."
+  },
+  {
+    "Pattern Name": "Backtracking / Heuristic Search",
+    "Problem": "Autoregressive LLMs struggle with 'global planning scenarios' and 'anticipate future implications' because their sequential nature limits independent exploration of multiple future branches, leading to suboptimal or infeasible plans, especially under global constraints like budget.",
+    "Context": "An agent is generating a plan where decisions made early in the sequence have significant, long-term cost or feasibility implications, and a simple greedy approach is insufficient to satisfy global constraints.",
+    "Solution": "Implement strategies that allow the agent to either 'backtrack' to previous decision points and explore alternative paths when a current path leads to a dead end or constraint violation, or employ 'heuristic methods for forward-looking planning' to estimate the future cost/benefit of current choices and guide the search towards promising solutions.",
+    "Result": "Enables the agent to find globally optimal or near-optimal solutions by systematically exploring the search space, recovering from suboptimal choices, and making more informed decisions that consider long-term consequences, especially for global constraints.",
+    "Related Patterns": "Planning, Tree of Thoughts, Graph of Thoughts, Long-Horizon Planning",
+    "Category": "Planning",
+    "Uses": "Adjusting plans to meet global constraints like budget or minimum night stays, exploring alternative options when initial choices lead to infeasibility.",
+    "Thinking": "The text explicitly calls for 'new strategies such as backtracking for adjusting or employing heuristic methods for forward-looking planning' to address the limitations of LLMs in global planning scenarios. These are classic AI planning techniques."
+  },
+  {
+    "Pattern Name": "Reasoning-Action Synchronization",
+    "Problem": "Language agents may exhibit a 'discrepancy between what agents think and what they do,' where their internal reasoning (e.g., identifying a need to minimize costs) does not translate effectively into appropriate external actions (e.g., selecting more expensive items).",
+    "Context": "An agent has performed internal reasoning or identified a strategic goal, but its subsequent actions, especially tool calls or plan generation, do not consistently reflect or implement that reasoning, leading to suboptimal or contradictory outcomes.",
+    "Solution": "Design mechanisms to ensure a tighter coupling between the agent's internal 'Thought' processes and its external 'Action' execution. This might involve more explicit prompting to link reasoning to action, internal validation of actions against stated thoughts, or reinforcement learning to penalize misaligned actions.",
+    "Result": "Improves the coherence and effectiveness of the agent's behavior by ensuring that its actions are a direct and accurate manifestation of its reasoning, leading to more consistent and goal-oriented task completion.",
+    "Related Patterns": "Agentic AI, Feedback Loop / Self-Correction, ReAct, Reflexion",
+    "Category": "Agentic AI",
+    "Uses": "Ensuring that an agent's actions (e.g., selecting accommodations or restaurants) directly reflect its stated reasoning (e.g., minimizing costs).",
+    "Thinking": "The text explicitly identifies this as a failure mode: 'Agents struggle to align their actions with their reasoning... This discrepancy demonstrates that agents struggle to synchronize their actions with their analytical reasoning.' This points to a specific design challenge in agentic systems."
+  },
+  {
+    "Pattern Name": "Agentic Architecture",
+    "Problem": "LLMs alone lack the ability to autonomously perform complex, multi-step tasks, interact with dynamic environments, or maintain state over long durations.",
+    "Context": "When building intelligent systems that need to operate autonomously, interact with external tools, manage information, and plan over extended periods to achieve complex goals.",
+    "Solution": "Design an LLM-powered agent with a modular architecture comprising distinct components such as: Memory (for retaining and processing information), Tool Use (for interacting with external environments, APIs, or databases), and Planning (for decomposing tasks, strategizing action sequences, and making decisions). These modules work in concert, often in an iterative loop, guided by the LLM's reasoning capabilities.",
+    "Result": "Enables LLMs to exhibit more autonomous, adaptive, and capable behavior, tackling complex real-world problems that are beyond the scope of a single LLM call.",
+    "Related Patterns": "Tool Use, Memory Management, Task Decomposition, Planning, ReAct, Reflexion",
+    "Category": "Agentic AI",
+    "Uses": "Building autonomous agents like AutoGPT, BabyAGI, HuggingGPT, or the TravelPlanner agent itself, which require sophisticated interaction with the environment and internal state management.",
+    "Thinking": "The text explicitly states: 'Current LLMpowered language agents equipped with Memory Tooluse and Planning modules have seen a substantial improvement in their general abilities'. This describes the fundamental architectural pattern of such agents."
+  },
+  {
+    "Pattern Name": "Retrieval Augmented Generation (RAG)",
+    "Problem": "LLMs have a knowledge cutoff, can hallucinate, and may not have access to specific, up-to-date, or proprietary information required for a task. Their parametric memory is limited.",
+    "Context": "An LLM needs to generate responses or plans that require factual accuracy, access to external knowledge bases, or information beyond its training data, especially when dealing with dynamic or domain-specific data.",
+    "Solution": "Integrate a retrieval mechanism that fetches relevant information from an external knowledge source (e.g., databases, documents, web search) based on the input query or current context. This retrieved information is then provided to the LLM as additional context, augmenting its generation process.",
+    "Result": "Reduces hallucinations, improves factual accuracy, enables access to real-time or domain-specific information, and enhances the overall relevance and quality of the LLM's output. It also serves as a form of long-term memory.",
+    "Related Patterns": "Memory Management, Tool Use, Knowledge & Reasoning",
+    "Category": "Knowledge & Reasoning",
+    "Uses": "Enhancing the memory capabilities of language agents, providing up-to-date information for planning (e.g., flight details, restaurant menus), and grounding LLM responses in factual data.",
+    "Thinking": "The text mentions 'retrieval Andreas 2022 Park et al 2023 Zhong et al 2023 are widely employed to enhance the memory capabilities of language agents'. While 'retrieval' is a component, RAG is the established pattern for using retrieval to augment generation, addressing the LLM's knowledge limitations."
+  },
+  {
+    "Pattern Name": "Structured Output / Plan Generation",
+    "Problem": "LLMs naturally generate free-form text, but many downstream applications or evaluation systems require information in a specific, structured format (e.g., JSON, XML, a predefined data structure).",
+    "Context": "An LLM is tasked with generating a complex output, such as a multi-day travel plan, where individual components (transportation, accommodation, meals, attractions) need to be clearly identifiable, parsable, and evaluable by automated systems.",
+    "Solution": "1. Prompt Engineering: Instruct the LLM to generate its output directly in a structured format (e.g., JSON) or to follow a very strict natural language template that is easily parsable. 2. Post-processing: If the LLM generates natural language, use another LLM call or a rule-based parser to extract key components and organize them into the desired structured format.",
+    "Result": "Facilitates automated evaluation, integration with other systems, and ensures consistency and machine-readability of the LLM's generated plans or data.",
+    "Related Patterns": "Prompt Design, Tools Integration (for parsing tools)",
+    "Category": "LLM-specific",
+    "Uses": "Extracting key components from natural language plans (transportation, restaurants, attractions, accommodations) and organizing them into a formally structured plan for automatic evaluation.",
+    "Thinking": "The text states: 'we first extract key components... which are initially presented as natural language These components are then organized into a formally structured plan which will be evaluated automatically through predefined scripts.' This describes a clear process of converting LLM-generated natural language into a structured format for a specific purpose."
+  }
+]

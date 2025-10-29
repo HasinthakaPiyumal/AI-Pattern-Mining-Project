@@ -1,0 +1,90 @@
+[
+  {
+    "Pattern Name": "Sufficient Context Autorater",
+    "Problem": "Accurately and scalably determining if a given context provides enough information for an LLM to answer a query, especially in Retrieval Augmented Generation (RAG) systems, without relying on a ground truth answer. Prior methods lacked a precise definition of relevance.",
+    "Context": "Analyzing and improving Retrieval Augmented Generation (RAG) systems, evaluating LLM performance with varying context quality, or preparing datasets for RAG. The goal is to distinguish between LLM failures to utilize context and context insufficiency.",
+    "Solution": "1. Define 'Sufficient Context': An instance (Q, C) has sufficient context if there exists a plausible answer A to Q given C. This definition does not require a pre-existing ground truth answer. 2. Implement an 'Autorater': Use a powerful LLM (e.g., Gemini 1.5 Pro 1-shot) prompted with the sufficient context definition and examples to classify query-context pairs as 'sufficient' or 'insufficient'.",
+    "Result": "Achieves 93% accuracy in classifying sufficient context, enabling scalable labeling of instances. Provides crucial insights into LLM behavior in RAG, revealing that models hallucinate even with sufficient context and often hallucinate more than abstain with insufficient context.",
+    "Related Patterns": "LLM-based Evaluation, Retrieval Augmented Generation (RAG), Confidence Estimation (as it can be a signal for other patterns).",
+    "Category": "LLM-specific",
+    "Uses": "Analyzing RAG system performance and error stratification; Data labeling for RAG datasets; Providing a signal for downstream AI components, such as selective generation.",
+    "Thinking": "This pattern describes a novel method using an LLM to perform a meta-evaluation task (context sufficiency) that is critical for understanding and improving other LLM-based systems like RAG. It's a specific AI technique."
+  },
+  {
+    "Pattern Name": "Selective Generation with Sufficient Context Signal",
+    "Problem": "Large Language Models (LLMs) in Retrieval Augmented Generation (RAG) systems frequently hallucinate incorrect answers instead of abstaining, particularly when the provided context is insufficient. This reduces trustworthiness and overall accuracy.",
+    "Context": "Deploying RAG systems in applications requiring high accuracy and reliability, where abstaining from an answer is preferable to generating a hallucinated one (e.g., medical, legal domains).",
+    "Solution": "1. Utilize two abstention signals: Model Self-rated Confidence (the LLM's estimated probability of correctness) and Sufficient Context Autorater Output (a binary label indicating context sufficiency). 2. Train a simple logistic regression model using these signals to predict the likelihood of hallucination. 3. At inference time, apply a threshold to the logistic regression model's score: if the score falls below the threshold, the LLM abstains; otherwise, it generates an answer. This allows for a controllable accuracy-coverage tradeoff.",
+    "Result": "Significantly improves the selective accuracy-coverage tradeoff, leading to gains of 2-10% in the fraction of correct answers among total model responses compared to using self-rated confidence alone. Offers a controllable mechanism for tuning abstention behavior.",
+    "Related Patterns": "Sufficient Context Autorater, Confidence Estimation, Hallucination Mitigation, Retrieval Augmented Generation (RAG).",
+    "Category": "Agentic AI",
+    "Uses": "Reducing hallucinations and improving trustworthiness in RAG systems; Implementing controllable accuracy-coverage tradeoffs in LLM applications; Guiding LLMs to abstain when uncertain or when context is inadequate.",
+    "Thinking": "This pattern empowers an LLM to make an intelligent, autonomous decision (to respond or abstain) based on a combination of internal confidence and external context quality signals. This meta-decision-making capability is characteristic of agentic AI."
+  },
+  {
+    "Pattern Name": "Finetuning for Controlled Abstention",
+    "Problem": "LLMs, especially in RAG settings, often hallucinate incorrect answers rather than abstaining when they lack sufficient information, leading to untrustworthy outputs.",
+    "Context": "Developing and deploying LLMs where it is crucial for the model to explicitly indicate uncertainty ('I don't know') instead of generating potentially harmful or incorrect information.",
+    "Solution": "1. Prepare a finetuning dataset where a subset of training examples (e.g., 20% randomly selected or 20% identified as having insufficient context) has its ground truth answer replaced with an explicit 'I don't know' response. 2. Apply LoRA adaptation to finetune the LLM (e.g., Mistral 3 7B) on this modified dataset.",
+    "Result": "Finetuned models show a higher rate of correct answers in some cases and increased abstention compared to models trained without 'I don't know' examples. However, it's noted that this approach alone doesn't easily reduce the hallucination rate and may increase abstention at the cost of fewer correct answers, suggesting further research is needed for optimal strategies.",
+    "Related Patterns": "Hallucination Mitigation, Retrieval Augmented Generation (RAG), Selective Generation.",
+    "Category": "MLOps",
+    "Uses": "Attempting to reduce LLM hallucinations by encouraging explicit abstention; Steering LLM behavior during training to improve trustworthiness.",
+    "Thinking": "This pattern describes a specific machine learning operational technique (finetuning with modified training data) aimed at influencing the output behavior (abstention vs. hallucination) of an LLM, which is a core MLOps concern for model reliability."
+  },
+  {
+    "Pattern Name": "Retrieval Augmented Generation (RAG)",
+    "Problem": "Large Language Models (LLMs) are limited by their pre-training data, leading to factual inaccuracies, outdated information, and an inability to answer domain-specific questions or adapt to new domains.",
+    "Context": "Knowledge-intensive NLP tasks, open-domain question answering, summarization, or any application where LLMs need access to external, up-to-date, or specialized knowledge beyond their parametric memory.",
+    "Solution": "Combine an LLM with a retrieval model. At inference time, a retrieval model fetches relevant context (e.g., documents, snippets, long-form text) from an external knowledge base based on the user query. This retrieved context is then provided to the LLM along with the query, allowing the LLM to generate an answer grounded in the external information.",
+    "Result": "Major improvements in LLM factuality, verifiability, and ability to adapt to new domains. Reduces reliance on parametric memory for factual recall. However, it introduces new challenges like confidently predicting incorrect answers with retrieved evidence, distraction by irrelevant information, and failure to extract from long texts.",
+    "Related Patterns": "Knowledge Augmentation, External Knowledge Integration, Factuality Improvement, LLM-based Evaluation.",
+    "Category": "LLM-specific",
+    "Uses": "Open-domain question answering, factual summarization, chatbots, domain-specific applications, enhancing LLM knowledge currency.",
+    "Thinking": "The entire paper is dedicated to analyzing and improving RAG systems, which is a foundational and widely recognized AI design pattern for LLMs. It addresses a core limitation of LLMs by integrating external knowledge dynamically."
+  },
+  {
+    "Pattern Name": "LLM-based Evaluation (Autorater/LLMEval)",
+    "Problem": "Traditional evaluation metrics (e.g., exact match, F1 score) for free-form LLM outputs are often too rigid, fail to capture semantic equivalence, or are difficult to scale. Human evaluation is costly, slow, and can be inconsistent.",
+    "Context": "Evaluating free-form text generation (e.g., answers, summaries), assessing properties of input data (e.g., context quality), or comparing LLM outputs against ground truth or other model responses in a scalable and semantically robust manner.",
+    "Solution": "Utilize a powerful Large Language Model (LLM) itself as an 'autorater' or 'evaluator.' This LLM is prompted with the input, the generated output, and specific evaluation criteria (e.g., correctness, context sufficiency, semantic similarity). It then provides a judgment or score, often with an explanation.",
+    "Result": "Enables scalable, semantically robust evaluation of LLM outputs and input properties. Can handle variations in phrasing and provide more nuanced judgments than simple string matching, often correlating well with human judgments.",
+    "Related Patterns": "Sufficient Context Autorater (a specific application), LLM-as-a-Judge, Automated Quality Assurance, Prompt Design.",
+    "Category": "LLM-specific",
+    "Uses": "Automated QA evaluation, content moderation, data labeling, quality control for LLM outputs, assessing context quality (e.g., sufficiency, relevance).",
+    "Thinking": "The paper explicitly describes using an 'LLM-based autorater' for context sufficiency and an 'LLMEval pipeline' for answer correctness. This is a general pattern of using an LLM to perform meta-tasks of evaluation, leveraging its understanding capabilities for quality assessment."
+  },
+  {
+    "Pattern Name": "Confidence Estimation (Self-rated Probabilities)",
+    "Problem": "LLMs often generate incorrect answers (hallucinations) with high confidence, making it difficult for users or downstream systems to trust their outputs or know when to abstain from answering.",
+    "Context": "Applications requiring high reliability and trustworthiness, where the LLM's uncertainty needs to be communicated or leveraged for decision-making (e.g., selective generation, human-in-the-loop systems, safety-critical applications).",
+    "Solution": "Implement mechanisms (e.g., specific prompting strategies like PTrue or PCorrect, sampling multiple responses and reflecting, or specialized model architectures) that encourage the LLM to output an explicit confidence score or probability alongside its generated answer, reflecting its internal assessment of correctness.",
+    "Result": "Provides a valuable signal for the LLM's internal uncertainty, which can be used to improve selective generation, guide abstention, or flag outputs for human review, thereby enhancing overall system trustworthiness and enabling controllable accuracy-coverage tradeoffs.",
+    "Related Patterns": "Selective Generation, Hallucination Mitigation, Agentic AI (for self-reflection), Prompt Design.",
+    "Category": "Agentic AI",
+    "Uses": "Guiding abstention mechanisms, flagging potentially incorrect answers, improving overall system reliability, enabling controllable accuracy-coverage tradeoffs, enhancing human-AI collaboration.",
+    "Thinking": "This pattern involves the LLM's ability to introspect and provide a meta-level assessment of its own output's reliability. This self-awareness and self-reporting capability is a characteristic of agentic AI, allowing the model to reason about its own knowledge state."
+  },
+  {
+    "Pattern Name": "Chain of Thought (CoT) Prompting",
+    "Problem": "Large Language Models (LLMs) can struggle with complex, multi-step reasoning tasks, often producing superficial or incorrect answers without showing their intermediate thought process, making debugging difficult.",
+    "Context": "Tasks requiring logical deduction, multi-hop reasoning, mathematical calculations, or any problem where breaking down the solution into intermediate steps is beneficial for both the LLM's performance and human understanding.",
+    "Solution": "Design prompts that explicitly instruct the LLM to generate its reasoning steps or 'think step-by-step' before providing the final answer. This encourages the model to perform a more structured, multi-stage inference, simulating a human-like reasoning process.",
+    "Result": "Often leads to improved accuracy on complex reasoning tasks by breaking down the problem into manageable steps. Provides transparency into the LLM's thought process, making outputs more explainable and easier to debug.",
+    "Related Patterns": "Prompt Engineering, Reasoning Augmentation, Step-by-Step Reasoning, Knowledge & Reasoning.",
+    "Category": "Prompt Design",
+    "Uses": "Enhancing LLM reasoning capabilities, improving performance on complex question answering, generating explainable AI outputs, facilitating problem-solving in various domains.",
+    "Thinking": "The paper explicitly states 'We employed a basic chain of thought CoT prompting approach'. CoT is a widely recognized and fundamental AI design pattern in the context of LLMs, specifically related to prompt engineering for improved reasoning and problem-solving."
+  },
+  {
+    "Pattern Name": "Iterative Retrieval and Decision-Making",
+    "Problem": "In RAG systems, a single retrieval step might not provide sufficient or optimal context, leading to suboptimal answers or hallucinations. The system needs to dynamically decide if more information is needed or if it should abstain.",
+    "Context": "RAG systems where the quality or completeness of initial retrieved context is uncertain, and the system needs to adapt its information gathering strategy dynamically to improve accuracy and reduce errors.",
+    "Solution": "After an initial retrieval, the system evaluates the sufficiency of the current context (e.g., using a 'Sufficient Context Autorater' or a confidence score). Based on this evaluation, it makes a decision: 1) Generate an answer if the context is deemed sufficient and confidence is high. 2) Refine the query and perform another retrieval step if the context is insufficient but potentially retrievable. 3) Abstain if the context is insufficient and further retrieval is unlikely to help, or if overall confidence is too low.",
+    "Result": "Potentially higher accuracy by ensuring more relevant and sufficient context, reduced hallucinations by abstaining when truly uncertain, and more efficient use of retrieval resources by avoiding unnecessary generation or retrieval.",
+    "Related Patterns": "Retrieval Augmented Generation (RAG), Sufficient Context Autorater, Selective Generation, Agentic AI, Planning.",
+    "Category": "Agentic AI",
+    "Uses": "Enhancing RAG systems with dynamic information gathering, improving robustness to initial retrieval failures, optimizing resource usage in complex question answering, enabling adaptive LLM behavior.",
+    "Thinking": "This pattern describes an intelligent agent's dynamic control loop: evaluating its current information state, deciding on a course of action (retrieve more, answer, or abstain), and executing that action. This meta-decision-making and adaptive behavior is a hallmark of agentic AI. It's mentioned as a future work direction: 'to achieve the best performance we could have used our autorater to iteratively judge whether to retrieve more or answer the question'."
+  }
+]

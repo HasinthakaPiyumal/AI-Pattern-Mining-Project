@@ -1,0 +1,178 @@
+[
+  {
+    "Pattern Name": "Browser-Assisted LLM",
+    "Problem": "Traditional LLMs struggle with up-to-date information retrieval and factual accuracy, especially for long-form, open-ended questions, and lack the ability to interact with dynamic, real-world information sources.",
+    "Context": "An LLM needs to answer complex, long-form questions that require searching and synthesizing information from the web, and its answers need to be factually accurate and supported by evidence.",
+    "Solution": "Fine-tune a large language model (e.g., GPT-3) to interact with a text-based web browsing environment. The model is prompted with the current state (question, page text, cursor location) and issues commands (search, click, scroll, quote, end browsing). It collects references (quotes) during browsing to support its final answer.",
+    "Result": "The model can search and navigate the web, retrieve up-to-date information, and synthesize paragraph-length answers with supporting references. This significantly improves factual accuracy and human preference for answers compared to base LLMs and even human demonstrators.",
+    "Related Patterns": "Tools Integration, Retrieval Augmented Generation (RAG), Agentic AI",
+    "Category": "Agentic AI",
+    "Uses": "Long-form question answering, information synthesis, fact-checking, enabling LLMs to perform tasks requiring external tool use.",
+    "Thinking": "This is the core architectural pattern described, enabling an LLM to act as an agent within a web environment, directly addressing the problem of LLMs lacking real-time external knowledge and interaction capabilities."
+  },
+  {
+    "Pattern Name": "Human Feedback for Quality Optimization (Reward Modeling & RLHF)",
+    "Problem": "Directly optimizing language model outputs for subjective qualities like factual accuracy, coherence, and overall usefulness is challenging with traditional loss functions. Imitation learning alone may not surpass human performance or directly optimize for desired qualities.",
+    "Context": "A language model's outputs (e.g., long-form answers) need to be aligned with human preferences regarding quality, factual accuracy, and coherence.",
+    "Solution": "Collect human comparisons of model-generated answers (and potentially human-generated answers). Train a separate Reward Model (RM) to predict human preferences (e.g., Elo scores). Then, use this RM to optimize the language model, either through Reinforcement Learning (RL) (e.g., PPO) or by selecting the best output from multiple samples (Rejection Sampling).",
+    "Result": "The language model's outputs are significantly preferred by humans, achieving or surpassing human-level performance on subjective quality metrics. The RM provides a scalable proxy for human judgment.",
+    "Related Patterns": "Behavior Cloning, Rejection Sampling, Preference-based Learning",
+    "Category": "AI\u2013Human Interaction",
+    "Uses": "Aligning LLMs with human values, improving subjective quality of generated text, fine-tuning models for complex, hard-to-quantify objectives.",
+    "Thinking": "The text explicitly details using 'human feedback to directly optimize answer quality,' 'reward modeling using the comparisons,' and 'reinforcement learning against the reward model,' which are hallmarks of this pattern for AI alignment."
+  },
+  {
+    "Pattern Name": "Rejection Sampling (Best-of-N)",
+    "Problem": "Improving the quality of generated outputs from a language model without further training or complex reinforcement learning setups, especially when a good reward model is available.",
+    "Context": "A language model can generate multiple candidate outputs for a given input, and a reward model can reliably score these outputs based on desired criteria.",
+    "Solution": "Sample a fixed number (N) of answers from the language model (e.g., a Behavior Cloned model or an RL-tuned model). Use a pre-trained Reward Model to score each of these N samples. Select the sample with the highest reward model score as the final output.",
+    "Result": "Substantially improves the quality of the final output, often outperforming direct RL optimization, by leveraging inferencetime compute to select better samples. It requires no additional training of the generative model.",
+    "Related Patterns": "Human Feedback for Quality Optimization, Ensemble Methods",
+    "Category": "LLM-specific",
+    "Uses": "Enhancing output quality, leveraging a reward model for inference-time improvement, trading off compute for quality.",
+    "Thinking": "The text describes 'Rejection sampling bestofn' as a distinct method for 'optimizing against the reward model which requires no additional training but instead uses more inferencetime compute,' making it a specific LLM output refinement technique."
+  },
+  {
+    "Pattern Name": "Reference-Supported Generation",
+    "Problem": "Ensuring factual accuracy and transparency in AI-generated long-form answers, and making human evaluation of factual claims easier and more objective.",
+    "Context": "An AI system generates answers that need to be verifiable and trustworthy, especially in domains where factual correctness is paramount (e.g., question answering).",
+    "Solution": "Design the AI system (e.g., a Browser-Assisted LLM) to actively collect and include references (e.g., quoted passages from web pages with source information) alongside its generated answer. These references are then used by human evaluators to judge the factual accuracy and support for claims in the answer.",
+    "Result": "Improves the factual accuracy of generated answers, increases transparency by allowing users/evaluators to trace claims back to sources, and makes human evaluation more efficient and less subjective.",
+    "Related Patterns": "Retrieval Augmented Generation (RAG), Explainable AI (XAI), Fact-Checking AI",
+    "Category": "Knowledge & Reasoning",
+    "Uses": "Long-form question answering, summarization, content generation where verifiability is critical, reducing hallucinations.",
+    "Thinking": "The paper highlights 'We generate answers with references passages extracted by the model from web pages while browsing. This is crucial for allowing labelers to judge the factual accuracy of answers,' indicating a deliberate design choice for knowledge output."
+  },
+  {
+    "Pattern Name": "Adversarial Evaluation for Truthfulness",
+    "Problem": "Standard evaluation metrics or datasets may not adequately capture a model's tendency to generate 'imitative falsehoods' (reproducing common misconceptions or biases) or to be robust against adversarial questions designed to elicit false beliefs.",
+    "Context": "An AI system, particularly a language model, needs to be assessed for its truthfulness and informativeness, especially when deployed in sensitive applications where misinformation is a concern.",
+    "Solution": "Evaluate the AI model on adversarially constructed datasets (e.g., TruthfulQA) where questions are specifically crafted to elicit false answers from humans due to common misconceptions. Score answers based on both truthfulness and informativeness, often requiring human evaluation for out-of-distribution answers.",
+    "Result": "Provides a more rigorous assessment of a model's ability to avoid imitative falsehoods and generate truthful, informative content, highlighting areas where the model still struggles (e.g., quoting unreliable sources).",
+    "Related Patterns": "Robustness Testing, Bias Detection, Red Teaming",
+    "Category": "MLOps",
+    "Uses": "Benchmarking truthfulness, identifying model weaknesses regarding common misconceptions, guiding further training to reduce falsehoods.",
+    "Thinking": "The evaluation on 'TruthfulQA Lin et al 2021 an adversariallyconstructed dataset of shortform questions' specifically designed to 'mimic human falsehoods' is a clear pattern for robust ML model evaluation."
+  },
+  {
+    "Pattern Name": "Bias-Aware Design & Mitigation",
+    "Problem": "AI models, especially large language models, can inherit and amplify biases present in their training data, leading to perpetuation of stereotypes, reinforcement of existing beliefs, and exclusion of certain identities.",
+    "Context": "An AI system is being developed or deployed, and there's a risk of it exhibiting harmful biases in its outputs, search behavior, or synthesis of information.",
+    "Solution": "Actively analyze and acknowledge potential sources of bias (e.g., base model biases, internet search data, human contractor viewpoints). Implement strategies to mitigate these biases, such as improving the base model, refining training objectives (e.g., using debate-like setups to find evidence for/against claims), controlling application usage, and providing clear documentation of limitations.",
+    "Result": "Increased awareness and understanding of model biases, and a framework for developing and implementing strategies to reduce the perpetuation and reinforcement of harmful biases in AI systems.",
+    "Related Patterns": "Ethical AI, Fairness-Aware ML, Responsible AI",
+    "Category": "AI\u2013Human Interaction",
+    "Uses": "Developing ethical AI systems, ensuring fairness, reducing harmful societal impacts of AI.",
+    "Thinking": "The 'Reinforcement of bias' and 'Reference point bias' sections directly discuss the problem and propose solutions like 'improvements both to WebGPTs base model and to WebGPTs training objective,' making this an AI-specific ethical design pattern."
+  },
+  {
+    "Pattern Name": "Live Web Access with Controlled Interaction",
+    "Problem": "Enabling AI models to access up-to-date, real-world information from the internet while mitigating the significant risks associated with uncontrolled interaction (e.g., exploiting real-world side effects, malicious actions).",
+    "Context": "An AI system requires access to dynamic, current information from the web to perform its task effectively (e.g., answering questions), but direct, unrestricted web access is too risky.",
+    "Solution": "Provide the AI model with a text-based, controlled web browsing environment. Restrict the model's actions to a predefined, safe set of commands (e.g., sending queries to a search API, following existing links, quoting text). Prevent actions that could have real-world side effects like editing forms or interacting with sensitive systems. Implement monitoring and 'tripwire tests' for exploitative behavior.",
+    "Result": "The AI gains access to a vast, up-to-date knowledge base, enhancing its capabilities, while the risks of unintended or malicious actions are significantly reduced through environmental constraints and monitoring.",
+    "Related Patterns": "Tools Integration, Agentic AI, Sandboxing",
+    "Category": "Tools Integration",
+    "Uses": "Real-time information retrieval, dynamic knowledge acquisition, enabling AI agents to operate in external environments safely.",
+    "Thinking": "The 'Risks of live web access' section explicitly addresses the problem and details the solution of 'controlled interaction' and 'measures such as tripwire tests' to manage the risks of giving AI models external access."
+  },
+  {
+    "Pattern Name": "Behavior Cloning for Initial Skill Acquisition",
+    "Problem": "Training a language model to perform complex, multi-step tasks in a novel environment (e.g., a text-based browser) where valid actions and interaction formats are unknown to the pretrained model.",
+    "Context": "A pretrained language model lacks the specific knowledge or 'grammar' to interact with a custom environment or tool with specific command formats, and direct reinforcement learning might be sample-inefficient or unstable without an initial policy.",
+    "Solution": "Collect demonstrations of humans performing the task in the environment. Fine-tune the pretrained language model using supervised learning (behavior cloning), treating the human-issued commands as labels.",
+    "Result": "The model acquires the necessary skills to operate within the text-based browsing environment, providing a functional baseline policy that can be used directly or as a starting point for further optimization.",
+    "Related Patterns": "Imitation Learning, Supervised Fine-tuning",
+    "Category": "Classical AI",
+    "Uses": "Bootstrapping AI agents in new environments, teaching models specific interaction protocols, providing a stable initial policy for RL.",
+    "Thinking": "The text states 'A language model pretrained on natural language would not be able to use our textbased browser since it does not know the format of valid commands. We therefore collected examples of humans using the browser... Behavior cloning BCWe netuned on the demonstrations using supervised learning,' which is a direct description of this classical ML pattern for agent initialization."
+  },
+  {
+    "Pattern Name": "State Representation for Agentic LLM",
+    "Problem": "Large Language Models (LLMs) lack inherent memory and perception of dynamic external environments, making it challenging for them to understand the current state and make informed decisions in interactive tasks.",
+    "Context": "An LLM is designed to act as an agent in a dynamic, interactive environment (e.g., a text-based web browser) and needs to receive comprehensive, structured information about the current state to choose its next action.",
+    "Solution": "Design a structured, text-based summary that encapsulates the current state of the environment. This summary includes critical information such as the user's question, the text content of the current page, the cursor's location, and a record of past actions. This summary is then provided as the primary input (prompt) to the LLM for each decision step.",
+    "Result": "The LLM can effectively interpret the dynamic state of the environment, enabling it to generate appropriate and contextually relevant commands or actions, thereby facilitating its agentic behavior and interaction with the external world.",
+    "Related Patterns": "Prompt Engineering, Agentic AI, Contextual Prompting, Observational Learning",
+    "Category": "Prompt Design",
+    "Uses": "Enabling LLMs to operate as agents in interactive environments, providing context for sequential decision-making, facilitating tool use by LLMs.",
+    "Thinking": "The paper explicitly describes how the model is 'prompted with a written summary of the current state of the environment including the question, the text of the current page at the current cursor location and some other information (see Figure 1b).' This is a core design choice for how the LLM perceives and interacts with its environment, making it a pattern for agentic LLMs and prompt design."
+  },
+  {
+    "Pattern Name": "KL Regularization in RLHF",
+    "Problem": "During Reinforcement Learning from Human Feedback (RLHF), fine-tuning a language model with a reward model can lead to policy divergence, where the model's behavior drifts significantly from its initial (e.g., behavior-cloned) policy, potentially exploiting reward model flaws or generating undesirable outputs.",
+    "Context": "A language model is being fine-tuned using Reinforcement Learning (e.g., PPO) with a reward signal derived from a human preference model, starting from a pre-trained or behavior-cloned policy.",
+    "Solution": "Incorporate a Kullback-Leibler (KL) divergence penalty into the RL objective function. This penalty measures the difference between the current policy and a reference policy (typically the initial behavior-cloned policy), encouraging the RL-tuned policy to remain close to the original distribution of generated text.",
+    "Result": "Stabilizes RL training, prevents overoptimization of the reward model, and ensures that the fine-tuned policy maintains desirable characteristics (e.g., coherence, style) from the initial policy while still optimizing for the human preference signal.",
+    "Related Patterns": "Reinforcement Learning from Human Feedback (RLHF), Policy Gradient Methods, Model Alignment",
+    "Category": "MLOps",
+    "Uses": "Stabilizing RLHF training, preventing policy collapse or divergence, maintaining stylistic consistency during fine-tuning, mitigating reward hacking.",
+    "Thinking": "The text states, 'For the environment reward we took the reward model score at the end of each episode and added this to a KL penalty from the BC model at each token to mitigate overoptimization of the reward model.' This is a specific and critical technique within the MLOps workflow for RLHF."
+  },
+  {
+    "Pattern Name": "Human-in-the-Loop Data Collection Interface",
+    "Problem": "Collecting high-quality, consistent human demonstrations and preference comparisons for complex AI tasks is often challenging, time-consuming, and requires clear guidance for human labelers.",
+    "Context": "Training or evaluating AI models, especially for tasks involving complex interactions or subjective judgments (e.g., web browsing, long-form question answering), requires large datasets of human-generated actions or preference ratings.",
+    "Solution": "Develop a specialized graphical user interface (GUI) designed for human demonstrators and labelers. This interface should simplify complex interactions (e.g., by providing visual cues, structured input fields, and clear action buttons), display relevant information concisely, and allow for detailed auxiliary annotations (e.g., claim support, relevance, trustworthiness ratings) to enrich the collected data.",
+    "Result": "Improves the efficiency, consistency, and quality of human data collection, making it easier for contractors to provide accurate demonstrations and nuanced comparisons, which directly contributes to better training and evaluation data for AI models.",
+    "Related Patterns": "Active Learning, Data Annotation, Human-AI Collaboration, Crowdsourcing",
+    "Category": "AI\u2013Human Interaction",
+    "Uses": "Generating training data for imitation learning, collecting human preferences for reward modeling, facilitating complex data annotation tasks, scaling human feedback collection.",
+    "Thinking": "The paper describes designing a 'graphical user interface for the environment' (Figure 1a) for demonstrations and a 'similar interface' for comparisons, explicitly stating it's 'more human-friendly' and allows 'auxiliary annotations.' This is a distinct pattern for how humans interact with the system to generate data."
+  },
+  {
+    "Pattern Name": "Sample-Efficient RL with Reference Reuse",
+    "Problem": "Reinforcement Learning (RL) for multi-stage tasks can be highly sample-inefficient, particularly when certain critical stages (e.g., answer generation) are shorter or less frequent but contribute significantly to the overall reward, while other stages (e.g., browsing) are longer and more exploratory.",
+    "Context": "An RL agent is trained on a task composed of sequential phases (e.g., a browsing phase followed by an answering phase), where the reward is primarily determined by the outcome of a later, shorter phase, and the initial phases are computationally expensive or time-consuming.",
+    "Solution": "To improve sample efficiency, after a complete multi-phase episode, generate additional 'answering-only' episodes. In these supplementary episodes, the agent is provided with the references (or relevant information) collected during the preceding full browsing phase and is tasked solely with optimizing its answer generation based on that fixed set of references.",
+    "Result": "Significantly boosts the sample efficiency of RL training by allowing the model to practice and optimize the high-impact, shorter phases (like answer generation) more frequently without repeatedly incurring the computational cost of the longer, exploratory phases (like web browsing). This leads to faster learning and improved overall performance.",
+    "Related Patterns": "Reinforcement Learning, Curriculum Learning, Experience Replay, MLOps",
+    "Category": "MLOps",
+    "Uses": "Accelerating RL training for multi-stage tasks, optimizing specific sub-components of an agent's behavior, reducing computational costs in complex RL environments.",
+    "Thinking": "Section 3.2 explicitly states: 'To improve sample efficiency at the end of each episode we inserted 15 additional answering-only episodes using the same references as the previous episode... and we found it to improve sample efficiency by approximately a factor of 2.' This is a clear optimization strategy for RL training, fitting the MLOps category."
+  },
+  {
+    "Pattern Name": "Structured Action Space for Agentic LLM",
+    "Problem": "LLMs, by default, generate free-form text, which is unsuitable for direct interaction with structured environments or tools requiring specific commands.",
+    "Context": "An LLM needs to operate as an agent within a defined environment (e.g., a web browser, a game, a software tool) by issuing discrete, valid commands.",
+    "Solution": "Define a finite, structured set of commands or actions that the LLM can generate. These commands map directly to operations in the environment (e.g., 'Search [query]', 'Click [link ID]', 'Quote [text]'). The LLM is trained (e.g., via behavior cloning) to generate these specific command strings.",
+    "Result": "Enables the LLM to interact deterministically and effectively with the environment, transforming its free-form generation capability into structured, actionable commands.",
+    "Related Patterns": "Tools Integration, Agentic AI, Function Calling, Prompt Engineering (for output format)",
+    "Category": "Agentic AI",
+    "Uses": "Enabling LLMs to control external tools, navigate structured interfaces, perform sequential tasks requiring specific actions.",
+    "Thinking": "Table 1 explicitly lists the 'Commands' the model can take and their 'Effect', indicating a deliberate design of a structured action space for the LLM agent. This is distinct from the overall browser-assisted architecture and focuses on the agent's output mechanism."
+  },
+  {
+    "Pattern Name": "Dual Data Collection for Agentic LLM Training",
+    "Problem": "Training an agentic LLM for complex tasks requires both initial behavioral guidance and subsequent preference-based refinement, which cannot be achieved effectively with a single type of human feedback.",
+    "Context": "An LLM needs to learn both how to perform a multi-step task (e.g., browsing) and how to generate high-quality, preferred outputs (e.g., answers).",
+    "Solution": "Collect two distinct types of human-generated data: 1. **Demonstrations:** Human experts perform the task, providing sequences of actions and observations, used for initial Behavior Cloning to teach the model *how* to interact. 2. **Comparisons:** Humans rate pairs of model-generated outputs (or model vs. human outputs) based on subjective quality criteria, used for training a Reward Model to teach the model *what* constitutes a good output.",
+    "Result": "Provides a comprehensive dataset that enables both initial skill acquisition and subsequent alignment with human preferences, leading to models that are both capable and aligned.",
+    "Related Patterns": "Human Feedback for Quality Optimization, Behavior Cloning, Reward Modeling, Data Annotation",
+    "Category": "AI\u2013Human Interaction",
+    "Uses": "Training complex AI agents, combining imitation learning with preference learning, bootstrapping and refining AI behavior.",
+    "Thinking": "Section 3.1 clearly states: 'We therefore collected examples of humans using the browser to answer questions which we call demonstrations... We therefore collected pairs of model-generated answers to the same question and asked humans which one they preferred which we call comparisons.' This highlights a strategic dual approach to data collection for different training objectives."
+  },
+  {
+    "Pattern Name": "Trust Calibration through Transparency",
+    "Problem": "Users tend to over-rely on AI outputs (automation bias), especially when they appear authoritative (e.g., with citations), even if the AI makes mistakes, particularly on out-of-distribution questions.",
+    "Context": "An AI system generates information that users might consume and act upon, and it's crucial to prevent over-reliance and foster appropriate trust.",
+    "Solution": "Design the AI system and its interface to provide transparency into its operation and limitations. This includes: explicitly documenting limitations and potential failure modes (e.g., struggles with out-of-distribution questions), providing mechanisms for users to verify information (e.g., traceable references), and designing the output style to avoid undue authoritativeness where uncertainty exists.",
+    "Result": "Users are better informed about the AI's capabilities and limitations, leading to more appropriate trust levels, reduced automation bias, and more critical engagement with AI-generated content.",
+    "Related Patterns": "Explainable AI (XAI), Responsible AI, AI-Human Interaction, Reference-Supported Generation",
+    "Category": "AI\u2013Human Interaction",
+    "Uses": "Building trustworthy AI systems, mitigating risks of misinformation, promoting critical thinking in AI users, designing user-friendly AI interfaces.",
+    "Thinking": "Section 6.2, 'Perceived truthfulness of WebGPT,' directly addresses 'automation bias' and the risk of 'overreliance on WebGPTs answers.' It suggests 'Documentation of these limitations' as a mitigation, which is a core aspect of designing for trust calibration."
+  },
+  {
+    "Pattern Name": "Debate-Style Evidence Aggregation",
+    "Problem": "AI models, when tasked with generating answers with references, might 'cherry-pick' sources that support a particular claim, even if the overall evidence is mixed or contradictory, leading to biased or incomplete answers.",
+    "Context": "An AI system needs to provide a balanced and comprehensive assessment of information, especially for complex or controversial topics, rather than just supporting a single viewpoint.",
+    "Solution": "Train models in a 'debate-like' setup where they are incentivized to find and present evidence both *for* and *against* different claims. This could involve having multiple models argue different sides or a single model generating arguments and counter-arguments.",
+    "Result": "The AI system provides more balanced, nuanced, and robustly supported answers, reducing the risk of cherry-picking evidence and fostering a more complete understanding of complex issues.",
+    "Related Patterns": "Knowledge & Reasoning, Explainable AI (XAI), Bias Mitigation, Adversarial Training",
+    "Category": "Knowledge & Reasoning",
+    "Uses": "Generating balanced summaries, critical analysis of information, mitigating confirmation bias, improving robustness of factual claims.",
+    "Thinking": "Section 6.4, 'Using references to evaluate factual accuracy,' explicitly states: 'We could mitigate this using methods like debate Irving et al 2018 in which models are trained to nd evidence both for and against different claims.' This describes a specific AI design approach for robust knowledge aggregation."
+  }
+]

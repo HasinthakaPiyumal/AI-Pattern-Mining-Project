@@ -1,0 +1,101 @@
+[
+  {
+    "Pattern Name": "LACE (Local Agnostic attribute Contribution Explanation)",
+    "Problem": "Black-box models lack interpretability for individual predictions, especially regarding feature interactions, and existing methods are either qualitative, quantitative, or computationally expensive for interactions.",
+    "Context": "Structured data, black-box classification models, need for local (individual instance) explanations.",
+    "Solution": "Captures local behavior using K-nearest neighbors, trains a rule-based local surrogate model (e.g., L3) to extract relevant patterns (attribute-value conjunctions). Quantifies influence of individual attributes and these patterns via 'prediction difference' (change in probability upon omission, approximated by marginalization). Automatically tunes K for locality scope. Visualizes contributions with bar plots.",
+    "Result": "Provides both qualitative (local rules) and quantitative (prediction difference for individual attributes and their interactions) explanations for individual black-box predictions, efficiently handling feature interactions. Enhances trust and debugging.",
+    "Related Patterns": "LIME, SHAP (feature importance), Anchor, LORE (rule-based explanations), IME (removal-based, Shapley values).",
+    "Category": "AI\u2013Human Interaction",
+    "Uses": "Explaining individual black-box classifier predictions, debugging models, building trust, satisfying regulatory requirements (e.g., GDPR's right to explanation).",
+    "Thinking": "The text explicitly describes LACE as a 'novel method to explain classifier predictions on single instances' with a clear problem, context, step-by-step solution, and measurable results, making it a distinct AI design pattern for interpretability."
+  },
+  {
+    "Pattern Name": "xPlain (Interactive Human-in-the-Loop Explanation Framework)",
+    "Problem": "Human experts struggle to interactively inspect, understand, debug, and compare black-box model behaviors for individual predictions.",
+    "Context": "Structured data, black-box classification models, need for interactive exploration and comparison of local explanations.",
+    "Solution": "Integrates LACE for generating class-dependent and model-agnostic explanations. Provides an interactive UI for instance-level explanation, comparison across target classes and classifiers, 'what-if' analysis by tweaking attributes, and user-defined rules. Summarizes multiple local explanations into 'explanation metadata' (attribute, item, local rule views) for global insights.",
+    "Result": "Facilitates interactive exploration, debugging, and comparison of black-box model predictions, enhancing trust and providing actionable insights for model improvement.",
+    "Related Patterns": "LACE (underlying explanation method), LIME, SHAP (other explanation methods that could be integrated).",
+    "Category": "Tools Integration",
+    "Uses": "Model validation, debugging, comparison of classifiers, understanding specific predictions, testing hypotheses, satisfying interactivity desiderata of XAI.",
+    "Thinking": "The text presents xPlain as an 'interactive tool' and 'framework' that 'leverages on LACE' to enable 'human-in-the-loop inspection' of model predictions. This describes a pattern for integrating AI explanation techniques into an interactive system."
+  },
+  {
+    "Pattern Name": "DivExplorer (Divergent Subgroup Exploration)",
+    "Problem": "Lack of understanding of how black-box classification models behave differently across specific data subgroups, hindering model validation, fairness assessment, and debugging. Existing methods are often supervised or incomplete.",
+    "Context": "Structured data, black-box classification models, need to identify and characterize data subgroups with 'peculiar divergent behaviors' (e.g., higher FPR/FNR).",
+    "Solution": "Defines 'h-divergence' to quantify behavioral differences in subgroups. Uses Bayesian statistics for significance. Employs efficient Frequent Pattern Mining (FPM) algorithms for exhaustive identification of all 'frequent itemsets' (subgroups). Applies Shapley values to attribute local item contributions to itemset divergence and generalizes Shapley values for 'global item divergence' to capture overall item influence. Identifies 'corrective items' that reduce divergence. Includes redundancy pruning for summarization. Generalizes to scoring and ranking systems.",
+    "Result": "Automatically identifies and characterizes all sufficiently represented divergent data subgroups, providing local and global insights into item contributions and revealing corrective behaviors. Enables comprehensive model validation, fairness auditing, and debugging.",
+    "Related Patterns": "Slice Finder, SliceLine (other unsupervised subgroup analysis), FairVIS (uses clustering for subgroups).",
+    "Category": "MLOps",
+    "Uses": "Model validation, testing, error analysis, evaluation of model fairness, debugging, identifying bias, understanding model behavior at subgroup granularity.",
+    "Thinking": "DivExplorer is introduced as a 'novel approach that identifies and characterizes data subgroups in which a model behaves differently.' It defines new concepts (divergence, global item divergence), adapts game theory (Shapley values), and provides an efficient algorithmic solution to a core ML problem, fitting the MLOps category for model analysis."
+  },
+  {
+    "Pattern Name": "DivExplorer Interactive System (Interactive Divergent Subgroup Exploration)",
+    "Problem": "Users need an interactive way to explore, analyze, and understand divergent model behaviors in data subgroups, particularly for identifying bias or debugging.",
+    "Context": "Structured data, black-box classification models, need for interactive exploration of divergent subgroups identified by the DivExplorer algorithm.",
+    "Solution": "Integrates the DivExplorer algorithm into a web application. Provides a UI with a sortable table of divergent itemsets (with pruning), bar graphs for local item contributions (Shapley values), a lattice visualization for exploring subset relationships and corrective items, global item influence visualizations, and search/drilldown functionalities.",
+    "Result": "Facilitates interactive exploration and analysis of divergent subgroups, helping users identify bias, debug models, and understand classifier behavior at a granular level.",
+    "Related Patterns": "DivExplorer (underlying algorithm), xPlain (another interactive explanation tool).",
+    "Category": "Tools Integration",
+    "Uses": "Analyzing and debugging classifiers, identifying bias in classifiers, exploring model behavior in data subgroups, model validation.",
+    "Thinking": "The text describes this as a 'web app' and 'interactive system' that 'leverages the DivExplorer algorithm' to enable 'interactive exploration of classifier behavior in data subgroups.' This is a pattern for building interactive tools around AI analysis methods."
+  },
+  {
+    "Pattern Name": "Inherently Interpretable Models (Interpretability by Design)",
+    "Problem": "High-performing machine learning models are often black-boxes, lacking transparency and interpretability, which is critical in high-stakes applications and can hinder trust and accountability.",
+    "Context": "Developing machine learning models for critical applications (healthcare, criminal justice, finance) where understanding the model's internal logic and decision-making process is paramount, and a perceived trade-off between accuracy and interpretability exists.",
+    "Solution": "Design and train models that are intrinsically transparent and understandable to humans. This can involve using model architectures that are simple by nature (e.g., Decision Trees, Rule-based models, Linear Models, Generalized Additive Models, K-Nearest Neighbors, Naive Bayes) or by incorporating interpretability criteria directly into the model's optimization problem during training (e.g., minimizing model complexity like number of leaves or rules).",
+    "Result": "Models that provide direct insights into their decision-making process, fostering trust, enabling error analysis, and facilitating fairness assessment, often overcoming the perceived accuracy-interpretability tradeoff by optimizing for both.",
+    "Related Patterns": "Decision Trees, Classification Rules, Logistic Regression, Generalized Additive Models (GAMs), K-Nearest Neighbors, Naive Bayes (as examples of such models).",
+    "Category": "Classical AI",
+    "Uses": "Building trustworthy AI systems, satisfying regulatory requirements (e.g., GDPR), knowledge discovery, error analysis and debugging, fairness assessment, transferability, model comparison.",
+    "Thinking": "The text dedicates a significant section (2.1.1) to 'On the transparency of classification models' and 'Targeting interpretability by design,' describing a fundamental approach to XAI. It's a meta-pattern encompassing several classical AI models and a design philosophy."
+  },
+  {
+    "Pattern Name": "Partial Dependence Plots (PDPs)",
+    "Problem": "Understanding the global average effect of one or two features on the predictions of a black-box machine learning model. Complex models obscure the relationship between individual features and the output.",
+    "Context": "Model-agnostic global interpretability for black-box classification or regression models, where the overall influence of specific input features on the model's output needs to be visualized.",
+    "Solution": "Compute the marginal effect of a feature (or a small set of features) on the predicted outcome. This is done by averaging the model's predictions over the values of all other features in the dataset, while varying the values of the feature(s) of interest. The average prediction is then plotted as a function of the chosen feature(s).",
+    "Result": "A visual representation (plot) showing how the model's prediction globally depends on the values of the selected feature(s), providing an average insight into feature effects. This helps in understanding the general trend of how a feature influences the prediction.",
+    "Related Patterns": "Individual Conditional Expectation (ICE) Plots (local version), Permutation Feature Importance (another global feature importance method).",
+    "Category": "AI\u2013Human Interaction",
+    "Uses": "Global model understanding, identifying average relationships between features and predictions, model debugging, feature engineering insights, model comparison.",
+    "Thinking": "Section 2.1.2, 'Global solutions,' explicitly describes 'Partial dependence plots' as a model-agnostic technique for global interpretability, detailing its mechanism and purpose. It's a well-known XAI technique."
+  },
+  {
+    "Pattern Name": "Permutation Feature Importance",
+    "Problem": "Quantifying the global importance of individual features (or groups of features) for the predictions of a black-box machine learning model, without relying on model-specific internal mechanisms.",
+    "Context": "Model-agnostic global interpretability for black-box classification or regression models, where a global ranking or score of feature relevance is needed to understand which inputs are most influential for the model's performance.",
+    "Solution": "Measure the change in a model's performance metric (e.g., accuracy, F1-score, loss, out-of-bag estimate) when the values of a specific feature (or subset of features) are randomly permuted (shuffled) in the validation or test dataset. A significant drop in performance after permutation indicates high importance for that feature, as the model relied on it.",
+    "Result": "A score or ranking for each feature, indicating its global importance to the model's predictive performance. This provides an intuitive, global insight into which features the model considers most relevant.",
+    "Related Patterns": "Removal-based explanations (general category), SHAP (another feature importance method), Breiman's Random Forest feature importance (original model-specific version).",
+    "Category": "MLOps",
+    "Uses": "Global feature importance analysis, model debugging, feature selection, understanding model behavior, identifying critical inputs, model comparison.",
+    "Thinking": "Section 2.1.2, 'Global solutions,' explicitly defines 'Permutation feature importance' as a model-agnostic technique, detailing its mechanism and purpose, and linking it to model evaluation. It's a standard MLOps practice for model analysis."
+  },
+  {
+    "Pattern Name": "Individual Conditional Expectation (ICE) Plots",
+    "Problem": "Partial Dependence Plots (PDPs) show average feature effects, which can obscure heterogeneous relationships where a feature affects different instances differently. Users need to understand instance-specific feature effects.",
+    "Context": "Model-agnostic local interpretability for black-box classification or regression models, when a detailed, instance-specific understanding of how a feature influences predictions is required, especially to detect diverse or conditional relationships.",
+    "Solution": "For each individual instance in a dataset, plot the model's predicted outcome as a function of a single feature's value, while keeping all other features of that specific instance fixed at their original values. This generates a separate line for each instance on the plot.",
+    "Result": "A set of lines, each representing an individual instance, showing how the prediction for that instance changes with a varying feature. This allows for the detection of diverse relationships and helps identify instances where the model behaves unexpectedly.",
+    "Related Patterns": "Partial Dependence Plots (global version), LACE (another local explanation method), Visualization-based explanations (general category).",
+    "Category": "AI\u2013Human Interaction",
+    "Uses": "Local model understanding, identifying heterogeneous feature effects, debugging individual predictions, exploring 'what-if' scenarios for specific instances, detecting interaction effects.",
+    "Thinking": "Section 2.1.2, 'Local solutions,' describes 'Individual Conditional Expectation ICE plots' as a 'novel adaptation of partial dependence plots PDPs for the local inspection of the model inner working,' clearly outlining its purpose and mechanism. It's a distinct XAI visualization technique."
+  },
+  {
+    "Pattern Name": "Counterfactual Explanations",
+    "Problem": "Users want to understand the minimal changes to an instance's features that would alter its prediction to a desired outcome, providing actionable insights into how to achieve a specific model decision or avoid an undesired one.",
+    "Context": "Model-agnostic local interpretability for black-box classification or regression models, particularly in high-stakes decision-making or fairness analysis, where users need to know 'what if' scenarios for individual predictions.",
+    "Solution": "Identify the smallest possible modifications to the feature values of a given instance that would cause the black-box model to produce a different, desired prediction outcome. This involves searching for an instance close to the original but on the other side of the decision boundary.",
+    "Result": "A modified instance (the counterfactual) that is very similar to the original but receives a different prediction, along with the specific, minimal feature changes required to achieve that outcome. This provides an intuitive and actionable explanation.",
+    "Related Patterns": "Example-based explanations (general category), Adversarial Examples (similar mechanism, different goal), LORE (uses counterfactuals in its process).",
+    "Category": "AI\u2013Human Interaction",
+    "Uses": "Understanding decision boundaries, providing actionable advice to users, debugging model biases, fairness analysis, building user trust by showing control over outcomes, satisfying 'right to explanation' requirements.",
+    "Thinking": "Section 2.1.2, 'Local solutions,' explicitly discusses 'Counterfactual explanations' as a form of example-based explanation, detailing its definition and purpose. It's a distinct and important XAI technique."
+  }
+]

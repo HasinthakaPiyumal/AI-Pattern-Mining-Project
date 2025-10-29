@@ -1,0 +1,134 @@
+[
+  {
+    "Pattern Name": "Retrieval-Augmented Generation (RAG)",
+    "Problem": "Large Language Models (LLMs) often suffer from limited or outdated knowledge, leading to hallucinations or inaccurate responses, and struggle with domain-specific information.",
+    "Context": "Natural Language Processing (NLP) tasks such as question answering, summarization, and translation, where access to external, up-to-date, or specific knowledge is crucial for generating accurate and contextually rich responses.",
+    "Solution": "Combine the generative capabilities of LLMs with external knowledge databases. This involves a two-step workflow: 1. Retrieval: Given a user request, relevant documents are retrieved from a knowledge database (e.g., vector database via similarity search using embedding models). 2. Generation: The retrieved documents are injected into the original user request, creating an 'augmented request,' which is then fed to the LLM for generating a more informed response.",
+    "Result": "Significantly enhanced performance across various NLP tasks, improved generation quality, expanded LLMs' knowledge base and contextual understanding, often achieving comparable or better performance than LLMs fine-tuned for specific downstream tasks.",
+    "Related Patterns": "Iterative Retrieval-Augmented Generation (Iterative RAG), Vector Database for Knowledge Retrieval, KV Cache Reuse",
+    "Category": "LLM-specific",
+    "Uses": "Question answering, content creation, code generation, any task requiring LLMs to access and leverage external, dynamic knowledge.",
+    "Thinking": "This is explicitly defined as a significant advancement in NLP and machine learning, combining LLMs with external knowledge to enhance their generative capabilities. It's a fundamental architectural pattern for improving LLM performance and factual grounding."
+  },
+  {
+    "Pattern Name": "Multilevel Dynamic Knowledge Caching for RAG (RAGCache)",
+    "Problem": "Retrieval-Augmented Generation (RAG) introduces long sequence generation due to knowledge injection, leading to high computation and memory costs for LLM inference. Redundant computation of intermediate states (key-value tensors) for frequently accessed retrieved documents is a major bottleneck, and existing LLM inference optimizations are not tailored for RAG's unique characteristics (e.g., document order sensitivity, retrieval patterns, hierarchical memory needs).",
+    "Context": "RAG systems processing multiple user requests, where the same external knowledge documents (or prefixes of them) are frequently retrieved and used, and there's a need to optimize LLM inference performance (latency, throughput) given limited GPU memory and slower host memory.",
+    "Solution": "A novel multilevel dynamic caching system specifically designed for RAG. It caches the intermediate states (key-value tensors) of retrieved documents across multiple requests. Key components include: a 'knowledge tree' to organize order-sensitive KV tensors across GPU and host memory; a 'prefix-aware GreedyDualSizeFrequency (PGDSF) replacement policy' for efficient cache management; 'cache-aware request scheduling' to improve cache hit rates; and 'dynamic speculative pipelining' to overlap retrieval and inference.",
+    "Result": "Reduces Time to First Token (TTFT) by up to 4x and improves throughput by up to 21% compared to state-of-the-art LLM inference systems (vLLM integrated with Faiss). Significantly reduces redundant computation and end-to-end latency.",
+    "Related Patterns": "KV Cache Reuse, Knowledge Tree for RAG KV Cache, Prefix-aware GreedyDualSizeFrequency (PGDSF) Cache Replacement, Cache-aware Request Reordering for RAG, Dynamic Speculative Pipelining for RAG, Replication of Critical KV Cache Nodes, PagedAttention, Swap-Out-Only-Once Cache Strategy",
+    "Category": "MLOps",
+    "Uses": "Optimizing the performance (latency, throughput) and resource utilization of RAG systems, especially under high request loads and with long augmented sequences.",
+    "Thinking": "This pattern describes a comprehensive system-level optimization for an AI workflow (RAG). It addresses performance bottlenecks and resource management specific to serving LLMs in a RAG context, making it an MLOps pattern."
+  },
+  {
+    "Pattern Name": "Knowledge Tree for RAG KV Cache",
+    "Problem": "In RAG, the intermediate states (key-value tensors) of retrieved documents are sensitive to their referred order within the augmented prompt, meaning the same document's KV tensor can change based on preceding tokens. This order-dependence makes traditional caching of individual documents inefficient for reuse and sharing across requests.",
+    "Context": "RAG systems where intermediate states (KV tensors) of retrieved documents need to be cached and reused across multiple requests, and the LLM's attention mechanism requires strict adherence to document order.",
+    "Solution": "Structure the key-value tensors of retrieved documents using a 'knowledge tree' (a prefix tree based on document IDs). Each path from the root to a node represents a specific sequence of documents referenced by a request, with each node storing the KV tensor of a referred document. This allows different request paths to share common nodes (documents) while preserving order.",
+    "Result": "Enables fast and efficient retrieval of key-value tensors while strictly maintaining the document order required by LLMs. Facilitates sharing of KV tensors for common document prefixes across multiple requests, reducing redundant computation.",
+    "Related Patterns": "Prefix Caching, KV Cache Management, KV Cache Reuse, Multilevel Dynamic Knowledge Caching for RAG",
+    "Category": "LLM-specific",
+    "Uses": "Storing and retrieving intermediate states (KV tensors) of retrieved documents in RAG systems, enabling efficient reuse while respecting the LLM's position sensitivity.",
+    "Thinking": "This is a specialized data structure designed to manage the internal states (KV cache) of an LLM in a RAG context, specifically addressing the LLM's attention mechanism's sensitivity to token order. It's directly tied to LLM architecture and behavior."
+  },
+  {
+    "Pattern Name": "Prefix-aware GreedyDualSizeFrequency (PGDSF) Cache Replacement",
+    "Problem": "Efficiently managing a hierarchical cache (GPU and host memory) for RAG's knowledge tree. Traditional caching policies (LRU, LFU, standard GDSF) are suboptimal because they don't fully account for the variable sizes of document KV tensors, their access frequency, recency, and the complex, prefix-aware recomputation cost specific to LLM inference in RAG.",
+    "Context": "A multilevel caching system (like RAGCache's knowledge tree) for RAG, where intermediate states of documents need to be evicted or promoted between fast (GPU) and slow (host) memory to optimize performance. The cost of recomputing KV tensors is not uniform and depends on the document's position and preceding tokens.",
+    "Solution": "Implement a cache replacement policy that calculates a priority for each cached node (document's KV tensor) based on a comprehensive metric: `Priority = Clock * Frequency * Cost / Size`. `Clock` tracks node access recency. `Frequency` is the total retrieval count within a time window. `Size` reflects the number of tokens. `Cost` is a 'prefix-aware recomputation cost' estimated using offline profiling and bilinear interpolation, considering the compute time per non-cached token and the number of requests accessing the document without it being cached. Nodes with lower priority are evicted first.",
+    "Result": "Achieves the highest cache hit rate (10-21% improvement over GDSF, 10-16% over LRU, 10-17% over LFU) and lower average TTFT (10-12% lower). Ensures the most valuable (highest priority) KV tensors are retained, optimizing cache efficiency and resource utilization.",
+    "Related Patterns": "GreedyDualSizeFrequency (GDSF), Least Recently Used (LRU), Least Frequently Used (LFU), Multilevel Dynamic Knowledge Caching for RAG, Swap-Out-Only-Once Cache Strategy",
+    "Category": "MLOps",
+    "Uses": "Managing cache eviction and placement decisions for intermediate states (KV tensors) of retrieved documents in RAG systems, particularly in hierarchical memory architectures.",
+    "Thinking": "This is an advanced caching policy specifically adapted for the unique characteristics of LLM KV cache in RAG, including its prefix sensitivity and complex recomputation costs. It's a resource management strategy for an AI workflow."
+  },
+  {
+    "Pattern Name": "Cache-aware Request Reordering for RAG",
+    "Problem": "Unpredictable arrival patterns of user requests in RAG systems can lead to inefficient cache utilization and thrashing. Requests referring to the same documents might not be processed consecutively, causing frequent eviction and recomputation of key-value (KV) caches, thereby reducing overall cache efficiency.",
+    "Context": "RAG systems with a shared KV cache for retrieved documents, operating under high request rates where multiple incoming requests could potentially benefit from existing cached KV tensors if processed in an optimal order.",
+    "Solution": "Employ a priority queue to manage incoming requests, reordering them based on an 'OrderPriority' metric: `OrderPriority = Cached Length / Computation Length`. This metric prioritizes requests that have a larger portion of their required context already in the cache relative to the amount of new computation needed. A fairness window is implemented to prevent starvation.",
+    "Result": "Reduces average Time to First Token (TTFT) by 12-21% under high request rates. Improves cache hit rate and decreases total computation time by strategically processing requests to maximize KV cache reuse.",
+    "Related Patterns": "Request Scheduling, Load Balancing, Multilevel Dynamic Knowledge Caching for RAG",
+    "Category": "MLOps",
+    "Uses": "Optimizing the processing order of RAG requests to maximize the reuse of cached LLM intermediate states (KV cache) and improve system throughput and latency, especially under high load.",
+    "Thinking": "While request reordering is a general concept, this pattern is 'cache-aware' specifically for the AI-specific KV cache in RAG. The priority metric is directly tied to the efficiency of LLM inference with cached intermediate states, making it an MLOps pattern for AI workflow optimization."
+  },
+  {
+    "Pattern Name": "Dynamic Speculative Pipelining for RAG",
+    "Problem": "In RAG workflows, the retrieval step (often CPU-bound) and the LLM generation step (GPU-bound) are typically executed sequentially. This sequential execution leads to idle GPU resources during retrieval and prolonged end-to-end latency, particularly when retrieval latency is significant.",
+    "Context": "RAG systems where vector search can produce preliminary candidate documents early in its process, even before the final, most relevant documents are fully determined. The goal is to reduce overall latency by overlapping these two distinct computational phases.",
+    "Solution": "Dynamically overlap the knowledge retrieval and LLM inference steps. The retrieval process is split into stages, and at each stage, candidate documents are sent to the LLM engine for 'speculative generation.' If subsequent stages yield different candidate documents, the previous speculative generation is terminated, and a new one is initiated. If the documents remain the same, the LLM continues processing the current speculative generation. The strategy is dynamically enabled based on system load (e.g., only when the number of pending LLM requests falls below a certain threshold).",
+    "Result": "Achieves up to 16% Time to First Token (TTFT) reduction. Decreases non-overlapping vector search time by 15-43%. Minimizes end-to-end latency by parallelizing retrieval and generation while managing the overhead of incorrect speculations.",
+    "Related Patterns": "Pipelining, Speculative Decoding, Multilevel Dynamic Knowledge Caching for RAG, Iterative Retrieval-Augmented Generation (Iterative RAG)",
+    "Category": "MLOps",
+    "Uses": "Reducing end-to-end latency in RAG systems by intelligently overlapping the knowledge retrieval and LLM generation phases, especially when retrieval is time-consuming.",
+    "Thinking": "This pattern describes a specialized pipelining technique that leverages the predictive nature of vector search (early candidate results) and the generative capabilities of LLMs (speculative generation). It's an orchestration pattern for an AI workflow, dynamically adapting based on system load, which falls under MLOps."
+  },
+  {
+    "Pattern Name": "Vector Database for Knowledge Retrieval",
+    "Problem": "Large Language Models (LLMs) have limited internal knowledge and can hallucinate or provide outdated information. Efficiently accessing and integrating vast, external, and dynamic knowledge sources is crucial for improving LLM accuracy and relevance.",
+    "Context": "AI applications, particularly Retrieval-Augmented Generation (RAG) systems, that require LLMs to leverage external knowledge bases for grounding, fact-checking, or contextualization. The knowledge base can be very large and needs fast, semantically relevant retrieval.",
+    "Solution": "Store external knowledge (e.g., documents, text snippets, facts) as high-dimensional numerical vectors (embeddings) in a specialized 'vector database'. When an AI system (e.g., an LLM) needs information, its query is also converted into an embedding. A vector similarity search (e.g., Approximate Nearest Neighbor - ANN) is then performed in the vector database to retrieve documents whose embeddings are most similar to the query embedding, indicating semantic relevance.",
+    "Result": "Enables LLMs to dynamically access and incorporate external, up-to-date, and domain-specific knowledge, significantly improving factual accuracy, reducing hallucinations, and generating more contextually rich and relevant responses. Provides a scalable and efficient mechanism for knowledge management and retrieval for AI systems.",
+    "Related Patterns": "Retrieval-Augmented Generation (RAG), Embedding Models",
+    "Category": "Knowledge & Reasoning",
+    "Uses": "Grounding LLMs with external facts, building knowledge-intensive AI applications, semantic search, recommendation systems, anomaly detection.",
+    "Thinking": "This pattern describes a fundamental architectural component for managing and accessing external knowledge for AI systems, especially LLMs. It's about how knowledge is organized and retrieved to support the AI's reasoning and generation capabilities, fitting the 'Knowledge & Reasoning' category."
+  },
+  {
+    "Pattern Name": "KV Cache Reuse",
+    "Problem": "Large Language Model (LLM) inference, particularly for long input sequences or scenarios involving repeated prompts/contexts (e.g., multi-turn conversations, RAG, Tree-of-Thought), incurs significant computational cost and memory usage due to redundant recomputation of key-value (KV) tensors for tokens that appear in shared prefixes.",
+    "Context": "LLM serving systems aiming to optimize throughput and reduce latency. Applicable when multiple requests or subsequent steps within a single request share common input prefixes (e.g., system prompts, retrieved documents, conversation history).",
+    "Solution": "Store the intermediate key-value (KV) tensors generated during the prefill phase of LLM inference for common prefixes. When a new request or a subsequent generation iteration shares a prefix with a previously processed sequence, the cached KV tensors for that prefix are directly loaded from memory (e.g., GPU or host memory), bypassing the need for recomputation. This can be managed at various granularities (e.g., page-level, document-level, prompt-level).",
+    "Result": "Significantly reduces prefill latency and computational burden, leading to improved overall throughput and efficiency of LLM inference. Optimizes memory utilization by avoiding redundant storage of identical KV tensors.",
+    "Related Patterns": "PagedAttention, Knowledge Tree for RAG KV Cache, Multilevel Dynamic Knowledge Caching for RAG, Prompt Cache, SGLang, ChunkAttention",
+    "Category": "LLM-specific",
+    "Uses": "Optimizing LLM serving for multi-turn dialogues, RAG, complex reasoning chains (like Tree-of-Thought), and any application where input prefixes are frequently repeated or shared.",
+    "Thinking": "The paper explicitly mentions 'KV cache reusing' as a general effort by multiple systems (SGLang, Prompt Cache, CacheGen, ChunkAttention) to reduce redundant computation across requests. RAGCache itself is an implementation of this concept tailored for RAG. This is a core optimization strategy directly related to the internal workings and efficiency of LLMs."
+  },
+  {
+    "Pattern Name": "Replication of Critical KV Cache Nodes",
+    "Problem": "In hierarchical caching systems for LLM intermediate states (like RAGCache's knowledge tree), a failure in the fast memory (e.g., GPU memory) can invalidate dependent lower-level nodes, leading to data loss, requiring full recomputation, and impacting system reliability and recovery time.",
+    "Context": "RAG systems or other LLM serving architectures employing a multi-level KV cache (e.g., GPU and host memory) where certain 'upper-level' nodes (such as the system prompt's KV cache or frequently accessed document prefixes) are critical for subsequent computations and system stability.",
+    "Solution": "To enhance fault tolerance, replicate a portion of the most frequently accessed and critical upper-level nodes' key-value (KV) cache (e.g., the system prompt) from the fast, volatile GPU memory to the slower, more persistent host memory. This creates a backup for essential KV cache components.",
+    "Result": "Enables faster recovery from GPU failures by providing a readily available backup of essential KV cache components. Prevents complete invalidation of the knowledge tree structure upon GPU failure, reducing recovery time and improving overall system resilience and fault tolerance for LLM serving.",
+    "Related Patterns": "Fault Tolerance, Data Replication, Multilevel Dynamic Knowledge Caching for RAG",
+    "Category": "MLOps",
+    "Uses": "Ensuring high availability and reliability for LLM serving systems that rely on complex, multi-level KV cache structures, particularly in environments prone to hardware or software failures.",
+    "Thinking": "This is a specific fault-tolerance mechanism described in the 'Fault tolerance' section of the implementation. It's tailored to the AI-specific data structure (KV cache in a knowledge tree) and its hierarchical nature, making it an MLOps pattern for ensuring the reliability of an ML workflow component."
+  },
+  {
+    "Pattern Name": "PagedAttention",
+    "Problem": "Memory fragmentation and inefficient memory allocation for Key-Value (KV) cache in LLM serving, especially with variable sequence lengths and dynamic batching, leading to wasted GPU memory and reduced throughput.",
+    "Context": "LLM serving systems that need to manage the KV cache efficiently for multiple concurrent requests with varying sequence lengths and dynamic generation.",
+    "Solution": "Manage the KV cache at page granularity, similar to virtual memory in operating systems. KV tensors are stored in non-contiguous memory blocks (pages), allowing for fine-grained memory allocation and sharing. This prevents external fragmentation and enables efficient memory reuse.",
+    "Result": "Reduces memory fragmentation, allows for higher batch sizes, improves memory utilization, and increases throughput for LLM serving.",
+    "Related Patterns": "KV Cache Management, KV Cache Reuse, Multilevel Dynamic Knowledge Caching for RAG",
+    "Category": "MLOps",
+    "Uses": "High-performance LLM serving, optimizing GPU memory usage for KV cache, dynamic batching.",
+    "Thinking": "Explicitly mentioned as a key technique in vLLM for efficient memory management of LLM intermediate states (KV cache). It's a system-level optimization for an ML workflow, addressing a core challenge in LLM serving."
+  },
+  {
+    "Pattern Name": "Swap-Out-Only-Once Cache Strategy",
+    "Problem": "Frequent data transfer between fast (GPU) and slow (host) memory in a hierarchical caching system for LLM KV cache, especially when nodes are repeatedly evicted and re-promoted, leading to high bandwidth consumption and performance bottlenecks.",
+    "Context": "Multilevel caching systems (e.g., GPU and host memory) for LLM intermediate states (KV cache) where the host memory has significantly lower bandwidth than GPU memory, and minimizing data movement is critical.",
+    "Solution": "When a node's key-value (KV) tensors are evicted from the fast (GPU) memory to the slower (host) memory for the first time, they are copied. For all subsequent evictions of the *same* node from GPU memory, the data is *not* copied back to host memory (it's already there); instead, the GPU memory block is simply freed. The host memory retains its copy until the node is evicted from the entire cache.",
+    "Result": "Minimizes data transfer overhead between GPU and host memory, reducing bandwidth consumption and improving overall cache performance. Leverages the larger capacity of host memory while optimizing for the slower transfer speeds.",
+    "Related Patterns": "Multilevel Dynamic Knowledge Caching for RAG, Prefix-aware GreedyDualSizeFrequency (PGDSF) Cache Replacement",
+    "Category": "MLOps",
+    "Uses": "Optimizing data movement in hierarchical caching systems for LLM KV cache, reducing latency associated with memory transfers.",
+    "Thinking": "This is a specific memory management strategy for the AI-specific KV cache across a memory hierarchy, directly impacting the performance of the ML workflow by reducing I/O bottlenecks."
+  },
+  {
+    "Pattern Name": "Iterative Retrieval-Augmented Generation (Iterative RAG)",
+    "Problem": "A single retrieval step at the beginning of RAG might not provide sufficient or optimally refined context for complex, multi-step, or evolving generation tasks, potentially leading to less accurate or complete responses.",
+    "Context": "RAG systems dealing with complex queries, multi-turn conversations, or tasks requiring dynamic information gathering where the relevance of retrieved documents might change or new information is needed as the LLM generates parts of the response.",
+    "Solution": "Instead of a single retrieval at the beginning, the RAG process involves multiple retrieval steps interleaved with the generation process. After an initial generation, the LLM (or a controller) can identify new information needs or refine existing queries, triggering subsequent retrieval rounds. The newly retrieved documents then augment the context for further generation. RAGCache supports this by treating intermediate iterations as separate requests and caching their KV cache.",
+    "Result": "Improved response quality for complex tasks, better contextual understanding, and the ability to dynamically adapt to evolving information needs during generation.",
+    "Related Patterns": "Retrieval-Augmented Generation (RAG), Dynamic Speculative Pipelining for RAG",
+    "Category": "LLM-specific",
+    "Uses": "Multi-hop question answering, complex content creation, reasoning tasks that require dynamic information gathering, conversational AI.",
+    "Thinking": "This is a refinement of the core RAG pattern, specifically addressing how retrieval is integrated *during* generation, making it an AI design pattern for LLM interaction with knowledge. It's mentioned in the related work as a technique RAGCache supports."
+  }
+]

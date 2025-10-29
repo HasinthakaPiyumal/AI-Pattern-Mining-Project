@@ -1,0 +1,222 @@
+[
+  {
+    "Pattern Name": "Tool-Augmented Foundation Model",
+    "Problem": "Foundation models have limitations in accuracy, efficiency, and automation for real-world problem-solving, including issues with memorization, domain-specific expertise, interpretability, and robustness.",
+    "Context": "Complex real-world tasks that require capabilities beyond a single foundation model's inherent knowledge or reasoning, or tasks that demand high accuracy, real-time data, or domain-specific computations.",
+    "Solution": "Combine the strengths of specialized tools (e.g., APIs, software applications, databases) with foundation models. The foundation model acts as a 'controller' that understands user intent, plans task decomposition, selects appropriate tools, and orchestrates their execution. Tools provide specific functionalities, real-time data, and domain expertise.",
+    "Result": "Enhanced accuracy, efficiency, and automation in problem-solving; mitigation of memorization limitations; improved interpretability of decision-making; increased robustness against adversarial attacks; better user experience through natural language interaction and democratization of complex tools.",
+    "Related Patterns": "Intent Understanding, Tool Understanding (via Prompting), Planning with Introspective Reasoning, Planning with Extrospective Reasoning, Learning from Demonstrations, Learning from Feedback, Generalizable Tool Learning, Knowledge Conflict Resolution.",
+    "Category": "Tools Integration",
+    "Uses": "Automating intricate processes, solving domain-specific tasks (e.g., scientific calculation with Wolfram, web search, image generation with vision models), complex decision-making, and real-world interaction.",
+    "Thinking": "This is the overarching paradigm described in the paper, 'tool learning with foundation models.' It clearly defines a problem (FM limitations), a context (complex tasks), a solution (combining FMs with tools), and significant results. It's a fundamental AI design pattern for integrating external capabilities."
+  },
+  {
+    "Pattern Name": "Intent Understanding",
+    "Problem": "User queries are often imprecise, vague, or polysemous, making it challenging for AI systems to accurately infer the user's intended meaning and map it to specific actions or tool functionalities.",
+    "Context": "Any AI system, especially those interacting with users via natural language, where the system needs to perform tasks based on user instructions. This is particularly critical in tool learning where user intent must be translated into tool calls.",
+    "Solution": "Leverage foundation models' strong language understanding capabilities, often enhanced by instruction tuning. This involves training models on diverse instructions to generalize to unseen tasks and potentially interacting with users to clarify ambiguities. Personalized tool learning can further adapt to individual user expression styles.",
+    "Result": "More accurate interpretation of user goals, personalized responses, and improved user experience by reducing cognitive load on the user.",
+    "Related Patterns": "Personalized Tool Learning.",
+    "Category": "AI\u2013Human Interaction",
+    "Uses": "Natural language interfaces for tool learning, dialogue systems, task automation based on user commands.",
+    "Thinking": "The text explicitly calls out 'intent understanding' as a key step in the tool learning procedure, detailing the problem of vague instructions and the solution of leveraging FMs and instruction tuning. It's specific to how AI models interpret human input."
+  },
+  {
+    "Pattern Name": "Tool Understanding (via Prompting)",
+    "Problem": "Foundation models need to comprehend the functionalities, usage, and input/output formats of various tools to effectively select and utilize them for a given task.",
+    "Context": "Integrating foundation models with a diverse set of external tools, especially when tools have complex APIs or varied interfaces.",
+    "Solution": "Provide foundation models with suitable task-specific prompts that describe API functionalities, input/output formats, possible parameters (zeroshot prompting), or concrete tool-use demonstrations (fewshot prompting). This leverages the few-shot and zero-shot learning capabilities of foundation models.",
+    "Result": "Models can unravel tool functionalities, comprehend how to use them, and adapt to changes or upgrades in tools with minimal human effort.",
+    "Related Patterns": "Tool-Augmented Foundation Model, Prompt Design.",
+    "Category": "Prompt Design",
+    "Uses": "Enabling foundation models to interact with APIs, software applications, and other structured tools.",
+    "Thinking": "This pattern describes a specific AI-centric method (prompting FMs) to solve the problem of an AI understanding how to use external tools. It's directly related to LLM capabilities and prompt engineering."
+  },
+  {
+    "Pattern Name": "Planning with Introspective Reasoning",
+    "Problem": "Complex user tasks often require multi-step plans for tool use, but direct interaction with the environment for feedback might be unavailable or undesirable during initial plan generation. Models may generate unrealistic or nonsensical plans without grounding.",
+    "Context": "Scenarios where a foundation model needs to generate a sequence of tool actions or sub-tasks to achieve a goal, but without real-time environmental feedback during the planning phase.",
+    "Solution": "The foundation model directly generates a static, multi-step plan for tool use. This leverages the model's inherent reasoning capabilities (e.g., Chain-of-Thought prompting) to decompose high-level tasks into sub-plans or generate executable code (e.g., Program-Aided Language Models, Code as Policies). Grounding mechanisms (e.g., value functions to estimate action success) can be used to make plans more realistic.",
+    "Result": "Generation of plausible, multi-step plans for complex tasks, often in the form of code or sequential decisions, without requiring iterative environmental interaction during planning.",
+    "Related Patterns": "Chain-of-Thought Prompting, Program-Aided Language Models, Code as Policies.",
+    "Category": "Planning",
+    "Uses": "Generating Python code for reasoning steps, creating executable programs for embodied agents, sequential decision-making in vision-language tasks (e.g., Visual ChatGPT).",
+    "Thinking": "This is a specific AI reasoning strategy for planning, explicitly contrasted with 'extrospective reasoning.' It details how FMs can generate plans using their internal knowledge and reasoning, which is a core AI capability."
+  },
+  {
+    "Pattern Name": "Planning with Extrospective Reasoning",
+    "Problem": "Static plans generated by introspective reasoning may fail or become suboptimal in dynamic environments due to unexpected intermediate execution results or anomalies.",
+    "Context": "Complex tasks in dynamic, interactive environments (e.g., multi-step QA, embodied learning, web interaction) where decisions at each step depend on the preceding context and environmental feedback.",
+    "Solution": "The foundation model generates plans incrementally, one step at a time, by iteratively interacting with the environment and utilizing feedback obtained from previous executions. This creates a closed-loop interaction where the model observes execution results, reasons about the current context, and adjusts subsequent plans. Techniques like Self-Ask, ReAct, and ToolFormer are examples.",
+    "Result": "More rational, adaptive, and feasible plans that can handle exceptions and unexpected situations, leading to improved accuracy and task completion in dynamic environments.",
+    "Related Patterns": "ReAct, Self-Ask, ToolFormer, Inner Monologue, LLMPlanner.",
+    "Category": "Planning",
+    "Uses": "Multi-step question answering with search engines, embodied learning where agents interact with physical or simulated environments, autonomous agents (e.g., AutoGPT) manipulating multiple tools.",
+    "Thinking": "This pattern describes an iterative, feedback-driven planning approach, which is a sophisticated AI agentic behavior. It's a direct solution to the limitations of static planning in dynamic environments."
+  },
+  {
+    "Pattern Name": "Learning from Demonstrations (Behavioral Cloning)",
+    "Problem": "Training foundation models to effectively use tools, especially for complex or nuanced interactions, requires substantial supervision, which can be time-consuming and labor-intensive to collect.",
+    "Context": "Scenarios where human experts can provide examples of correct tool usage, or where large amounts of unlabeled data are available.",
+    "Solution": "Train models to mimic the behavior of human experts or other models through imitation learning, often using 'behavior cloning.' This involves optimizing the model's parameters to predict the actions taken by an expert given certain inputs. This can be: 1) Supervised Learning: Directly finetuning models on human-annotated tool-use demonstrations (e.g., WebGPT, WebShop). 2) Semi-supervised Learning: Using a less capable model to generate pseudo-labels on unlabeled data, then training a more powerful model on these weakly supervised demonstrations. 3) Self-supervised Learning: Leveraging the in-context learning ability of foundation models to iteratively bootstrap tool-use examples from a few human-written examples, then filtering for noise (e.g., Toolformer).",
+    "Result": "Models acquire tool-use skills, generalize to new situations, and can manipulate tools effectively, reducing the need for extensive manual rule-engineering.",
+    "Related Patterns": "Toolformer, WebGPT, WebShop.",
+    "Category": "MLOps",
+    "Uses": "Robotic applications, autonomous vehicles, web search, online shopping agents, general tool-oriented task finetuning.",
+    "Thinking": "This is a core ML training strategy applied specifically to teaching AI models how to use tools. It's an MLOps pattern because it describes a method for acquiring and using data to train an ML model for a specific AI capability (tool use)."
+  },
+  {
+    "Pattern Name": "Learning from Feedback (Reinforcement Learning for Tool Use)",
+    "Problem": "Manually annotating comprehensive tool-use examples for 'Learning from Demonstrations' is often impractical, and models need to adapt to the consequences of their actions in dynamic environments.",
+    "Context": "AI agents operating in environments where the consequences of actions can be observed, and where a reward signal can be defined (either from the environment or humans).",
+    "Solution": "Optimize the foundation model's parameters through open explorations, where the model learns from trial and error. This involves: 1) Reinforcement Learning (RL): Treating tool learning as an RL scenario where the action space is defined by tools, and the agent learns to select tools and actions to maximize a reward signal. Foundation models can initialize the policy model. 2) Environment Feedback: Using ultimate (result feedback) or intermediate (state change feedback) signals from the environment to update the model's policy. 3) Human Feedback: Incorporating explicit (ratings) or implicit (user behavior) human preferences, often via Reinforcement Learning from Human Feedback (RLHF), to guide the model's behavior.",
+    "Result": "Models learn to understand action consequences, adapt their tool-use behaviors, and align with human preferences, leading to more robust and effective tool manipulation.",
+    "Related Patterns": "RLHF, WebGPT, ETO.",
+    "Category": "MLOps",
+    "Uses": "Robotic grasping, multi-agent autocurricula, web-based agents, text summarization, enhancing LLM tool-using capabilities (e.g., ETO).",
+    "Thinking": "Similar to 'Learning from Demonstrations,' this is a fundamental ML training strategy (RL) applied to AI tool use. It's an MLOps pattern because it describes a method for training an ML model for a specific AI capability (tool use) using feedback loops."
+  },
+  {
+    "Pattern Name": "Generalizable Tool Learning (Interface Unification)",
+    "Problem": "The existence of a massive and rapidly expanding array of tools makes it infeasible to collect enough supervised data and train models for each tool individually. Models struggle to transfer knowledge across tools with varied interfaces.",
+    "Context": "Developing AI systems that can adapt to and utilize new, unseen tools or transfer learned skills between similar tools.",
+    "Solution": "Design a unified interface that enables the model to manipulate various tools in a consistent and standardized manner, facilitating knowledge transfer. Three types of interfaces are proposed: 1) Semantic Interface: Uses specific text spans (action names) as triggers, mapping natural language to tool actions. 2) GUI Interface: Maps predicted tokens to human-like mouse movements and keyboard inputs in a virtual environment. 3) Programming Interface: Allows the model to specify actions using a program (e.g., Python code), leveraging code-generating language models (CLMs) for syntax and control flow.",
+    "Result": "Models can more easily identify and abstract essential features of tools, quickly adapt to new scenarios, and transfer learned knowledge and skills across different tools, improving scalability and adaptability.",
+    "Related Patterns": "Code as Policies, ToolCoder.",
+    "Category": "Tools Integration",
+    "Uses": "Adapting to new search engines, using different figure-editing software, robotic control with code, general tool manipulation.",
+    "Thinking": "This pattern addresses a core AI challenge: generalization. The solution involves designing specific AI-friendly interfaces for tools, which is a design choice for how AI systems interact with the world."
+  },
+  {
+    "Pattern Name": "AI Tool Creation",
+    "Problem": "Traditionally, tool creation has been exclusive to human intelligence, limiting the autonomy and evolutionary role of AI systems. Existing tools are often designed for human preference, not optimal for AI models.",
+    "Context": "Advancing AI capabilities beyond mere tool usage to autonomous development and optimization of tools, and creating tools better suited for AI's information processing.",
+    "Solution": "Enable foundation models to autonomously create new tools or encapsulate existing ones into more advanced functions. This involves: 1) Tools for AI: Designing modular tools with new input/output formats specifically tailored for AI models. 2) Tools by AI: Leveraging large code models to generate executable programs (which act as tools) from language descriptions, or encapsulating existing APIs into more advanced functions (e.g., extending a weather API to compute average temperature, integrating stock data for investment recommendations).",
+    "Result": "AI systems can develop sophisticated solutions autonomously, improve their interaction with tools, and potentially exhibit genuine creativity in novel tool creation, challenging traditional views of intelligence.",
+    "Related Patterns": "Code Generation with Tool Integration.",
+    "Category": "Agentic AI",
+    "Uses": "Generating Python programs, extending existing APIs, creating specialized functions for specific tasks, developing AI-optimized tool components.",
+    "Thinking": "This is a forward-looking pattern that describes an AI system's ability to *create* tools, not just use them. This is a significant step in AI autonomy and capability."
+  },
+  {
+    "Pattern Name": "Personalized Tool Learning",
+    "Problem": "Foundation models are typically trained on generic domains and struggle to provide personalized assistance, as they don't effectively process personal information or adapt to individual user preferences for tool manipulation.",
+    "Context": "AI systems interacting with diverse users who have unique preferences, language styles, and needs when using tools (e.g., email tools, online shopping platforms).",
+    "Solution": "Integrate user-specific information into tool manipulation. This involves: 1) Heterogeneous User Information Modeling: Modeling diverse user information (e.g., language style, social network data) into a unified semantic space. 2) Personalized Tool Planning: Developing tool execution plans and selecting tools based on individual user preferences (e.g., preferred online shopping platforms). 3) Personalized Tool Call: Generating different inputs for tools based on user preferences. 4) Proactive Systems: Shifting from reactive systems to proactive ones that can initiate actions on behalf of the user, continually improving performance based on interaction history.",
+    "Result": "Tailored assistance, more personalized and seamless user experiences, improved alignment of tool manipulation with individual user needs.",
+    "Related Patterns": "Intent Understanding.",
+    "Category": "Personalization",
+    "Uses": "Personalized email assistance, customized online shopping experiences, adaptive dialogue agents, proactive AI assistants.",
+    "Thinking": "This pattern directly addresses the problem of AI systems adapting to individual human users, which is a key aspect of AI-Human Interaction and Personalization. It's not just about using tools, but using them *for a specific person*."
+  },
+  {
+    "Pattern Name": "Knowledge Conflict Resolution (in Tool Augmentation)",
+    "Problem": "When foundation models are augmented with external tools, discrepancies can arise between the model's internalized knowledge (memorized from training data) and the augmented knowledge derived from tool execution, or even among knowledge from different tools. This leads to inaccurate or unreliable model predictions.",
+    "Context": "Any AI system that combines its internal knowledge with external, real-time, or domain-specific information from tools (e.g., search engines, calculators, physics simulators).",
+    "Solution": "Develop mechanisms for detecting and resolving knowledge conflicts. This involves: 1) Conflict Detection: Models should identify potential conflicts among different knowledge sources (model's internal knowledge, various tools) and flag them. 2) Conflict Resolution: Models should verify and choose reliable sources, potentially by discerning the trustworthiness of sources. They should also provide explanations for their generation, indicating which knowledge source was considered and how it was integrated. Advanced foundation models (like ChatGPT) show an emerging ability to correct their own beliefs and discern conflicts.",
+    "Result": "Improved accuracy and reliability of model generation and planning, especially in high-stakes domains (e.g., medical assistance, legal advice), and enhanced explainability of AI decisions.",
+    "Related Patterns": "Tool-Augmented Foundation Model.",
+    "Category": "Knowledge & Reasoning",
+    "Uses": "Question answering, scientific calculation, physics simulation, code generation, any task where factual accuracy and consistency are critical.",
+    "Thinking": "This pattern addresses a specific problem that arises when AI models integrate multiple sources of information, a common scenario in advanced AI systems. The solution involves AI-specific reasoning and verification capabilities."
+  },
+  {
+    "Pattern Name": "Code Generation with Tool Integration",
+    "Problem": "Foundation models for code generation often rely on memorized knowledge, limiting their accuracy and context-specificity for complex, real-world software engineering tasks, especially those requiring understanding contextual dependencies across files or integrating testing mechanisms.",
+    "Context": "Software development workflows, particularly for generating code that interacts with external APIs, requires specific libraries, or needs to be tested within a development environment.",
+    "Solution": "Integrate external tools (e.g., API search engines, development environments, code testing mechanisms) with foundation models for code generation. The model dynamically consults these external resources for better decision-making, shifting code generation from a purely generative task to an interactive one. Examples include ToolCoder, SWEAgent, CodeAgent, AppWorld.",
+    "Result": "More accurate and context-specific code outputs, improved ability to handle real-world repo-level coding challenges, better alignment with human-like programming workflows, and enhanced versatility and scalability in diverse programming environments.",
+    "Related Patterns": "AI Tool Creation.",
+    "Category": "Tools Integration",
+    "Uses": "Generating code that uses specific APIs, solving coding challenges, automating software engineering tasks, orchestrating complex workflows across multiple applications.",
+    "Thinking": "This is a specific application of tool learning to code generation, which is a distinct AI capability. It describes how AI models can use external tools to improve their performance in a creative and complex task like programming."
+  },
+  {
+    "Pattern Name": "Scientific Discovery with Tool Manipulation",
+    "Problem": "AI systems, despite their ability to capture rules and patterns from scientific data, are limited in solving complex scientific and multidisciplinary problems due to a lack of professional scientific knowledge and reasoning ability.",
+    "Context": "Scientific research and discovery, where complex experiments, data analysis, and simulations are required across various disciplines (e.g., mathematics, cybernetics, materials science).",
+    "Solution": "Enable AI systems to manipulate scientific tools (software like MATLAB, or practical platforms such as synthetic robots) to conduct experiments, analyze data, design algorithms, and verify assumptions independently. Foundation models can design, plan, and execute scientific experiments.",
+    "Result": "AI systems play more important roles in scientific discovery, solve multidisciplinary problems, and provide hints for human researchers, potentially leading to autonomous scientific discovery.",
+    "Related Patterns": "Planning with Extrospective Reasoning.",
+    "Category": "Tools Integration",
+    "Uses": "Algorithm development, data visualization/analysis, numerical computation, designing and executing chemical experiments, materials science research.",
+    "Thinking": "This pattern describes how AI can leverage tools to perform complex scientific tasks, which is a high-level AI application requiring reasoning and interaction with specialized domains."
+  },
+  {
+    "Pattern Name": "Multi-Agent Collaboration for Tool Learning",
+    "Problem": "Complex tasks often demand diverse abilities and expertise that a single AI agent (controller) may not possess, leading to inefficient or incomplete problem-solving.",
+    "Context": "Scenarios involving highly complex, multi-faceted tasks that can benefit from distributed intelligence, specialized expertise, and coordinated actions, often requiring long-term planning and diverse tool manipulation.",
+    "Solution": "Design systems where multiple AI agents, each potentially modeled with a foundation model and possessing unique abilities, collaborate to solve a task. This necessitates designing methods for communication, coordination, and negotiation among agents to ensure seamless collaboration and optimal task execution.",
+    "Result": "More effective and efficient problem-solving for complex tasks, leveraging diverse expertise and potentially simulating human-like interpersonal communication and collaboration.",
+    "Related Patterns": "Planning with Extrospective Reasoning, AI Tool Creation, Parallel Tool Execution.",
+    "Category": "Agentic AI",
+    "Uses": "Complex problem-solving, simulating human behaviors in interactive scenarios, tasks requiring diverse specialized knowledge and coordinated actions.",
+    "Thinking": "The text explicitly discusses 'From Single-agent Problem-Solving to Multi-agent Collaboration' as a future direction, highlighting its importance for complex tasks and mentioning examples of foundation models simulating human behaviors. This is a clear design pattern for agentic AI."
+  },
+  {
+    "Pattern Name": "Formalism-Enhanced Reasoning",
+    "Problem": "While LLM-based agents are proficient in natural language reasoning, complex reasoning tasks may require more structured, precise, and robust methods than plain natural text.",
+    "Context": "Complex reasoning tasks, especially those involving logical inference, mathematical computation, or structured knowledge representation, where the inherent ambiguity or less structured nature of natural language can hinder performance.",
+    "Solution": "Incorporate external formalisms, such as mathematical tools (e.g., probabilistic graph models) and non-natural language forms, to facilitate and enhance agents' reasoning and planning capabilities. This integrates structured computational or logical frameworks with the LLM's language understanding.",
+    "Result": "Significantly enhanced performance in complex reasoning tasks, improved decision-making capabilities, and increased controllability of intelligent agents.",
+    "Related Patterns": "Planning with Introspective Reasoning, Planning with Extrospective Reasoning, Knowledge Conflict Resolution.",
+    "Category": "Knowledge & Reasoning",
+    "Uses": "Multi-agent reasoning dynamics (e.g., using PGM), integrating intelligent agents into Robotic Process Automation (RPA) for enhanced intelligence and controllability.",
+    "Thinking": "The text explicitly states 'incorporating external formalisms such as mathematical tools and non-natural language forms significantly enhances agents performance in complex reasoning tasks.' This describes a method for improving AI reasoning, making it a design pattern."
+  },
+  {
+    "Pattern Name": "Parallel Tool Execution",
+    "Problem": "Sequential execution of subtasks, especially those that are independent, can lead to inefficiencies and longer task completion times in multi-step tool learning scenarios.",
+    "Context": "Complex tasks that can be decomposed into multiple subtasks, where some of these subtasks do not have interdependencies and can be processed concurrently.",
+    "Solution": "Design the AI controller to determine dependencies among different subtasks and effectively switch between sequential and parallel execution. Independent subtasks are assigned to different agents or processes to be executed simultaneously.",
+    "Result": "Improved execution efficiency and reduced overall task completion time by leveraging concurrency for independent subtasks.",
+    "Related Patterns": "Planning with Extrospective Reasoning, Multi-Agent Collaboration for Tool Learning.",
+    "Category": "Planning",
+    "Uses": "Generating multiple independent code snippets, processing parallel data streams, orchestrating concurrent operations in complex workflows.",
+    "Thinking": "The text explicitly mentions 'From Sequential Execution to Parallel Execution' and gives an example ('Generate two codes, one for drawing a rectangle and one for drawing a circle'). This is a specific strategy for optimizing tool use, making it a design pattern for AI planning."
+  },
+  {
+    "Pattern Name": "Meta Tool Learning",
+    "Problem": "Models need to adapt their behaviors and tool-use strategies when faced with unfamiliar tools or new domains, rather than just learning to use a specific tool.",
+    "Context": "Scenarios requiring high adaptability and generalization, where an AI system needs to transfer tool-use knowledge and strategies from one tool or domain to another (e.g., from one search engine to another, or a calculator for different math problems).",
+    "Solution": "Train the model not only to use a tool but also to learn the optimal *strategy* for its use. This involves identifying common underlying principles or patterns in tool-use strategies and transferring them to new tasks or domains. This is about learning *how to learn* tool use.",
+    "Result": "Enhanced adaptability and intelligence in ML models, enabling them to generalize tool use to different types of problems or new tools, even if initially trained on specific instances.",
+    "Related Patterns": "Generalizable Tool Learning (Interface Unification), Curriculum Tool Learning.",
+    "Category": "MLOps",
+    "Uses": "Transferring search engine usage skills, generalizing calculator use for various mathematical problems, adapting to new software interfaces.",
+    "Thinking": "The text defines 'Meta Tool Learning' as a strategy for generalizable tool learning, drawing an analogy to human metacognition. It's a specific training/learning approach for AI, making it an MLOps pattern."
+  },
+  {
+    "Pattern Name": "Curriculum Tool Learning",
+    "Problem": "Introducing models directly to complex tools and tasks can be overwhelming and inefficient, hindering effective learning and generalization.",
+    "Context": "Training AI models to use complex tools or perform intricate tasks, where a structured, progressive learning approach can be beneficial.",
+    "Solution": "Employ a pedagogical strategy that starts with simple tools and tasks, gradually introducing the model to more complex ones. This allows the model to build upon its prior knowledge, develop a deeper understanding of the tool's essential features, and progressively master advanced concepts. This can be combined with transfer learning and multi-task learning.",
+    "Result": "More effective and manageable learning of complex tool functionalities, improved ability to identify similarities and differences between situations, enhanced adaptability, and better generalization across different tools and tasks.",
+    "Related Patterns": "Generalizable Tool Learning (Interface Unification), Meta Tool Learning.",
+    "Category": "MLOps",
+    "Uses": "Teaching models to use mathematical software (e.g., Mathematica) starting with basic operations and progressing to calculus, learning to perform simple tasks (e.g., sorting) before complex ones (e.g., solving linear equations).",
+    "Thinking": "The text defines 'Curriculum Tool Learning' as a pedagogical strategy for improving model generalization, starting simple and gradually increasing complexity. This is a specific training/learning approach for AI, making it an MLOps pattern."
+  },
+  {
+    "Pattern Name": "Perceiver (Feedback Processing)",
+    "Problem": "The controller (foundation model) needs to make informed decisions based on diverse feedback from both the user and the environment, but this feedback can be raw, multi-modal, or require summarization.",
+    "Context": "Any tool learning framework where a foundation model acts as a controller and needs to process feedback from its interactions to refine its plans or actions. Feedback can be text, vision, audio, or execution results.",
+    "Solution": "Implement a 'Perceiver' component that processes user feedback (e.g., clarification requests, preferences) and environment feedback (e.g., tool execution results, state changes). This processing can range from simple concatenation/formatting to complex neural models capable of handling multiple modalities (text, vision, audio) and generating a concise summary for the controller.",
+    "Result": "The controller receives structured, summarized, and potentially multi-modal feedback, enabling it to determine plan effectiveness, identify anomalies, and adjust its decision-making process more effectively.",
+    "Related Patterns": "Planning with Extrospective Reasoning, Learning from Feedback.",
+    "Category": "Agentic AI",
+    "Uses": "Iterative planning, error handling, adapting to dynamic environments, human-in-the-loop systems.",
+    "Thinking": "The paper explicitly defines the 'Perceiver' as a distinct component within the general tool learning framework (Section 3.1), detailing its responsibility for processing user and environment feedback and summarizing it for the controller. This is a specific architectural and functional pattern for an AI agent's interaction loop."
+  },
+  {
+    "Pattern Name": "Inter-Tool Dependency Management",
+    "Problem": "In multi-step, multi-tool scenarios, tasks require not only understanding individual tool functionalities but also their interactions and dependencies. Incorrect sequencing or failure to leverage intermediate outputs can lead to task failure or inefficiency.",
+    "Context": "Complex tasks that necessitate the use of multiple distinct tools in a coordinated sequence, where the output of one tool might serve as the input for another, or where tools have specific preconditions for use.",
+    "Solution": "The foundation model (controller) is designed to grasp the interactions and dependencies among different tools. It sequences tools in a logical order, ensuring that subsequent tools can effectively leverage information generated by previous tools and effectively complete the task. This requires advanced intent understanding and reasoning capabilities to build a coherent workflow.",
+    "Result": "Effective utilization of multiple tools in complex workflows, leading to successful task completion by ensuring correct sequencing and data flow between tools.",
+    "Related Patterns": "Planning with Extrospective Reasoning, Multi-Agent Collaboration for Tool Learning, Parallel Tool Execution.",
+    "Category": "Planning",
+    "Uses": "Orchestrating complex software engineering tasks, scientific discovery workflows, any multi-tool automation, managing complex business processes.",
+    "Thinking": "The text explicitly identifies 'Understanding the Interplay among Different Tools' as a key challenge and a necessary capability for 'multistep multitool scenario' (Section 3.2.2). This describes a specific AI design pattern for managing the complexity of using multiple tools in concert."
+  }
+]
