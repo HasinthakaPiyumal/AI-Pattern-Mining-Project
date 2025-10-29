@@ -1,0 +1,29 @@
+Metadata-Version: 2.4
+Name: ai-patterns-mining
+Version: 0.1.0
+Summary: AI Pattern Mining Pipeline
+Author: Your Name
+Author-email: hasinthakapiyumal@gmail.com
+Requires-Python: >=3.9
+Requires-Dist: langchain
+Requires-Dist: langchain-text-splitters
+Requires-Dist: langchain[google-genai]
+Requires-Dist: pypdf
+Requires-Dist: requests
+Requires-Dist: numpy
+Requires-Dist: pandas
+Requires-Dist: scikit-learn
+Requires-Dist: sentence-transformers
+Requires-Dist: PyMuPDF
+Requires-Dist: torch
+Requires-Dist: tqdm
+Requires-Dist: pyyaml
+Requires-Dist: joblib
+Requires-Dist: matplotlib
+Requires-Dist: seaborn
+Requires-Dist: umap-learn
+Dynamic: author
+Dynamic: author-email
+Dynamic: requires-dist
+Dynamic: requires-python
+Dynamic: summary

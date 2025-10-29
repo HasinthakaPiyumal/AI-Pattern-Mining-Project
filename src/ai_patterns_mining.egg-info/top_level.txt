@@ -1,0 +1,5 @@
+ai_patterns_mining
+config
+pipeline
+stages
+utils

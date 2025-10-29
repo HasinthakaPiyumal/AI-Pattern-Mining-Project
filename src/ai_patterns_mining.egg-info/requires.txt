@@ -1,0 +1,17 @@
+langchain
+langchain-text-splitters
+langchain[google-genai]
+pypdf
+requests
+numpy
+pandas
+scikit-learn
+sentence-transformers
+PyMuPDF
+torch
+tqdm
+pyyaml
+joblib
+matplotlib
+seaborn
+umap-learn
