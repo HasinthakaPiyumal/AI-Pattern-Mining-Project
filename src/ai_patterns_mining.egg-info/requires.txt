@@ -15,3 +15,4 @@ joblib
 matplotlib
 seaborn
 umap-learn
+hdbscan

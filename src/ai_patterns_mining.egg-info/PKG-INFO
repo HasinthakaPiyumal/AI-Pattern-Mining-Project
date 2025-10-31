@@ -22,6 +22,7 @@ Requires-Dist: joblib
 Requires-Dist: matplotlib
 Requires-Dist: seaborn
 Requires-Dist: umap-learn
+Requires-Dist: hdbscan
 Dynamic: author
 Dynamic: author-email
 Dynamic: requires-dist
