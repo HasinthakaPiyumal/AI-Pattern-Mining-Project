@@ -6,5 +6,6 @@ __pycache__/
 logs/
 data/cleaned/
 data/processed/
-*.csv
+outputs/**/*.csv
+data.csv
 models/
