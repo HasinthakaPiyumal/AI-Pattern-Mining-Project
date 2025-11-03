@@ -7,5 +7,6 @@ logs/
 data/cleaned/
 data/processed/
 outputs/**/*.csv
+notebooks/**/*.csv
 data.csv
 models/

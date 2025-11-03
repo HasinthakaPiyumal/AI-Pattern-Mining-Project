@@ -1,0 +1,142 @@
+Pattern Name,cluster
+LLM Tool Orchestration,0
+Tool-Augmented Agent,0
+External Augmentation and Validation,0
+Tool Orchestration and Execution,0
+Autonomous Tool Generation,0
+External Tool Augmentation,0
+Augmented Response Synthesis,0
+Plug-and-Play LLM-Tool Integration,0
+LLM Fallback to Inherent Knowledge,0
+User Intent Resolution,0
+In-Context Tool Adaptation,0
+Unified Tool Interface Abstraction,0
+Personalized Tool Interaction,0
+Meta-Learning for Tool Strategies,0
+Curriculum-based Tool Mastery,0
+LLM Augmentation via External Modules,0
+Program-Aided Reasoning,0
+Tool-Augmented Reasoning Loop,0
+Agentic Web Interaction Layer,0
+Dynamic Tool-Augmented LLM Framework,0
+Divergent Subgroup Analysis,1
+Permutation Feature Importance,1
+Feature Dependence Visualization,1
+Explainable AI (XAI) Techniques,1
+Interactive Divergent Subgroup Exploration,1
+Adaptive Abstention Gating,2
+Self-Confidence & Calibration,2
+AI System Process Transparency and Trust Calibration,2
+Abstention-Aware Model Training,2
+Task Conditioning with Control Tokens,3
+Persona and Contextual Framing,3
+In-Prompt Guardrails,3
+Prompt Shaping,3
+Output Style Specification,3
+Reflexion,4
+Reflective Generation and Refinement,4
+Evaluative Reasoning Augmentation,4
+Iterative Self-Correction with Feedback,4
+Adaptive Iterative Retrieval,4
+Iterative Refinement with Feedback Loop,4
+Iterative Task Decomposition,5
+Recursive Subproblem Solving,5
+Task Decomposition and Planning,5
+Prompt Engineering Automation,6
+Automated Chain-of-Thought Generation,6
+Automated Prompt Optimization,6
+Retrieved Few-Shot Chain-of-Thought,6
+LLM-Guided Human Prompt Refinement,6
+Automated Prompt Self-Curation,6
+Automated Prompt Optimization,6
+Retrieval-Augmented Knowledge System,7
+Multi-Task Instruction Tuning for Integrated RAG Capabilities,7
+Retrieval-Augmented Generation (RAG),7
+Direct LLM Generation,7
+Joint Optimization of Retrieval-Augmented Generation,7
+Retrieval-Augmented Generation (RAG),7
+Efficient Dense Semantic Retrieval,7
+Grounded & Verifiable Generation,7
+Pretrained Component Initialization for RAG,7
+Contextual Input Augmentation for Frozen LMs,7
+Nearest Neighbor Output Augmentation,7
+Denoising Pretraining for Foundational Generative Models,7
+Retrieval-Augmented Generation (RAG),7
+Auxiliary Task Learning for RAG,7
+Bias Mitigation & Fair Generation,8
+LLM-Agentic Knowledge Graph Reasoning,8
+Hybrid Pruning for LLM-KG Efficiency,8
+LLM as Intelligent Processor & Reasoner,8
+LLM as Personalized Generative Interface,8
+LLM Ethical Alignment Framework,8
+Semantic Parsing for Structured Query Generation,8
+Knowledge-Guided Reasoning (KGR),8
+Structural Tool Call Verification,9
+Structured LLM Evaluation Output,9
+Structured Output Generation,9
+Structured Output Generation,9
+Adversarial Robustness Evaluation,9
+LLM as Evaluator,9
+LLM-Assisted Extraction,9
+Output Mapping Verbalizer,9
+Zero-Shot Structured Reasoning,10
+Explicit Step-by-Step Reasoning (Chain-of-Thought),10
+Exploratory Reasoning (Tree/Graph of Thoughts),10
+Abstract Pre-computation,10
+Sequential Multimodal Reasoning,10
+Graph-based Multimodal Reasoning,10
+Contextual Refinement,11
+ReAct (Reasoning and Acting),12
+Reasoning-Action Alignment,12
+Adaptive Iterative Planning,12
+Retrieved Document Integration Quantity,13
+LM-Guided Document Reranking,13
+Two-Stage Processing Pipeline,13
+Retrieve-Rerank-Generate Inference Pipeline,13
+Probabilistic Context Integration (Marginalization over Latent Contexts),13
+Retrieval Query Formulation,13
+Adaptive LLM Strategy Selection,13
+Retrieval Triggering Strategy,13
+Marginalized Sequence Decoding,13
+Automated Data Generation with Quality Assurance,14
+Imitation Learning,14
+Reward Model Guided Alignment,14
+Feedback & Data Orchestration,14
+Feedback-Driven Learning,14
+Self-Correction and Augmentation via Trajectory Refinement,14
+Self-Supervised Classifier Training Data Generation,14
+Synthetic Interactive Trajectory Generation,14
+Staged and Sample-Efficient Policy Learning,14
+Imitation Learning from Expert Trajectories,14
+Prefix Cache Reuse,15
+Asynchronous Resource Management,15
+Paged Memory Management,15
+Batch Prompting,15
+Hierarchical Cache Write-Once Eviction,15
+RAG KV Cache Optimization System,15
+Concurrent Subtask Execution,15
+Progressive Response Disclosure,16
+Proactive Static Planning,17
+Multi-Agent Distributed Intelligence,18
+Ensembled Robustness,18
+Ensemble Reasoning,18
+Autonomous LLM Agent Architecture,19
+Adaptive Context and Memory Management for LLMs,19
+Parameter-Efficient LLM Adaptation,20
+Contextual Robustness Finetuning,20
+Adaptive Behavior & Knowledge Finetuning,20
+Deliberative Planning with Constraint Satisfaction,21
+Autonomous Open-World Agent,21
+Exemplar Ordering Strategy,22
+Modality Bridging Prompting,22
+Exemplar Selection Strategy,22
+Few-Shot Prompting (In-Context Learning),22
+Multimodal In-Context Guidance,22
+Active Input Comprehension,23
+Ambiguity-Robust Demonstrations,23
+Clarification Dialogue,23
+Language and Cultural Adaptation Prompting,24
+Lexical Context Augmentation,24
+Multi-Stage Translation with Candidate Selection,24
+Chunked Processing for Long Text Translation,24
+Cross-Lingual Reasoning and Transfer Prompting,24
