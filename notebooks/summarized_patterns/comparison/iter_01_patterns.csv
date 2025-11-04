@@ -1,15 +1,15 @@
 original_patterns,summarized_patterns,thinking
-"'External Knowledge Augmentation'
- 'Domain-Specific Tool Integration'
- 'Multimodal Interaction Augmentation'
- 'Knowledge Conflict Resolution (in Tool Augmentation)'
- 'Tool-Augmented Foundation Model'
- 'Tool Augmentation'
- 'Retrieval Augmentation'
- 'Knowledge Augmentation'
- 'LLM-based Tool Learning'
- 'Modular Reasoning
- Knowledge and Language (MRKL) System'",'LLM Tool Orchestration',"The provided cluster of design patterns consistently addresses the limitations of Large Language Models (LLMs) by augmenting their capabilities with external tools and knowledge sources. While the individual patterns highlight specific aspects—such as accessing external knowledge, integrating domain-specific tools, handling multimodal inputs, or resolving knowledge conflicts—they all share the same fundamental underlying principle: using an LLM as an intelligent orchestrator to interact with and leverage specialized external systems.
+"1 External Knowledge Augmentation
+ 2 Domain-Specific Tool Integration
+ 3 Multimodal Interaction Augmentation
+ 4 Knowledge Conflict Resolution (in Tool Augmentation)
+ 5 Tool-Augmented Foundation Model
+ 6 Tool Augmentation
+ 7 Retrieval Augmentation
+ 8 Knowledge Augmentation
+ 9 LLM-based Tool Learning
+ 10 Modular Reasoning
+ Knowledge and Language (MRKL) System",1 LLM Tool Orchestration,"The provided cluster of design patterns consistently addresses the limitations of Large Language Models (LLMs) by augmenting their capabilities with external tools and knowledge sources. While the individual patterns highlight specific aspects—such as accessing external knowledge, integrating domain-specific tools, handling multimodal inputs, or resolving knowledge conflicts—they all share the same fundamental underlying principle: using an LLM as an intelligent orchestrator to interact with and leverage specialized external systems.
 
 My thought process for unifying them into a single pattern, 'LLM Tool Orchestration,' was as follows:
 
@@ -28,8 +28,8 @@ My thought process for unifying them into a single pattern, 'LLM Tool Orchestrat
 7.  **Broaden 'Uses'**: The 'Uses' section was expanded to cover all the specific applications mentioned in the individual patterns, demonstrating the wide applicability of the generalized pattern.
 
 By following this process, I concluded that all the provided patterns are specific manifestations or aspects of a single, overarching design pattern for enhancing LLMs through external tool integration and orchestration. Consolidating them into 'LLM Tool Orchestration' provides a more abstract, unified, and less redundant representation of the core design idea."
-"'Tool Use / Tool Augmentation'
- 'Task Automation via Tools'",'Tool-Augmented Agent',"The two provided patterns, 'Tool Use / Tool Augmentation' and 'Task Automation via Tools', describe fundamentally the same underlying design principle. Both address the core problem of LLMs having limited inherent capabilities (knowledge, computation, external interaction) and propose the solution of integrating LLMs with external tools.
+"1 Tool Use / Tool Augmentation
+ 2 Task Automation via Tools",1 Tool-Augmented Agent,"The two provided patterns, 'Tool Use / Tool Augmentation' and 'Task Automation via Tools', describe fundamentally the same underlying design principle. Both address the core problem of LLMs having limited inherent capabilities (knowledge, computation, external interaction) and propose the solution of integrating LLMs with external tools.
 
 -   **Shared Problem:** Both patterns identify the LLM's limitations in accessing real-time data, performing complex calculations, and executing actions in the real world.
 -   **Shared Context:** Both highlight the need for LLMs to interact with external systems (APIs, databases, web services) to fulfill user requests or complete tasks.
@@ -38,13 +38,13 @@ By following this process, I concluded that all the provided patterns are specif
 -   **Overlapping Uses:** While one pattern emphasizes 'information collection' and 'calculations' and the other 'executing external actions' and 'automating tasks', these are merely different *types* of functionalities that external tools can provide. A search engine provides information (Pattern 1), while a booking API performs an action (Pattern 2). Both are external tools that an LLM can leverage using the same core integration pattern.
 
 Therefore, the distinction between the two patterns is not conceptual but rather a categorization of the *types of tasks* or *tool functionalities* they enable. The underlying design pattern for how an LLM leverages external capabilities remains identical. Merging them into a single 'Tool-Augmented Agent' pattern provides a more generalized, abstract, and accurate representation of the shared design idea, encompassing both information gathering and action execution through external tools."
-"'Trust Calibration through Transparency'
- 'Inherently Interpretable Models (Interpretability by Design)'
- 'LACE (Local Agnostic attribute Contribution Explanation)'
- 'Counterfactual Explanations'
- 'Transparent Tool-Use Reasoning'
- 'xPlain (Interactive Human-in-the-Loop Explanation Framework)'","'Explainable AI (XAI) Techniques'
- 'AI System Process Transparency and Trust Calibration'","The initial cluster contained six patterns, all broadly related to 'trust,' 'transparency,' and 'interpretability' in AI. My goal was to reduce these to the minimal number of patterns that still accurately represent the core ideas, avoiding redundancy.
+"1 Trust Calibration through Transparency
+ 2 Inherently Interpretable Models (Interpretability by Design)
+ 3 LACE (Local Agnostic attribute Contribution Explanation)
+ 4 Counterfactual Explanations
+ 5 Transparent Tool-Use Reasoning
+ 6 xPlain (Interactive Human-in-the-Loop Explanation Framework)","1 Explainable AI (XAI) Techniques
+ 2 AI System Process Transparency and Trust Calibration","The initial cluster contained six patterns, all broadly related to 'trust,' 'transparency,' and 'interpretability' in AI. My goal was to reduce these to the minimal number of patterns that still accurately represent the core ideas, avoiding redundancy.
 
 I first analyzed each pattern's core problem, context, and solution:
 
@@ -69,9 +69,9 @@ This direction focuses on broader strategies for building and calibrating user t
 *   'Transparent Tool-Use Reasoning' is a specific application of process transparency for complex LLM agents, revealing their multi-step reasoning and tool interactions.
 
 By merging the patterns into these two categories, I achieved a significant reduction (from 6 to 2) while ensuring that all original core ideas are accurately represented without overlap. The 'Solution' sections of the generalized patterns were crafted to integrate the specific techniques and approaches from the original patterns under their respective conceptual umbrellas."
-"'Prompt-based Defenses'
- 'Robust Tool-Augmented Processing'","'In-Prompt Guardrails'
- 'External Augmentation and Validation'","I analyzed the two provided patterns, 'Prompt-based Defenses' and 'Robust Tool-Augmented Processing', to determine if they represent a single unified concept or distinct ones.
+"1 Prompt-based Defenses
+ 2 Robust Tool-Augmented Processing","1 In-Prompt Guardrails
+ 2 External Augmentation and Validation","I analyzed the two provided patterns, 'Prompt-based Defenses' and 'Robust Tool-Augmented Processing', to determine if they represent a single unified concept or distinct ones.
 
 **'Prompt-based Defenses'** focuses on using *internal* instructions within the prompt itself to guide the LLM's behavior and mitigate attacks like prompt injection. Its core mechanism is leveraging the LLM's instruction-following capabilities for security and alignment.
 
@@ -88,11 +88,11 @@ I then generalized and abstracted each pattern:
 2.  **'Robust Tool-Augmented Processing'** was refined into **'External Augmentation and Validation'** to highlight the use of external components and rigorous validation for enhancing overall system robustness, reliability, and security, especially in complex or tool-augmented scenarios.
 
 This approach ensures that each pattern clearly captures a unique conceptual direction and design strategy for building robust and secure AI applications."
-"'Iterative Task Solving (with Feedback)'
- 'Multi-Round Self-Correction'
- 'Feedback Loop / Self-Correction'
- 'Self-Correcting with Tool-Interactive Critiquing (CRITIC)'
- 'Self-Correction / Feedback Loop'",'Iterative Self-Correction with Feedback',"I analyzed the provided cluster of five design patterns: 'Iterative Task Solving (with Feedback)', 'Multi-Round Self-Correction', 'Feedback Loop / Self-Correction', 'Self-Correcting with Tool-Interactive Critiquing (CRITIC)', and 'Self-Correction / Feedback Loop'.
+"1 Iterative Task Solving (with Feedback)
+ 2 Multi-Round Self-Correction
+ 3 Feedback Loop / Self-Correction
+ 4 Self-Correcting with Tool-Interactive Critiquing (CRITIC)
+ 5 Self-Correction / Feedback Loop",1 Iterative Self-Correction with Feedback,"I analyzed the provided cluster of five design patterns: 'Iterative Task Solving (with Feedback)', 'Multi-Round Self-Correction', 'Feedback Loop / Self-Correction', 'Self-Correcting with Tool-Interactive Critiquing (CRITIC)', and 'Self-Correction / Feedback Loop'.
 
 My goal was to identify whether they represent a single unified pattern or multiple distinct patterns, aiming for the minimal number of patterns that accurately capture the core ideas.
 
@@ -106,21 +106,21 @@ Upon reviewing each pattern, I identified the following commonalities:
 While the specific *source* of feedback (e.g., tool error messages, environmental observations, self-critique) and the *scope* of the correction (e.g., a subtask, an entire plan, a specific response) vary slightly between the patterns, the fundamental underlying principle remains identical: an iterative loop of action, observation/feedback, reflection/analysis, and correction/re-planning.
 
 Therefore, I concluded that these patterns are not conceptually distinct but rather different manifestations or specific applications of the same core design principle. Merging them into a single, generalized pattern, 'Iterative Self-Correction with Feedback', effectively captures the shared reasoning and technique without losing any essential information. This approach adheres to the guideline of reducing the cluster to the minimal number of patterns while accurately representing the core ideas."
-"'Inter-Tool Dependency Management'
- 'Task Decomposition'
- 'Query Decomposition for Multi-hop QA'
- 'Tool-Augmented Response Synthesis'
- 'Parameter Extraction and Tool Invocation'
- 'Tool Retrieval and Selection'
- 'Tool Orchestration / Chaining'
- 'Emergent Tool Composition'
- 'Task Decomposition'
- 'Task Decomposition and Planning'
- 'Prompt Chain'
- 'DemonstrateSearchPredict (DSP)'
- 'Planning'","'Task Decomposition and Planning'
- 'Tool Orchestration and Execution'
- 'Augmented Response Synthesis'","My analysis of the provided cluster of design patterns revealed three core conceptual directions, leading to the creation of three distinct, yet interconnected, generalized patterns. My goal was to reduce redundancy and focus on the underlying mechanisms.
+"1 Inter-Tool Dependency Management
+ 2 Task Decomposition
+ 3 Query Decomposition for Multi-hop QA
+ 4 Tool-Augmented Response Synthesis
+ 5 Parameter Extraction and Tool Invocation
+ 6 Tool Retrieval and Selection
+ 7 Tool Orchestration / Chaining
+ 8 Emergent Tool Composition
+ 9 Task Decomposition
+ 10 Task Decomposition and Planning
+ 11 Prompt Chain
+ 12 DemonstrateSearchPredict (DSP)
+ 13 Planning","1 Task Decomposition and Planning
+ 2 Tool Orchestration and Execution
+ 3 Augmented Response Synthesis","My analysis of the provided cluster of design patterns revealed three core conceptual directions, leading to the creation of three distinct, yet interconnected, generalized patterns. My goal was to reduce redundancy and focus on the underlying mechanisms.
 
 1.  **Initial Scan and Theme Identification**: I first read through all the patterns, highlighting keywords and core ideas. I noticed strong recurring themes around:
     *   Breaking down problems (Decomposition, Planning, Query Decomposition).
@@ -140,14 +140,14 @@ Therefore, I concluded that these patterns are not conceptually distinct but rat
 4.  **Refinement and Definition**: I then drafted the 'Problem', 'Context', 'Solution', 'Result', and 'Uses' for each generalized pattern, ensuring they were concise, descriptive, and covered the essence of the original patterns without being redundant. I made sure to explicitly mention the sub-concepts from the original patterns within the 'Solution' or 'Uses' fields of the generalized patterns to show how they are encompassed.
 
 5.  **Final Check**: I reviewed the three patterns to ensure they are distinct, cover all the original cluster's ideas, and adhere to the JSON format and guidelines. The 'DemonstrateSearchPredict (DSP)' pattern was identified as an *application* or *method* that leverages all three generalized patterns (decomposition, search/tool use, and synthesis) rather than a standalone design pattern at this level of abstraction."
-"'Meta Prompting'
- 'Prompt Paraphrasing'
- 'Code Generation with Tool Integration'
- 'Scientific Discovery with Tool Manipulation'
- 'LLM as Tool Maker/Creator'
- 'AI Tool Creation'","'Prompt Engineering Automation'
- 'External Tool Augmentation'
- 'Autonomous Tool Generation'","My analysis of the cluster data revealed three distinct conceptual directions, leading to the creation of three generalized patterns.
+"1 Meta Prompting
+ 2 Prompt Paraphrasing
+ 3 Code Generation with Tool Integration
+ 4 Scientific Discovery with Tool Manipulation
+ 5 LLM as Tool Maker/Creator
+ 6 AI Tool Creation","1 Prompt Engineering Automation
+ 2 External Tool Augmentation
+ 3 Autonomous Tool Generation","My analysis of the cluster data revealed three distinct conceptual directions, leading to the creation of three generalized patterns.
 
 1.  **Initial Grouping - Prompt Manipulation:** 'Meta Prompting' and 'Prompt Paraphrasing' both describe an LLM operating on its own input instructions (prompts). 'Meta Prompting' focuses on generation/improvement, while 'Prompt Paraphrasing' focuses on transformation/augmentation. Both share the core idea of using an LLM to manipulate prompts. This led to the 'Prompt Engineering Automation' pattern, which generalizes the idea of an LLM automating and enhancing the prompt engineering process.
 
@@ -159,10 +159,10 @@ Therefore, I concluded that these patterns are not conceptually distinct but rat
 *   **Distinct Mechanisms:** Each pattern represents a fundamentally different mechanism: manipulating input instructions (Prompt Engineering Automation), utilizing external resources (External Tool Augmentation), and creating new resources (Autonomous Tool Generation).
 *   **Different Motivations/Problems:** The problems addressed by each group are distinct: inefficiency in prompt engineering, inherent limitations of LLMs, and the scalability/quality issues of manual tool creation.
 *   **Minimal Overlap:** By separating these into three patterns, I avoid significant overlap in their problem, solution, and result descriptions, ensuring each pattern captures a unique and essential design idea in AI systems. Generalizing further into a single pattern would dilute the specific insights and practical applications of each distinct approach."
-"'Selective Generation with Sufficient Context Signal'
- 'Finetuning for Controlled Abstention'
- 'Sufficient Context Autorater'","'Adaptive Abstention Gating'
- 'Abstention-Aware Model Training'","The cluster of design patterns presented three distinct but related ideas: 'Selective Generation with Sufficient Context Signal', 'Finetuning for Controlled Abstention', and 'Sufficient Context Autorater'. My goal was to reduce these into the minimal number of patterns that accurately represent the core ideas.
+"1 Selective Generation with Sufficient Context Signal
+ 2 Finetuning for Controlled Abstention
+ 3 Sufficient Context Autorater","1 Adaptive Abstention Gating
+ 2 Abstention-Aware Model Training","The cluster of design patterns presented three distinct but related ideas: 'Selective Generation with Sufficient Context Signal', 'Finetuning for Controlled Abstention', and 'Sufficient Context Autorater'. My goal was to reduce these into the minimal number of patterns that accurately represent the core ideas.
 
 1.  **Identify the Core Problem:** All three patterns fundamentally address the challenge of LLMs hallucinating or providing incorrect answers when they lack sufficient information, and the need for them to abstain or indicate uncertainty instead. This is a problem of trustworthiness and reliability.
 
@@ -180,17 +180,17 @@ Therefore, I concluded that these patterns are not conceptually distinct but rat
     *   **Abstention-Aware Model Training:** This pattern directly generalizes 'Finetuning for Controlled Abstention'. It focuses on modifying the model's learning process (via data or objective functions) to instill the desired abstention behavior intrinsically.
 
 This approach results in two distinct patterns that capture the core ideas of the cluster while minimizing redundancy and maintaining clear conceptual boundaries."
-"'Retrieval-Augmented Generation (RAG)'
- 'Retrieval Augmented Generation (RAG) - Inference'
- 'Instruction Tuning for LLM-KG Integration'
- 'Knowledge-Driven Chain-of-Thought (KDCoT) / Retrieval-Enhanced Reasoning (RR)'
- 'Vector Database for Knowledge Retrieval'
- 'Retrieval Augmented Generation (RAG)'
- 'Reasoning on Graphs (RoG) / Planning-Retrieval-Reasoning Framework'
- 'Retrieval-Augmented Generation (RAG) for Knowledge Graphs'
- 'Retrieval Augmented Generation (RAG)'
- 'Interleaved Retrieval guided by ChainofThought (IRCoT)'","'Retrieval-Augmented Generation (RAG)'
- 'Knowledge-Guided Reasoning (KGR)'","The initial cluster contained ten entries, many of which were variations or specific applications of Retrieval-Augmented Generation (RAG), while others focused on more complex reasoning with structured knowledge. My goal was to reduce these to the minimal number of patterns that still accurately represent the core ideas.
+"1 Retrieval-Augmented Generation (RAG)
+ 2 Retrieval Augmented Generation (RAG) - Inference
+ 3 Instruction Tuning for LLM-KG Integration
+ 4 Knowledge-Driven Chain-of-Thought (KDCoT) / Retrieval-Enhanced Reasoning (RR)
+ 5 Vector Database for Knowledge Retrieval
+ 6 Retrieval Augmented Generation (RAG)
+ 7 Reasoning on Graphs (RoG) / Planning-Retrieval-Reasoning Framework
+ 8 Retrieval-Augmented Generation (RAG) for Knowledge Graphs
+ 9 Retrieval Augmented Generation (RAG)
+ 10 Interleaved Retrieval guided by ChainofThought (IRCoT)","1 Retrieval-Augmented Generation (RAG)
+ 2 Knowledge-Guided Reasoning (KGR)","The initial cluster contained ten entries, many of which were variations or specific applications of Retrieval-Augmented Generation (RAG), while others focused on more complex reasoning with structured knowledge. My goal was to reduce these to the minimal number of patterns that still accurately represent the core ideas.
 
 1.  **Identification of Core Concepts:**
     *   **RAG Variants:** Multiple entries explicitly named 'Retrieval-Augmented Generation (RAG)' or 'Retrieval Augmented Generation (RAG) - Inference' or 'Retrieval-Augmented Generation (RAG) for Knowledge Graphs'. These all describe the fundamental process of retrieving external information and using it as context for an LLM's generation to improve factual accuracy and reduce hallucinations. 'Vector Database for Knowledge Retrieval' describes a key enabling technology for the retrieval component of RAG.
@@ -203,16 +203,16 @@ This approach results in two distinct patterns that capture the core ideas of th
 3.  **Refinement and Distinctness:**
     *   The two patterns are distinct: RAG primarily focuses on *grounding generation* with retrieved facts, while KGR focuses on *enhancing the reasoning process itself* by integrating and leveraging external knowledge, often in a more interactive or iterative manner. While both involve retrieval, the *purpose* and *integration point* of the retrieved knowledge differ significantly.
     *   The descriptions were crafted to be concise, avoid redundancy, and focus on the underlying mechanism, motivation, and design idea, rather than surface wording from the original cluster members. The 'Problem', 'Context', 'Solution', 'Result', and 'Uses' fields were generalized to cover the broader scope of each consolidated pattern."
-"'Separate LLM Extractor'
- 'Role-based Evaluation'
- 'Model-Generated Guidelines (for evaluation)'
- 'GEVAL Framework'
- 'Adversarial Evaluation for Truthfulness'
- 'LLMEVAL Framework'
- 'ChatEval Framework'
- 'LLM-based Evaluation (Autorater/LLMEval)'","'LLM as Evaluator'
- 'Adversarial Robustness Evaluation'
- 'LLM-Assisted Extraction'","The provided cluster of design patterns primarily revolves around two core themes: using LLMs for evaluation and using LLMs for information extraction. A third, more specific theme emerged regarding adversarial evaluation.
+"1 Separate LLM Extractor
+ 2 Role-based Evaluation
+ 3 Model-Generated Guidelines (for evaluation)
+ 4 GEVAL Framework
+ 5 Adversarial Evaluation for Truthfulness
+ 6 LLMEVAL Framework
+ 7 ChatEval Framework
+ 8 LLM-based Evaluation (Autorater/LLMEval)","1 LLM as Evaluator
+ 2 Adversarial Robustness Evaluation
+ 3 LLM-Assisted Extraction","The provided cluster of design patterns primarily revolves around two core themes: using LLMs for evaluation and using LLMs for information extraction. A third, more specific theme emerged regarding adversarial evaluation.
 
 My thought process involved the following steps:
 
@@ -240,12 +240,12 @@ My thought process involved the following steps:
 5.  **Refine and Articulate**: For each of the three identified patterns, I drafted clear, concise, and professional descriptions for 'Pattern Name', 'Problem', 'Context', 'Solution', 'Result', and 'Uses', ensuring no redundancy and focusing on the underlying principles.
 
 This process led to the identification of three distinct patterns, which I believe represent the minimal number while accurately capturing all the core ideas present in the original cluster."
-"'Confidence Estimation (Self-rated Probabilities)'
- 'Verbalized Score (for confidence calibration)'
- 'Verbalizer'
- 'SelfCalibration'
- 'Metacognitive Prompting'","'Self-Confidence & Calibration'
- 'Output Mapping Verbalizer'","The initial cluster contained five patterns: 'Confidence Estimation (Self-rated Probabilities)', 'Verbalized Score (for confidence calibration)', 'Verbalizer', 'SelfCalibration', and 'Metacognitive Prompting'.
+"1 Confidence Estimation (Self-rated Probabilities)
+ 2 Verbalized Score (for confidence calibration)
+ 3 Verbalizer
+ 4 SelfCalibration
+ 5 Metacognitive Prompting","1 Self-Confidence & Calibration
+ 2 Output Mapping Verbalizer","The initial cluster contained five patterns: 'Confidence Estimation (Self-rated Probabilities)', 'Verbalized Score (for confidence calibration)', 'Verbalizer', 'SelfCalibration', and 'Metacognitive Prompting'.
 
 My analysis focused on identifying the core underlying conceptual directions:
 
@@ -254,21 +254,21 @@ My analysis focused on identifying the core underlying conceptual directions:
 2.  **Output Mapping and Interpretation:** The 'Verbalizer' pattern, however, presented a distinct conceptual direction. Its problem is about 'Mapping token spans or other outputs to labels and vice-versa' and its solution involves 'Define a verbalizer that maps a token span or other type of output to a label'. This is not about the LLM *assessing its own confidence*, but rather about *interpreting* the LLM's free-form text output into a predefined, structured label or category for consistent downstream processing. While it uses the term 'verbalizer', its function is fundamentally different from the self-assessment patterns. This led to the creation of the **'Output Mapping Verbalizer'** pattern.
 
 By identifying these two distinct conceptual pillars, I was able to reduce the five initial patterns into two generalized patterns, minimizing redundancy while accurately capturing all core ideas present in the cluster."
-"'Chain-of-Thought (CoT) Prompting'
- 'Step-by-Step Reasoning (Chain-of-Thought / CoT)'
- 'Chain-of-Thought Reasoning'
- 'Contrastive CoT Prompting'
- 'Tabular ChainofThought (TabCoT)'
- 'Chain-of-Thought Finetuning'
- 'Complexity-based Prompting'
- 'Uncertainty-Routed CoT Prompting'
- 'MetaReasoning over Multiple CoTs'
- 'ThreadofThought (ThoT) Prompting'
- 'Chain-of-Thought (CoT) Prompting'
- 'Chain-of-Thought (CoT) Prompting'
- 'Cumulative Reasoning'
- 'Chain of Thought (CoT) Prompting'
- 'ChainofThought (CoT) Prompting'",'Explicit Step-by-Step Reasoning (Chain-of-Thought)',"The cluster provided a variety of patterns, all centered around the concept of 'Chain-of-Thought' (CoT) prompting. Upon analysis, it became clear that while the names and specific applications differed, the underlying principle remained consistent: guiding an LLM to generate explicit, sequential reasoning steps to improve performance on complex tasks.
+"1 Chain-of-Thought (CoT) Prompting
+ 2 Step-by-Step Reasoning (Chain-of-Thought / CoT)
+ 3 Chain-of-Thought Reasoning
+ 4 Contrastive CoT Prompting
+ 5 Tabular ChainofThought (TabCoT)
+ 6 Chain-of-Thought Finetuning
+ 7 Complexity-based Prompting
+ 8 Uncertainty-Routed CoT Prompting
+ 9 MetaReasoning over Multiple CoTs
+ 10 ThreadofThought (ThoT) Prompting
+ 11 Chain-of-Thought (CoT) Prompting
+ 12 Chain-of-Thought (CoT) Prompting
+ 13 Cumulative Reasoning
+ 14 Chain of Thought (CoT) Prompting
+ 15 ChainofThought (CoT) Prompting",1 Explicit Step-by-Step Reasoning (Chain-of-Thought),"The cluster provided a variety of patterns, all centered around the concept of 'Chain-of-Thought' (CoT) prompting. Upon analysis, it became clear that while the names and specific applications differed, the underlying principle remained consistent: guiding an LLM to generate explicit, sequential reasoning steps to improve performance on complex tasks.
 
 I categorized the individual patterns into several groups:
 1.  **Core CoT Prompting:** Multiple entries directly described the fundamental CoT idea (e.g., 'Chain-of-Thought (CoT) Prompting', 'Step-by-Step Reasoning').
@@ -280,11 +280,11 @@ I categorized the individual patterns into several groups:
 Despite these variations, none represented a fundamentally different conceptual direction from the core idea of 'explicit step-by-step reasoning.' All patterns aimed to leverage or enhance the LLM's ability to articulate its thought process sequentially. The differences were primarily in *how* this explicit reasoning was elicited, structured, learned, or aggregated.
 
 Therefore, I concluded that a single, generalized pattern could effectively encompass all the provided examples. The 'Solution' section of this generalized pattern was designed to explicitly list the various techniques and strategies identified in the cluster, demonstrating how they all contribute to the overarching goal of 'Explicit Step-by-Step Reasoning.' This approach minimizes redundancy and provides a clear, abstract representation of the shared underlying principle, aligning with the guideline to reduce the cluster to the minimal number of patterns."
-"'Confidence-Based Iterative Retrieval'
- 'Iterative Retrieval and Decision-Making'
- 'Iterative Retrieval Augmentation'
- 'Multi-step Retrieval-Augmented Generation (Multi-step RAG)'
- 'Iterative Retrieval-Augmented Generation (Iterative RAG)'",'Adaptive Iterative Retrieval',"The cluster of patterns consistently describes scenarios where a single, initial retrieval step is insufficient for an LLM to produce a high-quality, accurate, or confident response. All patterns propose a solution involving multiple, interleaved retrieval steps, where the LLM's processing (generation, reasoning, evaluation) informs subsequent retrieval actions.
+"1 Confidence-Based Iterative Retrieval
+ 2 Iterative Retrieval and Decision-Making
+ 3 Iterative Retrieval Augmentation
+ 4 Multi-step Retrieval-Augmented Generation (Multi-step RAG)
+ 5 Iterative Retrieval-Augmented Generation (Iterative RAG)",1 Adaptive Iterative Retrieval,"The cluster of patterns consistently describes scenarios where a single, initial retrieval step is insufficient for an LLM to produce a high-quality, accurate, or confident response. All patterns propose a solution involving multiple, interleaved retrieval steps, where the LLM's processing (generation, reasoning, evaluation) informs subsequent retrieval actions.
 
 Here's a breakdown of how the original patterns map to the generalized 'Adaptive Iterative Retrieval' pattern:
 
@@ -295,12 +295,12 @@ Here's a breakdown of how the original patterns map to the generalized 'Adaptive
 5.  **Iterative Retrieval-Augmented Generation (Iterative RAG):** This is the most general pattern in the original cluster, describing 'multiple retrieval steps interleaved with the generation process' and 'evolving information needs.' The generalized pattern essentially abstracts and consolidates the specific triggers and decision-making mechanisms from the other patterns into this overarching concept.
 
 The core commonality is the **dynamic, multi-step interaction between an LLM and a retrieval system**, driven by the need to overcome limitations of a single retrieval. The triggers for these iterations (confidence, context sufficiency, evolving information needs, intermediate outputs) and the possible actions (retrieve, generate, abstain) are all variations of this central theme. Therefore, a single, comprehensive pattern effectively captures the shared underlying principle and mechanism, avoiding redundancy and providing a more abstract, powerful design concept."
-"'Plan-and-Solve Paradigm'
- 'ZeroShot CoT'
- 'ZeroShot Prompting'
- 'PlanandSolve Prompting'
- 'MemoryofThought Prompting'","'Zero-Shot Structured Reasoning'
- 'Retrieved Few-Shot Chain-of-Thought'","The initial cluster contained five patterns: 'Plan-and-Solve Paradigm', 'ZeroShot CoT', 'ZeroShot Prompting', 'PlanandSolve Prompting', and 'MemoryofThought Prompting'.
+"1 Plan-and-Solve Paradigm
+ 2 ZeroShot CoT
+ 3 ZeroShot Prompting
+ 4 PlanandSolve Prompting
+ 5 MemoryofThought Prompting","1 Zero-Shot Structured Reasoning
+ 2 Retrieved Few-Shot Chain-of-Thought","The initial cluster contained five patterns: 'Plan-and-Solve Paradigm', 'ZeroShot CoT', 'ZeroShot Prompting', 'PlanandSolve Prompting', and 'MemoryofThought Prompting'.
 
 My analysis focused on identifying the core underlying mechanisms and motivations:
 
@@ -315,23 +315,23 @@ My analysis focused on identifying the core underlying mechanisms and motivation
 3.  **'MemoryofThought Prompting'**: This pattern is conceptually distinct. It introduces the idea of *retrieving* relevant examples (which already contain Chain-of-Thought reasoning) from a larger dataset to dynamically construct *Few-Shot* prompts at test time. This involves leveraging external data and a retrieval mechanism, which is fundamentally different from the zero-shot, instruction-based reasoning induction of the other patterns. Therefore, it warranted its own distinct pattern: 'Retrieved Few-Shot Chain-of-Thought'.
 
 By following this thought process, I was able to reduce the five initial patterns into two distinct, generalized patterns that accurately capture the core ideas without redundancy, focusing on the underlying mechanism (zero-shot instruction-based reasoning vs. retrieved few-shot reasoning)."
-"'Self-Evaluation and Termination Condition (for iterative reasoning)'
- 'LLM Fallback to Inherent Knowledge'
- 'Triple-Based Path Representation in Prompts'
- 'LLM-based Topic Entity Extraction'
- 'Knowledge Traceability and Correctability via Explicit Reasoning Paths'
- 'Iterative Prompting for Guided KG Exploration and Reasoning'
- 'Plug-and-Play LLM-KG Integration'
- 'LLM-Guided Beam Search for KG Exploration'
- 'ThinkonGraph (ToG) Algorithmic Framework'
- 'Unified Retrieval and Reasoning'
- 'KG-Agent Framework (KGAgent
- ThinkonGraph)'
- 'LLM-KG Tight-Coupling Paradigm'
- 'Semantic Parsing for Knowledge Graph Question Answering (KGQA)'","'LLM-Agentic Knowledge Graph Reasoning'
- 'LLM Fallback to Inherent Knowledge'
- 'Plug-and-Play LLM-Tool Integration'
- 'Semantic Parsing for Structured Query Generation'","My thought process involved several steps to analyze and generalize the provided cluster of design patterns:
+"1 Self-Evaluation and Termination Condition (for iterative reasoning)
+ 2 LLM Fallback to Inherent Knowledge
+ 3 Triple-Based Path Representation in Prompts
+ 4 LLM-based Topic Entity Extraction
+ 5 Knowledge Traceability and Correctability via Explicit Reasoning Paths
+ 6 Iterative Prompting for Guided KG Exploration and Reasoning
+ 7 Plug-and-Play LLM-KG Integration
+ 8 LLM-Guided Beam Search for KG Exploration
+ 9 ThinkonGraph (ToG) Algorithmic Framework
+ 10 Unified Retrieval and Reasoning
+ 11 KG-Agent Framework (KGAgent
+ ThinkonGraph)
+ 12 LLM-KG Tight-Coupling Paradigm
+ 13 Semantic Parsing for Knowledge Graph Question Answering (KGQA)","1 LLM-Agentic Knowledge Graph Reasoning
+ 2 LLM Fallback to Inherent Knowledge
+ 3 Plug-and-Play LLM-Tool Integration
+ 4 Semantic Parsing for Structured Query Generation","My thought process involved several steps to analyze and generalize the provided cluster of design patterns:
 
 1.  **Initial Scan and Keyword Extraction**: I first read through each pattern, identifying its core problem, solution, and key concepts. I looked for recurring themes and distinct functionalities.
 
@@ -347,12 +347,12 @@ By following this thought process, I was able to reduce the five initial pattern
 5.  **Refining Pattern Descriptions**: For each identified pattern, I meticulously crafted the Problem, Context, Solution, Result, and Uses sections, ensuring clarity, conciseness, and avoiding redundancy. I focused on the underlying mechanism and motivation rather than surface-level wording from the original cluster members. I also ensured the names were descriptive yet concise.
 
 By following this process, I reduced the original 13 patterns into 4 distinct, generalized patterns that accurately represent the core ideas without significant overlap, adhering to the goal of minimal patterns while maintaining conceptual integrity."
-"'TreeofThought (ToT)'
- 'RecursionofThought'
- 'Tree of Thoughts (ToT) / Graph of Thoughts (GoT)'
- 'Graph-of-Thoughts (GoT)'
- 'Tree-of-Thoughts (ToT)'","'Exploratory Reasoning (Tree/Graph of Thoughts)'
- 'Recursive Subproblem Solving'","The initial cluster contained five patterns: three variations of 'Tree-of-Thought (ToT)', one 'Graph-of-Thoughts (GoT)', and one 'RecursionofThought'.
+"1 TreeofThought (ToT)
+ 2 RecursionofThought
+ 3 Tree of Thoughts (ToT) / Graph of Thoughts (GoT)
+ 4 Graph-of-Thoughts (GoT)
+ 5 Tree-of-Thoughts (ToT)","1 Exploratory Reasoning (Tree/Graph of Thoughts)
+ 2 Recursive Subproblem Solving","The initial cluster contained five patterns: three variations of 'Tree-of-Thought (ToT)', one 'Graph-of-Thoughts (GoT)', and one 'RecursionofThought'.
 
 My analysis focused on identifying the core underlying mechanisms and motivations:
 
@@ -361,12 +361,12 @@ My analysis focused on identifying the core underlying mechanisms and motivation
 2.  **RecursionofThought:** This pattern stands out. Its primary mechanism is to identify a complex *subproblem* within a larger task and delegate its solution to a *separate LLM call*, then integrate the result back. The motivation is to handle complexity, especially when it might exceed context length or require focused, deeper processing. This is distinct from exploring *multiple parallel paths* (as in ToT/GoT). It's about **decomposition and recursive depth** rather than breadth of exploration. Thus, it warrants its own distinct pattern: 'Recursive Subproblem Solving'.
 
 By abstracting these two core ideas, I arrived at two distinct patterns that accurately represent the entire cluster without redundancy, fulfilling the goal of reducing the cluster to the minimal number of patterns."
-"'Decomposed Prompting (DecomP)'
- 'LeasttoMost Prompting'
- 'SimToM'
- 'System 2 Attention (S2A)'
- 'Decomposed Prompting (DECOMP)'","'Iterative Task Decomposition'
- 'Contextual Refinement'","The analysis of the provided cluster revealed two distinct conceptual directions, leading to the creation of two generalized patterns.
+"1 Decomposed Prompting (DecomP)
+ 2 LeasttoMost Prompting
+ 3 SimToM
+ 4 System 2 Attention (S2A)
+ 5 Decomposed Prompting (DECOMP)","1 Iterative Task Decomposition
+ 2 Contextual Refinement","The analysis of the provided cluster revealed two distinct conceptual directions, leading to the creation of two generalized patterns.
 
 **Initial Assessment and Grouping:**
 1.  **Decomposed Prompting (DecomP)** and **LeasttoMost Prompting** share the core idea of breaking down a complex problem into sequential subproblems and solving them step-by-step. They represent a 'divide and conquer' strategy for LLMs.
@@ -383,10 +383,10 @@ By abstracting these two core ideas, I arrived at two distinct patterns that acc
 *   **Contextual Refinement:** This pattern generalizes the techniques for improving LLM focus by manipulating the input context. It covers both explicit prompt rewriting to remove noise (S2A) and more nuanced filtering based on specific criteria like an entity's knowledge or perspective (SimToM). The common goal is to provide a cleaner, more focused, and relevant context for the LLM's reasoning.
 
 By abstracting these two core ideas, I was able to reduce the five specific patterns into two distinct, yet comprehensive, generalized patterns that accurately capture the underlying design principles without redundancy."
-"'ReAct (Reasoning and Acting)'
- 'ReACT (Reasoning and Acting)'
- 'Reasoning and Acting (ReAct)'
- 'ReAct (Reasoning and Acting)'",'ReAct (Reasoning and Acting)',"The provided cluster contains four patterns, all explicitly named 'ReAct (Reasoning and Acting)' or a very similar variant. Upon reviewing their 'Problem', 'Context', 'Solution', 'Result', and 'Uses' fields, it became clear that they all describe the exact same core design principle.
+"1 ReAct (Reasoning and Acting)
+ 2 ReACT (Reasoning and Acting)
+ 3 Reasoning and Acting (ReAct)
+ 4 ReAct (Reasoning and Acting)",1 ReAct (Reasoning and Acting),"The provided cluster contains four patterns, all explicitly named 'ReAct (Reasoning and Acting)' or a very similar variant. Upon reviewing their 'Problem', 'Context', 'Solution', 'Result', and 'Uses' fields, it became clear that they all describe the exact same core design principle.
 
 *   **Problem:** All patterns identify the LLM's limitations in complex reasoning, dynamic interaction, tool use, and adapting to real-time feedback or errors.
 *   **Context:** All describe scenarios where an LLM agent needs to operate in a dynamic, interactive environment, requiring multi-step decision-making, tool use, and adaptation.
@@ -395,9 +395,9 @@ By abstracting these two core ideas, I was able to reduce the five specific patt
 *   **Uses:** All list similar applications like interactive problem-solving, complex QA, and task automation.
 
 Given this strong conceptual overlap and identical underlying mechanism, the most appropriate approach is to generalize and abstract these into a single, unified pattern. I synthesized the common elements from each field to create a comprehensive description that captures the essence of the ReAct pattern without redundancy. This aligns with the guideline of reducing the cluster to the minimal number of patterns while accurately representing the core ideas."
-"'Two-LLM Framework for Reasoning Step Selection and Generation'
- 'Monte-Carlo Planning for Faithful Reasoning (FAME)'
- 'Faithful Reasoning with Verifier (Entailer)'",'Evaluative Reasoning Augmentation',"The three provided patterns—'Two-LLM Framework for Reasoning Step Selection and Generation', 'Monte-Carlo Planning for Faithful Reasoning (FAME)', and 'Faithful Reasoning with Verifier (Entailer)'—all address a common core problem: the unreliability and potential unfaithfulness of reasoning steps generated by a single, unguided Large Language Model (LLM) in complex tasks. Their shared goal is to enhance the trustworthiness and accuracy of LLM reasoning.
+"1 Two-LLM Framework for Reasoning Step Selection and Generation
+ 2 Monte-Carlo Planning for Faithful Reasoning (FAME)
+ 3 Faithful Reasoning with Verifier (Entailer)",1 Evaluative Reasoning Augmentation,"The three provided patterns—'Two-LLM Framework for Reasoning Step Selection and Generation', 'Monte-Carlo Planning for Faithful Reasoning (FAME)', and 'Faithful Reasoning with Verifier (Entailer)'—all address a common core problem: the unreliability and potential unfaithfulness of reasoning steps generated by a single, unguided Large Language Model (LLM) in complex tasks. Their shared goal is to enhance the trustworthiness and accuracy of LLM reasoning.
 
 Upon closer examination, while their specific *mechanisms* differ, they all converge on a single underlying principle: introducing an *explicit evaluative or corrective layer* to the LLM's reasoning process. This layer acts as a form of meta-reasoning or self-correction.
 
@@ -413,8 +413,8 @@ The generalized pattern, 'Evaluative Reasoning Augmentation', captures this by:
 *   **Result & Uses:** Merging the positive outcomes and applicable domains from all original patterns.
 
 This approach ensures that the output is concise, avoids redundancy, and focuses on the underlying design idea, fulfilling the guidelines for pattern mining."
-"'Plug-and-Play LLM Augmentation Framework'
- 'Plug-and-Play LLM Module'",'LLM Augmentation via External Modules',"The two provided patterns, 'Plug-and-Play LLM Augmentation Framework' and 'Plug-and-Play LLM Module', share a very strong conceptual overlap. Both address the problem of enhancing LLM capabilities without internal modification or expensive retraining, by leveraging external, modular components.
+"1 Plug-and-Play LLM Augmentation Framework
+ 2 Plug-and-Play LLM Module",1 LLM Augmentation via External Modules,"The two provided patterns, 'Plug-and-Play LLM Augmentation Framework' and 'Plug-and-Play LLM Module', share a very strong conceptual overlap. Both address the problem of enhancing LLM capabilities without internal modification or expensive retraining, by leveraging external, modular components.
 
 1.  **'Plug-and-Play LLM Augmentation Framework'** describes a system-level architecture built *around* the LLM, comprising multiple interacting modules (e.g., Working Memory, Policy, Action Executor). It focuses on the orchestration and overall system design.
 2.  **'Plug-and-Play LLM Module'** focuses on the *individual specialized component* itself (e.g., a planning module, a retrieval module) and how it provides augmented input or context to the LLM.
@@ -422,9 +422,9 @@ This approach ensures that the output is concise, avoids redundancy, and focuses
 Essentially, the 'Framework' pattern describes *how to build a system* using these augmentative components, while the 'Module' pattern describes *what one of these components looks like and how it integrates*. The latter can be seen as a specific instance or building block within the former.
 
 Given this close relationship, merging them into a single, more generalized pattern is appropriate. The unified pattern, 'LLM Augmentation via External Modules', captures the core idea of extending LLM capabilities through modular, external components. The 'Solution' section of the merged pattern explicitly details both the nature of these individual modules (covering the 'Module' aspect) and how they are integrated into an overarching architecture (covering the 'Framework' aspect). This approach reduces redundancy and provides a more abstract, yet comprehensive, design principle for enhancing LLMs."
-"'DivExplorer Interactive System (Interactive Divergent Subgroup Exploration)'
- 'DivExplorer (Divergent Subgroup Exploration)'","'Divergent Subgroup Analysis'
- 'Interactive Divergent Subgroup Exploration'","The initial cluster contains two patterns, both related to 'DivExplorer'.
+"1 DivExplorer Interactive System (Interactive Divergent Subgroup Exploration)
+ 2 DivExplorer (Divergent Subgroup Exploration)","1 Divergent Subgroup Analysis
+ 2 Interactive Divergent Subgroup Exploration","The initial cluster contains two patterns, both related to 'DivExplorer'.
 
 1.  **'DivExplorer (Divergent Subgroup Exploration)'**: This pattern focuses on the *algorithmic and conceptual foundation* of identifying and characterizing divergent subgroups. It details the definition of divergence, the use of Frequent Pattern Mining, Shapley values for attribution, identification of corrective items, and redundancy pruning. Its core is about *how to find and quantify* these divergences.
 
@@ -441,10 +441,10 @@ Merging them into a single pattern would result in an overly broad 'Solution' se
 2.  **Interactive Divergent Subgroup Exploration**: This pattern abstracts the design principles for building an interactive system that allows users to explore the findings from a Divergent Subgroup Analysis. It focuses on the problem, context (where analysis results are available), solution (UI components and interaction), and results related to the *exploration and interpretation* phase.
 
 This approach reduces redundancy while maintaining conceptual clarity and distinct applicability for each pattern."
-"'Individual Conditional Expectation (ICE) Plots'
- 'Partial Dependence Plots (PDPs)'
- 'Permutation Feature Importance'","'Feature Dependence Visualization'
- 'Permutation Feature Importance'","The initial cluster contained three patterns: Individual Conditional Expectation (ICE) Plots, Partial Dependence Plots (PDPs), and Permutation Feature Importance.
+"1 Individual Conditional Expectation (ICE) Plots
+ 2 Partial Dependence Plots (PDPs)
+ 3 Permutation Feature Importance","1 Feature Dependence Visualization
+ 2 Permutation Feature Importance","The initial cluster contained three patterns: Individual Conditional Expectation (ICE) Plots, Partial Dependence Plots (PDPs), and Permutation Feature Importance.
 
 1.  **ICE Plots and PDPs Analysis:**
     *   **Shared Core Idea:** Both ICE and PDPs aim to understand the *functional relationship* between input features and model predictions. They achieve this by systematically varying feature values and observing the model's output.
@@ -457,11 +457,11 @@ This approach reduces redundancy while maintaining conceptual clarity and distin
     *   **Conclusion:** Permutation Feature Importance represents a distinct conceptual direction from ICE/PDPs. While both are model-agnostic interpretability techniques, their goals (quantifying importance to performance vs. visualizing functional dependence) and mechanisms are sufficiently different to warrant a separate pattern.
 
 **Resulting Structure:** I decided to create two distinct patterns. The first, 'Feature Dependence Visualization', generalizes ICE and PDPs by describing the common goal and mechanism, then detailing the local and global variations within its solution. The second, 'Permutation Feature Importance', remains a standalone pattern due to its unique objective of quantifying feature contribution to overall model performance through a distinct perturbation-based mechanism. This approach minimizes redundancy while accurately capturing the core ideas present in the original cluster."
-"'Adaptive Retrieval-Augmented Generation (AdaptiveRAG)'
- 'Automatic Classifier Training Data Generation (for Query Complexity)'
- 'Query Complexity Classifier'
- 'Adaptive Retrieval (Entity Frequency-based)'","'Adaptive LLM Strategy Selection'
- 'Self-Supervised Classifier Training Data Generation'","My analysis of the provided cluster data revealed two primary conceptual directions, leading to the generalization into two distinct design patterns:
+"1 Adaptive Retrieval-Augmented Generation (AdaptiveRAG)
+ 2 Automatic Classifier Training Data Generation (for Query Complexity)
+ 3 Query Complexity Classifier
+ 4 Adaptive Retrieval (Entity Frequency-based)","1 Adaptive LLM Strategy Selection
+ 2 Self-Supervised Classifier Training Data Generation","My analysis of the provided cluster data revealed two primary conceptual directions, leading to the generalization into two distinct design patterns:
 
 1.  **Core Adaptive Mechanism vs. Supporting Component/Implementation:**
     *   'Adaptive Retrieval-Augmented Generation (AdaptiveRAG)', 'Query Complexity Classifier', and 'Adaptive Retrieval (Entity Frequency-based)' all revolve around the central idea of dynamically adjusting an LLM's processing strategy based on input characteristics. 
@@ -475,13 +475,13 @@ This approach reduces redundancy while maintaining conceptual clarity and distin
     *   **Distinct Pattern:** This was generalized into **Self-Supervised Classifier Training Data Generation**. While it supports the 'Adaptive LLM Strategy Selection' pattern by providing a means to train its decision-making component, its focus on data generation techniques is conceptually distinct from the act of dynamic strategy selection itself. It addresses a common challenge in building intelligent, adaptive systems where labeled data is scarce.
 
 This approach minimizes the number of patterns while accurately representing the core ideas. The first pattern describes *what* to do (adapt strategy), and the second describes *how to enable* a key part of the first pattern (train the classifier for adaptation)."
-"'No Retrieval (LLM-only QA)'
- 'Retrieval Augmented Generation (RAG)'
- 'Single-step Retrieval-Augmented Generation (Single-step RAG)'
- 'Retrieval Augmented Generation (RAG)'
- 'Retrieval-Augmented Generation (RAG)'
- 'Modular Knowledge Consolidation Pipeline'","'Direct LLM Generation'
- 'Retrieval-Augmented Generation (RAG)'","The cluster of design patterns primarily revolves around how a Large Language Model (LLM) acquires and utilizes knowledge for generating responses. I identified two fundamental conceptual directions:
+"1 No Retrieval (LLM-only QA)
+ 2 Retrieval Augmented Generation (RAG)
+ 3 Single-step Retrieval-Augmented Generation (Single-step RAG)
+ 4 Retrieval Augmented Generation (RAG)
+ 5 Retrieval-Augmented Generation (RAG)
+ 6 Modular Knowledge Consolidation Pipeline","1 Direct LLM Generation
+ 2 Retrieval-Augmented Generation (RAG)","The cluster of design patterns primarily revolves around how a Large Language Model (LLM) acquires and utilizes knowledge for generating responses. I identified two fundamental conceptual directions:
 
 1.  **Reliance on Internal Knowledge Only**: This is represented by 'No Retrieval (LLM-only QA)'. It describes the scenario where the LLM operates solely on its pre-trained parametric memory. The problem, context, solution, and result clearly delineate this approach, highlighting its efficiency for simple queries but its limitations for complex or external knowledge.
 
@@ -493,12 +493,12 @@ Therefore, I decided to generalize these into two distinct patterns:
 *   **Retrieval-Augmented Generation (RAG)**: This pattern generalizes the concept of enhancing LLM capabilities with external, retrieved information. Its 'Solution' section is broad enough to encompass both simple retrieval and more complex, multi-stage knowledge consolidation pipelines (like the 'Modular Knowledge Consolidation Pipeline'), as these are variations in the implementation complexity of the retrieval and context preparation step within the overarching RAG paradigm. The 'Problem' and 'Result' sections consolidate the benefits and challenges addressed by all the RAG-related patterns.
 
 This approach reduces the cluster to the minimal number of patterns (two) while accurately representing the core ideas and their underlying mechanisms, avoiding redundancy."
-"'SelfRefine'
- 'Iterative Prompting (for MT)'
- 'Contextual Prompt Engineering'
- 'Hybrid Utility Function Design'
- 'Iterative Self-Correction with Automated Feedback'
- 'Self-Reflection for RAG (SelfRAG)'",'Iterative Refinement with Feedback Loop',"My analysis of the provided cluster revealed a strong common thread across all six patterns. Each pattern, despite its specific naming or application domain, fundamentally describes a mechanism for improving an LLM's output through an iterative process involving feedback.
+"1 SelfRefine
+ 2 Iterative Prompting (for MT)
+ 3 Contextual Prompt Engineering
+ 4 Hybrid Utility Function Design
+ 5 Iterative Self-Correction with Automated Feedback
+ 6 Self-Reflection for RAG (SelfRAG)",1 Iterative Refinement with Feedback Loop,"My analysis of the provided cluster revealed a strong common thread across all six patterns. Each pattern, despite its specific naming or application domain, fundamentally describes a mechanism for improving an LLM's output through an iterative process involving feedback.
 
 Here's a breakdown of the commonalities:
 
@@ -518,14 +518,14 @@ Given these strong overlaps, I concluded that the cluster represents a single, u
 'Contextual Prompt Engineering' and 'Hybrid Utility Function Design' describe specific *components* or *techniques* that can be used within this broader iterative framework (e.g., how to build the prompt, how to build the evaluation module), rather than entirely distinct conceptual patterns. They are enablers or specific implementations of parts of the 'Iterative Refinement with Feedback Loop'.
 
 Therefore, I generalized and abstracted these common elements into a single pattern: 'Iterative Refinement with Feedback Loop', which encompasses the core problem, context, solution steps, results, and uses identified across the cluster, while acknowledging the variations in feedback source and application within its solution description."
-"'Replication of Critical KV Cache Nodes'
- 'Cache-aware Request Reordering for RAG'
- 'Multilevel Dynamic Knowledge Caching for RAG (RAGCache)'
- 'Progressive Response Disclosure'
- 'Prefix-aware GreedyDualSizeFrequency (PGDSF) Cache Replacement'
- 'Dynamic Speculative Pipelining for RAG'
- 'Knowledge Tree for RAG KV Cache'","'RAG KV Cache Optimization System'
- 'Progressive Response Disclosure'","The cluster of design patterns presented a mix of technical backend optimizations for RAG systems and a user experience pattern. My goal was to reduce these into the minimal number of patterns that accurately represent the core ideas.
+"1 Replication of Critical KV Cache Nodes
+ 2 Cache-aware Request Reordering for RAG
+ 3 Multilevel Dynamic Knowledge Caching for RAG (RAGCache)
+ 4 Progressive Response Disclosure
+ 5 Prefix-aware GreedyDualSizeFrequency (PGDSF) Cache Replacement
+ 6 Dynamic Speculative Pipelining for RAG
+ 7 Knowledge Tree for RAG KV Cache","1 RAG KV Cache Optimization System
+ 2 Progressive Response Disclosure","The cluster of design patterns presented a mix of technical backend optimizations for RAG systems and a user experience pattern. My goal was to reduce these into the minimal number of patterns that accurately represent the core ideas.
 
 **Initial Assessment of Patterns:**
 1.  **Replication of Critical KV Cache Nodes:** Focuses on fault tolerance for RAG's KV cache.
@@ -551,11 +551,11 @@ My decision was to keep this as a separate, distinct pattern: **'Progressive Res
 
 **Conclusion:**
 By identifying the core conceptual directions, I was able to reduce the seven initial patterns into two distinct, generalized patterns. This approach minimizes redundancy and provides clear, abstract representations of the underlying design ideas."
-"'PagedAttention'
- 'Swap-Out-Only-Once Cache Strategy'
- 'KV Cache Reuse'","'Paged Memory Management'
- 'Hierarchical Cache Write-Once Eviction'
- 'Prefix Cache Reuse'","The initial cluster contained three patterns related to LLM KV cache optimization: 'PagedAttention', 'Swap-Out-Only-Once Cache Strategy', and 'KV Cache Reuse'. While all address aspects of KV cache efficiency, their underlying mechanisms and the specific problems they solve are distinct enough to warrant separate generalized patterns.
+"1 PagedAttention
+ 2 Swap-Out-Only-Once Cache Strategy
+ 3 KV Cache Reuse","1 Paged Memory Management
+ 2 Hierarchical Cache Write-Once Eviction
+ 3 Prefix Cache Reuse","The initial cluster contained three patterns related to LLM KV cache optimization: 'PagedAttention', 'Swap-Out-Only-Once Cache Strategy', and 'KV Cache Reuse'. While all address aspects of KV cache efficiency, their underlying mechanisms and the specific problems they solve are distinct enough to warrant separate generalized patterns.
 
 1.  **PagedAttention** focuses on *memory allocation and management* within a single memory tier (GPU memory). Its core idea is to apply operating system-like virtual memory paging to dynamic data structures like the KV cache to combat fragmentation and enable efficient sharing. This led to the generalized 'Paged Memory Management' pattern.
 
@@ -569,10 +569,10 @@ My thought process was to first identify the core problem and solution for each 
     *   The third is about *how to avoid recomputing data based on logical input patterns* (prefix caching).
 
 Because these are distinct mechanisms addressing different facets of the overall problem, merging them into a single pattern would dilute their specific insights. Therefore, I opted for three distinct, generalized patterns, each capturing a unique design principle."
-"'In-Context Learning for Tool Use'
- 'Intent Understanding'
- 'Tool Understanding (via Prompting)'","'In-Context Tool Adaptation'
- 'User Intent Resolution'","The initial cluster contained three patterns: 'In-Context Learning for Tool Use', 'Intent Understanding', and 'Tool Understanding (via Prompting)'.
+"1 In-Context Learning for Tool Use
+ 2 Intent Understanding
+ 3 Tool Understanding (via Prompting)","1 In-Context Tool Adaptation
+ 2 User Intent Resolution","The initial cluster contained three patterns: 'In-Context Learning for Tool Use', 'Intent Understanding', and 'Tool Understanding (via Prompting)'.
 
 My analysis focused on identifying the core problem and solution each pattern addresses:
 
@@ -581,9 +581,9 @@ My analysis focused on identifying the core problem and solution each pattern ad
 2.  **'Intent Understanding'**, however, addresses a distinct problem: inferring the *user's goal* from natural language input. While this is a crucial prerequisite for effective tool use (as the inferred intent often dictates which tool to use), its core mechanism is about language interpretation and disambiguation, not the mechanics of tool invocation itself. It's about understanding *what the user wants to achieve*, whereas the merged pattern is about *how the AI achieves it using tools*. Thus, 'Intent Understanding' was retained as a separate, distinct pattern: **'User Intent Resolution'**.
 
 By consolidating the two tool-centric patterns and keeping the user-centric pattern separate, I arrived at two distinct patterns that accurately represent the core ideas within the cluster, minimizing redundancy and maximizing conceptual clarity."
-"'Planning with Extrospective Reasoning'
- 'Planning with Introspective Reasoning'","'Adaptive Iterative Planning'
- 'Proactive Static Planning'","The initial cluster presented two patterns: 'Planning with Extrospective Reasoning' and 'Planning with Introspective Reasoning'.
+"1 Planning with Extrospective Reasoning
+ 2 Planning with Introspective Reasoning","1 Adaptive Iterative Planning
+ 2 Proactive Static Planning","The initial cluster presented two patterns: 'Planning with Extrospective Reasoning' and 'Planning with Introspective Reasoning'.
 
 Upon analysis, the core distinction between these two patterns lies in the *feedback mechanism* and the *planning cycle*:
 
@@ -598,14 +598,14 @@ Therefore, I decided to generalize and refine them into two distinct patterns:
 *   **Proactive Static Planning**: This name encapsulates the 'Introspective Reasoning' pattern – the generation of a complete plan upfront ('Proactive') that remains fixed during its initial formulation ('Static'). It emphasizes the upfront decomposition and internal reasoning.
 
 Both new patterns maintain the core problem, context, solution, result, and uses of their original counterparts, but with more abstract and descriptive terminology that clearly delineates their unique conceptual directions."
-"'Learning from Demonstrations (Behavioral Cloning)'
- 'Learning from Feedback (Reinforcement Learning for Tool Use)'
- 'Perceiver (Feedback Processing)'
- 'Behavior Cloning for Initial Skill Acquisition'
- 'Human-in-the-Loop Data Collection Interface'
- 'Dual Data Collection for Agentic LLM Training'","'Imitation Learning'
- 'Feedback-Driven Learning'
- 'Feedback & Data Orchestration'","The initial cluster contained six patterns related to AI learning and interaction. My goal was to reduce these to the minimal number of patterns that accurately represent the core ideas, avoiding redundancy.
+"1 Learning from Demonstrations (Behavioral Cloning)
+ 2 Learning from Feedback (Reinforcement Learning for Tool Use)
+ 3 Perceiver (Feedback Processing)
+ 4 Behavior Cloning for Initial Skill Acquisition
+ 5 Human-in-the-Loop Data Collection Interface
+ 6 Dual Data Collection for Agentic LLM Training","1 Imitation Learning
+ 2 Feedback-Driven Learning
+ 3 Feedback & Data Orchestration","The initial cluster contained six patterns related to AI learning and interaction. My goal was to reduce these to the minimal number of patterns that accurately represent the core ideas, avoiding redundancy.
 
 1.  **Identify Core Learning Paradigms**: I first looked for the fundamental ways an AI model acquires knowledge or skills.
     *   'Learning from Demonstrations (Behavioral Cloning)' and 'Behavior Cloning for Initial Skill Acquisition' clearly describe the same core concept: learning by mimicking expert examples. This forms the basis for the **Imitation Learning** pattern.
@@ -621,13 +621,13 @@ Both new patterns maintain the core problem, context, solution, result, and uses
 4.  **Refine and Structure**: I then structured each generalized pattern with 'Problem', 'Context', 'Solution', 'Result', and 'Uses' fields, ensuring clarity, conciseness, and non-redundancy. The 'Uses' section for 'Feedback & Data Orchestration' explicitly mentions how it supports combining different learning paradigms, thus covering the essence of 'Dual Data Collection'.
 
 This process resulted in three distinct patterns: two core learning paradigms (Imitation Learning, Feedback-Driven Learning) and one pattern for the essential infrastructure and mechanisms that support these learning processes (Feedback & Data Orchestration). This approach minimizes the number of patterns while accurately representing all the core ideas from the original cluster."
-"'Curriculum Tool Learning'
- 'Generalizable Tool Learning (Interface Unification)'
- 'Personalized Tool Learning'
- 'Meta Tool Learning'","'Curriculum-based Tool Mastery'
- 'Unified Tool Interface Abstraction'
- 'Personalized Tool Interaction'
- 'Meta-Learning for Tool Strategies'","The initial cluster contained four patterns, all related to 'Tool Learning' but addressing distinct aspects. My goal was to determine if they could be unified or if they represented separate conceptual directions.
+"1 Curriculum Tool Learning
+ 2 Generalizable Tool Learning (Interface Unification)
+ 3 Personalized Tool Learning
+ 4 Meta Tool Learning","1 Curriculum-based Tool Mastery
+ 2 Unified Tool Interface Abstraction
+ 3 Personalized Tool Interaction
+ 4 Meta-Learning for Tool Strategies","The initial cluster contained four patterns, all related to 'Tool Learning' but addressing distinct aspects. My goal was to determine if they could be unified or if they represented separate conceptual directions.
 
 1.  **Curriculum Tool Learning**: Focuses on *how* to teach a model to use a complex tool or perform a complex task by breaking it down into simpler, progressive steps. This is a pedagogical approach to skill acquisition.
 2.  **Generalizable Tool Learning (Interface Unification)**: Focuses on *how to enable a model to interact with many different tools* by providing a standardized, abstract interface. This is about interface design and cross-tool compatibility.
@@ -637,10 +637,10 @@ This process resulted in three distinct patterns: two core learning paradigms (I
 Upon analyzing each pattern's core problem, context, and solution, it became clear that while they all fall under the umbrella of 'Tool Learning,' they address fundamentally different challenges and propose distinct solutions. They are complementary but not interchangeable. For instance, a system could employ Curriculum Learning to teach a model to use a Unified Interface, then apply Meta-Learning to generalize the strategies learned, all while Personalizing the experience for a specific user. Each pattern contributes a unique conceptual piece to the overall challenge of AI tool use.
 
 Therefore, I concluded that these represent **multiple related but distinct patterns**. I refined each pattern's name, problem, context, solution, result, and uses to be more generalized, concise, and to minimize overlap, ensuring each pattern clearly articulates its unique contribution to AI design."
-"'SkeletonofThought'
- 'Multi-Agent Collaboration for Tool Learning'
- 'Parallel Tool Execution'","'Concurrent Subtask Execution'
- 'Multi-Agent Distributed Intelligence'","The initial cluster presented three patterns: 'SkeletonofThought', 'Multi-Agent Collaboration for Tool Learning', and 'Parallel Tool Execution'. My goal was to reduce these to the minimal number of patterns that accurately capture their core ideas, generalizing where possible and distinguishing where necessary.
+"1 SkeletonofThought
+ 2 Multi-Agent Collaboration for Tool Learning
+ 3 Parallel Tool Execution","1 Concurrent Subtask Execution
+ 2 Multi-Agent Distributed Intelligence","The initial cluster presented three patterns: 'SkeletonofThought', 'Multi-Agent Collaboration for Tool Learning', and 'Parallel Tool Execution'. My goal was to reduce these to the minimal number of patterns that accurately capture their core ideas, generalizing where possible and distinguishing where necessary.
 
 1.  **Analyzing 'SkeletonofThought' and 'Parallel Tool Execution':**
     *   'SkeletonofThought' focuses on an LLM decomposing a problem into subproblems ('skeleton') and then solving these subproblems in parallel using LLMs. Its primary motivation is speed through parallelization.
@@ -653,10 +653,10 @@ Therefore, I concluded that these represent **multiple related but distinct patt
     *   **Conclusion:** This pattern represents a distinct conceptual direction. It's about leveraging specialized, distributed intelligence through collaboration, which goes beyond simple parallel execution of independent tasks. I named this 'Multi-Agent Distributed Intelligence' to highlight the core idea of distributing expertise across multiple agents to solve complex problems collaboratively.
 
 By following this thought process, I arrived at two distinct patterns that accurately generalize and abstract the core ideas from the original cluster, minimizing redundancy and clearly separating the underlying principles."
-"'Tool-Integrated Reasoning Loop'
- 'Tool-Integrated Reasoning Agent (TORA)'
- 'Tool-Integrated Reasoning Agent (ToRA)'
- 'Formalism-Enhanced Reasoning'",'Tool-Augmented Reasoning Loop',"I analyzed the provided cluster of design patterns: 'Tool-Integrated Reasoning Loop', 'Tool-Integrated Reasoning Agent (TORA)', 'Tool-Integrated Reasoning Agent (ToRA)', and 'Formalism-Enhanced Reasoning'.
+"1 Tool-Integrated Reasoning Loop
+ 2 Tool-Integrated Reasoning Agent (TORA)
+ 3 Tool-Integrated Reasoning Agent (ToRA)
+ 4 Formalism-Enhanced Reasoning",1 Tool-Augmented Reasoning Loop,"I analyzed the provided cluster of design patterns: 'Tool-Integrated Reasoning Loop', 'Tool-Integrated Reasoning Agent (TORA)', 'Tool-Integrated Reasoning Agent (ToRA)', and 'Formalism-Enhanced Reasoning'.
 
 Here's my breakdown of commonalities and differences:
 
@@ -673,13 +673,13 @@ Here's my breakdown of commonalities and differences:
 
 **Conclusion:**
 Given the strong conceptual overlap in problem, core solution, and desired outcome, these patterns represent variations or specific instances of a single underlying design principle. The core idea is the iterative, synergistic combination of an LLM's natural language reasoning with external, structured, and precise capabilities. Therefore, I decided to generalize them into a single unified pattern: 'Tool-Augmented Reasoning Loop'. This name captures both the 'tool' aspect and the 'iterative/looping' nature of the interaction, which is central to solving complex, multi-step problems."
-"'Memory Augmentation for LLMs'
- 'Memory Management (Working Memory / Short-Term Memory / Long-Term Memory)'
- 'Cognitive Load Management'
- 'Efficient LLM Fine-tuning'
- 'Long Context Management for LLMs'
- 'Context Window Management'","'Adaptive Context and Memory Management for LLMs'
- 'Parameter-Efficient LLM Adaptation'","The initial cluster contained six patterns. My goal was to reduce these to the minimal number of patterns that accurately represent the core ideas, generalizing where possible and separating where concepts are fundamentally distinct.
+"1 Memory Augmentation for LLMs
+ 2 Memory Management (Working Memory / Short-Term Memory / Long-Term Memory)
+ 3 Cognitive Load Management
+ 4 Efficient LLM Fine-tuning
+ 5 Long Context Management for LLMs
+ 6 Context Window Management","1 Adaptive Context and Memory Management for LLMs
+ 2 Parameter-Efficient LLM Adaptation","The initial cluster contained six patterns. My goal was to reduce these to the minimal number of patterns that accurately represent the core ideas, generalizing where possible and separating where concepts are fundamentally distinct.
 
 1.  **Initial Scan and Categorization:** I first read through each pattern's Problem, Context, and Solution to identify overarching themes.
     *   'Memory Augmentation for LLMs', 'Memory Management (Working Memory / Short-Term Memory / Long-Term Memory)', 'Long Context Management for LLMs', and 'Context Window Management' all clearly revolve around the central problem of LLMs' limited context windows and the need to manage, extend, or augment their ability to retain and access information over time or across complex interactions. The solutions consistently involve external memory, summarization, prioritization, or structured information flow.
@@ -696,15 +696,15 @@ Given the strong conceptual overlap in problem, core solution, and desired outco
     *   The 'Problem', 'Context', 'Solution', 'Result', and 'Uses' were directly derived from the original 'Efficient LLM Fine-tuning' pattern, ensuring clarity and avoiding overlap with the first generalized pattern.
 
 By following this process, I successfully reduced the six patterns into two distinct, generalized patterns, accurately capturing the core conceptual directions while minimizing redundancy."
-"'Reflexion'
- 'Reflexion'",'Reflexion',"The two provided pattern descriptions, both named 'Reflexion', describe the exact same core mechanism and motivation. Both highlight the problem of agents making errors or being suboptimal, the context of needing to learn from past attempts, the solution involving an introspection/reflection step that analyzes past trajectories and generates feedback, and the result of improved self-correction and learning. The 'Uses' sections also align perfectly. Given this strong conceptual overlap and identical underlying principle, they clearly represent a single unified pattern. I generalized and merged their content into one comprehensive 'Reflexion' pattern, abstracting common elements and refining the language for clarity and conciseness, while ensuring all key aspects from both original descriptions are captured."
-"'World Model / Simulation-based Planning'
- 'Commonsense Reasoning'
- 'Backtracking / Heuristic Search'
- 'Constraint Satisfaction'
- 'Reasoning-Action Synchronization'
- 'Long-Horizon Planning'","'Deliberative Planning with Constraint Satisfaction'
- 'Reasoning-Action Alignment'","My analysis of the cluster focused on identifying the core underlying mechanisms and motivations behind each pattern. I looked for commonalities and distinct conceptual directions to minimize the number of generalized patterns.
+"1 Reflexion
+ 2 Reflexion",1 Reflexion,"The two provided pattern descriptions, both named 'Reflexion', describe the exact same core mechanism and motivation. Both highlight the problem of agents making errors or being suboptimal, the context of needing to learn from past attempts, the solution involving an introspection/reflection step that analyzes past trajectories and generates feedback, and the result of improved self-correction and learning. The 'Uses' sections also align perfectly. Given this strong conceptual overlap and identical underlying principle, they clearly represent a single unified pattern. I generalized and merged their content into one comprehensive 'Reflexion' pattern, abstracting common elements and refining the language for clarity and conciseness, while ensuring all key aspects from both original descriptions are captured."
+"1 World Model / Simulation-based Planning
+ 2 Commonsense Reasoning
+ 3 Backtracking / Heuristic Search
+ 4 Constraint Satisfaction
+ 5 Reasoning-Action Synchronization
+ 6 Long-Horizon Planning","1 Deliberative Planning with Constraint Satisfaction
+ 2 Reasoning-Action Alignment","My analysis of the cluster focused on identifying the core underlying mechanisms and motivations behind each pattern. I looked for commonalities and distinct conceptual directions to minimize the number of generalized patterns.
 
 1.  **Initial Review and Core Idea Extraction**: I first went through each of the six provided patterns and summarized its essence:
     *   'World Model / Simulation-based Planning': Simulating futures to plan.
@@ -724,14 +724,14 @@ By following this process, I successfully reduced the six patterns into two dist
     *   **Reasoning-Action Alignment**: This pattern addresses the problem of ensuring an agent's actions are consistent with its internal thoughts and goals, bridging the gap between internal deliberation and external execution.
 
 4.  **Refinement**: I refined the Problem, Context, Solution, Result, and Uses for each generalized pattern to be comprehensive, concise, and to accurately reflect the merged concepts without redundancy. The 'Uses' sections were generalized from the specific examples provided in the original cluster data."
-"'Sample-Efficient RL with Reference Reuse'
- 'Agentic Architecture'
- 'Agentic Policy for LLM Orchestration'
- 'Staged Policy Learning for Agentic LLMs'
- 'Structured Action Space for Agentic LLM'
- 'State Representation for Agentic LLM'
- 'Agentic Working Memory'","'Autonomous LLM Agent Architecture'
- 'Staged and Sample-Efficient Policy Learning'","The initial cluster contained seven patterns, all broadly related to LLM-powered agents. My goal was to reduce these to the minimal number of patterns that still accurately represent the core ideas, avoiding redundancy.
+"1 Sample-Efficient RL with Reference Reuse
+ 2 Agentic Architecture
+ 3 Agentic Policy for LLM Orchestration
+ 4 Staged Policy Learning for Agentic LLMs
+ 5 Structured Action Space for Agentic LLM
+ 6 State Representation for Agentic LLM
+ 7 Agentic Working Memory","1 Autonomous LLM Agent Architecture
+ 2 Staged and Sample-Efficient Policy Learning","The initial cluster contained seven patterns, all broadly related to LLM-powered agents. My goal was to reduce these to the minimal number of patterns that still accurately represent the core ideas, avoiding redundancy.
 
 I first analyzed each pattern individually to understand its core problem, solution, and context:
 
@@ -761,9 +761,9 @@ Upon review, I identified two main conceptual directions:
 *   These patterns were merged into a single pattern: **Staged and Sample-Efficient Policy Learning**. This pattern generalizes the idea of using progressive stages, synthetic data, and targeted data reuse to train robust policies efficiently, especially when real-world data is limited or costly.
 
 This approach resulted in two distinct, generalized patterns that cover all the original ideas without significant overlap, adhering to the guideline of reducing the cluster to the minimal number of patterns."
-"'Structured Output / Plan Generation'
- 'Output Formatting'
- 'Styling (for Evaluation)'",'Structured Output Generation',"I analyzed the three provided patterns:
+"1 Structured Output / Plan Generation
+ 2 Output Formatting
+ 3 Styling (for Evaluation)",1 Structured Output Generation,"I analyzed the three provided patterns:
 
 1.  **'Structured Output / Plan Generation'**: Focuses on generating structured output (JSON, XML, predefined data structures) for complex outputs like travel plans, emphasizing parsability and automated evaluation. Solutions include prompt engineering and post-processing.
 2.  **'Output Formatting'**: Aims for GenAI to output in specific structured formats (CSV, Markdown, XML, custom) for downstream systems/users. Solution is explicit prompt instructions.
@@ -781,12 +781,12 @@ This approach resulted in two distinct, generalized patterns that cover all the 
 
 **Conclusion:**
 All three patterns share the same fundamental design principle: leveraging LLMs to produce structured, machine-readable output. The differences lie in the specific use cases or the emphasis on certain aspects (like post-processing or evaluation benefits). Therefore, they can be effectively merged into a single, comprehensive pattern: 'Structured Output Generation'. This pattern encapsulates the problem, context, various solution approaches (prompting, schema guidance, post-processing), and the broad range of benefits and uses."
-"'Data-Efficient Ranking Integration'
- 'Unified Instruction Format for Multi-task LLM Training'
- 'Multi-Source Data Blending for Unified Instruction Tuning'
- 'Unified Ranking and Generation Instruction Tuning (RankRAG)'
- 'Retrieve-Rerank-Generate Inference Pipeline'","'Multi-Task Instruction Tuning for Integrated RAG Capabilities'
- 'Retrieve-Rerank-Generate Inference Pipeline'","The initial cluster contained five patterns, all related to improving Retrieval-Augmented Generation (RAG) systems, particularly focusing on integrating ranking capabilities into Large Language Models (LLMs).
+"1 Data-Efficient Ranking Integration
+ 2 Unified Instruction Format for Multi-task LLM Training
+ 3 Multi-Source Data Blending for Unified Instruction Tuning
+ 4 Unified Ranking and Generation Instruction Tuning (RankRAG)
+ 5 Retrieve-Rerank-Generate Inference Pipeline","1 Multi-Task Instruction Tuning for Integrated RAG Capabilities
+ 2 Retrieve-Rerank-Generate Inference Pipeline","The initial cluster contained five patterns, all related to improving Retrieval-Augmented Generation (RAG) systems, particularly focusing on integrating ranking capabilities into Large Language Models (LLMs).
 
 My analysis proceeded as follows:
 
@@ -806,12 +806,12 @@ My analysis proceeded as follows:
 5.  **Final Pattern Count**: Based on this analysis, I concluded that two distinct patterns are necessary to accurately represent the core ideas without significant overlap: one for the training methodology of multi-capability RAG LLMs, and one for the inference pipeline that leverages such capabilities.
 
 This approach allowed me to reduce the cluster from five to two patterns, achieving the goal of minimal patterns while accurately capturing all core ideas."
-"'Instruction Finetuning (IFT)'
- 'Distractor-Aware Finetuning'
- 'Retrieval Augmented Fine-Tuning (RAFT)'
- 'Domain-Specific Finetuning (DSF)'
- 'Irrelevant Context Robustness Training'","'Adaptive Behavior & Knowledge Finetuning'
- 'Contextual Robustness Finetuning'","The initial cluster contained five patterns: 'Instruction Finetuning (IFT)', 'Distractor-Aware Finetuning', 'Retrieval Augmented Fine-Tuning (RAFT)', 'Domain-Specific Finetuning (DSF)', and 'Irrelevant Context Robustness Training'.
+"1 Instruction Finetuning (IFT)
+ 2 Distractor-Aware Finetuning
+ 3 Retrieval Augmented Fine-Tuning (RAFT)
+ 4 Domain-Specific Finetuning (DSF)
+ 5 Irrelevant Context Robustness Training","1 Adaptive Behavior & Knowledge Finetuning
+ 2 Contextual Robustness Finetuning","The initial cluster contained five patterns: 'Instruction Finetuning (IFT)', 'Distractor-Aware Finetuning', 'Retrieval Augmented Fine-Tuning (RAFT)', 'Domain-Specific Finetuning (DSF)', and 'Irrelevant Context Robustness Training'.
 
 My goal was to reduce these into the minimal number of patterns that accurately represent the core ideas, avoiding redundancy.
 
@@ -828,8 +828,8 @@ My goal was to reduce these into the minimal number of patterns that accurately 
     *   RAFT, while a very important and effective technique, is a specific *application* or *recipe* that combines elements of both 'Adaptive Behavior & Knowledge Finetuning' (for instruction following and domain adaptation) and 'Contextual Robustness Finetuning' (for handling distractors in RAG). Including RAFT as a separate pattern would introduce significant overlap and redundancy, as its solution is essentially a combination of the solutions described in the two generalized patterns. By abstracting RAFT's components into the two core patterns, I adhere to the guideline of reducing to the minimal number of patterns and avoiding repetitive content.
 
 This process led to the identification of two distinct conceptual directions: one focused on shaping the model's internal behavior and knowledge, and another focused on making the model robust to external contextual noise. These two patterns effectively cover all the core ideas presented in the original cluster without redundancy."
-"'Interactive Tool Use Trajectory Curation'
- 'Few-Shot Prompting for Structured Trajectory Generation'",'Synthetic Interactive Trajectory Generation',"I analyzed the two provided patterns: 'Interactive Tool Use Trajectory Curation' and 'Few-Shot Prompting for Structured Trajectory Generation'.
+"1 Interactive Tool Use Trajectory Curation
+ 2 Few-Shot Prompting for Structured Trajectory Generation",1 Synthetic Interactive Trajectory Generation,"I analyzed the two provided patterns: 'Interactive Tool Use Trajectory Curation' and 'Few-Shot Prompting for Structured Trajectory Generation'.
 
 **Commonalities Identified:**
 1.  **Core Goal:** Both aim to generate high-quality, structured, interactive trajectories/demonstrations.
@@ -847,10 +847,10 @@ The 'Few-Shot Prompting' pattern describes a critical *component* or *technique*
 
 **Generalization Process:**
 I merged the problems, contexts, solutions, results, and uses by abstracting common elements and integrating specific details where appropriate. For instance, the 'Solution' now explicitly mentions both the detailed prompt design (from Pattern 2) and the decoding strategies and filtering (from Pattern 1). The 'Problem' and 'Context' are generalized to cover 'complex interactive tasks' beyond just tool use, as the technique is broadly applicable to any task requiring structured, interleaved reasoning and action. The 'Pattern Name' was chosen to be concise and reflect the core activity: generating synthetic interactive trajectories."
-"'Output Space Shaping'
- 'Imitation Learning for Tool-Use Trajectories'
- 'Teacher-Assisted Trajectory Correction'","'Imitation Learning from Expert Trajectories'
- 'Self-Correction and Augmentation via Trajectory Refinement'","The initial cluster contained three patterns:
+"1 Output Space Shaping
+ 2 Imitation Learning for Tool-Use Trajectories
+ 3 Teacher-Assisted Trajectory Correction","1 Imitation Learning from Expert Trajectories
+ 2 Self-Correction and Augmentation via Trajectory Refinement","The initial cluster contained three patterns:
 1.  'Output Space Shaping'
 2.  'Imitation Learning for Tool-Use Trajectories'
 3.  'Teacher-Assisted Trajectory Correction'
@@ -866,11 +866,11 @@ Therefore, I concluded that these two patterns could be merged into a single, mo
 This led to the creation of two distinct patterns:
 1.  **'Imitation Learning from Expert Trajectories'**: Captures the initial training phase from expert data.
 2.  **'Self-Correction and Augmentation via Trajectory Refinement'**: Captures the subsequent phase of improving the agent by generating new data, validating it, correcting it (often with a teacher), and retraining. This pattern effectively generalizes 'Output Space Shaping' and 'Teacher-Assisted Trajectory Correction' into a unified approach for enhancing an agent's capabilities beyond its initial training data."
-"'Program-Aided Language Models (PAL) Prompting'
- 'TaskWeaver'
- 'Program-aided Language Model (PAL)'
- 'Faithful ChainofThought'
- 'ProgramofThoughts'",'Program-Aided Reasoning',"The provided cluster of patterns — 'Program-Aided Language Models (PAL) Prompting', 'TaskWeaver', 'Program-aided Language Model (PAL)', 'Faithful ChainofThought', and 'ProgramofThoughts' — all share a fundamental underlying principle. Each pattern describes a mechanism where an LLM generates executable code or symbolic language, which is then executed by an external interpreter or system, and the results are used to inform the LLM's final output or subsequent reasoning steps.
+"1 Program-Aided Language Models (PAL) Prompting
+ 2 TaskWeaver
+ 3 Program-aided Language Model (PAL)
+ 4 Faithful ChainofThought
+ 5 ProgramofThoughts",1 Program-Aided Reasoning,"The provided cluster of patterns — 'Program-Aided Language Models (PAL) Prompting', 'TaskWeaver', 'Program-aided Language Model (PAL)', 'Faithful ChainofThought', and 'ProgramofThoughts' — all share a fundamental underlying principle. Each pattern describes a mechanism where an LLM generates executable code or symbolic language, which is then executed by an external interpreter or system, and the results are used to inform the LLM's final output or subsequent reasoning steps.
 
 My analysis focused on identifying the core mechanism and motivation:
 
@@ -882,13 +882,13 @@ My analysis focused on identifying the core mechanism and motivation:
     *   'TaskWeaver' extends this by explicitly mentioning 'user-defined plugins'. However, these plugins are simply a specific type of external functionality that the generated code can invoke. The underlying mechanism of code generation and external execution remains the same.
 
 Given this strong conceptual overlap, I concluded that these patterns represent a single, unified design principle rather than multiple distinct ones. I generalized the common elements into a single pattern named 'Program-Aided Reasoning'. This name encapsulates the idea that the LLM's reasoning capabilities are augmented and enhanced by leveraging external programming environments and tools through code generation. The 'Problem', 'Context', 'Solution', 'Result', and 'Uses' sections were crafted to be comprehensive, abstracting away specific terminologies from individual patterns while retaining their core contributions."
-"'End-to-End Retriever Training (for RAG Domain Adaptation)'
- 'Fixed Document Index (during Fine-tuning)'
- 'Pretrained Component Integration (Retriever & Generator)'
- 'End-to-End Joint Training (Retriever-Generator)'
- 'Auxiliary Training Signal (Statement Reconstruction)'","'Joint Optimization of Retrieval-Augmented Generation'
- 'Pretrained Component Initialization for RAG'
- 'Auxiliary Task Learning for RAG'","The initial cluster contained five patterns related to Retrieval Augmented Generation (RAG). My goal was to identify core conceptual directions and merge or generalize patterns where appropriate to reduce redundancy and highlight fundamental design choices.
+"1 End-to-End Retriever Training (for RAG Domain Adaptation)
+ 2 Fixed Document Index (during Fine-tuning)
+ 3 Pretrained Component Integration (Retriever & Generator)
+ 4 End-to-End Joint Training (Retriever-Generator)
+ 5 Auxiliary Training Signal (Statement Reconstruction)","1 Joint Optimization of Retrieval-Augmented Generation
+ 2 Pretrained Component Initialization for RAG
+ 3 Auxiliary Task Learning for RAG","The initial cluster contained five patterns related to Retrieval Augmented Generation (RAG). My goal was to identify core conceptual directions and merge or generalize patterns where appropriate to reduce redundancy and highlight fundamental design choices.
 
 Here's my thought process:
 
@@ -912,13 +912,13 @@ Here's my thought process:
 4.  **Refinement and Naming:** I ensured pattern names are concise and descriptive. The problem, context, solution, result, and uses for each generalized pattern were carefully crafted to be comprehensive, avoid repetition, and accurately reflect the merged or distinct concepts. The language was adjusted to be professional and suitable for a design patterns repository.
 
 This process resulted in a reduction from five patterns to three, each representing a clear and distinct conceptual direction in RAG design, while still encompassing all the original ideas."
-"'Two-Stage QA Pipeline (Retriever-Reader Architecture)'
- 'Asynchronous Knowledge Base Updates'
- 'FAISS Indexing for Efficient Retrieval'
- 'Dense Passage Retrieval (DPR)'
- 'Dense Passage Retrieval (DPR)'","'Two-Stage Processing Pipeline'
- 'Efficient Dense Semantic Retrieval'
- 'Asynchronous Resource Management'","The initial cluster contained five patterns, which upon analysis, revealed three distinct conceptual directions:
+"1 Two-Stage QA Pipeline (Retriever-Reader Architecture)
+ 2 Asynchronous Knowledge Base Updates
+ 3 FAISS Indexing for Efficient Retrieval
+ 4 Dense Passage Retrieval (DPR)
+ 5 Dense Passage Retrieval (DPR)","1 Two-Stage Processing Pipeline
+ 2 Efficient Dense Semantic Retrieval
+ 3 Asynchronous Resource Management","The initial cluster contained five patterns, which upon analysis, revealed three distinct conceptual directions:
 
 1.  **Architectural Decomposition**: The 'Two-Stage QA Pipeline' pattern describes a high-level strategy for breaking down a complex problem into sequential, specialized stages. This is a fundamental architectural approach.
 
@@ -927,13 +927,13 @@ This process resulted in a reduction from five patterns to three, each represent
 3.  **Asynchronous System Management**: The 'Asynchronous Knowledge Base Updates' pattern addresses the operational challenge of managing computationally intensive, dynamic resources without blocking the main system's progress. This is a pattern focused on system efficiency and resource orchestration, distinct from the architectural decomposition or the retrieval mechanism itself.
 
 By identifying these three core conceptual directions, I was able to generalize and abstract the original five patterns into three distinct, non-overlapping patterns. This approach minimizes redundancy and provides clear, actionable design principles."
-"'Synthetic QA Data Generation'
- 'Round-Trip Consistency Filtering (for Synthetic Data)'
- 'Retrieval-Augmented Generation (RAG)'
- 'Automated Dataset Generation for Tool-Augmented LLMs'
- 'Denoising Sequence-to-Sequence Pretraining (BART-like)'","'Automated Data Generation with Quality Assurance'
- 'Retrieval-Augmented Generation (RAG)'
- 'Denoising Pretraining for Foundational Generative Models'","My thought process involved several steps to analyze and generalize the provided cluster of design patterns:
+"1 Synthetic QA Data Generation
+ 2 Round-Trip Consistency Filtering (for Synthetic Data)
+ 3 Retrieval-Augmented Generation (RAG)
+ 4 Automated Dataset Generation for Tool-Augmented LLMs
+ 5 Denoising Sequence-to-Sequence Pretraining (BART-like)","1 Automated Data Generation with Quality Assurance
+ 2 Retrieval-Augmented Generation (RAG)
+ 3 Denoising Pretraining for Foundational Generative Models","My thought process involved several steps to analyze and generalize the provided cluster of design patterns:
 
 1.  **Initial Scan and Categorization**: I first read through each pattern to understand its core problem, solution, and context. I looked for immediate overlaps or distinct conceptual directions.
     *   'Synthetic QA Data Generation' (1), 'Round-Trip Consistency Filtering' (2), and 'Automated Dataset Generation for Tool-Augmented LLMs' (4) immediately stood out as being related to *data generation* and *quality control for generated data*.
@@ -958,11 +958,11 @@ By identifying these three core conceptual directions, I was able to generalize 
     *   **Denoising Pretraining for Foundational Generative Models**: Describes a fundamental method for building powerful, versatile generative components that can then be utilized by other patterns (like RAG or as part of data generation pipelines).
 
 This approach allowed me to reduce the initial five patterns to three, achieving the goal of minimal representation while preserving the unique conceptual contributions of each original pattern or group of patterns."
-"'Control Token for Multi-task Generative Models'
- 'Marginalization over Latent Documents'
- 'RAGToken'
- 'RAGSequence'","'Task Conditioning with Control Tokens'
- 'Probabilistic Context Integration (Marginalization over Latent Contexts)'","The initial cluster contained four patterns: 'Control Token for Multi-task Generative Models', 'Marginalization over Latent Documents', 'RAGToken', and 'RAGSequence'.
+"1 Control Token for Multi-task Generative Models
+ 2 Marginalization over Latent Documents
+ 3 RAGToken
+ 4 RAGSequence","1 Task Conditioning with Control Tokens
+ 2 Probabilistic Context Integration (Marginalization over Latent Contexts)","The initial cluster contained four patterns: 'Control Token for Multi-task Generative Models', 'Marginalization over Latent Documents', 'RAGToken', and 'RAGSequence'.
 
 1.  **'Control Token for Multi-task Generative Models'**: This pattern's core idea is about *explicitly signaling the intended task or behavior* to a model using a special input token. This is a distinct conceptual direction focused on task conditioning and routing within a multi-task setup. It's about *what* the model should do, not *how* it should integrate external information probabilistically.
 
@@ -976,9 +976,9 @@ Based on this analysis, I identified two distinct conceptual directions:
 *   **Probabilistic Integration of External Contexts**: Represented by 'Marginalization over Latent Documents', and further exemplified by 'RAGToken' and 'RAGSequence'. This was generalized into 'Probabilistic Context Integration (Marginalization over Latent Contexts)'. I explicitly included the sequence-level and token-level variations (from RAGSequence and RAGToken) within the 'Solution' section of this generalized pattern, as they are specific strategies for applying the core marginalization technique.
 
 This approach reduces the four initial patterns to two, accurately capturing the distinct core ideas while generalizing and abstracting the related concepts into a single, more comprehensive pattern."
-"'Human-Readable/Writable Nonparametric Memory'
- 'Index Hotswapping (for Knowledge Updates)'
- 'Parametric and Non-Parametric Memory Combination'",'Retrieval-Augmented Knowledge System',"I analyzed the three provided patterns: 'Human-Readable/Writable Nonparametric Memory', 'Index Hotswapping (for Knowledge Updates)', and 'Parametric and Non-Parametric Memory Combination'.
+"1 Human-Readable/Writable Nonparametric Memory
+ 2 Index Hotswapping (for Knowledge Updates)
+ 3 Parametric and Non-Parametric Memory Combination",1 Retrieval-Augmented Knowledge System,"I analyzed the three provided patterns: 'Human-Readable/Writable Nonparametric Memory', 'Index Hotswapping (for Knowledge Updates)', and 'Parametric and Non-Parametric Memory Combination'.
 
 1.  **'Parametric and Non-Parametric Memory Combination'** describes the overarching architectural principle: integrating a generative model with an external knowledge source. This is the most general and foundational concept.
 2.  **'Human-Readable/Writable Nonparametric Memory'** elaborates on a specific characteristic of the non-parametric component within this combination – its format (human-readable text) and the benefits derived from it (interpretability, direct modification).
@@ -987,11 +987,11 @@ This approach reduces the four initial patterns to two, accurately capturing the
 All three patterns address the same core problem space (limitations of purely parametric models, need for up-to-date and verifiable knowledge) and propose solutions that are deeply intertwined. The 'combination' pattern sets the stage, while the 'human-readable' and 'hotswapping' patterns describe specific aspects, benefits, or mechanisms *within* that combination. They are not distinct conceptual directions but rather different facets of the same underlying design principle.
 
 Therefore, I concluded that these patterns represent a single, unified design pattern. I merged their problems, contexts, solutions, results, and uses into a comprehensive 'Retrieval-Augmented Knowledge System' pattern. This name reflects the common industry term (Retrieval-Augmented Generation, or RAG) but broadens it to 'Knowledge System' to encompass the wider benefits beyond just generation, such as interpretability and dynamic updates, which were strongly emphasized in the original patterns."
-"'Prompt-Tuning a Frozen LM as a Reader'
- 'InContext Retrieval-Augmented Language Modeling (InContext RALM)'
- 'Open-Book Question Answering with InContext RALM'
- 'Nearest Neighbor Language Models (kNN-LM)'","'Contextual Input Augmentation for Frozen LMs'
- 'Nearest Neighbor Output Augmentation'","The cluster of design patterns presented a common theme: enhancing the capabilities of pre-trained, often frozen, Language Models (LMs) by incorporating external knowledge or guiding their behavior without direct fine-tuning of their weights. Upon closer inspection, two distinct conceptual approaches emerged:
+"1 Prompt-Tuning a Frozen LM as a Reader
+ 2 InContext Retrieval-Augmented Language Modeling (InContext RALM)
+ 3 Open-Book Question Answering with InContext RALM
+ 4 Nearest Neighbor Language Models (kNN-LM)","1 Contextual Input Augmentation for Frozen LMs
+ 2 Nearest Neighbor Output Augmentation","The cluster of design patterns presented a common theme: enhancing the capabilities of pre-trained, often frozen, Language Models (LMs) by incorporating external knowledge or guiding their behavior without direct fine-tuning of their weights. Upon closer inspection, two distinct conceptual approaches emerged:
 
 1.  **Input-based Augmentation:** Patterns like 'Prompt-Tuning a Frozen LM as a Reader', 'InContext Retrieval-Augmented Language Modeling (InContext RALM)', and 'Open-Book Question Answering with InContext RALM' all share the core idea of modifying or enriching the *input* provided to the LM. 
     *   'Prompt-Tuning' focuses on crafting instructional or exemplary text within the input to steer the LM's behavior for a specific task.
@@ -1001,12 +1001,12 @@ Therefore, I concluded that these patterns represent a single, unified design pa
 2.  **Output-based Augmentation:** The 'Nearest Neighbor Language Models (kNN-LM)' pattern stands apart. Instead of modifying the input, it directly influences the LM's *output distribution* (next-token probabilities) at inference time. It does this by retrieving similar examples from an external corpus based on the LM's internal state (embeddings) and interpolating the LM's predicted distribution with one derived from these neighbors. This is a fundamentally different mechanism for incorporating external knowledge, operating at the point of token generation rather than input preparation.
 
 Therefore, to accurately capture the shared reasoning while distinguishing the core techniques, I concluded that two distinct patterns were necessary: one for input-centric augmentation and another for output-centric augmentation. This approach minimizes redundancy and clearly delineates the underlying design principles."
-"'Conditional Retrieval'
- 'Retrieval Query Length Optimization'
- 'Optimal Document Count for In-Context Learning'
- 'Retrieval Stride Optimization'","'Retrieval Triggering Strategy'
- 'Retrieval Query Formulation'
- 'Retrieved Document Integration Quantity'","The initial cluster contained four patterns related to optimizing retrieval in RALM systems: 'Conditional Retrieval', 'Retrieval Query Length Optimization', 'Optimal Document Count for In-Context Learning', and 'Retrieval Stride Optimization'.
+"1 Conditional Retrieval
+ 2 Retrieval Query Length Optimization
+ 3 Optimal Document Count for In-Context Learning
+ 4 Retrieval Stride Optimization","1 Retrieval Triggering Strategy
+ 2 Retrieval Query Formulation
+ 3 Retrieved Document Integration Quantity","The initial cluster contained four patterns related to optimizing retrieval in RALM systems: 'Conditional Retrieval', 'Retrieval Query Length Optimization', 'Optimal Document Count for In-Context Learning', and 'Retrieval Stride Optimization'.
 
 My analysis focused on identifying the core conceptual problem each pattern addresses:
 
@@ -1022,8 +1022,8 @@ By grouping them this way, I identified three distinct conceptual directions, ea
 *   **How many** results to use (Integration Quantity)
 
 This approach allowed me to reduce the cluster into the minimal number of patterns (three) that still accurately represent the core ideas without significant overlap, adhering to the guidelines for generalization and abstraction."
-"'Zero-Shot LM Reranking'
- 'Predictive Reranking (Trained LM-Dedicated Reranker)'",'LM-Guided Document Reranking',"The two provided patterns, 'Zero-Shot LM Reranking' and 'Predictive Reranking (Trained LM-Dedicated Reranker)', share a fundamental core concept: using the Language Model's (LM) own predictive power or understanding of text to refine the selection of documents for Retrieval-Augmented Language Models (RALM).
+"1 Zero-Shot LM Reranking
+ 2 Predictive Reranking (Trained LM-Dedicated Reranker)",1 LM-Guided Document Reranking,"The two provided patterns, 'Zero-Shot LM Reranking' and 'Predictive Reranking (Trained LM-Dedicated Reranker)', share a fundamental core concept: using the Language Model's (LM) own predictive power or understanding of text to refine the selection of documents for Retrieval-Augmented Language Models (RALM).
 
 1.  **Shared Problem & Context:** Both patterns address the same problem of improving document relevance for an LM's generation task within a RALM system, starting from a set of candidate documents.
 2.  **Shared Underlying Principle:** The core idea is to move beyond general-purpose retrieval metrics and leverage the LM's internal representation of what constitutes 'useful' context for its specific task of predicting or generating text.
@@ -1032,12 +1032,12 @@ This approach allowed me to reduce the cluster into the minimal number of patter
     *   'Predictive Reranking' trains a *separate, dedicated model* to learn and predict this LM-specific relevance signal, often using the LM's own scores as a target for training.
 
 Given that the problem, context, and desired outcome are essentially identical, and the 'differences' are primarily variations in the implementation strategy for achieving the same goal, they represent different facets or approaches within a single, broader design pattern. Merging them into 'LM-Guided Document Reranking' allows for a more generalized and abstract pattern that encompasses both direct LM inference and trained proxy rerankers as valid solution strategies. This approach reduces redundancy and accurately captures the shared underlying design principle."
-"'Emotion Prompting'
- 'Style Prompting'
- 'Template-Based Prompting for Controlled Generation'
- 'Role Prompting'","'Persona and Contextual Framing'
- 'Output Style Specification'
- 'Structured Output Generation'","The initial cluster contained four patterns: 'Emotion Prompting', 'Style Prompting', 'Template-Based Prompting for Controlled Generation', and 'Role Prompting'. My goal was to reduce these to the minimal number of patterns that still accurately represent their core ideas.
+"1 Emotion Prompting
+ 2 Style Prompting
+ 3 Template-Based Prompting for Controlled Generation
+ 4 Role Prompting","1 Persona and Contextual Framing
+ 2 Output Style Specification
+ 3 Structured Output Generation","The initial cluster contained four patterns: 'Emotion Prompting', 'Style Prompting', 'Template-Based Prompting for Controlled Generation', and 'Role Prompting'. My goal was to reduce these to the minimal number of patterns that still accurately represent their core ideas.
 
 1.  **Analyzing 'Emotion Prompting' and 'Role Prompting'**: Both of these patterns focus on influencing the LLM's internal state, perspective, or persona. 'Emotion Prompting' uses psychological cues to motivate the model or align its 'mindset' (e.g., 'This is important to my career'). 'Role Prompting' directly assigns a persona (e.g., 'Pretend you are a shepherd'). The underlying principle for both is to establish a specific context or identity for the AI to guide its generation. They are conceptually very similar, aiming to frame *how* the AI approaches the task. Therefore, I merged them into a single pattern: **Persona and Contextual Framing**.
 
@@ -1051,8 +1051,8 @@ Given that the problem, context, and desired outcome are essentially identical, 
     *   **Structured Output Generation**: For enforcing specific formats and structural constraints on the output.
 
 This reduction from four to three patterns accurately captures the shared reasoning and techniques while maintaining necessary distinctions."
-"'Self-Generated InContext Learning (SGICL)'
- 'FewShot Prompting'",'Few-Shot Prompting (In-Context Learning)',"The cluster contains two patterns: 'Self-Generated InContext Learning (SGICL)' and 'FewShot Prompting'.
+"1 Self-Generated InContext Learning (SGICL)
+ 2 FewShot Prompting",1 Few-Shot Prompting (In-Context Learning),"The cluster contains two patterns: 'Self-Generated InContext Learning (SGICL)' and 'FewShot Prompting'.
 
 1.  **FewShot Prompting** describes the core technique of providing examples within the prompt to guide a GenAI model without weight updates. This is a fundamental concept in working with large language models.
 2.  **Self-Generated InContext Learning (SGICL)** addresses a specific challenge within FewShot Prompting: what to do when actual training data for exemplars is scarce. Its solution is to *generate* those exemplars using a GenAI.
@@ -1060,18 +1060,18 @@ This reduction from four to three patterns accurately captures the shared reason
 Upon analysis, SGICL is not a distinct conceptual pattern but rather a *specific strategy or method for obtaining the exemplars* required by FewShot Prompting. FewShot Prompting is the overarching technique, and SGICL is a particular implementation detail or pre-processing step that enables FewShot Prompting under certain data constraints. 
 
 Therefore, the most effective approach is to merge these into a single, more generalized pattern. The 'Few-Shot Prompting (In-Context Learning)' pattern encompasses the core idea of providing examples and explicitly includes the possibility of those examples being synthetically generated, thereby integrating the essence of SGICL into the broader pattern. This reduces redundancy and provides a clearer, more unified understanding of the underlying design principle."
-"'Exemplar Ordering'
- 'VoteK Exemplar Selection'
- 'KNN Exemplar Selection'","'Exemplar Selection Strategy'
- 'Exemplar Ordering Strategy'","The initial cluster contained three patterns: 'Exemplar Ordering', 'VoteK Exemplar Selection', and 'KNN Exemplar Selection'.
+"1 Exemplar Ordering
+ 2 VoteK Exemplar Selection
+ 3 KNN Exemplar Selection","1 Exemplar Selection Strategy
+ 2 Exemplar Ordering Strategy","The initial cluster contained three patterns: 'Exemplar Ordering', 'VoteK Exemplar Selection', and 'KNN Exemplar Selection'.
 
 My analysis focused on identifying the core conceptual concerns:
 1.  **Exemplar Selection**: Both 'VoteK Exemplar Selection' and 'KNN Exemplar Selection' address the fundamental problem of *which* exemplars to include in a few-shot prompt. While their specific mechanisms differ (KNN uses similarity to the test instance, VoteK emphasizes diversity and human-in-the-loop annotation), they both fall under the umbrella of selecting a subset of examples from a larger pool. I generalized these into a single 'Exemplar Selection Strategy' pattern, outlining different approaches like similarity-based, diversity-based, and performance-based selection.
 2.  **Exemplar Ordering**: The 'Exemplar Ordering' pattern addresses the problem of *how* the selected exemplars are arranged within the prompt. This is a distinct concern from selection; one typically selects exemplars first, then determines their optimal order. This pattern remains separate as 'Exemplar Ordering Strategy'.
 
 By abstracting 'VoteK Exemplar Selection' and 'KNN Exemplar Selection' into a more general 'Exemplar Selection Strategy', I avoided redundancy and captured the underlying principle of choosing exemplars based on various criteria (relevance, diversity, quality). The 'Exemplar Ordering Strategy' then addresses the subsequent step of arranging those chosen exemplars. This results in two distinct but related patterns that accurately represent the core ideas with minimal overlap."
-"'Prompt Mining'
- 'Max Mutual Information Method'",'Automated Prompt Optimization',"The two provided patterns, 'Prompt Mining' and 'Max Mutual Information Method', both address the overarching goal of optimizing LLM prompt performance. While their specific mechanisms differ, they represent two complementary approaches within a broader strategy for automated prompt engineering.
+"1 Prompt Mining
+ 2 Max Mutual Information Method",1 Automated Prompt Optimization,"The two provided patterns, 'Prompt Mining' and 'Max Mutual Information Method', both address the overarching goal of optimizing LLM prompt performance. While their specific mechanisms differ, they represent two complementary approaches within a broader strategy for automated prompt engineering.
 
 *   **'Prompt Mining'** focuses on *discovering* or *generating* effective prompt structures by analyzing external data (corpora) to find patterns that align with the LLM's training distribution. This is a data-driven generation technique.
 *   **'Max Mutual Information Method'** focuses on *selecting* the best prompt from a *pre-existing set* of candidates by evaluating their effectiveness based on the statistical relationship between the prompt and the LLM's output. This is an evaluation and selection technique.
@@ -1079,10 +1079,10 @@ By abstracting 'VoteK Exemplar Selection' and 'KNN Exemplar Selection' into a mo
 Instead of treating them as entirely separate, I recognized that they are two facets of a single, more general design pattern: 'Automated Prompt Optimization'. The 'Solution' section of the generalized pattern explicitly delineates these two approaches (Discovery-based Generation and Evaluation-based Selection) as distinct but integral components of the overall optimization strategy. The 'Problem', 'Context', 'Result', and 'Uses' are broad enough to encompass both original patterns' motivations and outcomes.
 
 This approach allows for a single, unified pattern that accurately captures the core ideas of both original patterns, adhering to the guideline of reducing the cluster to the minimal number of patterns while maintaining conceptual integrity."
-"'StepBack Prompting'
- 'Rereading (RE2)'
- 'Rephrase and Respond (RaR)'","'Active Input Comprehension'
- 'Abstract Pre-computation'","The initial cluster contained three patterns: 'StepBack Prompting', 'Rereading (RE2)', and 'Rephrase and Respond (RaR)'. My goal was to identify core conceptual directions and merge or generalize where appropriate.
+"1 StepBack Prompting
+ 2 Rereading (RE2)
+ 3 Rephrase and Respond (RaR)","1 Active Input Comprehension
+ 2 Abstract Pre-computation","The initial cluster contained three patterns: 'StepBack Prompting', 'Rereading (RE2)', and 'Rephrase and Respond (RaR)'. My goal was to identify core conceptual directions and merge or generalize where appropriate.
 
 1.  **StepBack Prompting** clearly focuses on a distinct strategy: *pre-computing* or *priming* the LLM with abstract, high-level concepts or foundational knowledge *before* tackling the specific problem. This is about structuring the reasoning process itself by establishing a conceptual framework first. This led to the 'Abstract Pre-computation' pattern.
 
@@ -1094,20 +1094,20 @@ This approach allows for a single, unified pattern that accurately captures the 
 Given this shared objective, I merged 'Rereading' and 'Rephrase and Respond' into a single, more generalized pattern: 'Active Input Comprehension'. This pattern encompasses various techniques that prompt the LLM to actively process, confirm, or deepen its understanding of the input query.
 
 Therefore, the cluster was reduced to two distinct patterns, each representing a unique conceptual approach to improving LLM performance: one focused on enhancing input comprehension, and the other on structuring the reasoning process through abstract pre-computation."
-"'SelfAsk'
- 'InteractiveChainPrompting (ICP)'
- 'Ambiguous Demonstrations'
- 'Question Clarification'","'Clarification Dialogue'
- 'Ambiguity-Robust Demonstrations'","My analysis of the provided cluster revealed two distinct conceptual approaches to handling ambiguity and insufficient information in LLM interactions:
+"1 SelfAsk
+ 2 InteractiveChainPrompting (ICP)
+ 3 Ambiguous Demonstrations
+ 4 Question Clarification","1 Clarification Dialogue
+ 2 Ambiguity-Robust Demonstrations","My analysis of the provided cluster revealed two distinct conceptual approaches to handling ambiguity and insufficient information in LLM interactions:
 
 1.  **Active Clarification (Interactive Dialogue):** This approach involves the LLM actively identifying a need for more information or clarification and then generating questions to obtain it. The key variable here is *who* answers these questions: the LLM itself (as in 'SelfAsk'), a human user (as in 'Question Clarification'), or a human expert (as in 'InteractiveChainPrompting'). Despite the different actors providing the answers, the core mechanism of 'LLM identifies need -> LLM generates questions -> answers are obtained -> LLM uses answers' remains consistent. This led to the generalization into the **Clarification Dialogue** pattern.
 
 2.  **Passive Robustness (Demonstration-based Learning):** This approach focuses on pre-emptively equipping the LLM to handle ambiguity by providing it with examples during In-Context Learning. The 'Ambiguous Demonstrations' pattern clearly falls into this category. It's not about the LLM asking questions, but about the prompt designer providing structured examples that teach the LLM how to interpret or respond to ambiguous inputs. This is a fundamentally different mechanism from active questioning. This led to the generalization into the **Ambiguity-Robust Demonstrations** pattern.
 
 By separating these two core ideas, I was able to reduce the four original patterns into two distinct, generalized patterns that accurately capture the underlying principles without redundancy. The 'Clarification Dialogue' pattern encompasses all instances where the LLM engages in a question-and-answer cycle (internal or external) to resolve ambiguity or gather information. The 'Ambiguity-Robust Demonstrations' pattern addresses how to improve an LLM's inherent ability to handle ambiguity through prompt engineering and few-shot learning."
-"'Automatic Directed CoT (AutoDiCoT)'
- 'Analogical Prompting'
- 'Automatic ChainofThought (AutoCoT) Prompting'",'Automated Chain-of-Thought Generation',"The cluster contains three patterns: 'Automatic Directed CoT (AutoDiCoT)', 'Analogical Prompting', and 'Automatic ChainofThought (AutoCoT) Prompting'.
+"1 Automatic Directed CoT (AutoDiCoT)
+ 2 Analogical Prompting
+ 3 Automatic ChainofThought (AutoCoT) Prompting",1 Automated Chain-of-Thought Generation,"The cluster contains three patterns: 'Automatic Directed CoT (AutoDiCoT)', 'Analogical Prompting', and 'Automatic ChainofThought (AutoCoT) Prompting'.
 
 Upon analysis, a common core principle emerges across all three:
 
@@ -1118,10 +1118,10 @@ Upon analysis, a common core principle emerges across all three:
 All three patterns address the problem of the manual burden of creating CoT exemplars and propose a solution where the LLM itself generates these reasoning chains. The 'directed' aspect of AutoDiCoT is a specific strategy or refinement within this broader concept, focusing on error correction and targeted reasoning. However, the underlying design idea of 'LLM generating its own CoT for future use' remains consistent.
 
 Therefore, I concluded that these patterns represent a single, unified conceptual direction. I generalized the problem, context, solution, result, and uses to encompass all the specific nuances mentioned in the original patterns, such as Zero-Shot generation, iterative/directed generation for error correction, and application to various reasoning tasks. This approach minimizes redundancy and provides a more abstract, yet comprehensive, design pattern."
-"'Consistency-based Self-adaptive Prompting (COSP)'
- 'Universal Self-Adaptive Prompting (USP)'
- 'Active Prompting'","'Automated Prompt Self-Curation'
- 'LLM-Guided Human Prompt Refinement'","The initial cluster presented three patterns: 'Consistency-based Self-adaptive Prompting (COSP)', 'Universal Self-Adaptive Prompting (USP)', and 'Active Prompting'.
+"1 Consistency-based Self-adaptive Prompting (COSP)
+ 2 Universal Self-Adaptive Prompting (USP)
+ 3 Active Prompting","1 Automated Prompt Self-Curation
+ 2 LLM-Guided Human Prompt Refinement","The initial cluster presented three patterns: 'Consistency-based Self-adaptive Prompting (COSP)', 'Universal Self-Adaptive Prompting (USP)', and 'Active Prompting'.
 
 1.  **COSP and USP Analysis:**
     *   **COSP** focuses on using ZeroShot CoT with SelfConsistency to *automatically select* high-agreement outputs as FewShot exemplars. The core idea is automated exemplar curation based on LLM's internal consistency.
@@ -1141,15 +1141,15 @@ By analyzing the core mechanisms and motivations, I identified two distinct conc
 *   The other focused on **LLM-guided human intervention** for targeted prompt refinement (generalizing Active Prompting).
 
 This reduction to two patterns accurately captures the shared reasoning while maintaining necessary distinctions, adhering to the guideline of minimizing patterns while preserving core ideas."
-"'Vanilla Prompting (for bias mitigation)'
- 'Debate-Style Evidence Aggregation'
- 'Bias-Aware Design & Mitigation'
- 'Reference-Supported Generation'
- 'Demonstration Ensembling (DENSE)'
- 'Selecting Balanced Demonstrations (for bias mitigation)'
- 'AttrPrompt'","'Bias Mitigation & Fair Generation'
- 'Grounded & Verifiable Generation'
- 'Ensembled Robustness'","The initial cluster contained seven patterns with varying degrees of overlap and conceptual focus. My goal was to reduce these to the minimal number of patterns that accurately represent the core ideas, avoiding redundancy.
+"1 Vanilla Prompting (for bias mitigation)
+ 2 Debate-Style Evidence Aggregation
+ 3 Bias-Aware Design & Mitigation
+ 4 Reference-Supported Generation
+ 5 Demonstration Ensembling (DENSE)
+ 6 Selecting Balanced Demonstrations (for bias mitigation)
+ 7 AttrPrompt","1 Bias Mitigation & Fair Generation
+ 2 Grounded & Verifiable Generation
+ 3 Ensembled Robustness","The initial cluster contained seven patterns with varying degrees of overlap and conceptual focus. My goal was to reduce these to the minimal number of patterns that accurately represent the core ideas, avoiding redundancy.
 
 Here's my thought process for grouping and generalizing:
 
@@ -1170,10 +1170,10 @@ Here's my thought process for grouping and generalizing:
     *   **For Group 3 (Robustness):** The 'Demonstration Ensembling (DENSE)' pattern was also quite specific. I generalized its problem to 'variance and suboptimal accuracy' and its solution to 'generating multiple outputs and aggregating them' to cover broader ensembling concepts, naming it 'Ensembled Robustness'.
 
 4.  **Refinement and Formatting:** I then drafted the Problem, Context, Solution, Result, and Uses for each of the three generalized patterns, ensuring they were concise, descriptive, and adhered to the JSON format and professional tone requirements. I made sure to explicitly list the different techniques within the 'Solution' section of the 'Bias Mitigation & Fair Generation' pattern to show how it encompasses the original distinct patterns."
-"'Mixture of Reasoning Experts (MoRE)'
- 'SelfConsistency'
- 'Universal SelfConsistency'
- 'DiVeRSe'",'Ensemble Reasoning',"The provided cluster of patterns — 'Mixture of Reasoning Experts (MoRE)', 'SelfConsistency', 'Universal SelfConsistency', and 'DiVeRSe' — all share a fundamental underlying principle: leveraging multiple outputs or approaches to improve the quality, robustness, or accuracy of LLM reasoning. This is a classic ensemble method applied to AI design.
+"1 Mixture of Reasoning Experts (MoRE)
+ 2 SelfConsistency
+ 3 Universal SelfConsistency
+ 4 DiVeRSe",1 Ensemble Reasoning,"The provided cluster of patterns — 'Mixture of Reasoning Experts (MoRE)', 'SelfConsistency', 'Universal SelfConsistency', and 'DiVeRSe' — all share a fundamental underlying principle: leveraging multiple outputs or approaches to improve the quality, robustness, or accuracy of LLM reasoning. This is a classic ensemble method applied to AI design.
 
 Upon closer examination:
 
@@ -1184,10 +1184,10 @@ Upon closer examination:
 The common thread is the generation of *diversity* and subsequent *aggregation/selection*. The differences lie in *where* the diversity comes from (paths from a single strategy vs. multiple distinct strategies) and *how* the aggregation is performed (majority vote, LLM-based, scoring).
 
 Therefore, I decided to generalize these into a single, overarching pattern: **Ensemble Reasoning**. This pattern encapsulates the core concept of generating multiple outputs and combining them. Within its 'Solution' section, I've detailed the different *sources of diversity* (Path-level, Strategy-level, Hybrid) and the various *aggregation/selection methods* (Majority Voting, LLM-based Aggregation, Scoring and Selection). This approach allows for a comprehensive and abstract representation that covers all specific patterns in the cluster without redundancy, adhering to the goal of reducing the cluster to the minimal number of patterns while accurately representing the core ideas."
-"'ChainofVerification (COVE)'
- 'Reversing ChainofThought (RCoT)'
- 'VerifyandEdit'
- 'SelfVerification'",'Reflective Generation and Refinement',"The core task was to analyze the provided cluster of design patterns and determine if they represent a single unified pattern or multiple distinct patterns, then generalize them into the minimal number of patterns.
+"1 ChainofVerification (COVE)
+ 2 Reversing ChainofThought (RCoT)
+ 3 VerifyandEdit
+ 4 SelfVerification",1 Reflective Generation and Refinement,"The core task was to analyze the provided cluster of design patterns and determine if they represent a single unified pattern or multiple distinct patterns, then generalize them into the minimal number of patterns.
 
 I first examined each pattern individually:
 
@@ -1208,9 +1208,9 @@ Despite the differences in the specific *tactics* employed (e.g., asking questio
 I decided to generalize this core concept into a pattern named 'Reflective Generation and Refinement'. I then structured its components (Problem, Context, Solution, Result, Uses) to be broad enough to encompass all the specific examples, while still providing concrete guidance. The 'Solution' section was particularly important to generalize, breaking it down into 'Initial Generation', 'Reflection and Verification' (with sub-points covering the different specific mechanisms like generating auxiliary info, integrating external knowledge, or producing multiple candidates), and 'Refinement and Selection'.
 
 This approach allowed me to reduce the cluster to a single, comprehensive pattern that accurately captures the shared reasoning and technique, fulfilling the guideline of minimizing patterns while maintaining conceptual integrity."
-"'Prompt Optimization with Textual Gradients (ProTeGi)'
- 'Gradient-free Instructional Prompt Search (GrIPS)'
- 'Automatic Prompt Engineer (APE)'",'Automated Prompt Optimization',"The cluster provided three patterns: 'Prompt Optimization with Textual Gradients (ProTeGi)', 'Gradient-free Instructional Prompt Search (GrIPS)', and 'Automatic Prompt Engineer (APE)'.
+"1 Prompt Optimization with Textual Gradients (ProTeGi)
+ 2 Gradient-free Instructional Prompt Search (GrIPS)
+ 3 Automatic Prompt Engineer (APE)",1 Automated Prompt Optimization,"The cluster provided three patterns: 'Prompt Optimization with Textual Gradients (ProTeGi)', 'Gradient-free Instructional Prompt Search (GrIPS)', and 'Automatic Prompt Engineer (APE)'.
 
 Upon analyzing each pattern, I identified the following core commonalities:
 1.  **Goal:** All patterns aim to *automatically optimize or improve prompts* for Large Language Models.
@@ -1225,14 +1225,14 @@ Despite these commonalities, there were differences in the *specific techniques*
 My decision was to merge these into a single, unified pattern: 'Automated Prompt Optimization'. The reasoning is that the differences are primarily in the *implementation details* or *specific strategies* used within the broader framework of automated prompt optimization, rather than fundamentally distinct conceptual directions. For instance, 'paraphrasing', 'textual operations', and 'LLM-guided generation from criticism' are all methods for 'Prompt Generation/Variation'. Similarly, 'scoring', 'LLM-generated criticism', and 'bandit algorithms' are different approaches to 'Evaluation' and 'Selection/Refinement'.
 
 The generalized pattern captures the overarching design idea: an iterative loop of generating prompt candidates, evaluating them, and using feedback to improve or select the next set of candidates. This abstraction allows for various specific techniques (like those in APE, GrIPS, and ProTeGi) to be seen as concrete instantiations or components of this more general pattern, fulfilling the goal of reducing the cluster to the minimal number of patterns while accurately representing the core ideas."
-"'XLT Cross-Lingual Thought Prompting'
- 'XInSTA Prompting'
- 'Cross-Lingual Self Consistent Prompting (CLSP)'
- 'InCLT Crosslingual Transfer Prompting'
- 'Translate First Prompting'
- 'PARC Prompts Augmented by Retrieval Cross-lingually'
- 'Cultural Awareness (for cultural adaptation)'","'Cross-Lingual Reasoning and Transfer Prompting'
- 'Language and Cultural Adaptation Prompting'","The initial cluster of patterns primarily revolves around improving LLM performance in multilingual or cross-lingual contexts. Upon closer examination, two distinct conceptual directions emerged:
+"1 XLT Cross-Lingual Thought Prompting
+ 2 XInSTA Prompting
+ 3 Cross-Lingual Self Consistent Prompting (CLSP)
+ 4 InCLT Crosslingual Transfer Prompting
+ 5 Translate First Prompting
+ 6 PARC Prompts Augmented by Retrieval Cross-lingually
+ 7 Cultural Awareness (for cultural adaptation)","1 Cross-Lingual Reasoning and Transfer Prompting
+ 2 Language and Cultural Adaptation Prompting","The initial cluster of patterns primarily revolves around improving LLM performance in multilingual or cross-lingual contexts. Upon closer examination, two distinct conceptual directions emerged:
 
 1.  **Enhancing the LLM's inherent cross-lingual capabilities**: This category includes patterns that focus on how the LLM processes information across languages, learns from cross-lingual examples, or performs reasoning in a multilingual setting. This involves techniques like guiding cross-lingual Chain-of-Thought, optimizing in-context example selection across languages, ensembling reasoning paths from different languages, or leveraging high-resource language data for low-resource tasks.
     *   'XLT Cross-Lingual Thought Prompting' (CoT across languages)
@@ -1248,12 +1248,12 @@ The generalized pattern captures the overarching design idea: an iterative loop 
     These two patterns were consolidated into **'Language and Cultural Adaptation Prompting'**.
 
 This division allows for a minimal number of generalized patterns (two) while accurately capturing the distinct underlying mechanisms and motivations present in the original cluster. The 'Solution' section of each generalized pattern explicitly lists the techniques from the original patterns to demonstrate their inclusion."
-"'ChainofDictionary (CoD)'
- 'Dictionary-based Prompting for Machine Translation (DiPMT)'
- 'Multi-Aspect Prompting and Selection (MAPS)'
- 'Decomposed Prompting for MT (DecoMT)'","'Lexical Context Augmentation'
- 'Multi-Stage Translation with Candidate Selection'
- 'Chunked Processing for Long Text Translation'","The cluster of design patterns, while all related to machine translation, presented three distinct conceptual approaches to improving LLM performance:
+"1 ChainofDictionary (CoD)
+ 2 Dictionary-based Prompting for Machine Translation (DiPMT)
+ 3 Multi-Aspect Prompting and Selection (MAPS)
+ 4 Decomposed Prompting for MT (DecoMT)","1 Lexical Context Augmentation
+ 2 Multi-Stage Translation with Candidate Selection
+ 3 Chunked Processing for Long Text Translation","The cluster of design patterns, while all related to machine translation, presented three distinct conceptual approaches to improving LLM performance:
 
 1.  **Lexical Augmentation (CoD, DiPMT):** 'ChainofDictionary' and 'Dictionary-based Prompting for Machine Translation' both focus on providing explicit lexical definitions to the LLM to resolve ambiguity and improve translation accuracy. Their core mechanism is identical: augmenting the prompt with external dictionary knowledge. I merged these into a single pattern: **Lexical Context Augmentation**.
 
@@ -1262,19 +1262,19 @@ This division allows for a minimal number of generalized patterns (two) while ac
 3.  **Divide and Conquer for Long Inputs (DecoMT):** 'Decomposed Prompting for MT' addresses the specific challenge of translating *long texts* by breaking them into chunks, translating independently, and then synthesizing the results. This is a strategy for managing context window limitations and maintaining consistency over extended inputs, which is conceptually different from the other two. This forms a distinct pattern: **Chunked Processing for Long Text Translation**.
 
 By identifying these three core conceptual directions, I was able to reduce the original four patterns into three generalized and distinct patterns, avoiding redundancy and focusing on the underlying mechanisms."
-"'Negative Prompting'
- 'Prompt Modifiers'",'Prompt Shaping',"The two patterns, 'Negative Prompting' and 'Prompt Modifiers', both describe techniques for influencing the output of a generative AI model by manipulating the input prompt. 
+"1 Negative Prompting
+ 2 Prompt Modifiers",1 Prompt Shaping,"The two patterns, 'Negative Prompting' and 'Prompt Modifiers', both describe techniques for influencing the output of a generative AI model by manipulating the input prompt. 
 
 'Negative Prompting' focuses on *preventing* undesired elements by negatively weighting terms. 'Prompt Modifiers' focuses on *introducing* or *emphasizing* desired attributes by appending specific words or phrases.
 
 Upon analysis, it became clear that both are facets of a broader concept: **controlling the generative process through deliberate prompt engineering**. Whether you're adding a term to make something appear (positive modification) or adding a term (often with a negative weight) to make something *not* appear (negative constraint), the underlying mechanism is the same – you are 'shaping' the model's understanding and generation trajectory via the prompt.
 
 Therefore, I decided to merge them into a single, more generalized pattern called 'Prompt Shaping'. This pattern encompasses both the 'positive' and 'negative' aspects of prompt manipulation, as well as other potential structural or contextual prompt elements, providing a unified framework for understanding how to guide generative AI outputs. The 'Solution' section explicitly details both 'Positive Modifiers' and 'Negative Constraints' to ensure both original ideas are fully represented within the generalized pattern."
-"'ImageasText Prompting'
- 'PairedImage Prompting'
- 'Segmentation Prompting'
- '3D Prompting'","'Modality Bridging Prompting'
- 'Multimodal In-Context Guidance'","I analyzed the provided cluster of four design patterns by first identifying the core underlying principle of each:
+"1 ImageasText Prompting
+ 2 PairedImage Prompting
+ 3 Segmentation Prompting
+ 4 3D Prompting","1 Modality Bridging Prompting
+ 2 Multimodal In-Context Guidance","I analyzed the provided cluster of four design patterns by first identifying the core underlying principle of each:
 
 1.  **ImageasText Prompting**: Focuses on *converting* visual information into text to fit a text-based prompt interface. The core is modality conversion to bridge a gap.
 2.  **PairedImage Prompting**: Focuses on *providing visual examples* (input-output pairs) to teach a model a transformation, akin to few-shot learning for visual tasks.
@@ -1294,10 +1294,10 @@ Based on this distinction, I decided to generalize the cluster into two patterns
 2.  **Multimodal In-Context Guidance**: This pattern generalizes the concept of using diverse, direct multimodal inputs (beyond just text) as part of the prompt to provide context, examples, or specific instructions for complex visual, spatial, or generative tasks. 'PairedImage Prompting' (visual examples for transformation), 'Segmentation Prompting' (spatial annotations for task specification), and '3D Prompting' (diverse multimodal inputs for 3D generation) all fall under this broader category. The 'Solution' section for this pattern explicitly details the different types of multimodal inputs that can be used for guidance.
 
 This approach reduces the original four patterns to two, effectively capturing the core ideas without redundancy and maintaining conceptual clarity."
-"'Duty Distinct ChainofThought (DDCoT)'
- 'ChainofImages (CoI)'
- 'Multimodal GraphofThought'","'Sequential Multimodal Reasoning'
- 'Graph-based Multimodal Reasoning'","The initial cluster contained three patterns: 'Duty Distinct ChainofThought (DDCoT)', 'ChainofImages (CoI)', and 'Multimodal GraphofThought'.
+"1 Duty Distinct ChainofThought (DDCoT)
+ 2 ChainofImages (CoI)
+ 3 Multimodal GraphofThought","1 Sequential Multimodal Reasoning
+ 2 Graph-based Multimodal Reasoning","The initial cluster contained three patterns: 'Duty Distinct ChainofThought (DDCoT)', 'ChainofImages (CoI)', and 'Multimodal GraphofThought'.
 
 My analysis focused on identifying the core underlying mechanism or conceptual direction of each pattern:
 
@@ -1317,8 +1317,8 @@ Based on this analysis, I concluded that the cluster represents two distinct con
 2.  **Graph-based Multimodal Reasoning:** Captures patterns that leverage non-linear, graph-structured representations for complex multimodal inference. (Maps directly to Multimodal GraphofThought).
 
 This approach reduces the cluster to the minimal number of patterns while accurately representing the core ideas and their distinct underlying mechanisms."
-"'Voyager'
- 'Ghost in the Minecraft (GITM)'",'Autonomous Open-World Agent',"The analysis of the two patterns, 'Voyager' and 'Ghost in the Minecraft (GITM)', revealed significant conceptual overlap, suggesting they are specific instantiations or complementary aspects of a broader design principle rather than fundamentally distinct patterns.
+"1 Voyager
+ 2 Ghost in the Minecraft (GITM)",1 Autonomous Open-World Agent,"The analysis of the two patterns, 'Voyager' and 'Ghost in the Minecraft (GITM)', revealed significant conceptual overlap, suggesting they are specific instantiations or complementary aspects of a broader design principle rather than fundamentally distinct patterns.
 
 **Shared Core Concepts:**
 1.  **Context:** Both explicitly target 'complex, open-world environments' (specifically Minecraft, but the principle is generalizable).
@@ -1341,10 +1341,10 @@ I abstracted the common elements into the 'Autonomous Open-World Agent' pattern.
 *   **Uses** that cover the applications of both original patterns.
 
 This approach reduces redundancy and provides a higher-level abstraction that captures the essence of both original patterns effectively."
-"'Pairwise Evaluation'
- 'Binary Score (for Evaluation)'
- 'Linear Scale (for Evaluation)'
- 'Likert Scale (for Evaluation)'",'Structured LLM Evaluation Output',"The provided cluster of patterns — 'Pairwise Evaluation', 'Binary Score (for Evaluation)', 'Linear Scale (for Evaluation)', and 'Likert Scale (for Evaluation)' — all share a fundamental underlying principle: using an LLM to perform an evaluation and then structuring its output in a specific, interpretable format.
+"1 Pairwise Evaluation
+ 2 Binary Score (for Evaluation)
+ 3 Linear Scale (for Evaluation)
+ 4 Likert Scale (for Evaluation)",1 Structured LLM Evaluation Output,"The provided cluster of patterns — 'Pairwise Evaluation', 'Binary Score (for Evaluation)', 'Linear Scale (for Evaluation)', and 'Likert Scale (for Evaluation)' — all share a fundamental underlying principle: using an LLM to perform an evaluation and then structuring its output in a specific, interpretable format.
 
 1.  **Common Core**: All patterns describe scenarios where an LLM acts as an 'evaluator' or 'assessor' for some input (e.g., text quality, factual correctness). The primary goal is to obtain a judgment from the LLM.
 2.  **Variations in Output Format**: The main distinction between the patterns lies in the *granularity* and *type* of the requested output:
@@ -1354,8 +1354,8 @@ This approach reduces redundancy and provides a higher-level abstraction that ca
     *   'Pairwise Evaluation' requests a comparative judgment, which can often be broken down into individual evaluations or a direct preference statement.
 3.  **Generalization**: These are not distinct conceptual directions but rather different *instantiations* or *techniques* within the broader concept of 'LLM-based Evaluation Output Formatting'. The core problem is how to get a useful, structured evaluation from an LLM, and the solutions are different ways to prompt the LLM to achieve that structure.
 4.  **Unified Pattern Rationale**: By abstracting, I identified that the overarching design idea is about *explicitly guiding the LLM to produce its evaluation in a predefined, parseable format*. This single pattern, 'Structured LLM Evaluation Output', encompasses all the specific examples as different methods or scales that can be applied within its solution. The 'Problem', 'Context', 'Result', and 'Uses' are highly similar across all original patterns, reinforcing the idea that they belong under one generalized umbrella. The 'Solution' section of the generalized pattern then details the various output formats (binary, linear, ordinal, comparative) that were originally separate patterns, treating them as specific techniques within the broader pattern."
-"'Batch Prompting for Pruning'
- 'Batch Prompting (for Evaluation)'",'Batch Prompting',"The two provided patterns, 'Batch Prompting for Pruning' and 'Batch Prompting (for Evaluation)', share a fundamental underlying principle: optimizing LLM interactions by consolidating multiple individual requests into a single API call. 
+"1 Batch Prompting for Pruning
+ 2 Batch Prompting (for Evaluation)",1 Batch Prompting,"The two provided patterns, 'Batch Prompting for Pruning' and 'Batch Prompting (for Evaluation)', share a fundamental underlying principle: optimizing LLM interactions by consolidating multiple individual requests into a single API call. 
 
 1.  **Shared Problem:** Both patterns address the inefficiency, high latency, and increased cost associated with making numerous individual LLM calls for multiple items.
 2.  **Shared Context:** Both apply when a large number of items or candidates need to be processed by an LLM, and efficiency is a primary concern.
@@ -1365,8 +1365,8 @@ This approach reduces redundancy and provides a higher-level abstraction that ca
 'Batch Prompting for Pruning' is a specific application of this general technique within an iterative search or pruning context. 'Batch Prompting (for Evaluation)' is a more general application for evaluating multiple instances. Since the core mechanism, motivation, and benefits are identical, they do not represent distinct conceptual directions. 
 
 Therefore, I merged them into a single, generalized pattern named 'Batch Prompting'. This unified pattern captures the essence of both original patterns by abstracting away the specific use cases (pruning or evaluation) and focusing on the core design idea of consolidating LLM requests for efficiency. The generalized pattern's 'Problem', 'Context', 'Solution', 'Result', and 'Uses' sections were crafted to encompass the broader applicability and potential trade-offs mentioned in the original patterns, while avoiding redundancy."
-"'Relation-Based Reasoning (ToGR)'
- 'Hybrid Pruning Strategy (LLM + Lightweight Model)'",'Hybrid Pruning for LLM-KG Efficiency',"The analysis of the two patterns, 'Relation-Based Reasoning (ToGR)' and 'Hybrid Pruning Strategy (LLM + Lightweight Model)', revealed a strong conceptual overlap centered on optimizing pruning steps in LLM-KG reasoning by reducing reliance on expensive LLM calls.
+"1 Relation-Based Reasoning (ToGR)
+ 2 Hybrid Pruning Strategy (LLM + Lightweight Model)",1 Hybrid Pruning for LLM-KG Efficiency,"The analysis of the two patterns, 'Relation-Based Reasoning (ToGR)' and 'Hybrid Pruning Strategy (LLM + Lightweight Model)', revealed a strong conceptual overlap centered on optimizing pruning steps in LLM-KG reasoning by reducing reliance on expensive LLM calls.
 
 1.  **Identify Core Problem:** Both patterns address the high computational cost and slowness associated with using LLMs for every pruning step in iterative graph exploration.
 2.  **Identify Core Solution Strategy:** Both propose replacing or augmenting LLM-based pruning with cheaper alternatives.
@@ -1375,16 +1375,16 @@ Therefore, I merged them into a single, generalized pattern named 'Batch Prompti
 3.  **Identify Shared Benefits/Trade-offs:** Both patterns highlight reduced cost/time, improved efficiency, and a trade-off between accuracy and efficiency. 'Relation-Based Reasoning' also adds robustness against missing entity literals, which can be seen as a specific context where a lightweight (e.g., random) entity pruning strategy is particularly beneficial.
 4.  **Generalization:** The 'Hybrid Pruning Strategy' is a more general concept that encompasses the specific approach taken by 'Relation-Based Reasoning'. Random sampling for entity pruning, as described in ToGR, is a form of lightweight, non-LLM heuristic. The focus on 'relation chains' in ToGR is a specific reasoning strategy that *enables* or *benefits from* this type of lightweight entity pruning, rather than being a fundamentally different pruning mechanism itself.
 5.  **Consolidation:** By abstracting the specific 'lightweight model' or 'heuristic' to a general category of 'computationally lightweight alternatives' and incorporating the specific benefits (like robustness against incomplete entity information) into the 'Result' and 'Uses' sections, a single, unified pattern can effectively capture the essence of both original patterns. This approach minimizes redundancy and provides a more generalized, applicable design pattern."
-"'LLMs as Personalized Content Creator'
- 'LLMs as Content Interpreter'
- 'LLMs as Knowledge Base'
- 'LLMs for Automated ML Selection'
- 'LLMs as Conversational Agent'
- 'LLMs for Direct Recommendation (In-context Learning & CoT)'
- 'Constitutional AI for Ethical Alignment'
- 'LLMs as Explainer'","'LLM as Intelligent Processor & Reasoner'
- 'LLM as Personalized Generative Interface'
- 'LLM Ethical Alignment Framework'","The initial cluster contained eight distinct patterns, each highlighting a specific application or capability of Large Language Models (LLMs) in the context of recommendation systems or related AI tasks. My goal was to reduce these into the minimal number of patterns that still accurately represent the core ideas, avoiding redundancy and focusing on underlying mechanisms.
+"1 LLMs as Personalized Content Creator
+ 2 LLMs as Content Interpreter
+ 3 LLMs as Knowledge Base
+ 4 LLMs for Automated ML Selection
+ 5 LLMs as Conversational Agent
+ 6 LLMs for Direct Recommendation (In-context Learning & CoT)
+ 7 Constitutional AI for Ethical Alignment
+ 8 LLMs as Explainer","1 LLM as Intelligent Processor & Reasoner
+ 2 LLM as Personalized Generative Interface
+ 3 LLM Ethical Alignment Framework","The initial cluster contained eight distinct patterns, each highlighting a specific application or capability of Large Language Models (LLMs) in the context of recommendation systems or related AI tasks. My goal was to reduce these into the minimal number of patterns that still accurately represent the core ideas, avoiding redundancy and focusing on underlying mechanisms.
 
 I started by identifying the core idea or primary function of each original pattern:
 1.  **Personalized Content Creator**: LLMs *generate* new, personalized content.
@@ -1417,8 +1417,8 @@ I then considered the fundamental capabilities of LLMs: understanding/reasoning 
     *   'Constitutional AI for Ethical Alignment' stands alone. It's not a functional role *within* a system like the others, but rather a *meta-pattern* or a *governance mechanism* applied *to* LLMs to ensure their responsible behavior. It's a cross-cutting concern that applies to any LLM application, regardless of its specific functional role.
 
 This consolidation resulted in three distinct patterns. This number effectively reduces the original eight while ensuring each generalized pattern captures a unique conceptual direction and avoids significant overlap. The names are concise and descriptive, and the problem, context, solution, and result sections are generalized to cover the scope of the merged original patterns."
-"'Live Web Access with Controlled Interaction'
- 'Browser-Assisted LLM'",'Agentic Web Interaction Layer',"The two provided patterns, 'Live Web Access with Controlled Interaction' and 'Browser-Assisted LLM', share a fundamental underlying principle. Both address the challenge of enabling an AI system to interact with the dynamic, external environment of the web while simultaneously mitigating the inherent risks of such interaction.
+"1 Live Web Access with Controlled Interaction
+ 2 Browser-Assisted LLM",1 Agentic Web Interaction Layer,"The two provided patterns, 'Live Web Access with Controlled Interaction' and 'Browser-Assisted LLM', share a fundamental underlying principle. Both address the challenge of enabling an AI system to interact with the dynamic, external environment of the web while simultaneously mitigating the inherent risks of such interaction.
 
 Upon closer examination:
 
@@ -1430,9 +1430,9 @@ Upon closer examination:
 The 'Browser-Assisted LLM' pattern can be seen as a specific application or instantiation of the more general 'Live Web Access with Controlled Interaction' pattern, focusing on Large Language Models and their particular challenges (factual accuracy, long-form Q&A). The core mechanism of a controlled, agentic interaction layer with the web remains identical.
 
 Therefore, I concluded that these two patterns represent a single, unified conceptual direction. I merged them into one generalized pattern, 'Agentic Web Interaction Layer', which abstracts the common elements: the need for external data, the risks of direct access, the solution of a controlled intermediary layer with restricted actions and monitoring, and the resulting benefits of enhanced capability with mitigated risk. This approach reduces redundancy and provides a more abstract, reusable design pattern."
-"'Rejection Sampling (Best-of-N)'
- 'KL Regularization in RLHF'
- 'Human Feedback for Quality Optimization (Reward Modeling & RLHF)'",'Reward Model Guided Alignment',"The cluster contained three patterns:
+"1 Rejection Sampling (Best-of-N)
+ 2 KL Regularization in RLHF
+ 3 Human Feedback for Quality Optimization (Reward Modeling & RLHF)",1 Reward Model Guided Alignment,"The cluster contained three patterns:
 1.  **Rejection Sampling (Best-of-N):** Focuses on using a Reward Model (RM) at inference time to select the best output from multiple samples.
 2.  **KL Regularization in RLHF:** Focuses on a specific technique (KL regularization) used during Reinforcement Learning from Human Feedback (RLHF) to prevent policy divergence.
 3.  **Human Feedback for Quality Optimization (Reward Modeling & RLHF):** This pattern describes the overarching process of collecting human feedback, training a Reward Model, and then using that RM to optimize the language model, explicitly mentioning both RLHF and Rejection Sampling as methods.
@@ -1445,13 +1445,13 @@ Therefore, I decided to generalize and merge these into a single unified pattern
 *   **Result & Uses:** Consolidated the benefits and applications from all three original patterns.
 
 This approach reduces the cluster to the minimal number of patterns (one) while accurately representing all core ideas and their interrelationships, avoiding redundancy and providing a more abstract, generalized view."
-"'Retriever-Aware Training (RAT)'
- 'AST-based Hallucination Detection for Code Generation'
- 'Structured API Documentation for LLM Consumption'
- 'Self-Instruct Finetuning for API Generation'
- 'LLM-API Integration System'
- 'Constraint-Aware API Selection'","'Dynamic Tool-Augmented LLM Framework'
- 'Structural Tool Call Verification'","The initial cluster contained six patterns related to LLM-API integration. My goal was to reduce these into the minimal number of patterns that accurately represent the core ideas, avoiding redundancy.
+"1 Retriever-Aware Training (RAT)
+ 2 AST-based Hallucination Detection for Code Generation
+ 3 Structured API Documentation for LLM Consumption
+ 4 Self-Instruct Finetuning for API Generation
+ 5 LLM-API Integration System
+ 6 Constraint-Aware API Selection","1 Dynamic Tool-Augmented LLM Framework
+ 2 Structural Tool Call Verification","The initial cluster contained six patterns related to LLM-API integration. My goal was to reduce these into the minimal number of patterns that accurately represent the core ideas, avoiding redundancy.
 
 I first analyzed each pattern's core concept:
 
@@ -1469,8 +1469,8 @@ Therefore, I decided to generalize the core integration and generation aspects i
 However, 'AST-based Hallucination Detection for Code Generation' stood out as conceptually distinct. While crucial for the success and reliability of an LLM-API integration system, it is primarily an *evaluation technique* rather than a component of the generation or integration pipeline itself. It addresses the problem of verifying the output, which is a separate concern from how the output is generated or how the system is built. Thus, it warranted its own distinct pattern: **'Structural Tool Call Verification'**. This name emphasizes the method (structural analysis) and the purpose (verification of tool calls).
 
 This approach resulted in two distinct patterns: one for the overall system and its operational components, and another for the critical evaluation of its outputs. This minimizes redundancy while ensuring all core conceptual directions from the cluster are accurately represented."
-"'Thorough Decoding (RAGSequence)'
- 'Fast Decoding (RAGSequence)'",'Marginalized Sequence Decoding',"The provided cluster contains two patterns: 'Thorough Decoding (RAGSequence)' and 'Fast Decoding (RAGSequence)'.
+"1 Thorough Decoding (RAGSequence)
+ 2 Fast Decoding (RAGSequence)",1 Marginalized Sequence Decoding,"The provided cluster contains two patterns: 'Thorough Decoding (RAGSequence)' and 'Fast Decoding (RAGSequence)'.
 
 Upon analysis, both patterns address the same fundamental problem: how to decode sequences from RAGSequence models where the overall sequence likelihood `p(y|x)` requires marginalization over latent documents (`sum_z p(y|x, z) * p(z|x)`). Standard beam search is insufficient because it typically only provides `p(y|x, z)` for the top sequences *given* a specific document `z`, not for all `(y, z)` pairs needed for the marginalization.
 
