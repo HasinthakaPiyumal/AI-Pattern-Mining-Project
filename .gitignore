@@ -8,5 +8,6 @@ data/cleaned/
 data/processed/
 outputs/**/*.csv
 notebooks/**/*.csv
+!**/summarized_patterns/comparison/**/*.csv
 data.csv
 models/
