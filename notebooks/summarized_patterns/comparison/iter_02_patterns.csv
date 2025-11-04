@@ -1,58 +1,31 @@
 original_patterns,summarized_patterns,thinking
 "1. LLM Tool Orchestration
-
  2. Tool-Augmented Agent
-
  3. External Augmentation and Validation
-
  4. Tool Orchestration and Execution
-
  5. Autonomous Tool Generation
-
  6. External Tool Augmentation
-
  7. Augmented Response Synthesis
-
  8. Plug-and-Play LLM-Tool Integration
-
  9. LLM Fallback to Inherent Knowledge
-
  10. User Intent Resolution
-
  11. In-Context Tool Adaptation
-
  12. Unified Tool Interface Abstraction
-
  13. Personalized Tool Interaction
-
  14. Meta-Learning for Tool Strategies
-
  15. Curriculum-based Tool Mastery
-
  16. LLM Augmentation via External Modules
-
  17. Program-Aided Reasoning
-
  18. Tool-Augmented Reasoning Loop
-
  19. Agentic Web Interaction Layer
-
  20. Dynamic Tool-Augmented LLM Framework","1. LLM-Tool Orchestration and Augmentation
-
  2. Flexible Tool Integration Framework
-
  3. Tool Learning and Adaptation Strategies
-
  4. Robustness and Safe External Interaction
-
  5. User Intent Resolution
-
  6. Personalized Tool Interaction
-
  7. Augmented Response Synthesis
-
  8. Autonomous Tool Generation
-
  9. LLM Fallback to Inherent Knowledge","My approach to consolidating the AI design patterns involved a systematic analysis of each pattern's core problem, context, solution, result, and uses. The goal was to identify underlying conceptual similarities and redundancies, then merge patterns that shared a fundamental design idea while preserving their distinctive insights.
 
 Here's a breakdown of the thought process:
@@ -88,13 +61,9 @@ Here's a breakdown of the thought process:
 
 This iterative process of grouping, analyzing, merging, and refining allowed me to arrive at the final set of consolidated meta-patterns."
 "1. Divergent Subgroup Analysis
-
  2. Permutation Feature Importance
-
  3. Feature Dependence Visualization
-
  4. Explainable AI (XAI) Techniques
-
  5. Interactive Divergent Subgroup Exploration",1. Explainable AI (XAI) Framework,"The provided patterns all revolve around the core concept of 'Explainable AI' (XAI) and model interpretability. While they describe different facets or techniques, they collectively address the overarching problem of black-box model opacity and the need for transparency.
 
 Here's the breakdown of the consolidation process:
@@ -119,15 +88,10 @@ Here's the breakdown of the consolidation process:
 
 This consolidation results in a single, robust 'Explainable AI (XAI) Framework' pattern that accurately represents all core ideas from the original cluster, providing a holistic view of AI interpretability design."
 "1. Adaptive Abstention Gating
-
  2. Self-Confidence & Calibration
-
  3. AI System Process Transparency and Trust Calibration
-
  4. Abstention-Aware Model Training","1. Inference-Time Uncertainty Management and Abstention
-
  2. Training-Time Abstention Learning
-
  3. AI System Process Transparency and Trust Calibration","The initial cluster contained four patterns related to trustworthiness, uncertainty, and abstention in AI systems, particularly LLMs. My goal was to reduce redundancy and consolidate them into a minimal set of meta-patterns while preserving all conceptual information.
 
 1.  **Analysis of 'Adaptive Abstention Gating' and 'Self-Confidence & Calibration':**
@@ -148,19 +112,12 @@ This consolidation results in a single, robust 'Explainable AI (XAI) Framework' 
 
 **Resulting Consolidation:** The initial four patterns were successfully consolidated into three distinct meta-patterns, reducing redundancy while ensuring all original conceptual information is preserved and clearly articulated under appropriate headings."
 "1. Task Conditioning with Control Tokens
-
  2. Persona and Contextual Framing
-
  3. In-Prompt Guardrails
-
  4. Prompt Shaping
-
  5. Output Style Specification","1. Prompt-Based Output Control
-
  2. Persona and Contextual Framing
-
  3. In-Prompt Guardrails
-
  4. Task Conditioning with Control Tokens","My goal was to reduce the number of patterns while preserving all conceptual information. I analyzed each pattern's core problem, context, solution, and result to identify overlaps and distinct concepts.
 
 1.  **Prompt Shaping** and **Output Style Specification**:
@@ -182,15 +139,10 @@ This consolidation results in a single, robust 'Explainable AI (XAI) Framework' 
 
 By consolidating 'Prompt Shaping' and 'Output Style Specification' into 'Prompt-Based Output Control', I reduced the total number of patterns from 5 to 4, effectively eliminating redundancy while ensuring all original conceptual information is retained and clearly articulated within the new, more generalized pattern."
 "1. Reflexion
-
  2. Reflective Generation and Refinement
-
  3. Evaluative Reasoning Augmentation
-
  4. Iterative Self-Correction with Feedback
-
  5. Adaptive Iterative Retrieval
-
  6. Iterative Refinement with Feedback Loop",1. Iterative Self-Improvement,"The provided cluster of design patterns, despite their distinct names and specific application examples, share a fundamental underlying principle: an iterative process of generation/action, followed by evaluation/reflection, and subsequent refinement/correction based on feedback. 
 
 Let's break down the commonalities:
@@ -205,9 +157,7 @@ While patterns like 'Reflexion' and 'Iterative Self-Correction with Feedback' le
 
 Given this strong conceptual overlap, merging them into a single, generalized pattern named 'Iterative Self-Improvement' (or similar) is the most appropriate and parsimonious approach. This name effectively captures the essence of an AI system continuously enhancing its performance through a cycle of action, evaluation, and adaptation. The specific examples within the original cluster then become 'uses' or 'instantiations' of this broader pattern, rather than distinct patterns themselves."
 "1. Iterative Task Decomposition
-
  2. Recursive Subproblem Solving
-
  3. Task Decomposition and Planning",1. Hierarchical Task Decomposition and Orchestration,"The three provided patterns—'Iterative Task Decomposition,' 'Recursive Subproblem Solving,' and 'Task Decomposition and Planning'—all address the fundamental challenge of LLMs handling complex, multi-step problems. Their core solution mechanism involves breaking down a large task into smaller, more manageable parts.
 
 Upon detailed analysis:
@@ -233,21 +183,13 @@ This consolidated pattern integrates all key elements:
 
 This approach reduces redundancy while preserving all conceptual information, providing a comprehensive meta-pattern for handling complex tasks with LLMs."
 "1. Prompt Engineering Automation
-
  2. Automated Chain-of-Thought Generation
-
  3. Automated Prompt Optimization
-
  4. Retrieved Few-Shot Chain-of-Thought
-
  5. LLM-Guided Human Prompt Refinement
-
  6. Automated Prompt Self-Curation
-
  7. Automated Prompt Optimization","1. Automated Prompt Engineering
-
  2. Dynamic Contextual Prompting
-
  3. LLM-Guided Human Prompt Refinement","The provided cluster of design patterns primarily revolves around improving Large Language Model (LLM) prompts and their components. My goal was to reduce these into the minimal number of patterns that still accurately represent their core ideas, avoiding redundancy.
 
 I identified three distinct conceptual directions within the cluster:
@@ -260,41 +202,23 @@ I identified three distinct conceptual directions within the cluster:
 
 By categorizing the patterns into these three conceptual buckets, I was able to generalize and abstract the content, resulting in three distinct patterns that cover the entire cluster without significant overlap or loss of detail."
 "1. Retrieval-Augmented Knowledge System
-
  2. Multi-Task Instruction Tuning for Integrated RAG Capabilities
-
  3. Retrieval-Augmented Generation (RAG)
-
  4. Direct LLM Generation
-
  5. Joint Optimization of Retrieval-Augmented Generation
-
  6. Retrieval-Augmented Generation (RAG)
-
  7. Efficient Dense Semantic Retrieval
-
  8. Grounded & Verifiable Generation
-
  9. Pretrained Component Initialization for RAG
-
  10. Contextual Input Augmentation for Frozen LMs
-
  11. Nearest Neighbor Output Augmentation
-
  12. Denoising Pretraining for Foundational Generative Models
-
  13. Retrieval-Augmented Generation (RAG)
-
  14. Auxiliary Task Learning for RAG","1. Retrieval-Augmented Generation (RAG)
-
  2. RAG System Optimization & Training
-
  3. Efficient Dense Semantic Retrieval
-
  4. Direct LLM Generation
-
  5. Nearest Neighbor Output Augmentation
-
  6. Denoising Pretraining for Foundational Generative Models","The consolidation process involved several steps to reduce the initial 14 patterns into a more concise set of 6 meta-patterns, while ensuring all conceptual information was preserved and redundancy was minimized.
 
 1.  **Initial Review and Thematic Grouping:** I first read through all patterns to understand their core problem, context, solution, and result. I identified recurring themes:
@@ -322,27 +246,16 @@ By categorizing the patterns into these three conceptual buckets, I was able to 
 
 This process ensured that the core ideas from all original patterns were retained, but presented in a more organized, less redundant, and conceptually distinct manner, achieving the goal of a minimal yet accurate representation."
 "1. Bias Mitigation & Fair Generation
-
  2. LLM-Agentic Knowledge Graph Reasoning
-
  3. Hybrid Pruning for LLM-KG Efficiency
-
  4. LLM as Intelligent Processor & Reasoner
-
  5. LLM as Personalized Generative Interface
-
  6. LLM Ethical Alignment Framework
-
  7. Semantic Parsing for Structured Query Generation
-
  8. Knowledge-Guided Reasoning (KGR)","1. Ethical AI Alignment & Bias Mitigation
-
  2. Knowledge-Augmented Reasoning for LLMs
-
  3. LLM as Semantic Query Generator
-
  4. LLM as Intelligent Processing & Automation Engine
-
  5. LLM as Personalized Generative & Conversational Interface","The consolidation process involved identifying core conceptual themes and grouping patterns that addressed similar problems with overlapping solution mechanisms or contexts. The goal was to reduce redundancy while preserving all distinct insights.
 
 1.  **Ethical AI / Bias Mitigation Cluster:**
@@ -360,27 +273,16 @@ This process ensured that the core ideas from all original patterns were retaine
 
 This consolidation reduced the initial 9 patterns to 5, effectively grouping similar concepts while maintaining important distinctions in mechanisms and primary use cases."
 "1. Structural Tool Call Verification
-
  2. Structured LLM Evaluation Output
-
  3. Structured Output Generation
-
  4. Structured Output Generation
-
  5. Adversarial Robustness Evaluation
-
  6. LLM as Evaluator
-
  7. LLM-Assisted Extraction
-
  8. Output Mapping Verbalizer","1. Structured Output Generation
-
  2. LLM as Intelligent Evaluator
-
  3. LLM-Assisted Structured Extraction & Mapping
-
  4. Structural Code/Tool Call Verification
-
  5. Adversarial Robustness Evaluation","The consolidation process involved analyzing each pattern's core problem, context, solution, and result to identify underlying conceptual similarities and overlaps. The goal was to reduce redundancy while preserving all distinct insights.
 
 Here's the breakdown of the thought process:
@@ -412,19 +314,12 @@ Here's the breakdown of the thought process:
 
 **Resulting Reduction:** The initial 8 patterns were successfully consolidated into 5 meta-patterns, reducing redundancy while ensuring all original conceptual information and specific solution mechanisms are retained and clearly articulated within the generalized patterns."
 "1. Zero-Shot Structured Reasoning
-
  2. Explicit Step-by-Step Reasoning (Chain-of-Thought)
-
  3. Exploratory Reasoning (Tree/Graph of Thoughts)
-
  4. Abstract Pre-computation
-
  5. Sequential Multimodal Reasoning
-
  6. Graph-based Multimodal Reasoning","1. Explicit Step-by-Step Reasoning (Chain-of-Thought)
-
  2. Exploratory Reasoning (Tree/Graph of Thoughts)
-
  3. Abstract-First Reasoning (Pre-computation)","The consolidation process involved identifying the core mechanism and scope of each pattern to group similar concepts and generalize them. 
 
 1.  **Initial Analysis of Patterns:**
@@ -449,11 +344,8 @@ Here's the breakdown of the thought process:
 4.  **Refinement of Merged Patterns:** For each merged pattern, the 'Problem,' 'Context,' 'Solution,' 'Result,' and 'Uses' fields were carefully rewritten to incorporate the concepts from all contributing patterns, ensuring no important details were lost while eliminating redundancy and achieving a higher level of generalization. Specific examples like 'Zero-Shot CoT' and 'multimodal artifacts' were explicitly mentioned within the generalized patterns to retain their distinct insights."
 1. Contextual Refinement,1. Contextual Refinement,"The provided cluster contains only one pattern: 'Contextual Refinement'. As there are no other patterns to compare, identify overlap with, or merge, the pattern is returned as is, without any consolidation or modification, adhering to the guideline that if a cluster cannot be merged into fewer patterns, the original patterns should be returned."
 "1. ReAct (Reasoning and Acting)
-
  2. Reasoning-Action Alignment
-
  3. Adaptive Iterative Planning","1. Adaptive Reasoning-Action Cycle
-
  2. Reasoning-Action Alignment","My goal was to reduce the number of patterns while preserving all conceptual information and avoiding redundancy. I analyzed the three provided patterns:
 
 1.  **ReAct (Reasoning and Acting)**
@@ -488,27 +380,16 @@ I reviewed both the merged 'Adaptive Reasoning-Action Cycle' and the retained 'R
 
 This process resulted in two distinct, yet complementary, meta-patterns that effectively consolidate the original information while reducing redundancy."
 "1. Retrieved Document Integration Quantity
-
  2. LM-Guided Document Reranking
-
  3. Two-Stage Processing Pipeline
-
  4. Retrieve-Rerank-Generate Inference Pipeline
-
  5. Probabilistic Context Integration (Marginalization over Latent Contexts)
-
  6. Retrieval Query Formulation
-
  7. Adaptive LLM Strategy Selection
-
  8. Retrieval Triggering Strategy
-
  9. Marginalized Sequence Decoding","1. Multi-Stage AI Pipeline
-
  2. Optimized Context Selection and Refinement
-
  3. Probabilistic Context Integration and Decoding
-
  4. Adaptive AI Strategy and Resource Management","The initial set of 9 patterns was analyzed for common themes and underlying mechanisms. I identified four main conceptual areas:
 
 1.  **Overall System Architecture/Pipeline**: Patterns like 'Two-Stage Processing Pipeline' and 'Retrieve-Rerank-Generate Inference Pipeline' describe how different AI components are structured sequentially to solve a larger problem. The latter is a specific, crucial instance of the former for RAG. They were merged into 'Multi-Stage AI Pipeline', generalizing the concept while retaining the specific RAG example.
@@ -521,25 +402,15 @@ This process resulted in two distinct, yet complementary, meta-patterns that eff
 
 This consolidation reduced the 9 original patterns to 4 meta-patterns. Each meta-pattern generalizes the core ideas while explicitly incorporating the specific insights and mechanisms from the original patterns, ensuring no important details are lost. The new pattern names are concise and descriptive, reflecting the broader scope of the merged concepts."
 "1. Automated Data Generation with Quality Assurance
-
  2. Imitation Learning
-
  3. Reward Model Guided Alignment
-
  4. Feedback & Data Orchestration
-
  5. Feedback-Driven Learning
-
  6. Self-Correction and Augmentation via Trajectory Refinement
-
  7. Self-Supervised Classifier Training Data Generation
-
  8. Synthetic Interactive Trajectory Generation
-
  9. Staged and Sample-Efficient Policy Learning
-
  10. Imitation Learning from Expert Trajectories","1. Synthetic Data Generation and Refinement
-
  2. Policy Learning from Demonstrations and Feedback","My thought process involved several steps to arrive at the generalized patterns:
 
 1.  **Initial Scan and Keyword Extraction:** I first read through all the provided patterns, highlighting key problems, solutions, and results. I looked for recurring themes and core mechanisms.
@@ -563,21 +434,13 @@ This consolidation reduced the 9 original patterns to 4 meta-patterns. Each meta
 
 6.  **Final Review:** I reviewed both patterns to ensure they are distinct, cover all original cluster members' core ideas, and adhere to the JSON format and guidelines. I confirmed that two patterns are the minimal number required to accurately represent the different conceptual directions within the cluster."
 "1. Prefix Cache Reuse
-
  2. Asynchronous Resource Management
-
  3. Paged Memory Management
-
  4. Batch Prompting
-
  5. Hierarchical Cache Write-Once Eviction
-
  6. RAG KV Cache Optimization System
-
  7. Concurrent Subtask Execution","1. Efficient Intermediate State and Memory Management
-
  2. Efficient Task Orchestration and Execution
-
  3. RAG KV Cache Optimization System","The initial set of 7 patterns was analyzed for common themes and underlying mechanisms. Two primary conceptual directions emerged:
 
 1.  **Resource Management and Caching**: Patterns focused on optimizing memory usage, reducing redundant computation of intermediate states, and efficient data movement in hierarchical memory systems.
@@ -604,11 +467,8 @@ This consolidation reduced the initial 7 patterns to 3, effectively grouping sim
 1. Progressive Response Disclosure,1. Progressive Response Disclosure,"The provided input contains only a single pattern within the cluster. As per the guidelines, if a cluster cannot be merged into fewer patterns, the original pattern should be returned without refinement. There are no other patterns to identify overlap or similarity with, nor any scope or granularity differences to consolidate. Therefore, the 'Progressive Response Disclosure' pattern is returned as is, representing the minimal number of patterns for this specific input."
 1. Proactive Static Planning,1. Proactive Static Planning,"The input contained only one pattern, 'Proactive Static Planning'. As there are no other patterns to compare, cluster, or merge with, the pattern is returned as is, without any modifications or consolidation. The goal of reducing redundancy and merging patterns is not applicable in this scenario."
 "1. Multi-Agent Distributed Intelligence
-
  2. Ensembled Robustness
-
  3. Ensemble Reasoning","1. Multi-Agent Collaboration
-
  2. Ensemble Aggregation","My analysis of the provided cluster revealed two distinct conceptual directions, leading to the generalization into two patterns:
 
 1.  **Multi-Agent Distributed Intelligence** stood out as a unique pattern. Its core idea revolves around *architectural decomposition* and *inter-agent collaboration*. It describes a system where multiple *distinct AI entities* (agents), each with *specialized roles, capabilities, or tools*, communicate and coordinate to solve a complex problem. The emphasis is on the *division of labor* and *interaction* between these specialized components to achieve a collective goal. This is a higher-level system design pattern.
@@ -617,7 +477,6 @@ This consolidation reduced the initial 7 patterns to 3, effectively grouping sim
 
 By abstracting and generalizing, I was able to reduce the three initial patterns into two distinct and comprehensive patterns, accurately capturing the core ideas without redundancy."
 "1. Autonomous LLM Agent Architecture
-
  2. Adaptive Context and Memory Management for LLMs",1. LLM Agentic Architecture with Adaptive Memory,"The two provided patterns, 'Autonomous LLM Agent Architecture' and 'Adaptive Context and Memory Management for LLMs,' exhibit significant conceptual overlap and synergy. 
 
 **'Autonomous LLM Agent Architecture'** describes the high-level structural components required for an LLM to act as an autonomous agent: Perception, Memory Management, Policy & Planning, and Tool Use & Action Execution. Its problem statement highlights the LLM's lack of memory, perception, and action capabilities for complex tasks.
@@ -635,11 +494,8 @@ Therefore, I decided to merge them into a single, more comprehensive pattern: 'L
 
 This consolidation reduces redundancy by presenting a holistic view of building advanced LLM systems, where sophisticated memory and context management are not just add-ons but fundamental enablers of agentic behavior. It preserves all conceptual information from both original patterns while providing a more generalized and powerful meta-pattern."
 "1. Parameter-Efficient LLM Adaptation
-
  2. Contextual Robustness Finetuning
-
  3. Adaptive Behavior & Knowledge Finetuning","1. Parameter-Efficient LLM Adaptation
-
  2. Targeted LLM Capability & Knowledge Shaping","The initial cluster contained three patterns related to LLM adaptation and fine-tuning:
 
 1.  **Parameter-Efficient LLM Adaptation:** Focuses on the *methodology* of fine-tuning, specifically how to reduce computational resources (memory, time, processing power) required for adaptation. Its core idea is efficiency in the adaptation process.
@@ -657,7 +513,6 @@ Therefore, I consolidated the three original patterns into two meta-patterns:
 1.  **Parameter-Efficient LLM Adaptation:** Retained as is, as it addresses a unique concern (resource efficiency).
 2.  **Targeted LLM Capability & Knowledge Shaping:** A new, generalized pattern that merges 'Contextual Robustness Finetuning' and 'Adaptive Behavior & Knowledge Finetuning'. The 'Problem', 'Context', 'Solution', 'Result', and 'Uses' fields of this new pattern integrate the core ideas and specific examples from both original patterns, clearly delineating the two aspects of capability shaping (behavioral/knowledge alignment and contextual robustness enhancement) within its solution and results."
 "1. Deliberative Planning with Constraint Satisfaction
-
  2. Autonomous Open-World Agent",1. Autonomous Agent with Deliberative Planning and Lifelong Learning,"The two original patterns, 'Deliberative Planning with Constraint Satisfaction' and 'Autonomous Open-World Agent,' describe complementary aspects of an advanced AI system operating in complex environments. 
 
 'Deliberative Planning with Constraint Satisfaction' focuses on the *mechanism* of generating high-quality, feasible plans by looking ahead and enforcing rules. It's a specific, powerful planning capability.
@@ -668,15 +523,10 @@ Upon analysis, it became clear that an 'Autonomous Open-World Agent' would signi
 
 Therefore, merging them into a single meta-pattern, 'Autonomous Agent with Deliberative Planning and Lifelong Learning,' creates a more comprehensive and powerful design pattern. This merged pattern describes an agent that not only operates autonomously and learns over time but also possesses sophisticated planning capabilities to generate robust, constraint-satisfying plans. This consolidation reduces redundancy by presenting a unified view of an intelligent agent capable of both advanced planning and continuous adaptation, preserving all conceptual information from both original patterns under a single, generalized heading."
 "1. Exemplar Ordering Strategy
-
  2. Modality Bridging Prompting
-
  3. Exemplar Selection Strategy
-
  4. Few-Shot Prompting (In-Context Learning)
-
  5. Multimodal In-Context Guidance","1. In-Context Learning with Exemplar Management
-
  2. Multimodal Prompting Strategies","The initial cluster contained five patterns: 'Exemplar Ordering Strategy', 'Modality Bridging Prompting', 'Exemplar Selection Strategy', 'Few-Shot Prompting (In-Context Learning)', and 'Multimodal In-Context Guidance'.
 
 My analysis identified two core conceptual areas:
@@ -695,11 +545,8 @@ My analysis identified two core conceptual areas:
 
 This consolidation reduced the original five patterns to two, effectively preserving all conceptual information while eliminating redundancy and providing a more generalized, yet detailed, set of meta-patterns."
 "1. Active Input Comprehension
-
  2. Ambiguity-Robust Demonstrations
-
  3. Clarification Dialogue","1. Enhanced Input Understanding
-
  2. Ambiguity-Robust Demonstrations","The initial cluster contained three patterns: 'Active Input Comprehension', 'Ambiguity-Robust Demonstrations', and 'Clarification Dialogue'. All three address the common problem of LLMs struggling with ambiguous, complex, or incomplete inputs, aiming to improve output quality through better understanding.
 
 My analysis focused on the underlying solution mechanisms:
@@ -713,17 +560,11 @@ Both 'Active Input Comprehension' and 'Clarification Dialogue' share the core co
 
 Given this distinction, 'Ambiguity-Robust Demonstrations' was kept as a separate, distinct pattern. This approach reduces the original three patterns to two, preserving all conceptual information while eliminating redundancy based on the core mechanism and motivation."
 "1. Language and Cultural Adaptation Prompting
-
  2. Lexical Context Augmentation
-
  3. Multi-Stage Translation with Candidate Selection
-
  4. Chunked Processing for Long Text Translation
-
  5. Cross-Lingual Reasoning and Transfer Prompting","1. Multilingual Contextual Augmentation and Adaptation
-
  2. Multi-Stage Refinement for High-Quality Multilingual Generation
-
  3. Segmented Processing for Large Multilingual Inputs","The initial cluster contained five patterns, all related to improving LLM performance in multilingual contexts, particularly translation and cross-lingual understanding/generation. My goal was to reduce these to a minimal number of generalized patterns while preserving all conceptual information.
 
 Here's the thought process for consolidation:
