@@ -1,8 +1,8 @@
 
   {
     "cluster_id":0,
-    "short_name":"External Knowledge Augmentation & Refinement",
-    "description":"This cluster addresses Large Language Models' (LLMs) inherent knowledge limitations and hallucination by integrating external, real-time, or structured information. Patterns involve accessing diverse external tools and refining raw evidence into high-quality, relevant input for LLMs to improve factual accuracy and coherence.",
+    "short_name":"External Knowledge Grounding",
+    "description":"This cluster addresses LLM limitations regarding outdated or incomplete knowledge by integrating and processing external, dynamic information. Patterns focus on accessing real-time data sources, structuring raw evidence through multi-stage pipelines, and refining knowledge to improve factual accuracy, relevance, and mitigate hallucinations in LLM outputs.",
     "sub_patterns":[
       "External Knowledge Augmentation",
       "Modular Knowledge Consolidation Pipeline"
@@ -12,7 +12,7 @@
   {
     "cluster_id":1,
     "short_name":"LLM External Tool Interaction",
-    "description":"This cluster encompasses patterns detailing how Large Language Models (LLMs) discover, select, invoke, and orchestrate external tools. These mechanisms enable LLMs to overcome inherent limitations, access real-time information, perform complex calculations, and interact with the environment, thereby augmenting their capabilities for specialized and multi-step tasks.",
+    "description":"These patterns describe how LLMs integrate, select, invoke, and orchestrate external tools to augment their capabilities, overcome limitations, and solve complex, multi-step tasks.",
     "sub_patterns":[
       "Parameter Extraction and Tool Invocation",
       "Domain-Specific Tool Integration",
@@ -24,21 +24,26 @@
 
   {
     "cluster_id":2,
-    "short_name":"Augmented, Transparent, & Robust AI",
-    "description":"This cluster focuses on enhancing AI system capabilities, reliability, and user trust through strategic integration of external tools, promoting transparency in reasoning, ensuring factual accuracy, and facilitating effective human-AI collaboration and data collection.",
+    "short_name":"Reliable, Transparent, & Augmented LLMs",
+    "description":"This cluster encompasses patterns focused on enhancing LLM reliability, transparency, and capabilities. It includes integrating external tools for robustness and task automation, ensuring factual accuracy and verifiability, providing explicit reasoning paths for explainability, and designing interfaces for improved human-AI interaction and data quality, all aimed at building trust and mitigating risks.",
     "sub_patterns":[
       "Robust Tool-Augmented Processing",
-      "Knowledge Traceability and Correctability via Explicit Reasoning Paths",
-      "Reference-Supported Generation",
       "Human-in-the-Loop Data Collection Interface",
+      "Reference-Supported Generation",
+      "Trust Calibration through Transparency",
+      "Prompt-based Defenses",
+      "Knowledge Traceability and Correctability via Explicit Reasoning Paths",
+      "Progressive Response Disclosure",
+      "Task Automation via Tools",
+      "Tool-Augmented Response Synthesis",
       "Transparent Tool-Use Reasoning"
     ]
   }
 
   {
     "cluster_id":3,
-    "short_name":"Enhanced User Input Understanding",
-    "description":"This cluster focuses on patterns that improve an AI's capability to accurately interpret diverse and often ambiguous user inputs, encompassing various modalities (text, speech, images) and languages, to precisely discern user intent and facilitate effective interaction.",
+    "short_name":"Enhanced User Intent Comprehension",
+    "description":"This cluster focuses on improving AI's ability to accurately interpret diverse and often ambiguous user queries, encompassing multimodal inputs and complex natural language, to better map intent to actions and enhance user experience.",
     "sub_patterns":[
       "Multimodal Interaction Augmentation",
       "Intent Understanding"
@@ -47,131 +52,186 @@
 
   {
     "cluster_id":4,
-    "short_name":"Iterative Self-Correction",
-    "description":"This cluster encompasses patterns where LLMs iteratively refine their outputs, plans, or reasoning processes. They leverage various feedback mechanisms—internal self-critique, external tool execution results, user clarification, or automated utility functions—to identify errors, gather more information, and progressively improve accuracy, robustness, and alignment with desired outcomes.",
+    "short_name":"Iterative Self-Correction & Feedback",
+    "description":"This cluster encompasses patterns where LLMs enhance their performance through iterative processes, leveraging various forms of feedback (self-generated, tool-based, automated, or user-provided) to identify errors, refine responses, and adapt plans dynamically. The core idea is continuous improvement and error recovery over multiple steps.",
     "sub_patterns":[
       "Iterative Task Solving (with Feedback)",
-      "SelfRefine",
+      "SelfAsk",
       "Self-Correcting with Tool-Interactive Critiquing (CRITIC)",
+      "Hybrid Utility Function Design",
+      "Iterative Self-Correction with Automated Feedback",
+      "SelfRefine",
+      "Self-Correction \/ Feedback Loop",
+      "Question Clarification",
       "Self-Evaluation and Termination Condition (for iterative reasoning)"
     ]
   }
 
   {
     "cluster_id":5,
-    "short_name":"Strategic Task Planning & Search",
-    "description":"This cluster focuses on strategies for LLMs to solve complex, multi-step problems by decomposing them into manageable sub-tasks, planning their execution sequence, and employing advanced search techniques (e.g., backtracking) to optimize solutions and handle global constraints.",
+    "short_name":"Complex Task Planning & Search",
+    "description":"This cluster focuses on strategies for LLMs to tackle complex, multi-step problems by breaking them into smaller sub-tasks, planning action sequences, and employing search techniques like backtracking to ensure optimal or feasible solutions under constraints.",
     "sub_patterns":[
       "Task Decomposition",
+      "Task Decomposition and Planning",
       "Planning",
+      "Task Decomposition",
       "Backtracking \/ Heuristic Search"
     ]
   }
 
   {
     "cluster_id":6,
-    "short_name":"AI Tool Learning & Augmentation",
-    "description":"This cluster encompasses patterns for enabling AI, especially LLMs, to effectively learn, use, adapt, and even create external tools. It covers methods for acquiring tool-use skills (demonstrations, feedback), ensuring robust and reliable interaction (conflict resolution, feedback processing), enhancing generalizability, and automating the creation of tools and training data.",
+    "short_name":"LLM Tool Learning & Refinement",
+    "description":"This cluster details patterns for Large Language Models (LLMs) to learn, refine, and manage tool-use. It covers acquiring skills from demonstrations and feedback, generating training data, resolving knowledge conflicts, and enabling LLMs to create new tools, enhancing their robustness and generalizability in tool-augmented environments.",
     "sub_patterns":[
-      "Learning from Demonstrations (Behavioral Cloning)",
+      "Perceiver (Feedback Processing)",
       "Learning from Feedback (Reinforcement Learning for Tool Use)",
+      "Knowledge Conflict Resolution (in Tool Augmentation)",
       "Generalizable Tool Learning (Interface Unification)",
+      "Automated Dataset Generation for Tool-Augmented LLMs",
+      "Output Space Shaping",
+      "Teacher-Assisted Trajectory Correction",
+      "Scientific Discovery with Tool Manipulation",
       "LLM as Tool Maker\/Creator",
-      "Knowledge Conflict Resolution (in Tool Augmentation)"
+      "Learning from Demonstrations (Behavioral Cloning)"
     ]
   }
 
   {
     "cluster_id":7,
-    "short_name":"RAG Optimization & Advanced Training",
-    "description":"This cluster details patterns for enhancing Retrieval-Augmented Generation (RAG) systems. It covers strategies for improving efficiency, reducing latency, boosting output quality, and increasing robustness to imperfect retrieval. Key approaches include dynamic execution, self-correction, multi-stage inference, and unified multi-task instruction tuning for LLMs.",
+    "short_name":"Advanced RAG Optimization & Training",
+    "description":"This cluster encompasses patterns for optimizing RAG system performance, improving context quality and LLM robustness, and enabling efficient multi-task instruction tuning for both retrieval and generation capabilities.",
     "sub_patterns":[
       "Dynamic Speculative Pipelining for RAG",
       "Self-Reflection for RAG (SelfRAG)",
-      "Unified Ranking and Generation Instruction Tuning (RankRAG)",
+      "Sufficient Context Autorater",
+      "Knowledge Tree for RAG KV Cache",
+      "No Retrieval (LLM-only QA)",
+      "Unified Instruction Format for Multi-task LLM Training",
+      "Multi-Source Data Blending for Unified Instruction Tuning",
+      "Retrieval Stride Optimization",
+      "Retrieval Query Length Optimization",
+      "Optimal Document Count for In-Context Learning",
       "Retrieve-Rerank-Generate Inference Pipeline",
-      "Sufficient Context Autorater"
+      "Data-Efficient Ranking Integration",
+      "Irrelevant Context Robustness Training",
+      "Unified Ranking and Generation Instruction Tuning (RankRAG)",
+      "Iterative Retrieval and Decision-Making"
     ]
   }
 
   {
     "cluster_id":8,
-    "short_name":"Enhanced RAG: Context, Reasoning, Reliability",
-    "description":"This cluster focuses on advanced techniques for Retrieval Augmented Generation (RAG) systems. Key themes include improving factual consistency and reliability (e.g., hallucination reduction via abstention), sophisticated context utilization from multiple sources (e.g., token-level dynamic retrieval or robust marginalization), and enhancing complex reasoning capabilities like multi-hop question answering through interleaved processes.",
+    "short_name":"Advanced RAG Context Management",
+    "description":"This cluster encompasses advanced techniques for optimizing Retrieval Augmented Generation (RAG) systems. Patterns focus on improving factual consistency, reducing hallucinations, and enhancing context integration through methods like dynamic retrieval guidance, probabilistic marginalization over multiple documents, and auxiliary training tasks, enabling more robust and accurate generations.",
     "sub_patterns":[
       "Selective Generation with Sufficient Context Signal",
-      "RAGToken",
-      "Interleaved Retrieval guided by ChainofThought (IRCoT)"
+      "RAGSequence",
+      "Auxiliary Training Signal (Statement Reconstruction)",
+      "Interleaved Retrieval guided by ChainofThought (IRCoT)",
+      "Marginalization over Latent Documents",
+      "RAGToken"
     ]
   }
 
   {
     "cluster_id":9,
     "short_name":"LLM Evaluation & Trustworthiness",
-    "description":"This cluster encompasses patterns for leveraging LLMs in evaluation tasks, focusing on structured output formats, self-assessment of correctness, and strategies to improve trustworthiness by managing confidence and encouraging abstention from uncertain answers.",
+    "description":"This cluster encompasses patterns focused on enhancing LLM evaluation capabilities, improving output reliability, and assessing model confidence. It includes methods for structured scoring, explicit uncertainty communication, and robust output parsing to ensure trustworthy and interpretable LLM judgments.",
     "sub_patterns":[
       "Linear Scale (for Evaluation)",
+      "Binary Score (for Evaluation)",
+      "Separate LLM Extractor",
+      "Verbalizer",
+      "Model-Generated Guidelines (for evaluation)",
       "SelfCalibration",
-      "Confidence Estimation (Self-rated Probabilities)",
+      "Styling (for Evaluation)",
+      "Pairwise Evaluation",
+      "Likert Scale (for Evaluation)",
+      "Verbalized Score (for confidence calibration)",
       "Finetuning for Controlled Abstention",
-      "Model-Generated Guidelines (for evaluation)"
+      "Confidence Estimation (Self-rated Probabilities)"
     ]
   }
 
   {
     "cluster_id":10,
-    "short_name":"RAG & Knowledge Augmentation",
-    "description":"This cluster focuses on enhancing Large Language Models (LLMs) by integrating external knowledge retrieval. Patterns address LLM limitations like hallucinations, knowledge cutoffs, and lack of domain-specific information, improving factual accuracy and complex reasoning through various retrieval strategies, adaptive mechanisms, and specialized training techniques.",
+    "short_name":"RAG & Advanced Retrieval",
+    "description":"This cluster focuses on Retrieval-Augmented Generation (RAG) and its sophisticated extensions. Patterns address LLM limitations like hallucinations and knowledge cutoffs by integrating external knowledge retrieval. It covers core RAG, iterative and adaptive retrieval for complex queries, fine-tuning for robust context utilization, and foundational retriever-reader architectures.",
     "sub_patterns":[
       "Retrieval-Augmented Generation (RAG)",
       "Multi-step Retrieval-Augmented Generation (Multi-step RAG)",
+      "Iterative Retrieval-Augmented Generation (Iterative RAG)",
+      "Confidence-Based Iterative Retrieval",
+      "Prompt-Tuning a Frozen LM as a Reader",
+      "Retrieval Augmented Generation (RAG) - Inference",
+      "Nearest Neighbor Language Models (kNN-LM)",
+      "Adaptive Retrieval (Entity Frequency-based)",
+      "Query Decomposition for Multi-hop QA",
       "Adaptive Retrieval-Augmented Generation (AdaptiveRAG)",
       "Retrieval Augmented Fine-Tuning (RAFT)",
+      "Distractor-Aware Finetuning",
+      "Retrieval Augmentation",
       "Two-Stage QA Pipeline (Retriever-Reader Architecture)"
     ]
   }
 
   {
     "cluster_id":11,
-    "short_name":"LLM Behavior Control & Assessment",
-    "description":"This cluster describes techniques for controlling, guiding, and evaluating Large Language Model (LLM) behavior and outputs. It includes advanced prompting strategies for quality and format adherence, methods for ethical alignment and bias mitigation, and robust evaluation frameworks for truthfulness, consistency, and overall performance.",
+    "short_name":"LLM Prompting, Evaluation, Alignment",
+    "description":"This cluster focuses on methods to enhance, control, and evaluate Large Language Model (LLM) behavior. It includes advanced prompting strategies for better output quality and ethical alignment, rigorous evaluation frameworks (often LLM-based) for truthfulness and performance, and techniques to ensure data consistency and mitigate biases.",
     "sub_patterns":[
-      "Contextual Prompt Engineering",
+      "Adversarial Evaluation for Truthfulness",
       "Constitutional AI for Ethical Alignment",
+      "Contextual Prompt Engineering",
+      "Emotion Prompting",
+      "LLMEVAL Framework",
+      "Vanilla Prompting (for bias mitigation)",
+      "Template-Based Prompting for Controlled Generation",
       "LLM-based Evaluation (Autorater\/LLMEval)",
-      "Adversarial Evaluation for Truthfulness"
+      "Round-Trip Consistency Filtering (for Synthetic Data)"
     ]
   }
 
   {
     "cluster_id":12,
-    "short_name":"Chain-of-Thought Reasoning & Extensions",
-    "description":"This cluster encompasses patterns centered around Chain-of-Thought (CoT) prompting, which instructs LLMs to generate intermediate reasoning steps before providing a final answer. These techniques aim to significantly improve LLM performance on complex, multi-step reasoning tasks, enhance transparency, and enable more robust problem-solving across various domains, including mathematics, logic, and multilingual contexts, often through automated exemplar generation or iterative refinement.",
+    "short_name":"CoT Reasoning & Enhancements",
+    "description":"This cluster encompasses techniques designed to improve Large Language Models' (LLMs) ability to perform complex, multi-step reasoning by explicitly guiding them to generate intermediate thought processes. It includes foundational Chain-of-Thought (CoT) prompting, its zero-shot and few-shot variations, and advanced methods for automated exemplar creation, consistency, context handling, and multilingual application. The primary goal is to boost accuracy, transparency, and robustness in logical, mathematical, and complex question-answering tasks.",
     "sub_patterns":[
       "Chain of Thought (CoT) Prompting",
-      "ZeroShot CoT",
+      "Chain-of-Thought (CoT) Prompting",
+      "Step-by-Step Reasoning (Chain-of-Thought \/ CoT)",
       "Consistency-based Self-adaptive Prompting (COSP)",
+      "ThreadofThought (ThoT) Prompting",
       "Cross-Lingual Self Consistent Prompting (CLSP)",
-      "Cumulative Reasoning"
+      "Cumulative Reasoning",
+      "Analogical Prompting",
+      "ChainofThought (CoT) Prompting",
+      "ZeroShot CoT",
+      "Universal Self-Adaptive Prompting (USP)",
+      "MemoryofThought Prompting",
+      "XLT Cross-Lingual Thought Prompting"
     ]
   }
 
   {
     "cluster_id":13,
-    "short_name":"LLM-KG Enhanced Reasoning & Planning",
-    "description":"This cluster describes patterns for integrating Large Language Models (LLMs) with Knowledge Graphs (KGs) to achieve faithful, interpretable, and knowledge-grounded reasoning. It addresses LLM limitations by leveraging KG structures through modular frameworks, specialized prompt engineering (e.g., triple-based representation, iterative prompting), and instruction tuning for planning and reasoning tasks.",
+    "short_name":"LLM-KG Enhanced Reasoning",
+    "description":"This cluster details patterns for integrating Large Language Models with Knowledge Graphs to achieve faithful, interpretable, and accurate reasoning. It covers methods for LLMs to plan, retrieve, and reason over KG paths, extract entities, and iteratively guide KG exploration, often leveraging specific prompt engineering or instruction tuning to overcome LLM limitations and utilize structured knowledge effectively.",
     "sub_patterns":[
       "Reasoning on Graphs (RoG) \/ Planning-Retrieval-Reasoning Framework",
-      "Instruction Tuning for LLM-KG Integration",
       "Triple-Based Path Representation in Prompts",
+      "Instruction Tuning for LLM-KG Integration",
+      "LLM-based Topic Entity Extraction",
       "Iterative Prompting for Guided KG Exploration and Reasoning"
     ]
   }
 
   {
     "cluster_id":14,
-    "short_name":"Structured Plan-Solve Reasoning",
-    "description":"This cluster focuses on enhancing LLM reasoning by explicitly prompting them to first devise a plan or strategy for a task, and then execute it step-by-step. This approach encourages task decomposition and structured problem-solving, leading to more robust outcomes for complex reasoning challenges.",
+    "short_name":"LLM Plan-and-Execute Reasoning",
+    "description":"This cluster focuses on improving LLM performance on complex reasoning tasks by prompting them to first generate a structured plan and then execute it step-by-step. It emphasizes task decomposition and a methodical approach to problem-solving.",
     "sub_patterns":[
       "Plan-and-Solve Paradigm",
       "PlanandSolve Prompting"
@@ -180,44 +240,49 @@
 
   {
     "cluster_id":15,
-    "short_name":"LLM-KG Deep Reasoning",
-    "description":"This cluster describes patterns where Large Language Models (LLMs) deeply interact with Knowledge Graphs (KGs) to enhance reasoning, reduce hallucinations, and access up-to-date, structured knowledge. Key themes include LLMs acting as agents for dynamic KG exploration, semantic parsing for precise queries, and integrating KG facts into reasoning processes for verifiable and multi-hop answers.",
+    "short_name":"LLM-KG Agentic Reasoning",
+    "description":"This cluster encompasses patterns where Large Language Models (LLMs) interact dynamically with Knowledge Graphs (KGs) to perform deep, verifiable reasoning. LLMs act as agents to explore, query, and leverage structured knowledge from KGs, mitigating hallucinations and enhancing accuracy for complex, knowledge-intensive tasks like Question Answering. Patterns include various integration strategies, from retrieval augmentation to tight-coupling and iterative exploration frameworks, often with efficiency considerations.",
     "sub_patterns":[
+      "Retrieval-Augmented Generation (RAG) for Knowledge Graphs",
+      "Semantic Parsing for Knowledge Graph Question Answering (KGQA)",
+      "LLM-Guided Beam Search for KG Exploration",
+      "Hybrid Pruning Strategy (LLM + Lightweight Model)",
       "LLM-KG Tight-Coupling Paradigm",
       "ThinkonGraph (ToG) Algorithmic Framework",
-      "Retrieval-Augmented Generation (RAG) for Knowledge Graphs",
-      "LLM-Guided Beam Search for KG Exploration",
-      "Semantic Parsing for Knowledge Graph Question Answering (KGQA)"
+      "KG-Agent Framework (KGAgent, ThinkonGraph)",
+      "Knowledge-Driven Chain-of-Thought (KDCoT) \/ Retrieval-Enhanced Reasoning (RR)"
     ]
   }
 
   {
     "cluster_id":16,
-    "short_name":"Tree\/Graph Reasoning for Search",
-    "description":"This cluster encompasses advanced reasoning patterns like Tree-of-Thoughts (ToT) and Graph-of-Thoughts (GoT). They overcome linear reasoning limitations by structuring thought processes as trees or graphs, enabling LLMs to explore multiple reasoning paths, evaluate intermediate steps, and synthesize information for complex, search-intensive problem-solving, leading to more robust and accurate solutions.",
+    "short_name":"Structured Multi-Path Reasoning",
+    "description":"These patterns extend linear reasoning by modeling problem-solving as a tree or graph of 'thoughts'. They enable exploring multiple reasoning paths, evaluating intermediate steps, and handling complex dependencies for robust solutions.",
     "sub_patterns":[
-      "Tree-of-Thoughts (ToT)",
-      "Graph-of-Thoughts (GoT)"
+      "TreeofThought (ToT)",
+      "Tree of Thoughts (ToT) \/ Graph of Thoughts (GoT)",
+      "Graph-of-Thoughts (GoT)",
+      "Tree-of-Thoughts (ToT)"
     ]
   }
 
   {
     "cluster_id":17,
-    "short_name":"Task Decomposition & Step-by-Step",
-    "description":"This cluster encompasses strategies that break down complex problems into smaller, more manageable subtasks or sequential steps. These patterns aim to improve LLM reasoning and accuracy by addressing components individually, leveraging external tools, or first understanding high-level concepts.",
+    "short_name":"Complex Task Decomposition",
+    "description":"This cluster focuses on strategies that improve LLM performance on complex reasoning tasks by explicitly breaking them down into smaller, more manageable subproblems or sequential steps. Patterns often involve solving these subtasks individually, sometimes leveraging external tools or information retrieval, to build towards a final solution.",
     "sub_patterns":[
       "Decomposed Prompting (DecomP)",
-      "LeasttoMost Prompting",
-      "DemonstrateSearchPredict (DSP)",
       "StepBack Prompting",
-      "Decomposed Prompting (DECOMP)"
+      "Decomposed Prompting (DECOMP)",
+      "DemonstrateSearchPredict (DSP)",
+      "LeasttoMost Prompting"
     ]
   }
 
   {
     "cluster_id":18,
-    "short_name":"ReAct: Iterative Reasoning & Action",
-    "description":"This cluster describes the ReAct pattern, an agentic approach where LLMs or agents iteratively interleave internal 'Thought' (reasoning, planning) with external 'Action' (tool use or environment interaction). 'Observations' from these actions then inform subsequent thoughts, enabling dynamic adaptation, self-correction, and robust problem-solving in interactive environments.",
+    "short_name":"ReAct Agentic Loop",
+    "description":"Agents iteratively interleave reasoning (Thought), actions (Action) with tools\/environment, and observation processing. This enables dynamic interaction, adaptive behavior, and self-correction in complex tasks.",
     "sub_patterns":[
       "Reasoning and Acting (ReAct)",
       "ReACT (Reasoning and Acting)",
@@ -228,34 +293,45 @@
 
   {
     "cluster_id":19,
-    "short_name":"Robust LLM Reasoning & Verification",
-    "description":"This cluster focuses on enhancing LLM reasoning accuracy and reliability by generating diverse outputs or reasoning paths, then employing verification, selection, or refinement strategies (e.g., self-consistency, external knowledge, factual checks) to improve performance, reduce hallucinations, and ensure logical\/factual consistency.",
+    "short_name":"Robust Reasoning & Verification",
+    "description":"This cluster focuses on enhancing LLM reasoning accuracy and reliability. Patterns involve generating multiple diverse reasoning paths or answers, employing various verification and scoring mechanisms, and then selecting or refining the optimal solution through self-correction, external validation, or ensemble methods.",
     "sub_patterns":[
-      "SelfConsistency",
+      "DiVeRSe",
       "ChainofVerification (COVE)",
+      "SelfConsistency",
+      "Universal SelfConsistency",
+      "Automatic Directed CoT (AutoDiCoT)",
+      "Reversing ChainofThought (RCoT)",
+      "SelfVerification",
+      "GEVAL Framework",
       "VerifyandEdit",
       "Faithful Reasoning with Verifier (Entailer)",
-      "DiVeRSe"
+      "Mixture of Reasoning Experts (MoRE)"
     ]
   }
 
   {
     "cluster_id":20,
-    "short_name":"Advanced LLM Reasoning & Alignment",
-    "description":"This cluster encompasses techniques designed to significantly enhance Large Language Model (LLM) capabilities, focusing on complex reasoning, instruction following, and domain adaptation. It includes various Chain-of-Thought (CoT) methods for improved reasoning and explainability, finetuning strategies for domain-specific alignment and instruction adherence, and advanced frameworks for ensuring reasoning faithfulness and training stability.",
+    "short_name":"Advanced LLM Reasoning & Adaptation",
+    "description":"This cluster focuses on advanced techniques to enhance Large Language Model (LLM) capabilities in complex reasoning, instruction following, and domain-specific adaptation. It includes various finetuning methods (Instruction, CoT, Domain-Specific) and sophisticated prompting strategies (CoT, Active, Complexity-based, AutoCoT), often employing multi-model frameworks or planning for improved faithfulness and robustness.",
     "sub_patterns":[
-      "Chain-of-Thought Reasoning",
-      "Instruction Finetuning (IFT)",
+      "Active Prompting",
+      "Complexity-based Prompting",
       "Domain-Specific Finetuning (DSF)",
       "Two-LLM Framework for Reasoning Step Selection and Generation",
-      "KL Regularization in RLHF"
+      "Monte-Carlo Planning for Faithful Reasoning (FAME)",
+      "KL Regularization in RLHF",
+      "Instruction Finetuning (IFT)",
+      "Chain-of-Thought Finetuning",
+      "Automatic ChainofThought (AutoCoT) Prompting",
+      "Chain-of-Thought Reasoning"
     ]
   }
 
   {
     "cluster_id":21,
-    "short_name":"LLM-Powered Integration & Generation",
-    "description":"This cluster leverages Large Language Models (LLMs) to overcome traditional AI limitations by integrating previously separate processes (e.g., retrieval and reasoning), generating high-quality personalized content, or creating synthetic data to address scarcity. It enhances performance, adaptability, and efficiency in complex AI tasks.",
+    "short_name":"LLM-Enhanced Data & Content Generation",
+    "description":"This cluster leverages Large Language Models (LLMs) and generative AI to overcome limitations in data availability, knowledge utilization, and personalized content creation. Patterns involve integrating retrieval and reasoning, generating synthetic data for training, and creating highly customized content based on user intent and feedback.",
     "sub_patterns":[
       "Unified Retrieval and Reasoning",
       "LLMs as Personalized Content Creator",
@@ -266,59 +342,71 @@
   {
     "cluster_id":22,
     "short_name":"Modular LLM Agent Architectures",
-    "description":"This cluster focuses on designing modular architectures around Large Language Models (LLMs) to overcome their inherent limitations. Patterns integrate specialized components like memory, tool-use, planning, and external knowledge to enable autonomous, multi-step agentic behavior, manage cognitive load, and enhance performance and factuality without extensive retraining.",
+    "description":"This cluster focuses on building advanced AI agents by integrating Large Language Models (LLMs) with modular components like memory, tools, and planning. These architectures enhance LLM capabilities, enable autonomous multi-step task execution, manage context, and interact with environments, promoting flexibility and reusability.",
     "sub_patterns":[
       "Agentic Architecture",
-      "Plug-and-Play LLM Augmentation Framework",
       "Modular Reasoning, Knowledge and Language (MRKL) System",
-      "Agentic Working Memory"
+      "Agentic Working Memory",
+      "Plug-and-Play LLM Module",
+      "Plug-and-Play LLM Augmentation Framework",
+      "Cognitive Load Management"
     ]
   }
 
   {
     "cluster_id":23,
-    "short_name":"Explainable AI (XAI) Methods",
-    "description":"This cluster encompasses diverse techniques and frameworks for making machine learning models, especially black-boxes, transparent and understandable. It covers local (instance-specific) and global (model-wide) interpretability, feature importance, counterfactual explanations, identification of divergent subgroup behaviors, and inherently interpretable model design, all aimed at enhancing trust, debugging, and fairness.",
+    "short_name":"Explainable AI (XAI) Techniques",
+    "description":"This cluster encompasses a range of methods and tools focused on making machine learning models, particularly black-boxes, transparent and understandable. It includes techniques for local (instance-specific) and global (overall model) interpretability, feature importance analysis, identifying biases in data subgroups, and interactive exploration to enhance trust, debug models, and provide actionable insights.",
     "sub_patterns":[
       "Counterfactual Explanations",
-      "Partial Dependence Plots (PDPs)",
-      "Permutation Feature Importance",
+      "LACE (Local Agnostic attribute Contribution Explanation)",
       "Inherently Interpretable Models (Interpretability by Design)",
+      "Individual Conditional Expectation (ICE) Plots",
       "DivExplorer (Divergent Subgroup Exploration)",
-      "xPlain (Interactive Human-in-the-Loop Explanation Framework)"
+      "xPlain (Interactive Human-in-the-Loop Explanation Framework)",
+      "Partial Dependence Plots (PDPs)",
+      "DivExplorer Interactive System (Interactive Divergent Subgroup Exploration)",
+      "Permutation Feature Importance"
     ]
   }
 
   {
     "cluster_id":24,
-    "short_name":"LLM Memory & Adaptability",
-    "description":"This cluster addresses core limitations of Large Language Models (LLMs) by enhancing their memory, knowledge management, and adaptability. Patterns focus on augmenting LLMs with external, often human-readable, non-parametric memory for dynamic updates, improved interpretability, and factual grounding. It also covers strategies for managing long contexts, combining different memory types, efficient fine-tuning, and adaptive query processing.",
+    "short_name":"LLM Memory, Knowledge & Adaptation",
+    "description":"This cluster focuses on patterns that enhance Large Language Models by addressing their memory limitations, enabling dynamic knowledge updates, and improving efficiency and adaptability. Key themes include managing various memory types (parametric, non-parametric, short-term, long-term), extending context handling, and optimizing fine-tuning and query processing.",
     "sub_patterns":[
-      "Parametric and Non-Parametric Memory Combination",
-      "Memory Management (Working Memory \/ Short-Term Memory \/ Long-Term Memory)",
       "Index Hotswapping (for Knowledge Updates)",
+      "Human-Readable\/Writable Nonparametric Memory",
+      "Long Context Management for LLMs",
+      "Query Complexity Classifier",
+      "Automatic Classifier Training Data Generation (for Query Complexity)",
       "Efficient LLM Fine-tuning",
-      "Long Context Management for LLMs"
+      "Memory Augmentation for LLMs",
+      "Memory Management (Working Memory \/ Short-Term Memory \/ Long-Term Memory)",
+      "Parametric and Non-Parametric Memory Combination"
     ]
   }
 
   {
     "cluster_id":25,
-    "short_name":"Retrieval-Augmented Generation (RAG)",
-    "description":"This cluster encompasses patterns that enhance Large Language Models (LLMs) by integrating external, up-to-date knowledge. They address LLM limitations like hallucinations and outdated information by retrieving relevant data from external sources and injecting it into the generation process, improving factual accuracy, context, and interpretability across various NLP tasks.",
+    "short_name":"Retrieval Augmented Generation (RAG)",
+    "description":"Patterns in this cluster enhance LLM performance by integrating external, up-to-date knowledge. They mitigate hallucinations and limited domain knowledge by retrieving relevant information from external sources and augmenting the LLM's input, leading to more accurate, factual, and contextually rich responses for knowledge-intensive tasks.",
     "sub_patterns":[
       "Retrieval-Augmented Generation (RAG)",
+      "Iterative Retrieval Augmentation",
+      "Retrieval Augmented Generation (RAG)",
       "Single-step Retrieval-Augmented Generation (Single-step RAG)",
-      "Iterative Retrieval Augmentation"
+      "Retrieval Augmented Generation (RAG)"
     ]
   }
 
   {
     "cluster_id":26,
-    "short_name":"RAG System Performance Enhancements",
-    "description":"This cluster focuses on optimizing Retrieval-Augmented Generation (RAG) systems. Patterns address computational bottlenecks by providing efficient decoding strategies, advanced multilevel caching for retrieved knowledge, and intelligent request scheduling to improve throughput, reduce latency, and maximize resource utilization.",
+    "short_name":"RAG Performance & Decoding",
+    "description":"This cluster encompasses patterns designed to optimize the efficiency, speed, and accuracy of Retrieval-Augmented Generation (RAG) systems. It includes strategies for RAGSequence decoding (balancing speed vs. thoroughness) and advanced caching mechanisms for LLM intermediate states (Key-Value tensors) to reduce computation, improve throughput, and manage memory.",
     "sub_patterns":[
       "Fast Decoding (RAGSequence)",
+      "Thorough Decoding (RAGSequence)",
       "Multilevel Dynamic Knowledge Caching for RAG (RAGCache)",
       "Prefix-aware GreedyDualSizeFrequency (PGDSF) Cache Replacement",
       "Cache-aware Request Reordering for RAG"
@@ -327,8 +415,8 @@
 
   {
     "cluster_id":27,
-    "short_name":"LLM External Knowledge & Tools",
-    "description":"This cluster focuses on enhancing Large Language Models by integrating them with external, dynamic, and up-to-date knowledge sources and interactive tools. Solutions involve controlled web browsing, querying structured databases, and leveraging vector databases for semantic retrieval, all aimed at improving factual accuracy, mitigating hallucinations, and enabling real-world interaction.",
+    "short_name":"LLM External Knowledge Access",
+    "description":"These patterns focus on overcoming LLM knowledge limitations by integrating them with external, dynamic, and up-to-date information sources like the web, databases, or vector stores. This enhances factual accuracy, reduces hallucinations, and enables real-time information access.",
     "sub_patterns":[
       "Browser-Assisted LLM",
       "Knowledge Augmentation",
@@ -339,8 +427,8 @@
 
   {
     "cluster_id":28,
-    "short_name":"Efficient LLM KV Cache Management",
-    "description":"This cluster focuses on advanced techniques for optimizing the Key-Value (KV) cache in Large Language Model (LLM) serving systems. Patterns address memory fragmentation, redundant computation, data transfer overhead in hierarchical caches, and fault tolerance, aiming to significantly improve inference performance, throughput, and memory utilization.",
+    "short_name":"LLM KV Cache Optimization",
+    "description":"This cluster encompasses patterns designed to optimize the Key-Value (KV) cache in Large Language Model (LLM) serving systems. Strategies include reusing cached tensors for shared prefixes, efficient memory management via paging, minimizing data transfer between memory tiers, and enhancing fault tolerance for critical cache components.",
     "sub_patterns":[
       "KV Cache Reuse",
       "PagedAttention",
@@ -351,8 +439,8 @@
 
   {
     "cluster_id":29,
-    "short_name":"AI Tool Integration & Autonomy",
-    "description":"This cluster focuses on empowering foundation models to interact with, understand, create, and autonomously orchestrate external tools to solve complex problems, significantly enhancing their capabilities, efficiency, and problem-solving intelligence.",
+    "short_name":"AI Tooling & Orchestration",
+    "description":"This cluster focuses on how AI models, particularly Foundation Models, extend their capabilities by interacting with, understanding, creating, and orchestrating external tools. It covers methods for models to comprehend tool functionalities via prompting, autonomously generate new tools, compose existing tools in novel ways, and collaborate with other AI agents for complex problem-solving. The overarching goal is to enable AI to tackle real-world, domain-specific tasks more effectively and efficiently.",
     "sub_patterns":[
       "Tool-Augmented Foundation Model",
       "Tool Understanding (via Prompting)",
@@ -364,8 +452,8 @@
 
   {
     "cluster_id":30,
-    "short_name":"AI Planning & Reasoning Strategies",
-    "description":"This cluster details advanced AI planning and reasoning techniques. It covers generating multi-step plans, adapting to dynamic environments, incorporating commonsense, managing long-horizon tasks, ensuring reasoning-action alignment, and satisfying complex constraints for robust and feasible outcomes.",
+    "short_name":"Robust Agent Planning Strategies",
+    "description":"This cluster encompasses patterns that enable AI agents to generate effective, coherent, and realistic multi-step plans. It covers strategies for both static and dynamic planning, incorporating real-world knowledge and constraints, managing long-term complexity, and ensuring alignment between internal reasoning and external actions.",
     "sub_patterns":[
       "Planning with Introspective Reasoning",
       "Planning with Extrospective Reasoning",
@@ -378,8 +466,8 @@
 
   {
     "cluster_id":31,
-    "short_name":"Advanced Tool Learning Strategies",
-    "description":"This cluster describes advanced strategies for AI models to learn and adapt tool usage. It covers generalizing tool-use knowledge, personalizing interactions for users, and structuring learning for complex tool mastery, aiming for intelligent and adaptable tool utilization.",
+    "short_name":"Advanced AI Tool Learning",
+    "description":"This cluster describes advanced methods for AI models to learn and adapt tool use. It includes learning optimal strategies (meta-learning), personalizing interactions for users, and progressive mastery of complex tools, aiming for enhanced adaptability and efficiency.",
     "sub_patterns":[
       "Meta Tool Learning",
       "Personalized Tool Learning",
@@ -390,7 +478,7 @@
   {
     "cluster_id":32,
     "short_name":"Tool-Augmented Code Generation",
-    "description":"This cluster focuses on enhancing foundation models for code generation by integrating external tools. This approach addresses limitations in context-specificity and and accuracy, enabling models to dynamically consult resources like API search engines or testing environments for more robust and real-world applicable code.",
+    "description":"This cluster focuses on enhancing foundation models for code generation by integrating external tools (e.g., API search, testing environments). This allows models to dynamically consult resources, improving accuracy, context-specificity, and handling complex, real-world software engineering tasks interactively.",
     "sub_patterns":[
       "Code Generation with Tool Integration"
     ]
@@ -398,8 +486,8 @@
 
   {
     "cluster_id":33,
-    "short_name":"LLM External Tool Integration",
-    "description":"Enhances LLM reasoning by integrating external computational tools or formalisms. Addresses natural language limitations for complex, precise tasks through cyclical tool interaction or structured framework incorporation, improving performance and control.",
+    "short_name":"Enhanced Reasoning with External Tools",
+    "description":"This cluster focuses on augmenting LLM reasoning capabilities by integrating external computational tools or formalisms. It addresses the limitations of natural language for complex, precise, or structured tasks by creating synergistic loops or incorporating structured frameworks to improve performance and control.",
     "sub_patterns":[
       "Tool-Integrated Reasoning Loop",
       "Formalism-Enhanced Reasoning"
@@ -408,8 +496,8 @@
 
   {
     "cluster_id":34,
-    "short_name":"Multi-Tool Orchestration Strategies",
-    "description":"This cluster describes strategies for orchestrating multiple tools or subtasks to complete complex tasks. It covers managing dependencies and sequencing for sequential execution, and leveraging concurrency for independent subtasks to optimize efficiency.",
+    "short_name":"Multi-Tool Workflow Orchestration",
+    "description":"This cluster focuses on optimizing the execution of multiple tools or subtasks within complex workflows. It addresses both the sequential management of inter-tool dependencies and the parallel execution of independent subtasks to enhance efficiency and task completion.",
     "sub_patterns":[
       "Inter-Tool Dependency Management",
       "Parallel Tool Execution"
@@ -419,10 +507,11 @@
   {
     "cluster_id":35,
     "short_name":"Adaptive Agents for Complex Worlds",
-    "description":"This cluster focuses on advanced agent capabilities for autonomous learning, self-correction, and robust planning in complex, dynamic environments. Patterns involve agents learning from experience, reflecting on past actions, using feedback loops to refine behavior, and employing internal world models or hierarchical planning to achieve goals in open-ended settings.",
+    "description":"This cluster focuses on patterns that enable AI agents to learn, adapt, and self-correct in complex, dynamic, and open-world environments. Key mechanisms include introspection, feedback loops, internal world models for simulation-based planning, and structured approaches to skill acquisition and goal decomposition, often leveraging memory and iterative refinement.",
     "sub_patterns":[
-      "Reflexion",
       "Voyager",
+      "Reflexion",
+      "Feedback Loop \/ Self-Correction",
       "World Model \/ Simulation-based Planning",
       "Ghost in the Minecraft (GITM)"
     ]
@@ -430,8 +519,8 @@
 
   {
     "cluster_id":36,
-    "short_name":"Structured Output Generation",
-    "description":"This cluster focuses on patterns for compelling LLMs to generate information in specific, machine-readable structured formats (e.g., JSON, XML, CSV, Markdown) rather than free-form text, primarily for automated parsing, integration, and evaluation by downstream systems.",
+    "short_name":"Structured Output & Formatting",
+    "description":"This cluster focuses on patterns for guiding LLMs to generate responses in specific, machine-readable formats (e.g., JSON, XML, CSV) rather than free-form text. This facilitates automated parsing, integration with other systems, and consistent data extraction.",
     "sub_patterns":[
       "Structured Output \/ Plan Generation",
       "Output Formatting"
@@ -440,19 +529,21 @@
 
   {
     "cluster_id":37,
-    "short_name":"Programmatic Reasoning with Tools",
-    "description":"This cluster focuses on patterns that enhance LLM reasoning by generating and executing code or leveraging external tools (e.g., interpreters, libraries, plugins). These approaches are particularly effective for complex mathematical, logical, and programming tasks, often by interleaving natural language reasoning with precise computational steps.",
+    "short_name":"Code-Enhanced Reasoning & Tools",
+    "description":"These patterns enhance LLM capabilities for complex mathematical, programming, and logical tasks by integrating code generation and execution. They interleave natural language reasoning with program-based tool use, leveraging interpreters or custom plugins for precise computation and dynamic problem-solving.",
     "sub_patterns":[
+      "Faithful ChainofThought",
       "ProgramofThoughts",
-      "Tool-Integrated Reasoning Agent (TORA)",
-      "Faithful ChainofThought"
+      "Tool-Integrated Reasoning Agent (ToRA)",
+      "TaskWeaver",
+      "Tool-Integrated Reasoning Agent (TORA)"
     ]
   }
 
   {
     "cluster_id":38,
-    "short_name":"Interactive Data for LLM Agents",
-    "description":"This cluster focuses on methods for generating, curating, and leveraging high-quality, structured interactive data (especially tool-use trajectories) to train LLMs for complex agentic or tool-integrated behaviors. Patterns address data scarcity by using powerful LLMs for synthetic data generation, few-shot prompting, and multi-stage policy learning.",
+    "short_name":"Interactive LLM Tool-Use Training",
+    "description":"This cluster focuses on methods for training LLMs to effectively use tools and perform complex, interactive tasks. It emphasizes overcoming data scarcity through synthetic data generation (e.g., using powerful LLMs or simulators) and structured data curation, followed by imitation or staged policy learning to enable robust agentic behaviors.",
     "sub_patterns":[
       "Staged Policy Learning for Agentic LLMs",
       "Interactive Tool Use Trajectory Curation",
@@ -464,16 +555,16 @@
   {
     "cluster_id":39,
     "short_name":"LLM Code Execution for Precision",
-    "description":"This cluster focuses on augmenting LLMs with external code execution capabilities to overcome their limitations in precise computation, symbolic manipulation, and complex algorithmic tasks. LLMs generate code, which is then run by an interpreter, and the results are integrated back into the LLM's reasoning.",
+    "description":"This cluster focuses on augmenting LLMs with external code execution capabilities to achieve precise numerical computation, symbolic manipulation, and complex algorithmic execution, overcoming the inherent limitations of natural language reasoning.",
     "sub_patterns":[
       "Program-Aided Language Models (PAL) Prompting"
     ]
   }
 
   {
-    "cluster_id":40,
-    "short_name":"Iterative Self-Correction",
-    "description":"This cluster focuses on patterns where AI agents iteratively detect and correct errors in complex, multi-step tasks, especially when integrating external tools. It involves analyzing feedback, identifying issues, and re-planning to achieve robust and accurate problem-solving.",
+    "cluster_id":1,
+    "short_name":"Iterative Error Correction",
+    "description":"This cluster focuses on patterns where an AI agent iteratively corrects its errors and refines its approach based on feedback, especially from external tools, to achieve robustness and accuracy in complex, multi-step tasks.",
     "sub_patterns":[
       "Multi-Round Self-Correction"
     ]
@@ -481,33 +572,38 @@
 
   {
     "cluster_id":41,
-    "short_name":"RAG System Architecture & Training",
-    "description":"This cluster details patterns for building, optimizing, and training Retrieval Augmented Generation (RAG) systems. It covers core components like dense passage retrievers and generative language models, efficient knowledge base management, and various end-to-end training strategies for knowledge-intensive NLP tasks.",
+    "short_name":"RAG Architecture & Optimization",
+    "description":"This cluster encompasses patterns for building, optimizing, and training Retrieval Augmented Generation (RAG) systems. It covers dense semantic retrieval, efficient knowledge base indexing, leveraging pretrained generative models, and advanced training strategies for scalability and domain adaptation in knowledge-intensive NLP tasks.",
     "sub_patterns":[
       "Dense Passage Retrieval (DPR)",
-      "Denoising Sequence-to-Sequence Pretraining (BART-like)",
+      "Pretrained Component Integration (Retriever & Generator)",
       "FAISS Indexing for Efficient Retrieval",
+      "Denoising Sequence-to-Sequence Pretraining (BART-like)",
+      "Open-Book Question Answering with InContext RALM",
+      "Asynchronous Knowledge Base Updates",
+      "Control Token for Multi-task Generative Models",
+      "End-to-End Retriever Training (for RAG Domain Adaptation)",
       "End-to-End Joint Training (Retriever-Generator)",
-      "Asynchronous Knowledge Base Updates"
+      "Fixed Document Index (during Fine-tuning)"
     ]
   }
 
   {
     "cluster_id":42,
-    "short_name":"InContext RALM & Enhancements",
-    "description":"This cluster focuses on enhancing Language Model performance and grounding by prepending external knowledge. It covers the core InContext Retrieval-Augmented Language Modeling (RALM) technique and advanced strategies for optimizing document retrieval and selection for improved efficiency and accuracy.",
+    "short_name":"InContext RALM Optimization",
+    "description":"This cluster describes patterns for enhancing and optimizing InContext Retrieval-Augmented Language Models (RALM). It includes methods for dynamically deciding when to retrieve knowledge and sophisticated techniques for reranking and selecting the most relevant documents to improve LM performance, accuracy, and efficiency, often without modifying the LM itself.",
     "sub_patterns":[
-      "InContext Retrieval-Augmented Language Modeling (InContext RALM)",
       "Predictive Reranking (Trained LM-Dedicated Reranker)",
       "Conditional Retrieval",
+      "InContext Retrieval-Augmented Language Modeling (InContext RALM)",
       "Zero-Shot LM Reranking"
     ]
   }
 
   {
     "cluster_id":43,
-    "short_name":"LLM Tooling & Orchestration",
-    "description":"This cluster focuses on strategies for enhancing Large Language Models (LLMs) by integrating them with external specialized tools. It covers how LLMs overcome limitations (e.g., hallucination, reasoning, knowledge gaps) by leveraging tools, learning tool usage effectively through in-context examples, and managing the necessary contextual information within their limited context windows for effective orchestration.",
+    "short_name":"LLM Tool Integration & Management",
+    "description":"This cluster encompasses patterns for enhancing Large Language Models (LLMs) by integrating them with external tools. It covers strategies for leveraging specialized tools, managing the context window for effective tool interaction, and enabling LLMs to learn and orchestrate tool use efficiently to overcome limitations like hallucination and lack of real-time data.",
     "sub_patterns":[
       "Tool Augmentation",
       "Context Window Management",
@@ -518,34 +614,35 @@
 
   {
     "cluster_id":44,
-    "short_name":"Prompting Strategies & Optimization",
-    "description":"This cluster focuses on diverse techniques for designing, optimizing, and enhancing prompts to effectively guide Generative AI models. It covers methods for providing examples (zero-shot, few-shot, self-generated), assigning specific roles or styles, and automating prompt generation to achieve desired outputs and improve model performance.",
+    "short_name":"GenAI Prompting Strategies",
+    "description":"This cluster encompasses various techniques for designing and optimizing prompts to guide Generative AI models. It includes methods for providing examples (FewShot, SGICL), defining roles or styles (Role, Style Prompting), automating prompt optimization (APE), and the fundamental instruction-only approach (ZeroShot).",
     "sub_patterns":[
-      "FewShot Prompting",
-      "ZeroShot Prompting",
+      "Self-Generated InContext Learning (SGICL)",
       "Role Prompting",
-      "Style Prompting",
       "Automatic Prompt Engineer (APE)",
-      "Self-Generated InContext Learning (SGICL)"
+      "Style Prompting",
+      "ZeroShot Prompting",
+      "FewShot Prompting"
     ]
   }
 
   {
     "cluster_id":45,
-    "short_name":"Strategic Input & Exemplar Optimization",
-    "description":"This cluster encompasses advanced prompting techniques focused on optimizing LLM performance by strategically structuring and presenting input. It includes methods for enhancing question comprehension through re-processing and improving few-shot learning via intelligent exemplar selection and ordering.",
+    "short_name":"Prompt Optimization & Reasoning",
+    "description":"This cluster encompasses advanced prompt engineering techniques aimed at enhancing LLM performance, particularly in reasoning, query comprehension, and few-shot learning through strategic exemplar selection and arrangement.",
     "sub_patterns":[
       "Rereading (RE2)",
-      "Rephrase and Respond (RaR)",
       "KNN Exemplar Selection",
-      "Exemplar Ordering"
+      "Exemplar Ordering",
+      "Rephrase and Respond (RaR)",
+      "VoteK Exemplar Selection"
     ]
   }
 
   {
     "cluster_id":46,
-    "short_name":"Prompt Optimization & Orchestration",
-    "description":"This cluster encompasses advanced strategies for generating, refining, and sequencing prompts to maximize LLM performance and tackle complex, multi-step problems. It includes automated prompt creation, discovery of optimal prompt structures, and chaining prompts for intricate workflows.",
+    "short_name":"Advanced Prompt Engineering",
+    "description":"This cluster focuses on techniques for generating, optimizing, and structuring prompts to enhance LLM performance. It includes methods for automated prompt creation, discovery of optimal prompt formats, selection of best templates, and chaining prompts for complex, multi-step problem-solving.",
     "sub_patterns":[
       "Meta Prompting",
       "Prompt Mining",
@@ -557,8 +654,8 @@
 
   {
     "cluster_id":47,
-    "short_name":"Multi-Step Reasoning & Refinement",
-    "description":"This cluster encompasses patterns designed to enhance LLM reasoning, accuracy, and efficiency through structured, multi-step interactions. They involve decomposing complex problems, refining inputs, or recursively solving subproblems to overcome limitations like irrelevant information, context length, and intricate logical dependencies.",
+    "short_name":"Structured LLM Interaction",
+    "description":"This cluster comprises patterns that enhance LLM performance on complex tasks through structured, multi-step interactions. Techniques involve decomposing problems, refining inputs, or recursively processing subproblems to improve speed, accuracy, and reasoning by managing context and irrelevant information.",
     "sub_patterns":[
       "SkeletonofThought",
       "System 2 Attention (S2A)",
@@ -569,8 +666,8 @@
 
   {
     "cluster_id":48,
-    "short_name":"Advanced CoT Reasoning Techniques",
-    "description":"This cluster focuses on sophisticated Chain-of-Thought (CoT) prompting methods to enhance LLM reasoning accuracy, robustness, and output structure. Techniques include handling uncertainty, providing contrastive examples, meta-reasoning over multiple chains, and structuring outputs.",
+    "short_name":"Structured & Robust CoT Reasoning",
+    "description":"This cluster focuses on advanced Chain-of-Thought (CoT) prompting techniques designed to enhance reasoning accuracy, structure, and robustness. Patterns include methods for handling uncertainty in reasoning paths, explicitly guiding the LLM away from incorrect reasoning, consolidating multiple reasoning attempts, and structuring CoT outputs for clarity.",
     "sub_patterns":[
       "Uncertainty-Routed CoT Prompting",
       "Contrastive CoT Prompting",
@@ -581,21 +678,22 @@
 
   {
     "cluster_id":49,
-    "short_name":"Mitigating Bias & Enhancing Fairness",
-    "description":"This cluster focuses on strategies to enhance LLM fairness, robustness, and ethical behavior. It includes methods for mitigating various biases, ensuring cultural sensitivity, generating balanced and diverse outputs, and aggregating information comprehensively to prevent skewed perspectives.",
+    "short_name":"Bias Mitigation & Output Quality",
+    "description":"This cluster encompasses patterns designed to mitigate biases, enhance fairness, and improve the overall quality, robustness, and cultural relevance of LLM outputs. Techniques include balanced data selection, attribute variation, and critical evidence aggregation.",
     "sub_patterns":[
-      "Bias-Aware Design & Mitigation",
-      "Selecting Balanced Demonstrations (for bias mitigation)",
-      "Debate-Style Evidence Aggregation",
       "Cultural Awareness (for cultural adaptation)",
-      "AttrPrompt"
+      "Demonstration Ensembling (DENSE)",
+      "Selecting Balanced Demonstrations (for bias mitigation)",
+      "AttrPrompt",
+      "Bias-Aware Design & Mitigation",
+      "Debate-Style Evidence Aggregation"
     ]
   }
 
   {
     "cluster_id":50,
     "short_name":"Prompt & ICL Optimization",
-    "description":"This cluster focuses on advanced techniques to optimize prompt construction and In-Context Learning (ICL) performance. Patterns address generating diverse prompts, handling ambiguous inputs, and strategically aligning in-context examples to improve model robustness and accuracy across various tasks, including multilingual scenarios.",
+    "description":"This cluster focuses on advanced techniques for optimizing prompt construction and in-context learning (ICL) demonstrations. Patterns address challenges like generating diverse prompts, handling ambiguous inputs, and aligning examples for multilingual tasks to enhance model performance and robustness.",
     "sub_patterns":[
       "Prompt Paraphrasing",
       "Ambiguous Demonstrations",
@@ -605,33 +703,36 @@
 
   {
     "cluster_id":51,
-    "short_name":"LLM Prompt Optimization & Efficiency",
-    "description":"This cluster focuses on techniques to automatically optimize LLM prompts and improve the computational efficiency of LLM interactions. It includes methods for iterative prompt refinement using LLM feedback and strategies for batching multiple tasks into single LLM calls to reduce cost and latency.",
+    "short_name":"LLM Optimization & Batching",
+    "description":"This cluster focuses on advanced techniques to optimize interactions with Large Language Models. It includes methods for automated prompt improvement through iterative refinement or gradient-free search, as well as strategies for enhancing computational efficiency and reducing costs by batching multiple inputs or candidates into single LLM calls for evaluation or pruning tasks.",
     "sub_patterns":[
       "Gradient-free Instructional Prompt Search (GrIPS)",
-      "Prompt Optimization with Textual Gradients (ProTeGi)",
       "Batch Prompting (for Evaluation)",
+      "Prompt Optimization with Textual Gradients (ProTeGi)",
       "Batch Prompting for Pruning"
     ]
   }
 
   {
     "cluster_id":52,
-    "short_name":"Enhanced Machine Translation Prompts",
-    "description":"This cluster comprises prompting techniques aimed at improving Machine Translation (MT) and cross-lingual performance. Strategies include leveraging external knowledge (dictionaries, exemplars), iterative refinement, human-in-the-loop interaction, handling long texts, and adapting for non-English or low-resource languages.",
+    "short_name":"Advanced MT Prompting",
+    "description":"This cluster encompasses prompting strategies designed to enhance machine translation quality and accuracy. Techniques include iterative refinement, leveraging external linguistic resources, task decomposition, cross-lingual transfer, and human-in-the-loop interaction to address challenges like ambiguity, long texts, and low-resource languages.",
     "sub_patterns":[
       "Iterative Prompting (for MT)",
       "Translate First Prompting",
+      "Dictionary-based Prompting for Machine Translation (DiPMT)",
       "Decomposed Prompting for MT (DecoMT)",
+      "InteractiveChainPrompting (ICP)",
       "ChainofDictionary (CoD)",
-      "InteractiveChainPrompting (ICP)"
+      "PARC Prompts Augmented by Retrieval Cross-lingually",
+      "Multi-Aspect Prompting and Selection (MAPS)"
     ]
   }
 
   {
     "cluster_id":53,
-    "short_name":"Cross-lingual In-Context Transfer",
-    "description":"This cluster focuses on methods to enhance multilingual LLM performance on cross-lingual tasks by leveraging both source and target languages within in-context learning examples, stimulating the model's cross-lingual cognitive capabilities.",
+    "short_name":"Cross-lingual LLM Prompting",
+    "description":"This cluster focuses on methods to boost the cross-lingual cognitive capabilities of multilingual LLMs. It involves leveraging both source and target languages for in-context examples to improve performance on cross-lingual tasks.",
     "sub_patterns":[
       "InCLT Crosslingual Transfer Prompting"
     ]
@@ -640,20 +741,21 @@
   {
     "cluster_id":54,
     "short_name":"Multimodal Generative Prompting",
-    "description":"This cluster encompasses advanced prompting techniques designed to control, generate, and refine multimodal AI outputs, including images, 3D content, and segmentation masks. It focuses on guiding generative models, demonstrating transformations, and fine-tuning specific attributes or preventing undesired elements.",
+    "description":"This cluster encompasses advanced prompting techniques primarily focused on controlling and guiding AI models for generating, manipulating, or understanding multimodal content, such as images and 3D objects. Patterns involve using various prompt formats (text, image, 3D) to achieve specific creative outcomes, apply transformations, or prevent undesired elements.",
     "sub_patterns":[
       "Segmentation Prompting",
+      "ImageasText Prompting",
       "PairedImage Prompting",
-      "Negative Prompting",
       "3D Prompting",
-      "ImageasText Prompting"
+      "Negative Prompting",
+      "Prompt Modifiers"
     ]
   }
 
   {
     "cluster_id":55,
-    "short_name":"Multimodal Step-by-Step Reasoning",
-    "description":"This cluster describes patterns that extend established reasoning techniques (e.g., Chain-of-Thought, Graph-of-Thought) to multimodal inputs. They enable complex visual-linguistic problem-solving by breaking down tasks into intermediate steps, which may involve generating visual elements or structured sub-questions for robust reasoning.",
+    "short_name":"Multimodal Reasoning Extensions",
+    "description":"This cluster comprises patterns that extend established text-based reasoning techniques (like Chain-of-Thought, Graph-of-Thought, and Least-to-Most) to the multimodal domain. They enable complex problem-solving by integrating visual context and generating intermediate steps or representations (e.g., thought graphs, images, sub-questions) across different modalities.",
     "sub_patterns":[
       "Multimodal GraphofThought",
       "ChainofImages (CoI)",
@@ -663,8 +765,8 @@
 
   {
     "cluster_id":56,
-    "short_name":"LLM Agentic Control & Tools",
-    "description":"This cluster focuses on empowering Large Language Models (LLMs) to act as intelligent agents. It covers patterns for providing structured environmental context, defining specific action spaces, orchestrating multi-step interactions with external tools via a policy, and offloading complex computations to code interpreters.",
+    "short_name":"Agentic LLM Interaction & Tools",
+    "description":"This cluster focuses on enabling Large Language Models (LLMs) to act as intelligent agents, interacting with external environments and tools. Patterns address structuring LLM inputs (state), outputs (actions\/code), and decision-making (policy) to facilitate deterministic and effective task execution beyond free-form text generation.",
     "sub_patterns":[
       "Program-aided Language Model (PAL)",
       "Structured Action Space for Agentic LLM",
@@ -675,8 +777,8 @@
 
   {
     "cluster_id":57,
-    "short_name":"Multi-Agent Role-Based Evaluation",
-    "description":"This cluster focuses on enhancing LLM evaluation by assigning distinct roles or personas to AI agents, often within a multi-agent debate framework, to generate diverse, robust, and comprehensive assessments.",
+    "short_name":"Role-Based LLM Evaluation",
+    "description":"Enhances LLM evaluation by assigning distinct roles or personas to AI agents. Often uses a multi-agent debate framework to generate diverse perspectives and achieve more robust and nuanced assessments.",
     "sub_patterns":[
       "ChatEval Framework",
       "Role-based Evaluation"
@@ -685,8 +787,8 @@
 
   {
     "cluster_id":58,
-    "short_name":"Adaptive LLM-KG Frameworks",
-    "description":"This cluster focuses on designing flexible, efficient, and robust frameworks for integrating Large Language Models (LLMs) with Knowledge Graphs (KGs). Patterns address challenges like computational cost, reliance on potentially problematic entity information, and the need for adaptable systems that can swap different LLMs or KGs without extensive re-engineering. The core idea is to abstract interactions and optimize reasoning strategies for better performance and generality.",
+    "short_name":"Flexible LLM-KG Integration",
+    "description":"This cluster focuses on designing flexible and cost-effective frameworks for integrating LLMs with Knowledge Graphs. Patterns address computational expense, rigid architectures, and problematic entity information by emphasizing modularity, abstraction, and strategic LLM interaction to enhance efficiency, adaptability, and robustness.",
     "sub_patterns":[
       "Relation-Based Reasoning (ToGR)",
       "Plug-and-Play LLM-KG Integration"
@@ -696,22 +798,22 @@
   {
     "cluster_id":59,
     "short_name":"LLM Tool Use & API Integration",
-    "description":"This cluster details patterns for empowering Large Language Models (LLMs) to effectively interact with external APIs and tools. It covers structuring API documentation, generating synthetic training data, finetuning LLMs for dynamic retrieval and constraint-aware selection, and robustly evaluating generated API calls to mitigate hallucination and ensure reliability in dynamic environments.",
+    "description":"This cluster focuses on patterns for enabling Large Language Models (LLMs) to reliably and accurately interact with external APIs and tools. It encompasses structured API documentation, synthetic data generation, retriever-aware finetuning, constraint-aware API selection, robust evaluation of generated API calls, and fallback mechanisms for external knowledge limitations.",
     "sub_patterns":[
       "LLM-API Integration System",
-      "Retriever-Aware Training (RAT)",
-      "Self-Instruct Finetuning for API Generation",
-      "Structured API Documentation for LLM Consumption",
       "AST-based Hallucination Detection for Code Generation",
+      "Structured API Documentation for LLM Consumption",
+      "LLM Fallback to Inherent Knowledge",
       "Constraint-Aware API Selection",
-      "LLM Fallback to Inherent Knowledge"
+      "Self-Instruct Finetuning for API Generation",
+      "Retriever-Aware Training (RAT)"
     ]
   }
 
   {
     "cluster_id":60,
     "short_name":"LLMs for Recommender Systems",
-    "description":"This cluster encompasses diverse applications where Large Language Models (LLMs) are integrated into recommender systems. LLMs are leveraged for direct recommendation generation, powering conversational interfaces, interpreting content semantics, enriching knowledge bases, automating machine learning processes, and generating transparent explanations. The core theme is harnessing LLMs' advanced language processing, reasoning, and knowledge capabilities to enhance personalization, accuracy, efficiency, and user trust in recommendations.",
+    "description":"This cluster details how Large Language Models (LLMs) are leveraged across various aspects of recommender systems. It covers their use for direct recommendation, conversational interaction, deep content interpretation, knowledge graph enrichment, automating ML selection, and generating transparent explanations.",
     "sub_patterns":[
       "LLMs for Direct Recommendation (In-context Learning & CoT)",
       "LLMs as Conversational Agent",
@@ -725,12 +827,13 @@
   {
     "cluster_id":61,
     "short_name":"LLM Agent Training & Alignment",
-    "description":"This cluster describes methods for training and aligning LLMs, especially for agentic and multi-step tasks. It combines human demonstrations for initial skill acquisition (Behavior Cloning) with human preference data (Reward Modeling) for quality optimization and alignment (RLHF, Rejection Sampling). Techniques also address improving RL sample efficiency.",
+    "description":"This cluster encompasses advanced techniques for training and optimizing large language models, especially for complex, multi-step agentic tasks. It leverages human feedback (demonstrations and preferences) for initial skill acquisition, alignment with human values, and efficient reinforcement learning, often combining methods like Behavior Cloning, Reward Modeling, and inference-time selection.",
     "sub_patterns":[
+      "Rejection Sampling (Best-of-N)",
       "Human Feedback for Quality Optimization (Reward Modeling & RLHF)",
-      "Behavior Cloning for Initial Skill Acquisition",
       "Dual Data Collection for Agentic LLM Training",
-      "Rejection Sampling (Best-of-N)"
+      "Behavior Cloning for Initial Skill Acquisition",
+      "Sample-Efficient RL with Reference Reuse"
     ]
   }
 
