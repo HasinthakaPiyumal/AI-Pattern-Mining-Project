@@ -12,3 +12,4 @@ notebooks/**/*.csv
 !**/summarized_patterns/raw/**/*.csv
 data.csv
 models/
+!outputs/prompt & rag/20251028_085918 - Run /extracted_patterns/descripted_patterns.csv
