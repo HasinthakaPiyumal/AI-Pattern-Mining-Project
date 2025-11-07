@@ -28,8 +28,8 @@ class Config:
         self.PAPER_FOLDER = os.path.join(self.ROOT, "data/raw/papers", self.TAG)
         self.CLEANED_FOLDER = os.path.join(self.ROOT, "data/cleaned/papers", self.TAG)
         self.PATTERNS_FOLDER = os.path.join(self.RUN_OUTPUT, "extracted_patterns")
-        self.PATTERNS_FILE = os.path.join(self.PATTERNS_FOLDER, "summarized_patterns_iter_02_v0.2.json")
-        self.PATTERN_EMBEDDINGS_FILE = os.path.join(self.RUN_OUTPUT, "pattern_embeddings_summarized_iter_02.csv")
+        self.PATTERNS_FILE = os.path.join(self.PATTERNS_FOLDER, "descripted_patterns.csv")
+        self.PATTERN_EMBEDDINGS_FILE = os.path.join(self.RUN_OUTPUT, "pattern_embeddings_v2.csv")
 
         self.CLEANED = False
         self._initialized = True

@@ -3,7 +3,10 @@ import pandas as pd,os,json,time
 from utils.json_utils import load_json_from_file
 from config.settings import Config
 def get_embedding_model():
-    return GoogleGenerativeAIEmbeddings(model="models/gemini-embedding-001")
+    return GoogleGenerativeAIEmbeddings(
+        model="models/gemini-embedding-001",
+        task_type="clustering"
+        )
 
 def generate_embeddings(texts):
     embedding_model = get_embedding_model()
@@ -14,15 +17,16 @@ def pattern_combiner(patterns):
     combined_patterns = []
 
     for pattern in patterns:
-        pattern_text = f"<PatternName>{pattern.get('Pattern Name', 'Unnamed Pattern')}</PatternName>\n"
-        pattern_text += f"<Problem>{pattern.get('Problem', '')}</Problem>\n"
-        pattern_text += f"<Context>{pattern.get('Context', '')}</Context>\n"
-        pattern_text += f"<Solution>{pattern.get('Solution', '')}</Solution>\n"
-        pattern_text += f"<Result>{str(pattern.get('Result', ''))}</Result>\n"
-        pattern_text += f"<Uses>\n"
-        pattern_text += f"{str(pattern.get('Uses', []))}\n"
-        pattern_text += f"</Uses>\n"
-        combined_patterns.append(pattern_text)
+        combined_patterns.append(pattern.get('Description', ''))
+        # pattern_text = f"<PatternName>{pattern.get('Pattern Name', 'Unnamed Pattern')}</PatternName>\n"
+        # pattern_text += f"<Problem>{pattern.get('Problem', '')}</Problem>\n"
+        # pattern_text += f"<Context>{pattern.get('Context', '')}</Context>\n"
+        # pattern_text += f"<Solution>{pattern.get('Solution', '')}</Solution>\n"
+        # pattern_text += f"<Result>{str(pattern.get('Result', ''))}</Result>\n"
+        # pattern_text += f"<Uses>\n"
+        # pattern_text += f"{str(pattern.get('Uses', []))}\n"
+        # pattern_text += f"</Uses>\n"
+        # combined_patterns.append(pattern_text)
     return combined_patterns
 
 def save_embeddings(embeddings,patterns):
@@ -36,6 +40,7 @@ def save_embeddings(embeddings,patterns):
         df2['Solution'] = [pattern.get('Solution', '') for pattern in patterns]
         df2['Result'] = [str(pattern.get('Result', '')) for pattern in patterns]
         df2['Uses'] = [str(pattern.get('Uses', [])) for pattern in patterns]
+        df2['Description'] = [str(pattern.get('Description', '')) for pattern in patterns]
         df = pd.concat([df1, df2], ignore_index=True)
         df.to_csv(file_path, index=False)
     else:
@@ -46,4 +51,5 @@ def save_embeddings(embeddings,patterns):
         df['Solution'] = [pattern.get('Solution', '') for pattern in patterns]
         df['Result'] = [str(pattern.get('Result', '')) for pattern in patterns]
         df['Uses'] = [str(pattern.get('Uses', [])) for pattern in patterns]
+        df['Description'] = [str(pattern.get('Description', '')) for pattern in patterns]
         df.to_csv(file_path, index=False)

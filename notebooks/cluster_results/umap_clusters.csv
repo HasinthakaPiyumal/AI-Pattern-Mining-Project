@@ -1,350 +1,350 @@
 Pattern Name,cluster
 External Knowledge Augmentation,0
-Domain-Specific Tool Integration,0
-Multimodal Interaction Augmentation,0
-Knowledge Conflict Resolution (in Tool Augmentation),0
-Tool-Augmented Foundation Model,0
-Tool Augmentation,0
-Retrieval Augmentation,0
-Knowledge Augmentation,0
-LLM-based Tool Learning,0
-"Modular Reasoning, Knowledge and Language (MRKL) System",0
+Modular Knowledge Consolidation Pipeline,0
+Parameter Extraction and Tool Invocation,1
+Domain-Specific Tool Integration,1
+Tool Retrieval and Selection,1
 Tool Use / Tool Augmentation,1
-Task Automation via Tools,1
+Tool Orchestration / Chaining,1
+Robust Tool-Augmented Processing,2
+Human-in-the-Loop Data Collection Interface,2
+Reference-Supported Generation,2
 Trust Calibration through Transparency,2
-Inherently Interpretable Models (Interpretability by Design),2
-LACE (Local Agnostic attribute Contribution Explanation),2
-Counterfactual Explanations,2
+Prompt-based Defenses,2
+Knowledge Traceability and Correctability via Explicit Reasoning Paths,2
+Progressive Response Disclosure,2
+Task Automation via Tools,2
+Tool-Augmented Response Synthesis,2
 Transparent Tool-Use Reasoning,2
-xPlain (Interactive Human-in-the-Loop Explanation Framework),2
-Prompt-based Defenses,3
-Robust Tool-Augmented Processing,3
+Multimodal Interaction Augmentation,3
+Intent Understanding,3
 Iterative Task Solving (with Feedback),4
-Multi-Round Self-Correction,4
-Feedback Loop / Self-Correction,4
+SelfAsk,4
 Self-Correcting with Tool-Interactive Critiquing (CRITIC),4
+Hybrid Utility Function Design,4
+Iterative Self-Correction with Automated Feedback,4
+SelfRefine,4
 Self-Correction / Feedback Loop,4
-Inter-Tool Dependency Management,5
-Task Decomposition,5
-Query Decomposition for Multi-hop QA,5
-Tool-Augmented Response Synthesis,5
-Parameter Extraction and Tool Invocation,5
-Tool Retrieval and Selection,5
-Tool Orchestration / Chaining,5
-Emergent Tool Composition,5
+Question Clarification,4
+Self-Evaluation and Termination Condition (for iterative reasoning),4
 Task Decomposition,5
 Task Decomposition and Planning,5
-Prompt Chain,5
-DemonstrateSearchPredict (DSP),5
 Planning,5
-Meta Prompting,6
-Prompt Paraphrasing,6
-Code Generation with Tool Integration,6
+Task Decomposition,5
+Backtracking / Heuristic Search,5
+Perceiver (Feedback Processing),6
+Learning from Feedback (Reinforcement Learning for Tool Use),6
+Knowledge Conflict Resolution (in Tool Augmentation),6
+Generalizable Tool Learning (Interface Unification),6
+Automated Dataset Generation for Tool-Augmented LLMs,6
+Output Space Shaping,6
+Teacher-Assisted Trajectory Correction,6
 Scientific Discovery with Tool Manipulation,6
 LLM as Tool Maker/Creator,6
-AI Tool Creation,6
-Selective Generation with Sufficient Context Signal,7
-Finetuning for Controlled Abstention,7
+Learning from Demonstrations (Behavioral Cloning),6
+Dynamic Speculative Pipelining for RAG,7
+Self-Reflection for RAG (SelfRAG),7
 Sufficient Context Autorater,7
-Retrieval-Augmented Generation (RAG),8
-Retrieval Augmented Generation (RAG) - Inference,8
-Instruction Tuning for LLM-KG Integration,8
-Knowledge-Driven Chain-of-Thought (KDCoT) / Retrieval-Enhanced Reasoning (RR),8
-Vector Database for Knowledge Retrieval,8
-Retrieval Augmented Generation (RAG),8
-Reasoning on Graphs (RoG) / Planning-Retrieval-Reasoning Framework,8
-Retrieval-Augmented Generation (RAG) for Knowledge Graphs,8
-Retrieval Augmented Generation (RAG),8
+Knowledge Tree for RAG KV Cache,7
+No Retrieval (LLM-only QA),7
+Unified Instruction Format for Multi-task LLM Training,7
+Multi-Source Data Blending for Unified Instruction Tuning,7
+Retrieval Stride Optimization,7
+Retrieval Query Length Optimization,7
+Optimal Document Count for In-Context Learning,7
+Retrieve-Rerank-Generate Inference Pipeline,7
+Data-Efficient Ranking Integration,7
+Irrelevant Context Robustness Training,7
+Unified Ranking and Generation Instruction Tuning (RankRAG),7
+Iterative Retrieval and Decision-Making,7
+Selective Generation with Sufficient Context Signal,8
+RAGSequence,8
+Auxiliary Training Signal (Statement Reconstruction),8
 Interleaved Retrieval guided by ChainofThought (IRCoT),8
+Marginalization over Latent Documents,8
+RAGToken,8
+Linear Scale (for Evaluation),9
+Binary Score (for Evaluation),9
 Separate LLM Extractor,9
-Role-based Evaluation,9
+Verbalizer,9
 Model-Generated Guidelines (for evaluation),9
-GEVAL Framework,9
-Adversarial Evaluation for Truthfulness,9
-LLMEVAL Framework,9
-ChatEval Framework,9
-LLM-based Evaluation (Autorater/LLMEval),9
-Confidence Estimation (Self-rated Probabilities),10
-Verbalized Score (for confidence calibration),10
-Verbalizer,10
-SelfCalibration,10
-Metacognitive Prompting,10
-Chain-of-Thought (CoT) Prompting,11
-Step-by-Step Reasoning (Chain-of-Thought / CoT),11
-Chain-of-Thought Reasoning,11
-Contrastive CoT Prompting,11
-Tabular ChainofThought (TabCoT),11
-Chain-of-Thought Finetuning,11
-Complexity-based Prompting,11
-Uncertainty-Routed CoT Prompting,11
-MetaReasoning over Multiple CoTs,11
-ThreadofThought (ThoT) Prompting,11
-Chain-of-Thought (CoT) Prompting,11
-Chain-of-Thought (CoT) Prompting,11
-Cumulative Reasoning,11
-Chain of Thought (CoT) Prompting,11
-ChainofThought (CoT) Prompting,11
-Confidence-Based Iterative Retrieval,12
-Iterative Retrieval and Decision-Making,12
-Iterative Retrieval Augmentation,12
-Multi-step Retrieval-Augmented Generation (Multi-step RAG),12
-Iterative Retrieval-Augmented Generation (Iterative RAG),12
-Plan-and-Solve Paradigm,13
-ZeroShot CoT,13
-ZeroShot Prompting,13
-PlanandSolve Prompting,13
-MemoryofThought Prompting,13
-Self-Evaluation and Termination Condition (for iterative reasoning),14
-LLM Fallback to Inherent Knowledge,14
-Triple-Based Path Representation in Prompts,14
-LLM-based Topic Entity Extraction,14
-Knowledge Traceability and Correctability via Explicit Reasoning Paths,14
-Iterative Prompting for Guided KG Exploration and Reasoning,14
-Plug-and-Play LLM-KG Integration,14
-LLM-Guided Beam Search for KG Exploration,14
-ThinkonGraph (ToG) Algorithmic Framework,14
-Unified Retrieval and Reasoning,14
-"KG-Agent Framework (KGAgent, ThinkonGraph)",14
-LLM-KG Tight-Coupling Paradigm,14
-Semantic Parsing for Knowledge Graph Question Answering (KGQA),14
-TreeofThought (ToT),15
-RecursionofThought,15
-Tree of Thoughts (ToT) / Graph of Thoughts (GoT),15
-Graph-of-Thoughts (GoT),15
-Tree-of-Thoughts (ToT),15
-Decomposed Prompting (DecomP),16
-LeasttoMost Prompting,16
-SimToM,16
-System 2 Attention (S2A),16
-Decomposed Prompting (DECOMP),16
-ReAct (Reasoning and Acting),17
-ReACT (Reasoning and Acting),17
-Reasoning and Acting (ReAct),17
-ReAct (Reasoning and Acting),17
-Two-LLM Framework for Reasoning Step Selection and Generation,18
-Monte-Carlo Planning for Faithful Reasoning (FAME),18
-Faithful Reasoning with Verifier (Entailer),18
-Plug-and-Play LLM Augmentation Framework,19
-Plug-and-Play LLM Module,19
-DivExplorer Interactive System (Interactive Divergent Subgroup Exploration),20
-DivExplorer (Divergent Subgroup Exploration),20
-Individual Conditional Expectation (ICE) Plots,21
-Partial Dependence Plots (PDPs),21
-Permutation Feature Importance,21
-Adaptive Retrieval-Augmented Generation (AdaptiveRAG),22
-Automatic Classifier Training Data Generation (for Query Complexity),22
-Query Complexity Classifier,22
-Adaptive Retrieval (Entity Frequency-based),22
-No Retrieval (LLM-only QA),23
-Retrieval Augmented Generation (RAG),23
-Single-step Retrieval-Augmented Generation (Single-step RAG),23
-Retrieval Augmented Generation (RAG),23
-Retrieval-Augmented Generation (RAG),23
-Modular Knowledge Consolidation Pipeline,23
-SelfRefine,24
-Iterative Prompting (for MT),24
-Contextual Prompt Engineering,24
-Hybrid Utility Function Design,24
-Iterative Self-Correction with Automated Feedback,24
-Self-Reflection for RAG (SelfRAG),24
-Replication of Critical KV Cache Nodes,25
-Cache-aware Request Reordering for RAG,25
-Multilevel Dynamic Knowledge Caching for RAG (RAGCache),25
-Progressive Response Disclosure,25
-Prefix-aware GreedyDualSizeFrequency (PGDSF) Cache Replacement,25
-Dynamic Speculative Pipelining for RAG,25
-Knowledge Tree for RAG KV Cache,25
-PagedAttention,26
-Swap-Out-Only-Once Cache Strategy,26
-KV Cache Reuse,26
-In-Context Learning for Tool Use,27
-Intent Understanding,27
-Tool Understanding (via Prompting),27
-Planning with Extrospective Reasoning,28
-Planning with Introspective Reasoning,28
-Learning from Demonstrations (Behavioral Cloning),29
-Learning from Feedback (Reinforcement Learning for Tool Use),29
-Perceiver (Feedback Processing),29
-Behavior Cloning for Initial Skill Acquisition,29
-Human-in-the-Loop Data Collection Interface,29
-Dual Data Collection for Agentic LLM Training,29
-Curriculum Tool Learning,30
-Generalizable Tool Learning (Interface Unification),30
-Personalized Tool Learning,30
-Meta Tool Learning,30
-SkeletonofThought,31
-Multi-Agent Collaboration for Tool Learning,31
-Parallel Tool Execution,31
-Tool-Integrated Reasoning Loop,32
-Tool-Integrated Reasoning Agent (TORA),32
-Tool-Integrated Reasoning Agent (ToRA),32
-Formalism-Enhanced Reasoning,32
-Memory Augmentation for LLMs,33
-Memory Management (Working Memory / Short-Term Memory / Long-Term Memory),33
-Cognitive Load Management,33
-Efficient LLM Fine-tuning,33
-Long Context Management for LLMs,33
-Context Window Management,33
-Reflexion,34
-Reflexion,34
+SelfCalibration,9
+Styling (for Evaluation),9
+Pairwise Evaluation,9
+Likert Scale (for Evaluation),9
+Verbalized Score (for confidence calibration),9
+Finetuning for Controlled Abstention,9
+Confidence Estimation (Self-rated Probabilities),9
+Retrieval-Augmented Generation (RAG),10
+Multi-step Retrieval-Augmented Generation (Multi-step RAG),10
+Iterative Retrieval-Augmented Generation (Iterative RAG),10
+Confidence-Based Iterative Retrieval,10
+Prompt-Tuning a Frozen LM as a Reader,10
+Retrieval-Augmented Generation (RAG),10
+Retrieval Augmented Generation (RAG),10
+Retrieval Augmented Generation (RAG) - Inference,10
+Nearest Neighbor Language Models (kNN-LM),10
+Retrieval Augmented Generation (RAG),10
+Adaptive Retrieval (Entity Frequency-based),10
+Query Decomposition for Multi-hop QA,10
+Adaptive Retrieval-Augmented Generation (AdaptiveRAG),10
+Retrieval Augmented Fine-Tuning (RAFT),10
+Distractor-Aware Finetuning,10
+Retrieval Augmentation,10
+Two-Stage QA Pipeline (Retriever-Reader Architecture),10
+Adversarial Evaluation for Truthfulness,11
+Constitutional AI for Ethical Alignment,11
+Contextual Prompt Engineering,11
+Emotion Prompting,11
+LLMEVAL Framework,11
+Vanilla Prompting (for bias mitigation),11
+Template-Based Prompting for Controlled Generation,11
+LLM-based Evaluation (Autorater/LLMEval),11
+Round-Trip Consistency Filtering (for Synthetic Data),11
+Chain of Thought (CoT) Prompting,12
+Chain-of-Thought (CoT) Prompting,12
+Chain-of-Thought (CoT) Prompting,12
+Chain-of-Thought (CoT) Prompting,12
+Step-by-Step Reasoning (Chain-of-Thought / CoT),12
+Consistency-based Self-adaptive Prompting (COSP),12
+ThreadofThought (ThoT) Prompting,12
+Cross-Lingual Self Consistent Prompting (CLSP),12
+Cumulative Reasoning,12
+Analogical Prompting,12
+ChainofThought (CoT) Prompting,12
+ZeroShot CoT,12
+Universal Self-Adaptive Prompting (USP),12
+MemoryofThought Prompting,12
+XLT Cross-Lingual Thought Prompting,12
+Reasoning on Graphs (RoG) / Planning-Retrieval-Reasoning Framework,13
+Triple-Based Path Representation in Prompts,13
+Instruction Tuning for LLM-KG Integration,13
+LLM-based Topic Entity Extraction,13
+Iterative Prompting for Guided KG Exploration and Reasoning,13
+Plan-and-Solve Paradigm,14
+PlanandSolve Prompting,14
+Retrieval-Augmented Generation (RAG) for Knowledge Graphs,15
+Semantic Parsing for Knowledge Graph Question Answering (KGQA),15
+LLM-Guided Beam Search for KG Exploration,15
+Hybrid Pruning Strategy (LLM + Lightweight Model),15
+LLM-KG Tight-Coupling Paradigm,15
+ThinkonGraph (ToG) Algorithmic Framework,15
+"KG-Agent Framework (KGAgent, ThinkonGraph)",15
+Knowledge-Driven Chain-of-Thought (KDCoT) / Retrieval-Enhanced Reasoning (RR),15
+TreeofThought (ToT),16
+Tree of Thoughts (ToT) / Graph of Thoughts (GoT),16
+Graph-of-Thoughts (GoT),16
+Tree-of-Thoughts (ToT),16
+Decomposed Prompting (DecomP),17
+StepBack Prompting,17
+Decomposed Prompting (DECOMP),17
+DemonstrateSearchPredict (DSP),17
+LeasttoMost Prompting,17
+Reasoning and Acting (ReAct),18
+ReACT (Reasoning and Acting),18
+ReAct (Reasoning and Acting),18
+ReAct (Reasoning and Acting),18
+DiVeRSe,19
+ChainofVerification (COVE),19
+SelfConsistency,19
+Universal SelfConsistency,19
+Automatic Directed CoT (AutoDiCoT),19
+Reversing ChainofThought (RCoT),19
+SelfVerification,19
+GEVAL Framework,19
+VerifyandEdit,19
+Faithful Reasoning with Verifier (Entailer),19
+Mixture of Reasoning Experts (MoRE),19
+Active Prompting,20
+Complexity-based Prompting,20
+Domain-Specific Finetuning (DSF),20
+Two-LLM Framework for Reasoning Step Selection and Generation,20
+Monte-Carlo Planning for Faithful Reasoning (FAME),20
+KL Regularization in RLHF,20
+Instruction Finetuning (IFT),20
+Chain-of-Thought Finetuning,20
+Automatic ChainofThought (AutoCoT) Prompting,20
+Chain-of-Thought Reasoning,20
+Unified Retrieval and Reasoning,21
+LLMs as Personalized Content Creator,21
+Synthetic QA Data Generation,21
+Agentic Architecture,22
+"Modular Reasoning, Knowledge and Language (MRKL) System",22
+Agentic Working Memory,22
+Plug-and-Play LLM Module,22
+Plug-and-Play LLM Augmentation Framework,22
+Cognitive Load Management,22
+Counterfactual Explanations,23
+LACE (Local Agnostic attribute Contribution Explanation),23
+Inherently Interpretable Models (Interpretability by Design),23
+Individual Conditional Expectation (ICE) Plots,23
+DivExplorer (Divergent Subgroup Exploration),23
+xPlain (Interactive Human-in-the-Loop Explanation Framework),23
+Partial Dependence Plots (PDPs),23
+DivExplorer Interactive System (Interactive Divergent Subgroup Exploration),23
+Permutation Feature Importance,23
+Index Hotswapping (for Knowledge Updates),24
+Human-Readable/Writable Nonparametric Memory,24
+Long Context Management for LLMs,24
+Query Complexity Classifier,24
+Automatic Classifier Training Data Generation (for Query Complexity),24
+Efficient LLM Fine-tuning,24
+Memory Augmentation for LLMs,24
+Memory Management (Working Memory / Short-Term Memory / Long-Term Memory),24
+Parametric and Non-Parametric Memory Combination,24
+Retrieval-Augmented Generation (RAG),25
+Iterative Retrieval Augmentation,25
+Retrieval Augmented Generation (RAG),25
+Single-step Retrieval-Augmented Generation (Single-step RAG),25
+Retrieval Augmented Generation (RAG),25
+Fast Decoding (RAGSequence),26
+Thorough Decoding (RAGSequence),26
+Multilevel Dynamic Knowledge Caching for RAG (RAGCache),26
+Prefix-aware GreedyDualSizeFrequency (PGDSF) Cache Replacement,26
+Cache-aware Request Reordering for RAG,26
+Browser-Assisted LLM,27
+Knowledge Augmentation,27
+Vector Database for Knowledge Retrieval,27
+Live Web Access with Controlled Interaction,27
+KV Cache Reuse,28
+PagedAttention,28
+Swap-Out-Only-Once Cache Strategy,28
+Replication of Critical KV Cache Nodes,28
+Tool-Augmented Foundation Model,29
+Tool Understanding (via Prompting),29
+AI Tool Creation,29
+Multi-Agent Collaboration for Tool Learning,29
+Emergent Tool Composition,29
+Planning with Introspective Reasoning,30
+Planning with Extrospective Reasoning,30
+Commonsense Reasoning,30
+Long-Horizon Planning,30
+Reasoning-Action Synchronization,30
+Constraint Satisfaction,30
+Meta Tool Learning,31
+Personalized Tool Learning,31
+Curriculum Tool Learning,31
+Code Generation with Tool Integration,32
+Tool-Integrated Reasoning Loop,33
+Formalism-Enhanced Reasoning,33
+Inter-Tool Dependency Management,34
+Parallel Tool Execution,34
+Voyager,35
+Reflexion,35
+Reflexion,35
+Feedback Loop / Self-Correction,35
 World Model / Simulation-based Planning,35
-Commonsense Reasoning,35
-Backtracking / Heuristic Search,35
-Constraint Satisfaction,35
-Reasoning-Action Synchronization,35
-Long-Horizon Planning,35
-Sample-Efficient RL with Reference Reuse,36
-Agentic Architecture,36
-Agentic Policy for LLM Orchestration,36
-Staged Policy Learning for Agentic LLMs,36
-Structured Action Space for Agentic LLM,36
-State Representation for Agentic LLM,36
-Agentic Working Memory,36
-Structured Output / Plan Generation,37
-Output Formatting,37
-Styling (for Evaluation),37
-Data-Efficient Ranking Integration,38
-Unified Instruction Format for Multi-task LLM Training,38
-Multi-Source Data Blending for Unified Instruction Tuning,38
-Unified Ranking and Generation Instruction Tuning (RankRAG),38
-Retrieve-Rerank-Generate Inference Pipeline,38
-Instruction Finetuning (IFT),39
-Distractor-Aware Finetuning,39
-Retrieval Augmented Fine-Tuning (RAFT),39
-Domain-Specific Finetuning (DSF),39
-Irrelevant Context Robustness Training,39
-Interactive Tool Use Trajectory Curation,40
-Few-Shot Prompting for Structured Trajectory Generation,40
-Output Space Shaping,41
-Imitation Learning for Tool-Use Trajectories,41
-Teacher-Assisted Trajectory Correction,41
-Program-Aided Language Models (PAL) Prompting,42
-TaskWeaver,42
-Program-aided Language Model (PAL),42
-Faithful ChainofThought,42
-ProgramofThoughts,42
-End-to-End Retriever Training (for RAG Domain Adaptation),43
-Fixed Document Index (during Fine-tuning),43
-Pretrained Component Integration (Retriever & Generator),43
-End-to-End Joint Training (Retriever-Generator),43
-Auxiliary Training Signal (Statement Reconstruction),43
-Two-Stage QA Pipeline (Retriever-Reader Architecture),44
-Asynchronous Knowledge Base Updates,44
-FAISS Indexing for Efficient Retrieval,44
-Dense Passage Retrieval (DPR),44
-Dense Passage Retrieval (DPR),44
-Synthetic QA Data Generation,45
-Round-Trip Consistency Filtering (for Synthetic Data),45
-Retrieval-Augmented Generation (RAG),45
-Automated Dataset Generation for Tool-Augmented LLMs,45
-Denoising Sequence-to-Sequence Pretraining (BART-like),45
-Control Token for Multi-task Generative Models,46
-Marginalization over Latent Documents,46
-RAGToken,46
-RAGSequence,46
-Human-Readable/Writable Nonparametric Memory,47
-Index Hotswapping (for Knowledge Updates),47
-Parametric and Non-Parametric Memory Combination,47
-Prompt-Tuning a Frozen LM as a Reader,48
-InContext Retrieval-Augmented Language Modeling (InContext RALM),48
-Open-Book Question Answering with InContext RALM,48
-Nearest Neighbor Language Models (kNN-LM),48
-Conditional Retrieval,49
-Retrieval Query Length Optimization,49
-Optimal Document Count for In-Context Learning,49
-Retrieval Stride Optimization,49
-Zero-Shot LM Reranking,50
-Predictive Reranking (Trained LM-Dedicated Reranker),50
-Emotion Prompting,51
-Style Prompting,51
-Template-Based Prompting for Controlled Generation,51
-Role Prompting,51
-Self-Generated InContext Learning (SGICL),52
-FewShot Prompting,52
-Exemplar Ordering,53
-VoteK Exemplar Selection,53
-KNN Exemplar Selection,53
-Prompt Mining,54
-Max Mutual Information Method,54
-StepBack Prompting,55
-Rereading (RE2),55
-Rephrase and Respond (RaR),55
-SelfAsk,56
-InteractiveChainPrompting (ICP),56
-Ambiguous Demonstrations,56
-Question Clarification,56
-Automatic Directed CoT (AutoDiCoT),57
-Analogical Prompting,57
-Automatic ChainofThought (AutoCoT) Prompting,57
-Consistency-based Self-adaptive Prompting (COSP),58
-Universal Self-Adaptive Prompting (USP),58
-Active Prompting,58
-Vanilla Prompting (for bias mitigation),59
-Debate-Style Evidence Aggregation,59
-Bias-Aware Design & Mitigation,59
-Reference-Supported Generation,59
-Demonstration Ensembling (DENSE),59
-Selecting Balanced Demonstrations (for bias mitigation),59
-AttrPrompt,59
-Mixture of Reasoning Experts (MoRE),60
-SelfConsistency,60
-Universal SelfConsistency,60
-DiVeRSe,60
-ChainofVerification (COVE),61
-Reversing ChainofThought (RCoT),61
-VerifyandEdit,61
-SelfVerification,61
-Prompt Optimization with Textual Gradients (ProTeGi),62
-Gradient-free Instructional Prompt Search (GrIPS),62
-Automatic Prompt Engineer (APE),62
-XLT Cross-Lingual Thought Prompting,63
-XInSTA Prompting,63
-Cross-Lingual Self Consistent Prompting (CLSP),63
-InCLT Crosslingual Transfer Prompting,63
-Translate First Prompting,63
-PARC Prompts Augmented by Retrieval Cross-lingually,63
-Cultural Awareness (for cultural adaptation),63
-ChainofDictionary (CoD),64
-Dictionary-based Prompting for Machine Translation (DiPMT),64
-Multi-Aspect Prompting and Selection (MAPS),64
-Decomposed Prompting for MT (DecoMT),64
-Negative Prompting,65
-Prompt Modifiers,65
-ImageasText Prompting,66
-PairedImage Prompting,66
-Segmentation Prompting,66
-3D Prompting,66
-Duty Distinct ChainofThought (DDCoT),67
-ChainofImages (CoI),67
-Multimodal GraphofThought,67
-Voyager,68
-Ghost in the Minecraft (GITM),68
-Pairwise Evaluation,69
-Binary Score (for Evaluation),69
-Linear Scale (for Evaluation),69
-Likert Scale (for Evaluation),69
-Batch Prompting for Pruning,70
-Batch Prompting (for Evaluation),70
-Relation-Based Reasoning (ToGR),71
-Hybrid Pruning Strategy (LLM + Lightweight Model),71
-LLMs as Personalized Content Creator,72
-LLMs as Content Interpreter,72
-LLMs as Knowledge Base,72
-LLMs for Automated ML Selection,72
-LLMs as Conversational Agent,72
-LLMs for Direct Recommendation (In-context Learning & CoT),72
-Constitutional AI for Ethical Alignment,72
-LLMs as Explainer,72
-Live Web Access with Controlled Interaction,73
-Browser-Assisted LLM,73
-Rejection Sampling (Best-of-N),74
-KL Regularization in RLHF,74
-Human Feedback for Quality Optimization (Reward Modeling & RLHF),74
-Retriever-Aware Training (RAT),75
-AST-based Hallucination Detection for Code Generation,75
-Structured API Documentation for LLM Consumption,75
-Self-Instruct Finetuning for API Generation,75
-LLM-API Integration System,75
-Constraint-Aware API Selection,75
-Thorough Decoding (RAGSequence),76
-Fast Decoding (RAGSequence),76
+Ghost in the Minecraft (GITM),35
+Structured Output / Plan Generation,36
+Output Formatting,36
+Faithful ChainofThought,37
+ProgramofThoughts,37
+Tool-Integrated Reasoning Agent (ToRA),37
+TaskWeaver,37
+Tool-Integrated Reasoning Agent (TORA),37
+Staged Policy Learning for Agentic LLMs,38
+Interactive Tool Use Trajectory Curation,38
+Imitation Learning for Tool-Use Trajectories,38
+Few-Shot Prompting for Structured Trajectory Generation,38
+Program-Aided Language Models (PAL) Prompting,39
+Multi-Round Self-Correction,40
+Dense Passage Retrieval (DPR),41
+Pretrained Component Integration (Retriever & Generator),41
+FAISS Indexing for Efficient Retrieval,41
+Denoising Sequence-to-Sequence Pretraining (BART-like),41
+Open-Book Question Answering with InContext RALM,41
+Asynchronous Knowledge Base Updates,41
+Control Token for Multi-task Generative Models,41
+Dense Passage Retrieval (DPR),41
+End-to-End Retriever Training (for RAG Domain Adaptation),41
+End-to-End Joint Training (Retriever-Generator),41
+Fixed Document Index (during Fine-tuning),41
+Predictive Reranking (Trained LM-Dedicated Reranker),42
+Conditional Retrieval,42
+InContext Retrieval-Augmented Language Modeling (InContext RALM),42
+Zero-Shot LM Reranking,42
+Tool Augmentation,43
+Context Window Management,43
+In-Context Learning for Tool Use,43
+LLM-based Tool Learning,43
+Self-Generated InContext Learning (SGICL),44
+Role Prompting,44
+Automatic Prompt Engineer (APE),44
+Style Prompting,44
+ZeroShot Prompting,44
+FewShot Prompting,44
+Rereading (RE2),45
+KNN Exemplar Selection,45
+Exemplar Ordering,45
+Rephrase and Respond (RaR),45
+VoteK Exemplar Selection,45
+Meta Prompting,46
+Prompt Mining,46
+Max Mutual Information Method,46
+Metacognitive Prompting,46
+Prompt Chain,46
+SkeletonofThought,47
+System 2 Attention (S2A),47
+SimToM,47
+RecursionofThought,47
+Uncertainty-Routed CoT Prompting,48
+Contrastive CoT Prompting,48
+MetaReasoning over Multiple CoTs,48
+Tabular ChainofThought (TabCoT),48
+Cultural Awareness (for cultural adaptation),49
+Demonstration Ensembling (DENSE),49
+Selecting Balanced Demonstrations (for bias mitigation),49
+AttrPrompt,49
+Bias-Aware Design & Mitigation,49
+Debate-Style Evidence Aggregation,49
+Prompt Paraphrasing,50
+Ambiguous Demonstrations,50
+XInSTA Prompting,50
+Gradient-free Instructional Prompt Search (GrIPS),51
+Batch Prompting (for Evaluation),51
+Prompt Optimization with Textual Gradients (ProTeGi),51
+Batch Prompting for Pruning,51
+Iterative Prompting (for MT),52
+Translate First Prompting,52
+Dictionary-based Prompting for Machine Translation (DiPMT),52
+Decomposed Prompting for MT (DecoMT),52
+InteractiveChainPrompting (ICP),52
+ChainofDictionary (CoD),52
+PARC Prompts Augmented by Retrieval Cross-lingually,52
+Multi-Aspect Prompting and Selection (MAPS),52
+InCLT Crosslingual Transfer Prompting,53
+Segmentation Prompting,54
+ImageasText Prompting,54
+PairedImage Prompting,54
+3D Prompting,54
+Negative Prompting,54
+Prompt Modifiers,54
+Multimodal GraphofThought,55
+ChainofImages (CoI),55
+Duty Distinct ChainofThought (DDCoT),55
+Program-aided Language Model (PAL),56
+Structured Action Space for Agentic LLM,56
+Agentic Policy for LLM Orchestration,56
+State Representation for Agentic LLM,56
+ChatEval Framework,57
+Role-based Evaluation,57
+Relation-Based Reasoning (ToGR),58
+Plug-and-Play LLM-KG Integration,58
+LLM-API Integration System,59
+AST-based Hallucination Detection for Code Generation,59
+Structured API Documentation for LLM Consumption,59
+LLM Fallback to Inherent Knowledge,59
+Constraint-Aware API Selection,59
+Self-Instruct Finetuning for API Generation,59
+Retriever-Aware Training (RAT),59
+LLMs for Direct Recommendation (In-context Learning & CoT),60
+LLMs as Conversational Agent,60
+LLMs as Content Interpreter,60
+LLMs as Knowledge Base,60
+LLMs for Automated ML Selection,60
+LLMs as Explainer,60
+Rejection Sampling (Best-of-N),61
+Human Feedback for Quality Optimization (Reward Modeling & RLHF),61
+Dual Data Collection for Agentic LLM Training,61
+Behavior Cloning for Initial Skill Acquisition,61
+Sample-Efficient RL with Reference Reuse,61

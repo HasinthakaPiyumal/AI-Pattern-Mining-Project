@@ -3,11 +3,17 @@ from utils.json_utils import load_json_from_file
 from config.settings import Config
 import time,os
 from tqdm import trange as t
+import pandas as pd
 
 def main():
-    patterns = load_json_from_file(Config().PATTERNS_FILE)
-    skip_count = 50
+    # patterns = load_json_from_file(Config().PATTERNS_FILE)
+    patterns = pd.read_csv(Config().PATTERNS_FILE).to_dict(orient='records')
+    skip_count = 3000
     all_embeddings = []
+    if(Config().PATTERN_EMBEDDINGS_FILE and os.path.exists(Config().PATTERN_EMBEDDINGS_FILE)):
+        if os.path.exists(Config().PATTERN_EMBEDDINGS_FILE+'.backup'):
+            os.remove(Config().PATTERN_EMBEDDINGS_FILE+'.backup')
+        os.rename(Config().PATTERN_EMBEDDINGS_FILE,Config().PATTERN_EMBEDDINGS_FILE+'.backup')
     for i in t((len(patterns)//skip_count)+1, desc="Generating Embeddings", ncols=80):
         start_index = i * skip_count
         end_index = min(start_index + skip_count, len(patterns))
