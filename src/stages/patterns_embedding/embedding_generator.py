@@ -6,11 +6,14 @@ def get_embedding_model():
     return GoogleGenerativeAIEmbeddings(
         model="models/gemini-embedding-001",
         task_type="clustering"
-        )
+    )
 
 def generate_embeddings(texts):
     embedding_model = get_embedding_model()
-    embeddings = embedding_model.embed_documents(texts)
+    embeddings = embedding_model.embed_documents(texts,
+        task_type="CLUSTERING",
+        output_dimensionality=768
+        )
     return embeddings
 
 def pattern_combiner(patterns):
