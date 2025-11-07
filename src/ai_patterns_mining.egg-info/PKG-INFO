@@ -6,6 +6,7 @@ Author: Your Name
 Author-email: hasinthakapiyumal@gmail.com
 Requires-Python: >=3.9
 Requires-Dist: langchain
+Requires-Dist: langgraph
 Requires-Dist: langchain-text-splitters
 Requires-Dist: langchain[google-genai]
 Requires-Dist: pypdf
@@ -23,6 +24,8 @@ Requires-Dist: matplotlib
 Requires-Dist: seaborn
 Requires-Dist: umap-learn
 Requires-Dist: hdbscan
+Requires-Dist: faiss-cpu
+Requires-Dist: tiktoken
 Dynamic: author
 Dynamic: author-email
 Dynamic: requires-dist

@@ -15,6 +15,7 @@ setup(
     include_package_data=True,
     install_requires=[
         "langchain",
+        "langgraph",
         "langchain-text-splitters",
         "langchain[google-genai]",
         "pypdf",
@@ -32,6 +33,8 @@ setup(
         "seaborn",
         "umap-learn",
         "hdbscan",
+        "faiss-cpu",
+        "tiktoken"
     ],
     entry_points={
         "console_scripts": [
