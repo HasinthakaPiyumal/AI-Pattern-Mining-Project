@@ -34,6 +34,8 @@ setup(
         "umap-learn",
         "hdbscan",
         "faiss-cpu",
+        "kmodes",
+        "gower",
         "tiktoken"
     ],
     entry_points={

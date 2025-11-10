@@ -1,4 +1,4 @@
-
+[
   {
     "cluster_id":0,
     "short_name":"External Knowledge Grounding",
@@ -7,8 +7,7 @@
       "External Knowledge Augmentation",
       "Modular Knowledge Consolidation Pipeline"
     ]
-  }
-
+  },
   {
     "cluster_id":1,
     "short_name":"LLM External Tool Interaction",
@@ -20,8 +19,7 @@
       "Tool Use \/ Tool Augmentation",
       "Tool Orchestration \/ Chaining"
     ]
-  }
-
+  },
   {
     "cluster_id":2,
     "short_name":"Reliable, Transparent, & Augmented LLMs",
@@ -38,8 +36,7 @@
       "Tool-Augmented Response Synthesis",
       "Transparent Tool-Use Reasoning"
     ]
-  }
-
+  },
   {
     "cluster_id":3,
     "short_name":"Enhanced User Intent Comprehension",
@@ -48,8 +45,7 @@
       "Multimodal Interaction Augmentation",
       "Intent Understanding"
     ]
-  }
-
+  },
   {
     "cluster_id":4,
     "short_name":"Iterative Self-Correction & Feedback",
@@ -65,8 +61,7 @@
       "Question Clarification",
       "Self-Evaluation and Termination Condition (for iterative reasoning)"
     ]
-  }
-
+  },
   {
     "cluster_id":5,
     "short_name":"Complex Task Planning & Search",
@@ -78,8 +73,7 @@
       "Task Decomposition",
       "Backtracking \/ Heuristic Search"
     ]
-  }
-
+  },
   {
     "cluster_id":6,
     "short_name":"LLM Tool Learning & Refinement",
@@ -96,8 +90,7 @@
       "LLM as Tool Maker\/Creator",
       "Learning from Demonstrations (Behavioral Cloning)"
     ]
-  }
-
+  },
   {
     "cluster_id":7,
     "short_name":"Advanced RAG Optimization & Training",
@@ -119,8 +112,7 @@
       "Unified Ranking and Generation Instruction Tuning (RankRAG)",
       "Iterative Retrieval and Decision-Making"
     ]
-  }
-
+  },
   {
     "cluster_id":8,
     "short_name":"Advanced RAG Context Management",
@@ -133,8 +125,7 @@
       "Marginalization over Latent Documents",
       "RAGToken"
     ]
-  }
-
+  },
   {
     "cluster_id":9,
     "short_name":"LLM Evaluation & Trustworthiness",
@@ -153,8 +144,7 @@
       "Finetuning for Controlled Abstention",
       "Confidence Estimation (Self-rated Probabilities)"
     ]
-  }
-
+  },
   {
     "cluster_id":10,
     "short_name":"RAG & Advanced Retrieval",
@@ -175,8 +165,7 @@
       "Retrieval Augmentation",
       "Two-Stage QA Pipeline (Retriever-Reader Architecture)"
     ]
-  }
-
+  },
   {
     "cluster_id":11,
     "short_name":"LLM Prompting, Evaluation, Alignment",
@@ -192,8 +181,7 @@
       "LLM-based Evaluation (Autorater\/LLMEval)",
       "Round-Trip Consistency Filtering (for Synthetic Data)"
     ]
-  }
-
+  },
   {
     "cluster_id":12,
     "short_name":"CoT Reasoning & Enhancements",
@@ -213,8 +201,7 @@
       "MemoryofThought Prompting",
       "XLT Cross-Lingual Thought Prompting"
     ]
-  }
-
+  },
   {
     "cluster_id":13,
     "short_name":"LLM-KG Enhanced Reasoning",
@@ -226,8 +213,7 @@
       "LLM-based Topic Entity Extraction",
       "Iterative Prompting for Guided KG Exploration and Reasoning"
     ]
-  }
-
+  },
   {
     "cluster_id":14,
     "short_name":"LLM Plan-and-Execute Reasoning",
@@ -236,8 +222,7 @@
       "Plan-and-Solve Paradigm",
       "PlanandSolve Prompting"
     ]
-  }
-
+  },
   {
     "cluster_id":15,
     "short_name":"LLM-KG Agentic Reasoning",
@@ -252,8 +237,7 @@
       "KG-Agent Framework (KGAgent, ThinkonGraph)",
       "Knowledge-Driven Chain-of-Thought (KDCoT) \/ Retrieval-Enhanced Reasoning (RR)"
     ]
-  }
-
+  },
   {
     "cluster_id":16,
     "short_name":"Structured Multi-Path Reasoning",
@@ -264,8 +248,7 @@
       "Graph-of-Thoughts (GoT)",
       "Tree-of-Thoughts (ToT)"
     ]
-  }
-
+  },
   {
     "cluster_id":17,
     "short_name":"Complex Task Decomposition",
@@ -277,8 +260,7 @@
       "DemonstrateSearchPredict (DSP)",
       "LeasttoMost Prompting"
     ]
-  }
-
+  },
   {
     "cluster_id":18,
     "short_name":"ReAct Agentic Loop",
@@ -289,8 +271,7 @@
       "ReAct (Reasoning and Acting)",
       "ReAct (Reasoning and Acting)"
     ]
-  }
-
+  },
   {
     "cluster_id":19,
     "short_name":"Robust Reasoning & Verification",
@@ -308,8 +289,7 @@
       "Faithful Reasoning with Verifier (Entailer)",
       "Mixture of Reasoning Experts (MoRE)"
     ]
-  }
-
+  },
   {
     "cluster_id":20,
     "short_name":"Advanced LLM Reasoning & Adaptation",
@@ -326,8 +306,7 @@
       "Automatic ChainofThought (AutoCoT) Prompting",
       "Chain-of-Thought Reasoning"
     ]
-  }
-
+  },
   {
     "cluster_id":21,
     "short_name":"LLM-Enhanced Data & Content Generation",
@@ -337,8 +316,7 @@
       "LLMs as Personalized Content Creator",
       "Synthetic QA Data Generation"
     ]
-  }
-
+  },
   {
     "cluster_id":22,
     "short_name":"Modular LLM Agent Architectures",
@@ -351,8 +329,7 @@
       "Plug-and-Play LLM Augmentation Framework",
       "Cognitive Load Management"
     ]
-  }
-
+  },
   {
     "cluster_id":23,
     "short_name":"Explainable AI (XAI) Techniques",
@@ -368,8 +345,7 @@
       "DivExplorer Interactive System (Interactive Divergent Subgroup Exploration)",
       "Permutation Feature Importance"
     ]
-  }
-
+  },
   {
     "cluster_id":24,
     "short_name":"LLM Memory, Knowledge & Adaptation",
@@ -385,8 +361,7 @@
       "Memory Management (Working Memory \/ Short-Term Memory \/ Long-Term Memory)",
       "Parametric and Non-Parametric Memory Combination"
     ]
-  }
-
+  },
   {
     "cluster_id":25,
     "short_name":"Retrieval Augmented Generation (RAG)",
@@ -398,8 +373,7 @@
       "Single-step Retrieval-Augmented Generation (Single-step RAG)",
       "Retrieval Augmented Generation (RAG)"
     ]
-  }
-
+  },
   {
     "cluster_id":26,
     "short_name":"RAG Performance & Decoding",
@@ -411,8 +385,7 @@
       "Prefix-aware GreedyDualSizeFrequency (PGDSF) Cache Replacement",
       "Cache-aware Request Reordering for RAG"
     ]
-  }
-
+  },
   {
     "cluster_id":27,
     "short_name":"LLM External Knowledge Access",
@@ -423,8 +396,7 @@
       "Vector Database for Knowledge Retrieval",
       "Live Web Access with Controlled Interaction"
     ]
-  }
-
+  },
   {
     "cluster_id":28,
     "short_name":"LLM KV Cache Optimization",
@@ -435,8 +407,7 @@
       "Swap-Out-Only-Once Cache Strategy",
       "Replication of Critical KV Cache Nodes"
     ]
-  }
-
+  },
   {
     "cluster_id":29,
     "short_name":"AI Tooling & Orchestration",
@@ -448,8 +419,7 @@
       "Multi-Agent Collaboration for Tool Learning",
       "Emergent Tool Composition"
     ]
-  }
-
+  },
   {
     "cluster_id":30,
     "short_name":"Robust Agent Planning Strategies",
@@ -462,8 +432,7 @@
       "Reasoning-Action Synchronization",
       "Constraint Satisfaction"
     ]
-  }
-
+  },
   {
     "cluster_id":31,
     "short_name":"Advanced AI Tool Learning",
@@ -473,8 +442,7 @@
       "Personalized Tool Learning",
       "Curriculum Tool Learning"
     ]
-  }
-
+  },
   {
     "cluster_id":32,
     "short_name":"Tool-Augmented Code Generation",
@@ -482,8 +450,7 @@
     "sub_patterns":[
       "Code Generation with Tool Integration"
     ]
-  }
-
+  },
   {
     "cluster_id":33,
     "short_name":"Enhanced Reasoning with External Tools",
@@ -492,8 +459,7 @@
       "Tool-Integrated Reasoning Loop",
       "Formalism-Enhanced Reasoning"
     ]
-  }
-
+  },
   {
     "cluster_id":34,
     "short_name":"Multi-Tool Workflow Orchestration",
@@ -502,8 +468,7 @@
       "Inter-Tool Dependency Management",
       "Parallel Tool Execution"
     ]
-  }
-
+  },
   {
     "cluster_id":35,
     "short_name":"Adaptive Agents for Complex Worlds",
@@ -515,8 +480,7 @@
       "World Model \/ Simulation-based Planning",
       "Ghost in the Minecraft (GITM)"
     ]
-  }
-
+  },
   {
     "cluster_id":36,
     "short_name":"Structured Output & Formatting",
@@ -525,8 +489,7 @@
       "Structured Output \/ Plan Generation",
       "Output Formatting"
     ]
-  }
-
+  },
   {
     "cluster_id":37,
     "short_name":"Code-Enhanced Reasoning & Tools",
@@ -538,8 +501,7 @@
       "TaskWeaver",
       "Tool-Integrated Reasoning Agent (TORA)"
     ]
-  }
-
+  },
   {
     "cluster_id":38,
     "short_name":"Interactive LLM Tool-Use Training",
@@ -550,8 +512,7 @@
       "Imitation Learning for Tool-Use Trajectories",
       "Few-Shot Prompting for Structured Trajectory Generation"
     ]
-  }
-
+  },
   {
     "cluster_id":39,
     "short_name":"LLM Code Execution for Precision",
@@ -559,8 +520,7 @@
     "sub_patterns":[
       "Program-Aided Language Models (PAL) Prompting"
     ]
-  }
-
+  },
   {
     "cluster_id":1,
     "short_name":"Iterative Error Correction",
@@ -568,8 +528,7 @@
     "sub_patterns":[
       "Multi-Round Self-Correction"
     ]
-  }
-
+  },
   {
     "cluster_id":41,
     "short_name":"RAG Architecture & Optimization",
@@ -586,8 +545,7 @@
       "End-to-End Joint Training (Retriever-Generator)",
       "Fixed Document Index (during Fine-tuning)"
     ]
-  }
-
+  },
   {
     "cluster_id":42,
     "short_name":"InContext RALM Optimization",
@@ -598,8 +556,7 @@
       "InContext Retrieval-Augmented Language Modeling (InContext RALM)",
       "Zero-Shot LM Reranking"
     ]
-  }
-
+  },
   {
     "cluster_id":43,
     "short_name":"LLM Tool Integration & Management",
@@ -610,8 +567,7 @@
       "In-Context Learning for Tool Use",
       "LLM-based Tool Learning"
     ]
-  }
-
+  },
   {
     "cluster_id":44,
     "short_name":"GenAI Prompting Strategies",
@@ -624,8 +580,7 @@
       "ZeroShot Prompting",
       "FewShot Prompting"
     ]
-  }
-
+  },
   {
     "cluster_id":45,
     "short_name":"Prompt Optimization & Reasoning",
@@ -637,8 +592,7 @@
       "Rephrase and Respond (RaR)",
       "VoteK Exemplar Selection"
     ]
-  }
-
+  },
   {
     "cluster_id":46,
     "short_name":"Advanced Prompt Engineering",
@@ -650,8 +604,7 @@
       "Metacognitive Prompting",
       "Prompt Chain"
     ]
-  }
-
+  },
   {
     "cluster_id":47,
     "short_name":"Structured LLM Interaction",
@@ -662,8 +615,7 @@
       "SimToM",
       "RecursionofThought"
     ]
-  }
-
+  },
   {
     "cluster_id":48,
     "short_name":"Structured & Robust CoT Reasoning",
@@ -674,8 +626,7 @@
       "MetaReasoning over Multiple CoTs",
       "Tabular ChainofThought (TabCoT)"
     ]
-  }
-
+  },
   {
     "cluster_id":49,
     "short_name":"Bias Mitigation & Output Quality",
@@ -688,8 +639,7 @@
       "Bias-Aware Design & Mitigation",
       "Debate-Style Evidence Aggregation"
     ]
-  }
-
+  },
   {
     "cluster_id":50,
     "short_name":"Prompt & ICL Optimization",
@@ -699,8 +649,7 @@
       "Ambiguous Demonstrations",
       "XInSTA Prompting"
     ]
-  }
-
+  },
   {
     "cluster_id":51,
     "short_name":"LLM Optimization & Batching",
@@ -711,8 +660,7 @@
       "Prompt Optimization with Textual Gradients (ProTeGi)",
       "Batch Prompting for Pruning"
     ]
-  }
-
+  },
   {
     "cluster_id":52,
     "short_name":"Advanced MT Prompting",
@@ -727,8 +675,7 @@
       "PARC Prompts Augmented by Retrieval Cross-lingually",
       "Multi-Aspect Prompting and Selection (MAPS)"
     ]
-  }
-
+  },
   {
     "cluster_id":53,
     "short_name":"Cross-lingual LLM Prompting",
@@ -736,8 +683,7 @@
     "sub_patterns":[
       "InCLT Crosslingual Transfer Prompting"
     ]
-  }
-
+  },
   {
     "cluster_id":54,
     "short_name":"Multimodal Generative Prompting",
@@ -750,8 +696,7 @@
       "Negative Prompting",
       "Prompt Modifiers"
     ]
-  }
-
+  },
   {
     "cluster_id":55,
     "short_name":"Multimodal Reasoning Extensions",
@@ -761,8 +706,7 @@
       "ChainofImages (CoI)",
       "Duty Distinct ChainofThought (DDCoT)"
     ]
-  }
-
+  },
   {
     "cluster_id":56,
     "short_name":"Agentic LLM Interaction & Tools",
@@ -773,8 +717,7 @@
       "Agentic Policy for LLM Orchestration",
       "State Representation for Agentic LLM"
     ]
-  }
-
+  },
   {
     "cluster_id":57,
     "short_name":"Role-Based LLM Evaluation",
@@ -783,8 +726,7 @@
       "ChatEval Framework",
       "Role-based Evaluation"
     ]
-  }
-
+  },
   {
     "cluster_id":58,
     "short_name":"Flexible LLM-KG Integration",
@@ -793,8 +735,7 @@
       "Relation-Based Reasoning (ToGR)",
       "Plug-and-Play LLM-KG Integration"
     ]
-  }
-
+  },
   {
     "cluster_id":59,
     "short_name":"LLM Tool Use & API Integration",
@@ -808,8 +749,7 @@
       "Self-Instruct Finetuning for API Generation",
       "Retriever-Aware Training (RAT)"
     ]
-  }
-
+  },
   {
     "cluster_id":60,
     "short_name":"LLMs for Recommender Systems",
@@ -822,8 +762,7 @@
       "LLMs for Automated ML Selection",
       "LLMs as Explainer"
     ]
-  }
-
+  },
   {
     "cluster_id":61,
     "short_name":"LLM Agent Training & Alignment",
@@ -836,4 +775,4 @@
       "Sample-Efficient RL with Reference Reuse"
     ]
   }
-
+]

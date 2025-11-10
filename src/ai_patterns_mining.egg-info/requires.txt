@@ -18,4 +18,6 @@ seaborn
 umap-learn
 hdbscan
 faiss-cpu
+kmodes
+gower
 tiktoken
