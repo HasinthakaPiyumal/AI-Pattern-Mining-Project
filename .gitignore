@@ -13,3 +13,4 @@ notebooks/**/*.csv
 data.csv
 models/
 !outputs/prompt & rag/20251028_085918 - Run /extracted_patterns/descripted_patterns.csv
+!notebooks/embeddings_result/embeddings_call_graph_clusters_v1.csv
