@@ -1,17 +1,4 @@
-"""Python code for an Intelligent & Ethical Customer Support Agent.
 
-This agent leverages advanced LLM prompting techniques (Demonstration Ensembling, Balanced Demonstrations, Cultural Awareness) to enhance accuracy, reduce bias, and provide culturally sensitive responses in automated customer service.
-
-Key Components:
-- FastAPI for API Gateway.
-- LangChain for LLM orchestration.
-- OpenAI for LLM and Embeddings.
-- ChromaDB for Knowledge & Exemplar Base.
-- SQLAlchemy (SQLite) for Conversation History.
-- Pydantic for data validation.
-- Dotenv for environment variables.
-- Loguru for logging.
-"""
 
 import os
 import random
@@ -151,7 +138,6 @@ class BalancedDemonstrationsSelector:
     def select_demonstrations(
         self, query: str, num_examples: int = 4, balance_criteria_key: str = "type"
     ) -> List[str]:
-        """Selects balanced demonstrations by querying the vector store and trying to get diverse types."""
         all_relevant_docs = self.knowledge_base.get_relevant_docs(query, k=num_examples * 2) # Get more to choose from
         
         # Group docs by balance criteria
@@ -192,7 +178,6 @@ class BalancedDemonstrationsSelector:
 
 class DenseModule:
     def create_dense_prompts(self, base_system_message: str, user_question: str, demonstrations: List[str], num_variations: int = 3) -> List[List[SystemMessage | HumanMessage]]:
-        """Generates multiple distinct few-shot prompts with varying exemplar subsets."""
         if not demonstrations:
             logger.warning("No demonstrations provided for DENSE module.")
             return [[SystemMessage(content=base_system_message), HumanMessage(content=user_question)]]
@@ -223,7 +208,6 @@ class DenseModule:
 # --- Bias Mitigation & Refinement Module --- #
 class BiasMitigationModule:
     def detect_and_mitigate_bias(self, response: str) -> Tuple[str, bool, Optional[str]]:
-        """Simulates bias detection and suggests mitigation."""
         bias_keywords = [
             "unfortunately, we cannot", "only for premium members", "based on your demographics",
             "typical for someone from", "you are not eligible", "restricted to certain regions"
@@ -251,7 +235,7 @@ class LLMOrchestrator:
         self.llm = ChatOpenAI(model="gpt-4o", temperature=0.7, openai_api_key=openai_api_key)
 
     def process_inquiry(self, prompts: List[List[SystemMessage | HumanMessage]]) -> Tuple[str, List[str]]:
-        """Sends multiple prompts to the LLM and aggregates responses."""
+
         raw_responses = []
         for prompt_messages in prompts:
             try:
