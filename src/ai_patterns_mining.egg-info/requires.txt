@@ -20,4 +20,5 @@ hdbscan
 faiss-cpu
 kmodes
 gower
+tensorflow
 tiktoken

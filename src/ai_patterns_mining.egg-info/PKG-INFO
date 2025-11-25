@@ -27,6 +27,7 @@ Requires-Dist: hdbscan
 Requires-Dist: faiss-cpu
 Requires-Dist: kmodes
 Requires-Dist: gower
+Requires-Dist: tensorflow
 Requires-Dist: tiktoken
 Dynamic: author
 Dynamic: author-email

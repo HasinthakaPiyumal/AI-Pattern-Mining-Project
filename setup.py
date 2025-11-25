@@ -36,6 +36,7 @@ setup(
         "faiss-cpu",
         "kmodes",
         "gower",
+        "tensorflow",
         "tiktoken"
     ],
     entry_points={
