@@ -1,0 +1,128 @@
+import pandas as pd
+from sentence_transformers import SentenceTransformer
+from sklearn.neighbors import NearestNeighbors
+# import openai # Uncomment if using actual OpenAI API
+import numpy as np
+
+class DataHandler:
+    def load_historical_data(self, filepath="dummy_data.csv"):
+        try:
+            df = pd.read_csv(filepath)
+        except FileNotFoundError:
+            # Create dummy data if file not found
+            print("Dummy data file not found, creating sample data.")
+            data = {
+                "query": [
+                    "What are your operating hours?",
+                    "How do I reset my password?",
+                    "I need help with my recent order #12345.",
+                    "What is your return policy?",
+                    "Can I change my shipping address?",
+                    "How to contact customer service?",
+                    "My product arrived damaged, what should I do?",
+                    "Do you offer international shipping?",
+                    "Where is my package?",
+                    "I want to cancel my subscription."
+                ],
+                "answer": [
+                    "Our operating hours are Monday to Friday, 9 AM to 5 PM EST.",
+                    "You can reset your password by clicking on 'Forgot Password' on the login page.",
+                    "Please provide more details about order #12345, and we'll assist you.",
+                    "Our return policy allows returns within 30 days of purchase with a valid receipt.",
+                    "Yes, you can change your shipping address before the order is dispatched. Please contact support immediately.",
+                    "You can contact customer service via phone at 1-800-555-0123 or email at support@example.com.",
+                    "Please send us photos of the damaged product and your order details, and we will arrange a replacement or refund.",
+                    "Yes, we offer international shipping to most countries. Shipping costs and delivery times vary.",
+                    "To track your package, please enter your tracking number on our website's tracking page.",
+                    "You can cancel your subscription by visiting your account settings or contacting our support team."
+                ]
+            }
+            df = pd.DataFrame(data)
+            df.to_csv(filepath, index=False)
+        return df
+
+    def initialize_embedding_model(self, model_name="all-MiniLM-L6-v2"):
+        return SentenceTransformer(model_name)
+
+    def get_embeddings(self, texts, model):
+        return model.encode(texts, convert_to_tensor=True)
+
+class KNNExemplarSelector:
+    def __init__(self, historical_embeddings, historical_queries, historical_answers):
+        self.historical_embeddings = historical_embeddings
+        self.historical_queries = historical_queries
+        self.historical_answers = historical_answers
+        self.nn_model = NearestNeighbors(n_neighbors=5, metric='cosine')
+        self.nn_model.fit(self.historical_embeddings)
+
+    def find_exemplars(self, query_embedding, k):
+        distances, indices = self.nn_model.kneighbors(query_embedding.reshape(1, -1), n_neighbors=k)
+        exemplars = []
+        for i in indices[0]:
+            exemplars.append({"query": self.historical_queries.iloc[i], "answer": self.historical_answers.iloc[i]})
+        return exemplars
+
+class Chatbot:
+    def construct_few_shot_prompt(self, new_query, exemplars):
+        prompt = "You are a helpful customer support assistant. Answer the user's question based on the provided examples.\n\n"
+        for ex in exemplars:
+            prompt += f"Customer: {ex['query']}\n"
+            prompt += f"Assistant: {ex['answer']}\n\n"
+        prompt += f"Customer: {new_query}\n"
+        prompt += f"Assistant:"
+        return prompt
+
+    def generate_llm_response(self, prompt, llm_client=None):
+        # This is a placeholder for actual LLM interaction.
+        # If using OpenAI, uncomment the openai import and replace this with actual API call.
+        # Example for OpenAI:
+        # response = openai.ChatCompletion.create(
+        #     model="gpt-3.5-turbo",
+        #     messages=[{"role": "user", "content": prompt}],
+        #     max_tokens=150
+        # )
+        # return response.choices[0].message["content"].strip()
+        
+        # Mock response for demonstration
+        if "operating hours" in prompt.lower():
+            return "Our operating hours are generally 9 AM to 5 PM, Monday through Friday."
+        elif "password" in prompt.lower():
+            return "You can reset your password from the login page by clicking 'Forgot Password'."
+        elif "return policy" in prompt.lower():
+            return "Our return policy allows returns within 30 days of purchase."
+        else:
+            return f"I understand you asked: '{new_query}'. Based on similar queries, I believe the answer is [Generated by LLM using few-shot prompt]. Please provide more details if this isn't sufficient."
+
+def main():
+    print("Initializing Chatbot...")
+    data_handler = DataHandler()
+    df_historical = data_handler.load_historical_data()
+
+    embedding_model = data_handler.initialize_embedding_model()
+    historical_embeddings = data_handler.get_embeddings(df_historical["query"].tolist(), embedding_model)
+
+    knn_selector = KNNExemplarSelector(historical_embeddings, df_historical["query"], df_historical["answer"])
+    chatbot = Chatbot()
+
+    # llm_client = openai # Initialize your LLM client if needed
+
+    print("Chatbot Ready! Type 'exit' to quit.")
+    while True:
+        new_query = input("\nYour query: ")
+        if new_query.lower() == 'exit':
+            break
+
+        new_query_embedding = data_handler.get_embeddings([new_query], embedding_model)
+        
+        # Find K nearest neighbors (exemplars)
+        k_exemplars = 3 # You can adjust K
+        exemplars = knn_selector.find_exemplars(new_query_embedding, k_exemplars)
+        
+        prompt = chatbot.construct_few_shot_prompt(new_query, exemplars)
+        # print("\n--- Generated Prompt ---\n", prompt)
+        
+        response = chatbot.generate_llm_response(prompt)
+        print(f"\nAssistant: {response}")
+
+if __name__ == "__main__":
+    main()
