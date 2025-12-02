@@ -21,4 +21,5 @@ faiss-cpu
 kmodes
 gower
 tensorflow
+imblearn
 tiktoken

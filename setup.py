@@ -37,6 +37,7 @@ setup(
         "kmodes",
         "gower",
         "tensorflow",
+        "imblearn",
         "tiktoken"
     ],
     entry_points={
