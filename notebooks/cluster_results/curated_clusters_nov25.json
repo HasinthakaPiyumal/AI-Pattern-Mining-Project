@@ -446,5 +446,26 @@
         "l2_patterns": [
             "Program-Aided Language Models (PAL) Prompting"
         ]
+    },
+    {
+        "cluster_id": 26,
+        "short_name": "Model Abstraction Pattern",
+        "l2_patterns": [
+            "Model Abstraction Pattern"
+        ]
+    },
+    {
+        "cluster_id": 27,
+        "short_name": "Classical Models",
+        "l2_patterns": [
+            "Classical Models"
+        ]
+    },
+    {
+        "cluster_id": 28,
+        "short_name": "Preprocessing Text and Numerical Data",
+        "l2_patterns": [
+            "Preprocessing Text and Numerical Data"
+        ]
     }
 ]

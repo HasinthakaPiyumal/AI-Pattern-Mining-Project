@@ -1,5 +1,38 @@
 [
   {
+    "Pattern Name": "Model Abstraction Pattern",
+    "Problem": "Applications tightly coupled to a specific LLM provider (e.g., GPT, Gemini, Llama) become difficult to maintain, expensive to adapt, and vulnerable to vendor lock-in.",
+    "Context": "Systems needing flexibility to switch between different LLMs based on cost, performance, latency, or domain requirements.",
+    "Solution": "Introduce an abstraction layer that exposes a unified interface for interacting with any LLM. This layer handles prompt formatting, API calls, error handling, and response parsing, allowing the underlying model to be swapped without changing application logic.",
+    "Result": "Developers gain the ability to seamlessly switch LLM providers, reduce vendor dependence, simplify maintenance, and ensure long-term system adaptability.",
+    "Related Patterns": "Unified API Wrapper, Provider-Agnostic Architecture, LLM Routing Layer",
+    "Category": "Architecture & Integration",
+    "Uses": "Building scalable LLM applications, switching between providers dynamically, benchmarking models, reducing operational risk.",
+    "Thinking": "This pattern abstracts away implementation details so the system remains stable even when the underlying LLM changes, ensuring long-term flexibility and maintainability."
+  },
+  {
+    "Pattern Name": "Classical Models",
+    "Problem": "Many tasks require models trained directly on specific datasets rather than relying solely on general-purpose pretrained LLMs. Without traditional ML or DL models, certain structured, numerical, or domain-specific problems cannot be solved effectively.",
+    "Context": "Situations involving structured data, numerical prediction, image classification, or text processing tasks where the model must learn features directly from the provided dataset.",
+    "Solution": "Use traditional machine learning and deep learning algorithms such as logistic regression, SVMs, decision trees, CNNs, and RNNs, which learn patterns from scratch or from domain-specific datasets.",
+    "Result": "Provides interpretable, efficient, and domain-tailored models that perform well on structured data and scenarios where fine-tuning LLMs is unnecessary or overkill.",
+    "Related Patterns": "Feature Engineering Pipeline, Text Vectorization Methods, Hybrid Modeling",
+    "Category": "Machine Learning & Deep Learning Foundations",
+    "Uses": "Classification, regression, clustering, computer vision tasks, numerical forecasting, and domain-specific supervised learning.",
+    "Thinking": "Traditional ML and DL remain essential because many tasks demand custom patterns learned directly from data, making them complementary—not replacements—to modern LLM-based workflows."
+  },
+  {
+    "Pattern Name": "Preprocessing Text and Numerical Data",
+    "Problem": "Raw data often contains noise, inconsistent formats, missing values, and unstructured content. Without preprocessing, models learn incorrectly and produce poor results.",
+    "Context": "Machine learning pipelines that require numerical stability, cleaned inputs, and feature transformations for both text and numerical datasets.",
+    "Solution": "Apply preprocessing transformations: for numerical data, perform scaling, normalization, imputation, and feature encoding; for text, perform tokenization, stop-word removal, stemming/lemmatization, and convert text into numerical representations using TF-IDF, word embeddings, or other vectorizers.",
+    "Result": "Improves model stability, accuracy, training efficiency, and ensures data is in a usable form for downstream ML models.",
+    "Related Patterns": "Feature Engineering Pipeline, Vectorization Techniques, Data Cleaning Pattern",
+    "Category": "Data Processing & Preparation",
+    "Uses": "Cleaning raw datasets, preparing structured and unstructured data for ML, improving training quality, enabling classical ML algorithms to work effectively.",
+    "Thinking": "Preprocessing is fundamental because machine learning models depend on well-structured, normalized inputs; without it, even the best algorithms perform poorly."
+  },
+  {
     "Pattern Name": "External Knowledge Augmentation",
     "Problem": "Large Language Models (LLMs) are bounded by their pretraining knowledge, lack the ability to acquire updated information, and are prone to generating factually inaccurate or outdated content (hallucination).",
     "Context": "LLMs relying on fixed and parametric knowledge, often struggling with contemporary or specific factual queries.",
