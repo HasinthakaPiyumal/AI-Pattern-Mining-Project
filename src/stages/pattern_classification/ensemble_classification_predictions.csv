@@ -1,0 +1,267 @@
+pattern,threshold_class,without_threshold_class,second_level_model_class_lr,second_level_model_class_rr
+Classical Models,Other,Classical Models,Classical Models,Classical Models
+Classical Models,Other,Classical Models,Classical Models,Classical Models
+Classical Models,Classical Models,Classical Models,Classical Models,Classical Models
+Classical Models,Other,Classical Models,Classical Models,Classical Models
+Classical Models,Other,Classical Models,Classical Models,Classical Models
+Classical Models,None,None,None,None
+Classical Models,Preprocessing Text and Numerical Data,Preprocessing Text and Numerical Data,Classical Models,Preprocessing Text and Numerical Data
+Classical Models,Other,Classical Models,Classical Models,Classical Models
+Classical Models,Classical Models,Classical Models,Classical Models,Classical Models
+Classical Models,Classical Models,Classical Models,Classical Models,Classical Models
+LLM Results Evaluation,Classical Models,Classical Models,Classical Models,Classical Models
+LLM Results Evaluation,LLM Results Evaluation,LLM Results Evaluation,LLM Results Evaluation,LLM Results Evaluation
+LLM based Multimodal Generative Prompting,None,None,LLM based Multimodal Generative Prompting,LLM based Multimodal Generative Prompting
+LLM based Multimodal Generative Prompting,None,None,LLM based Multimodal Generative Prompting,None
+LLM based Multimodal Generative Prompting,None,None,None,None
+LLM based Multimodal Generative Prompting,LLM based Multimodal Generative Prompting,LLM based Multimodal Generative Prompting,LLM based Multimodal Generative Prompting,LLM based Multimodal Generative Prompting
+LLM based Multimodal Generative Prompting,Other,LLM based Multimodal Generative Prompting,Preprocessing Text and Numerical Data,LLM based Multimodal Generative Prompting
+Model Abstraction Pattern,None,None,None,None
+Model Abstraction Pattern,Model Abstraction Pattern,Model Abstraction Pattern,Model Abstraction Pattern,Model Abstraction Pattern
+Model Abstraction Pattern,Preprocessing Text and Numerical Data,Preprocessing Text and Numerical Data,None,None
+Model Abstraction Pattern,Tool Use for LLMs,Tool Use for LLMs,Model Abstraction Pattern,Model Abstraction Pattern
+Modular LLM Agent Architectures,Tool Use for LLMs,Tool Use for LLMs,Tool Use for LLMs,Tool Use for LLMs
+Modular LLM Agent Architectures,Tool Use for LLMs,Tool Use for LLMs,Tool Use for LLMs,Tool Use for LLMs
+Modular LLM Agent Architectures,Modular LLM Agent Architectures,Modular LLM Agent Architectures,Modular LLM Agent Architectures,Modular LLM Agent Architectures
+Modular LLM Agent Architectures,None,None,None,None
+None,None,None,None,None
+None,None,None,LLM based Multimodal Generative Prompting,LLM based Multimodal Generative Prompting
+None,Classical Models,Classical Models,Classical Models,Classical Models
+None,None,None,None,None
+None,Preprocessing Text and Numerical Data,Preprocessing Text and Numerical Data,Preprocessing Text and Numerical Data,Preprocessing Text and Numerical Data
+None,None,None,None,None
+None,Other,Classical Models,Classical Models,Classical Models
+None,Retrieval Augmented Generation(RAG) Optimization for LLMs,Retrieval Augmented Generation(RAG) Optimization for LLMs,Retrieval Augmented Generation(RAG) Optimization for LLMs,Model Abstraction Pattern
+None,None,None,None,None
+None,Tool Use for LLMs,Tool Use for LLMs,Modular LLM Agent Architectures,Modular LLM Agent Architectures
+None,Preprocessing Text and Numerical Data,Preprocessing Text and Numerical Data,Preprocessing Text and Numerical Data,Preprocessing Text and Numerical Data
+None,None,None,None,None
+Preprocessing Text and Numerical Data,Other,Classical Models,Classical Models,Classical Models
+Preprocessing Text and Numerical Data,Tool Use for LLMs,Tool Use for LLMs,Tool Use for LLMs,None
+Preprocessing Text and Numerical Data,LLM based Multimodal Generative Prompting,LLM based Multimodal Generative Prompting,LLM based Multimodal Generative Prompting,LLM based Multimodal Generative Prompting
+Preprocessing Text and Numerical Data,Preprocessing Text and Numerical Data,Preprocessing Text and Numerical Data,Preprocessing Text and Numerical Data,Preprocessing Text and Numerical Data
+Preprocessing Text and Numerical Data,Preprocessing Text and Numerical Data,Preprocessing Text and Numerical Data,Preprocessing Text and Numerical Data,Preprocessing Text and Numerical Data
+Preprocessing Text and Numerical Data,Preprocessing Text and Numerical Data,Preprocessing Text and Numerical Data,Preprocessing Text and Numerical Data,Preprocessing Text and Numerical Data
+Preprocessing Text and Numerical Data,Preprocessing Text and Numerical Data,Preprocessing Text and Numerical Data,Preprocessing Text and Numerical Data,Preprocessing Text and Numerical Data
+Retrieval Augmented Generation(RAG) Optimization for LLMs,None,None,None,None
+Retrieval Augmented Generation(RAG) Optimization for LLMs,Preprocessing Text and Numerical Data,Preprocessing Text and Numerical Data,Preprocessing Text and Numerical Data,Preprocessing Text and Numerical Data
+Retrieval Augmented Generation(RAG) Optimization for LLMs,Tool Use for LLMs,Tool Use for LLMs,Tool Use for LLMs,Tool Use for LLMs
+Retrieval Augmented Generation(RAG) Optimization for LLMs,None,None,None,None
+Tool Use for LLMs,Tool Use for LLMs,Tool Use for LLMs,Tool Use for LLMs,Tool Use for LLMs
+Tool Use for LLMs,Tool Use for LLMs,Tool Use for LLMs,Tool Use for LLMs,Tool Use for LLMs
+Tool Use for LLMs,Retrieval Augmented Generation(RAG) Optimization for LLMs,Retrieval Augmented Generation(RAG) Optimization for LLMs,Retrieval Augmented Generation(RAG) Optimization for LLMs,Retrieval Augmented Generation(RAG) Optimization for LLMs
+Tool Use for LLMs,None,None,None,None
+Tool Use for LLMs,Tool Use for LLMs,Tool Use for LLMs,Tool Use for LLMs,Tool Use for LLMs
+Classical Models,Preprocessing Text and Numerical Data,Preprocessing Text and Numerical Data,Preprocessing Text and Numerical Data,Preprocessing Text and Numerical Data
+Classical Models,Classical Models,Classical Models,Classical Models,Classical Models
+Classical Models,None,None,None,None
+Classical Models,Classical Models,Classical Models,Classical Models,Classical Models
+Classical Models,Classical Models,Classical Models,Classical Models,Classical Models
+Classical Models,Classical Models,Classical Models,Classical Models,Classical Models
+Classical Models,Retrieval Augmented Generation(RAG) Optimization for LLMs,Retrieval Augmented Generation(RAG) Optimization for LLMs,Retrieval Augmented Generation(RAG) Optimization for LLMs,Retrieval Augmented Generation(RAG) Optimization for LLMs
+Classical Models,Classical Models,Classical Models,Classical Models,Classical Models
+Classical Models,None,None,None,None
+LLM Results Evaluation,None,None,None,None
+LLM Results Evaluation,None,None,None,None
+LLM Results Evaluation,Other,Classical Models,LLM Results Evaluation,LLM Results Evaluation
+LLM based Multimodal Generative Prompting,Tool Use for LLMs,Tool Use for LLMs,Tool Use for LLMs,Tool Use for LLMs
+LLM based Multimodal Generative Prompting,Preprocessing Text and Numerical Data,Preprocessing Text and Numerical Data,Preprocessing Text and Numerical Data,LLM based Multimodal Generative Prompting
+LLM based Multimodal Generative Prompting,None,None,None,None
+LLM based Multimodal Generative Prompting,Classical Models,Classical Models,Classical Models,Classical Models
+LLM based Multimodal Generative Prompting,None,None,None,None
+Model Abstraction Pattern,Modular LLM Agent Architectures,Modular LLM Agent Architectures,Modular LLM Agent Architectures,Modular LLM Agent Architectures
+Model Abstraction Pattern,None,None,None,None
+Model Abstraction Pattern,Other,Tool Use for LLMs,Model Abstraction Pattern,Model Abstraction Pattern
+Modular LLM Agent Architectures,Classical Models,Classical Models,Preprocessing Text and Numerical Data,Preprocessing Text and Numerical Data
+Modular LLM Agent Architectures,Other,Classical Models,Classical Models,Classical Models
+Modular LLM Agent Architectures,Modular LLM Agent Architectures,Modular LLM Agent Architectures,Modular LLM Agent Architectures,Modular LLM Agent Architectures
+Modular LLM Agent Architectures,LLM Results Evaluation,LLM Results Evaluation,LLM Results Evaluation,LLM Results Evaluation
+None,None,None,Model Abstraction Pattern,None
+None,LLM Results Evaluation,LLM Results Evaluation,LLM Results Evaluation,LLM Results Evaluation
+None,Classical Models,Classical Models,Classical Models,Classical Models
+None,Preprocessing Text and Numerical Data,Preprocessing Text and Numerical Data,Preprocessing Text and Numerical Data,Preprocessing Text and Numerical Data
+None,None,None,None,None
+None,None,None,None,None
+None,None,None,None,None
+None,None,None,None,None
+None,None,None,None,None
+None,None,None,None,None
+None,None,None,None,None
+None,None,None,LLM Results Evaluation,LLM Results Evaluation
+None,None,None,None,None
+Preprocessing Text and Numerical Data,Preprocessing Text and Numerical Data,Preprocessing Text and Numerical Data,Preprocessing Text and Numerical Data,LLM based Multimodal Generative Prompting
+Preprocessing Text and Numerical Data,Classical Models,Classical Models,Preprocessing Text and Numerical Data,LLM based Multimodal Generative Prompting
+Preprocessing Text and Numerical Data,Classical Models,Classical Models,Preprocessing Text and Numerical Data,Classical Models
+Preprocessing Text and Numerical Data,None,None,None,None
+Preprocessing Text and Numerical Data,Other,Tool Use for LLMs,Tool Use for LLMs,Tool Use for LLMs
+Preprocessing Text and Numerical Data,None,None,None,None
+Preprocessing Text and Numerical Data,Preprocessing Text and Numerical Data,Preprocessing Text and Numerical Data,Preprocessing Text and Numerical Data,Preprocessing Text and Numerical Data
+Retrieval Augmented Generation(RAG) Optimization for LLMs,Tool Use for LLMs,Tool Use for LLMs,Tool Use for LLMs,Tool Use for LLMs
+Retrieval Augmented Generation(RAG) Optimization for LLMs,Tool Use for LLMs,Tool Use for LLMs,Tool Use for LLMs,Tool Use for LLMs
+Retrieval Augmented Generation(RAG) Optimization for LLMs,Retrieval Augmented Generation(RAG) Optimization for LLMs,Retrieval Augmented Generation(RAG) Optimization for LLMs,Retrieval Augmented Generation(RAG) Optimization for LLMs,Retrieval Augmented Generation(RAG) Optimization for LLMs
+Retrieval Augmented Generation(RAG) Optimization for LLMs,None,None,None,None
+Tool Use for LLMs,Retrieval Augmented Generation(RAG) Optimization for LLMs,Retrieval Augmented Generation(RAG) Optimization for LLMs,Retrieval Augmented Generation(RAG) Optimization for LLMs,Retrieval Augmented Generation(RAG) Optimization for LLMs
+Tool Use for LLMs,None,None,None,None
+Tool Use for LLMs,Modular LLM Agent Architectures,Modular LLM Agent Architectures,Modular LLM Agent Architectures,Modular LLM Agent Architectures
+Tool Use for LLMs,None,None,Tool Use for LLMs,Tool Use for LLMs
+Tool Use for LLMs,Modular LLM Agent Architectures,Modular LLM Agent Architectures,Modular LLM Agent Architectures,Modular LLM Agent Architectures
+Classical Models,Classical Models,Classical Models,Classical Models,Classical Models
+Classical Models,Classical Models,Classical Models,Classical Models,Classical Models
+Classical Models,Other,None,None,None
+Classical Models,Classical Models,Classical Models,Classical Models,Classical Models
+Classical Models,None,None,None,None
+Classical Models,Classical Models,Classical Models,Classical Models,Classical Models
+Classical Models,Classical Models,Classical Models,Classical Models,Classical Models
+Classical Models,Other,None,None,None
+Classical Models,Classical Models,Classical Models,Classical Models,Classical Models
+LLM Results Evaluation,LLM Results Evaluation,LLM Results Evaluation,LLM Results Evaluation,LLM Results Evaluation
+LLM Results Evaluation,Other,Preprocessing Text and Numerical Data,Preprocessing Text and Numerical Data,Preprocessing Text and Numerical Data
+LLM Results Evaluation,Other,Preprocessing Text and Numerical Data,Preprocessing Text and Numerical Data,Preprocessing Text and Numerical Data
+LLM based Multimodal Generative Prompting,LLM based Multimodal Generative Prompting,LLM based Multimodal Generative Prompting,LLM based Multimodal Generative Prompting,LLM based Multimodal Generative Prompting
+LLM based Multimodal Generative Prompting,Classical Models,Classical Models,Classical Models,Classical Models
+LLM based Multimodal Generative Prompting,Other,Preprocessing Text and Numerical Data,Preprocessing Text and Numerical Data,Preprocessing Text and Numerical Data
+LLM based Multimodal Generative Prompting,Classical Models,Classical Models,Classical Models,Classical Models
+LLM based Multimodal Generative Prompting,Other,Preprocessing Text and Numerical Data,Preprocessing Text and Numerical Data,Preprocessing Text and Numerical Data
+Model Abstraction Pattern,Other,Modular LLM Agent Architectures,Model Abstraction Pattern,Modular LLM Agent Architectures
+Model Abstraction Pattern,Classical Models,Classical Models,Classical Models,Classical Models
+Model Abstraction Pattern,Other,None,None,None
+Modular LLM Agent Architectures,Other,Preprocessing Text and Numerical Data,Preprocessing Text and Numerical Data,Preprocessing Text and Numerical Data
+Modular LLM Agent Architectures,Modular LLM Agent Architectures,Modular LLM Agent Architectures,Tool Use for LLMs,Tool Use for LLMs
+Modular LLM Agent Architectures,Modular LLM Agent Architectures,Modular LLM Agent Architectures,Model Abstraction Pattern,Modular LLM Agent Architectures
+Modular LLM Agent Architectures,LLM Results Evaluation,LLM Results Evaluation,LLM Results Evaluation,LLM Results Evaluation
+None,None,None,None,None
+None,Other,Preprocessing Text and Numerical Data,LLM based Multimodal Generative Prompting,LLM based Multimodal Generative Prompting
+None,Other,Modular LLM Agent Architectures,Tool Use for LLMs,Tool Use for LLMs
+None,Retrieval Augmented Generation(RAG) Optimization for LLMs,Retrieval Augmented Generation(RAG) Optimization for LLMs,Retrieval Augmented Generation(RAG) Optimization for LLMs,Classical Models
+None,None,None,None,None
+None,Other,None,None,Classical Models
+None,Other,Modular LLM Agent Architectures,Modular LLM Agent Architectures,LLM Results Evaluation
+None,Other,Preprocessing Text and Numerical Data,Preprocessing Text and Numerical Data,Preprocessing Text and Numerical Data
+None,Other,None,None,None
+None,Other,None,LLM based Multimodal Generative Prompting,LLM based Multimodal Generative Prompting
+None,Retrieval Augmented Generation(RAG) Optimization for LLMs,Retrieval Augmented Generation(RAG) Optimization for LLMs,Retrieval Augmented Generation(RAG) Optimization for LLMs,Retrieval Augmented Generation(RAG) Optimization for LLMs
+None,Other,None,None,None
+None,Preprocessing Text and Numerical Data,Preprocessing Text and Numerical Data,Preprocessing Text and Numerical Data,Preprocessing Text and Numerical Data
+Preprocessing Text and Numerical Data,Tool Use for LLMs,Tool Use for LLMs,Tool Use for LLMs,Tool Use for LLMs
+Preprocessing Text and Numerical Data,Other,Preprocessing Text and Numerical Data,Preprocessing Text and Numerical Data,Preprocessing Text and Numerical Data
+Preprocessing Text and Numerical Data,Other,LLM based Multimodal Generative Prompting,Preprocessing Text and Numerical Data,LLM based Multimodal Generative Prompting
+Preprocessing Text and Numerical Data,Retrieval Augmented Generation(RAG) Optimization for LLMs,Retrieval Augmented Generation(RAG) Optimization for LLMs,Retrieval Augmented Generation(RAG) Optimization for LLMs,Retrieval Augmented Generation(RAG) Optimization for LLMs
+Preprocessing Text and Numerical Data,Preprocessing Text and Numerical Data,Preprocessing Text and Numerical Data,Preprocessing Text and Numerical Data,Preprocessing Text and Numerical Data
+Preprocessing Text and Numerical Data,Preprocessing Text and Numerical Data,Preprocessing Text and Numerical Data,Preprocessing Text and Numerical Data,Preprocessing Text and Numerical Data
+Preprocessing Text and Numerical Data,Other,Preprocessing Text and Numerical Data,Preprocessing Text and Numerical Data,Preprocessing Text and Numerical Data
+Retrieval Augmented Generation(RAG) Optimization for LLMs,Retrieval Augmented Generation(RAG) Optimization for LLMs,Retrieval Augmented Generation(RAG) Optimization for LLMs,Retrieval Augmented Generation(RAG) Optimization for LLMs,Retrieval Augmented Generation(RAG) Optimization for LLMs
+Retrieval Augmented Generation(RAG) Optimization for LLMs,Retrieval Augmented Generation(RAG) Optimization for LLMs,Retrieval Augmented Generation(RAG) Optimization for LLMs,Preprocessing Text and Numerical Data,Retrieval Augmented Generation(RAG) Optimization for LLMs
+Retrieval Augmented Generation(RAG) Optimization for LLMs,None,None,None,None
+Retrieval Augmented Generation(RAG) Optimization for LLMs,Retrieval Augmented Generation(RAG) Optimization for LLMs,Retrieval Augmented Generation(RAG) Optimization for LLMs,Retrieval Augmented Generation(RAG) Optimization for LLMs,Retrieval Augmented Generation(RAG) Optimization for LLMs
+Tool Use for LLMs,None,None,None,None
+Tool Use for LLMs,Tool Use for LLMs,Tool Use for LLMs,Tool Use for LLMs,Tool Use for LLMs
+Tool Use for LLMs,Other,None,None,None
+Tool Use for LLMs,Model Abstraction Pattern,Model Abstraction Pattern,Model Abstraction Pattern,Model Abstraction Pattern
+Tool Use for LLMs,Model Abstraction Pattern,Model Abstraction Pattern,Retrieval Augmented Generation(RAG) Optimization for LLMs,Model Abstraction Pattern
+Classical Models,Classical Models,Classical Models,Classical Models,Classical Models
+Classical Models,Classical Models,Classical Models,Classical Models,Classical Models
+Classical Models,Preprocessing Text and Numerical Data,Preprocessing Text and Numerical Data,LLM based Multimodal Generative Prompting,Preprocessing Text and Numerical Data
+Classical Models,Classical Models,Classical Models,Classical Models,Classical Models
+Classical Models,Classical Models,Classical Models,Classical Models,Classical Models
+Classical Models,Classical Models,Classical Models,Classical Models,Classical Models
+Classical Models,Classical Models,Classical Models,Classical Models,Classical Models
+Classical Models,Classical Models,Classical Models,Classical Models,Classical Models
+Classical Models,Classical Models,Classical Models,Classical Models,Classical Models
+LLM Results Evaluation,None,None,None,None
+LLM Results Evaluation,None,None,None,None
+LLM Results Evaluation,Model Abstraction Pattern,Model Abstraction Pattern,Model Abstraction Pattern,Preprocessing Text and Numerical Data
+LLM based Multimodal Generative Prompting,LLM based Multimodal Generative Prompting,LLM based Multimodal Generative Prompting,LLM based Multimodal Generative Prompting,LLM based Multimodal Generative Prompting
+LLM based Multimodal Generative Prompting,Other,LLM based Multimodal Generative Prompting,LLM based Multimodal Generative Prompting,LLM based Multimodal Generative Prompting
+LLM based Multimodal Generative Prompting,LLM based Multimodal Generative Prompting,LLM based Multimodal Generative Prompting,LLM based Multimodal Generative Prompting,LLM based Multimodal Generative Prompting
+LLM based Multimodal Generative Prompting,LLM based Multimodal Generative Prompting,LLM based Multimodal Generative Prompting,LLM based Multimodal Generative Prompting,LLM based Multimodal Generative Prompting
+LLM based Multimodal Generative Prompting,Preprocessing Text and Numerical Data,Preprocessing Text and Numerical Data,Preprocessing Text and Numerical Data,Preprocessing Text and Numerical Data
+Model Abstraction Pattern,Retrieval Augmented Generation(RAG) Optimization for LLMs,Retrieval Augmented Generation(RAG) Optimization for LLMs,Retrieval Augmented Generation(RAG) Optimization for LLMs,Model Abstraction Pattern
+Model Abstraction Pattern,None,None,None,None
+Model Abstraction Pattern,Retrieval Augmented Generation(RAG) Optimization for LLMs,Retrieval Augmented Generation(RAG) Optimization for LLMs,Retrieval Augmented Generation(RAG) Optimization for LLMs,Retrieval Augmented Generation(RAG) Optimization for LLMs
+Modular LLM Agent Architectures,None,None,Tool Use for LLMs,Tool Use for LLMs
+Modular LLM Agent Architectures,None,None,Modular LLM Agent Architectures,Modular LLM Agent Architectures
+Modular LLM Agent Architectures,None,None,None,None
+Modular LLM Agent Architectures,Modular LLM Agent Architectures,Modular LLM Agent Architectures,Modular LLM Agent Architectures,Modular LLM Agent Architectures
+None,LLM based Multimodal Generative Prompting,LLM based Multimodal Generative Prompting,LLM based Multimodal Generative Prompting,LLM based Multimodal Generative Prompting
+None,LLM based Multimodal Generative Prompting,LLM based Multimodal Generative Prompting,LLM based Multimodal Generative Prompting,LLM based Multimodal Generative Prompting
+None,None,None,None,None
+None,None,None,None,None
+None,Classical Models,Classical Models,None,None
+None,None,None,None,None
+None,None,None,None,None
+None,Retrieval Augmented Generation(RAG) Optimization for LLMs,Retrieval Augmented Generation(RAG) Optimization for LLMs,Retrieval Augmented Generation(RAG) Optimization for LLMs,Retrieval Augmented Generation(RAG) Optimization for LLMs
+None,None,None,None,None
+None,Tool Use for LLMs,Tool Use for LLMs,None,Tool Use for LLMs
+None,Other,None,None,None
+None,Classical Models,Classical Models,Classical Models,Classical Models
+None,None,None,None,None
+Preprocessing Text and Numerical Data,Classical Models,Classical Models,Classical Models,Classical Models
+Preprocessing Text and Numerical Data,Classical Models,Classical Models,Classical Models,Classical Models
+Preprocessing Text and Numerical Data,Preprocessing Text and Numerical Data,Preprocessing Text and Numerical Data,Preprocessing Text and Numerical Data,Preprocessing Text and Numerical Data
+Preprocessing Text and Numerical Data,Preprocessing Text and Numerical Data,Preprocessing Text and Numerical Data,Preprocessing Text and Numerical Data,Preprocessing Text and Numerical Data
+Preprocessing Text and Numerical Data,Other,LLM based Multimodal Generative Prompting,LLM based Multimodal Generative Prompting,LLM based Multimodal Generative Prompting
+Preprocessing Text and Numerical Data,Preprocessing Text and Numerical Data,Preprocessing Text and Numerical Data,LLM based Multimodal Generative Prompting,Classical Models
+Retrieval Augmented Generation(RAG) Optimization for LLMs,Tool Use for LLMs,Tool Use for LLMs,Tool Use for LLMs,Tool Use for LLMs
+Retrieval Augmented Generation(RAG) Optimization for LLMs,Retrieval Augmented Generation(RAG) Optimization for LLMs,Retrieval Augmented Generation(RAG) Optimization for LLMs,Retrieval Augmented Generation(RAG) Optimization for LLMs,Retrieval Augmented Generation(RAG) Optimization for LLMs
+Retrieval Augmented Generation(RAG) Optimization for LLMs,Retrieval Augmented Generation(RAG) Optimization for LLMs,Retrieval Augmented Generation(RAG) Optimization for LLMs,Retrieval Augmented Generation(RAG) Optimization for LLMs,Retrieval Augmented Generation(RAG) Optimization for LLMs
+Retrieval Augmented Generation(RAG) Optimization for LLMs,Retrieval Augmented Generation(RAG) Optimization for LLMs,Retrieval Augmented Generation(RAG) Optimization for LLMs,Retrieval Augmented Generation(RAG) Optimization for LLMs,Retrieval Augmented Generation(RAG) Optimization for LLMs
+Tool Use for LLMs,Tool Use for LLMs,Tool Use for LLMs,Tool Use for LLMs,Tool Use for LLMs
+Tool Use for LLMs,Modular LLM Agent Architectures,Modular LLM Agent Architectures,Modular LLM Agent Architectures,Modular LLM Agent Architectures
+Tool Use for LLMs,Retrieval Augmented Generation(RAG) Optimization for LLMs,Retrieval Augmented Generation(RAG) Optimization for LLMs,Modular LLM Agent Architectures,Modular LLM Agent Architectures
+Tool Use for LLMs,None,None,None,None
+Tool Use for LLMs,None,None,None,Tool Use for LLMs
+Tool Use for LLMs,Model Abstraction Pattern,Model Abstraction Pattern,Model Abstraction Pattern,Model Abstraction Pattern
+Classical Models,Classical Models,Classical Models,Classical Models,Classical Models
+Classical Models,None,None,None,None
+Classical Models,Classical Models,Classical Models,Classical Models,Classical Models
+Classical Models,Classical Models,Classical Models,Classical Models,Classical Models
+Classical Models,Classical Models,Classical Models,Classical Models,Classical Models
+Classical Models,Classical Models,Classical Models,None,None
+Classical Models,Tool Use for LLMs,Tool Use for LLMs,Tool Use for LLMs,Tool Use for LLMs
+Classical Models,Classical Models,Classical Models,Classical Models,Classical Models
+Classical Models,Classical Models,Classical Models,Classical Models,Classical Models
+Classical Models,Preprocessing Text and Numerical Data,Preprocessing Text and Numerical Data,Preprocessing Text and Numerical Data,Preprocessing Text and Numerical Data
+LLM Results Evaluation,Tool Use for LLMs,Tool Use for LLMs,Tool Use for LLMs,Tool Use for LLMs
+LLM Results Evaluation,None,None,None,None
+LLM based Multimodal Generative Prompting,LLM based Multimodal Generative Prompting,LLM based Multimodal Generative Prompting,None,None
+LLM based Multimodal Generative Prompting,Other,Tool Use for LLMs,LLM based Multimodal Generative Prompting,Tool Use for LLMs
+LLM based Multimodal Generative Prompting,None,None,None,None
+LLM based Multimodal Generative Prompting,Other,LLM based Multimodal Generative Prompting,None,None
+LLM based Multimodal Generative Prompting,Other,Preprocessing Text and Numerical Data,Preprocessing Text and Numerical Data,Preprocessing Text and Numerical Data
+LLM based Multimodal Generative Prompting,Other,LLM based Multimodal Generative Prompting,None,LLM based Multimodal Generative Prompting
+Model Abstraction Pattern,Retrieval Augmented Generation(RAG) Optimization for LLMs,Retrieval Augmented Generation(RAG) Optimization for LLMs,None,Preprocessing Text and Numerical Data
+Model Abstraction Pattern,Modular LLM Agent Architectures,Modular LLM Agent Architectures,Modular LLM Agent Architectures,Modular LLM Agent Architectures
+Model Abstraction Pattern,Tool Use for LLMs,Tool Use for LLMs,Tool Use for LLMs,Tool Use for LLMs
+Modular LLM Agent Architectures,Tool Use for LLMs,Tool Use for LLMs,Tool Use for LLMs,Tool Use for LLMs
+Modular LLM Agent Architectures,Modular LLM Agent Architectures,Modular LLM Agent Architectures,Modular LLM Agent Architectures,Modular LLM Agent Architectures
+Modular LLM Agent Architectures,Other,Tool Use for LLMs,Tool Use for LLMs,Tool Use for LLMs
+Modular LLM Agent Architectures,None,None,None,None
+None,Tool Use for LLMs,Tool Use for LLMs,Tool Use for LLMs,Tool Use for LLMs
+None,None,None,None,None
+None,None,None,None,None
+None,Classical Models,Classical Models,Classical Models,Classical Models
+None,None,None,None,None
+None,Other,Preprocessing Text and Numerical Data,Preprocessing Text and Numerical Data,Preprocessing Text and Numerical Data
+None,None,None,None,None
+None,Classical Models,Classical Models,Classical Models,Classical Models
+None,None,None,None,None
+None,None,None,None,None
+None,None,None,None,None
+None,None,None,None,None
+None,None,None,Modular LLM Agent Architectures,None
+Preprocessing Text and Numerical Data,Tool Use for LLMs,Tool Use for LLMs,Tool Use for LLMs,Tool Use for LLMs
+Preprocessing Text and Numerical Data,Retrieval Augmented Generation(RAG) Optimization for LLMs,Retrieval Augmented Generation(RAG) Optimization for LLMs,Preprocessing Text and Numerical Data,Preprocessing Text and Numerical Data
+Preprocessing Text and Numerical Data,None,None,None,Preprocessing Text and Numerical Data
+Preprocessing Text and Numerical Data,LLM based Multimodal Generative Prompting,LLM based Multimodal Generative Prompting,LLM based Multimodal Generative Prompting,LLM based Multimodal Generative Prompting
+Preprocessing Text and Numerical Data,LLM based Multimodal Generative Prompting,LLM based Multimodal Generative Prompting,LLM based Multimodal Generative Prompting,LLM based Multimodal Generative Prompting
+Preprocessing Text and Numerical Data,None,None,None,None
+Retrieval Augmented Generation(RAG) Optimization for LLMs,Retrieval Augmented Generation(RAG) Optimization for LLMs,Retrieval Augmented Generation(RAG) Optimization for LLMs,Retrieval Augmented Generation(RAG) Optimization for LLMs,Retrieval Augmented Generation(RAG) Optimization for LLMs
+Retrieval Augmented Generation(RAG) Optimization for LLMs,Retrieval Augmented Generation(RAG) Optimization for LLMs,Retrieval Augmented Generation(RAG) Optimization for LLMs,Retrieval Augmented Generation(RAG) Optimization for LLMs,Retrieval Augmented Generation(RAG) Optimization for LLMs
+Retrieval Augmented Generation(RAG) Optimization for LLMs,Preprocessing Text and Numerical Data,Preprocessing Text and Numerical Data,Preprocessing Text and Numerical Data,Preprocessing Text and Numerical Data
+Retrieval Augmented Generation(RAG) Optimization for LLMs,Retrieval Augmented Generation(RAG) Optimization for LLMs,Retrieval Augmented Generation(RAG) Optimization for LLMs,None,Retrieval Augmented Generation(RAG) Optimization for LLMs
+Tool Use for LLMs,None,None,None,None
+Tool Use for LLMs,None,None,None,None
+Tool Use for LLMs,None,None,Modular LLM Agent Architectures,None
+Tool Use for LLMs,Tool Use for LLMs,Tool Use for LLMs,Tool Use for LLMs,Tool Use for LLMs
+Tool Use for LLMs,Modular LLM Agent Architectures,Modular LLM Agent Architectures,Modular LLM Agent Architectures,LLM based Multimodal Generative Prompting
+Tool Use for LLMs,None,None,Model Abstraction Pattern,None
