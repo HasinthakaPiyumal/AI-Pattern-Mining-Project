@@ -1,4 +1,4 @@
-import json
+import json,os,time
 from pathlib import Path
 
 import joblib
@@ -16,21 +16,25 @@ from tensorflow.keras.layers import BatchNormalization, Dense, Dropout
 from sklearn.linear_model import RidgeClassifier
 from sklearn.linear_model import LogisticRegression
 from tensorflow import keras
+
 # Ensure reproducibility
 np.random.seed(42)
 tf.random.set_seed(42)
 
 
-data = pd.read_csv('/home/hasinthaka/Documents/Projects/AI/Pattern Mining/pipeline/experiments-llm/results/pattern_embeddings/gemini_pattern_embedding_v3.csv')
+EVALUATING_ENABLED = True
+TARGET_COLUMN = "verified_pattern"
 
-# data = data.drop(columns=['file'])
-data['pattern'] = data['pattern'].fillna('None Type')
+labeled_data = pd.read_csv('/home/hasinthaka/Documents/Projects/AI/Pattern Mining/pipeline/data/datasets/labeled_data.csv')
+embeddings   = pd.read_csv('/home/hasinthaka/Documents/Projects/AI/Pattern Mining/pipeline/data/datasets/embeddings.csv')
+data = pd.merge(labeled_data, embeddings, on='file')
 
-EVALUATING_ENABLED = False
+synthetic_data       = pd.DataFrame()
+verified_communities = data[~data[TARGET_COLUMN].isna()]
 
-TARGET_COLUMN = "pattern"
+run_time = time.time()
 
-ARTIFACT_DIR = Path("../../../models/pattern_ensemble_classifier").resolve()
+ARTIFACT_DIR = Path("/home/hasinthaka/Documents/Projects/AI/Pattern Mining/pipeline/models").resolve()
 ARTIFACT_DIR.mkdir(parents=True, exist_ok=True)
 Path(ARTIFACT_DIR / "nn").resolve().mkdir(parents=True, exist_ok=True)
 Path(ARTIFACT_DIR / "lr").resolve().mkdir(parents=True, exist_ok=True)
@@ -253,22 +257,15 @@ def lr_train(data=data):
 
 from sklearn.model_selection import StratifiedKFold
 
-raw_data = pd.read_csv('/home/hasinthaka/Documents/Projects/AI/Pattern Mining/pipeline/experiments-llm/results/pattern_embeddings/gemini_pattern_embedding_v3.csv')
-raw_data['pattern'] = raw_data['pattern'].fillna('None')
-
-synthetic_data       = raw_data[raw_data['file'].str.contains('pattern',na=False)]
-verified_communities = raw_data[~raw_data['file'].str.contains('pattern',na=False)]
-# synthetic_data = synthetic_data.drop(columns=['file'])
-# verified_communities = verified_communities.drop(columns=['file'])
 def get_folded_splits(fold_count=5,random_state=42,use_only_verified=True,min_samples_per_class=5):
     folded_data = []
 
     _sd = synthetic_data.copy()
     _vd = verified_communities.copy()
 
-    _vd_c = _vd['pattern'].value_counts()
+    _vd_c = _vd[TARGET_COLUMN].value_counts()
     _vp_i = _vd_c[_vd_c>=min_samples_per_class].index.tolist()
-    _vd   = _vd[_vd['pattern'].isin(_vp_i)]
+    _vd   = _vd[_vd[TARGET_COLUMN].isin(_vp_i)]
 
     skf = StratifiedKFold(
         n_splits=fold_count,
@@ -276,7 +273,7 @@ def get_folded_splits(fold_count=5,random_state=42,use_only_verified=True,min_sa
         random_state=random_state
     )
 
-    folds = list(skf.split(_vd, _vd['pattern']))
+    folds = list(skf.split(_vd, _vd[TARGET_COLUMN]))
 
     for test_fold in range(fold_count):
         val_fold = (test_fold + 1) % fold_count
@@ -332,16 +329,16 @@ def get_lr_probabilities(fold,train_only=False):
             X_test  = scaler.transform(test_data[numeric_features].fillna(0.0).values)
             lr_test_probab  = logreg.predict_proba(X_test)
             lr_test_probab  = pd.DataFrame(lr_test_probab, columns=label_encoder.classes_)
-            lr_test_probab['pattern']  = test_data['pattern'].values
+            lr_test_probab[TARGET_COLUMN]  = test_data[TARGET_COLUMN].values
             lr_test_probab['file']  = test_data['file'].values
         else:
             lr_test_probab = pd.DataFrame()
         lr_train_probab = pd.DataFrame(lr_train_probab, columns=label_encoder.classes_)
         lr_val_probab   = pd.DataFrame(lr_val_probab, columns=label_encoder.classes_)
 
-        lr_train_probab['pattern'] = train_data['pattern'].values
+        lr_train_probab[TARGET_COLUMN] = train_data[TARGET_COLUMN].values
         lr_train_probab['file']  = train_data['file'].values
-        lr_val_probab['pattern']   = val_data['pattern'].values
+        lr_val_probab[TARGET_COLUMN]   = val_data[TARGET_COLUMN].values
         lr_val_probab['file']  = val_data['file'].values
 
     return lr_train_probab,lr_val_probab,lr_test_probab
@@ -368,16 +365,16 @@ def get_nn_probabilities(fold,train_only=False):
         nn_train_probab = pd.DataFrame(nn_train_probab, columns=label_encoder.classes_)
         nn_val_probab   = pd.DataFrame(nn_val_probab, columns=label_encoder.classes_)
 
-        nn_train_probab['pattern'] = train_data['pattern'].values
+        nn_train_probab[TARGET_COLUMN] = train_data[TARGET_COLUMN].values
         nn_train_probab['file']  = train_data['file'].values
-        nn_val_probab['pattern']   = val_data['pattern'].values
+        nn_val_probab[TARGET_COLUMN]   = val_data[TARGET_COLUMN].values
         nn_val_probab['file']  = val_data['file'].values
 
         if EVALUATING_ENABLED:
             X_test  = scaler.transform(test_data[numeric_features].fillna(0.0).values)
             nn_test_probab  = calibrated_model.predict(X_test)
             nn_test_probab  = pd.DataFrame(nn_test_probab, columns=label_encoder.classes_)
-            nn_test_probab['pattern']  = test_data['pattern'].values
+            nn_test_probab[TARGET_COLUMN]  = test_data[TARGET_COLUMN].values
             nn_test_probab['file']  = test_data['file'].values
         else:
             nn_test_probab = pd.DataFrame()
@@ -385,77 +382,144 @@ def get_nn_probabilities(fold,train_only=False):
     return nn_train_probab,nn_val_probab,nn_test_probab
 
 
-def get_meta_probabilities(lr_data,nn_data):
-    lr_train_probab,lr_val_probab,lr_test_probab = lr_data
-    nn_train_probab,nn_val_probab,nn_test_probab = nn_data
+def _compute_top5_avg(proba_df, numeric_cols):
+    """Compute average of top 5 class probabilities for each row, then average across all rows."""
+    def row_top5_avg(row):
+        sorted_probs = np.sort(row.values)[::-1]  # descending order
+        top5 = sorted_probs[:5]
+        return np.mean(top5)
+    
+    row_averages = proba_df[numeric_cols].apply(row_top5_avg, axis=1)
+    return row_averages.mean()
+
+
+def get_meta_probabilities(lr_data, nn_data):
+    lr_train_probab, lr_val_probab, lr_test_probab = lr_data
+    nn_train_probab, nn_val_probab, nn_test_probab = nn_data
 
     numeric_cols = nn_train_probab.select_dtypes(include=['number']).columns.tolist()
 
-    meta_proba_val = pd.DataFrame()
-    meta_proba_test = pd.DataFrame()
-    meta_proba_train = pd.DataFrame()
+    # Compute correction factors: avg of top 5 class probabilities over all data
+    # Use train + val data for computing the correction factors
+    lr_combined = pd.concat([lr_train_probab, lr_val_probab], ignore_index=True)
+    nn_combined = pd.concat([nn_train_probab, nn_val_probab], ignore_index=True)
+    
+    lr_correction = _compute_top5_avg(lr_combined, numeric_cols)
+    nn_correction = _compute_top5_avg(nn_combined, numeric_cols)
+    
+    # Avoid division by zero
+    if nn_correction == 0:
+        nn_correction = 1e-10
+    
+    correction_factor = lr_correction / nn_correction
 
-    meta_proba_val = (nn_val_probab[numeric_cols] + lr_val_probab[numeric_cols]*0.7)/2
-    meta_proba_train = (nn_train_probab[numeric_cols] + lr_train_probab[numeric_cols]*0.7)/2
+    # Correct for bias in NN predictions
+    nn_train_corrected = nn_train_probab[numeric_cols] * correction_factor
+    nn_val_corrected = nn_val_probab[numeric_cols] * correction_factor
 
-    meta_proba_train['pattern'] = lr_train_probab['pattern'].values
-    meta_proba_val['pattern']   = lr_val_probab['pattern'].values
+    # Average corrected NN and LR predictions
+    meta_proba_train = (lr_train_probab[numeric_cols] + nn_train_corrected) / 2
+    meta_proba_val = (lr_val_probab[numeric_cols] + nn_val_corrected) / 2
+
+    meta_proba_train[TARGET_COLUMN] = lr_train_probab[TARGET_COLUMN].values
+    meta_proba_val[TARGET_COLUMN] = lr_val_probab[TARGET_COLUMN].values
 
     if EVALUATING_ENABLED:
-        meta_proba_test = (nn_test_probab[numeric_cols] + lr_test_probab[numeric_cols]*0.7)/2
-        meta_proba_test['pattern']  = lr_test_probab['pattern'].values
+        nn_test_corrected = nn_test_probab[numeric_cols] * correction_factor
+        meta_proba_test = (lr_test_probab[numeric_cols] + nn_test_corrected) / 2
+        meta_proba_test[TARGET_COLUMN] = lr_test_probab[TARGET_COLUMN].values
     else:
         meta_proba_test = pd.DataFrame(columns=meta_proba_train.columns)
-    return meta_proba_train,meta_proba_val,meta_proba_test
 
-def get_prediction(row, class_threshold=0.5,none_threshold=0.5):
-    high_prob = row.max()
-    if high_prob >= class_threshold:
-        max_class = row.idxmax()
-        return max_class
-    elif high_prob <= none_threshold:
-        return 'None Type'
-    return "Other"
+    return meta_proba_train, meta_proba_val, meta_proba_test
+
+def get_prediction(row, margin_threshold=0.1):
+    """Classify based on margin between top1 and top2 probabilities.
+    
+    Returns top1_class if (top1_prob - top2_prob) > margin_threshold, else 'skip'.
+    """
+    sorted_probs = row.sort_values(ascending=False)
+    top1_prob = sorted_probs.iloc[0]
+    top2_prob = sorted_probs.iloc[1] if len(sorted_probs) > 1 else 0.0
+    top1_class = sorted_probs.index[0]
+    
+    margin = top1_prob - top2_prob
+    if margin > margin_threshold:
+        return top1_class
+    return "skip"
 
 
-def classify(class_threshold,none_threshold,data):
-    y_true = data['pattern'].fillna('None Type')
-    y_pred = data.drop(['pattern'], axis=1).apply(get_prediction, class_threshold=class_threshold,none_threshold=none_threshold, axis=1)
-    report = classification_report(y_true, y_pred, output_dict=True, zero_division=0)
+def classify(margin_threshold, data):
+    """Classify data using margin-based threshold and return precision metrics."""
+    y_true = data[TARGET_COLUMN].fillna('none')
+    y_pred = data.drop([TARGET_COLUMN], axis=1).apply(
+        get_prediction, margin_threshold=margin_threshold, axis=1
+    )
+    
+    # Filter out 'skip' predictions for precision calculation
+    mask = y_pred != 'skip'
+    if mask.sum() == 0:
+        return 0.0, 0.0, 0.0, pd.DataFrame()
+    
+    y_true_filtered = y_true[mask]
+    y_pred_filtered = y_pred[mask]
+    
+    report = classification_report(y_true_filtered, y_pred_filtered, output_dict=True, zero_division=0)
     macro = report['macro avg']
     report_df = pd.DataFrame(report).T
-    return macro['precision'], macro['recall'], macro['f1-score'],report_df
+    
+    # Also compute coverage (percentage of non-skipped samples)
+    coverage = mask.sum() / len(y_true)
+    
+    return macro['precision'], macro['recall'], macro['f1-score'], report_df, coverage
 
-def find_best_threshold(meta_test_probab):
-    best = None
-    best_class_wise = pd.DataFrame()
-    for th_t in range(0,100,10):
-        for thn in range(0,100,100):
-            th = th_t/100
-            thn=thn/100
-            precision, recall, f1, report_df = classify(th,thn,meta_test_probab)
-            best_class_wise[str(th)+':'+str(thn)] = report_df['f1-score']
-
-            if best is None or f1 > best[0]:
-                best = (f1, th, precision, recall)
-    best_class_wise['best_threshold'] = best_class_wise.idxmax(axis=1)
-    best_threshold = pd.DataFrame()
-    best_threshold['Class Threshold'] = best_class_wise['best_threshold'].apply(lambda x: x.split(":")[0])
-    best_threshold['None Threshold'] = best_class_wise['best_threshold'].apply(lambda x: x.split(":")[1])
+def find_best_threshold(meta_val_probab):
+    """Find the margin threshold that maximizes precision.
+    
+    Tests thresholds from 0.0 to 0.5 in steps of 0.01.
+    Returns the best threshold value and associated metrics.
+    """
+    best_threshold = 0.0
+    best_precision = 0.0
+    best_metrics = None
+    
+    # Test margin thresholds from 0.0 to 0.5
+    for th_int in range(0, 51, 1):  # 0.0 to 0.5 in steps of 0.01
+        th = th_int / 100.0
+        precision, recall, f1, report_df, coverage = classify(th, meta_val_probab)
+        
+        # Maximize precision (with a minimum coverage constraint to avoid trivial solutions)
+        if coverage >= 0.1 and precision > best_precision:
+            best_precision = precision
+            best_threshold = th
+            best_metrics = (precision, recall, f1, coverage)
+    
+    print(f"Best margin threshold: {best_threshold:.2f} | Precision: {best_precision:.4f} | Coverage: {best_metrics[3]:.2%}" if best_metrics else "No valid threshold found")
+    
     return best_threshold
 
-def get_prediction_trained(row,best_threshold):
-    high_prob = row.max()
-    max_class = row.idxmax()
-    if float(best_threshold['Class Threshold'][max_class]) <= float(high_prob):
-        return max_class
-    return "Other"
+def get_prediction_trained(row, margin_threshold):
+    """Apply the trained margin threshold to classify a single row.
+    
+    Returns top1_class if (top1_prob - top2_prob) > margin_threshold, else 'skip'.
+    """
+    sorted_probs = row.sort_values(ascending=False)
+    top1_prob = sorted_probs.iloc[0]
+    top2_prob = sorted_probs.iloc[1] if len(sorted_probs) > 1 else 0.0
+    top1_class = sorted_probs.index[0]
+    
+    margin = top1_prob - top2_prob
+    if margin > margin_threshold:
+        return top1_class
+    return "skip"
 
-def apply_threshold(data,best_threshold):
-    y_true = data['pattern'].fillna('None Type')
-    y_pred = data.drop(['pattern'], axis=1).apply(get_prediction_trained, best_threshold=best_threshold, axis=1)
-
-    return y_true,y_pred
+def apply_threshold(data, margin_threshold):
+    """Apply margin threshold to data and return true labels and predictions."""
+    y_true = data[TARGET_COLUMN].fillna('none')
+    y_pred = data.drop([TARGET_COLUMN], axis=1).apply(
+        get_prediction_trained, margin_threshold=margin_threshold, axis=1
+    )
+    return y_true, y_pred
 
 def get_prediction_no_threshold(row):
     high_prob = row.max()
@@ -463,12 +527,12 @@ def get_prediction_no_threshold(row):
     return max_class
 
 def classify_trained_no_threshold(data):
-    y_true = data['pattern'].fillna('None Type')
-    y_pred = data.drop(['pattern'], axis=1).apply(get_prediction_no_threshold, axis=1)
+    y_true = data[TARGET_COLUMN].fillna('none')
+    y_pred = data.drop([TARGET_COLUMN], axis=1).apply(get_prediction_no_threshold, axis=1)
     return y_true,y_pred
 
 def get_classification_report(y_true,y_pred):
-    ignore_class = "Other"
+    ignore_class = "none"
     labels = [c for c in y_true.unique() if c != ignore_class]
     labels.extend([c for c in y_pred.unique() if c != ignore_class])
     labels = list(set(labels))
@@ -496,8 +560,8 @@ def get_second_level_model_predictions_lr(lr_data,nn_data,meta_data):
     nn_train_probab,nn_val_probab,nn_test_probab = nn_data
     meta_train_probab,meta_val_probab,meta_test_probab = meta_data
 
-    y_train = meta_train_probab['pattern'].values
-    y_val   = meta_val_probab['pattern'].values
+    y_train = meta_train_probab[TARGET_COLUMN].values
+    y_val   = meta_val_probab[TARGET_COLUMN].values
 
     numeric_cols = nn_train_probab.select_dtypes(include=['number']).columns.tolist()
 
@@ -522,12 +586,12 @@ def get_second_level_model_predictions_lr(lr_data,nn_data,meta_data):
     meta_train_probab = meta_train_probab[numeric_cols].add_prefix('meta_')
     meta_val_probab   = meta_val_probab[numeric_cols].add_prefix('meta_')
 
-    temp_train_set = pd.concat([lr_train_probab,nn_train_probab,meta_train_probab,max_train_probab,pd.Series(y_train, name='pattern')],axis=1)
-    temp_val_set   = pd.concat([lr_val_probab,nn_val_probab,meta_val_probab,max_val_probab,pd.Series(y_val, name='pattern')],axis=1)
+    temp_train_set = pd.concat([lr_train_probab,nn_train_probab,meta_train_probab,max_train_probab,pd.Series(y_train, name=TARGET_COLUMN)],axis=1)
+    temp_val_set   = pd.concat([lr_val_probab,nn_val_probab,meta_val_probab,max_val_probab,pd.Series(y_val, name=TARGET_COLUMN)],axis=1)
 
     train_set = pd.concat([temp_train_set,temp_val_set],ignore_index=True)
     if EVALUATING_ENABLED:
-        y_test  = meta_test_probab['pattern'].values
+        y_test  = meta_test_probab[TARGET_COLUMN].values
         max_test_probab  = max_probabilities(nn_test_probab[numeric_cols],lr_test_probab[numeric_cols])
         max_test_probab  = max_test_probab.add_prefix('max_')
         min_test_probab  = min_probabilities(nn_test_probab[numeric_cols],lr_test_probab[numeric_cols])
@@ -535,7 +599,7 @@ def get_second_level_model_predictions_lr(lr_data,nn_data,meta_data):
         lr_test_probab  = lr_test_probab[numeric_cols].add_prefix('lr_')
         nn_test_probab  = nn_test_probab[numeric_cols].add_prefix('nn_')
         meta_test_probab  = meta_test_probab[numeric_cols].add_prefix('meta_')
-        temp_test_set  = pd.concat([lr_test_probab,nn_test_probab,meta_test_probab,max_test_probab,pd.Series(y_test, name='pattern')],axis=1)
+        temp_test_set  = pd.concat([lr_test_probab,nn_test_probab,meta_test_probab,max_test_probab,pd.Series(y_test, name=TARGET_COLUMN)],axis=1)
         test_set  = temp_test_set
 
     lr_sec_model,scaler,label_encoder = lr_train(train_set)
@@ -543,11 +607,11 @@ def get_second_level_model_predictions_lr(lr_data,nn_data,meta_data):
     scaler = StandardScaler()
     label_encoder = LabelEncoder()
     lr_sec_model = LogisticRegression(C=1.0)
-    lr_sec_model.fit(scaler.fit_transform(train_set.drop(['pattern'], axis=1).values), label_encoder.fit_transform(train_set['pattern'].values))
+    lr_sec_model.fit(scaler.fit_transform(train_set.drop([TARGET_COLUMN], axis=1).values), label_encoder.fit_transform(train_set[TARGET_COLUMN].values))
     
     sec_test_pred = []
     if EVALUATING_ENABLED:
-        X_test  = scaler.transform(test_set.drop(['pattern'], axis=1).values)
+        X_test  = scaler.transform(test_set.drop([TARGET_COLUMN], axis=1).values)
         sec_test_pred_enc = lr_sec_model.predict(X_test)
         sec_test_pred = label_encoder.inverse_transform(sec_test_pred_enc)
 
@@ -562,8 +626,8 @@ def get_second_level_model_predictions_rr(lr_data,nn_data,meta_data):
     nn_train_probab,nn_val_probab,nn_test_probab = nn_data
     meta_train_probab,meta_val_probab,meta_test_probab = meta_data
 
-    y_train = meta_train_probab['pattern'].values
-    y_val   = meta_val_probab['pattern'].values
+    y_train = meta_train_probab[TARGET_COLUMN].values
+    y_val   = meta_val_probab[TARGET_COLUMN].values
 
     numeric_cols = nn_train_probab.select_dtypes(include=['number']).columns.tolist()
 
@@ -588,14 +652,14 @@ def get_second_level_model_predictions_rr(lr_data,nn_data,meta_data):
     meta_train_probab = meta_train_probab[numeric_cols].add_prefix('meta_')
     meta_val_probab   = meta_val_probab[numeric_cols].add_prefix('meta_')
 
-    temp_train_set = pd.concat([lr_train_probab,nn_train_probab,meta_train_probab,max_train_probab,pd.Series(y_train, name='pattern')],axis=1)
-    temp_val_set   = pd.concat([lr_val_probab,nn_val_probab,meta_val_probab,max_val_probab,pd.Series(y_val, name='pattern')],axis=1)
+    temp_train_set = pd.concat([lr_train_probab,nn_train_probab,meta_train_probab,max_train_probab,pd.Series(y_train, name=TARGET_COLUMN)],axis=1)
+    temp_val_set   = pd.concat([lr_val_probab,nn_val_probab,meta_val_probab,max_val_probab,pd.Series(y_val, name=TARGET_COLUMN)],axis=1)
 
     train_set = pd.concat([temp_train_set,temp_val_set],ignore_index=True)
 
     
     if EVALUATING_ENABLED:
-        y_test  = meta_test_probab['pattern'].values
+        y_test  = meta_test_probab[TARGET_COLUMN].values
         max_test_probab  = max_probabilities(nn_test_probab[numeric_cols],lr_test_probab[numeric_cols])
         max_test_probab  = max_test_probab.add_prefix('max_')
         min_test_probab  = min_probabilities(nn_test_probab[numeric_cols],lr_test_probab[numeric_cols])
@@ -603,18 +667,18 @@ def get_second_level_model_predictions_rr(lr_data,nn_data,meta_data):
         lr_test_probab  = lr_test_probab[numeric_cols].add_prefix('lr_')
         nn_test_probab  = nn_test_probab[numeric_cols].add_prefix('nn_')
         meta_test_probab  = meta_test_probab[numeric_cols].add_prefix('meta_')
-        temp_test_set  = pd.concat([lr_test_probab,nn_test_probab,meta_test_probab,max_test_probab,pd.Series(y_test, name='pattern')],axis=1)
+        temp_test_set  = pd.concat([lr_test_probab,nn_test_probab,meta_test_probab,max_test_probab,pd.Series(y_test, name=TARGET_COLUMN)],axis=1)
         test_set  = temp_test_set
 
 
     scaler = StandardScaler()
     label_encoder = LabelEncoder()
     rr_sec_model = RidgeClassifier(alpha=1.0)
-    rr_sec_model.fit(scaler.fit_transform(train_set.drop('pattern', axis=1).values), label_encoder.fit_transform(train_set['pattern'].values))
+    rr_sec_model.fit(scaler.fit_transform(train_set.drop(TARGET_COLUMN, axis=1).values), label_encoder.fit_transform(train_set[TARGET_COLUMN].values))
     
     sec_test_pred = []
     if EVALUATING_ENABLED:
-        X_test  = scaler.transform(test_set.drop('pattern', axis=1).values)
+        X_test  = scaler.transform(test_set.drop(TARGET_COLUMN, axis=1).values)
         sec_test_pred_enc = rr_sec_model.predict(X_test)
         sec_test_pred = label_encoder.inverse_transform(sec_test_pred_enc)
     # Save model
@@ -630,7 +694,7 @@ def get_second_level_model_predictions_rr(lr_data,nn_data,meta_data):
 
 def main():
     folds = get_folded_splits(fold_count=5,random_state=42,use_only_verified=True,min_samples_per_class=12)
-    prediction_df = pd.DataFrame(columns=['pattern','file','threshold_class','without_threshold_class','second_level_model_class_lr','second_level_model_class_rr'])
+    prediction_df = pd.DataFrame(columns=[TARGET_COLUMN,'file','threshold_class','without_threshold_class','second_level_model_class_lr','second_level_model_class_rr'])
     
     probab_distribution = None
 
@@ -667,7 +731,7 @@ def main():
             threshold_predictions = apply_threshold(meta_test_probab,best_threshold)
             no_threshold_predictions = classify_trained_no_threshold(meta_test_probab)
             temp_predictions = pd.DataFrame()
-            temp_predictions['pattern'] = meta_test_probab['pattern']
+            temp_predictions[TARGET_COLUMN] = meta_test_probab[TARGET_COLUMN]
             temp_predictions['threshold_class'] = threshold_predictions[1]
             temp_predictions['without_threshold_class'] = no_threshold_predictions[1]
             temp_predictions['second_level_model_class_lr'] = second_level_model_predictions_lr
@@ -682,19 +746,24 @@ def main():
 
     if EVALUATING_ENABLED:
         # Log classification reports
-        print(f"Classification with thresholding [f1]: {get_classification_report(prediction_df['pattern'], prediction_df['threshold_class'])[2]}")
-        print(f"Classification without thresholding [f1]: {get_classification_report(prediction_df['pattern'], prediction_df['without_threshold_class'])[2]}")
-        print(f"Classification with second level model lr [f1]: {get_classification_report(prediction_df['pattern'], prediction_df['second_level_model_class_lr'])[2]}")
-        print(f"Classification with second level model rr [f1]: {get_classification_report(prediction_df['pattern'], prediction_df['second_level_model_class_rr'])[2]}")
+        print(f"Classification with thresholding [f1]: {get_classification_report(prediction_df[TARGET_COLUMN], prediction_df['threshold_class'])[2]}")
+        print(f"Classification without thresholding [f1]: {get_classification_report(prediction_df[TARGET_COLUMN], prediction_df['without_threshold_class'])[2]}")
+        print(f"Classification with second level model lr [f1]: {get_classification_report(prediction_df[TARGET_COLUMN], prediction_df['second_level_model_class_lr'])[2]}")
+        print(f"Classification with second level model rr [f1]: {get_classification_report(prediction_df[TARGET_COLUMN], prediction_df['second_level_model_class_rr'])[2]}")
+
+
+        result_dir = f"./models/metrics/{run_time}"
+        os.makedirs(result_dir)
 
         # Save final predictions
-        prediction_df.to_csv('ensemble_classification_predictions.csv', index=False)
-        get_classification_report(prediction_df['pattern'], prediction_df['threshold_class'])[3].to_csv('ensemble_classification_report_with_threshold.csv')
-        get_classification_report(prediction_df['pattern'], prediction_df['without_threshold_class'])[3].to_csv('ensemble_classification_report_without_threshold.csv')
-        get_classification_report(prediction_df['pattern'], prediction_df['second_level_model_class_lr'])[3].to_csv('ensemble_classification_report_second_level_model_lr.csv')
-        get_classification_report(prediction_df['pattern'], prediction_df['second_level_model_class_rr'])[3].to_csv('ensemble_classification_report_second_level_model_rr.csv')
+        prediction_df.to_csv(f'{result_dir}/ensemble_classification_predictions.csv', index=False)
+        get_classification_report(prediction_df[TARGET_COLUMN], prediction_df['threshold_class'])[3].to_csv(f'{result_dir}/ensemble_classification_report_with_threshold.csv')
+        get_classification_report(prediction_df[TARGET_COLUMN], prediction_df['without_threshold_class'])[3].to_csv(f'{result_dir}/ensemble_classification_report_without_threshold.csv')
+        get_classification_report(prediction_df[TARGET_COLUMN], prediction_df['second_level_model_class_lr'])[3].to_csv(f'{result_dir}/ensemble_classification_report_second_level_model_lr.csv')
+        get_classification_report(prediction_df[TARGET_COLUMN], prediction_df['second_level_model_class_rr'])[3].to_csv(f'{result_dir}/ensemble_classification_report_second_level_model_rr.csv')
     else:
         overrall_best_thresold = find_best_threshold(probab_distribution)
-        overrall_best_thresold.to_csv('./overall_best_threshold.csv')
+        with open('./overall_best_threshold.txt', 'w') as f:
+            f.write(f'{overrall_best_thresold}')
 if __name__ == "__main__":
     main()
