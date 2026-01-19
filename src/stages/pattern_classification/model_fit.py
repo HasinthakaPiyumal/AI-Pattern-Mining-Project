@@ -381,6 +381,18 @@ def get_nn_probabilities(fold,train_only=False):
 
     return nn_train_probab,nn_val_probab,nn_test_probab
 
+def plot_confusion_matrix(y_true, y_pred, title, normalize, filename):
+    from sklearn.metrics import confusion_matrix, ConfusionMatrixDisplay
+    import matplotlib.pyplot as plt
+
+    cm = confusion_matrix(y_true, y_pred, normalize='true' if normalize else None)
+    disp = ConfusionMatrixDisplay(confusion_matrix=cm)
+    disp.plot(cmap=plt.cm.Blues)
+    plt.title(title)
+    plt.xticks(rotation=90)
+    plt.savefig(filename)
+    plt.close()
+
 
 def _compute_top5_avg(proba_df, numeric_cols):
     """Compute average of top 5 class probabilities for each row, then average across all rows."""
@@ -474,34 +486,37 @@ def classify(margin_threshold, data):
     return macro['precision'], macro['recall'], macro['f1-score'], report_df, coverage
 
 def find_best_threshold(meta_val_probab):
-    """Find the margin threshold that maximizes precision.
+    """Find the best margin threshold for each class individually to maximize precision.
     
-    Tests thresholds from 0.0 to 0.5 in steps of 0.01.
-    Returns the best threshold value and associated metrics.
+    Tests thresholds from 0.0 to 0.5 and picks the one that yields the highest
+    precision for each specific class.
     """
-    best_threshold = 0.0
-    best_precision = 0.0
-    best_metrics = None
+    best_per_class = {}
+    max_prec_per_class = {}
     
-    # Test margin thresholds from 0.0 to 0.5
-    for th_int in range(0, 51, 1):  # 0.0 to 0.5 in steps of 0.01
+    for th_int in range(0, 51, 1):
         th = th_int / 100.0
-        precision, recall, f1, report_df, coverage = classify(th, meta_val_probab)
+        _, _, _, report_df, _ = classify(th, meta_val_probab)
         
-        # Maximize precision (with a minimum coverage constraint to avoid trivial solutions)
-        if coverage >= 0.1 and precision > best_precision:
-            best_precision = precision
-            best_threshold = th
-            best_metrics = (precision, recall, f1, coverage)
+        for cls in report_df.index:
+            if cls in ['accuracy', 'macro avg', 'weighted avg', 'none', 'skip']:
+                continue
+            
+            precision = report_df.loc[cls, 'precision']
+            
+            # Store threshold that gives best precision. 
+            # If same precision, higher threshold is safer.
+            if cls not in max_prec_per_class or precision >= max_prec_per_class[cls]:
+                max_prec_per_class[cls] = precision
+                best_per_class[cls] = th
     
-    print(f"Best margin threshold: {best_threshold:.2f} | Precision: {best_precision:.4f} | Coverage: {best_metrics[3]:.2%}" if best_metrics else "No valid threshold found")
-    
-    return best_threshold
+    print(f"Calculated individual thresholds for {len(best_per_class)} classes.")
+    return best_per_class
 
-def get_prediction_trained(row, margin_threshold):
-    """Apply the trained margin threshold to classify a single row.
+def get_prediction_trained(row, best_thresholds):
+    """Apply class-specific trained margin thresholds.
     
-    Returns top1_class if (top1_prob - top2_prob) > margin_threshold, else 'skip'.
+    Returns top1_class if (top1_prob - top2_prob) > threshold[top1_class], else 'skip'.
     """
     sorted_probs = row.sort_values(ascending=False)
     top1_prob = sorted_probs.iloc[0]
@@ -509,15 +524,19 @@ def get_prediction_trained(row, margin_threshold):
     top1_class = sorted_probs.index[0]
     
     margin = top1_prob - top2_prob
-    if margin > margin_threshold:
+    threshold = best_thresholds.get(top1_class, 0.0)
+    
+    if margin > threshold:
         return top1_class
-    return "skip"
 
-def apply_threshold(data, margin_threshold):
-    """Apply margin threshold to data and return true labels and predictions."""
+    #need to skip
+    return "none"
+
+def apply_threshold(data, best_thresholds):
+    """Apply class-specific margin thresholds to data."""
     y_true = data[TARGET_COLUMN].fillna('none')
     y_pred = data.drop([TARGET_COLUMN], axis=1).apply(
-        get_prediction_trained, margin_threshold=margin_threshold, axis=1
+        get_prediction_trained, best_thresholds=best_thresholds, axis=1
     )
     return y_true, y_pred
 
@@ -751,6 +770,16 @@ def main():
         print(f"Classification with second level model lr [f1]: {get_classification_report(prediction_df[TARGET_COLUMN], prediction_df['second_level_model_class_lr'])[2]}")
         print(f"Classification with second level model rr [f1]: {get_classification_report(prediction_df[TARGET_COLUMN], prediction_df['second_level_model_class_rr'])[2]}")
 
+        print(f"Classification with thresholding [precision]: {get_classification_report(prediction_df[TARGET_COLUMN], prediction_df['threshold_class'])[0]}")
+        print(f"Classification without thresholding [precision]: {get_classification_report(prediction_df[TARGET_COLUMN], prediction_df['without_threshold_class'])[0]}")
+        print(f"Classification with second level model lr [precision]: {get_classification_report(prediction_df[TARGET_COLUMN], prediction_df['second_level_model_class_lr'])[0]}")
+        print(f"Classification with second level model rr [precision]: {get_classification_report(prediction_df[TARGET_COLUMN], prediction_df['second_level_model_class_rr'])[0]}")
+        
+        # Compusion matrix plots
+        plot_confusion_matrix(prediction_df[TARGET_COLUMN], prediction_df['threshold_class'], title='Confusion Matrix with Thresholding', normalize=True, filename='./models/metrics/confusion_matrix_with_threshold.png')
+        plot_confusion_matrix(prediction_df[TARGET_COLUMN], prediction_df['without_threshold_class'], title='Confusion Matrix without Thresholding', normalize=True, filename='./models/metrics/confusion_matrix_without_threshold.png')
+        plot_confusion_matrix(prediction_df[TARGET_COLUMN], prediction_df['second_level_model_class_lr'], title='Confusion Matrix Second Level Model LR', normalize=True, filename='./models/metrics/confusion_matrix_second_level_model_lr.png')
+        plot_confusion_matrix(prediction_df[TARGET_COLUMN], prediction_df['second_level_model_class_rr'], title='Confusion Matrix Second Level Model RR', normalize=True, filename='./models/metrics/confusion_matrix_second_level_model_rr.png')
 
         result_dir = f"./models/metrics/{run_time}"
         os.makedirs(result_dir)
@@ -762,8 +791,8 @@ def main():
         get_classification_report(prediction_df[TARGET_COLUMN], prediction_df['second_level_model_class_lr'])[3].to_csv(f'{result_dir}/ensemble_classification_report_second_level_model_lr.csv')
         get_classification_report(prediction_df[TARGET_COLUMN], prediction_df['second_level_model_class_rr'])[3].to_csv(f'{result_dir}/ensemble_classification_report_second_level_model_rr.csv')
     else:
-        overrall_best_thresold = find_best_threshold(probab_distribution)
-        with open('./overall_best_threshold.txt', 'w') as f:
-            f.write(f'{overrall_best_thresold}')
+        overrall_best_thresholds = find_best_threshold(probab_distribution)
+        with open('./overall_best_thresholds.json', 'w') as f:
+            json.dump(overrall_best_thresholds, f, indent=2)
 if __name__ == "__main__":
     main()
