@@ -1,0 +1,10 @@
+{
+  "Classical Models": 0.48,
+  "LLM Results Evaluation": 0.5,
+  "LLM based Multimodal Generative Prompting": 0.46,
+  "Model Abstraction Pattern": 0.5,
+  "Modular LLM Agent Architectures": 0.5,
+  "Preprocessing Text and Numerical Data": 0.49,
+  "Retrieval Augmented Generation(RAG) Optimization for LLMs": 0.35,
+  "Tool Use for LLMs": 0.5
+}
