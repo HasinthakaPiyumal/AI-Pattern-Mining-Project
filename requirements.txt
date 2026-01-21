@@ -1,1 +1,9 @@
 -e .
+langchain-core
+langchain-community
+langchain-openai
+langgraph
+requests
+pandas
+python-dotenv
+openai

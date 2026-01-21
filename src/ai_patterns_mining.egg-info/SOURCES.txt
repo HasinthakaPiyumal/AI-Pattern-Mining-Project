@@ -15,6 +15,12 @@ src/stages/paper_extraction/__init__.py
 src/stages/paper_extraction/paper_cleaner.py
 src/stages/paper_extraction/pattern_extractor.py
 src/stages/paper_extraction/prompts.py
+src/stages/pattern_classification/classify_ensemble_model.py
+src/stages/pattern_classification/ensemble_classification.py
+src/stages/pattern_classification/ensemble_classification_model_build.py
+src/stages/pattern_classification/model_fit.py
+src/stages/pattern_classification/model_predict.py
+src/stages/pattern_classification/validation_model.py
 src/stages/patterns_embedding/__init__.py
 src/stages/patterns_embedding/embedding_generator.py
 src/utils/file_utils.py

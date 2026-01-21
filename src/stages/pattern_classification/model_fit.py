@@ -12,12 +12,19 @@ import tensorflow as tf
 from tensorflow.keras import Sequential
 from tensorflow.keras.callbacks import EarlyStopping, ReduceLROnPlateau
 from tensorflow.keras.layers import BatchNormalization, Dense, Dropout
-
+from sklearn.utils.class_weight import compute_class_weight
 
 from sklearn.linear_model import RidgeClassifier
 from sklearn.linear_model import LogisticRegression
 from tensorflow import keras
 
+import warnings
+
+warnings.filterwarnings(
+    "ignore",
+    category=FutureWarning,
+    message="Setting an item of incompatible dtype"
+)
 
 SEED = 42
 
@@ -38,6 +45,9 @@ data = pd.merge(labeled_data, embeddings, on='file')
 
 synthetic_data       = pd.DataFrame()
 verified_communities = data[~data[TARGET_COLUMN].isna()]
+# verified_communities = verified_communities[verified_communities['verified_pattern']!='none']
+# removable_50 = verified_communities[verified_communities['verified_pattern']=='none']#.sample(n=50, random_state=42).index
+# verified_communities = verified_communities.drop(removable_50)
 
 run_time = time.time()
 
@@ -178,6 +188,17 @@ def nn_train(data=data):
         ReduceLROnPlateau(monitor="val_loss", factor=0.3, patience=8, min_lr=1e-5),
     ]
 
+    classes = np.unique(y_train_enc)
+
+    weights = compute_class_weight(
+        class_weight="balanced",
+        classes=classes,
+        y=y_train_enc
+    )
+
+
+    class_weights = dict(zip(classes, weights))
+
     history = model.fit(
         X_train,
         y_train,
@@ -186,7 +207,8 @@ def nn_train(data=data):
         batch_size=64,
         shuffle=False,
         callbacks=callbacks,
-        verbose=1,
+        verbose=0,
+        class_weight=class_weights
     )
 
     calibrated_model = build_calibrated_model(model)
@@ -208,6 +230,7 @@ def nn_train(data=data):
         batch_size=256,
         shuffle=False,
         verbose=0,
+        class_weight = class_weights
     )
 
     MODEL_PATH = ARTIFACT_DIR / "nn" / "pattern_classifier.keras"
@@ -252,7 +275,7 @@ def lr_train(data=data):
         X, y_encoded, test_size=0.25, random_state=42,stratify=y_encoded
     )
 
-    logreg = LogisticRegression(max_iter=1000,n_jobs=1)
+    logreg = LogisticRegression(max_iter=1000,n_jobs=1,class_weight="balanced",multi_class="auto")
 
     logreg.fit(X, y)
     # Save model
@@ -511,8 +534,12 @@ def find_best_threshold(meta_val_probab):
     """
     best_per_class = {}
     max_f1_per_class = {}
+    threshold_df = pd.DataFrame()
     
-    for th_int in range(0, 51, 1):
+    print("="*40)
+    print("Calculating individual class thresholds:")
+    
+    for th_int in range(0, 51, 5):
         th = th_int / 100.0
         _, _, _, report_df, _ = classify(th, meta_val_probab)
         
@@ -521,6 +548,8 @@ def find_best_threshold(meta_val_probab):
                 continue
             
             f1_score = report_df.loc[cls, 'f1-score']
+            threshold_df.at[th, cls] = f1_score
+
             
             # Store threshold that gives best F1-score. 
             # If same F1-score, higher threshold is safer.
@@ -528,7 +557,11 @@ def find_best_threshold(meta_val_probab):
                 max_f1_per_class[cls] = f1_score
                 best_per_class[cls] = th
     
-    print(f"Calculated individual thresholds for {len(best_per_class)} classes.")
+    print("="*40)
+    time_stamp = int(time.time())
+    print(f"Calculated individual thresholds for {len(best_per_class)} classes. : {time_stamp}")
+    print(best_per_class)
+    threshold_df.to_csv(ARTIFACT_DIR / f"class_thresholds{time_stamp}.csv")
     return best_per_class
 
 def get_prediction_trained(row, best_thresholds):
@@ -643,7 +676,7 @@ def get_second_level_model_predictions_lr(lr_data,nn_data,meta_data):
 
     scaler = StandardScaler()
     label_encoder = LabelEncoder()
-    lr_sec_model = LogisticRegression(C=1.0)
+    lr_sec_model = LogisticRegression(C=1.0,class_weight="balanced",    multi_class="auto")
     lr_sec_model.fit(scaler.fit_transform(train_set.drop([TARGET_COLUMN], axis=1).values), label_encoder.fit_transform(train_set[TARGET_COLUMN].values))
     
     sec_test_pred = []
@@ -731,10 +764,13 @@ def get_second_level_model_predictions_rr(lr_data,nn_data,meta_data):
 ############################
 
 def main():
-    folds = get_folded_splits(fold_count=5,random_state=42,use_only_verified=True,min_samples_per_class=12)
+    folds = get_folded_splits(fold_count=5,random_state=42,use_only_verified=True,min_samples_per_class=10)
     prediction_df = pd.DataFrame(columns=[TARGET_COLUMN,'file','threshold_class','without_threshold_class','second_level_model_class_lr','second_level_model_class_rr'])
     prediction_prob_df = pd.DataFrame()
     probab_distribution = None
+
+    probab_distributions = pd.DataFrame()
+    best_thresholds = []
 
     for fold in folds:
         lr_train_probab,lr_val_probab,lr_test_probab = get_lr_probabilities(fold)
@@ -762,6 +798,9 @@ def main():
             probab_distribution = meta_val_probab
         
         best_threshold = find_best_threshold(meta_val_probab)
+
+        best_thresholds.append(best_threshold)
+        probab_distributions = pd.concat([probab_distributions, meta_test_probab], ignore_index=True)
         
         second_level_model_predictions_lr, second_level_model_prob_lr = get_second_level_model_predictions_lr(lr_data,nn_data,meta_data)
         second_level_model_predictions_rr = get_second_level_model_predictions_rr(lr_data,nn_data,meta_data)
@@ -792,16 +831,15 @@ def main():
 
     if EVALUATING_ENABLED:
         # Log classification reports
-        print(f"Classification with thresholding [f1]: {get_classification_report(prediction_df[TARGET_COLUMN], prediction_df['threshold_class'])[2]}")
-        print(f"Classification without thresholding [f1]: {get_classification_report(prediction_df[TARGET_COLUMN], prediction_df['without_threshold_class'])[2]}")
-        print(f"Classification with second level model lr [f1]: {get_classification_report(prediction_df[TARGET_COLUMN], prediction_df['second_level_model_class_lr'])[2]}")
-        print(f"Classification with second level model rr [f1]: {get_classification_report(prediction_df[TARGET_COLUMN], prediction_df['second_level_model_class_rr'])[2]}")
         print("-"*20)
-        print(f"Classification with thresholding [precision]: {get_classification_report(prediction_df[TARGET_COLUMN], prediction_df['threshold_class'])[0]}")
-        print(f"Classification without thresholding [precision]: {get_classification_report(prediction_df[TARGET_COLUMN], prediction_df['without_threshold_class'])[0]}")
-        print(f"Classification with second level model lr [precision]: {get_classification_report(prediction_df[TARGET_COLUMN], prediction_df['second_level_model_class_lr'])[0]}")
-        print(f"Classification with second level model rr [precision]: {get_classification_report(prediction_df[TARGET_COLUMN], prediction_df['second_level_model_class_rr'])[0]}")
-        
+        threshold_report = get_classification_report(prediction_df[TARGET_COLUMN], prediction_df['threshold_class'])
+        without_threshold_report = get_classification_report(prediction_df[TARGET_COLUMN], prediction_df['without_threshold_class'])
+        stacking_lr_report = get_classification_report(prediction_df[TARGET_COLUMN], prediction_df['second_level_model_class_lr'])
+        stacking_rr_report = get_classification_report(prediction_df[TARGET_COLUMN], prediction_df['second_level_model_class_rr'])
+        print(f"thresholding [f1]: {threshold_report[2]}     [precision]: {threshold_report[0]}     [recall]: {threshold_report[1]}")
+        print(f"no thresholding [f1]: {without_threshold_report[2]}    [precision]: {without_threshold_report[0]}     [recall]: {without_threshold_report[1]}")
+        print(f"stacking lr [f1]: {stacking_lr_report[2]}     [precision]: {stacking_lr_report[0]}     [recall]: {stacking_lr_report[1]}")
+        print(f"stacking rr [f1]: {stacking_rr_report[2]}     [precision]: {stacking_rr_report[0]}     [recall]: {stacking_rr_report[1]}")
         # Compusion matrix plots
         plot_confusion_matrix(prediction_df[TARGET_COLUMN], prediction_df['threshold_class'], title='Confusion Matrix with Thresholding', filename='./models/metrics/confusion_matrix_with_threshold.png')
         plot_confusion_matrix(prediction_df[TARGET_COLUMN], prediction_df['without_threshold_class'], title='Confusion Matrix without Thresholding', filename='./models/metrics/confusion_matrix_without_threshold.png')
@@ -818,6 +856,11 @@ def main():
         get_classification_report(prediction_df[TARGET_COLUMN], prediction_df['without_threshold_class'])[3].to_csv(f'{result_dir}/ensemble_classification_report_without_threshold.csv')
         get_classification_report(prediction_df[TARGET_COLUMN], prediction_df['second_level_model_class_lr'])[3].to_csv(f'{result_dir}/ensemble_classification_report_second_level_model_lr.csv')
         get_classification_report(prediction_df[TARGET_COLUMN], prediction_df['second_level_model_class_rr'])[3].to_csv(f'{result_dir}/ensemble_classification_report_second_level_model_rr.csv')
+
+        probab_distributions.to_csv(f'{result_dir}/test_probability_distributions.csv', index=False)
+
+        best_thresholds = pd.DataFrame(best_thresholds)
+        best_thresholds.to_csv(f'{result_dir}/best_thresholds_per_fold.csv', index=False)
     else:
         overrall_best_thresholds = find_best_threshold(probab_distribution)
         with open('./overall_best_thresholds.json', 'w') as f:
