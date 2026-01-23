@@ -58,25 +58,35 @@ Path(ARTIFACT_DIR / "lr").resolve().mkdir(parents=True, exist_ok=True)
 Path(ARTIFACT_DIR / "lr-sec").resolve().mkdir(parents=True, exist_ok=True)
 Path(ARTIFACT_DIR / "rr-sec").resolve().mkdir(parents=True, exist_ok=True)
 
-def build_classifier(input_dim: int, num_classes: int) -> Sequential:
+def build_classifier(input_dim: int, num_classes: int,l2_alpha) -> Sequential:
     """Return a tuned dense network regularized for high-dimensional embeddings."""
-    regularizer = tf.keras.regularizers.l2(1e-4)
+    regularizer = tf.keras.regularizers.l2(l2_alpha)
     return Sequential(
         [
             tf.keras.Input(shape=(input_dim,)),
-            Dense(768, activation="relu", kernel_regularizer=regularizer),
-            BatchNormalization(),
-            Dropout(0.35),
-            Dense(512, activation="relu", kernel_regularizer=regularizer),
-            BatchNormalization(),
-            Dropout(0.3),
-            Dense(256, activation="relu", kernel_regularizer=regularizer),
-            BatchNormalization(),
-            Dropout(0.25),
-            Dense(128, activation="relu"),
-            Dropout(0.2),
-            # Dense(num_classes, activation="softmax"),
-            Dense(num_classes, activation=None),
+            # Dropout(0.3),
+            # Dense(2048, activation="relu", kernel_regularizer=regularizer),
+            # BatchNormalization(),
+            # Dropout(0.3),
+            Dense(1024, activation="relu", kernel_regularizer=regularizer),
+            # BatchNormalization(),
+            # Dropout(0.3),
+            # Dense(768, activation="relu", kernel_regularizer=regularizer),
+
+
+            # Dense(768, activation="relu", kernel_regularizer=regularizer),
+            # BatchNormalization(),
+            # Dropout(0.35),
+            # Dense(512, activation="relu", kernel_regularizer=regularizer),
+            # BatchNormalization(),
+            # Dropout(0.3),
+            # Dense(256, activation="relu", kernel_regularizer=regularizer),
+            # BatchNormalization(),
+            # Dropout(0.25),
+            # Dense(128, activation="relu"),
+            # Dropout(0.2),
+            Dense(num_classes, activation="softmax"),
+            # Dense(num_classes, activation=None),
         ]
     )
 
@@ -147,38 +157,19 @@ def nn_train(data=data):
     X_val = np.vstack([X_val, X_test])
     y_val = np.vstack([y_val, y_test])
 
-    def expected_calibration_error(
-        probs: np.ndarray,
-        y_true: np.ndarray,
-        n_bins: int = 15,
-    ) -> float:
-        confidences = np.max(probs, axis=1)
-        predictions = np.argmax(probs, axis=1)
-        accuracies = (predictions == y_true).astype(float)
+    # l2_alpha = 0.001
+    # bath_size = 32
+    # epoch = 30
+    # learning_rate = 0.001
 
-        bin_boundaries = np.linspace(0.0, 1.0, n_bins + 1)
-        ece = 0.0
-        N = len(y_true)
+    l2_alpha = 1e-4
+    batch_size = 64
+    epoch = 200
+    learning_rate = 1e-3
 
-        for i in range(n_bins):
-            bin_lower = bin_boundaries[i]
-            bin_upper = bin_boundaries[i + 1]
-
-            in_bin = (confidences > bin_lower) & (confidences <= bin_upper)
-            bin_size = np.sum(in_bin)
-
-            if bin_size > 0:
-                bin_accuracy = np.mean(accuracies[in_bin])
-                bin_confidence = np.mean(confidences[in_bin])
-
-                ece += (bin_size / N) * abs(bin_accuracy - bin_confidence)
-
-        return ece
-
-
-    model = build_classifier(X_train.shape[1], num_classes)
+    model = build_classifier(X_train.shape[1], num_classes,l2_alpha=l2_alpha)
     model.compile(
-        optimizer=tf.keras.optimizers.Adam(learning_rate=1e-3),
+        optimizer=tf.keras.optimizers.AdamW(learning_rate=learning_rate),
         loss=tf.keras.losses.CategoricalCrossentropy(from_logits=True),
         metrics=["accuracy", tf.keras.metrics.TopKCategoricalAccuracy(k=3, name="top3_acc")],
     )
@@ -203,35 +194,35 @@ def nn_train(data=data):
         X_train,
         y_train,
         validation_data=(X_val, y_val),
-        epochs=200,
-        batch_size=64,
+        epochs=epoch,
+        batch_size=batch_size,
         shuffle=False,
         callbacks=callbacks,
         verbose=0,
         class_weight=class_weights
     )
 
-    calibrated_model = build_calibrated_model(model)
+    # calibrated_model = build_calibrated_model(model)
 
-    calibrated_model.compile(
-        optimizer=tf.keras.optimizers.Adam(learning_rate=0.01),
-        loss=tf.keras.losses.CategoricalCrossentropy(),
-        metrics=[
-            "accuracy",
-            tf.keras.metrics.TopKCategoricalAccuracy(k=3, name="top3_acc"),
-        ],
-    )
+    # calibrated_model.compile(
+    #     optimizer=tf.keras.optimizers.Adam(learning_rate=0.01),
+    #     loss=tf.keras.losses.CategoricalCrossentropy(),
+    #     metrics=[
+    #         "accuracy",
+    #         tf.keras.metrics.TopKCategoricalAccuracy(k=3, name="top3_acc"),
+    #     ],
+    # )
 
 
-    calibrated_model.fit(
-        X_val,
-        y_val,
-        epochs=50,
-        batch_size=256,
-        shuffle=False,
-        verbose=0,
-        class_weight = class_weights
-    )
+    # calibrated_model.fit(
+    #     X_val,
+    #     y_val,
+    #     epochs=50,
+    #     batch_size=256,
+    #     shuffle=False,
+    #     verbose=0,
+    #     class_weight = class_weights
+    # )
 
     MODEL_PATH = ARTIFACT_DIR / "nn" / "pattern_classifier.keras"
     SCALER_PATH = ARTIFACT_DIR / "nn" / "scaler.joblib"
@@ -239,7 +230,7 @@ def nn_train(data=data):
     METADATA_PATH = ARTIFACT_DIR / "nn" / "metadata.json"
 
     # Persist artifacts for downstream inference pipelines
-    calibrated_model.save(MODEL_PATH, include_optimizer=True)
+    # calibrated_model.save(MODEL_PATH, include_optimizer=True)
     joblib.dump(scaler, SCALER_PATH)
     joblib.dump(label_encoder, ENCODER_PATH)
     metadata = {
@@ -255,7 +246,8 @@ def nn_train(data=data):
     print(f"Saved label encoder to {ENCODER_PATH}")
     print(f"Saved metadata to {METADATA_PATH}")
     
-    return calibrated_model,scaler,label_encoder
+    return model,scaler,label_encoder
+    # return calibrated_model,scaler,label_encoder
 
 def lr_train(data=data):
     # Logistic regression stage intentionally skipped per latest workflow requirements.
@@ -275,7 +267,15 @@ def lr_train(data=data):
         X, y_encoded, test_size=0.25, random_state=42,stratify=y_encoded
     )
 
-    logreg = LogisticRegression(max_iter=1000,n_jobs=1,class_weight="balanced",multi_class="auto")
+    logreg = LogisticRegression(
+        C=10,
+        max_iter=1000,
+        penalty="l2",
+        solver='lbfgs',
+        n_jobs=-1,
+        class_weight="balanced",
+        multi_class="multinomial"
+    )
 
     logreg.fit(X, y)
     # Save model
@@ -512,7 +512,7 @@ def classify(margin_threshold, data):
     # Filter out 'skip' predictions for precision calculation
     mask = y_pred != 'skip'
     if mask.sum() == 0:
-        return 0.0, 0.0, 0.0, pd.DataFrame()
+        return 0.0, 0.0, 0.0, pd.DataFrame(),0.0
     
     y_true_filtered = y_true[mask]
     y_pred_filtered = y_pred[mask]
@@ -758,14 +758,26 @@ def get_second_level_model_predictions_rr(lr_data,nn_data,meta_data):
     joblib.dump(label_encoder, ARTIFACT_DIR / "rr-sec" / "ridge_regression_second_level_label_encoder.joblib")
     return sec_test_pred
 
+def get_class_by_avg_threshold(row,mean_thresholds):
+    mean_thresholds['none'] = 0
+    row = row.drop('verified_pattern')
+    max_prob = row.max()
+    max_prob_index = row.idxmax()
+    # return max_prob_index
+
+    threshold = mean_thresholds[max_prob_index]
+    if max_prob >= threshold:
+        return max_prob_index
+    else:
+        return 'none'
 
 ############################
 #  MAIN LOGIC
 ############################
 
 def main():
-    folds = get_folded_splits(fold_count=5,random_state=42,use_only_verified=True,min_samples_per_class=10)
-    prediction_df = pd.DataFrame(columns=[TARGET_COLUMN,'file','threshold_class','without_threshold_class','second_level_model_class_lr','second_level_model_class_rr'])
+    folds = get_folded_splits(fold_count=5,random_state=42,use_only_verified=True,min_samples_per_class=20)
+    prediction_df = pd.DataFrame(columns=[TARGET_COLUMN,'file','avg_threshold_class','threshold_class','without_threshold_class','second_level_model_class_lr','second_level_model_class_rr'])
     prediction_prob_df = pd.DataFrame()
     probab_distribution = None
 
@@ -830,17 +842,26 @@ def main():
 
 
     if EVALUATING_ENABLED:
+        best_thresholds = pd.DataFrame(best_thresholds)
+
         # Log classification reports
         print("-"*20)
+
+        prediction_df['avg_threshold_class'] = probab_distributions.apply(get_class_by_avg_threshold, axis=1, mean_thresholds=best_thresholds.mean())
+        avg_threshold_report = get_classification_report(prediction_df[TARGET_COLUMN], prediction_df['avg_threshold_class'])
         threshold_report = get_classification_report(prediction_df[TARGET_COLUMN], prediction_df['threshold_class'])
         without_threshold_report = get_classification_report(prediction_df[TARGET_COLUMN], prediction_df['without_threshold_class'])
         stacking_lr_report = get_classification_report(prediction_df[TARGET_COLUMN], prediction_df['second_level_model_class_lr'])
         stacking_rr_report = get_classification_report(prediction_df[TARGET_COLUMN], prediction_df['second_level_model_class_rr'])
-        print(f"thresholding [f1]: {threshold_report[2]}     [precision]: {threshold_report[0]}     [recall]: {threshold_report[1]}")
-        print(f"no thresholding [f1]: {without_threshold_report[2]}    [precision]: {without_threshold_report[0]}     [recall]: {without_threshold_report[1]}")
-        print(f"stacking lr [f1]: {stacking_lr_report[2]}     [precision]: {stacking_lr_report[0]}     [recall]: {stacking_lr_report[1]}")
-        print(f"stacking rr [f1]: {stacking_rr_report[2]}     [precision]: {stacking_rr_report[0]}     [recall]: {stacking_rr_report[1]}")
+        
+        print(f"avg thresholding [f1]: {avg_threshold_report[2]}     [precision]: {avg_threshold_report[0]}     [recall]: {avg_threshold_report[1]}")
+        print(f"thresholding     [f1]: {threshold_report[2]}     [precision]: {threshold_report[0]}     [recall]: {threshold_report[1]}")
+        print(f"no thresholding  [f1]: {without_threshold_report[2]}    [precision]: {without_threshold_report[0]}     [recall]: {without_threshold_report[1]}")
+        print(f"stacking lr      [f1]: {stacking_lr_report[2]}     [precision]: {stacking_lr_report[0]}     [recall]: {stacking_lr_report[1]}")
+        print(f"stacking rr      [f1]: {stacking_rr_report[2]}     [precision]: {stacking_rr_report[0]}     [recall]: {stacking_rr_report[1]}")
+        
         # Compusion matrix plots
+        plot_confusion_matrix(prediction_df[TARGET_COLUMN], prediction_df['avg_threshold_class'], title='Confusion Matrix with Average Thresholding', filename='./models/metrics/confusion_matrix_with_avg_threshold.png')
         plot_confusion_matrix(prediction_df[TARGET_COLUMN], prediction_df['threshold_class'], title='Confusion Matrix with Thresholding', filename='./models/metrics/confusion_matrix_with_threshold.png')
         plot_confusion_matrix(prediction_df[TARGET_COLUMN], prediction_df['without_threshold_class'], title='Confusion Matrix without Thresholding', filename='./models/metrics/confusion_matrix_without_threshold.png')
         plot_confusion_matrix(prediction_df[TARGET_COLUMN], prediction_df['second_level_model_class_lr'], title='Confusion Matrix Second Level Model LR', filename='./models/metrics/confusion_matrix_second_level_model_lr.png')
@@ -859,7 +880,6 @@ def main():
 
         probab_distributions.to_csv(f'{result_dir}/test_probability_distributions.csv', index=False)
 
-        best_thresholds = pd.DataFrame(best_thresholds)
         best_thresholds.to_csv(f'{result_dir}/best_thresholds_per_fold.csv', index=False)
     else:
         overrall_best_thresholds = find_best_threshold(probab_distribution)

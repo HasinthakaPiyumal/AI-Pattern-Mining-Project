@@ -30,7 +30,7 @@ import pandas as pd
 from dotenv import load_dotenv
 
 from langchain_core.messages import SystemMessage, HumanMessage
-from langchain_openai import ChatOpenAI
+from langchain_google_genai import ChatGoogleGenerativeAI
 from pydantic import BaseModel, Field
 from langgraph.graph import StateGraph, END
 
@@ -46,12 +46,12 @@ logging.basicConfig(
 logger = logging.getLogger("GitHubAgent")
 
 GITHUB_TOKEN = os.getenv("GITHUB_TOKEN")
-OPENAI_API_KEY = os.getenv("OPENAI_API_KEY")
+GOOGLE_API_KEY = os.getenv("GOOGLE_API_KEY")
 
 if not GITHUB_TOKEN:
     logger.warning("GITHUB_TOKEN not found. API rate limits will be very strict.")
-if not OPENAI_API_KEY:
-    logger.warning("OPENAI_API_KEY not found. Pattern detection will rely solely on heuristics.")
+if not GOOGLE_API_KEY:
+    logger.warning("GOOGLE_API_KEY not found. Pattern detection will rely solely on heuristics.")
 
 # --- Data Models ---
 
@@ -86,42 +86,62 @@ class AgentState(TypedDict):
     csv_path: str
     search_page: int
     search_complete: bool
+    processed_results: List[RepoResult]
 
 # --- Tools & Core Functions ---
 
 def github_api_get(url: str, params: Dict = None) -> Dict:
     """Helper to make GitHub API requests with rate limit handling."""
+    logger.info(f"🌐 API Request: {url}")
+    if params:
+        logger.debug(f"   Parameters: {params}")
+    
     headers = {
         "Accept": "application/vnd.github.v3+json",
     }
     if GITHUB_TOKEN:
         headers["Authorization"] = f"token {GITHUB_TOKEN}"
+        logger.debug("   Using authenticated request")
+    else:
+        logger.debug("   Using unauthenticated request")
 
     for attempt in range(3):
         try:
             response = requests.get(url, headers=headers, params=params, timeout=10)
+            
+            # Log rate limit info
+            remaining = response.headers.get("X-RateLimit-Remaining")
+            limit = response.headers.get("X-RateLimit-Limit")
+            if remaining and limit:
+                logger.debug(f"   Rate Limit: {remaining}/{limit} remaining")
+            
             if response.status_code == 200:
+                logger.info(f"✅ API Success: Retrieved data from {url}")
                 return response.json()
             elif response.status_code == 403 or response.status_code == 429:
                 reset_time = int(response.headers.get("X-RateLimit-Reset", 0))
                 wait = max(reset_time - time.time(), 1) + 1
                 if wait > 60: # If wait is too long, maybe just backoff shorter or abort
-                    logger.warning(f"Rate limit hit. Waiting {wait} seconds...")
+                    logger.warning(f"⏳ Rate limit hit. Waiting {wait} seconds... (attempt {attempt + 1}/3)")
                 else:
-                    logger.warning(f"Rate limit hit. Backing off...")
+                    logger.warning(f"⏳ Rate limit hit. Backing off... (attempt {attempt + 1}/3)")
                 time.sleep(min(wait, 60)) # Cap wait at 60s for this script's interactive nature
                 continue
             else:
-                logger.error(f"GitHub API Error {response.status_code}: {response.text}")
+                logger.error(f"❌ GitHub API Error {response.status_code}: {response.text}")
                 return {}
         except requests.RequestException as e:
-            logger.error(f"Request failed: {e}")
+            logger.error(f"❌ Request failed (attempt {attempt + 1}/3): {e}")
             time.sleep(2 ** attempt)
+    
+    logger.error(f"❌ All retry attempts exhausted for {url}")
     return {}
 
 def github_advanced_search(topic: str, page: int = 1, per_page: int = 30) -> List[RepoMetadata]:
     """Search GitHub repositories by topic."""
     query = f"{topic} stars:>10" # Basic enforcement of some quality
+    logger.info(f"🔍 Searching GitHub: '{query}' (page {page}, per_page {per_page})")
+    
     url = "https://api.github.com/search/repositories"
     params = {
         "q": query,
@@ -134,95 +154,305 @@ def github_advanced_search(topic: str, page: int = 1, per_page: int = 30) -> Lis
     data = github_api_get(url, params)
     items = data.get("items", [])
     
+    logger.info(f"📊 Found {len(items)} repositories in search results")
+    
     results = []
     for item in items:
-        results.append({
+        repo_info = {
             "full_name": item["full_name"],
             "html_url": item["html_url"],
             "description": item["description"] or "",
             "stars": item["stargazers_count"],
             "language": item["language"] or "Unknown",
             "default_branch": item["default_branch"]
-        })
+        }
+        results.append(repo_info)
+        logger.debug(f"   ⭐ {repo_info['full_name']} ({repo_info['stars']} stars) - {repo_info['language']}")
+    
     return results
 
 def get_repo_structure(full_name: str, branch: str = "main") -> List[str]:
     """Fetch the file tree of a repository."""
+    logger.info(f"📂 Fetching file structure for {full_name} (branch: {branch})")
     url = f"https://api.github.com/repos/{full_name}/git/trees/{branch}?recursive=1"
     data = github_api_get(url)
     
     if data.get("truncated", False):
-        logger.warning(f"Tree for {full_name} is truncated.")
+        logger.warning(f"⚠️  Tree for {full_name} is truncated (repo may be very large)")
         
     tree = data.get("tree", [])
     paths = [item["path"] for item in tree if item["type"] == "blob"]
+    
+    logger.info(f"📁 Retrieved {len(paths)} files from {full_name}")
+    
+    # Log file type distribution
+    extensions = {}
+    for path in paths:
+        ext = path.split('.')[-1] if '.' in path else 'no_extension'
+        extensions[ext] = extensions.get(ext, 0) + 1
+    
+    top_extensions = sorted(extensions.items(), key=lambda x: x[1], reverse=True)[:5]
+    logger.debug(f"   Top file types: {dict(top_extensions)}")
+    
     return paths
 
 def read_readme(full_name: str, branch: str) -> str:
     """Fetch README content."""
+    logger.info(f"📄 Fetching README for {full_name}")
+    
     # Try different standard filenames
     for filename in ["README.md", "readme.md", "README.rst", "README.txt"]:
         url = f"https://raw.githubusercontent.com/{full_name}/{branch}/{filename}"
+        logger.debug(f"   Trying {filename}...")
         try:
             response = requests.get(url, timeout=5)
             if response.status_code == 200:
+                content_length = len(response.text)
+                logger.info(f"✅ Found {filename} ({content_length} characters)")
                 return response.text
-        except:
+        except Exception as e:
+            logger.debug(f"   Failed to fetch {filename}: {e}")
             continue
+    
+    logger.warning(f"⚠️  No README found for {full_name}")
     return ""
 
 def validate_repo(metadata: RepoMetadata, file_list: List[str]) -> ValidationResult:
     """Check if the repository is relevant for AI/ML."""
+    logger.info(f"🔎 Validating repository: {metadata['full_name']}")
     flags = []
     
     # Check for code files
     has_code = any(f.endswith(('.py', '.ipynb', '.ts', '.js', '.go', '.rs')) for f in file_list)
     if not has_code:
+        logger.warning(f"   ⚠️  No code files found")
         flags.append("no_code")
+    else:
+        logger.info(f"   ✅ Code files detected")
         
     # Check for keywords in description
     desc = metadata["description"].lower()
     ai_keywords = ["ai", "llm", "gpt", "rag", "agent", "transformer", "diffusion", "model"]
-    is_ai_relevant = any(k in desc for k in ai_keywords)
+    found_keywords = [k for k in ai_keywords if k in desc]
+    is_ai_relevant = len(found_keywords) > 0
+    
+    if is_ai_relevant:
+        logger.info(f"   ✅ AI-relevant keywords found: {found_keywords}")
+    else:
+        logger.debug(f"   ℹ️  No AI keywords in description")
     
     if not is_ai_relevant and not has_code:
+        logger.warning(f"   ❌ Repository validation FAILED: irrelevant topic")
         return {"is_valid": False, "flags": flags + ["irrelevant_topic"]}
-        
+    
+    logger.info(f"   ✅ Repository validation PASSED")
     return {"is_valid": True, "flags": flags}
 
 KEYWORDS_MAP = {
-    "RAG": [r"\brag\b", r"retrieval[- ]augmented", r"vector database", r"pinecone", r"weaviate"],
-    "Agents": [r"\bagent(s)?\b", r"autonomous", r"langchain", r"langgraph", r"crewai", r"autogen"],
-    "Chain-of-Thought": [r"chain[- ]of[- ]thought", r"\bcot\b", r"reasoning steps"],
-    "Fine-tuning": [r"fine[- ]tuning", r"\bpeft\b", r"\blora\b", r"training script"],
-    "Multimodal": [r"multimodal", r"vision[- ]language", r"clip", r"whisper", r"diffusion"],
-    "Human-in-the-loop": [r"human[- ]in[- ]the[- ]loop", r"\bhitl\b", r"human approval"]
+    # Advanced LLM Prompting
+    "Advanced Prompting": [
+        r"prompt engineering", r"meta[- ]?prompt", r"auto[- ]?prompt", r"\bape\b",
+        r"few[- ]?shot", r"zero[- ]?shot", r"role prompting", r"emotion prompting",
+        r"iterative prompt", r"prompt chain", r"prompt paraphras", r"template[- ]?based prompt",
+        r"self[- ]?generated.*context", r"prompt mining", r"metacognitive prompt"
+    ],
+    
+    # Cross-lingual LLM Prompting
+    "Cross-lingual Prompting": [
+        r"cross[- ]?lingual", r"multilingual prompt", r"translate.*prompt",
+        r"dictionary.*prompt", r"cross[- ]?lingual.*transfer"
+    ],
+    
+    # Multimodal Prompting
+    "Multimodal Prompting": [
+        r"multimodal", r"vision[- ]language", r"image.*text", r"text.*image",
+        r"segmentation prompt", r"negative prompt", r"3d prompt",
+        r"chain[- ]?of[- ]?images", r"paired.*image", r"multimodal.*graph"
+    ],
+    
+    # RAG & Knowledge Integration
+    "RAG": [
+        r"\brag\b", r"retrieval[- ]?augmented", r"vector database", r"pinecone", r"weaviate",
+        r"knowledge graph", r"\bkg\b.*integration", r"external knowledge",
+        r"dense passage retrieval", r"\bdpr\b", r"faiss", r"knowledge retrieval",
+        r"rag[- ]?sequence", r"rag[- ]?token", r"self[- ]?rag", r"adaptive[- ]?rag",
+        r"iterative.*retrieval", r"multi[- ]?step.*rag", r"raft\b", r"ragcache"
+    ],
+    
+    # RAG Optimization
+    "RAG Optimization": [
+        r"rag.*optim", r"retrieval.*optim", r"rerank", r"retrieval stride",
+        r"retrieve[- ]?rerank[- ]?generate", r"rankrag", r"speculative.*rag",
+        r"kv.*cache.*rag", r"knowledge tree", r"nearest neighbor.*language"
+    ],
+    
+    # Context Management
+    "Context Management": [
+        r"context.*manag", r"memory.*augment", r"working memory", r"long[- ]?term memory",
+        r"short[- ]?term memory", r"context window", r"memory.*llm",
+        r"index.*hotswap", r"query complexity", r"parametric.*memory"
+    ],
+    
+    # Chain-of-Thought & Reasoning
+    "Chain-of-Thought": [
+        r"chain[- ]?of[- ]?thought", r"\bcot\b", r"reasoning steps", r"step[- ]?by[- ]?step",
+        r"tree[- ]?of[- ]?thought", r"\btot\b", r"graph[- ]?of[- ]?thought", r"\bgot\b",
+        r"skeleton[- ]?of[- ]?thought", r"thread[- ]?of[- ]?thought", r"memory[- ]?of[- ]?thought",
+        r"self[- ]?consist", r"decomposed prompt", r"least[- ]?to[- ]?most",
+        r"step[- ]?back prompt", r"auto[- ]?cot", r"zero[- ]?shot.*cot", r"tabular.*cot"
+    ],
+    
+    # Planning & ReAct
+    "Planning & ReAct": [
+        r"\breact\b", r"reason.*act", r"planning", r"task decomposition",
+        r"plan[- ]?and[- ]?solve", r"backtrack", r"self[- ]?ask", r"reflexion",
+        r"voyager", r"world model", r"simulation.*plan", r"constraint satisf",
+        r"long[- ]?horizon.*plan", r"introspective.*reason", r"commonsense.*reason"
+    ],
+    
+    # Self-Correction & Refinement
+    "Self-Correction": [
+        r"self[- ]?refine", r"self[- ]?correct", r"self[- ]?verif", r"feedback loop",
+        r"iterative.*correct", r"critic\b", r"self[- ]?evaluat", r"verify.*edit",
+        r"chain[- ]?of[- ]?verification", r"\bcove\b", r"monte[- ]?carlo.*reason"
+    ],
+    
+    # Tool Use
+    "Tool Use": [
+        r"tool[- ]?use", r"tool[- ]?augment", r"tool.*integrat", r"api.*call",
+        r"function.*call", r"tool[- ]?learn", r"program[- ]?aided", r"\bpal\b",
+        r"code.*generat.*tool", r"tool.*composition", r"taskweaver",
+        r"structured.*action", r"tool.*creator", r"emergent.*tool"
+    ],
+    
+    # Agents & Multi-Agent
+    "Agents": [
+        r"\bagent(s)?\b", r"autonomous", r"langchain", r"langgraph", r"crewai", r"autogen",
+        r"multi[- ]?agent", r"agentic", r"agent.*architect", r"modular.*agent",
+        r"cognitive.*agent", r"agent.*collab", r"agent.*orchestrat"
+    ],
+    
+    # Fine-tuning & Training
+    "Fine-tuning": [
+        r"fine[- ]?tun", r"\bpeft\b", r"\blora\b", r"training script", r"instruction.*tun",
+        r"rlhf\b", r"reinforcement.*learning.*human", r"behavioral.*clon",
+        r"imitation.*learn", r"alignment", r"constitutional.*ai",
+        r"rejection.*sampl", r"reward.*model", r"preference.*optim"
+    ],
+    
+    # Code Generation & Execution
+    "Code Execution": [
+        r"code.*execut", r"program[- ]?of[- ]?thought", r"faithful.*cot",
+        r"code.*interprete", r"tora\b", r"ast[- ]?based", r"formalism.*reason"
+    ],
+    
+    # Explainability & Interpretability
+    "Explainability": [
+        r"explainable", r"\bxai\b", r"interpretab", r"counterfactual",
+        r"feature.*importance", r"partial.*dependence", r"ice.*plot",
+        r"permutation.*importance", r"lace\b", r"divexplorer"
+    ],
+    
+    # KV Cache Optimization
+    "KV Cache Optimization": [
+        r"kv.*cache", r"cache.*optim", r"paged.*attention",
+        r"cache.*reuse", r"cache.*strateg", r"swap.*cache"
+    ],
+    
+    # Structured Output
+    "Structured Output": [
+        r"structured.*output", r"json.*generat", r"format.*output",
+        r"output.*format", r"schema.*generat", r"plan.*generat"
+    ],
+    
+    # Recommender Systems
+    "LLM Recommender Systems": [
+        r"recommend.*system.*llm", r"llm.*recommend", r"conversational.*recommend",
+        r"content.*interpret.*llm", r"llm.*knowledge.*base",
+        r"llm.*explainer", r"personalized.*content.*llm"
+    ],
+    
+    # Evaluation & Benchmarking
+    "LLM Evaluation": [
+        r"llm.*eval", r"benchmarking", r"adversarial.*eval",
+        r"autorater", r"chateval", r"geval", r"pairwise.*eval",
+        r"likert.*scale.*eval", r"round[- ]?trip.*consist", r"exemplar.*select"
+    ],
+    
+    # Reliability & Trust
+    "Reliability & Trust": [
+        r"trust.*calibrat", r"confidence.*estimat", r"self[- ]?calibrat",
+        r"transparency", r"hallucination.*detect", r"faithful.*generation",
+        r"reference.*support", r"knowledge.*traceab", r"bias.*mitigat",
+        r"cultural.*aware", r"prompt.*defense"
+    ],
+    
+    # Human-in-the-loop
+    "Human-in-the-loop": [
+        r"human[- ]?in[- ]?the[- ]?loop", r"\bhitl\b", r"human approval",
+        r"human.*feedback", r"interactive.*learn", r"human.*interface"
+    ],
+    
+    # Intent Understanding
+    "Intent Understanding": [
+        r"intent.*understand", r"intent.*recognit", r"query.*understand",
+        r"question.*clarif", r"user.*intent"
+    ],
+    
+    # Domain-Specific Patterns
+    "Knowledge Graphs": [
+        r"knowledge.*graph", r"\bkg\b", r"semantic.*parsing", r"triple.*based",
+        r"graph.*reason", r"beam.*search.*kg", r"kg.*agent", r"kgqa",
+        r"think.*on.*graph", r"reasoning.*on.*graph"
+    ],
+    
+    # Multimodal (expanded)
+    "Multimodal": [
+        r"multimodal", r"vision[- ]?language", r"clip\b", r"whisper\b",
+        r"diffusion", r"image.*caption", r"visual.*question.*answer",
+        r"text[- ]?to[- ]?image", r"image[- ]?to[- ]?text"
+    ]
 }
 
 def detect_patterns_heuristic(text: str, file_list: List[str]) -> List[str]:
     """Heuristic pattern detection using keywords."""
+    logger.info(f"🔍 Running heuristic pattern detection...")
     patterns = []
     text_lower = text.lower()
     
     for category, regexes in KEYWORDS_MAP.items():
         for regex in regexes:
-            if re.search(regex, text_lower):
+            match = re.search(regex, text_lower)
+            if match:
+                logger.info(f"   ✨ Pattern detected: '{category}' (matched: '{match.group()}')")
                 patterns.append(category)
                 break
                 
     # File-based heuristics
     if any(f.endswith("tools.py") for f in file_list):
+        logger.info(f"   ✨ Pattern detected: 'Tool Use' (found tools.py file)")
         patterns.append("Tool Use")
     
-    return list(set(patterns))
+    unique_patterns = list(set(patterns))
+    if unique_patterns:
+        logger.info(f"🎯 Heuristic detection found {len(unique_patterns)} pattern(s): {unique_patterns}")
+    else:
+        logger.info(f"ℹ️  No patterns detected by heuristics")
+    
+    return unique_patterns
 
-def summarize_and_confirm_patterns(readme: str, heuristics: List[str], model: ChatOpenAI) -> Dict:
+def summarize_and_confirm_patterns(readme: str, heuristics: List[str], model: ChatGoogleGenerativeAI) -> Dict:
     """Use LLM to confirm patterns and generate a summary."""
-    if not OPENAI_API_KEY:
+    logger.info(f"🤖 Starting LLM-based pattern verification...")
+    
+    if not GOOGLE_API_KEY:
+        logger.warning("⚠️  Skipping LLM verification (no API key)")
         return {"patterns": heuristics, "confidence": "medium", "summary": "LLM skipped (no key)."}
     
     # Truncate README to avoid huge tokens
     readme_snippet = readme[:4000]
+    logger.debug(f"   README snippet length: {len(readme_snippet)} characters")
+    logger.info(f"   Heuristic patterns to verify: {heuristics}")
     
     prompt = f"""
     Analyze this GitHub README for AI patterns.
@@ -243,61 +473,95 @@ def summarize_and_confirm_patterns(readme: str, heuristics: List[str], model: Ch
     }}
     """
     
+    logger.debug(f"   Sending prompt to LLM (length: {len(prompt)} chars)")
+    
     try:
         if hasattr(model, "with_structured_output"):
              # For newer LC versions that support structured output natively
+            logger.debug("   Using structured output mode")
             class AnalysisSchema(BaseModel):
                 verified_patterns: List[str] = Field(description="List of AI patterns confirmed")
                 summary: str = Field(description="A concise 1-sentence summary")
             
             structured_llm = model.with_structured_output(AnalysisSchema)
             result = structured_llm.invoke(prompt)
+            
+            logger.info(f"✅ LLM verification complete!")
+            logger.info(f"   📋 Verified patterns: {result.verified_patterns}")
+            logger.info(f"   📝 Summary: {result.summary}")
+            
             return {"patterns": result.verified_patterns, "confidence": "high", "summary": result.summary}
         else:
              # Fallback
+            logger.debug("   Using fallback JSON parsing mode")
             response = model.invoke([HumanMessage(content=prompt)])
             # Naive JSON parsing
             content = response.content.replace("```json", "").replace("```", "").strip()
             data = json.loads(content)
-            return {"patterns": data.get("verified_patterns", []), "confidence": "high", "summary": data.get("summary", "")}
+            
+            patterns = data.get("verified_patterns", [])
+            summary = data.get("summary", "")
+            
+            logger.info(f"✅ LLM verification complete!")
+            logger.info(f"   📋 Verified patterns: {patterns}")
+            logger.info(f"   📝 Summary: {summary}")
+            
+            return {"patterns": patterns, "confidence": "high", "summary": summary}
             
     except Exception as e:
-        logger.error(f"LLM Error: {e}")
+        logger.error(f"❌ LLM Error: {e}")
+        logger.warning(f"   Falling back to heuristic patterns")
         return {"patterns": heuristics, "confidence": "medium", "summary": "LLM failed."}
 
 def save_progress(results: List[RepoResult], csv_path: str):
     """Save results to CSV idempotently."""
+    logger.info(f"💾 Saving progress to {csv_path}...")
+    
     if not results:
+        logger.debug("   No results to save")
         return
-        
+    
+    logger.info(f"   Processing {len(results)} result(s)")
     df = pd.DataFrame(results)
     
     # If file exists, check for duplicates before appending
     if os.path.exists(csv_path):
         existing_df = pd.read_csv(csv_path)
+        logger.info(f"   Existing file has {len(existing_df)} repos")
+        
         # Filter out repos already in existing_df
         existing_urls = set(existing_df["html_url"])
         new_rows = df[~df["html_url"].isin(existing_urls)]
         
         if not new_rows.empty:
             new_rows.to_csv(csv_path, mode='a', header=False, index=False)
-            logger.info(f"Appended {len(new_rows)} new repos to {csv_path}")
+            logger.info(f"✅ Appended {len(new_rows)} new repos to {csv_path}")
+            for _, row in new_rows.iterrows():
+                logger.debug(f"      + {row['full_name']} (patterns: {row['detected_patterns']})")
+        else:
+            logger.info(f"ℹ️  No new repos to add (all already exist)")
     else:
         df.to_csv(csv_path, index=False)
-        logger.info(f"Created {csv_path} with {len(df)} repos")
+        logger.info(f"✅ Created {csv_path} with {len(df)} repos")
+        for _, row in df.iterrows():
+            logger.debug(f"      + {row['full_name']} (patterns: {row['detected_patterns']})")
 
 # --- LangGraph Nodes ---
 
 def search_node(state: AgentState):
     """Node: Search GitHub for repos."""
-    logger.info(f"Searching: Topic '{state['topic']}' (Page {state['search_page']})")
+    logger.info(f"\n{'='*60}")
+    logger.info(f"🔍 SEARCH NODE - Topic: '{state['topic']}' (Page {state['search_page']})")
+    logger.info(f"{'='*60}")
+    logger.info(f"📊 Progress: {state['processed_count']}/{state['max_repos']} repos processed")
     
     repos = github_advanced_search(state['topic'], page=state['search_page'])
     
     if not repos:
-        logger.info("No more repos found.")
+        logger.info("🏁 No more repos found in search results")
         return {"repos_to_process": [], "search_complete": True}
-        
+    
+    logger.info(f"✅ Found {len(repos)} repositories to queue for processing")
     return {
         "repos_to_process": repos,
         "search_page": state['search_page'] + 1,
@@ -306,15 +570,26 @@ def search_node(state: AgentState):
 
 def processing_node(state: AgentState):
     """Node: Process each repo (Fetch Content -> Validate -> Detect Patterns)."""
-    model = ChatOpenAI(temperature=0, model="gpt-4o-mini") if OPENAI_API_KEY else None
+    logger.info(f"\n{'='*60}")
+    logger.info(f"⚙️  PROCESSING NODE - {len(state['repos_to_process'])} repo(s) in queue")
+    logger.info(f"{'='*60}")
+    
+    model = ChatGoogleGenerativeAI(temperature=0, model="gemini-2.5-flash") if GOOGLE_API_KEY else None
+    if model:
+        logger.debug("   LLM initialized: gemini-2.5-flash")
+    else:
+        logger.warning("   LLM not available - using heuristics only")
     
     results = []
     
-    for repo in state["repos_to_process"]:
+    for idx, repo in enumerate(state["repos_to_process"], 1):
         if state["processed_count"] >= state["max_repos"]:
+            logger.info(f"🎯 Reached max repos limit ({state['max_repos']}), stopping processing")
             break
-            
-        logger.info(f"Processing {repo['full_name']}...")
+        
+        logger.info(f"\n--- Processing ({idx}/{len(state['repos_to_process'])}): {repo['full_name']} ---")
+        logger.info(f"   ⭐ Stars: {repo['stars']} | Language: {repo['language']}")
+        logger.info(f"   📝 Description: {repo['description'][:100]}..." if len(repo['description']) > 100 else f"   📝 Description: {repo['description']}")
         
         # 1. Get Details
         file_tree = get_repo_structure(repo['full_name'], repo['default_branch'])
@@ -324,12 +599,15 @@ def processing_node(state: AgentState):
         validation = validate_repo(repo, file_tree)
         
         # 3. Detect Patterns
-        heuristics = detect_patterns_heuristic(readme_text + " " + repo["description"], file_tree)
+        combined_text = readme_text + " " + repo["description"]
+        heuristics = detect_patterns_heuristic(combined_text, file_tree)
         
         # 4. LLM Verification (Only if valid code or promising heuristics)
         if validation["is_valid"] or heuristics:
+            logger.info(f"   Proceeding to LLM verification...")
             analysis = summarize_and_confirm_patterns(readme_text, heuristics, model)
         else:
+            logger.info(f"   ⏭️  Skipping LLM (repo failed validation and no heuristic patterns)")
             analysis = {"patterns": [], "confidence": "none", "summary": "Skipped LLM (irrelevant)"}
             
         repo_result: RepoResult = {
@@ -347,7 +625,13 @@ def processing_node(state: AgentState):
         # Filter: Only keep repos with detected patterns OR code-validation pass
         if analysis["patterns"] or validation["is_valid"]:
             results.append(repo_result)
-            
+            logger.info(f"   ✅ Repository ACCEPTED for results")
+            logger.info(f"      Patterns: {analysis['patterns']}")
+            logger.info(f"      Confidence: {analysis['confidence']}")
+        else:
+            logger.info(f"   ❌ Repository REJECTED (no patterns and failed validation)")
+    
+    logger.info(f"\n📊 Processing complete: {len(results)} repo(s) accepted out of {len(state['repos_to_process'])} processed")
     return {
         "processed_results": results, 
         "processed_count": state["processed_count"] + len(results),
@@ -356,17 +640,28 @@ def processing_node(state: AgentState):
 
 def saving_node(state: AgentState):
     """Node: Save progress to disk."""
+    logger.info(f"\n{'='*60}")
+    logger.info(f"💾 SAVING NODE")
+    logger.info(f"{'='*60}")
     save_progress(state["processed_results"], state["csv_path"])
     return {"processed_results": []} # Clear processed results from state after saving
 
 def limit_check_node(state: AgentState):
     """Conditional Edge: Continue searching or stop."""
+    logger.info(f"\n🔍 Checking continuation conditions...")
+    logger.info(f"   Progress: {state['processed_count']}/{state['max_repos']}")
+    logger.info(f"   Search complete: {state['search_complete']}")
+    
     if state["processed_count"] >= state["max_repos"]:
-        logger.info(f"Target reached: {state['processed_count']} repos processed.")
+        logger.info(f"🎯 Target reached: {state['processed_count']} repos processed.")
+        logger.info(f"✅ STOPPING: Maximum repos limit reached")
         return "end"
     if state["search_complete"]:
-        logger.info("Search exhausted.")
+        logger.info("🏁 Search exhausted - no more results available.")
+        logger.info(f"✅ STOPPING: All available repos processed")
         return "end"
+    
+    logger.info("➡️  CONTINUING: More repos to process")
     return "continue"
 
 # --- Main Construction ---

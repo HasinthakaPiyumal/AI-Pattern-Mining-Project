@@ -1,9 +1,8 @@
 -e .
 langchain-core
 langchain-community
-langchain-openai
+langchain-google-genai
 langgraph
 requests
 pandas
 python-dotenv
-openai
