@@ -1,0 +1,167 @@
+[
+  {
+    "Pattern Name": "Reflection",
+    "Problem": "Large Language Models (LLMs) often generate unsatisfactory output directly, requiring human feedback for improvement.",
+    "Context": "Agentic workflows where an LLM is prompted multiple times, allowing it to build step-by-step to higher-quality output.",
+    "Solution": "Automate the process of critical feedback. The LLM is prompted to criticize its own output (self-reflection) or another agent's output, identify problems, and then use that feedback to rewrite or improve its response. This can be augmented by giving the LLM tools (e.g., unit tests, web search) to evaluate its output.",
+    "Result": "Significant performance gains, higher-quality output, the LLM spots gaps and improves its responses on various tasks.",
+    "Related Patterns": "Tool Use, Planning, Multiagent Collaboration",
+    "Category": "Agentic AI",
+    "Uses": "Producing code, writing text, answering questions.",
+    "Thinking": "Explicitly identified as an 'AI agentic workflow design pattern' in the text, describing an iterative self-correction mechanism for LLMs, which is a core AI capability."
+  },
+  {
+    "Pattern Name": "Tool Use",
+    "Problem": "LLMs may lack the ability to verify their own output or access external, dynamic information effectively.",
+    "Context": "Agentic workflows, particularly in conjunction with Reflection, where an LLM needs to evaluate or augment its output.",
+    "Solution": "Provide the LLM with external tools or functions (e.g., running code through unit tests, searching the web) that it can invoke to evaluate its generated output or gather additional information.",
+    "Result": "Enables the LLM to find errors, double-check facts, and come up with ideas for improvement, leading to more accurate and reliable outputs.",
+    "Related Patterns": "Reflection, Planning, Multiagent Collaboration",
+    "Category": "Tools Integration",
+    "Uses": "Evaluating generated code, double-checking text output, accessing external data sources.",
+    "Thinking": "Mentioned as a key component of agentic workflows and Reflection, where LLMs are 'given tools' to perform actions beyond their inherent generation capabilities, directly addressing AI system interaction with external systems."
+  },
+  {
+    "Pattern Name": "Planning",
+    "Problem": "Complex tasks require a structured approach, which LLMs might not inherently follow when generating direct output.",
+    "Context": "Agentic workflows where an LLM needs to break down a task and strategize its execution.",
+    "Solution": "Prompting the LLM to first generate a plan or sequence of steps before attempting to produce a final output or execute actions.",
+    "Result": "Enables the LLM to tackle more complex problems by breaking them into manageable sub-tasks, potentially leading to more coherent and successful outcomes.",
+    "Related Patterns": "Reflection, Tool Use, Multiagent Collaboration",
+    "Category": "Planning",
+    "Uses": "Any complex task requiring sequential reasoning or strategic execution by an AI agent.",
+    "Thinking": "Explicitly listed as one of the 'four design patterns for AI agentic workflows' that drives progress, indicating its role in structuring AI agent behavior."
+  },
+  {
+    "Pattern Name": "Multiagent Collaboration",
+    "Problem": "A single AI agent might have limitations or biases in its generation or self-criticism process.",
+    "Context": "Agentic workflows where multiple AI agents can interact to achieve a common goal or improve output quality.",
+    "Solution": "Implement a framework where different agents are prompted with distinct roles (e.g., one to generate output, another to provide constructive criticism). These agents then 'discuss' or interact to refine the output.",
+    "Result": "Improved responses and higher-quality outputs through diverse perspectives and iterative refinement between agents.",
+    "Related Patterns": "Reflection, Tool Use, Planning",
+    "Category": "Agentic AI",
+    "Uses": "Improving LLM output, critical review of generated content, complex problem-solving requiring multiple viewpoints.",
+    "Thinking": "Explicitly identified as one of the 'four design patterns for AI agentic workflows' and detailed as a method to implement Reflection using 'two different agents' that engage in 'discussion'."
+  },
+  {
+    "Pattern Name": "Retrieval Augmented Generation (RAG)",
+    "Problem": "Large Language Models (LLMs) have knowledge cutoffs, can hallucinate, or lack access to specific, private, or real-time data.",
+    "Context": "Applications where LLMs need to provide accurate, up-to-date, or domain-specific information from external data sources.",
+    "Solution": "Combine an LLM with a retrieval mechanism that first fetches relevant information from a knowledge base or data source based on the user's query. This retrieved information is then provided to the LLM as context for generating its response.",
+    "Result": "LLMs can generate responses grounded in specific data, reducing hallucinations and providing more accurate, contextually relevant, and up-to-date answers.",
+    "Related Patterns": "Tools Integration (as retrieval can be seen as a tool)",
+    "Category": "LLM-specific",
+    "Uses": "Building chatbots that query private data, creating applications that interact with multiple data sources, enhancing LLM factual accuracy.",
+    "Thinking": "Explicitly mentioned in the context of 'Harness the capabilities of large language models and retrieval augmented generation (RAG)' for 'chatting with your data', clearly an LLM-specific technique for knowledge access."
+  },
+  {
+    "Pattern Name": "Simulation-to-Reality (Sim2Real) Training",
+    "Problem": "Training AI agents, especially for robotics, directly in the real world is risky, expensive, and time-consuming due to potential hardware damage and slow iteration cycles.",
+    "Context": "Reinforcement Learning (RL) for controlling physical robots or agents in complex physical environments.",
+    "Solution": "Train the AI agent in a simulated environment where it can explore a wide diversity of motions and scenarios without risk to physical hardware. Once trained, the learned policy can be transferred to the physical robot.",
+    "Result": "Agents learn complex physical motions safely and efficiently, achieving comparable or superior performance to manually designed agents in the real world.",
+    "Related Patterns": "Domain Randomization / Reality Gap Mitigation, Transfer Learning (implicit)",
+    "Category": "Classical AI",
+    "Uses": "Robotics control, training agents for physical tasks (e.g., humanoid football, manipulation).",
+    "Thinking": "The text describes 'training in a simulation' to 'make the leap from simulation to reality' for humanoid robots using reinforcement learning, which is a well-established AI pattern in robotics and control."
+  },
+  {
+    "Pattern Name": "Multi-Environment Agent Training",
+    "Problem": "AI agents are typically specialized for a single environment, limiting their generalizability and requiring retraining for new contexts.",
+    "Context": "Developing agents that can operate and follow instructions across a variety of diverse software or virtual environments.",
+    "Solution": "Train a single agent on a dataset of interactions and instructions collected from multiple, distinct environments. The agent learns to generalize its understanding of instructions and actions across these varied contexts.",
+    "Result": "A single agent can take actions and follow instructions in a variety of environments, performing better than agents trained on just one environment, moving towards more general-purpose instructable agents.",
+    "Related Patterns": "Transfer Learning (implicit), Generalization",
+    "Category": "Agentic AI",
+    "Uses": "Robotics, simulations, gaming, building general-purpose AI assistants.",
+    "Thinking": "The 'One Agent Many Environments' section describes SIMA, a system trained to 'take actions in a variety of three-dimensional virtual worlds' and 'perform better than an agent trained on just one', directly addressing a pattern for agent generalizability."
+  },
+  {
+    "Pattern Name": "Universal Embedding for Cross-Domain Analysis",
+    "Problem": "Identifying common functions or types across different biological species or complex data domains is challenging due to data heterogeneity and the need for domain-specific expertise.",
+    "Context": "Analyzing complex biological data (e.g., gene sequences, cell types) to find underlying patterns and relationships across different species.",
+    "Solution": "Develop an AI system (e.g., using transformers) to produce 'universal embeddings' that represent individual entities (e.g., cells, genes) in a biologically meaningful way. These embeddings are trained on diverse datasets and can then be used with clustering or classification algorithms to identify types or functions, even in unseen species or domains.",
+    "Result": "Enables the identification of cell types and common functions across species, including newly discovered ones, and generalizes to data not in the training set, accelerating scientific discovery.",
+    "Related Patterns": "Representation Learning, Masked Modeling for Representation Learning, Transfer Learning (implicit)",
+    "Category": "Classical AI",
+    "Uses": "Biological research, cell type identification, drug discovery, cross-species comparative analysis.",
+    "Thinking": "The 'Cross-Species Cell Embeddings' section describes UCE, an 'AI system to identify animal cell types from gene sequences' by producing 'embeddings that represent individual cells', which is a core AI pattern for representation learning and cross-domain generalization."
+  },
+  {
+    "Pattern Name": "AI-Assisted Human Decision-Making",
+    "Problem": "Humans can be overwhelmed by vast amounts of data and struggle with the speed and scale required for real-time analysis in complex scenarios.",
+    "Context": "Applications requiring rapid analysis of multiple data streams and human oversight for critical decisions (e.g., military targeting, medical diagnosis).",
+    "Solution": "Deploy AI systems (e.g., computer vision models) to analyze diverse data streams (satellite, radar, social media, etc.) to identify patterns, anomalies, or potential targets. The AI system then presents its findings and recommendations to human decision-makers, who review the output and authorize actions.",
+    "Result": "Faster identification of potential targets or insights, integration of multiple data streams simultaneously, while maintaining human control over critical decisions.",
+    "Related Patterns": "Human-in-the-Loop, Multi-Modal Data Fusion",
+    "Category": "AI\u2013Human Interaction",
+    "Uses": "Military intelligence, surveillance, medical imaging analysis, fraud detection.",
+    "Thinking": "The 'US Deploys AI-Assisted Targeting' section describes Maven, a system that 'identifies targets' and 'displays a map that outlines potential targets' for 'Human decisionmakers [to] review output and authorize responses', highlighting the AI's role in assisting human judgment."
+  },
+  {
+    "Pattern Name": "Autonomous Tool Selection",
+    "Problem": "AI agents need to interact with diverse external systems or data sources, but manually specifying which tool to use for every query is inefficient or impossible for complex tasks.",
+    "Context": "Agentic AI systems, especially those interacting with multiple data sources or external APIs, where the agent needs to perform actions beyond its inherent generative capabilities.",
+    "Solution": "An agent is designed to autonomously select the appropriate tool from a set of available tools based on the given query, task, or current state. This often involves an LLM reasoning about the query and the capabilities of the tools, or a dedicated tool-selection module.",
+    "Result": "The agent can handle a wider range of queries, dynamically adapt to different information needs, and perform complex tasks by orchestrating tool usage without explicit human intervention for each tool call.",
+    "Related Patterns": "Tool Use, Multiagent Collaboration, Planning",
+    "Category": "Tools Integration",
+    "Uses": "RAG applications with multiple data sources, complex task automation, intelligent assistants, code generation with API calls.",
+    "Thinking": "The text explicitly states 'use an agent to autonomously select the right tool for a given query,' which is a distinct and crucial aspect of advanced tool use in agentic systems, going beyond merely *having* tools."
+  },
+  {
+    "Pattern Name": "Multi-Modal Data Fusion",
+    "Problem": "AI systems often need to make decisions or understand complex situations based on information from disparate sources and modalities, which individually might be incomplete, ambiguous, or provide different perspectives.",
+    "Context": "Applications requiring a comprehensive understanding of an environment or situation by combining data from various sensors or data streams.",
+    "Solution": "An AI system integrates and processes data from multiple modalities (e.g., satellite imagery, video, radar, infrared, geolocation data, text from social media). This involves aligning, combining, and often transforming these diverse data types into a unified, richer representation for analysis and decision-making.",
+    "Result": "A more robust, complete, and accurate understanding of the environment or situation, enabling the AI to identify patterns, objects, or events that would be difficult or impossible to detect using a single data source. Improved reliability in complex, real-world scenarios.",
+    "Related Patterns": "Representation Learning (implicit), AI-Assisted Human Decision-Making (often used in conjunction)",
+    "Category": "Classical AI",
+    "Uses": "Military intelligence, autonomous driving, surveillance, medical diagnostics, environmental monitoring, robotics.",
+    "Thinking": "The text explicitly states 'Maven melds various data streams into a topdown image of a geographic area' and lists diverse inputs like 'Satellites provide still images and video and radar and infrared observations... It can also integrate nonvisual information such as location data from mobile devices and social media posts.' This is a clear description of fusing multi-modal data."
+  },
+  {
+    "Pattern Name": "Teacher-Guided Reinforcement Learning",
+    "Problem": "Training complex behaviors in Reinforcement Learning from scratch can be slow, unstable, or require extensive exploration, especially for multi-stage or diverse tasks, or when specific sub-skills are needed.",
+    "Context": "Reinforcement Learning scenarios where an agent needs to learn multiple distinct skills or achieve specific sub-goals efficiently, or where expert demonstrations are available.",
+    "Solution": "Introduce 'teacher' agents, pre-trained policies, or expert demonstrations that guide the main 'student' agent's learning process. Teachers can be trained for specific sub-tasks (e.g., scoring goals, standing up) and their outputs, reward signals, or trajectories are used to shape the student agent's policy, often through imitation learning or by augmenting the reward function.",
+    "Result": "Accelerates learning, improves stability, and enables the agent to acquire complex behaviors by breaking them down into more manageable, guided sub-tasks, often leading to more robust and human-like performance.",
+    "Related Patterns": "Curriculum Learning (implicit), Imitation Learning, Self-Play Reinforcement Learning (can be combined)",
+    "Category": "Classical AI",
+    "Uses": "Robotics, game AI, learning complex motor skills, multi-task learning in RL, training agents with specific sub-skills.",
+    "Thinking": "The text explicitly mentions 'the authors trained two teachers both of which were vanilla neural networks' for distinct sub-tasks (scoring goals, standing up) and then the main agent 'received rewards for moving the robots joints in ways that helped it win the match or resembled the two teachers movements.' This is a clear instance of teacher-guided learning in RL."
+  },
+  {
+    "Pattern Name": "Self-Play Reinforcement Learning",
+    "Problem": "Training agents in competitive or adversarial environments often requires a diverse and progressively challenging set of opponents to achieve robust and high-level performance, which is difficult to generate or acquire externally.",
+    "Context": "Reinforcement Learning in adversarial, competitive, or cooperative multi-agent environments (e.g., games, robotics competitions, negotiation).",
+    "Solution": "The agent learns by playing against previous versions of itself. As the agent improves, its past versions serve as increasingly challenging opponents, creating a self-improving curriculum. This process allows the agent to explore a vast strategy space and continuously improve its policy without needing external expert data or diverse human opponents.",
+    "Result": "Enables agents to achieve superhuman performance in complex games and competitive tasks by continuously improving against a progressively stronger opponent pool generated internally, leading to highly robust and adaptive strategies.",
+    "Related Patterns": "Teacher-Guided Reinforcement Learning (can be combined), Multiagent Collaboration (implicit in competitive self-play)",
+    "Category": "Classical AI",
+    "Uses": "Game AI (Go, Chess, StarCraft II, RoboFootball), robotics (competitive tasks), multi-agent systems, strategy learning.",
+    "Thinking": "The text states 'The second stage of training involved another agent... This agent played a match against a previous version of itself in which each agent controlled a simulated robot.' This is the definition of self-play in RL."
+  },
+  {
+    "Pattern Name": "Masked Modeling for Representation Learning",
+    "Problem": "Learning rich, contextualized representations (embeddings) from sequential data (like text, genes, or even images) without requiring extensive labeled data.",
+    "Context": "Self-supervised learning scenarios, particularly with transformer architectures, where the goal is to capture underlying patterns and relationships in the data.",
+    "Solution": "Randomly mask out a portion of the input sequence (e.g., 20% of gene embeddings). A model (e.g., a transformer) is then trained to predict the masked-out elements based on the surrounding context. This forces the model to learn a deep understanding of the data's structure and dependencies.",
+    "Result": "Produces high-quality, context-aware embeddings that can be used for downstream tasks like classification, clustering, or cross-domain analysis, often generalizing well even with limited labeled data.",
+    "Related Patterns": "Universal Embedding for Cross-Domain Analysis, Representation Learning",
+    "Category": "Classical AI",
+    "Uses": "Learning embeddings for text (BERT), genes, images, video, etc.",
+    "Thinking": "The text explicitly describes 'The authors randomly masked 20 percent of the gene embeddings. Given the masked sequence a vanilla transformer learned to compute an embedding of the cell.' This is a direct application of masked modeling, a widely recognized self-supervised learning pattern for representation learning."
+  },
+  {
+    "Pattern Name": "Domain Randomization / Reality Gap Mitigation",
+    "Problem": "Policies trained in simulation often fail to transfer effectively to the real world due to discrepancies between the simulated and real environments (the 'reality gap').",
+    "Context": "Simulation-to-Reality (Sim2Real) training for robotics or other physical systems, where the goal is to deploy a simulated agent in a physical environment.",
+    "Solution": "Introduce random variations (perturbations) to the simulation parameters during training. This can include adding noise to sensor readings, varying physical properties (friction, mass), introducing delays, or changing visual textures. By training on a diverse set of simulated environments, the agent learns a more robust policy that is less sensitive to specific simulation parameters and generalizes better to the real world.",
+    "Result": "Improved transferability of policies from simulation to reality, leading to more robust and effective real-world performance for robotic agents.",
+    "Related Patterns": "Simulation-to-Reality (Sim2Real) Training",
+    "Category": "Classical AI",
+    "Uses": "Robotics, autonomous driving, any application involving Sim2Real transfer.",
+    "Thinking": "The text explicitly states 'To better approximate realworld conditions the authors randomly perturbed the simulation adding noise to the sensors that measured the robots actions and delaying parts of the simulation.' This is a direct description of domain randomization, a critical pattern for successful Sim2Real."
+  }
+]

@@ -12,6 +12,7 @@ notebooks/**/*.csv
 !**/summarized_patterns/raw/**/*.csv
 data.csv
 models/
+!outputs/all v2/20260126_014938 - Run /extracted_patterns/l2_patterns_v2.json
 !outputs/prompt & rag/20251028_085918 - Run /extracted_patterns/descripted_patterns.csv
 !notebooks/embeddings_result/embeddings_call_graph_clusters_v1.csv
 !notebooks/embeddings_result/embeddings_call_graph_clusters_v2.csv
@@ -20,3 +21,4 @@ models/
 !notebooks/embeddings_result/embeddings_call_graph_clusters_v4.csv
 !notebooks/embeddings_result/embeddings_call_graph_clusters_v4_coderank.csv
 .env
+*.pdf

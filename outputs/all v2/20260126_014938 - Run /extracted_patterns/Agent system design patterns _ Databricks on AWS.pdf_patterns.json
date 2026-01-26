@@ -1,0 +1,123 @@
+[
+  {
+    "Pattern Name": "LLM + Prompt",
+    "Problem": "How to get a GenAI model to respond to simple or generic queries based on its vast training dataset.",
+    "Context": "Simple or generic queries where the model's inherent knowledge is sufficient, and there's no immediate need for real-world business data integration or complex, dynamic logic.",
+    "Solution": "Utilize a standalone LLM or other GenAI model that responds directly to prompts. Behavior can be customized by providing a system prompt with custom instructions or embedded data.",
+    "Result": "Provides a very simple, easy-to-create, and quick prototype for short-term use with minimal customization. It is often disconnected from real-world business data.",
+    "Related Patterns": "Deterministic Chain (as a next step in complexity), Single-agent System (more complex orchestration).",
+    "Category": "LLM-specific",
+    "Uses": "Generic question and answer.",
+    "Thinking": "This pattern describes the most basic interaction with an LLM, focusing on direct prompting and its inherent knowledge. It's fundamental to LLM usage."
+  },
+  {
+    "Pattern Name": "Deterministic Chain (Hardcoded Steps)",
+    "Problem": "How to augment GenAI models with tool calling for well-defined tasks while ensuring predictability, auditability, and minimizing latency by avoiding LLM orchestration decisions.",
+    "Context": "Well-defined tasks with predictable workflows where consistency and auditing are top priorities. There is no need for on-the-fly decisions by the LLM regarding tool selection or order.",
+    "Solution": "The developer explicitly defines the sequence of tool or model calls and their parameters. The system follows a predefined, fixed workflow for all requests. An example is a RAG chain (Retrieve, Augment, Generate).",
+    "Result": "Offers the highest predictability and auditability, typically lower latency due to fewer LLM calls for orchestration, and is easier to test and validate. However, it is inflexible, requires code changes for adaptation, and can become complex to maintain as logic branches grow.",
+    "Related Patterns": "LLM + Prompt (simpler, no tools), Single-agent System (more complex, dynamic tool orchestration), Retrieval Augmented Generation (RAG).",
+    "Category": "MLOps",
+    "Uses": "Welldefined tasks, static pipelines such as basic RAG, no need for on-the-fly decisions.",
+    "Thinking": "This pattern describes a structured, predefined workflow for an ML application (specifically GenAI with tools). The RAG example is a classic MLOps pattern for integrating external data into LLM responses in a controlled manner."
+  },
+  {
+    "Pattern Name": "Single-agent System",
+    "Problem": "How to handle moderate to complex queries within a cohesive domain, allowing for dynamic, context-aware decisions and tool usage, without the overhead of multiple specialized agents.",
+    "Context": "Varied user queries within a cohesive domain or product area where certain queries or conditions warrant dynamic tool usage (e.g., fetching customer data), and more flexibility than a deterministic chain is required.",
+    "Solution": "An LLM orchestrates a single, coordinated flow of logic. It adaptively decides which tools to use, when to make additional LLM calls, and when to stop. It can reason, iterate through tool/LLM calls, integrate tool outputs, and return a cohesive response.",
+    "Result": "Provides flexibility, allowing the agent to adapt to new or unexpected queries and loop through repeated calls to refine results. It is simpler to debug than multi-agent setups but less predictable than deterministic chains. Risks include repeated/invalid tool calls and infinite loops if not properly constrained.",
+    "Related Patterns": "Deterministic Chain (simpler, fixed logic), Multi-agent System (more complex, multiple specialized agents), Agentic Reasoning Loop.",
+    "Category": "Agentic AI",
+    "Uses": "Moderate to complex queries in the same domain, some dynamic decisions without the overhead of multiple specialized agents.",
+    "Thinking": "This pattern explicitly describes an 'agent' that uses an LLM to make dynamic decisions and orchestrate its own actions (including tool use) to achieve an objective. This aligns directly with the concept of Agentic AI."
+  },
+  {
+    "Pattern Name": "Multi-agent System",
+    "Problem": "How to handle large or cross-functional domains, where multiple expert agents with distinct logic, conversation contexts, or large, specialized tool sets are required, or to facilitate advanced collaboration.",
+    "Context": "Distinct problem areas or skill sets (e.g., coding agent, finance agent), where each agent needs access to domain-specific context or prompts, or when the overall tool set is too large for a single agent's schema. Also used for implementing reflection, critique, or back-and-forth collaboration among agents.",
+    "Solution": "Two or more specialized agents exchange messages or collaborate on tasks. Each agent possesses its own domain expertise, context, and potentially distinct tool sets. A separate coordinator or AI supervisor (either an LLM or a rule-based router) directs requests or manages handoffs between agents.",
+    "Result": "Offers a highly modular approach that scales to large, complex enterprise workflows and facilitates advanced multistep or multiperspective reasoning. However, it is complex to orchestrate, harder to trace and debug, requires a robust routing strategy, and carries increased risks of infinite loops or tasks bouncing between agents.",
+    "Related Patterns": "Single-agent System (simpler, single point of control), Agent Supervisor / Coordinator.",
+    "Category": "Agentic AI",
+    "Uses": "Large or cross-functional domains, multiple expert agents with distinct logic or conversation contexts.",
+    "Thinking": "This pattern is a direct extension of Agentic AI, focusing on the coordination and collaboration of multiple specialized agents, each with its own autonomy and expertise, to solve complex problems."
+  },
+  {
+    "Pattern Name": "Agentic Reasoning Loop",
+    "Problem": "How does an AI agent process a request, gather necessary information, make decisions, take actions, and formulate a response in a structured and intelligent manner?",
+    "Context": "Any agent system (single-agent or multi-agent) that needs to dynamically understand user intent, interact with external tools/data, make decisions, and perform actions. Illustrated with a call center GenAI agent.",
+    "Solution": "The agent follows a cyclical process: 1. Reason and Plan (interpret query, formulate plan). 2. Find Information/Data Intelligence (query external sources). 3. Reason (process info, make decisions, potentially human-in-the-loop). 4. Action (trigger external processes, generate outputs). 5. Reason (formulate response). This loop can iterate.",
+    "Result": "Enables dynamic, context-aware processing of requests, allowing agents to interact intelligently with their environment and users. Provides a structured approach for complex tasks.",
+    "Related Patterns": "Single-agent System, Multi-agent System (this pattern describes the internal operation of such systems), Human-in-the-Loop Escalation.",
+    "Category": "Agentic AI",
+    "Uses": "Call center agents, help desk assistants, any task requiring dynamic information retrieval, decision-making, and action.",
+    "Thinking": "The text explicitly breaks down the agent's operation into a sequence of 'Reason', 'Find information', 'Action' steps, highlighting how the LLM orchestrates these with tools. This is a core operational pattern for any intelligent agent."
+  },
+  {
+    "Pattern Name": "Human-in-the-Loop Escalation",
+    "Problem": "How to handle complex, ambiguous, or high-risk situations that an AI agent cannot confidently resolve, or where human judgment is legally or ethically required.",
+    "Context": "Agent systems where certain conditions (e.g., item category, return window, unusual circumstances) trigger a need for human intervention or review before proceeding.",
+    "Solution": "The agent identifies specific conditions or rules that necessitate human involvement. When these conditions are met, the agent escalates the task or decision to a human operator, providing all relevant context for their review and action.",
+    "Result": "Improves accuracy, compliance, and safety by leveraging human expertise for edge cases or critical decisions, while allowing the agent to handle routine tasks autonomously.",
+    "Related Patterns": "Single-agent System, Multi-agent System (this is an operational detail within them), Human Approval / Sandboxed Execution (related to human oversight, but this is more about decision escalation).",
+    "Category": "AI\u2013Human Interaction",
+    "Uses": "Call center agents, help desk assistants, any scenario where an agent needs to defer to human judgment for specific cases.",
+    "Thinking": "The text explicitly mentions 'Optional humanintheloop' and gives a concrete example of when an agent would 'escalate to a human'. This is a clear pattern for managing AI limitations and ensuring human oversight in specific decision points."
+  },
+  {
+    "Pattern Name": "Human Approval / Sandboxed Execution",
+    "Problem": "How to mitigate risks associated with an agent performing sensitive, irreversible, or potentially harmful actions (e.g., updating records, running code) in production, especially in enterprise or regulated environments.",
+    "Context": "Agent systems that have the capability to perform external actions that could have significant real-world impact, financial implications, or security risks.",
+    "Solution": "Implement mechanisms for human approval before critical actions are executed, or sandbox the execution of code/actions to limit their scope and potential damage. Unity Catalog functions are mentioned as providing sandboxed execution.",
+    "Result": "Ensures compliance, predictability, and safety by preventing unintended harm or unauthorized actions. Increases trust in agent systems.",
+    "Related Patterns": "Single-agent System, Multi-agent System (applies to any agent capable of external actions), Human-in-the-Loop Escalation (related to human oversight, but this is for actions rather than decisions).",
+    "Category": "AI\u2013Human Interaction",
+    "Uses": "Enterprise or regulated environments where agents interact with sensitive data or systems.",
+    "Thinking": "The text explicitly states 'enforce human approval where necessary' and 'sandbox those actions' as critical for security and avoiding unintended harm. This is a distinct pattern for managing agent autonomy and safety."
+  },
+  {
+    "Pattern Name": "Fallback Chain",
+    "Problem": "How to ensure system resilience and graceful degradation when advanced LLM or tool calls fail.",
+    "Context": "Any agent system where LLM calls or tool invocations can fail due to timeouts, malformed responses, or unexpected errors.",
+    "Solution": "Implement retry strategies, fallback logic, or a simpler, more robust 'fallback chain' that can handle the request with reduced functionality or a predefined response when advanced features are unavailable.",
+    "Result": "Increased system reliability and user experience, preventing complete system failure and ensuring continuity of service.",
+    "Related Patterns": "Deterministic Chain (a fallback chain might be a simpler deterministic chain), Single-agent System, Multi-agent System (applies to all).",
+    "Category": "MLOps",
+    "Uses": "Ensuring continuity of service in the face of LLM or tool failures.",
+    "Thinking": "The text explicitly mentions 'Include retry strategies fallback logic or a simpler fallback chain when advanced features fail' as part of error handling. This describes a specific architectural choice for robustness in ML systems."
+  },
+  {
+    "Pattern Name": "Retrieval Augmented Generation (RAG)",
+    "Problem": "How to enable an LLM to generate responses based on up-to-date, specific, or proprietary external knowledge that was not part of its training data, while reducing hallucinations.",
+    "Context": "Scenarios where LLMs need to answer questions or generate content using information beyond their pre-trained knowledge, often from a specific knowledge base, documents, or real-time data.",
+    "Solution": "A process that involves: 1. Retrieving relevant context (e.g., top-k results from a vector index) based on a user's request. 2. Augmenting the original prompt by combining the user request with the retrieved context. 3. Sending this augmented prompt to an LLM to generate a response.",
+    "Result": "LLMs can provide more accurate, contextually relevant, and up-to-date answers, grounded in specific data, and with reduced hallucination. It also makes the LLM's knowledge source auditable.",
+    "Related Patterns": "Deterministic Chain (RAG is often implemented as one), LLM + Prompt, Knowledge Graph Integration.",
+    "Category": "Knowledge & Reasoning",
+    "Uses": "Answering questions from specific documents, chatbots needing access to proprietary information, generating summaries based on provided texts.",
+    "Thinking": "Explicitly described as an example of a deterministic chain, but RAG is a widely recognized and fundamental AI design pattern for grounding LLMs with external knowledge. It's a specific method for knowledge integration."
+  },
+  {
+    "Pattern Name": "System Prompt / Custom Instructions",
+    "Problem": "How to customize the behavior, persona, constraints, or specific knowledge of an LLM for a particular application or user interaction, beyond its default pre-trained capabilities.",
+    "Context": "When an LLM needs to adopt a specific role, follow particular rules, adhere to a certain tone, or incorporate application-specific data/context for its responses.",
+    "Solution": "Provide a 'system prompt' or 'custom instructions' to the LLM. This prompt typically sets the stage for the LLM's behavior, defines its persona, outlines constraints, or embeds specific data/context that guides its subsequent interactions.",
+    "Result": "The LLM's responses become more aligned with the application's requirements, more consistent in tone and style, and can leverage specific, provided information.",
+    "Related Patterns": "LLM + Prompt (this is a refinement of it), Few-shot Prompting (can be used within system prompt).",
+    "Category": "Prompt Design",
+    "Uses": "Defining a chatbot's personality, setting rules for content generation, providing context for a specific task, embedding short-term memory or user preferences.",
+    "Thinking": "The text states: 'You can customize behavior by providing a system prompt with your custom instructions or embedded data.' This is a core technique in prompt engineering and a distinct pattern for controlling LLM behavior."
+  },
+  {
+    "Pattern Name": "Agent Supervisor / Coordinator",
+    "Problem": "How to manage and orchestrate multiple specialized agents in a multi-agent system, directing requests to the appropriate agent and handling transitions or collaborations between them.",
+    "Context": "Multi-agent systems where different agents have distinct problem areas, skill sets, or tool sets, and a central mechanism is needed to route tasks, manage handoffs, and ensure cohesive operation.",
+    "Solution": "Introduce a dedicated 'coordinator' or 'AI supervisor' component. This supervisor (which can be another LLM or a rule-based router) receives initial requests, determines which specialized agent(s) are best suited to handle the task, delegates the request, and manages the flow of information or control between agents.",
+    "Result": "Enables modularity and scalability in complex domains by allowing specialized agents to focus on their expertise. Simplifies the overall architecture by centralizing routing logic.",
+    "Related Patterns": "Multi-agent System (this is a core component of it), Rule-based Routing (if the supervisor is rule-based).",
+    "Category": "Agentic AI",
+    "Uses": "Delegating tasks in a customer assistant system (e.g., to a shopping assistant or customer support agent), orchestrating complex workflows across different functional domains.",
+    "Thinking": "The text explicitly describes this role: 'A separate coordinator or AI supervisor directs requests to the appropriate agent or decides when to hand off from one agent to another The supervisor can be another LLM or a rulebased router.' This is a distinct architectural pattern within multi-agent systems."
+  }
+]

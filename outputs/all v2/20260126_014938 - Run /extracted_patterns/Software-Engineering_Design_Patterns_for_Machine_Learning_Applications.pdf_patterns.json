@@ -1,0 +1,167 @@
+[
+  {
+    "Pattern Name": "Different Workloads in Different Computing Environments",
+    "Problem": "It is necessary to separate and quickly change the ML data workload and stabilize the training workload to maximize efficiency.",
+    "Context": "ML applications with varying workloads (data processing, training, inference) that need efficient management and resource allocation.",
+    "Solution": "Physically isolate different workloads to separate machines. Then optimize the machine configurations and the network usage.",
+    "Result": "Maximized efficiency and stabilized training workload by isolating and optimizing resources for distinct ML-related tasks.",
+    "Related Patterns": "None explicitly mentioned in the text.",
+    "Category": "MLOps",
+    "Uses": "Not explicitly detailed beyond the problem and solution.",
+    "Thinking": "This pattern directly addresses the unique operational needs of ML workloads (data, training, inference) by advocating for physical isolation and optimization, which is specific to MLOps."
+  },
+  {
+    "Pattern Name": "Distinguish Business Logic from ML Models",
+    "Problem": "The overall business logic should be isolated as much as possible from the ML models so that they can be changed/overridden as necessary without impacting the rest of the business logic. ML application systems are complex because their ML components must be retrained regularly and have an intrinsic nondeterministic behavior. Similar to other systems, the business requirements for these systems and the ML algorithms change over time.",
+    "Context": "ML application systems where business logic interacts with ML models, and both components are subject to independent evolution and frequent changes.",
+    "Solution": "Separate the business logic and the inference engine, loosely coupling the business logic and ML-specific dataflows. Define clear APIs between the traditional and ML components. Place the business and ML components with different responsibilities into three layers, dividing data flows accordingly.",
+    "Result": "Decoupling traditional business and ML components allows the ML components to be monitored and adjusted to meet users' requirements and changing inputs, facilitating easier debugging and independent evolution.",
+    "Related Patterns": "Provides a basis for other patterns such as P7 Data Lake for ML by clearly decomposing the ML system into multiple layers and components.",
+    "Category": "MLOps",
+    "Uses": "An implementation example is provided for a Slack-based Chatbot system, where the Chatbot service (business logic) is clearly separated from underlying ML components.",
+    "Thinking": "This pattern focuses on managing the inherent complexity and non-deterministic nature of ML components within a larger application, a core concern for ML system design and MLOps."
+  },
+  {
+    "Pattern Name": "ML Gateway Routing Architecture",
+    "Problem": "When a client uses multiple services, it can be difficult to set up and manage individual endpoints for each service.",
+    "Context": "ML applications that expose multiple services or models to clients, requiring simplified access and management.",
+    "Solution": "Install a gateway before a set of applications, services, or deployments. Use application layer routing requests to the appropriate instance.",
+    "Result": "Simplified setup and management of endpoints for clients accessing multiple ML services.",
+    "Related Patterns": "None explicitly mentioned in the text.",
+    "Category": "MLOps",
+    "Uses": "Not explicitly detailed beyond the problem and solution.",
+    "Thinking": "While a gateway is a general pattern, its application here is for routing requests to 'applications services or deployments' which are implicitly ML services in the context of ML design patterns, making it relevant for ML deployment (MLOps)."
+  },
+  {
+    "Pattern Name": "Microservice Architecture for ML",
+    "Problem": "ML applications may be confined to some known ML frameworks, missing opportunities for more appropriate frameworks.",
+    "Context": "ML applications that might benefit from using diverse ML frameworks or need flexibility in component choice and technology stack.",
+    "Solution": "Define consistent input and output data. Provide well-defined services to use for ML frameworks.",
+    "Result": "Allows for the use of more appropriate ML frameworks and avoids confinement to a single framework, increasing flexibility and adaptability.",
+    "Related Patterns": "None explicitly mentioned in the text.",
+    "Category": "MLOps",
+    "Uses": "Not explicitly detailed beyond the problem and solution.",
+    "Thinking": "This pattern addresses the specific ML problem of being 'confined to some known ML frameworks' by promoting modularity and well-defined services, allowing flexibility in ML framework choice, which is an MLOps concern."
+  },
+  {
+    "Pattern Name": "Lambda Architecture for ML",
+    "Problem": "Real-time data processing requires scalability, fault tolerance, predictability, and other qualities. It must be extensible.",
+    "Context": "ML applications requiring both batch and real-time data processing capabilities, with high demands for data quality and system robustness.",
+    "Solution": "The batch layer keeps producing views at every set batch interval, while the speed layer creates the relevant real-time speed views. The serving layer orchestrates the query by querying both the batch and speed layer and then merges them.",
+    "Result": "Achieves scalability, fault tolerance, predictability, and extensibility for real-time data processing in ML systems.",
+    "Related Patterns": "None explicitly mentioned in the text.",
+    "Category": "MLOps",
+    "Uses": "Not explicitly detailed beyond the problem and solution.",
+    "Thinking": "This is a data architecture pattern specifically tailored for ML applications requiring both real-time and batch processing of data, which is a common requirement in MLOps for data pipelines."
+  },
+  {
+    "Pattern Name": "Kappa Architecture for ML",
+    "Problem": "It is necessary to deal with huge amount of data with less code resource.",
+    "Context": "ML applications dealing with huge amounts of data, aiming for resource efficiency and simplified data processing pipelines.",
+    "Solution": "Support both real-time data processing and continuous reprocessing with a single stream processing engine.",
+    "Result": "Efficiently deals with huge amounts of data using less code and resources by unifying batch and real-time processing.",
+    "Related Patterns": "None explicitly mentioned in the text.",
+    "Category": "MLOps",
+    "Uses": "Not explicitly detailed beyond the problem and solution.",
+    "Thinking": "Similar to Lambda, this data architecture pattern is for ML applications dealing with 'huge amount of data with less code resource' through stream processing, a specific MLOps data challenge."
+  },
+  {
+    "Pattern Name": "Data Lake for ML",
+    "Problem": "We cannot foresee the kind of analyses that will be performed on the data and which frameworks will be used to perform such analyses.",
+    "Context": "ML projects where future data analysis needs, model development, and framework choices are uncertain or evolving.",
+    "Solution": "Store data which range from structured to unstructured as raw as possible into a data storage.",
+    "Result": "Provides flexibility for future analyses and framework choices by retaining raw data, accommodating evolving ML requirements.",
+    "Related Patterns": "P2 (Distinguish Business Logic from ML Models) provides a basis for it.",
+    "Category": "MLOps",
+    "Uses": "Not explicitly detailed beyond the problem and solution.",
+    "Thinking": "This pattern addresses the uncertainty in future 'analyses that will be performed on the data and which frameworks will be used,' a characteristic challenge in exploratory ML projects, making it an MLOps data management pattern."
+  },
+  {
+    "Pattern Name": "Separation of Concerns and Modularization of ML Components",
+    "Problem": "ML applications must accommodate regular and frequent changes to their ML components.",
+    "Context": "ML applications where ML components are subject to frequent updates, retraining, or modifications.",
+    "Solution": "Decouple at different levels of complexity from the simplest to the most complex.",
+    "Result": "Accommodates regular and frequent changes to ML components, improving maintainability and adaptability of the ML system.",
+    "Related Patterns": "None explicitly mentioned in the text.",
+    "Category": "MLOps",
+    "Uses": "Not explicitly detailed beyond the problem and solution.",
+    "Thinking": "This pattern applies a general software engineering principle to the specific context of 'ML components' that 'must accommodate regular and frequent changes,' which is a key maintainability challenge in MLOps."
+  },
+  {
+    "Pattern Name": "Encapsulate ML Models within Rulebase Safeguards",
+    "Problem": "ML models are known to be unstable and vulnerable to adversarial attacks, noise in data, and data drift over time.",
+    "Context": "Deploying ML models in critical systems where their inherent instability, vulnerabilities, and uncertainty need to be mitigated.",
+    "Solution": "Encapsulate functionality provided by ML models and appropriately deal with the inherent uncertainty of their outcomes in the containing system using deterministic and verifiable rules.",
+    "Result": "Mitigates instability and vulnerabilities of ML models, ensuring more reliable and trustworthy system behavior by handling uncertainty with deterministic rules.",
+    "Related Patterns": "None explicitly mentioned in the text.",
+    "Category": "MLOps",
+    "Uses": "Not explicitly detailed beyond the problem and solution.",
+    "Thinking": "This pattern directly addresses the unique vulnerabilities and instability of ML models (adversarial attacks, data drift) by proposing a safeguarding mechanism, which is critical for robust and trustworthy ML deployment (MLOps)."
+  },
+  {
+    "Pattern Name": "Discard PoC Code",
+    "Problem": "The code created for PoC often includes code that sacrifices maintainability for efficient implementation of trial and error and code that is ultimately no longer needed.",
+    "Context": "Transitioning from a Proof-of-Concept (PoC) phase to production-ready ML applications.",
+    "Solution": "Discard the code created for the PoC and rebuild maintainable code based on the findings from the PoC.",
+    "Result": "Improved maintainability and quality of production ML applications by preventing the accumulation of unmaintainable PoC code.",
+    "Related Patterns": "None explicitly mentioned in the text.",
+    "Category": "MLOps",
+    "Uses": "Not explicitly detailed beyond the problem and solution.",
+    "Thinking": "This pattern addresses a common problem in ML development where experimental PoC code, often sacrificing maintainability, needs to be managed when transitioning to production, making it an MLOps lifecycle pattern."
+  },
+  {
+    "Pattern Name": "ParameterServer Abstraction",
+    "Problem": "For distributed learning, widely accepted abstractions are lacking.",
+    "Context": "Implementing distributed machine learning, particularly for large models or datasets, where efficient parameter synchronization is crucial.",
+    "Solution": "Distribute both data and workloads over worker nodes while the server nodes maintain globally shared parameters, which are represented as vectors and matrices.",
+    "Result": "Provides a widely accepted abstraction for distributed learning, enabling efficient and scalable training of ML models.",
+    "Related Patterns": "None explicitly mentioned in the text.",
+    "Category": "MLOps",
+    "Uses": "Not explicitly detailed beyond the problem and solution.",
+    "Thinking": "This pattern provides a solution for a specific technical challenge in 'distributed learning' for ML models, which is a fundamental aspect of scaling ML training (MLOps)."
+  },
+  {
+    "Pattern Name": "Data Flows Up Model Flows Down",
+    "Problem": "Standard ML approaches require centralizing the training data on one machine or in a data center.",
+    "Context": "Scenarios where training data cannot or should not be centralized due to privacy concerns, regulatory restrictions, or the distributed nature of data sources (e.g., edge devices).",
+    "Solution": "Enable mobile devices to collaboratively learn a shared prediction model in the cloud while keeping all of the training data on the device as federated learning.",
+    "Result": "Enables collaborative learning without centralizing sensitive training data, addressing privacy and data locality concerns.",
+    "Related Patterns": "None explicitly mentioned in the text.",
+    "Category": "Classical AI",
+    "Uses": "Not explicitly detailed beyond the problem and solution.",
+    "Thinking": "This pattern describes Federated Learning, a distinct ML paradigm that solves the problem of centralizing training data, making it a core Classical AI pattern."
+  },
+  {
+    "Pattern Name": "Secure Aggregation",
+    "Problem": "The system needs to communicate and aggregate model updates in a secure, efficient, scalable, and fault-tolerant way.",
+    "Context": "Collaborative learning environments (like federated learning) where model updates from multiple sources need to be aggregated securely and reliably.",
+    "Solution": "Encrypt data from each mobile device in collaborative learning and calculate totals and averages without individual examination.",
+    "Result": "Achieves secure, efficient, scalable, and fault-tolerant aggregation of model updates, crucial for privacy-preserving collaborative ML.",
+    "Related Patterns": "Closely related to P12 (Federated Learning).",
+    "Category": "Classical AI",
+    "Uses": "Not explicitly detailed beyond the problem and solution.",
+    "Thinking": "This pattern addresses the security and privacy challenges inherent in collaborative/federated learning by encrypting and aggregating model updates, a specific technical solution within the Classical AI paradigm of federated learning."
+  },
+  {
+    "Pattern Name": "Deployable Canary Model",
+    "Problem": "A surrogate ML that approximates the behavior of the best ML model must be built to provide explainability.",
+    "Context": "Deploying complex, unexplainable ML models where understanding their behavior, monitoring for anomalies, or providing explanations is required.",
+    "Solution": "Run the explainable inference pipeline in parallel with the primary inference pipeline to monitor prediction differences.",
+    "Result": "Provides explainability for complex ML models by comparing their behavior with a simpler, explainable surrogate, aiding in monitoring and understanding.",
+    "Related Patterns": "None explicitly mentioned in the text.",
+    "Category": "AI\u2013Human Interaction",
+    "Uses": "Not explicitly detailed beyond the problem and solution.",
+    "Thinking": "This pattern solves the problem of providing 'explainability' for complex ML models by running a parallel explainable pipeline, directly addressing the AI-Human Interaction concern of understanding AI behavior."
+  },
+  {
+    "Pattern Name": "ML Versioning",
+    "Problem": "ML models and their different versions may change the behavior of the overall ML applications.",
+    "Context": "Managing the lifecycle of ML models, ensuring reproducibility, traceability, and consistent behavior across different deployments and updates.",
+    "Solution": "Record the ML model structure, training data set, training system, and analytical code to ensure a reproducible training process and an inference process.",
+    "Result": "Ensures reproducible training and inference processes, manages behavioral changes, and provides traceability for ML models and their dependencies.",
+    "Related Patterns": "None explicitly mentioned in the text.",
+    "Category": "MLOps",
+    "Uses": "Not explicitly detailed beyond the problem and solution.",
+    "Thinking": "This pattern addresses the critical MLOps challenge of managing 'ML models and their different versions' and ensuring 'reproducible training process and an inference process,' which is fundamental for ML lifecycle management."
+  }
+]

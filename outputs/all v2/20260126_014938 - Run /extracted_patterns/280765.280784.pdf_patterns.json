@@ -1,0 +1,123 @@
+[
+  {
+    "Pattern Name": "Itinerary",
+    "Problem": "Managing the routing and sequence of destinations for a mobile agent, including handling exceptions and dynamic modifications.",
+    "Context": "A mobile agent needs to visit multiple destinations, potentially handling network issues or dynamically adjusting its path based on discovered information. There's a need to separate navigation logic from the agent's core behavior for modularity and reuse.",
+    "Solution": "Objectifies agents' itineraries and routing among destinations. An Itinerary object maintains a list of destinations, defines a routing scheme, handles special cases (e.g., destination does not exist), and always knows where to go next. The agent uses this object for navigation, and the Itinerary object is transferred with the agent.",
+    "Result": "Enhances reuse and simplifies agent design by encapsulating mobility management. Promotes modularity by separating navigation from agent behavior. Facilitates sharing of tours by different agents. Simplifies the implementation of sequential tasks by associating tasks with destinations and tracking execution state.",
+    "Related Patterns": "MasterSlave (can be combined with Itinerary for multi-destination tasks)",
+    "Category": "Agentic AI",
+    "Uses": "Routing among multiple destinations; saving and reusing travel plans; graphically dispatching agents with predefined itineraries; dynamically adding destinations (e.g., from a Yellow Pages service); scheduling meetings or delivering notifications to multiple users' desktops.",
+    "Thinking": "This pattern directly addresses the autonomous movement, path planning, and decision-making capabilities of an agent, which are core aspects of agentic AI."
+  },
+  {
+    "Pattern Name": "Forwarding",
+    "Problem": "A host needs to redirect newly arrived agents to another host automatically, possibly due to unavailability, overload, or policy.",
+    "Context": "Mobile agents arrive at a host, but that host might not be the final or appropriate destination for their execution. The system needs a mechanism to automatically reroute them.",
+    "Solution": "Allows a given host to mechanically forward all or specific agents to another host.",
+    "Result": "Ensures robust agent delivery and system flexibility by redirecting agents when necessary, contributing to fault tolerance and load balancing.",
+    "Related Patterns": "None explicitly mentioned.",
+    "Category": "Agentic AI",
+    "Uses": "Automatically rerouting agents from an overloaded host; directing agents to a specific processing host based on type; handling temporary host unavailability.",
+    "Thinking": "This pattern is specific to the infrastructure and management of mobile agents, dealing with their movement and placement within a distributed system, which is a fundamental aspect of agentic AI systems."
+  },
+  {
+    "Pattern Name": "Ticket",
+    "Problem": "Mobile agents need to make informed decisions while traveling, considering quality of service, permissions, and potential network issues, rather than blindly attempting dispatch.",
+    "Context": "When dispatching an agent to a remote host, the agent needs more than just an address. It requires information about the destination's capabilities, access rights, and network conditions to ensure successful and robust travel.",
+    "Solution": "Objectifies a destination address and encapsulates requirements concerning quality of service, permissions, and other data (e.g., timeout information) needed to dispatch an agent to a host and execute it there.",
+    "Result": "Agents have the necessary information to make reasonable decisions while traveling, preventing futile attempts to dispatch to disconnected hosts and improving the robustness of agent mobility.",
+    "Related Patterns": "None explicitly mentioned.",
+    "Category": "Agentic AI",
+    "Uses": "Including timeout information for dispatching; specifying required permissions for execution at a host; defining quality of service parameters for agent travel.",
+    "Thinking": "This pattern enhances an agent's autonomy and decision-making capabilities regarding its own travel and interaction with the environment, which is a key characteristic of agentic AI."
+  },
+  {
+    "Pattern Name": "MasterSlave",
+    "Problem": "A master agent needs to delegate a task to another agent, often for parallel execution, remote execution, or to maintain a local presence (e.g., GUI) while the task is performed elsewhere.",
+    "Context": "An agent has multiple responsibilities and needs to offload a task for parallel processing, or a stationary agent (e.g., managing a GUI) needs to perform a task at a remote destination without losing its local state.",
+    "Solution": "A master agent creates a slave agent and delegates a task to it. The slave agent moves to a destination, performs the assigned task, and returns with the result. The pattern uses abstract Master and Slave classes to localize invariant parts of delegation, dispatching, task execution, and exception handling, allowing subclasses to implement variable aspects.",
+    "Result": "Enables parallel task execution, allows stationary agents to perform remote tasks, and simplifies agent design and implementation by promoting code reuse. While the initial implementation might fix slave behavior at design time, a delegation-based model can offer more flexibility.",
+    "Related Patterns": "Itinerary (can be combined with Itinerary for slaves performing tasks at multiple destinations).",
+    "Category": "Agentic AI",
+    "Uses": "Performing a task in parallel with other responsibilities; a stationary agent maintaining a GUI while a slave performs a remote task and reports results; searching for files in a remote archive.",
+    "Thinking": "This is a classic multi-agent system pattern for task distribution, coordination, and parallel processing among autonomous agents, fundamental to agentic AI."
+  },
+  {
+    "Pattern Name": "Plan",
+    "Problem": "Coordinating multiple tasks to be performed in sequence or in parallel by multiple agents across multiple hosts.",
+    "Context": "Complex workflows require multiple agents to perform a series of tasks, potentially at different locations, with specific dependencies and coordination requirements.",
+    "Solution": "Adopts a workflow concept to organize multiple tasks. The Plan encapsulates the task flow, hiding the complexity from the agent. The agent merely provides the mobility capabilities needed to perform tasks at specific destinations, executing the steps defined by the Plan.",
+    "Result": "Promotes reusability of tasks, dynamic assignment of tasks to agents, and composition of tasks, enabling complex multi-agent workflows to be managed effectively.",
+    "Related Patterns": "None explicitly mentioned.",
+    "Category": "Planning",
+    "Uses": "Organizing multiple tasks to be performed in sequence or in parallel by multiple agents; defining complex workflows for agent collaboration.",
+    "Thinking": "The term 'Plan' and its description of coordinating tasks and encapsulating task flow directly relate to AI planning, where agents execute predefined or dynamically generated sequences of actions."
+  },
+  {
+    "Pattern Name": "Meeting",
+    "Problem": "Two or more agents, initially at different hosts, need to interact locally at a specific host to overcome limitations of remote communication (e.g., overhead, firewalls, unreliability).",
+    "Context": "Agents (e.g., commerce agents) need to find each other and interact extensively, but remote interactions are costly, unreliable, or impossible due to network constraints or security policies. Local interaction at a shared 'meeting place' is more efficient.",
+    "Solution": "Provides a way for two or more agents to initiate local interaction at a given host (a 'meeting place'). Agents dispatch themselves independently to this meeting place, register with a MeetingManager object using a unique identifier, and are notified of other agents' arrivals/departures to enable local interaction.",
+    "Result": "Enables local interaction between agents from different origins, even if their origins are disconnected or behind firewalls. Reduces communication overhead. Simplifies interagent communication (MeetingManager can act as a mediator). Allows agents to interact locally with an unlimited number of agents and can manage shared data.",
+    "Related Patterns": "None explicitly mentioned.",
+    "Category": "Agentic AI",
+    "Uses": "Commerce agents searching for, buying, and selling goods; agents needing to access local services on a given host; situations where local interaction is more efficient than remote communication.",
+    "Thinking": "This is a fundamental pattern for multi-agent coordination and communication, enabling autonomous agents to find and interact with each other in a shared environment, which is central to agentic AI."
+  },
+  {
+    "Pattern Name": "Locker",
+    "Problem": "Mobile agents need to temporarily store data that is not needed during travel or is sensitive and should not be carried outside a secure network, to reduce traffic and improve security.",
+    "Context": "An agent is traveling to different destinations, some of which might be outside a secure company network. Carrying all its data would increase network traffic or pose security risks for sensitive information.",
+    "Solution": "Defines a private storage space for data left by an agent before it is temporarily dispatched to another destination. The agent can return later to retrieve the private data stored in the locker.",
+    "Result": "Reduces network traffic by not carrying unnecessary data, and improves data integrity and security by allowing sensitive data to remain within a secure boundary.",
+    "Related Patterns": "None explicitly mentioned.",
+    "Category": "Agentic AI",
+    "Uses": "An agent-based purchasing system storing sensitive data before visiting a dealer's host outside the company network; temporarily offloading large datasets during travel.",
+    "Thinking": "This pattern addresses the state management, resource optimization, and security concerns specific to autonomous, mobile agents, which are specialized aspects of agentic AI system design."
+  },
+  {
+    "Pattern Name": "Messenger",
+    "Problem": "Agents need to establish remote communication, especially when one agent needs to send a message or result to another while continuing its current task asynchronously.",
+    "Context": "A slave agent needs to report an intermediate result back to a master agent without interrupting its own ongoing task, or any agent needs to send an asynchronous message to another remote agent.",
+    "Solution": "Defines a surrogate agent to carry a remote message from one agent to another. It objectifies messages in the form of agents that travel and deliver messages between agents.",
+    "Result": "Enables asynchronous remote communication between agents, allowing the sending agent to continue its current task without waiting for the message delivery or response.",
+    "Related Patterns": "None explicitly mentioned.",
+    "Category": "Agentic AI",
+    "Uses": "A slave agent reporting intermediate results back to a master agent while continuing its current task; any agent sending an asynchronous notification or data to another remote agent.",
+    "Thinking": "This is a specific pattern for inter-agent communication where the message itself is an agent, highlighting the agentic nature of the system and its communication mechanisms."
+  },
+  {
+    "Pattern Name": "Facilitator",
+    "Problem": "Agents need to locate other agents with specific capabilities, especially when agents are mobile and their location is not fixed or known in advance.",
+    "Context": "In a dynamic multi-agent system, agents may move frequently, making direct addressing difficult. Other agents need a way to discover and interact with agents providing specific services or information without knowing their current location.",
+    "Solution": "Defines an agent that provides services for naming and locating agents with specific capabilities. It acts as a directory or yellow pages service for agents, allowing them to be found by symbolic, meaningful names.",
+    "Result": "Allows agents to be located by symbolic names rather than fixed addresses, supporting agent mobility and dynamic environments. Facilitates agent discovery and interaction in complex, distributed systems.",
+    "Related Patterns": "None explicitly mentioned.",
+    "Category": "Agentic AI",
+    "Uses": "An information-gathering agent continuously moving, and other agents needing to retrieve updates from it without knowing its present location; assigning symbolic names to agents for easier discovery.",
+    "Thinking": "This is a core pattern for multi-agent systems, enabling agents to discover and interact with services provided by other agents, crucial for agent autonomy, cooperation, and dynamic service provision."
+  },
+  {
+    "Pattern Name": "Organized Group",
+    "Problem": "Multiple agents need to collaborate and travel together as a single unit to perform a collective task or maintain cohesion.",
+    "Context": "A group of agents needs to perform a collaborative task that requires them to be at the same location at the same time, or simply move together as a collective entity across different hosts.",
+    "Solution": "Composes multiple agents into a group (also called 'group tour') in which all members of the group travel together, maintaining their collective identity and purpose.",
+    "Result": "Facilitates collaboration and coordinated movement among multiple mobile agents, simplifying the management of collective agent behavior and ensuring all members are present for joint tasks.",
+    "Related Patterns": "None explicitly mentioned.",
+    "Category": "Agentic AI",
+    "Uses": "A team of agents performing a joint search operation across multiple hosts; agents needing to collectively access a service at a remote location; maintaining cohesion of a group of collaborating agents.",
+    "Thinking": "This pattern directly addresses the coordination, collective behavior, and mobility of multiple autonomous agents, which is a key aspect of multi-agent systems and agentic AI."
+  },
+  {
+    "Pattern Name": "Notifier",
+    "Problem": "Agents need to be asynchronously informed about events or changes of interest without constantly polling.",
+    "Context": "In a distributed agent system, agents might need to be informed about events (e.g., arrival of another agent, completion of a task, change in data) that occur at a remote location or are managed by another agent. Polling is inefficient or impractical.",
+    "Solution": "An agent (the Notifier) registers other agents (subscribers) that are interested in specific events. When an event occurs, the Notifier informs all registered subscribers. This typically involves sending messages or dispatching a messenger agent.",
+    "Result": "Enables asynchronous, event-driven communication between agents, reducing the need for constant polling and improving system responsiveness and efficiency.",
+    "Related Patterns": "Messenger (can be used by Notifier to deliver notifications), Meeting (agents might be notified of counterparts' arrival).",
+    "Category": "Agentic AI",
+    "Uses": "Notifying agents of new data availability; informing agents about status changes of other agents or resources; alerting agents to the arrival of other agents at a specific location.",
+    "Thinking": "The paper explicitly mentions 'Notifier' in Section 2 as an early, successful pattern for mobile agent applications, alongside MasterSlave and Messenger. Although not detailed, its name and context strongly suggest an event-driven communication mechanism for agents, fitting the Agentic AI category for inter-agent communication and event handling."
+  }
+]

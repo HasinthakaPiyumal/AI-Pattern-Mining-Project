@@ -1,0 +1,145 @@
+[
+  {
+    "Pattern Name": "Retrieval Augmented Generation (RAG)",
+    "Problem": "Large Language Models (LLMs) relying solely on their pretrained knowledge suffer from hallucinations (generating inaccurate/fabricated information) and lack of up-to-date responses.",
+    "Context": "When building generative AI applications with LLMs that require factual accuracy, up-to-date information, and contextually relevant outputs, especially for use cases requiring real-time information retrieval.",
+    "Solution": "Enhance text generation by incorporating real-time data retrieval. The model operates in two stages: 1. Retrieval: Fetches relevant data from external sources based on the query or prompt. 2. Generation: Processes the retrieved data and generates a coherent and informed response.",
+    "Result": "More accurate and up-to-date responses, addresses key limitations like hallucinations, and improves fact-based, contextually relevant outputs.",
+    "Related Patterns": "Finetuning (contrasted), Prompt Engineering (contrasted), Simple RAG, Simple RAG with Memory, Branched RAG, HyDe, Adaptive RAG, Corrective RAG, SelfRAG, Agentic RAG.",
+    "Category": "LLM-specific",
+    "Uses": "Open-domain question answering, customer support automation, enterprise search.",
+    "Thinking": "RAG is explicitly described as a core technique in LLMs to overcome inherent limitations by integrating external knowledge, making it a fundamental AI design pattern for enhancing LLM performance."
+  },
+  {
+    "Pattern Name": "Simple RAG",
+    "Problem": "Need to generate factually accurate responses from a known, limited set of documents without complex data handling.",
+    "Context": "Situations where the database is relatively small and static, and doesn't require complex handling of large or dynamic datasets.",
+    "Solution": "The language model retrieves relevant documents from a static database in response to a query and then generates an output based on the retrieved information.",
+    "Result": "A straightforward implementation for generating responses grounded in real-world data, suitable for limited information scopes.",
+    "Related Patterns": "Retrieval Augmented Generation (RAG).",
+    "Category": "LLM-specific",
+    "Uses": "FAQ systems, customer support bots where responses need to be factually accurate but the scope of information is limited to a known set of documents (e.g., product manual, knowledge base).",
+    "Thinking": "This is a basic, foundational architectural variant of RAG, directly applicable to LLM-based generative AI systems."
+  },
+  {
+    "Pattern Name": "Simple RAG with Memory",
+    "Problem": "Traditional RAG lacks contextual awareness across multiple queries, making it less effective for continuous conversations or tasks requiring historical information.",
+    "Context": "Chatbots in customer service, personalized recommendation systems, or any application where ongoing interactions require the model to remember user preferences or prior issues.",
+    "Solution": "Introduces a storage component (memory) that allows the model to retain information from previous interactions. The model retrieves past interactions from memory, searches the external database for new relevant information, and combines both for generation.",
+    "Result": "More powerful for continuous conversations, remembers user preferences or prior issues, and improves the relevance of responses through historical data.",
+    "Related Patterns": "Simple RAG, Prompt Caching (as a technique).",
+    "Category": "AI\u2013Human Interaction",
+    "Uses": "Chatbots in customer service (ongoing interactions, remembering user preferences/prior issues), personalized recommendations (historical data improves relevance).",
+    "Thinking": "This pattern directly addresses the AI's ability to maintain context and personalize interactions over time, which is a key aspect of AI-Human Interaction design."
+  },
+  {
+    "Pattern Name": "Branched RAG",
+    "Problem": "Inefficient retrieval from multiple data sources when only specific sources are relevant to a query, leading to the consolidation of irrelevant data.",
+    "Context": "Complex queries requiring specialized knowledge, such as legal tools or multidisciplinary research, where the model needs to choose the best information source without consolidating irrelevant data.",
+    "Solution": "Determines which specific data sources should be queried based on the input. The model evaluates multiple retrieval sources and selects the most relevant one, then retrieves documents from only that chosen source.",
+    "Result": "A more flexible and efficient approach to data retrieval, avoiding irrelevant data consolidation and improving the focus of information gathering.",
+    "Related Patterns": "Retrieval Augmented Generation (RAG).",
+    "Category": "Knowledge & Reasoning",
+    "Uses": "Legal tools, multidisciplinary research (where the model needs to choose the best information source).",
+    "Thinking": "This pattern involves the AI making a reasoned decision about which knowledge source to consult, demonstrating a form of intelligent knowledge selection and reasoning."
+  },
+  {
+    "Pattern Name": "Hypothetical Document Embedding (HyDe)",
+    "Problem": "Vague queries can lead to less relevant document retrieval, especially in exploratory research or creative content generation.",
+    "Context": "Research and development where queries may be vague, or creative content generation when more flexible, imaginative outputs are needed.",
+    "Solution": "Generates hypothetical documents (an embedded representation of what an ideal document might look like) based on the query *before* retrieving actual documents. This hypothetical document then guides the retrieval process.",
+    "Result": "Improves the relevance and quality of retrieval results, helps refine complex answers, and enables more flexible/imaginative outputs.",
+    "Related Patterns": "Retrieval Augmented Generation (RAG).",
+    "Category": "Knowledge & Reasoning",
+    "Uses": "Research and development (refining complex answers from vague queries), creative content generation.",
+    "Thinking": "This pattern involves the AI generating an internal, abstract representation of desired knowledge to improve its understanding and subsequent retrieval, which is a sophisticated form of knowledge-guided reasoning."
+  },
+  {
+    "Pattern Name": "Adaptive RAG",
+    "Problem": "Static retrieval strategies are inefficient for queries of varying complexity, leading to suboptimal balance of speed and depth.",
+    "Context": "Enterprise search systems where the nature of queries can vary significantly (e.g., simple keyword searches vs. complex analytical questions).",
+    "Solution": "Dynamically adjusts its retrieval strategy based on the complexity or nature of the query in real-time. For simple queries, it might retrieve from a single source; for complex queries, it may access multiple sources or employ more sophisticated techniques.",
+    "Result": "Handles both simple and complex queries efficiently, providing the best balance of speed and depth, and optimizes the retrieval process for each specific query.",
+    "Related Patterns": "Retrieval Augmented Generation (RAG).",
+    "Category": "Planning",
+    "Uses": "Enterprise search systems where the nature of the queries can vary significantly.",
+    "Thinking": "This pattern describes the AI's ability to dynamically alter its internal strategy (retrieval method, number of sources) based on input characteristics, which is a form of adaptive planning."
+  },
+  {
+    "Pattern Name": "Corrective RAG (CRAG)",
+    "Problem": "Inaccuracies or irrelevance in retrieved documents can lead to significant consequences, especially in sensitive domains. Traditional RAG models do not critically evaluate retrieved information.",
+    "Context": "Applications requiring high factual accuracy, such as legal document generation, medical diagnosis support, or financial analysis, where even minor inaccuracies can lead to significant consequences.",
+    "Solution": "Incorporates a self-reflection or self-grading mechanism on retrieved documents. It breaks down retrieved documents into 'knowledge strips,' grades each for relevance, and if initial retrieval fails to meet a threshold, initiates additional retrieval steps (e.g., web searches).",
+    "Result": "Improves the accuracy and relevance of generated responses, ensures the best possible information for generation, and reduces inaccuracies in sensitive domains.",
+    "Related Patterns": "Retrieval Augmented Generation (RAG).",
+    "Category": "Knowledge & Reasoning",
+    "Uses": "Legal document generation, medical diagnosis support, financial analysis.",
+    "Thinking": "This pattern involves the AI critically evaluating the quality of its own retrieved knowledge and taking corrective actions, which is a sophisticated form of reasoning and self-correction regarding knowledge integrity."
+  },
+  {
+    "Pattern Name": "SelfRAG",
+    "Problem": "Traditional RAG relies solely on the user's initial input for retrieval queries, which may be insufficient for complex or evolving content generation.",
+    "Context": "Exploratory research or long-form content creation where the model needs to dynamically pull in more information as the response evolves.",
+    "Solution": "Introduces a self-retrieval mechanism, allowing the model to autonomously generate retrieval queries *during* the generation process. It iteratively refines its retrieval queries as it generates content, identifying information gaps.",
+    "Result": "Enhances the quality and relevance of information, especially for complex or evolving queries, ensuring comprehensive and accurate results.",
+    "Related Patterns": "Retrieval Augmented Generation (RAG).",
+    "Category": "Agentic AI",
+    "Uses": "Exploratory research, long-form content creation.",
+    "Thinking": "The AI autonomously generates new queries and iteratively refines its information gathering based on its ongoing generation, demonstrating agent-like behavior and dynamic planning."
+  },
+  {
+    "Pattern Name": "Agentic RAG",
+    "Problem": "Complex, multistep tasks requiring interaction with multiple data sources or APIs, and sophisticated decision-making on retrieval strategies.",
+    "Context": "Automated research, multi-source data aggregation, or executive decision support where the model needs to autonomously pull together and synthesize information from various systems.",
+    "Solution": "The model acts as an autonomous agent, performing complex multistep tasks. It assigns 'Document Agents' to individual documents and orchestrates their interactions through a 'MetaAgent,' determining which retrieval strategies or external systems to engage with based on query complexity.",
+    "Result": "More autonomous and sophisticated decision-making, enables complex multistep tasks, and synthesizes information from various systems.",
+    "Related Patterns": "Retrieval Augmented Generation (RAG), SelfRAG.",
+    "Category": "Agentic AI",
+    "Uses": "Automated research, multi-source data aggregation, executive decision support.",
+    "Thinking": "This pattern explicitly describes an AI system with multiple coordinating agents (Document Agents, MetaAgent) to perform complex, autonomous tasks, which is a defining characteristic of Agentic AI."
+  },
+  {
+    "Pattern Name": "LLM as a Judge",
+    "Problem": "Evaluating the quality, relevance, or correctness of LLM outputs can be subjective, time-consuming, and difficult to scale with human evaluators.",
+    "Context": "When needing to automate or scale the evaluation of LLM-generated content, especially for tasks where human judgment is typically required.",
+    "Solution": "Utilize another LLM (or the same LLM) to evaluate the output of a primary LLM based on predefined criteria or prompts. The 'judge' LLM provides a score, ranking, or qualitative feedback.",
+    "Result": "Scalable, consistent, and potentially faster evaluation of LLM outputs, reducing reliance on human annotators for initial passes and improving evaluation efficiency.",
+    "Related Patterns": "LLM Evaluations.",
+    "Category": "MLOps",
+    "Uses": "Evaluating RAG applications, general LLM output quality assessment.",
+    "Thinking": "This is a specific technique within MLOps that leverages AI (an LLM) to evaluate other AI outputs, making it an AI-specific operational pattern."
+  },
+  {
+    "Pattern Name": "Prompt Management",
+    "Problem": "Managing, versioning, and collaborating on prompts for LLM applications becomes complex as applications grow, leading to inconsistency and difficulty in tracking changes.",
+    "Context": "Developing and evaluating RAG-based AI applications (or any LLM application) where prompts are critical inputs and need to be managed effectively across teams.",
+    "Solution": "Provide tooling to manage prompts, including features for versioning, organization, and collaboration. This ensures prompts are consistent, trackable, and easily shared.",
+    "Result": "Easier collaborative development, consistent prompt usage, ability to track and revert prompt changes, and improved prompt engineering efficiency.",
+    "Related Patterns": "Prompt Engineering.",
+    "Category": "Prompt Design",
+    "Uses": "Collaborative development and evaluation of RAG-based AI applications.",
+    "Thinking": "This pattern addresses the systematic handling of prompts, which are the primary interface for controlling and guiding AI models, making it central to prompt design and engineering."
+  },
+  {
+    "Pattern Name": "LLM Evaluations",
+    "Problem": "Ensuring the performance, reliability, and quality of LLM applications is challenging without systematic and robust evaluation processes.",
+    "Context": "When developing and deploying LLM-based AI applications, especially RAG applications, to ensure they are reliable at scale and meet performance criteria.",
+    "Solution": "A systematic process and tooling for assessing the performance of LLMs, including defining metrics for accuracy, relevance, consistency, and other quality attributes, and running tests against these metrics.",
+    "Result": "Reliable AI applications at scale, ability to identify and correct performance issues, informed decision-making on model improvements, and confidence in deployment.",
+    "Related Patterns": "LLM as a Judge.",
+    "Category": "MLOps",
+    "Uses": "Evaluating RAG applications, ensuring reliability of AI applications at scale.",
+    "Thinking": "This is a fundamental MLOps pattern specifically tailored for the unique challenges of evaluating AI models (LLMs), ensuring their quality and reliability in production."
+  },
+  {
+    "Pattern Name": "AI Observability",
+    "Problem": "Understanding the runtime behavior, performance, and potential issues of AI applications in production is difficult without dedicated monitoring and insight tools.",
+    "Context": "Operating AI applications, especially LLM-based ones, to ensure their health, performance, and identify issues in real-time in production environments.",
+    "Solution": "Tools and practices to monitor and gain insights into the internal state and external behavior of AI systems, including inputs, outputs, intermediate steps, and resource usage, often with logging and tracing capabilities.",
+    "Result": "Proactive identification of issues, improved debugging, better understanding of model performance in real-world scenarios, and enhanced reliability and maintainability of AI systems.",
+    "Related Patterns": "MLOps.",
+    "Category": "MLOps",
+    "Uses": "Monitoring and debugging AI applications in production.",
+    "Thinking": "This is a standard MLOps pattern, but specifically applied to AI systems to understand their unique operational characteristics and ensure their reliable functioning, making it an AI-specific operational pattern."
+  }
+]

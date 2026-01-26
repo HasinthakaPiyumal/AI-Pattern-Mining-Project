@@ -1,0 +1,57 @@
+[
+  {
+    "Pattern Name": "Embedding Text Descriptions of Non-Text Data",
+    "Problem": "How to incorporate non-textual data (like images, audio, video) into a text-based RAG system when direct multimodal retrieval of the raw media is not required.",
+    "Context": "Building a Retrieval Augmented Generation (RAG) system where the primary retrieval mechanism is text-based, but the source data includes non-text modalities. The application may not need to display or directly process the raw non-text data in its final output.",
+    "Solution": "Use a text-to-image model or a multimodal Large Language Model (LLM) to generate a textual description of the non-text data. Then, embed this textual representation using standard text embedding models and store it in a vector database. Retrieval is performed using kNN queries on these text embeddings.",
+    "Result": "Non-textual data can be effectively retrieved using standard text-based similarity searches, providing relevant context to the LLM without the complexity of handling raw media during retrieval or generation. This simplifies the RAG architecture by unifying the embedding space.",
+    "Related Patterns": "Multimodal Embeddings with In-Database Media Storage, Text Embeddings with External Media Pointers, Multimodal Metadata Enrichment for RAG",
+    "Category": "LLM-specific",
+    "Uses": "Generating text descriptions for real estate listings from property photos; extracting useful text from scanned paper documents using OCR, where the raw image is no longer needed after text extraction.",
+    "Thinking": "This pattern describes a specific AI-driven approach to transform multimodal data into a text-based format suitable for text embedding models and LLM consumption within a RAG system. It leverages AI models (text-to-image, multimodal LLM, text embedding) for data preparation for AI."
+  },
+  {
+    "Pattern Name": "Multimodal Embeddings with In-Database Media Storage",
+    "Problem": "How to directly embed and store non-textual data (like images) alongside their vector representations in a unified system, especially when the raw media might be needed for the LLM input or user rendering, and architectural simplicity is prioritized.",
+    "Context": "Building a multimodal RAG system where direct access to the raw non-text data (e.g., images, diagrams) is important for the application's functionality or for providing richer visual context to a multimodal LLM. The system needs to retrieve both the vector and the associated raw media.",
+    "Solution": "Use a multimodal embedding model (e.g., Amazon Titan) to generate vector representations of non-text data (e.g., JPG or PNG images) in the same semantic vector space as text. Store both the generated embeddings and the raw media (e.g., as BLOBs) directly within the vector database.",
+    "Result": "Simplifies the data architecture by storing context and raw media in one place, allowing a single query to retrieve both. This can provide the multimodal LLM with additional visual context beyond textual descriptions, potentially leading to more accurate or visually-aware outputs.",
+    "Related Patterns": "Embedding Text Descriptions of Non-Text Data, Text Embeddings with External Media Pointers, Multimodal Metadata Enrichment for RAG",
+    "Category": "LLM-specific",
+    "Uses": "AI assistants for field technicians needing to display diagrams from PDF manuals alongside instructions; situations where raw images are needed as direct input to multimodal models to achieve specific visual characteristics or generate images.",
+    "Thinking": "This pattern outlines an AI-specific architectural choice for handling multimodal data within an LLM-based RAG system. It involves using multimodal embedding models and considers the implications of storing raw media for AI input and output, directly impacting the AI's ability to process visual information."
+  },
+  {
+    "Pattern Name": "Text Embeddings with External Media Pointers",
+    "Problem": "How to efficiently manage and serve large volumes of non-textual media (e.g., images) in a multimodal RAG system, especially when scalability, performance, or independent media management are critical concerns, making direct in-database storage impractical.",
+    "Context": "Building a multimodal RAG system where non-text data needs to be retrieved and potentially rendered to the user or provided to an LLM, but the raw media files are large, numerous, or require independent scaling and distribution (e.g., via a Content Delivery Network - CDN).",
+    "Solution": "Host raw non-text media (e.g., images) in external object storage (e.g., cloud storage) or a CDN. Generate text embeddings for textual descriptions of the media (or multimodal embeddings for the media itself, storing only the vector). Store a pointer (e.g., URL) to the external media as metadata alongside the vector embedding in the vector database. When submitting a prompt to the LLM, include the URL of the relevant media.",
+    "Result": "Provides an inexpensive and scalable way to manage and serve media independently of the vector database. Reduces vector database response size and retrieval latency. Simplifies rendering images in LLM output (e.g., HTML/Markdown with standard image tags) and allows for global distribution of media.",
+    "Related Patterns": "Embedding Text Descriptions of Non-Text Data, Multimodal Embeddings with In-Database Media Storage, Multimodal Metadata Enrichment for RAG",
+    "Category": "LLM-specific",
+    "Uses": "Applications requiring global distribution of media; scenarios where LLMs produce HTML or Markdown output that includes image tags; providing images as input to multimodal models while optimizing storage and retrieval for large datasets.",
+    "Thinking": "This pattern addresses a key architectural decision for multimodal RAG systems, focusing on the efficient handling and integration of non-textual data for AI processing and output. It considers scalability and performance in the context of AI applications, particularly LLMs."
+  },
+  {
+    "Pattern Name": "Multimodal Metadata Enrichment for RAG",
+    "Problem": "How to provide richer, more contextual information to an LLM in a multimodal RAG system beyond just the raw content or its direct textual description, to improve the quality and relevance of LLM outputs.",
+    "Context": "Building a multimodal RAG system where the LLM's ability to understand, contextualize, and reason about retrieved information can be significantly enhanced by providing structured metadata about the multimodal chunks (e.g., images, text from documents).",
+    "Solution": "Identify and extract relevant metadata from each modality (e.g., file names, timestamps, document titles, jurisdiction, section titles, image captions, page numbers, image format, resolution, document type). Represent this metadata in a structured format (e.g., JSON schema) and store it alongside the content embeddings in the vector database. During retrieval, fetch both the content chunk and its associated metadata, then include this structured metadata in the prompt to the LLM.",
+    "Result": "LLMs receive more comprehensive and structured context, leading to higher quality, more accurate, and better-reasoned results from the multimodal RAG application. This enables the LLM to better understand the relevance and implications of the retrieved information.",
+    "Related Patterns": "Embedding Text Descriptions of Non-Text Data, Multimodal Embeddings with In-Database Media Storage, Text Embeddings with External Media Pointers",
+    "Category": "LLM-specific",
+    "Uses": "Processing building code documents containing images, where metadata like document title, jurisdiction, section title, and image caption are crucial for the LLM to understand the image's relevance and context; enriching any multimodal RAG system where contextual metadata improves LLM performance.",
+    "Thinking": "This pattern describes a specific strategy to enhance the 'reasoning' or 'understanding' capabilities of an LLM by providing structured, machine-readable context derived from multimodal data. It directly impacts the AI's performance and the quality of its output in a RAG setting, making it an AI design pattern."
+  },
+  {
+    "Pattern Name": "Layout-Aware Multimodal Data Extraction and Chunking",
+    "Problem": "Accurately extracting and chunking information from complex multimodal documents (e.g., PDFs with text, images, tables) while preserving crucial contextual and structural relationships, which are often lost with simple text extraction or basic parsing.",
+    "Context": "Building a Retrieval Augmented Generation (RAG) pipeline for documents where the spatial layout and semantic relationships between different modalities (text, images, tables) are critical for the LLM's understanding and for effective retrieval.",
+    "Solution": "Utilize advanced extraction techniques that employ 'finely tuned layout aware models' and Natural Language Processing (NLP) to interpret the document's visual and semantic structure. This model-based approach performs 'semantic chunking,' ensuring that related data elements (e.g., table content, its descriptive text, image captions) are grouped together within chunks, respecting their original context and layout.",
+    "Result": "Generates higher-quality, contextually rich chunks that accurately reflect the document's original meaning and structure. This leads to more relevant retrieval results and significantly improves the LLM's ability to comprehend and reason over the provided context, enhancing the overall performance of the multimodal RAG system.",
+    "Related Patterns": "Multimodal Metadata Enrichment for RAG, Embedding Text Descriptions of Non-Text Data",
+    "Category": "Knowledge & Reasoning",
+    "Uses": "Processing legal documents, technical manuals, research papers, or building codes that combine text, tables, and diagrams, where the spatial arrangement of these elements conveys critical information; ensuring that tabular data is chunked with its surrounding explanatory text.",
+    "Thinking": "This pattern describes an AI-driven preprocessing strategy that uses specialized AI models (layout-aware models, NLP) to intelligently parse and structure complex multimodal input data. It's a true AI design pattern because it directly impacts how knowledge is extracted and represented for an LLM, enabling better understanding and reasoning by the AI system."
+  }
+]

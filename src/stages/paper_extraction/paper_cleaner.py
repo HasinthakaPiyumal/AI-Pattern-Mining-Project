@@ -11,6 +11,9 @@ def clean_all_pdfs(folder_path, output_folder):
     for pdf_path in tqdm.tqdm(get_all_pdf_files(folder_path), desc="Cleaning PDFs",ncols=80):
         filename = os.path.basename(pdf_path)
         output_path = os.path.join(output_folder, f"cleaned_{filename}.txt")
+        if os.path.exists(output_path):
+            logger.info("Skipping already cleaned file: %s", output_path)
+            continue
         clean_and_save_file(pdf_path, output_path)
     return get_all_text_files(output_folder)
 

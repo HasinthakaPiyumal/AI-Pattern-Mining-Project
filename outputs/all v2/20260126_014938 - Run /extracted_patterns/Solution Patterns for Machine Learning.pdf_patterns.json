@@ -1,0 +1,145 @@
+[
+  {
+    "Pattern Name": "Context-Aware Algorithm Selection",
+    "Problem": "How to choose the most appropriate Machine Learning (ML) algorithm given various operational and environmental constraints, such as user preferences, data characteristics, and specific model configuration requirements.",
+    "Context": "Developing an ML solution where the applicability and optimal configuration of algorithms are highly dependent on the specific context of use, including the end-user's needs, the properties of the input data, and the algorithm's own parameter sensitivities.",
+    "Solution": "Define and monitor User Contexts (user preferences), Data Contexts (dataset characteristics), and Model Contexts (algorithm configuration requirements). Link these contexts to specific ML algorithms or algorithm families via 'Means-End' links, indicating when an algorithm is applicable or how it should be configured under certain conditions. A 'Context Analyzer' component can systematically discover alternatives based on which contexts hold true.",
+    "Result": "Ensures that the selected ML algorithm is suitable for the specific operational environment, data properties, and user expectations, leading to more effective, robust, and contextually appropriate ML solutions. It reduces trial-and-error in algorithm selection and configuration.",
+    "Related Patterns": "Quality-Driven Algorithm Selection, Context-Aware Data Preparation, Data Context Monitoring, User Context Monitoring, Model Context Monitoring.",
+    "Category": "MLOps",
+    "Uses": "Illustrated in the Loan Approval pattern where kNearest Neighbor is applicable when 'Users desire simplicity', Naive Bayes when 'Features are independent', and Support Vector Machines require 'Decrease parameter C when dataset is noisy'. Also used in Fraud Detection to determine applicable anomaly detection algorithms.",
+    "Thinking": "This pattern is central to the paper's concept of 'solution patterns'. The metamodel explicitly defines 'Contexts' (User, Data, Model) and their application to 'Means-End' links (algorithm selection). The text emphasizes how these contexts limit applicability and guide configuration, which is a core ML design challenge."
+  },
+  {
+    "Pattern Name": "Quality-Driven Algorithm Selection",
+    "Problem": "How to select ML algorithms that align with critical non-functional requirements (NFRs) or quality attributes desired by stakeholders, such as interpretability, speed, memory usage, or tolerance to missing values.",
+    "Context": "Designing an ML solution where multiple algorithms might be technically feasible, but the ultimate choice must consider specific quality attributes that are crucial for business value, user acceptance, or operational constraints.",
+    "Solution": "Identify relevant 'Softgoals' (NFRs) for the problem domain. Document the known 'Contribution' (positive or negative influence) of different ML algorithms to these Softgoals. Use this knowledge, potentially through a 'Quality Evaluator' component, to recommend or exclude algorithms from consideration based on their impact on desired qualities and their priorities.",
+    "Result": "The chosen ML solution better meets stakeholder expectations regarding quality attributes, leading to higher user satisfaction, improved operational suitability, and a more robust system design that accounts for critical non-functional aspects.",
+    "Related Patterns": "Context-Aware Algorithm Selection, Quality Evaluator for Algorithm Recommendation.",
+    "Category": "MLOps",
+    "Uses": "In the Loan Approval pattern, 'Tolerance to missing values' is a Softgoal, and kNearest Neighbor is noted to 'break' this quality. In the Fraud Detection pattern, Neural Network techniques are recommended for satisfying the 'redundant attributes' requirement. The Task Assignment pattern considers 'Speed of learning' as a Softgoal.",
+    "Thinking": "The metamodel explicitly includes 'Softgoals' and 'Contribution links' to represent NFRs and how algorithms influence them. This is a specific ML design consideration, as different algorithms have distinct performance characteristics regarding these qualities."
+  },
+  {
+    "Pattern Name": "Context-Aware Data Preparation",
+    "Problem": "How to perform data preparation and transformation steps that are appropriate for the specific dataset characteristics and the requirements of the chosen ML algorithms.",
+    "Context": "Developing an ML solution where raw data needs to be transformed into a suitable format for model training, and the specific transformations required depend on the properties of the data itself and the assumptions or requirements of the downstream ML algorithms.",
+    "Solution": "Define 'Data Contexts' that describe relevant dataset characteristics (e.g., presence of numerical features, noise levels, data distributions). Link these contexts to specific 'Data Preparation Tasks' or 'Operators' (e.g., data normalization, missing values treatment, dimensionality reduction). A 'Workflow Planner' component can then use these verified contexts to sequence and execute the necessary data preparation steps via a 'Data Preparator'.",
+    "Result": "Data is prepared optimally for the selected ML algorithms, improving model performance, reliability, and efficiency. It reduces manual trial-and-error in data preprocessing and ensures compatibility between data and algorithms.",
+    "Related Patterns": "Context-Aware Algorithm Selection, Data Context Monitoring.",
+    "Category": "MLOps",
+    "Uses": "In the Loan Approval pattern, 'Data Context C7 states that one should Perform data normalization on numerical features when using kMeans algorithm'. The Task Assignment pattern illustrates 'Dimensionality Reduction' as a data preparation element.",
+    "Thinking": "The text highlights 'Data Contexts' as representing 'certain recommendations on how to transform and prepare dataset for the problem at hand'. This directly addresses a recurring problem in ML workflows where data preprocessing is highly dependent on context."
+  },
+  {
+    "Pattern Name": "Predictive Model Insight Generation",
+    "Problem": "How to effectively translate a high-level business question or decision need into a well-defined Machine Learning problem that generates a concrete, actionable insight for decision-makers.",
+    "Context": "A business actor needs to make a decision, and part of that decision requires an informed recommendation, prediction, or classification based on historical or current data, provided by an ML solution.",
+    "Solution": "Decompose the 'Decision Goal' of an 'Actor' into one or more 'Question Goals'. Design an 'Insight' (typically a trained 'Predictive Model') that receives specific inputs (e.g., 'Applicant profile') and generates a relevant output (e.g., 'Approve/YN') to directly answer a 'Question Goal'. This establishes a clear link from business needs to the ML solution's output.",
+    "Result": "Provides a clear and traceable linkage between business requirements and the ML solution's output, ensuring the ML model delivers direct, understandable, and actionable value to the business decision-making process, thereby enhancing business value from ML capabilities.",
+    "Related Patterns": "Context-Aware Algorithm Selection, Quality-Driven Algorithm Selection.",
+    "Category": "AI\u2013Human Interaction",
+    "Uses": "In the Loan Approval pattern, a 'Loan expert' makes a 'Decision on Loan Applications'. This decision requires answering the 'Question Goal' 'What would be the approval decision on the loan at hand given past decisions?', which is answered by a 'Predictive model' generating 'Approve/YN' as an 'Insight'.",
+    "Thinking": "This pattern describes the fundamental way ML models are framed and integrated to provide business value. It connects the 'Business View' elements (Actor, Decision Goal, Question Goal) to the 'Analytics View' (Insight/Predictive Model), which is a core aspect of applying AI in a business context."
+  },
+  {
+    "Pattern Name": "Supervised/Semi-Supervised Anomaly Detection Strategy",
+    "Problem": "How to choose the appropriate anomaly detection approach (supervised vs. semi-supervised) based on the availability and labeling of anomalous data samples during training.",
+    "Context": "Implementing an anomaly detection system (e.g., for fraud detection) where the nature of available training data\u2014specifically, whether labeled examples of both normal and anomalous instances are present\u2014dictates the feasible and most effective learning paradigm.",
+    "Solution": "If both fraud (anomalous) and non-fraud (normal) samples are available and labeled, employ a supervised anomaly detection approach. If only examples of non-fraud claims (normal data) are present, and anomalous data is scarce or unlabeled, utilize a semi-supervised anomaly detection approach.",
+    "Result": "Selects the most effective and appropriate anomaly detection method given the constraints of the training data, leading to a more accurate, robust, and practical fraud or anomaly detection system.",
+    "Related Patterns": "Context-Aware Algorithm Selection.",
+    "Category": "Classical AI",
+    "Uses": "In the fraud detection project, the team realized that 'depending on the data availability some anomaly detection approaches might be more suitable than others. In particular if both fraud and nonfraud samples are available a supervised anomaly detection approach should be used but if only examples of nonfraud claims were present a semisupervised approach is appropriate'.",
+    "Thinking": "This is a very specific, concrete decision rule for a common ML problem (anomaly detection) based on a critical data characteristic (label availability). It's presented as a direct learning from applying the patterns, making it a true AI design pattern."
+  },
+  {
+    "Pattern Name": "Data Context Monitoring",
+    "Problem": "How to automatically assess and verify the characteristics of a raw dataset to inform and guide subsequent Machine Learning design decisions, such as algorithm selection and data preparation steps.",
+    "Context": "Before applying ML algorithms or data preparation techniques, it is crucial to understand the inherent properties of the input data (e.g., data types, feature distributions, independence of features, presence of noise or missing values) to ensure appropriate choices are made.",
+    "Solution": "Implement a 'Data Context Monitor' component that automatically parses the raw dataset (obtained from a 'Data Extractor') and analyzes predefined 'Data Context' elements against the actual data's types, feature distributions, and values. This process generates a binary status value (true/false) for each context, indicating whether it holds for the given dataset.",
+    "Result": "Provides automated, data-driven insights that guide the selection of appropriate algorithms, data preparation steps, and model configurations. This reduces manual data exploration efforts, minimizes potential errors due to mismatched data assumptions, and streamlines the ML development workflow.",
+    "Related Patterns": "Context-Aware Data Preparation, Context-Aware Algorithm Selection.",
+    "Category": "MLOps",
+    "Uses": "Part of the prototype architecture, the 'Data Context Monitor' parses raw datasets and analyzes 'Data Context' elements. Illustrated in the fraud detection implementation where the system 'verifies contexts C4, C5, and C6 from Fig 2'.",
+    "Thinking": "This is a specific component of the proposed architecture designed to automate the verification of 'Data Contexts', which are explicitly defined as influencing ML design. It's an operational pattern for managing ML data dependencies."
+  },
+  {
+    "Pattern Name": "Quality Evaluator for Algorithm Recommendation",
+    "Problem": "How to systematically recommend or filter Machine Learning algorithms based on their known performance against desired non-functional requirements (NFRs) or 'Softgoals' specified by stakeholders.",
+    "Context": "In an ML design process, multiple algorithms might be technically applicable for a given 'Analytics Goal', but stakeholders have specific quality preferences (e.g., interpretability, speed, memory efficiency, robustness to missing values) that must be considered for the solution's success.",
+    "Solution": "Implement a 'Quality Evaluator' component that analyzes the influences of candidate algorithms on a hierarchy of 'Softgoals'. This component retrieves knowledge from the 'Pattern Repository' on how each algorithm is known to perform with respect to these softgoals. It also considers the importance and priority of softgoals (provided by the 'Modeler') to recommend a list of algorithms to be included in or excluded from the ML workflow.",
+    "Result": "Narrows down the solution space to algorithms that are more likely to satisfy critical quality requirements, streamlining the algorithm selection process. This leads to ML solutions that are better aligned with stakeholder expectations and operational constraints, improving overall system quality and user satisfaction.",
+    "Related Patterns": "Quality-Driven Algorithm Selection, Context-Aware Algorithm Selection.",
+    "Category": "MLOps",
+    "Uses": "The 'Quality Evaluator' component is described as analyzing algorithm influences on softgoals and recommending algorithms based on their performance against NFRs, using knowledge from the 'Pattern Repository' and input from the 'Modeler'.",
+    "Thinking": "This is a specific component in the proposed architecture that directly operationalizes the 'Softgoals' concept, which is an AI/ML-specific design concern. It provides a structured way to incorporate NFRs into automated or semi-automated ML model selection."
+  },
+  {
+    "Pattern Name": "Metric-Driven Model Evaluation",
+    "Problem": "How to select and apply appropriate evaluation metrics for Machine Learning models, especially when the choice of metric is influenced by specific business objectives or data characteristics.",
+    "Context": "After training an ML model, its performance needs to be numerically evaluated and compared against alternatives. The relevance of different metrics (e.g., Accuracy, Precision, Recall) can vary significantly based on the problem's specific requirements (e.g., minimizing false positives vs. false negatives) or data properties.",
+    "Solution": "Identify relevant 'Indicators' (ML metrics) for the problem at hand. Document when to use which metric, potentially linking them to 'Data Contexts' or 'User Contexts' that specify conditions under which a particular metric is most appropriate. The 'Data Miner' component is responsible for reporting on these evaluation metrics.",
+    "Result": "Ensures that ML models are evaluated using metrics that are most relevant to the business problem and contextual requirements, leading to more meaningful performance assessments and better-informed model selection decisions.",
+    "Related Patterns": "Context-Aware Algorithm Selection, Quality-Driven Algorithm Selection.",
+    "Category": "MLOps",
+    "Uses": "In the Loan Approval pattern, 'Accuracy' and 'Precision' are identified as metrics. 'Data Context C2 states that Precision should be used for evaluation when Users desire a low rate of false-positives'.",
+    "Thinking": "The paper explicitly mentions 'Indicators' and 'Evaluates links' in the metamodel and provides a concrete example of a 'Data Context' influencing metric choice. This is a distinct ML design concern."
+  },
+  {
+    "Pattern Name": "Algorithm Categorization and Selection for Analytics Goals",
+    "Problem": "How to identify and categorize suitable Machine Learning algorithms that can achieve a specific high-level analytics goal derived from a business problem.",
+    "Context": "Once a business problem has been translated into a well-defined ML problem with an 'Analytics Goal' (e.g., Prediction, Classification, Anomaly Detection), there is a need to determine which general types of ML algorithms are applicable to achieve that goal.",
+    "Solution": "Link 'Algorithms' to 'Analytics Goals' via 'Means-End' links, representing alternative ways of accomplishing that goal. Categorize algorithms under broader 'Analytics Goals' (e.g., kNearest Neighbor, Naive Bayes, Support Vector Machines for 'Classification', which is a subtype of 'Prediction').",
+    "Result": "Provides a structured approach to mapping business analytics needs to appropriate ML algorithm categories, narrowing down the initial search space for algorithm selection and facilitating the understanding of ML capabilities for a given problem.",
+    "Related Patterns": "Predictive Model Insight Generation, Context-Aware Algorithm Selection.",
+    "Category": "Classical AI",
+    "Uses": "In the Loan Approval pattern, to generate an 'Approval Predictive Model', one needs to accomplish a 'Prediction' type of 'Analytics Goal', where 'Classification' is a subtype. 'kNearest Neighbor', 'Naive Bayes', and 'Support Vector Machines' are listed as alternative algorithms for performing 'Classification'.",
+    "Thinking": "This pattern describes the fundamental mapping from an abstract ML problem type ('Analytics Goal') to concrete algorithms. It's a foundational step before context-aware refinements. The metamodel explicitly shows this relationship."
+  },
+  {
+    "Pattern Name": "Data Preparation Workflow Design",
+    "Problem": "How to structure and sequence data transformation operations to prepare raw data into a suitable format for Machine Learning algorithms.",
+    "Context": "Raw datasets often require multiple steps of cleansing, transformation, and feature engineering before they can be effectively used by ML algorithms. Designing these steps as a coherent workflow is crucial for reproducibility and efficiency.",
+    "Solution": "Represent data preparation as 'Data Preparation Tasks' that consist of one or more 'Operators' (e.g., data normalization, dimensionality reduction, missing values treatment, noise removal, data integration) connected via 'Data Flows'. This defines the sequence and dependencies of transformations.",
+    "Result": "Creates a clear, reproducible, and efficient pipeline for transforming raw data into ML-ready datasets, improving the reliability and performance of downstream ML models. It also helps in documenting the data lineage and transformations applied.",
+    "Related Patterns": "Context-Aware Data Preparation.",
+    "Category": "MLOps",
+    "Uses": "The metamodel defines 'Data Preparation Task' consisting of 'Operators' connected by 'Data Flows'. Figure 3 (Task Assignment) illustrates a wider range of data preparation elements like 'Dimensionality Reduction'. The 'Data Preparator' component implements these tasks.",
+    "Thinking": "While 'Context-Aware Data Preparation' focuses on *when* to apply steps based on context, this pattern describes the *structure* and *composition* of the data preparation process itself, which is a distinct design concern in MLOps."
+  },
+  {
+    "Pattern Name": "Model Context Monitoring",
+    "Problem": "How to automatically verify and manage the configuration values and parameters of Machine Learning algorithms to ensure they align with predefined requirements or recommendations.",
+    "Context": "ML algorithms often have numerous parameters that need to be set appropriately. These settings can be critical for performance and applicability and may depend on specific conditions or expert recommendations. Manually tracking and verifying these can be error-prone.",
+    "Solution": "Implement a 'Model Context Monitor' component that verifies 'Model Contexts' against algorithm configurations and parameter values. 'Model Contexts' can represent recommended configurations or constraints (e.g., 'Decrease parameter C when dataset is noisy'). This component generates a binary status value indicating whether the context holds true.",
+    "Result": "Ensures that ML algorithms are configured correctly according to best practices, contextual recommendations, or specific requirements, reducing configuration errors and improving model reliability and performance. It automates a critical aspect of ML model tuning and deployment.",
+    "Related Patterns": "Context-Aware Algorithm Selection.",
+    "Category": "MLOps",
+    "Uses": "The prototype architecture includes a 'Model Context Monitor' that 'verifies model congurations and parameter values'. 'Model Context C8' in the Loan Approval pattern states 'for using the Support vector machines algorithm one should Decrease parameter C when dataset is noisy'.",
+    "Thinking": "This is a direct operationalization of 'Model Contexts', parallel to 'Data Context Monitoring'. It's a specific MLOps pattern for managing model parameters."
+  },
+  {
+    "Pattern Name": "Context-Driven Workflow Generation",
+    "Problem": "How to dynamically generate and orchestrate a sequence of Machine Learning analysis steps (data preparation, algorithm execution, evaluation) based on verified contextual information and desired quality requirements.",
+    "Context": "In real-world ML applications, the optimal sequence of data preparation, algorithm selection, and model configuration steps is not static but depends on the specific user needs, data characteristics, and model constraints identified at runtime or design time.",
+    "Solution": "Utilize a 'Context Analyzer' to parse pattern structures and generate a context analysis workflow, systematically discovering alternatives based on which 'User Contexts', 'Data Contexts', and 'Model Contexts' hold true. A 'Workflow Planner' then interprets these verified contexts, along with candidate algorithms and quality requirements (from the 'Quality Evaluator'), to specify the order of actions to be executed by 'Data Preparator' and 'Data Miner' components.",
+    "Result": "Enables the semi-automated or automated generation of tailored ML workflows, adapting the solution design to the specific context of use. This increases efficiency, reduces manual intervention, and ensures that the ML solution is optimally configured for the given problem and environment.",
+    "Related Patterns": "Context-Aware Algorithm Selection, Context-Aware Data Preparation, Quality-Driven Algorithm Selection, Data Context Monitoring, Model Context Monitoring, Quality Evaluator for Algorithm Recommendation.",
+    "Category": "MLOps",
+    "Uses": "The 'Context Analyzer' 'generates a context analysis workflow depending on structure of the graph' and the 'Workflow Planner' 'interprets the veried contexts along with candidate algorithms and species the order of actions to be executed'. Figure 6 shows examples of context analysis workflows.",
+    "Thinking": "This pattern describes the overarching orchestration mechanism proposed by the paper's architecture, combining multiple context-aware and quality-driven elements into a dynamic workflow. It's a higher-level MLOps pattern."
+  },
+  {
+    "Pattern Name": "User Context Monitoring",
+    "Problem": "How to systematically gather and verify user-specific preferences, requirements, or operational conditions that influence the selection and configuration of ML solutions.",
+    "Context": "Designing an ML system where the applicability or optimal configuration of algorithms and data preparation steps depends on explicit input or preferences from the end-users or modelers.",
+    "Solution": "Implement a 'User Context Monitor' component that actively collects and verifies 'User Contexts'. This typically involves obtaining input from the 'Modeler' or end-users regarding their desires (e.g., simplicity of algorithm, low false-positive rate). The status of these contexts (true/false) then informs the 'Workflow Planner'.",
+    "Result": "Ensures that the ML solution design is aligned with user expectations and operational constraints, leading to higher user satisfaction and more relevant outcomes. It formalizes the integration of human preferences into the automated ML design process.",
+    "Related Patterns": "Context-Aware Algorithm Selection, Context-Driven Workflow Generation.",
+    "Category": "MLOps",
+    "Uses": "The prototype architecture includes a 'User Context Monitor' that 'verifies User Contexts which needs input from the Modeler'. User Context C3 in Loan Approval: 'Users desire simplicity of the algorithm'.",
+    "Thinking": "While 'Context-Aware Algorithm Selection' *uses* User Contexts, 'User Context Monitoring' is a distinct *operational pattern* within the MLOps framework described, focusing on the *process* of verifying these contexts. It's parallel to 'Data Context Monitoring' and 'Model Context Monitoring' and is specific to ML workflows by integrating human input for ML design."
+  }
+]

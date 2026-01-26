@@ -1,0 +1,189 @@
+[
+  {
+    "Pattern Name": "Functional Grounding (GLAM Method)",
+    "Problem": "Large Language Models (LLMs) suffer from a lack of grounding, meaning their abstract knowledge (statistical structures from text training) does not align with the dynamics and relational structures of interactive environments. This limits their functional competence and ability to solve decision-making problems.",
+    "Context": "An agent uses an LLM as a policy in an interactive environment (e.g., textual world, robotics). The LLM's pre-trained knowledge is valuable but needs to be aligned with the specific environment's physics and interaction rules.",
+    "Solution": "Progressively update the LLM's policy as the agent interacts with the environment. This is achieved by leveraging online Reinforcement Learning (RL) to finetune the LLM based on observations and rewards collected from direct interaction. The LLM's language modeling heads are used to compute action probabilities, and a value head is added for RL.",
+    "Result": "The LLM adapts and learns to solve various tasks (e.g., spatial, navigation) with drastically improved sample efficiency and generalization abilities (to new objects, some new tasks) compared to zero-shot LLMs, supervised finetuning, or RL finetuning of non-pretrained LLMs. It enables the LLM to align its internal symbols with external dynamics.",
+    "Related Patterns": "LLM as Policy, Online Reinforcement Learning for LLM Finetuning, Distributed LLM Policies, Language-Conditioned RL.",
+    "Category": "Agentic AI",
+    "Uses": "Training LLM-based agents to perform tasks in interactive environments; improving LLM's understanding of real-world physics and causality; enhancing functional competence beyond text generation.",
+    "Thinking": "This is the central method proposed in the paper, addressing a fundamental AI problem (grounding) for LLMs using a specific AI technique (online RL). It clearly defines a problem, context, solution, and result for an AI system's design and training."
+  },
+  {
+    "Pattern Name": "LLM as Policy",
+    "Problem": "How can Large Language Models (LLMs), primarily trained for text generation, be directly used to control an agent's actions in an interactive environment to achieve goals?",
+    "Context": "An agent needs to produce actions towards goals in an interactive environment, perceiving the outcome of these actions. The LLM possesses abstract knowledge and reasoning capabilities from its pre-training.",
+    "Solution": "Gather the task description, current observation, and set of possible actions into a prompt for the LLM. The LLM then outputs a probability distribution over these possible actions. This can be done by computing the conditional probability of each token sequence representing an action using the LLM's language modeling heads.",
+    "Result": "The LLM directly controls the agent's behavior, leveraging its pre-trained knowledge. This allows for the application of LLMs in decision-making tasks beyond pure language generation.",
+    "Related Patterns": "Functional Grounding, Prompt-Based Action Probability Calculation, Online Reinforcement Learning for LLM Finetuning.",
+    "Category": "Agentic AI",
+    "Uses": "Enabling LLMs to act as decision-makers in interactive environments (textual games, robotics); leveraging LLM's reasoning for action selection.",
+    "Thinking": "This describes a specific architectural pattern for integrating an LLM into an agent's control flow for decision-making, which is a core AI function."
+  },
+  {
+    "Pattern Name": "Online Reinforcement Learning for LLM Finetuning",
+    "Problem": "Pre-trained Large Language Models (LLMs) lack direct experience with interactive environments, leading to a misalignment between their statistical knowledge and the environment's dynamics. This prevents them from effectively solving tasks requiring functional competence.",
+    "Context": "An LLM is used as an agent's policy in an interactive environment. The agent collects observations and receives rewards (potentially sparse) from the environment based on its actions.",
+    "Solution": "Apply online Reinforcement Learning (RL) algorithms, such as Proximal Policy Optimization (PPO), to finetune the LLM. The LLM's parameters are updated based on the collected experiences (observations, actions, rewards, next observations). A value function (e.g., an MLP head) is typically added on top of the LLM to estimate state values for the RL algorithm.",
+    "Result": "The LLM's policy is functionally grounded in the environment, leading to improved performance, sample efficiency, and generalization on interactive tasks. It allows the LLM to learn from direct intervention and trial-and-error.",
+    "Related Patterns": "Functional Grounding, LLM as Policy, Distributed LLM Policies, Value Head Integration for LLM-based RL.",
+    "Category": "MLOps",
+    "Uses": "Adapting LLMs to specific interactive tasks; improving LLM's ability to learn from experience; aligning LLM behavior with environmental goals and dynamics.",
+    "Thinking": "This is a specific ML workflow pattern for LLMs, focusing on how to train them to *act* in an environment using RL, which is a core AI learning paradigm. It's specific to ML model types and their application, not general MLOps."
+  },
+  {
+    "Pattern Name": "Distributed LLM Policies",
+    "Problem": "Using very large Large Language Models (LLMs) as agent policies in online Reinforcement Learning (RL) is computationally expensive. Computing action probabilities for multiple possible actions across many parallel environments at each step can become a significant bottleneck, making training intractable.",
+    "Context": "An online RL setup requires frequent and fast inference from a large LLM to compute action probabilities for multiple parallel environments and potentially many possible actions per environment.",
+    "Solution": "Deploy multiple LLM workers (e.g., N instances), each handling a subset of actions to score in parallel. Additionally, distribute the training process (gradient computation for minibatches) across these instances and gather gradients before updating the models. A client-server architecture (e.g., Lamorel library) can manage this distribution.",
+    "Result": "Achieves a quasi-linear time decrease with the number of deployed LLMs, making online RL finetuning of large LLMs computationally feasible and scalable.",
+    "Related Patterns": "Functional Grounding, LLM as Policy, Online Reinforcement Learning for LLM Finetuning.",
+    "Category": "MLOps",
+    "Uses": "Scaling online RL training for large LLM-based agents; overcoming computational bottlenecks in LLM inference and training for interactive tasks.",
+    "Thinking": "This is an MLOps pattern specifically tailored to the computational challenges of *large AI models* (LLMs) in an *interactive learning* (RL) setting. It addresses a specific AI system constraint."
+  },
+  {
+    "Pattern Name": "Behavioral Cloning for LLM Pre-training/Finetuning",
+    "Problem": "How to leverage existing expert trajectories or demonstrations to initialize or improve a Large Language Model (LLM) policy for interactive tasks, especially when direct online interaction is costly or difficult initially.",
+    "Context": "An LLM is intended to act as an agent's policy. A dataset of expert trajectories (observation-action pairs) is available, demonstrating desired behaviors in the environment.",
+    "Solution": "Finetune the LLM using Behavioral Cloning (BC). This involves training the LLM to imitate the actions from the expert trajectories given the corresponding observations. The LLM learns to predict the expert's action for a given state.",
+    "Result": "The LLM acquires a baseline policy that mimics expert behavior. While it can achieve reasonable performance, the text suggests it often performs worse than online RL for functional grounding, especially in generalization, due to the lack of direct environmental interaction and causal learning.",
+    "Related Patterns": "Online Reinforcement Learning for LLM Finetuning.",
+    "Category": "MLOps",
+    "Uses": "Initializing LLM policies with expert knowledge; providing a baseline for comparison with online learning methods; learning from demonstrations.",
+    "Thinking": "This is a classical AI learning paradigm (imitation learning) applied specifically to LLMs for policy learning. It's an ML workflow pattern for AI models."
+  },
+  {
+    "Pattern Name": "Prompt-Based Action Probability Calculation",
+    "Problem": "When using an LLM as a policy, how can it output a probability distribution over a discrete set of possible actions, especially when the actions are natural language phrases, without requiring ad-hoc mapping or new, un-pretrained network heads?",
+    "Context": "An LLM is used as an agent's policy in an interactive environment. The environment provides a set of possible actions, each represented as a sequence of tokens (natural language). The LLM needs to select an action based on the current prompt (goal + observation).",
+    "Solution": "For each possible action, compute its conditional probability given the prompt by leveraging the LLM's inherent language modeling capabilities. This involves calculating the product of conditional probabilities of each token in the action sequence, given the prompt and preceding tokens of the action. These log probabilities are then normalized using a softmax function to obtain a distribution over all possible actions.",
+    "Result": "The LLM can directly output a probability distribution over natural language actions using its pre-trained operations, avoiding the need for ad-hoc mappings or additional, randomly initialized action heads. This method is robust to any textual action space.",
+    "Related Patterns": "LLM as Policy.",
+    "Category": "LLM-specific",
+    "Uses": "Enabling LLMs to select actions from a predefined set of natural language commands; leveraging LLM's language modeling heads for policy output; maintaining robustness to varying action spaces.",
+    "Thinking": "This describes a very specific technique for how an LLM *computes* its output for an AI task (action selection). It's directly related to prompt design and LLM architecture usage."
+  },
+  {
+    "Pattern Name": "Value Head Integration for LLM-based RL",
+    "Problem": "Reinforcement Learning algorithms (like PPO) require a value function to estimate the expected return from a given state, in addition to a policy function. How can this value function be efficiently integrated with a Large Language Model (LLM) acting as a policy?",
+    "Context": "An LLM is being finetuned using online RL, where both a policy and a value function are needed. The LLM processes textual observations and goals.",
+    "Solution": "Add a separate MultiLayer Perceptron (MLP) with a single output (for the value) on top of a suitable layer of the LLM (e.g., the last layer of the first Decoder block for Encoder-Decoder LLMs, or the Decoder block encoding the last token for Decoder-only models). This MLP acts as the value head, taking the LLM's internal representation of the observation and goal as input.",
+    "Result": "The LLM's internal representations are leveraged for both policy and value estimation, allowing for efficient training of both components within the RL framework. This enables the use of standard actor-critic RL algorithms with LLMs.",
+    "Related Patterns": "Online Reinforcement Learning for LLM Finetuning, LLM as Policy.",
+    "Category": "LLM-specific",
+    "Uses": "Implementing actor-critic RL algorithms with LLMs; leveraging LLM's learned features for value estimation; streamlining the architecture for LLM-based RL agents.",
+    "Thinking": "This describes a specific architectural modification to an LLM for an AI learning task (RL), making it an AI design pattern. It's about how to adapt the LLM's structure for a specific AI purpose."
+  },
+  {
+    "Pattern Name": "Temporal Symbol Grounding",
+    "Problem": "Large Language Models (LLMs) may struggle to correctly interpret and act upon temporal relationships (e.g., 'then,' 'after') within natural language instructions, especially when the order of actions in the instruction differs from the required execution order.",
+    "Context": "An LLM-based agent receives multi-step instructions containing temporal connectors (e.g., 'Pick up object A then go to object B' vs. 'Go to object B after pick up object A'). The agent needs to execute actions in the correct temporal sequence to achieve the goal.",
+    "Solution": "Explicitly train the LLM-based agent using online Reinforcement Learning on tasks that involve these temporal symbols. The environment provides rewards based on successful completion of the multi-step task, reinforcing the correct interpretation of temporal order.",
+    "Result": "The LLM develops a better functional grounding of temporal symbols, improving its ability to execute multi-step instructions in the correct sequence. However, grounding might be easier when the instruction order matches the execution order ('then') compared to reversed orders ('after').",
+    "Related Patterns": "Functional Grounding, Online Reinforcement Learning for LLM Finetuning.",
+    "Category": "Knowledge & Reasoning",
+    "Uses": "Improving LLM agents' ability to follow complex, temporally-ordered instructions; enhancing reasoning about action sequences.",
+    "Thinking": "This addresses a specific reasoning challenge for AI (temporal understanding) within LLMs and provides a solution using AI training methods."
+  },
+  {
+    "Pattern Name": "Generalization to Out-of-Vocabulary/Invented Symbols",
+    "Problem": "How can an LLM-based agent maintain functional competence and generalize its learned skills when encountering new, unseen, or even invented symbols (nouns, adjectives) in task descriptions, without explicit re-training for these new symbols?",
+    "Context": "An LLM-based agent has been functionally grounded in an environment for a set of tasks. New tasks or environments introduce objects or properties described by words not present in the training vocabulary or by entirely invented words.",
+    "Solution": "Leverage the LLM's pre-trained knowledge and its functional grounding. The LLM's ability to map words to an embedding space, even for unseen words, allows it to infer relationships and properties based on context and its vast pre-training. The functional grounding ensures it focuses on the geometry and actions rather than specific object identities.",
+    "Result": "The LLM-based agent can retain strong performance even with out-of-vocabulary nouns or invented objects, indicating that it has functionally grounded the underlying concepts (e.g., geometry, actions) rather than just memorizing specific symbol-action mappings. Performance might decrease slightly for entirely invented words but remains significantly better than baselines.",
+    "Related Patterns": "Functional Grounding.",
+    "Category": "Knowledge & Reasoning",
+    "Uses": "Building robust LLM agents that can handle novel entities in their environment; reducing the need for constant re-training when new objects or descriptions are introduced.",
+    "Thinking": "This pattern describes an emergent capability of LLMs (generalization to novel symbols) when combined with functional grounding, which is a key aspect of AI intelligence."
+  },
+  {
+    "Pattern Name": "Multilingual Generalization (Limited)",
+    "Problem": "Can an LLM-based agent, functionally grounded in one language, transfer its learned skills and understanding to tasks described in a different language without explicit multilingual training for the interactive task?",
+    "Context": "An LLM (e.g., FlanT5) has been pre-trained on a multilingual corpus and then functionally grounded in an interactive environment using instructions in one language (e.g., English). The agent is then presented with tasks in a different language (e.g., French).",
+    "Solution": "Rely on the LLM's inherent multilingual capabilities from its pre-training. The LLM might have learned to map words across languages to similar embedding spaces.",
+    "Result": "Generalization to a completely new language for the entire environment (observations, goals, actions) is very poor, often worse than random. However, partial generalization (e.g., only actions in a new language) shows slightly better, though still significantly degraded, performance. This suggests that when too many grounded symbols are modified at once, functional grounding fails to transfer effectively.",
+    "Related Patterns": "Functional Grounding, Generalization to Out-of-Vocabulary/Invented Symbols.",
+    "Category": "Knowledge & Reasoning",
+    "Uses": "Understanding the limitations of cross-lingual transfer for functionally grounded LLM agents; informing strategies for multilingual AI agent development (e.g., requiring multilingual grounding or more targeted translation layers).",
+    "Thinking": "This pattern highlights a specific challenge and observed behavior of LLMs regarding multilingual capabilities in an interactive AI context."
+  },
+  {
+    "Pattern Name": "Robustness to Domain-Specific Vocabulary (Flipped Actions)",
+    "Problem": "How can an LLM-based agent adapt to a domain-specific vocabulary where common words are used with altered or 'flipped' meanings (e.g., 'turn left' means rotate right) without losing its functional grounding?",
+    "Context": "An LLM-based agent has been functionally grounded with standard action definitions. The environment then introduces a specific domain where the meaning of certain action commands is inverted or redefined.",
+    "Solution": "Continue finetuning the LLM using online Reinforcement Learning in the environment with the domain-specific (flipped) vocabulary. The agent's direct interaction and reward signals will drive the re-grounding of these specific symbols to their new functional meanings.",
+    "Result": "While initial performance might be poorer due to the LLM's prior knowledge conflicting with the new definitions, the agent can converge at a similar speed to the non-flipped environment. This indicates that the functional grounding method allows LLMs to adapt to and re-ground domain-specific or altered vocabularies.",
+    "Related Patterns": "Functional Grounding, Online Reinforcement Learning for LLM Finetuning.",
+    "Category": "Knowledge & Reasoning",
+    "Uses": "Developing LLM agents that can operate in specialized domains with unique terminology or re-defined action semantics; ensuring adaptability to context-specific language use.",
+    "Thinking": "This pattern addresses the adaptability of an AI system (LLM agent) to changes in its symbolic interface (vocabulary) for actions, which is a specific AI problem."
+  },
+  {
+    "Pattern Name": "LLM as High-Level Planner",
+    "Problem": "Complex, multi-step tasks in embodied environments require high-level strategic planning that traditional Reinforcement Learning might struggle with, or where LLMs' abstract knowledge can be leveraged for task decomposition.",
+    "Context": "Embodied agents (e.g., robotics) or textual environments where an LLM can generate a sequence of high-level steps or sub-goals. The LLM possesses abstract knowledge and reasoning capabilities from its pre-training.",
+    "Solution": "Use an LLM to generate a sequence of high-level plans or sub-goals based on the overall goal and current state. These plans are then executed by a lower-level policy or agent, which translates the high-level steps into low-level actions.",
+    "Result": "LLMs provide abstract, human-interpretable plans, guiding the agent through complex tasks. However, these plans often require external mechanisms for grounding or execution of low-level actions, as the LLM itself might not be directly grounded in the environment's low-level dynamics.",
+    "Related Patterns": "LLM as Policy (contrasting), External Affordance Function for LLM Planning, LLM Planner-Actor Feedback Loop, LLM Planner with Environmental Reporter.",
+    "Category": "Planning",
+    "Uses": "Robotics, long-horizon planning in textual games, complex task decomposition, generating strategic sequences of actions.",
+    "Thinking": "The paper explicitly mentions this as a related but different approach (SayCan, Code as Policies, Inner Monologue) where LLMs are used for high-level planning rather than direct low-level policy. This is a distinct AI design pattern for LLMs."
+  },
+  {
+    "Pattern Name": "External Affordance Function for LLM Planning",
+    "Problem": "When an LLM acts as a high-level planner, its proposed actions or sub-goals might not be feasible or optimal in the specific environment due to a lack of grounding in low-level physics or affordances.",
+    "Context": "An LLM generates high-level plans or actions, but it's not directly grounded in the environment's low-level dynamics or object affordances. The environment has specific physical or functional constraints.",
+    "Solution": "Employ an external affordance function (e.g., a learned model or a rule-based system) to evaluate and re-rank the actions proposed by the LLM. This function assesses the physical plausibility or functional appropriateness of the actions within the environment's constraints.",
+    "Result": "Improves the practicality and success rate of LLM-generated plans by filtering or prioritizing actions based on environmental constraints and object interactions, mitigating the LLM's lack of direct low-level grounding.",
+    "Related Patterns": "LLM as High-Level Planner.",
+    "Category": "Tools Integration",
+    "Uses": "Robotics, where LLM plans need to be checked against physical constraints; environments where LLMs lack direct low-level interaction and require external validation of actions.",
+    "Thinking": "The paper mentions Ahn et al. 2022 using this to 'rerank the actions proposed by the LLM' because their LLM wasn't directly grounded. This is a specific design choice to mitigate LLM grounding issues in a planning context."
+  },
+  {
+    "Pattern Name": "LLM Planner-Actor Feedback Loop",
+    "Problem": "High-level plans generated by an LLM might need dynamic adjustment based on real-time environmental feedback, and the LLM itself needs to be informed of the outcomes of its plans to enable iterative refinement.",
+    "Context": "An LLM acts as a planner, generating a sequence of actions or sub-goals, while a separate agent (actor) executes these low-level actions in the environment. The environment is dynamic and uncertain.",
+    "Solution": "Establish a closed-loop feedback mechanism where the LLM (planner) proposes actions, the actor executes them, and the environment's state changes and outcomes are reported back to the LLM. This allows the LLM to iteratively refine its plans or generate new ones based on the observed outcomes.",
+    "Result": "Enables more robust and adaptive planning, as the LLM can correct its course or generate new strategies in response to unexpected environmental dynamics or execution failures, leading to more successful task completion.",
+    "Related Patterns": "LLM as High-Level Planner, LLM Planner with Environmental Reporter.",
+    "Category": "Agentic AI",
+    "Uses": "Textual adventure games, robotics, any domain requiring iterative planning and execution where the LLM needs to adapt its strategy based on real-world feedback.",
+    "Thinking": "The paper mentions Yao et al. 2022 featuring 'a closed-loop feedback between an LLM that is the planner and an agent that is the actor'. This is a distinct architectural pattern for agentic LLMs, describing how the planner and actor interact."
+  },
+  {
+    "Pattern Name": "LLM Planner with Environmental Reporter",
+    "Problem": "Raw environmental observations might be too complex, noisy, or low-level for an LLM planner to effectively process and incorporate into its planning process, leading to inefficient or suboptimal plans.",
+    "Context": "An LLM acts as a planner within a closed-loop feedback system, receiving information about the environment's state. The raw observations from the environment are often high-dimensional or contain irrelevant details for high-level planning.",
+    "Solution": "Introduce an intermediate 'reporter' component that observes the environment, processes raw observations, and extracts or summarizes useful, high-level information relevant to the LLM planner. This summarized information is then fed back to the LLM.",
+    "Result": "The LLM planner receives more actionable and concise information, improving its ability to reason and generate effective plans by abstracting away irrelevant details from raw observations, thus enhancing planning efficiency and quality.",
+    "Related Patterns": "LLM Planner-Actor Feedback Loop.",
+    "Category": "Agentic AI",
+    "Uses": "Complex textual environments, robotics with high-dimensional sensor data, where LLMs benefit from pre-processed and contextualized information for planning.",
+    "Thinking": "The paper mentions Dasgupta et al. 2022 'added a reporter observing the environment and reporting useful information to the planner'. This is a specific design pattern for enhancing LLM planning by providing curated environmental context."
+  },
+  {
+    "Pattern Name": "Reinforcement Learning from Human Feedback (RLHF)",
+    "Problem": "Aligning Large Language Models (LLMs) to human preferences, values, and instructions, especially for subjective tasks like text generation, where a simple objective function is hard to define and traditional supervised learning falls short.",
+    "Context": "An LLM generates text (e.g., responses, summaries). Human feedback is available on the quality, helpfulness, safety, or style of these generations, but this feedback is often qualitative or comparative.",
+    "Solution": "Train a reward model (RM) using human preferences (e.g., pairwise comparisons of LLM outputs). Then, use this learned RM to provide a scalar reward signal to an Reinforcement Learning (RL) algorithm (e.g., PPO), which finetunes the LLM. The LLM's actions are token generations, and the state is the prompt or partial generation.",
+    "Result": "The LLM generates text that is better aligned with human preferences, often leading to more helpful, honest, and harmless outputs. This approach can significantly improve the perceived quality and safety of LLM outputs, even with models of moderate size.",
+    "Related Patterns": "Online Reinforcement Learning for LLM Finetuning (as a specific application).",
+    "Category": "AI\u2013Human Interaction",
+    "Uses": "Improving conversational AI, content generation, summarization, and generally aligning LLMs with human values and instructions for various text-based tasks.",
+    "Thinking": "The paper explicitly discusses RLHF as a related but different approach to finetuning LLMs with RL, highlighting its distinct problem (human alignment) and reward mechanism (learned from human feedback). This is a major and widely recognized AI pattern."
+  },
+  {
+    "Pattern Name": "Contextual Prompt Structuring for RL Agents",
+    "Problem": "An LLM acting as an agent's policy needs to receive all necessary information (goal, current state, available actions, short-term memory) in a structured and effective way within a single prompt to make informed and coherent decisions in sequential tasks.",
+    "Context": "An LLM is used as a policy in an interactive environment, where the agent's decision-making depends on the current goal, observation, and recent history of interactions. The prompt is the primary interface for conveying this information to the LLM.",
+    "Solution": "Design a prompt template that systematically includes: 1) A header listing all possible actions (to explicitly define the action space for the LLM). 2) The explicit goal of the agent (to guide its objective). 3) A short-term memory component, typically consisting of the last few observations and actions, to provide temporal context and enable sequential reasoning.",
+    "Result": "The LLM receives a comprehensive and structured input, enabling it to leverage its pre-trained knowledge and contextual understanding to select appropriate actions, especially in environments requiring memory or sequential reasoning, leading to improved task performance.",
+    "Related Patterns": "Prompt-Based Action Probability Calculation, LLM as Policy.",
+    "Category": "Prompt Design",
+    "Uses": "Any LLM-based agent in interactive environments requiring contextual awareness and memory; improving decision-making in sequential tasks by providing structured historical context.",
+    "Thinking": "The paper explicitly details the prompt template used in their experiments (Section 4, 'At each step we feed our 3 agents above with the following prompt template...'). This is a concrete and reusable design for structuring prompts for LLM agents to provide necessary context."
+  }
+]

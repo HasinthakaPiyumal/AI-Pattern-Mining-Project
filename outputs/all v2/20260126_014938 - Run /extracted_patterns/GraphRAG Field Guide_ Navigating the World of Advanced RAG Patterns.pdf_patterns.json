@@ -1,0 +1,112 @@
+[
+  {
+    "Pattern Name": "Basic Retriever",
+    "Problem": "Large documents contain too many diverse subjects, causing their embeddings' informative value to deteriorate.",
+    "Context": "Documents are split into smaller chunks for embedding. The user asks for specific information about a topic that exists in one or a few chunks, not requiring complex aggregations or knowledge about the whole dataset.",
+    "Solution": "Documents are split into chunks and embedded. The user's question is embedded. A vector similarity search is executed on the chunk embeddings to retrieve 'k' most similar chunks.",
+    "Result": "Retrieves relevant chunks for specific information queries. It is easy to understand, implement, and get started with, as it primarily involves a vector similarity search.",
+    "Related Patterns": "ParentChild Retriever (an evolution), Hypothetical Question Retriever (an addition).",
+    "Category": "LLM-specific",
+    "Uses": "Retrieving specific information from unstructured data where the answer is contained within a few chunks.",
+    "Thinking": "This pattern is fundamental to Retrieval Augmented Generation (RAG), directly involving embeddings and vector similarity search, which are core AI/ML components for information retrieval in LLM applications."
+  },
+  {
+    "Pattern Name": "ParentChild Retriever",
+    "Problem": "While smaller text pieces yield more meaningful vector representations (better embeddings), providing only these small pieces to the LLM for answer generation might result in missing broader context.",
+    "Context": "Embeddings represent semantic meaning. Smaller chunks have better embeddings but lack broader context. The goal is to balance embedding quality with contextual breadth.",
+    "Solution": "Documents are split into larger 'parent chunks' and smaller 'child chunks'. Child chunks are embedded. A vector similarity search is executed on child chunk embeddings to find 'k' most similar child chunks. The parent chunks of these found child chunks are then retrieved.",
+    "Result": "Provides broader surrounding text (context) to the LLM, leading to better answer generation. It is especially useful when several topics are covered in a chunk, improving embedding quality for search while retaining context for generation.",
+    "Related Patterns": "Basic Retriever (an evolution), Similar patterns on Lexical Graphs with Sibling Structure or Hierarchical Structure (e.g., Bottom-up retrieval).",
+    "Category": "LLM-specific",
+    "Uses": "Improving RAG results by balancing embedding quality (from small chunks) with contextual breadth (from parent chunks) for the LLM.",
+    "Thinking": "This pattern addresses a common challenge in RAG systems related to context window limitations and embedding quality, using a specific hierarchical retrieval strategy that is an advanced RAG technique."
+  },
+  {
+    "Pattern Name": "Hierarchical Retriever (Bottom-up)",
+    "Problem": "How to effectively retrieve context from documents that are organized in a hierarchical structure (e.g., sections, subsections, paragraphs), ensuring both specificity and broader context when needed.",
+    "Context": "Documents are structured as a Lexical Graph with a Hierarchical Structure, where nodes represent chunks at different levels of granularity (e.g., leaf nodes for small chunks, higher-level nodes for larger sections).",
+    "Solution": "Execute an initial retrieval (e.g., vector similarity search) on the leaf nodes (most granular chunks). Based on the retrieved leaf nodes, traverse upwards in the hierarchy to retrieve other chunks higher up in the tree, providing broader context. Optionally, use top-level nodes to determine which subtrees are relevant for retrieval, iteratively narrowing down the set of nodes for the similarity search.",
+    "Result": "Allows for flexible retrieval that can start with specific details (leaf nodes) and expand to broader context (higher-level nodes), or narrow down search scope based on high-level topics.",
+    "Related Patterns": "ParentChild Retriever (a simpler form of hierarchical retrieval), Basic Retriever.",
+    "Category": "LLM-specific",
+    "Uses": "Retrieving context from documents with explicit hierarchical organization, such as books, reports, or articles with nested sections, to provide comprehensive context to an LLM.",
+    "Thinking": "The text explicitly describes this as a 'kind of retriever possible on a Lexical Graph With a Hierarchical Structure' and details its mechanism ('Execute retrieval on leaf nodes and retrieve other chunks higher up in the tree'). This is a specific RAG retrieval strategy leveraging a graph structure, making it an AI design pattern."
+  },
+  {
+    "Pattern Name": "Hypothetical Question Retriever",
+    "Problem": "The vector similarity between a user's question embedding and the text embedding of an appropriate answer or text source might be low, leading to poor retrieval results.",
+    "Context": "The goal is to increase the similarity between the user question and the available text for better retrieval.",
+    "Solution": "An LLM is used to generate hypothetical questions that are answered within the chunks. These generated questions are embedded. When a user asks a question, it is embedded, and a vector similarity search is performed on the previously generated hypothetical question embeddings. The chunks related to the most similar hypothetical questions are then retrieved.",
+    "Result": "Can yield better results in vector similarity search by matching the user's question against semantically similar hypothetical questions, which are often closer to the 'answer' text.",
+    "Related Patterns": "Hypothetical Document Embeddings (HyDE) Retriever (similar idea, but HyDE generates hypothetical answers).",
+    "Category": "LLM-specific",
+    "Uses": "Improving retrieval accuracy when direct question-to-chunk similarity is low, especially for complex or nuanced questions.",
+    "Thinking": "This pattern explicitly uses an LLM to generate synthetic data (hypothetical questions) to improve the retrieval process, which is a clear AI design pattern for enhancing RAG."
+  },
+  {
+    "Pattern Name": "Cypher Templates",
+    "Problem": "Translating a natural language user question into a query that can execute on a database for structured data retrieval.",
+    "Context": "Retrieving structured data from a Domain Graph. The types of questions a user will pose are previously known and can be mapped to predefined queries.",
+    "Solution": "Several domain-specific Cypher queries, containing parameters and descriptions, are made available to an LLM. Given a user question, the LLM decides which template to use, extracts parameters from the question, and plugs them into the template. The resulting query executes against the database, and the results are provided back to the LLM for answer generation.",
+    "Result": "Enables retrieval of structured data using natural language queries. It is simple and deterministic for known query types.",
+    "Related Patterns": "Dynamic Cypher Generation (an evolution), Text2Cypher (a more flexible alternative).",
+    "Category": "Tools Integration",
+    "Uses": "Answering natural language questions that map directly to predefined structured queries on a knowledge graph.",
+    "Thinking": "This pattern uses an LLM to interpret natural language and map it to a structured query template, bridging the gap between human language and database interaction, which is a common AI pattern for structured data access."
+  },
+  {
+    "Pattern Name": "Dynamic Cypher Generation",
+    "Problem": "Cypher Templates are too restrictive; users might ask questions with varying filters or combinations that don't fit a single predefined template.",
+    "Context": "Retrieving structured data from a Domain Graph where user questions can have diverse filters and combinations (e.g., 'Which movies did Steven Spielberg direct between 2000 and 2010?').",
+    "Solution": "Snippets of parameterized Cypher queries and their descriptions are made available to an LLM. Given a user question, the LLM decides which snippets to use, extracts parameters from the question, plugs them into the snippets, and combines them to create a full query. The query executes against the database, and the results are provided back to the LLM for answer generation.",
+    "Result": "More flexible than Cypher Templates, allowing for more diverse user questions to be answered by dynamically constructing queries from reusable components.",
+    "Related Patterns": "Cypher Templates (an evolution from), Text2Cypher (a more flexible alternative).",
+    "Category": "Tools Integration",
+    "Uses": "Answering natural language questions that require constructing structured queries from reusable components based on user-specified parameters.",
+    "Thinking": "This pattern leverages the LLM's ability to reason about query components and combine them dynamically, moving beyond simple template filling towards more complex query construction, which is an AI capability."
+  },
+  {
+    "Pattern Name": "Text2Cypher",
+    "Problem": "Cypher Templates and Dynamic Cypher Generation are limited by predefined queries or snippets. The goal is maximum flexibility for natural language to structured query translation.",
+    "Context": "Retrieving structured data from a Domain Graph. No predefined queries or snippets are available, or the range of possible questions is too broad for templates/snippets.",
+    "Solution": "The LLM is provided with the database schema and a description of the domain (optionally enhanced with data value samples). The LLM directly translates the user question into a Cypher query. The query executes against the database, and the results are provided back to the LLM for answer generation.",
+    "Result": "Highly flexible, theoretically allowing the LLM to generate any query. However, this pattern isn't 100% reliable, and its reliability can be improved by fine-tuning LLMs, few-shot examples, or query re-generation on failure.",
+    "Related Patterns": "Cypher Templates (less flexible alternative), Dynamic Cypher Generation (less flexible alternative).",
+    "Category": "Generative AI",
+    "Uses": "Answering highly diverse and complex natural language questions against a structured knowledge graph without prior query definition.",
+    "Thinking": "This is a direct application of LLMs for natural language to code generation (specifically database queries), a core capability in many AI systems, falling under Generative AI."
+  },
+  {
+    "Pattern Name": "GraphEnhanced Vector Search",
+    "Problem": "Basic GraphRAG patterns struggle to find all relevant context, especially when context is spread across many chunks or requires understanding relationships between entities.",
+    "Context": "Combining Lexical Graphs (unstructured text chunks) and Domain Graphs (structured entities and relationships). The goal is to retrieve richer context than just vector search results.",
+    "Solution": "An LLM is used to execute entity and relationship extraction on text chunks, and these extracted triples are imported into the graph. The user question is embedded, and a vector similarity search is performed on chunk embeddings to find 'k' similar chunks. A traversal of the Domain Graph, starting at the found chunks, is then executed to retrieve more context (e.g., related entities, their properties, and relationships).",
+    "Result": "Retrieves more enriched context by leveraging the interaction of entities within the data, providing higher-quality inputs for answer generation. This comes with increased preprocessing effort and cost.",
+    "Related Patterns": "Entity disambiguation, schema-guided extraction, entity/relationship embeddings, ontology-driven traversal (variations of this pattern).",
+    "Category": "Knowledge & Reasoning",
+    "Uses": "Enhancing RAG by incorporating explicit knowledge graph relationships to provide a richer, more connected context to the LLM.",
+    "Thinking": "This pattern explicitly combines vector search (AI) with graph traversal (knowledge representation and reasoning) and LLM-based entity extraction, making it a sophisticated AI design pattern for RAG."
+  },
+  {
+    "Pattern Name": "Global Community Summary Retriever",
+    "Problem": "Previous patterns are not suited for 'global' questions that relate to an overarching message or topic structure across the entire dataset, rather than specific chunks.",
+    "Context": "Questions requiring a summary or understanding of topic structures across a whole dataset. This pattern combines Lexical Graphs with Extracted Entities and Community Summaries.",
+    "Solution": "In addition to entity and relationship extraction, hierarchical communities are formed within the Domain Graph (e.g., using the Leiden algorithm). For every community, an LLM summarizes the entity and relationship information into 'Community Summaries'. Given the user question and a specified community level, the relevant Community Summaries are retrieved and provided to the LLM.",
+    "Result": "Useful for questions with a global character, such as summarizing the content of the whole database or looking for topic structures across the data. This pattern requires significant preprocessing effort.",
+    "Related Patterns": "Local Retriever (a variation that starts with vector search on entity embeddings and traverses to related entities/chunks/communities).",
+    "Category": "Generative AI",
+    "Uses": "Answering high-level, summary-oriented questions about the entire knowledge base or large sections of it.",
+    "Thinking": "This pattern involves LLM-based summarization of graph communities, which is a complex AI task combining graph analytics with natural language generation for high-level information retrieval, thus falling under Generative AI."
+  },
+  {
+    "Pattern Name": "Local Retriever (GraphRAG)",
+    "Problem": "Answering questions that require localized, entity-specific, or topic-specific context within a large knowledge graph, rather than a global summary or general document chunks.",
+    "Context": "A combined Lexical Graph and Domain Graph, enriched with extracted entities, relationships, and potentially community structures. The user's query is focused on specific entities or local topics.",
+    "Solution": "Perform an initial vector search, typically on entity embeddings (or embeddings of specific community summaries if a relevant subgraph needs to be identified first). From the identified entities or communities, traverse the graph to retrieve related entities, chunks, or other connected communities. This traversal focuses on gathering information directly relevant to the initial search scope, providing a localized context.",
+    "Result": "Provides focused, entity-centric or topic-centric context by combining vector search with targeted graph traversal, offering more granular and precise information than global summaries.",
+    "Related Patterns": "Global Community Summary Retriever (contrasting approach for global questions), GraphEnhanced Vector Search (similar in combining vector search and traversal but often starting from chunks).",
+    "Category": "Knowledge & Reasoning",
+    "Uses": "Answering questions that require detailed information about specific entities, their immediate connections, or localized topics within a knowledge graph, often as a precursor to more complex reasoning.",
+    "Thinking": "The text describes this as a variation of using the Lexical Graph with extracted entities, communities, and community summaries, explicitly stating it 'could start by executing a vector search on the entity embeddings and traversing to related entities chunks or communities'. This is a distinct retrieval strategy that combines AI (vector search) with graph traversal (knowledge reasoning) for localized context, making it an AI design pattern."
+  }
+]

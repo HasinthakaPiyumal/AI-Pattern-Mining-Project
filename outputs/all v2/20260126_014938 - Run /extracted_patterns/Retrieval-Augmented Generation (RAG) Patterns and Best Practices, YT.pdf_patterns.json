@@ -1,0 +1,189 @@
+[
+  {
+    "Pattern Name": "Semantic Search",
+    "Problem": "Traditional keyword-based search struggles to understand the intention and context of a query, leading to irrelevant results (e.g., confusing 'Brazil to USA travel' with 'USA to Brazil travel').",
+    "Context": "Any application requiring robust search capabilities where understanding the meaning and intent behind a query is more important than just keyword matching.",
+    "Solution": "Utilize language models to process queries and documents, enabling the search system to understand the underlying intention and context of the words, rather than just their literal presence.",
+    "Result": "Improved ability to catch the intention and context of queries, leading to more relevant and accurate search results.",
+    "Related Patterns": "Dense Retrieval, Reranking, Hybrid Search, Retrieval Augmented Generation (RAG)",
+    "Category": "LLM-specific",
+    "Uses": "Internal document search, general application search, powering the retrieval step in RAG systems.",
+    "Thinking": "The text explicitly describes using language models to move beyond keyword relevance to 'search by meaning,' directly addressing a limitation of traditional search with an AI-driven solution."
+  },
+  {
+    "Pattern Name": "Dense Retrieval (Embedding Search)",
+    "Problem": "Efficiently finding documents that are semantically similar to a query within a large corpus, based on their meaning rather than just keywords.",
+    "Context": "Building a search system from scratch or integrating semantic search capabilities, especially when dealing with large archives that need to be pre-processed.",
+    "Solution": "Convert both the query and all document chunks in the archive into numerical representations called embeddings using a language model tuned for search. Store document embeddings in a vector database. For a query, generate its embedding and find the nearest neighbors to that point in the vector database.",
+    "Result": "Fast and effective retrieval of documents that are semantically closest to the query, capturing deeper meaning.",
+    "Related Patterns": "Semantic Search, Reranking, Hybrid Search, Retrieval Augmented Generation (RAG)",
+    "Category": "LLM-specific",
+    "Uses": "Building vector search databases, powering the initial retrieval step in RAG, creating recommendation systems.",
+    "Thinking": "This pattern details a specific method of using LLM-generated embeddings and vector databases for semantic search, a core AI technique for information retrieval."
+  },
+  {
+    "Pattern Name": "Reranking",
+    "Problem": "Improving the relevance and order of results from an existing search system, as initial keyword or even embedding-based retrieval might not perfectly capture the query's nuance or optimal document order.",
+    "Context": "You have an existing search system (e.g., Elastic, keyword-based, or even embedding search) that provides an initial set of top N results, but you want to refine their order for higher accuracy.",
+    "Solution": "Take the top N results from an initial search system and pass them, along with the original query, to a language model (cross-encoder). This model, having access to the full text of both the query and each document, scores their relevance and reorders them. This is typically a second stage in a search pipeline.",
+    "Result": "Dramatically improved search accuracy and relevance by leveraging the language model's deeper understanding to reorder results. It's a fast way to inject LLM intelligence into existing search systems.",
+    "Related Patterns": "Semantic Search, Dense Retrieval, Hybrid Search, Retrieval Augmented Generation (RAG)",
+    "Category": "LLM-specific",
+    "Uses": "Enhancing existing search engines, improving the quality of retrieved documents in RAG systems.",
+    "Thinking": "The text describes a specific two-step pipeline where an LLM is used solely to re-evaluate and reorder search results based on a more comprehensive understanding, making it an AI-specific optimization."
+  },
+  {
+    "Pattern Name": "Retrieval Augmented Generation (RAG)",
+    "Problem": "Large Language Models (LLMs) can hallucinate, provide outdated information, and lack explainability when relying solely on their internal parameters for factual retrieval.",
+    "Context": "Building applications that require factual, up-to-date, and explainable answers from an LLM, grounded in specific external data sources rather than the model's pre-trained knowledge.",
+    "Solution": "Combine a retrieval step with a generation step. First, relevant information is retrieved from an external, up-to-date data source (e.g., internal documents, web) using semantic search. Then, this retrieved information is provided as context to the LLM, which generates an answer grounded in that specific context.",
+    "Result": "Reduced hallucinations, access to up-to-date information, explainable sources (citations), ability to use smaller models, and greater control over the data used for generation.",
+    "Related Patterns": "Semantic Search, Dense Retrieval, Reranking, Query Rewriting, Multi-Query RAG, Multi-Hop RAG, LLM-backed Agent",
+    "Category": "Generative AI",
+    "Uses": "Enterprise chatbots, factual Q&A systems, knowledge assistants, document summarization with source grounding.",
+    "Thinking": "This is explicitly defined as a major pattern for augmenting LLM generation with external knowledge to overcome inherent limitations like hallucinations and outdated information, making it a core Generative AI pattern."
+  },
+  {
+    "Pattern Name": "Query Rewriting",
+    "Problem": "User queries can be conversational, ambiguous, or contain irrelevant information, making them unsuitable for direct input to a search system, especially in complex RAG pipelines.",
+    "Context": "When the initial user query is not directly suitable for an underlying search system, particularly in conversational interfaces or when users ask complex, multi-part questions.",
+    "Solution": "Use a generative language model to analyze the user's complex or conversational query and rewrite it into a concise, optimized search query that is more effective for the retrieval system. The LLM can also decide if a search is even necessary.",
+    "Result": "Improved retrieval accuracy by transforming user intent into actionable search queries, and avoiding unnecessary searches for trivial queries.",
+    "Related Patterns": "Retrieval Augmented Generation (RAG), Multi-Query RAG, Multi-Hop RAG",
+    "Category": "Prompt Design",
+    "Uses": "Enhancing RAG systems, conversational AI, improving search in complex user interactions.",
+    "Thinking": "This pattern uses an LLM to process and refine the user's input (a form of prompt engineering) specifically to improve the performance of a downstream AI component (the search system), fitting 'Prompt Design'."
+  },
+  {
+    "Pattern Name": "Multi-Query RAG",
+    "Problem": "A single user question might require information from multiple distinct searches that cannot be answered by a single document or a single search query.",
+    "Context": "When a user's question implicitly or explicitly requires synthesizing information from several distinct pieces of data, each requiring its own search operation.",
+    "Solution": "An LLM breaks down a complex user query into multiple, simpler, and independent search queries. Each sub-query is executed, and the retrieved documents are then synthesized and presented to the LLM for final answer generation.",
+    "Result": "Ability to answer complex comparative or multi-faceted questions that a single search would miss, by gathering and combining information from various sources.",
+    "Related Patterns": "Retrieval Augmented Generation (RAG), Query Rewriting, Multi-Hop RAG",
+    "Category": "Agentic AI",
+    "Uses": "Complex data analysis, comparative reporting, advanced Q&A systems requiring synthesis from multiple data points.",
+    "Thinking": "The LLM acts as an agent by decomposing a complex problem into multiple search actions and orchestrating their execution and synthesis, demonstrating decision-making and flow control."
+  },
+  {
+    "Pattern Name": "Multi-Hop RAG",
+    "Problem": "Some complex questions require sequential information gathering, where the result of one search informs the next search, rather than just parallel searches.",
+    "Context": "When answering a question requires a chain of reasoning and information retrieval, where intermediate results are needed to formulate subsequent queries.",
+    "Solution": "An LLM orchestrates a sequence of searches. It performs an initial search, processes the results, and then uses that information to formulate a follow-up search query. This process can repeat multiple times, with the LLM determining if enough information has been gathered before outputting the final answer.",
+    "Result": "Ability to answer highly complex, multi-stage questions that require iterative information gathering and reasoning, mimicking human-like research processes.",
+    "Related Patterns": "Retrieval Augmented Generation (RAG), Multi-Query RAG, LLM-backed Agent",
+    "Category": "Agentic AI",
+    "Uses": "Deep research, complex problem-solving, advanced data exploration, intelligent assistants for multi-step tasks.",
+    "Thinking": "This pattern describes an LLM controlling the flow of information retrieval, making decisions about subsequent actions based on previous results, which is a hallmark of agentic behavior."
+  },
+  {
+    "Pattern Name": "LLM-backed Agent (Tool Use)",
+    "Problem": "Traditional LLMs are limited to text generation and retrieval; they cannot directly interact with external systems or perform actions in the real world.",
+    "Context": "When an application needs to go beyond just answering questions and perform actions, interact with APIs, or use external tools (e.g., calculators, email, databases, web search).",
+    "Solution": "An LLM acts as the 'brain' or controller of a software agent. It interprets user requests, decides which external tools or APIs to call (e.g., search, post to Notion, use a calculator, send email), executes those calls, processes their outputs, and then continues its reasoning or action sequence. This involves the LLM generating function calls and interpreting their results.",
+    "Result": "Enables LLMs to perform complex tasks involving external systems, automate workflows, and interact with the digital environment beyond just text, leading to more intelligent and capable software.",
+    "Related Patterns": "Retrieval Augmented Generation (RAG), Multi-Hop RAG",
+    "Category": "Agentic AI",
+    "Uses": "Automating tasks, intelligent assistants, complex workflow orchestration, interacting with enterprise systems (CRM, ERP), web browsing agents.",
+    "Thinking": "The text explicitly states, 'this is a new thing this is the llm backed agent' and describes the LLM's ability to 'call apis to actually do things' and 'use tools,' directly aligning with the Agentic AI and Tools Integration categories."
+  },
+  {
+    "Pattern Name": "Hybrid Search",
+    "Problem": "Relying solely on keyword search can miss semantic relevance, while relying solely on embedding search might sometimes miss exact keyword matches or struggle with very specific, rare terms.",
+    "Context": "When building a robust search system where both precise keyword matching and semantic understanding are important, and you want to leverage the strengths of both approaches.",
+    "Solution": "Combine traditional keyword-based search (e.g., BM25, Elastic) with embedding-based semantic search (Dense Retrieval). The results from both systems are then combined and often reranked to produce a final, highly relevant set of results.",
+    "Result": "Improved overall search accuracy and relevance by mitigating the weaknesses of each individual search method, providing a more comprehensive and robust retrieval system.",
+    "Related Patterns": "Semantic Search, Dense Retrieval, Reranking",
+    "Category": "LLM-specific",
+    "Uses": "Enterprise search, e-commerce product search, any application requiring high-quality information retrieval where both exactness and meaning are crucial.",
+    "Thinking": "This pattern describes a specific architectural choice to combine two distinct AI-related search methods (keyword and embedding search) to achieve a superior outcome, making it an AI-specific design choice for search."
+  },
+  {
+    "Pattern Name": "Text Classification / Categorization",
+    "Problem": "Manually classifying or categorizing large volumes of text is time-consuming, error-prone, and requires extensive rule-based systems or traditional machine learning models that need labeled data and feature engineering.",
+    "Context": "Any application where unstructured text needs to be assigned to predefined categories or labels (e.g., sentiment analysis, spam detection, topic labeling, intent recognition).",
+    "Solution": "Utilize a language model to analyze input text and assign it to one or more predefined categories. This can be done via few-shot prompting (providing examples), fine-tuning, or using the model's inherent understanding capabilities.",
+    "Result": "Automated, accurate, and scalable classification of text data, reducing manual effort and improving efficiency.",
+    "Related Patterns": "Prompt Design (for few-shot), Fine-tuning (if applicable), Language Understanding.",
+    "Category": "LLM-specific",
+    "Uses": "Spam filtering, customer support routing, content moderation, sentiment analysis, document tagging.",
+    "Thinking": "The text explicitly states LLMs are 'some of the best tools that we have for that' (text classification/categorization), highlighting it as a robust and reliable application of LLMs, distinct from generation or search."
+  },
+  {
+    "Pattern Name": "Conditional Generation / Search Routing",
+    "Problem": "Not all user queries require a search operation in a RAG system; some can be answered directly by the LLM, or are simple greetings. Unnecessary searches add latency and cost.",
+    "Context": "RAG systems or agentic systems where the LLM has access to external tools (like search) but also has inherent generative capabilities.",
+    "Solution": "The LLM is prompted or designed to act as a 'switch' or 'if-else' statement. It first analyzes the user's query to determine if a search is necessary. If the query is simple (e.g., a greeting) or can be answered directly from its internal knowledge, it generates a response without invoking the search system. Otherwise, it proceeds with retrieval.",
+    "Result": "Improved efficiency and reduced latency by avoiding unnecessary search calls, and more natural interaction for simple queries.",
+    "Related Patterns": "Query Rewriting, LLM-backed Agent, Retrieval Augmented Generation (RAG).",
+    "Category": "Agentic AI",
+    "Uses": "Optimizing RAG pipelines, conversational agents, intelligent chatbots.",
+    "Thinking": "The text explicitly states, 'youre starting to see the model become a switch or statement or an if else where the model sort of is start starting to be controlling the flow a little bit of how to deal with this and so it has a couple of options so it can either search or it can generate directly without without without search.' This is a clear pattern of LLM-driven decision making."
+  },
+  {
+    "Pattern Name": "Multi-Source RAG / Data Source Routing",
+    "Problem": "Information needed to answer a user's query might be scattered across multiple, distinct external data sources (e.g., Notion, ERP, CRM, web), and a single retrieval system cannot access all of them.",
+    "Context": "Building complex RAG systems or agents that need to access and synthesize information from a heterogeneous set of enterprise data sources or external knowledge bases.",
+    "Solution": "The LLM is given the capability to identify which specific data source(s) are most relevant to a given query. It then routes the query to the appropriate retrieval system(s) for those sources, retrieves information, and synthesizes it for the final answer. This can involve the LLM acting as a router or dispatcher.",
+    "Result": "Enhanced ability to answer questions by leveraging a broader and more diverse set of information sources, leading to more comprehensive and accurate responses.",
+    "Related Patterns": "LLM-backed Agent, Retrieval Augmented Generation (RAG), Multi-Query RAG, Multi-Hop RAG.",
+    "Category": "Agentic AI",
+    "Uses": "Enterprise knowledge management, intelligent dashboards, comprehensive research assistants.",
+    "Thinking": "The text says, 'why can I not search multiple sources why cant I give the model the ability to search my notion but also you know my Erp or my CRM and later and later model sort of models start to build in these these these capabilities where you can the model can can route its not necessarily tied to one one data source'. This clearly describes a pattern where the LLM routes to different data sources."
+  },
+  {
+    "Pattern Name": "Model Selection for Latency/Cost Optimization",
+    "Problem": "Different LLMs have varying sizes, computational requirements, and latency characteristics. Using a large, powerful model for every step in a multi-stage AI system can lead to high latency and cost, especially for less critical or initial processing steps.",
+    "Context": "Building multi-stage AI systems (like RAG or agents) where different components have different performance requirements (e.g., a fast initial step vs. a more accurate final step).",
+    "Solution": "Select and deploy different LLMs (or different sizes/quantizations of the same model) for different stages of the pipeline based on their specific requirements for latency, cost, and accuracy. For latency-sensitive initial steps (like query rewriting), use smaller, faster models. For critical final generation steps, use larger, more capable models.",
+    "Result": "Optimized system performance, reduced operational costs, and improved user experience by balancing speed and accuracy across the AI pipeline.",
+    "Related Patterns": "Query Rewriting, Retrieval Augmented Generation (RAG, Multi-Hop RAG, Multi-Query RAG), LLM-backed Agent.",
+    "Category": "MLOps",
+    "Uses": "Optimizing RAG pipelines, multi-stage agentic workflows, real-time conversational AI.",
+    "Thinking": "The speaker explicitly discusses using 'the smallest types of model that is capable to to to solve the test' for latency-sensitive parts, and not 'throw everything at a massive model that can do everything but can do it very expensively.' This is a clear MLOps pattern for LLM deployment and optimization."
+  },
+  {
+    "Pattern Name": "Human-in-the-Loop (HITL) for AI Reliability",
+    "Problem": "LLMs are probabilistic and can produce incorrect, biased, or unsafe outputs (hallucinations, errors). Over-reliance on autonomous AI in high-risk scenarios can lead to significant problems.",
+    "Context": "Deploying AI systems, especially LLMs, in critical applications where accuracy, safety, and reliability are paramount, or where human oversight is legally or ethically required.",
+    "Solution": "Design the AI system to incorporate human review and intervention at strategic points. This can involve humans validating AI outputs before deployment, reviewing flagged cases, providing feedback for model improvement, or acting as a final decision-maker for high-stakes actions. Examples include 'recommendations to an expert that can sort of spot the failure modes' or 'safe deployment options' with human oversight.",
+    "Result": "Increased reliability, safety, and trustworthiness of AI systems by leveraging human judgment to mitigate AI limitations, catch errors, and ensure alignment with desired outcomes.",
+    "Related Patterns": "Guardrails, Explainable AI (for human understanding), Ensemble/Consensus Voting.",
+    "Category": "AI\u2013Human Interaction",
+    "Uses": "Content moderation, medical diagnosis support, legal document review, financial fraud detection, critical decision support systems.",
+    "Thinking": "The speaker explicitly discusses the need for 'humans in the loop and sort of safe deployment options' and 'recommendations to an expert that can sort of spot the failure modes' when dealing with probabilistic models in high-risk scenarios. This is a clear pattern for integrating human oversight into AI systems."
+  },
+  {
+    "Pattern Name": "Ensemble/Consensus Voting for Reliability",
+    "Problem": "Individual LLM outputs can be inconsistent or unreliable due to their probabilistic nature, leading to errors or hallucinations.",
+    "Context": "When a higher degree of reliability and consistency is required from an LLM's output, especially in scenarios where a single incorrect answer could have negative consequences.",
+    "Solution": "Query the LLM (or multiple different LLMs) multiple times for the same input/task. Then, use a voting or consensus mechanism to determine the most frequent or most confident answer among the multiple outputs. This can involve simple majority voting or more sophisticated aggregation techniques.",
+    "Result": "Improved robustness, consistency, and reliability of the AI system's outputs by leveraging the wisdom of crowds (or multiple model inferences) to reduce the impact of individual errors.",
+    "Related Patterns": "Guardrails, Human-in-the-Loop.",
+    "Category": "Classical AI",
+    "Uses": "Critical decision support, factual retrieval where high accuracy is needed, reducing hallucinations in generative tasks.",
+    "Thinking": "The speaker mentions 'majority voting for example you have a model up with a you know the response three or five times and seeing do they agree with each other or not' as a tool to increase the probability of success. This is a distinct pattern for improving AI output reliability."
+  },
+  {
+    "Pattern Name": "Explainable AI / Citations",
+    "Problem": "LLMs can hallucinate or provide information without clear provenance, making it difficult for users to verify the factual accuracy or trust the output.",
+    "Context": "Building AI systems, especially RAG or generative systems, where transparency, trustworthiness, and user verification of information are crucial.",
+    "Solution": "Design the system to provide citations or references to the specific source documents or text spans from which the LLM derived its answer. This allows users to trace the information back to its origin.",
+    "Result": "Increased user trust, ability to verify model outputs, improved transparency, and easier debugging of information retrieval or generation issues.",
+    "Related Patterns": "Retrieval Augmented Generation (RAG), Human-in-the-Loop.",
+    "Category": "AI\u2013Human Interaction",
+    "Uses": "Factual Q&A, research assistants, enterprise knowledge systems, any application where accountability of information is important.",
+    "Thinking": "The text explicitly advocates for 'citations' as a feature to 'give our users the ability to verify the models output not completely trust it,' highlighting it as a distinct design consideration for AI systems to build trust and explainability."
+  },
+  {
+    "Pattern Name": "Guardrails (for LLM Safety and Reliability)",
+    "Problem": "LLMs are probabilistic, can hallucinate, generate harmful/biased content, or act outside desired operational boundaries, leading to unreliable or unsafe system behavior. Over-trusting these systems without constraints is a significant pitfall.",
+    "Context": "Deploying LLMs in production environments, especially in public-facing applications or high-stakes scenarios, where controlling model output, ensuring safety, and maintaining ethical standards are critical.",
+    "Solution": "Implement mechanisms to constrain, filter, or monitor LLM inputs and outputs to ensure they adhere to predefined rules, safety policies, and desired behaviors. This can include input validation, output filtering (e.g., for harmful content, PII), prompt injection prevention, and adherence to specific formats (e.g., JSON validation). The speaker mentions 'probabilistic systems without guard rails.'",
+    "Result": "Increased safety, reliability, and trustworthiness of LLM applications; reduced risk of harmful outputs, hallucinations, or misuse; and better adherence to operational requirements.",
+    "Related Patterns": "Human-in-the-Loop, Explainable AI, Ensemble/Consensus Voting.",
+    "Category": "MLOps",
+    "Uses": "Content moderation, enterprise chatbots, public-facing AI assistants, regulated industry applications.",
+    "Thinking": "The text highlights the pitfall of 'overly trusting the model' and mentions 'probabilistic systems without guard rails,' indicating a need for explicit mechanisms to control and constrain LLM behavior for safety and reliability. This is a distinct MLOps pattern for LLMs."
+  }
+]

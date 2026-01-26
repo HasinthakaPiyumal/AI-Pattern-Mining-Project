@@ -1,0 +1,222 @@
+[
+  {
+    "Pattern Name": "Retrieval Augmented Generation (RAG)",
+    "Problem": "Generative AI models (especially LLMs) suffer from outdated knowledge, lack of niche or proprietary data, and a tendency to 'hallucinate' or generate factually incorrect information.",
+    "Context": "When using large generative models to produce content, answer questions, or perform tasks where up-to-date, specific, or proprietary information is crucial, and direct model training/finetuning is not feasible or sufficient for all knowledge.",
+    "Solution": "Incorporates an external, up-to-date repository of information. A 'retriever' module fetches relevant context from this repository based on the user's query. This retrieved information is then provided to the 'generator' (e.g., an LLM) to condition its output.",
+    "Result": "Alleviates challenges related to knowledge currency, domain specificity, and factual accuracy, leading to more reliable and contextually relevant AI-generated content.",
+    "Related Patterns": "Query-Based RAG, Latent Representation RAG, Logit-Based RAG, Speculative RAG, Recursive Retrieval, Knowledge Graph Retrieval, Sparse Retrieval, Dense Retrieval, Reranking.",
+    "Category": "Generative AI, LLM-specific, Knowledge & Reasoning",
+    "Uses": "Question Answering, Content Generation, Chatbots, Data Summarization, Code Generation, where external, dynamic knowledge is required.",
+    "Thinking": "This is the central AI architectural pattern described, addressing fundamental limitations of generative models by integrating external, dynamic knowledge. It defines a specific interaction between AI components (retriever and generator)."
+  },
+  {
+    "Pattern Name": "Query-Based RAG (Prompt Augmentation)",
+    "Problem": "How to effectively and simply integrate retrieved external knowledge into a generative AI model's input to improve its response.",
+    "Context": "A RAG system where a retriever has identified relevant documents or text snippets, and the generator (e.g., an LLM) accepts text-based prompts.",
+    "Solution": "The retrieved documents or information are merged directly with the user's original query. This combined, augmented text is then passed as the prompt to the generative model.",
+    "Result": "The generator receives enriched context, leading to more informed and accurate outputs. This method is generally the easiest to implement and improve.",
+    "Related Patterns": "Retrieval Augmented Generation (RAG), Prompt Transformation.",
+    "Category": "Prompt Design, LLM-specific, Generative AI",
+    "Uses": "Most common RAG implementation for text-to-text generation, simple and effective for augmenting prompts with textual context.",
+    "Thinking": "This pattern describes a specific strategy for constructing prompts for LLMs within a RAG architecture, directly influencing the model's input based on retrieved data. It's a prompt design and LLM-specific pattern."
+  },
+  {
+    "Pattern Name": "Latent Representation RAG",
+    "Problem": "Directly passing raw, complex, or multimodal data (e.g., images, 3D data) as text to a generative model is difficult, inefficient, or not supported, yet this data contains crucial context.",
+    "Context": "A RAG system where retrieved information is not easily represented as raw text or when a more direct, 'invasive' conditioning of the generator is desired, especially for multimodal inputs.",
+    "Solution": "Convert the retrieved documents or data into high-dimensional embeddings (latent representations). These embeddings are then directly injected into the generator's internal latent space to condition its response, rather than augmenting the raw text prompt.",
+    "Result": "Enables conditioning the generator with complex data types. However, it is more invasive, making the generator harder to swap out due to tight coupling with the embedding mechanism.",
+    "Related Patterns": "Retrieval Augmented Generation (RAG), Dense Retrieval.",
+    "Category": "Generative AI, LLM-specific, Tools Integration",
+    "Uses": "Multimodal RAG, conditioning generators with non-textual data, scenarios where direct embedding injection offers superior control or performance.",
+    "Thinking": "This pattern describes an advanced method of integrating retrieved information by directly manipulating the AI model's internal representations (embeddings), which is a highly AI-specific architectural choice."
+  },
+  {
+    "Pattern Name": "Logit-Based RAG (Output Alteration)",
+    "Problem": "Ensuring the generative model's output strictly adheres to specific facts, logic, or constraints derived from retrieved information, especially when generating structured or precise content.",
+    "Context": "A RAG system where the output needs to be highly constrained or guided by the retrieved context, such as generating code, factual summaries, or adhering to specific rules.",
+    "Solution": "Uses the retrieval results to directly influence the logits (the raw, unnormalized prediction scores before the final activation function) of the generative model. This alters the probability of choosing particular words or tokens according to the retrieved information.",
+    "Result": "The generator's output is strongly conditioned by the retrieved logic, leading to more accurate and constrained generations, particularly useful for tasks requiring high fidelity to external data.",
+    "Related Patterns": "Retrieval Augmented Generation (RAG).",
+    "Category": "Generative AI, LLM-specific, Knowledge & Reasoning",
+    "Uses": "Code generation, factual question answering, generating content that must conform to specific rules or data points from a repository.",
+    "Thinking": "This pattern involves direct manipulation of the AI model's internal prediction mechanism (logits) based on external data, which is a highly AI-specific technique for controlling generation."
+  },
+  {
+    "Pattern Name": "Speculative RAG",
+    "Problem": "Reduce resource usage and latency in RAG systems by avoiding full generative model inference when a simpler, faster alternative is available.",
+    "Context": "A RAG system where some user queries or parts of queries might be directly answerable by the retriever alone, or where a partial retrieval result can satisfy the request.",
+    "Solution": "The system attempts to identify opportunities to replace the need for full generation by the generative model with the direct result of the retrieval itself. This might involve a pre-check or a confidence score to determine if retrieval alone is sufficient.",
+    "Result": "Significant optimization, leading to reduced computational resource usage and lower latency for certain queries.",
+    "Related Patterns": "Retrieval Augmented Generation (RAG).",
+    "Category": "MLOps, Generative AI, LLM-specific",
+    "Uses": "Performance optimization in RAG systems, cost reduction, improving user experience by providing faster responses for simple queries.",
+    "Thinking": "This is an optimization pattern specifically for AI systems (RAG) that leverages the characteristics of the AI components (retriever vs. generator) to improve operational efficiency, fitting MLOps for AI."
+  },
+  {
+    "Pattern Name": "Recursive Retrieval",
+    "Problem": "Initial retrieval might not provide sufficiently comprehensive, relevant, or refined context for the generative model, leading to suboptimal outputs.",
+    "Context": "A RAG system where the initial retrieved information can be used to formulate better subsequent queries to the retriever, or where deeper exploration of the knowledge base is beneficial.",
+    "Solution": "After an initial retrieval, the results are analyzed (potentially by an LLM or another module) to identify gaps or new keywords. This analysis is then used to formulate a refined query, and the retrieval process is repeated, potentially multiple times, to gather more relevant information.",
+    "Result": "Improved quality and completeness of the retrieved context, leading to more accurate and nuanced generations.",
+    "Related Patterns": "Retrieval Augmented Generation (RAG), Reprompting (Query Rewriting by Combiner).",
+    "Category": "Knowledge & Reasoning, Agentic AI, LLM-specific",
+    "Uses": "Complex question answering, research tasks, situations requiring multi-hop reasoning or deeper context exploration.",
+    "Thinking": "This pattern describes an intelligent, iterative process for gathering information, which is a core AI reasoning and knowledge acquisition strategy, potentially involving agentic decision-making."
+  },
+  {
+    "Pattern Name": "System Prompt Optimization",
+    "Problem": "Generative models (especially LLMs) can produce suboptimal, irrelevant, or unhelpful outputs if not guided effectively by the initial instructions.",
+    "Context": "When interacting with a generative model, particularly in a RAG system where the prompt is constructed dynamically.",
+    "Solution": "Improve the 'system prompt' (the initial instructions or persona given to the model) using established techniques such as Chain of Thought prompting, few-shot examples, specifying desired output format, defining a persona, or conditioning the model with specific constraints.",
+    "Result": "Leads to better quality, more relevant, and more controlled generations from the AI model. This is an 'external setting' that is easy to change and experiment with.",
+    "Related Patterns": "Query-Based RAG (as it often involves augmenting the prompt), Prompt Transformation.",
+    "Category": "Prompt Design, LLM-specific",
+    "Uses": "Improving the performance of any LLM-based application, guiding model behavior, ensuring adherence to specific instructions or formats.",
+    "Thinking": "This is a fundamental pattern in interacting with and controlling LLMs, directly related to prompt engineering and how AI models interpret instructions."
+  },
+  {
+    "Pattern Name": "Feedback Loop (System-wide Improvement)",
+    "Problem": "Continuously improving the overall performance, accuracy, and relevance of a complex AI system like RAG over time, based on real-world usage and outcomes.",
+    "Context": "A deployed AI system (e.g., RAG) where user interactions, generated outputs, or external evaluations can provide valuable data for refinement.",
+    "Solution": "Implement mechanisms to iteratively feed the system's results back into its input or to finetune its trainable components. This can involve human feedback, automated evaluation metrics, or self-correction mechanisms.",
+    "Result": "The system learns and adapts over time, leading to continuous improvement in performance, accuracy, and user satisfaction.",
+    "Related Patterns": "MLOps, Finetuning (as a specific implementation of feedback), Agentic AI.",
+    "Category": "MLOps, Agentic AI, Generative AI",
+    "Uses": "Continuous improvement of AI models and systems, adaptive learning, self-correction, human-in-the-loop systems.",
+    "Thinking": "This pattern describes a meta-level AI system design for continuous learning and improvement, which is a core concept in advanced AI and MLOps for AI, potentially involving autonomous agents for self-correction."
+  },
+  {
+    "Pattern Name": "Knowledge Graph Retrieval",
+    "Problem": "Efficiently and accurately retrieving highly structured, factual, and relational information from a knowledge base, especially for domain-specific questions where relationships between entities are critical.",
+    "Context": "A RAG system where the external knowledge source is inherently structured, contains explicit relationships (e.g., facts, specifications, taxonomies), and simple vector search over raw text might be insufficient or inefficient.",
+    "Solution": "Instead of indexing raw text, construct a knowledge graph from the content, representing entities and their relationships. The retriever then uses graph search algorithms or knowledge graph querying techniques to find the most relevant factual information and relationships to provide as context.",
+    "Result": "More precise and efficient retrieval for structured data, enabling better answers to complex, factual, or relational queries compared to dense or sparse text retrieval methods.",
+    "Related Patterns": "Retrieval Augmented Generation (RAG), Recursive Retrieval.",
+    "Category": "Knowledge & Reasoning, Tools Integration",
+    "Uses": "Domain-specific QA (e.g., technical specifications, medical knowledge), complex reasoning tasks, applications requiring high factual accuracy and explainability.",
+    "Thinking": "This pattern describes a specific, advanced method for knowledge representation and retrieval tailored for AI systems, leveraging structured knowledge for better reasoning and factual accuracy."
+  },
+  {
+    "Pattern Name": "Sparse Retrieval",
+    "Problem": "Retrieving documents based on lexical similarity and keyword matching, which is effective for direct keyword queries but may miss semantically related content.",
+    "Context": "When building a RAG system where the knowledge base is primarily text-based, and traditional information retrieval methods (like keyword search) are suitable for identifying relevant documents.",
+    "Solution": "Content is indexed using statistical measures (e.g., TF-IDF, BM25). During retrieval, the user's query is compared against this index using these statistics to find and rank lexically similar documents.",
+    "Result": "Efficiently identifies documents containing specific keywords or phrases, providing a baseline for relevant context to the generator.",
+    "Related Patterns": "Retrieval Augmented Generation (RAG), Dense Retrieval (as an alternative/complement), Reranking.",
+    "Category": "Classical AI, Knowledge & Reasoning",
+    "Uses": "Initial document retrieval, keyword-based search, simple factual lookup, as a component in a hybrid retrieval system.",
+    "Thinking": "This is a fundamental and distinct method for the retriever component in RAG, rooted in classical information retrieval but crucial for AI systems."
+  },
+  {
+    "Pattern Name": "Dense Retrieval",
+    "Problem": "Lexical matching (Sparse Retrieval) often fails to capture semantic similarity, leading to irrelevant results for queries phrased differently from the indexed content or for conceptual questions.",
+    "Context": "When building a RAG system where semantic understanding of both the query and the documents is crucial, and the knowledge base can be effectively represented in an embedding space.",
+    "Solution": "Content (e.g., text chunks) is converted into dense numerical vectors (embeddings) using deep learning models. The user's query is also embedded, and relevant results are found by searching for nearest neighbors in the embedding space.",
+    "Result": "Retrieves documents that are semantically similar to the query, even if they don't share exact keywords, providing richer and more contextually relevant information to the generator.",
+    "Related Patterns": "Retrieval Augmented Generation (RAG), Sparse Retrieval (as an alternative/complement), Latent Representation RAG, Reranking.",
+    "Category": "Classical AI, Knowledge & Reasoning",
+    "Uses": "Semantic search, conceptual question answering, retrieving context for complex or nuanced queries, as a component in a hybrid retrieval system.",
+    "Thinking": "This is a modern, distinct AI/ML technique for the retriever component, leveraging embeddings for semantic understanding."
+  },
+  {
+    "Pattern Name": "Reranking",
+    "Problem": "An initial retrieval step (sparse or dense) often returns a broad set of candidate documents, some of which may be less relevant or optimally ordered for the specific user query, potentially diluting the context for the generator.",
+    "Context": "After an initial retrieval module has identified a larger pool of potentially relevant documents, but before these documents are passed to the generative model.",
+    "Solution": "A secondary, often more sophisticated, model (a reranker) is applied to the initially retrieved documents. This reranker re-evaluates the relevance of each document to the query and reorders them, typically selecting the top-N most relevant for the generator.",
+    "Result": "Significantly improves the precision and quality of the context provided to the generative model, leading to more accurate and focused outputs.",
+    "Related Patterns": "Retrieval Augmented Generation (RAG), Sparse Retrieval, Dense Retrieval.",
+    "Category": "Knowledge & Reasoning, MLOps",
+    "Uses": "Refining search results, improving context quality for LLMs, enhancing the accuracy of RAG systems, optimizing for specific domain relevance.",
+    "Thinking": "This is a specific AI technique that acts as a post-processing step for retrieval, directly improving the quality of input to the generator."
+  },
+  {
+    "Pattern Name": "Prompt Transformation (Query Transformation)",
+    "Problem": "The raw user query might be ambiguous, too short, contain irrelevant terms, or not be optimally phrased for effective retrieval or generation by an LLM.",
+    "Context": "Before the user's query is passed to the retriever or the generator in a RAG system.",
+    "Solution": "The user's original query is programmatically or via another LLM transformed. This can involve techniques like blacklisting irrelevant words, expanding abbreviations, adding domain-specific keywords, rephrasing for clarity, or generating multiple query variations.",
+    "Result": "Leads to more effective retrieval by the retriever and/or better-conditioned generation by the LLM, improving the overall relevance and quality of the system's response.",
+    "Related Patterns": "Retrieval Augmented Generation (RAG), System Prompt Optimization, Reprompting (Query Rewriting by Combiner).",
+    "Category": "Prompt Design, LLM-specific",
+    "Uses": "Improving search query effectiveness, enhancing LLM understanding of user intent, preparing queries for specialized retrievers.",
+    "Thinking": "This is a specific AI/LLM technique focused on preprocessing the input query to optimize interaction with other AI components."
+  },
+  {
+    "Pattern Name": "Chunking Strategy Optimization",
+    "Problem": "Dividing large documents into chunks for indexing and retrieval is critical, but an arbitrary chunking strategy can lead to loss of context, splitting of important information, or chunks that are too large/small, hindering retrieval effectiveness.",
+    "Context": "When preparing a knowledge base for any retrieval system (especially vector databases for dense retrieval) where documents need to be broken down into manageable units.",
+    "Solution": "Systematically optimize how documents are split into chunks. This involves considering factors like optimal chunk size, overlap between chunks, and respecting semantic boundaries (e.g., paragraphs, headings, code blocks) to ensure each chunk is self-contained yet provides sufficient context.",
+    "Result": "Improves the relevance and coherence of retrieved chunks, ensuring that the context provided to the generative model is meaningful and complete, thereby enhancing the quality of the final output.",
+    "Related Patterns": "Retrieval Augmented Generation (RAG), Dense Retrieval, Sparse Retrieval.",
+    "Category": "Knowledge & Reasoning, MLOps",
+    "Uses": "Preparing data for vector databases, optimizing document indexing for RAG, ensuring contextual integrity in retrieved snippets.",
+    "Thinking": "This is a crucial data preparation pattern specifically for AI retrieval systems, directly impacting the quality of the AI's knowledge access."
+  },
+  {
+    "Pattern Name": "Routing Layer (Agentic Orchestration)",
+    "Problem": "A single, monolithic RAG pipeline or generative model may not be optimal or sufficient for handling diverse user queries that require different tools, specialized models, or combinations of actions.",
+    "Context": "In complex AI systems where multiple specialized agents, tools, or RAG configurations exist, and the system needs to intelligently decide the best path to fulfill a user's request.",
+    "Solution": "Implement an intelligent routing layer (often powered by an LLM) that analyzes the user's input and determines the most appropriate action. This could involve forwarding the request to a specific agent, combining results from multiple sources, or selecting a particular RAG pipeline configuration.",
+    "Result": "Enables the creation of more flexible, capable, and adaptive AI systems that can leverage a diverse set of tools and models to address a wider range of user needs.",
+    "Related Patterns": "Retrieval Augmented Generation (RAG), Function Calling, Feedback Loop, Agentic AI.",
+    "Category": "Agentic AI, Tools Integration, Planning",
+    "Uses": "Building multi-agent systems, dynamic tool selection, complex task execution, orchestrating different AI capabilities.",
+    "Thinking": "This pattern describes an intelligent decision-making component that orchestrates various AI capabilities, a core concept in agentic AI and complex AI system design."
+  },
+  {
+    "Pattern Name": "Reprompting (Query Rewriting by Combiner)",
+    "Problem": "The initial user query, even after retrieval, might still be insufficient or poorly formulated for the generative model to produce an optimal response, especially in multi-turn conversations or complex reasoning tasks.",
+    "Context": "Within a RAG system, particularly as part of the 'combiner' stage, where the retrieved results and the original query are processed before being sent to the generator.",
+    "Solution": "A component (often an LLM acting as a 'combiner') takes the original user query and the retrieved context, and then generates a *new, refined prompt* for the main generative model. This can be a recursive process, where the prompt is iteratively improved.",
+    "Result": "Provides a more precise, comprehensive, and contextually rich prompt to the generative model, leading to higher quality, more accurate, and relevant outputs.",
+    "Related Patterns": "Retrieval Augmented Generation (RAG), Prompt Transformation, Recursive Retrieval, System Prompt Optimization.",
+    "Category": "Prompt Design, LLM-specific, Agentic AI",
+    "Uses": "Improving clarity for complex queries, multi-hop reasoning, refining prompts based on intermediate retrieval results, enhancing conversational AI.",
+    "Thinking": "This pattern involves an AI component intelligently modifying the prompt for another AI component, which is a specific AI design pattern for improving interaction and output quality."
+  },
+  {
+    "Pattern Name": "Function Calling (LLM-Tool Integration)",
+    "Problem": "Large Language Models (LLMs) are powerful for text generation but are inherently limited to their training data and cannot directly interact with external systems, perform real-time calculations, or access dynamic information.",
+    "Context": "When an LLM-powered application needs to extend its capabilities beyond pure text generation by interacting with external APIs, databases, or executing specific code functions.",
+    "Solution": "The LLM is designed to identify when an external tool or function is required to fulfill a user's request. It then generates a structured call (e.g., JSON object) describing the function to be executed and its arguments. This call is intercepted by the application, the function is executed, and its output is returned to the LLM as additional context for generating the final response.",
+    "Result": "Enables LLMs to act as intelligent agents, performing actions, retrieving real-time data, and integrating seamlessly with existing software infrastructure, significantly expanding their utility.",
+    "Related Patterns": "Routing Layer (Agentic Orchestration), Agentic AI, Tools Integration.",
+    "Category": "Tools Integration, Agentic AI, LLM-specific",
+    "Uses": "Real-time data retrieval (e.g., weather, stock prices), executing code, interacting with databases, sending emails, controlling external devices, complex task automation.",
+    "Thinking": "This is a fundamental pattern for enabling LLMs to interact with the external world and perform actions, a cornerstone of agentic AI and tool integration."
+  },
+  {
+    "Pattern Name": "Finetuning (Generator)",
+    "Problem": "A pre-trained generative model (e.g., LLM) may not perform optimally for a specific domain, task, or desired style, leading to generic, inaccurate, or off-topic generations.",
+    "Context": "When a general-purpose generative model needs to be adapted to a niche domain, specific task, or proprietary dataset to improve its performance, style, or factual accuracy beyond what prompt engineering or RAG alone can achieve.",
+    "Solution": "Take a pre-trained generative model and continue its training process on a smaller, task-specific, or domain-specific dataset. This adjusts the model's weights to better align with the target domain or task.",
+    "Result": "The generator produces more accurate, relevant, and stylistically appropriate outputs for the specific use case, often outperforming general models or RAG-only approaches in niche domains. It can also be combined with RAG for even better performance.",
+    "Related Patterns": "Retrieval Augmented Generation (RAG) (often used in conjunction or as an alternative), Feedback Loop (System-wide Improvement).",
+    "Category": "Generative AI, MLOps",
+    "Uses": "Adapting LLMs to specific industries (e.g., legal, medical), improving code generation for a particular codebase, generating content in a specific brand voice, enhancing factual recall for a closed domain.",
+    "Thinking": "The text explicitly mentions 'finetuning the underlying generation model' as a key improvement and also discusses finetuning as an alternative/complement to RAG. This is a core AI/ML technique for adapting models."
+  },
+  {
+    "Pattern Name": "Finetuning (Retriever)",
+    "Problem": "A general-purpose retriever (e.g., a pre-trained embedding model for dense retrieval or a BM25 model) may not be optimally effective at identifying the most relevant documents for a specific domain's queries and document set, leading to suboptimal context for the generator.",
+    "Context": "In a RAG system where the initial retriever's performance is a bottleneck, and off-the-shelf retrieval models or basic statistical methods do not provide sufficiently relevant results for the specific use case or domain.",
+    "Solution": "Adapt or train the retriever model (e.g., a dense retriever's embedding model or a reranker) on a dataset of domain-specific queries and their corresponding relevant documents. This involves creating positive and negative examples to teach the retriever what constitutes 'relevance' for the particular application.",
+    "Result": "The retriever becomes more adept at finding highly relevant documents for the specific domain and query types, significantly improving the quality of the context provided to the generative model and thus the overall RAG system's performance.",
+    "Related Patterns": "Retrieval Augmented Generation (RAG), Dense Retrieval, Reranking, Feedback Loop (System-wide Improvement).",
+    "Category": "Knowledge & Reasoning, MLOps",
+    "Uses": "Improving search relevance for niche technical documentation, legal texts, medical literature, or any domain where general retrieval models struggle with specific terminology or conceptual relationships.",
+    "Thinking": "The text mentions 'finetune the retriever' and 'train a model to do optimal reranking for your use case'. This highlights the need to adapt the retrieval component specifically, which is a distinct AI/ML pattern."
+  },
+  {
+    "Pattern Name": "Metadata-Driven Retrieval",
+    "Problem": "Retrieving relevant information solely based on the content's text or embeddings might miss crucial contextual cues, filtering criteria, or relationships that are best captured as structured metadata.",
+    "Context": "When the relevance of retrieved documents depends not only on their semantic content but also on associated attributes like author, date, topic, security level, document type, or other structured properties.",
+    "Solution": "Augment the indexed content with rich metadata. During retrieval, leverage this metadata to filter, boost, or refine search results. This can involve combining keyword/semantic search with metadata filters (e.g., 'documents by author X published after Y') or using metadata to inform reranking.",
+    "Result": "Improves the precision and relevance of retrieved documents by allowing for more nuanced and constrained searches, ensuring that the generative model receives context that meets specific criteria beyond just textual similarity.",
+    "Related Patterns": "Retrieval Augmented Generation (RAG), Sparse Retrieval, Dense Retrieval, Knowledge Graph Retrieval (as metadata can inform graph construction).",
+    "Category": "Knowledge & Reasoning, Tools Integration",
+    "Uses": "Filtering documents by date range, author, department, or access permissions; prioritizing results based on recency or popularity; enhancing search in structured document repositories.",
+    "Thinking": "The text mentions 'you might even add extra context or metadata' and 'you could use metadata like local results'. This indicates a specific strategy for enhancing retrieval using structured information alongside content."
+  }
+]

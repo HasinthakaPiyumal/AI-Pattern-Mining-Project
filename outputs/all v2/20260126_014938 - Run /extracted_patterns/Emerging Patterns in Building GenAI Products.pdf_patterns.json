@@ -1,0 +1,92 @@
+[
+  {
+    "Pattern Name": "Direct Prompting",
+    "Problem": "LLMs are constrained by their training data (not aware of recent/specific information, context). They can also exhibit undesirable behaviors like hallucination, overconfidence, or susceptibility to malicious prompts, potentially divulging confidential information or giving misleading replies.",
+    "Context": "The most basic approach to using an LLM involves connecting an off-the-shelf LLM directly to a user, allowing direct interaction without intermediate steps. While useful for general purposes and initial exploration, this approach has significant shortcomings for production systems.",
+    "Solution": "Send prompts directly from the user to a Foundation LLM.",
+    "Result": "Provides immediate interaction with an LLM. However, for practical applications, it often necessitates additional measures to address its inherent limitations regarding knowledge, context, and behavioral control.",
+    "Related Patterns": "Evals, Retrieval Augmented Generation (RAG), Guardrails, Fine Tuning (all are introduced as ways to overcome Direct Prompting's limitations).",
+    "Category": "LLM-specific",
+    "Thinking": "This pattern describes the fundamental, unmediated interaction with an LLM and highlights its inherent limitations, which are specific challenges of AI models."
+  },
+  {
+    "Pattern Name": "Evals",
+    "Problem": "LLM-based systems are non-deterministic, meaning they can provide different outputs for the same inputs. This makes traditional testing insufficient for ensuring they behave as intended and align with desired goals.",
+    "Context": "When building and enhancing GenAI products, it's crucial to establish a systematic approach for evaluating the effectiveness of a model's responses, similar to testing in traditional software development but adapted for non-deterministic AI systems.",
+    "Solution": "Evaluate the responses of an LLM in the context of a specific task. This involves defining metrics, scoring outputs (e.g., relevance, coherence, factuality), and judging them (e.g., Self-evaluation, LLM as a judge, Human evaluation, or a combination). Evals are integrated into the build pipeline and performed regularly in production.",
+    "Result": "Ensures that any enhancements (structural or contextual) genuinely improve the model's performance and align with intended goals. It provides a mechanism to track performance over time and make informed decisions about model updates.",
+    "Related Patterns": "Query Rewriting (can be evaluated individually), Guardrails (can be evaluated individually), Benchmarking (related concept, but Evals are specific to the task).",
+    "Category": "MLOps",
+    "Thinking": "This pattern addresses the unique challenges of evaluating non-deterministic AI models, which is a core MLOps practice specific to machine learning workflows."
+  },
+  {
+    "Pattern Name": "Embeddings",
+    "Problem": "Large data blocks (e.g., images, text documents) contain vast amounts of information, making direct analysis and comparison impractical due to high dimensionality. Traditional keyword matching also fails to capture semantic relationships.",
+    "Context": "In AI systems, there's a need to efficiently represent and compare data based on its meaning and context, rather than just surface-level features. This is fundamental for tasks like similarity search, recommendation, and providing context to LLMs.",
+    "Solution": "Transform large data blocks into numeric vectors (embeddings) using specialized AI models. These embeddings are designed such that data points with related concepts are represented by vectors that are 'close' to each other in a high-dimensional space.",
+    "Result": "Enables efficient semantic similarity comparisons between items (text, images) using simple vector operations (e.g., cosine similarity). It reduces data dimensionality, making it practical for AI models to process and understand contextual meaning.",
+    "Related Patterns": "Retrieval Augmented Generation (RAG) (uses embeddings for indexing), Hybrid Retriever (combines with other search techniques), Reranker (can use embeddings for ranking), Guardrails (can use embeddings for semantic filtering).",
+    "Category": "Classical AI",
+    "Thinking": "Embeddings are a foundational AI concept for representing complex data in a machine-understandable format that captures semantic meaning, crucial for many AI tasks."
+  },
+  {
+    "Pattern Name": "Retrieval Augmented Generation (RAG)",
+    "Problem": "Foundation LLMs are limited by their training data's cutoff date and scope, leading to a lack of specific or recent information. They also have a tendency to 'hallucinate' or confidently generate plausible but incorrect answers.",
+    "Context": "When an LLM needs to provide answers based on up-to-date, domain-specific, or proprietary information that was not part of its original training data, and fine-tuning the model is too expensive or resource-intensive.",
+    "Solution": "Retrieve relevant document fragments from an external knowledge base (e.g., vector database indexed with embeddings) and include these fragments as 'context' when prompting the LLM. A RAG prompt template explicitly instructs the LLM to use this context and acknowledge knowledge gaps.",
+    "Result": "Overcomes the LLM's knowledge limitations, significantly enhances the factuality and accuracy of responses, minimizes hallucinations, and allows the LLM to process rapidly changing data. It provides more contextually relevant and verifiable answers.",
+    "Related Patterns": "Embeddings (used for indexing), Hybrid Retriever (enhances retrieval), Query Rewriting (improves query for retrieval), Reranker (optimizes retrieved context), Guardrails (protects the system). Fine Tuning (alternative, more expensive approach).",
+    "Category": "Generative AI",
+    "Thinking": "RAG is a key pattern for enhancing the capabilities of Large Language Models by integrating external, up-to-date knowledge, directly addressing common GenAI limitations like knowledge cutoff and hallucination."
+  },
+  {
+    "Pattern Name": "Hybrid Retriever",
+    "Problem": "Relying solely on document chunk embeddings in a vector store for retrieval can be inefficient and may lose semantic detail, especially when compressing multiple paragraphs into a single dense vector. This can lead to less effective retrieval for complex queries.",
+    "Context": "In RAG systems, when the initial retrieval based purely on vector search of embeddings does not consistently yield the most relevant or comprehensive set of documents, or when a faster, less compute-intensive initial search is desired.",
+    "Solution": "Combine searches using embeddings (vector search) with other search techniques, such as traditional keyword searches (e.g., TFIDF, BM25). This involves preparing data for both types of searches (e.g., text index for keywords, vector index for embeddings) and then combining their results.",
+    "Result": "Yields a better and more comprehensive set of candidate document fragments for the LLM by leveraging the strengths of different search methodologies. It can improve retrieval efficiency and accuracy, especially for diverse datasets.",
+    "Related Patterns": "Retrieval Augmented Generation (RAG) (enhances the retriever component), Embeddings (one of the combined search techniques), Reranker (can deal with the potentially overly large set of documents resulting from combined searches).",
+    "Category": "Generative AI",
+    "Thinking": "This pattern specifically enhances the retrieval component of a RAG system by combining different AI/information retrieval techniques, directly improving the quality of input for generative AI models."
+  },
+  {
+    "Pattern Name": "Query Rewriting",
+    "Problem": "Users often provide short, ambiguous, or poorly articulated natural language queries that lack the specificity needed for effective document retrieval. This can lead to the retriever pulling in irrelevant content and generating less accurate LLM responses.",
+    "Context": "In RAG systems, the quality of the initial user query significantly impacts the relevance of retrieved documents. Rephrasing a question can often lead to significantly different and better retrieval results.",
+    "Solution": "Use an LLM (a 'rewriter') to create several alternative formulations or rephrased versions of the user's original query. Then, send each of these alternative queries to the retriever for a vector search, combining the results (often with the help of a Reranker).",
+    "Result": "Improves the quality and diversity of documents retrieved by exploring multiple interpretations of the user's intent. This leads to more accurate and comprehensive LLM responses, especially for complex or ambiguous queries.",
+    "Related Patterns": "Retrieval Augmented Generation (RAG) (enhances the query part of RAG), Reranker (combines and ranks results from multiple rewritten queries), Evals (used to track progress and optimize the number of rewrites).",
+    "Category": "Prompt Design",
+    "Thinking": "This pattern uses an AI model (LLM) to refine and optimize the input (prompt) for another AI system (the retriever), which is a form of advanced prompt engineering to improve overall AI system performance."
+  },
+  {
+    "Pattern Name": "Reranker",
+    "Problem": "Retrievers, especially those optimized for speed or combining multiple search techniques (like Hybrid Retriever), can return an overly large set of candidate document fragments of varying quality. Sending all these to the LLM can bloat the prompt, confuse the LLM, and reduce the quality of its response.",
+    "Context": "In RAG systems, after a retriever has identified a set of potentially relevant document fragments, but before these fragments are passed to the LLM as context.",
+    "Solution": "Rank the set of retrieved document fragments according to their usefulness and relevance to the original query, and then send only the best-ranked fragments to the LLM. This typically involves using a deep neural net model (e.g., a cross-encoder like bgereranker-large) that can accurately assess the query-document relevance.",
+    "Result": "Enhances the accuracy and relevance of the LLM's answers by providing a more focused, higher-quality, and concise context. It prevents prompt bloat and confusion, leading to better LLM performance. It can also incorporate user-specific preferences into the ranking.",
+    "Related Patterns": "Retrieval Augmented Generation (RAG) (optimizes the context for RAG), Hybrid Retriever (can deal with its large candidate set), Query Rewriting (combines results from multiple queries before reranking).",
+    "Category": "Generative AI",
+    "Thinking": "This pattern uses an AI model (the reranker) to refine and optimize the context provided to another AI model (the LLM) within a RAG system, directly impacting the quality of the generative output."
+  },
+  {
+    "Pattern Name": "Guardrails",
+    "Problem": "Conversational interfaces with LLMs introduce significant risks: users might submit malicious prompts (e.g., prompt injection), and LLMs might generate confidential, inaccurate, inappropriate, or biased information due to their 'gullibility' or inherent biases.",
+    "Context": "When deploying LLM-based systems, especially those exposed to the general public or handling sensitive data, where user input cannot be fully trusted, and the LLM's output needs to be constrained for safety, ethics, and compliance.",
+    "Solution": "Implement mechanisms (often separate LLM calls, embeddings-based filtering, or rule-based systems) to act as 'guardrails'. Input guardrails check user queries for malicious or inappropriate content before they reach the main LLM. Output guardrails scan the LLM's response for information that shouldn't be there.",
+    "Result": "Shields the conversational LLM from dangerous inputs and sanitizes its outputs, preventing issues like data leakage, misinformation, inappropriate content, and adherence to ethical guidelines. It ensures safer and more controlled AI-human interaction.",
+    "Related Patterns": "Direct Prompting (addresses its inherent risks), Evals (can evaluate guardrails individually), Retrieval Augmented Generation (RAG) (protects the overall RAG system).",
+    "Category": "LLM-specific",
+    "Thinking": "This pattern directly addresses the unique safety and control challenges associated with LLMs, such as prompt injection and managing model-generated risks, which are specific to AI model behavior."
+  },
+  {
+    "Pattern Name": "Fine Tuning",
+    "Problem": "Foundation LLMs are general-purpose and may not possess the specific knowledge, style, or nuanced understanding required for a particular domain or task. RAG might provide context but cannot fundamentally alter the model's underlying 'style' or broader domain expertise.",
+    "Context": "When prompt tweaking and Retrieval Augmented Generation (RAG) are insufficient to achieve satisfactory performance metrics, and a deeper, more intrinsic adaptation of the LLM's knowledge base or operational style is required for a specific domain.",
+    "Solution": "Carry out additional training to a pretrained LLM on a carefully selected, domain-specific dataset. This process refines the model's parameters to enhance its knowledge and behavior for the task at hand. Approaches include full finetuning, selective layer finetuning, and Parameter-Efficient Fine Tuning (PEFT) like LoRA.",
+    "Result": "Enables the LLM to become highly knowledgeable about a specific domain or operate in a particular style, beyond what can be achieved through in-context learning. It leads to a deeper realignment of the model's internal workings for specialized tasks.",
+    "Related Patterns": "Retrieval Augmented Generation (RAG) (alternative, less expensive approach), Direct Prompting (fine-tuning can address its knowledge limitations), Evals (crucial for tracking progress and determining when fine-tuning is needed).",
+    "Category": "Generative AI",
+    "Thinking": "Fine-tuning is a fundamental machine learning technique applied to LLMs to adapt them to specific tasks or domains, directly impacting their generative capabilities and knowledge representation."
+  }
+]
