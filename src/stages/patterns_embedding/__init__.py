@@ -6,8 +6,8 @@ from tqdm import trange as t
 import pandas as pd
 
 def main():
-    # patterns = load_json_from_file(Config().PATTERNS_FILE)
-    patterns = pd.read_csv(Config().PATTERNS_FILE).to_dict(orient='records')
+    patterns = load_json_from_file(Config().PATTERNS_FILE)
+    # patterns = pd.read_csv(Config().PATTERNS_FILE).to_dict(orient='records')
     skip_count = 3000
     all_embeddings = []
     if(Config().PATTERN_EMBEDDINGS_FILE and os.path.exists(Config().PATTERN_EMBEDDINGS_FILE)):

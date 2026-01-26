@@ -20,16 +20,17 @@ def pattern_combiner(patterns):
     combined_patterns = []
 
     for pattern in patterns:
-        combined_patterns.append(pattern.get('Description', ''))
-        # pattern_text = f"<PatternName>{pattern.get('Pattern Name', 'Unnamed Pattern')}</PatternName>\n"
-        # pattern_text += f"<Problem>{pattern.get('Problem', '')}</Problem>\n"
-        # pattern_text += f"<Context>{pattern.get('Context', '')}</Context>\n"
-        # pattern_text += f"<Solution>{pattern.get('Solution', '')}</Solution>\n"
-        # pattern_text += f"<Result>{str(pattern.get('Result', ''))}</Result>\n"
-        # pattern_text += f"<Uses>\n"
-        # pattern_text += f"{str(pattern.get('Uses', []))}\n"
-        # pattern_text += f"</Uses>\n"
-        # combined_patterns.append(pattern_text)
+        # combined_patterns.append(pattern.get('Description', ''))
+        print(pattern.get('Pattern Name', 'Unnamed Pattern'))
+        pattern_text = f"<PatternName>{pattern.get('Pattern Name', 'Unnamed Pattern')}</PatternName>\n"
+        pattern_text += f"<Problem>{pattern.get('Problem', '')}</Problem>\n"
+        pattern_text += f"<Context>{pattern.get('Context', '')}</Context>\n"
+        pattern_text += f"<Solution>{pattern.get('Solution', '')}</Solution>\n"
+        pattern_text += f"<Result>{str(pattern.get('Result', ''))}</Result>\n"
+        pattern_text += f"<Uses>\n"
+        pattern_text += f"{str(pattern.get('Uses', []))}\n"
+        pattern_text += f"</Uses>\n"
+        combined_patterns.append(pattern_text)
     return combined_patterns
 
 def save_embeddings(embeddings,patterns):

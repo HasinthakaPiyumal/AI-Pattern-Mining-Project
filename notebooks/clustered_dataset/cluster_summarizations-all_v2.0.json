@@ -1,0 +1,1116 @@
+[
+  {
+    "cluster_id":0,
+    "short_name":"Intelligent Agent Core Capabilities",
+    "description":"This cluster describes fundamental patterns for AI agents to operate autonomously and intelligently. It encompasses mechanisms for self-correction, continuous learning, adaptation to dynamic environments, structured planning, goal management, and advanced reasoning to achieve complex objectives.",
+    "sub_patterns":[
+      "Reflection",
+      "Goal Setting and Monitoring",
+      "Learning and Adaptation",
+      "Planning",
+      "Prioritization",
+      "Exploration and Discovery",
+      "Dynamic Agent Knowledge Update",
+      "Continuous Learning Pattern",
+      "Reasoning Techniques",
+      "Reflection Pattern",
+      "Agentic Reasoning Loop",
+      "ClosedLoop Intelligence"
+    ]
+  },
+  {
+    "cluster_id":1,
+    "short_name":"LLM Tooling & External Actions",
+    "description":"This cluster encompasses patterns that extend Large Language Models' (LLMs) capabilities beyond text generation by enabling them to interact with external systems, perform actions, and access real-time information. This is achieved through the integration and utilization of various tools (e.g., APIs, functions, databases, web search), either via dynamic LLM orchestration or predefined execution sequences.",
+    "sub_patterns":[
+      "Tool Use",
+      "LLM-backed Agent (Tool Use)",
+      "Tool Use Pattern",
+      "Deterministic Chain (Hardcoded Steps)",
+      "External Tool Integration",
+      "Function Calling (LLM-Tool Integration)",
+      "Autonomous Tool Selection"
+    ]
+  },
+  {
+    "cluster_id":2,
+    "short_name":"Agent Architectures & Collaboration",
+    "description":"This cluster covers patterns for designing AI systems, from single autonomous agents to complex multi-agent collaborations. It includes strategies for task decomposition, dynamic delegation, collaborative refinement, and orchestration of specialized agents to solve complex problems and enhance output quality.",
+    "sub_patterns":[
+      "Orchestrator-Workers",
+      "Multiagent Collaboration",
+      "Multi-Agent Orchestration",
+      "Agent Supervisor \/ Coordinator",
+      "Single Agent Architecture",
+      "Multi-agent System",
+      "Planning"
+    ]
+  },
+  {
+    "cluster_id":3,
+    "short_name":"LLM Knowledge Augmentation (RAG)",
+    "description":"This cluster focuses on enhancing Large Language Models (LLMs) by integrating external knowledge retrieval. It addresses LLM limitations like hallucinations, outdated information, and lack of domain-specific knowledge by fetching relevant data from external sources and providing it as context for generation. This improves factual accuracy, explainability, and contextual relevance, often involving the selection of an appropriate generative model.",
+    "sub_patterns":[
+      "Retrieval Augmented Generation (RAG)",
+      "Retrieval-Augmented Generation (RAG)",
+      "Retrieval-Augmented Generation (RAG) Design Pattern",
+      "Generative Model Selection",
+      "RAG (Retrieval Augmented Generation) \/ Knowledge Retrieval"
+    ]
+  },
+  {
+    "cluster_id":4,
+    "short_name":"Advanced Agent Training Strategies",
+    "description":"This cluster encompasses sophisticated methods for training AI agents, primarily in Reinforcement Learning. Patterns address challenges like achieving superhuman performance, accelerating complex skill acquisition, safely training for physical tasks, improving generalization across environments, and bridging the simulation-to-reality gap.",
+    "sub_patterns":[
+      "Self-Play Reinforcement Learning",
+      "Teacher-Guided Reinforcement Learning",
+      "Simulation-to-Reality (Sim2Real) Training",
+      "Multi-Environment Agent Training",
+      "Domain Randomization \/ Reality Gap Mitigation"
+    ]
+  },
+  {
+    "cluster_id":5,
+    "short_name":"Advanced ML Techniques & Strategies",
+    "description":"This cluster encompasses diverse advanced machine learning patterns focused on enhancing model performance, robustness, and efficiency. It includes strategies for sophisticated data preparation and representation (e.g., feature engineering, embeddings, multimodal inputs, data augmentation, rebalancing), leveraging existing knowledge (transfer learning, knowledge distillation, self-supervised learning), combining multiple models (ensembles), and optimizing the learning process (hyperparameter tuning, multitask learning, anomaly detection strategies).",
+    "sub_patterns":[
+      "Feature Cross",
+      "Supervised\/Semi-Supervised Anomaly Detection Strategy",
+      "Transfer Learning Pattern",
+      "Repeatable Splitting",
+      "Useful Overfitting",
+      "Neutral Class",
+      "Data Augmentation Pattern",
+      "Ensembles",
+      "Multimodal Input",
+      "Reframing",
+      "Multilabel",
+      "Ensemble Learning Pattern",
+      "Multi-Modal Data Fusion",
+      "Masked Modeling for Representation Learning",
+      "Universal Embedding for Cross-Domain Analysis",
+      "Transfer Learning",
+      "Multimodel decision maker",
+      "Knowledge Distillation",
+      "Multitask Learning",
+      "Bridged Schema",
+      "Hyperparameter Tuning",
+      "Hashed Feature",
+      "Rebalancing",
+      "Embeddings"
+    ]
+  },
+  {
+    "cluster_id":6,
+    "short_name":"Safe, Reliable, Human-Guided AI",
+    "description":"This cluster focuses on patterns that enhance AI system safety, reliability, and trustworthiness. It includes strategies to mitigate risks like errors, hallucinations, and harmful outputs through guardrails, redundancy, and robust error handling. A core theme is integrating human oversight (Human-in-the-Loop) for critical decisions, validation, and graceful degradation, ensuring ethical and controlled AI operation.",
+    "sub_patterns":[
+      "Ensemble\/Consensus Voting for Reliability",
+      "Fallback Chain",
+      "Human-in-the-Loop Escalation",
+      "Human Approval \/ Sandboxed Execution",
+      "Guardrails (for LLM Safety and Reliability)",
+      "Guardrails",
+      "Multimodal guardrails",
+      "Homogeneous redundancy",
+      "AI-Assisted Human Decision-Making",
+      "Guardrails\/Safety Patterns",
+      "Exception Handling and Recovery",
+      "Human-in-the-Loop (HITL) for AI Reliability",
+      "Majority Voting (for LLM Reliability)",
+      "AI mode switcher",
+      "Human in the Loop",
+      "Guardrails (for LLM Output)"
+    ]
+  },
+  {
+    "cluster_id":7,
+    "short_name":"LLM Embodied Agent Planning",
+    "description":"This cluster describes patterns for using Large Language Models (LLMs) as high-level planners for embodied agents and robotics. Key themes include grounding LLM plans in the physical environment, adapting to dynamic conditions via feedback loops and environmental context, and improving planning efficiency through few-shot learning and prompt engineering.",
+    "sub_patterns":[
+      "Dynamic Grounded Replanning",
+      "External Affordance Function for LLM Planning",
+      "LLM as an Auxiliary Helper",
+      "LLM Planner-Actor Feedback Loop",
+      "LLM Planner with Environmental Reporter",
+      "LLM as High-Level Planner",
+      "Few-Shot Planning with LLMs",
+      "Physical Grounding for LLM Plans",
+      "Dynamic In-Context Example Retrieval",
+      "SayCan (Grounded Robotic Action Planning)",
+      "Inner Monologue (for Embodied Agents)",
+      "Logit Biases for Output Constraining",
+      "Ranking-Based LLM Planning",
+      "Prompt Design"
+    ]
+  },
+  {
+    "cluster_id":8,
+    "short_name":"LLM Agents via RL Grounding",
+    "description":"This cluster describes patterns for using Large Language Models (LLMs) as agent policies in interactive environments. It emphasizes finetuning LLMs with Reinforcement Learning (RL) for 'functional grounding,' enabling them to understand and act upon environmental dynamics. Patterns cover action probability calculation, architectural integrations (value heads, prompt structuring), scaling, and generalization capabilities.",
+    "sub_patterns":[
+      "Prompt-Based Action Probability Calculation",
+      "Behavioral Cloning for LLM Pre-training\/Finetuning",
+      "Distributed LLM Policies",
+      "Temporal Symbol Grounding",
+      "Online Reinforcement Learning for LLM Finetuning",
+      "LLM as Policy",
+      "Functional Grounding (GLAM Method)",
+      "Reinforcement Learning from Human Feedback (RLHF)",
+      "Generalization to Out-of-Vocabulary\/Invented Symbols",
+      "Robustness to Domain-Specific Vocabulary (Flipped Actions)",
+      "Value Head Integration for LLM-based RL",
+      "Contextual Prompt Structuring for RL Agents",
+      "Multilingual Generalization (Limited)"
+    ]
+  },
+  {
+    "cluster_id":9,
+    "short_name":"Intelligent RAG Orchestration & Optimization",
+    "description":"This cluster covers advanced RAG patterns enhancing intelligence, adaptability, and accuracy. It features agentic orchestration for dynamic routing and multi-step reasoning, adaptive retrieval strategies, iterative refinement and self-correction, and sophisticated prompt engineering. It also includes methods for leveraging diverse data sources, including graph knowledge, and optimizing performance through targeted retrieval and generation control.",
+    "sub_patterns":[
+      "Multihop Retrieval",
+      "AgentG (Agentic Framework for Graph RAG)",
+      "Speculative RAG",
+      "Query-Based RAG (Prompt Augmentation)",
+      "SingleAgent Agentic RAG Router",
+      "Agentic Corrective RAG",
+      "Adaptive Retrieval Strategy",
+      "Logit-Based RAG (Output Alteration)",
+      "Latent Representation RAG",
+      "Recursive Retrieval",
+      "Multi-Query RAG",
+      "Multi-Source RAG \/ Data Source Routing",
+      "SelfRAG",
+      "Agentic RAG",
+      "Prompt Management",
+      "Branched RAG",
+      "Adaptive RAG",
+      "System Prompt Optimization",
+      "Reprompting (Query Rewriting by Combiner)",
+      "Routing Layer (Agentic Orchestration)",
+      "Agentic Workflows",
+      "Prompt Transformation (Query Transformation)",
+      "Finetuning (Retriever)",
+      "GeAR (Graph-Enhanced Agent for Retrieval-Augmented Generation)",
+      "Corrective Retrieval Augmented Generation (CRAG)",
+      "Agentic Retrieval Augmented Generation (Agentic RAG)",
+      "Conditional Generation \/ Search Routing",
+      "Multi-Hop RAG",
+      "Agentic Document Workflows (ADW)",
+      "Multi-Hop RAG",
+      "Adaptive Retrieval Augmented Generation (AdaptiveRAG)",
+      "Graph-Enhanced Agent for Retrieval Augmented Generation (GEAR)",
+      "Multi-Query RAG",
+      "Corrective RAG (CRAG)",
+      "Active Retrieval Augmented Generation (Active RAG)",
+      "MultiAgent Agentic RAG Systems",
+      "Knowledge Base Management",
+      "Adaptive Agentic RAG",
+      "Hierarchical Agentic RAG Systems"
+    ]
+  },
+  {
+    "cluster_id":10,
+    "short_name":"Adaptive AI System Feedback",
+    "description":"This cluster focuses on mechanisms for AI systems to continuously learn and improve over time by incorporating real-world usage, outputs, or external evaluations as feedback for refinement and adaptation.",
+    "sub_patterns":[
+      "Feedback Loop (System-wide Improvement)"
+    ]
+  },
+  {
+    "cluster_id":11,
+    "short_name":"Graph-Enhanced Context Retrieval",
+    "description":"This cluster focuses on advanced retrieval methods that leverage various graph structures (knowledge graphs, hierarchical documents, community graphs) to provide richer, more structured, or contextually relevant information to LLMs. Patterns combine vector search with graph traversal or querying to move beyond simple text chunks, incorporating relationships, hierarchies, and entity-specific details for more precise or comprehensive context.",
+    "sub_patterns":[
+      "GraphEnhanced Vector Search",
+      "Local Retriever (GraphRAG)",
+      "Global Community Summary Retriever",
+      "Hierarchical Retriever (Bottom-up)",
+      "Knowledge Graph Retrieval"
+    ]
+  },
+  {
+    "cluster_id":12,
+    "short_name":"AI Retrieval & Text Processing",
+    "description":"Focuses on retrieving, processing, and preparing text for AI\/LLMs. Includes lexical, semantic, and hybrid search, document chunking, metadata use, and advanced techniques to enhance retrieval accuracy and context.",
+    "sub_patterns":[
+      "Sparse Retrieval",
+      "Metadata-Driven Retrieval",
+      "Dense Retrieval (Embedding Search)",
+      "Hybrid Search",
+      "Semantic Search",
+      "Text Classification \/ Categorization",
+      "Dense Vector Search",
+      "Hypothetical Document Embedding (HyDe)",
+      "Topic Coherence Validation",
+      "Document Chunking and Embedding",
+      "Dense Retrieval",
+      "Chunking Strategy Optimization",
+      "Hybrid Retriever",
+      "Hypothetical Question Retriever",
+      "Basic Retriever",
+      "ParentChild Retriever"
+    ]
+  },
+  {
+    "cluster_id":13,
+    "short_name":"Query & Retrieval Optimization",
+    "description":"This cluster encompasses techniques designed to enhance the relevance and precision of information retrieval. It includes patterns for transforming user queries into more effective search inputs and re-ranking initial search results to prioritize the most relevant documents, often leveraging advanced language models.",
+    "sub_patterns":[
+      "Reranking",
+      "Query Rewriting",
+      "Reranker",
+      "Contextual Re-Ranking",
+      "Query Refinement\/Reformulation"
+    ]
+  },
+  {
+    "cluster_id":14,
+    "short_name":"Generative Model Fine-tuning",
+    "description":"This cluster describes the process of adapting pre-trained generative models, particularly LLMs, to specific domains, tasks, or desired styles. It involves continuing the model's training on smaller, specialized datasets to enhance performance, accuracy, and domain-specific knowledge beyond what general models or RAG can achieve.",
+    "sub_patterns":[
+      "Finetuning (Generator)",
+      "Fine Tuning"
+    ]
+  },
+  {
+    "cluster_id":15,
+    "short_name":"Intelligent Agent Design Patterns",
+    "description":"This cluster describes core patterns for designing intelligent AI agents, covering how they generate and refine plans (single-shot, incremental, multi-path), incorporate feedback (self, cross, human reflection), understand and clarify user goals (passive, proactive), and integrate external tools or agents (adapters, registries). These patterns enhance agent reasoning, adaptability, and interaction.",
+    "sub_patterns":[
+      "Oneshot model querying",
+      "Singlepath plan generator",
+      "Incremental model querying",
+      "Selfreflection",
+      "Agent adapter",
+      "Passive goal creator",
+      "Proactive goal creator",
+      "Crossreflection",
+      "Human reflection",
+      "Toolagent registry",
+      "Multipath plan generator"
+    ]
+  },
+  {
+    "cluster_id":16,
+    "short_name":"LLM Prompting & Reasoning Strategies",
+    "description":"This cluster encompasses diverse strategies for interacting with LLMs, ranging from basic direct prompts and system instructions to advanced multi-step reasoning (e.g., Chain-of-Thought, Least-to-Most), task decomposition, and agentic patterns (e.g., ReAct) that interleave reasoning with actions and tool use. These patterns aim to improve LLM accuracy, control, transparency, and ability to solve complex, interactive problems.",
+    "sub_patterns":[
+      "Prompt Chaining",
+      "Direct Prompting",
+      "Promptresponse optimiser",
+      "Least-to-Most Prompting",
+      "Sparse Thought Generation",
+      "Faithful Reasoning",
+      "Zero-Shot Chain-of-Thought (Zero-Shot CoT)",
+      "Scratchpad",
+      "ReAct (Reasoning and Acting)",
+      "Chain-of-Thought (CoT)",
+      "Advanced Prompting Techniques",
+      "LLM + Prompt",
+      "System Prompt \/ Custom Instructions",
+      "ReAct Pattern",
+      "Prompt Engineering for Grounding and Factuality",
+      "ReAct Prompting Framework",
+      "Hybrid Reasoning (ReAct + CoTSC)",
+      "Few-Shot Prompting for Agentic LLMs",
+      "Act-only Prompting",
+      "Act (Pure Acting)",
+      "Task Decomposition \/ Subgoal Generation",
+      "Self-Consistency for Chain-of-Thought (CoTSC)",
+      "Prompt Engineering",
+      "Chain-of-Thought (CoT) Prompting",
+      "Selection-Inference",
+      "STaR (Self-Taught Reasoner) \/ Self-Generated Trajectory Fine-tuning"
+    ]
+  },
+  {
+    "cluster_id":17,
+    "short_name":"Multi-Agent Collaboration & Orchestration",
+    "description":"This cluster encompasses patterns for designing and managing multi-agent AI systems. It focuses on how multiple specialized agents collaborate, communicate, and coordinate to solve complex problems through task decomposition, role assignment, communication protocols, and structured workflows.",
+    "sub_patterns":[
+      "MultiAgent Collaboration Pattern",
+      "MultiAgent",
+      "Hierarchical Agents",
+      "Rolebased cooperation",
+      "Votingbased cooperation",
+      "Debatebased cooperation",
+      "InterAgent Communication (A2A)",
+      "Planning Pattern",
+      "Sequential Agents",
+      "Aggregator Agent",
+      "Network Agent",
+      "Loop Agents",
+      "Router Agent",
+      "Parallel Multi Agents"
+    ]
+  },
+  {
+    "cluster_id":18,
+    "short_name":"AI System Evaluation",
+    "description":"This cluster focuses on systematic processes and tooling for assessing the performance, reliability, and quality of AI models, especially LLMs and agents. It addresses non-determinism by defining metrics, creating test scenarios, and integrating evaluation into development pipelines to ensure intended behavior and continuous improvement.",
+    "sub_patterns":[
+      "Agent evaluator",
+      "Evals",
+      "LLM Evaluations"
+    ]
+  },
+  {
+    "cluster_id":19,
+    "short_name":"End-to-End Responsible AI",
+    "description":"This cluster encompasses patterns for integrating Responsible AI (RAI) principles across the entire AI system lifecycle. It covers requirements, design, development, testing, deployment, and continuous monitoring, focusing on explainability, fairness, accountability, and risk management.",
+    "sub_patterns":[
+      "Ethics Credentials",
+      "Explainable Predictions",
+      "RAI black box",
+      "Global view auditor",
+      "Fairness Lens",
+      "Model Cards",
+      "RAI knowledge base",
+      "RAI digital twin",
+      "Fairness assessor",
+      "Discrimination mitigato[r]",
+      "Global explainer",
+      "Local explainer",
+      "Verifiable claim for AI system artifacts",
+      "AI suitability assessment",
+      "Verifiable RAI requirement",
+      "RAI risk assessment",
+      "Lifecycledriven data requirement",
+      "RAI user story",
+      "Systemlevel RAI simulation",
+      "RAI design modelling",
+      "RAI governance of APIs",
+      "RAI governance via APIs",
+      "RAI construction with reuse",
+      "XAI interface",
+      "RAI acceptance testing",
+      "RAI assessment for test cases",
+      "Extensible adaptive and dynamic RAI risk assessment",
+      "Continuous deployment for RAI",
+      "RAI bill of materials registry",
+      "Verifiable RAI credential",
+      "Continuous RAI validator",
+      "RAI sandbox"
+    ]
+  },
+  {
+    "cluster_id":20,
+    "short_name":"Privacy-Preserving Distributed AI",
+    "description":"This cluster encompasses AI patterns designed to enable collaborative model training and efficient inference while prioritizing data privacy, security, and distributed execution. Key themes include keeping sensitive data local, secure aggregation of model updates, training on encrypted data, and optimizing predictions across edge and cloud environments.",
+    "sub_patterns":[
+      "Federated Learning",
+      "TwoPhase Predictions",
+      "Secure Aggregation",
+      "Federated learner",
+      "Random noise data generator",
+      "Data Flows Up Model Flows Down",
+      "Secure aggregator",
+      "Encrypteddatabased trainer"
+    ]
+  },
+  {
+    "cluster_id":21,
+    "short_name":"Mobile Agent System Patterns",
+    "description":"This cluster encompasses patterns for managing the lifecycle, movement, communication, and coordination of mobile agents in distributed environments. It addresses challenges like agent discovery, navigation, task delegation, asynchronous interaction, and secure data handling during travel.",
+    "sub_patterns":[
+      "Ticket",
+      "Facilitator",
+      "Organized Group",
+      "Plan",
+      "MasterSlave",
+      "Notifier",
+      "Forwarding",
+      "Itinerary",
+      "Messenger",
+      "Locker",
+      "Meeting"
+    ]
+  },
+  {
+    "cluster_id":22,
+    "short_name":"MLOps & Contextual ML Design",
+    "description":"This cluster covers patterns for robust ML system deployment and continuous monitoring (e.g., canary releases, ongoing evaluation), alongside context-driven automation of ML workflow design. It includes data preparation, algorithm selection, and metric evaluation based on user, data, and model characteristics, linking business goals to ML insights.",
+    "sub_patterns":[
+      "Heuristic Benchmark",
+      "Continued Model Evaluation",
+      "Deploy Canary Model",
+      "Canary Model",
+      "User Context Monitoring",
+      "Context-Driven Workflow Generation",
+      "Model Context Monitoring",
+      "Data Context Monitoring",
+      "Quality-Driven Algorithm Selection",
+      "Predictive Model Insight Generation",
+      "Context-Aware Data Preparation",
+      "Context-Aware Algorithm Selection",
+      "Metric-Driven Model Evaluation",
+      "Algorithm Categorization and Selection for Analytics Goals",
+      "Quality Evaluator for Algorithm Recommendation",
+      "Deployable Canary Model",
+      "Data Preparation Workflow Design"
+    ]
+  },
+  {
+    "cluster_id":23,
+    "short_name":"AI System Performance Evaluation",
+    "description":"This cluster focuses on the critical process of systematically measuring and assessing the performance and effectiveness of AI systems, particularly those with complex outputs. It emphasizes establishing and applying tailored evaluation metrics to gain insights, identify areas for improvement, and ensure quality standards are met.",
+    "sub_patterns":[
+      "Robust AI Evaluation"
+    ]
+  },
+  {
+    "cluster_id":24,
+    "short_name":"Input Classification & Routing",
+    "description":"This cluster focuses on classifying diverse inputs (queries, tasks) and dynamically routing them to specialized prompts, models, agents, or workflows to optimize processing, efficiency, and response quality.",
+    "sub_patterns":[
+      "Routing",
+      "Intent Classification for Chatbots"
+    ]
+  },
+  {
+    "cluster_id":25,
+    "short_name":"Agent Optimization & Memory",
+    "description":"This cluster focuses on enhancing AI agent capabilities and efficiency. It addresses challenges like managing LLM context windows and memory for long-term coherence, personalization, and complex tasks, alongside optimizing resource usage, cost, and latency through strategic model selection and task decomposition in multi-stage AI systems.",
+    "sub_patterns":[
+      "Memory Management",
+      "Personalization",
+      "Smallest Model for Task (Optimization)",
+      "Model Selection for Latency\/Cost Optimization",
+      "Model Context Protocol (MCP)",
+      "Resource Aware Optimization",
+      "Agent Memory"
+    ]
+  },
+  {
+    "cluster_id":26,
+    "short_name":"Concurrent Task Execution",
+    "description":"This cluster focuses on executing independent AI tasks or sub-tasks simultaneously to reduce latency, improve throughput, and enhance confidence by leveraging concurrent processing or multiple model evaluations.",
+    "sub_patterns":[
+      "Parallelization"
+    ]
+  },
+  {
+    "cluster_id":27,
+    "short_name":"AI Production Monitoring & Evaluation",
+    "description":"Ensuring the health, performance, reliability, and safety of AI systems and agents in production through continuous monitoring, evaluation, and proactive issue identification.",
+    "sub_patterns":[
+      "AI Observability",
+      "Evaluation and Monitoring"
+    ]
+  },
+  {
+    "cluster_id":28,
+    "short_name":"ML System Architecture & Operations",
+    "description":"This cluster encompasses patterns for designing and managing robust, scalable, and efficient machine learning systems. It covers strategies for distributed training, decoupling ML pipelines and workloads, ensuring data consistency between training and serving, and providing resilience for long-running training jobs.",
+    "sub_patterns":[
+      "ParameterServer Abstraction",
+      "DataAlgorithmServing Evaluator",
+      "Reuse Code between Training Pipeline and Serving Pipeline",
+      "Decouple Training Pipeline from Production Pipeline",
+      "Checkpoints",
+      "Distribution Strategy",
+      "Different Workloads in Different Computing Environments"
+    ]
+  },
+  {
+    "cluster_id":29,
+    "short_name":"Robust ML System Design",
+    "description":"This cluster focuses on architectural and development best practices for building maintainable, adaptable, and robust ML systems. Key themes include modularity, separation of concerns, managing complexity, ensuring data quality, and enabling reproducibility and flexibility in ML components.",
+    "sub_patterns":[
+      "Descriptive Data Type for Rich Information",
+      "Design Holistically about Data Collection and Feature Extraction",
+      "Handshake",
+      "Discard PoC Code",
+      "Distinguish Business Logic from ML Models",
+      "Separation of Concerns and Modularization of ML Components",
+      "Test Infrastructure Independently from ML",
+      "Reexamine Experimental Branches Periodically",
+      "ML Versioning",
+      "Wrap BlackBox Packages into Common APIs",
+      "Strategy Pattern"
+    ]
+  },
+  {
+    "cluster_id":30,
+    "short_name":"ML Deployment & Data Architectures",
+    "description":"This cluster focuses on architectural patterns for deploying, serving, and managing machine learning models and data in production environments. It covers scalable inference, data processing architectures, workflow orchestration, and microservice-based modularity.",
+    "sub_patterns":[
+      "Gateway Routing Architecture",
+      "Batch Serving",
+      "Workflow Pipeline",
+      "AI Pipelines",
+      "Transform",
+      "Windowed Inference",
+      "Stateless Serving Function",
+      "Lambda Architecture",
+      "Data Lake for ML",
+      "Lambda Architecture for ML",
+      "Microservice Architecture for ML",
+      "ML Gateway Routing Architecture",
+      "Microservice Horizontal Pattern",
+      "Microservice Vertical Pattern",
+      "Cascade",
+      "Daisy Architecture",
+      "Kappa Architecture",
+      "ML Inference Pipeline",
+      "Event-driven ML Microservices",
+      "Keyed Predictions",
+      "Feature Store",
+      "Microservice Architecture",
+      "Kappa Architecture for ML",
+      "Data Lake"
+    ]
+  },
+  {
+    "cluster_id":31,
+    "short_name":"Encapsulate ML with Rules",
+    "description":"This cluster addresses the inherent instability and unreliability of ML models, especially in critical systems. Patterns here advocate for encapsulating ML models and validating their outputs using deterministic, rule-based safeguards and quality checks to enhance robustness, safety, and trustworthiness against adversarial attacks, noise, and data drift.",
+    "sub_patterns":[
+      "Isolate and Validate Output of Model",
+      "Encapsulate ML Models within Rulebase Safeguards",
+      "Encapsulating ML Models within Rulebased Safeguards"
+    ]
+  },
+  {
+    "cluster_id":32,
+    "short_name":"Verifiable AI Outputs",
+    "description":"This cluster focuses on enhancing LLM trustworthiness and transparency by providing direct citations or references to source materials, enabling users to verify factual claims and understand information provenance.",
+    "sub_patterns":[
+      "Citations",
+      "Explainable AI \/ Citations"
+    ]
+  },
+  {
+    "cluster_id":33,
+    "short_name":"Basic RAG for Static Data",
+    "description":"This cluster focuses on straightforward Retrieval-Augmented Generation (RAG) implementations for generating factually accurate responses from small, static document sets. It's suitable for limited information scopes without complex data handling.",
+    "sub_patterns":[
+      "Simple RAG"
+    ]
+  },
+  {
+    "cluster_id":34,
+    "short_name":"RAG with Conversational Memory",
+    "description":"This cluster focuses on enhancing Retrieval-Augmented Generation (RAG) systems by integrating a memory component. This allows the model to retain historical context from previous interactions, making it more effective for continuous conversations, personalized experiences, and tasks requiring awareness of past user preferences or issues.",
+    "sub_patterns":[
+      "Simple RAG with Memory"
+    ]
+  },
+  {
+    "cluster_id":35,
+    "short_name":"LLM Self-Correction & Refinement",
+    "description":"This cluster focuses on patterns where LLMs iteratively evaluate, critique, and refine their own or other LLM outputs to enhance quality, accuracy, and reliability. It leverages automated feedback loops, often incorporating external tools for verification, to achieve self-correction and improve generated content.",
+    "sub_patterns":[
+      "LLM as a Judge",
+      "Self-Refine",
+      "Evaluator-Optimizer",
+      "Critic"
+    ]
+  },
+  {
+    "cluster_id":36,
+    "short_name":"Dynamic Single-Agent Orchestration",
+    "description":"This cluster describes patterns where a single LLM agent dynamically orchestrates tool usage and iterative decision-making. It handles moderate to complex queries within a cohesive domain, offering flexibility without the overhead of multiple specialized agents.",
+    "sub_patterns":[
+      "Single-agent System"
+    ]
+  },
+  {
+    "cluster_id":37,
+    "short_name":"Model Versioning & Deployment",
+    "description":"This cluster addresses the challenges of deploying and managing multiple iterations of machine learning models in production, focusing on strategies to ensure backward compatibility, enable A\/B testing, and facilitate performance monitoring across different model versions.",
+    "sub_patterns":[
+      "Model Versioning"
+    ]
+  },
+  {
+    "cluster_id":38,
+    "short_name":"Natural Language Graph Query",
+    "description":"This cluster focuses on patterns that enable Large Language Models (LLMs) to translate natural language user questions into structured Cypher queries for retrieving data from knowledge graphs. The patterns vary in their approach, from using predefined templates for known query types to dynamically generating queries from reusable snippets or directly from the database schema for maximum flexibility.",
+    "sub_patterns":[
+      "Cypher Templates",
+      "Text2Cypher",
+      "Dynamic Cypher Generation"
+    ]
+  },
+  {
+    "cluster_id":39,
+    "short_name":"Cross-Account SageMaker Code Integration",
+    "description":"This cluster describes patterns for securely integrating AWS CodeCommit repositories in one AWS account with Amazon SageMaker development environments (Studio Classic, Notebooks) in another. It leverages IAM roles and policies to enable cross-account access, fostering collaborative and secure ML development.",
+    "sub_patterns":[
+      "SageMaker AI Studio Classic Integration",
+      "Cross-Account SageMaker Studio CodeCommit Integration",
+      "Cross-Account Secure Code Access for SageMaker",
+      "Cross-Account CodeCommit Access for SageMaker Notebooks",
+      "Cross-Account SageMaker Studio Classic Code Integration",
+      "Cross-Account SageMaker AI Studio Classic with CodeCommit",
+      "Associate an AWS CodeCommit repository with Amazon SageMaker AI Studio Classic across accounts",
+      "SageMaker Notebook Instance Access Control"
+    ]
+  },
+  {
+    "cluster_id":40,
+    "short_name":"AI Content Extraction & Analysis",
+    "description":"This cluster leverages AI services to automate the extraction of structured and unstructured data from various document types (primarily PDFs, including template-based extraction) and to derive insights like sentiment and named entities from text, streamlining data processing and insight generation.",
+    "sub_patterns":[
+      "Automatically extract content from PDF files",
+      "Automated Document Content Extraction with Template Matching",
+      "Automatically Extract Content from PDF Files",
+      "Automated Document Content Extraction",
+      "AI Service Integration for Text Analysis"
+    ]
+  },
+  {
+    "cluster_id":41,
+    "short_name":"Cold Start Forecasting with DeepAR",
+    "description":"This cluster addresses the 'cold start' problem in time series forecasting for new items or entities with limited historical data. It consistently leverages Amazon SageMaker DeepAR to build probabilistic models that learn from related time series, enabling accurate predictions for new products or services.",
+    "sub_patterns":[
+      "Cold Start Forecasting Model with DeepAR",
+      "Cold Start Time Series Forecasting with DeepAR",
+      "Build a cold start forecasting model using SageMaker AI DeepAR"
+    ]
+  },
+  {
+    "cluster_id":42,
+    "short_name":"MLOps Automation & Integration",
+    "description":"This cluster focuses on automating and standardizing MLOps workflows. Patterns include self-service provisioning of ML environments using templates and developer portals (e.g., Backstage with SageMaker AI), and integrating ML platforms (e.g., AWS SageMaker) with DevOps tools (e.g., Azure DevOps) for CI\/CD in hybrid\/multi-cloud setups.",
+    "sub_patterns":[
+      "MLOps with Self-Service AI Templates",
+      "Self-Service AI Template Provisioning",
+      "Accelerate MLOps with Self-Service AI Templates",
+      "SageMaker and Azure DevOps MLOps Workflow",
+      "Hybrid Cloud MLOps Workflow",
+      "Build an MLOps workflow using SageMaker AI and Azure DevOps",
+      "Cross-Cloud MLOps Workflow",
+      "Accelerate MLOps with Backstage and self-service Amazon SageMaker AI templates"
+    ]
+  },
+  {
+    "cluster_id":43,
+    "short_name":"Bedrock Invocation Logging",
+    "description":"This cluster details patterns for systematically capturing and storing input\/output data and metadata from Amazon Bedrock model invocations. It leverages AWS CloudFormation to enable comprehensive logging for auditing, monitoring, debugging, compliance, and performance analysis of generative AI applications.",
+    "sub_patterns":[
+      "Congure model invocation logging in Amazon Bedrock",
+      "Model Invocation Logging for Generative AI",
+      "Configure logging in Amazon Bedrock using CloudFormation",
+      "Bedrock Model Invocation Logging"
+    ]
+  },
+  {
+    "cluster_id":44,
+    "short_name":"Custom ML Container & Orchestration",
+    "description":"This cluster encompasses patterns for advanced machine learning operations, focusing on custom containerization, GPU acceleration, and workflow orchestration (SageMaker, Step Functions). It enables efficient training, deployment, and management of specialized ML models across diverse environments, including edge and multi-account setups, while optimizing ML artifact management and ensuring consistent inference.",
+    "sub_patterns":[
+      "Custom GPU-Supported ML Model Training and Deployment on SageMaker",
+      "Automated Duplicate Container Image Identification",
+      "SageMaker Inference Pipeline for Preprocessing",
+      "Cross-Account\/Region ML Model & Framework Distribution",
+      "Edge AI Containerization with Docker-in-Docker",
+      "Custom SageMaker Training with Step Functions",
+      "Deploy multiple pipeline model objects in a single SageMaker endpoint",
+      "Train and deploy a custom GPU-supported ML model",
+      "Custom Containerized ML Training with Step Functions",
+      "Custom GPU-supported ML Model Deployment",
+      "Custom GPU-Accelerated ML Model Training and Deployment",
+      "SageMaker Inference Pipeline with Preprocessing",
+      "Custom Container for SageMaker ML Training",
+      "Create Docker containers in SageMaker for model training in Step Functions"
+    ]
+  },
+  {
+    "cluster_id":45,
+    "short_name":"AI EKS Access Automation",
+    "description":"This cluster describes patterns for automating and simplifying Amazon EKS access control management using Amazon Bedrock agents. It enables users to define and apply complex access policies through natural language prompts, reducing manual effort, errors, and enhancing operational efficiency and security.",
+    "sub_patterns":[
+      "Create access controls in Amazon EKS with Amazon Bedrock agents",
+      "Automate EKS Access Controls with Bedrock Agents",
+      "Agentic EKS Access Management",
+      "Agentic Access Control Management",
+      "Bedrock Agents for EKS Access Control Automation"
+    ]
+  },
+  {
+    "cluster_id":46,
+    "short_name":"RAG on AWS with Bedrock",
+    "description":"This cluster details building and deploying Retrieval Augmented Generation (RAG) systems on AWS. Key components include Amazon Bedrock for LLMs, vector databases for knowledge retrieval, and often Terraform for automated infrastructure. The goal is to provide accurate, contextually grounded, and hallucination-free LLM responses.",
+    "sub_patterns":[
+      "Deploy a RAG use case on AWS",
+      "Develop a chat-based assistant using Amazon Bedrock",
+      "Retrieval Augmented Generation (RAG) with Vector Store",
+      "Terraform-Managed RAG Deployment",
+      "RAG on Bedrock with Terraform",
+      "Deploy a RAG use case on AWS by using Terraform and Amazon Bedrock"
+    ]
+  },
+  {
+    "cluster_id":47,
+    "short_name":"Real-time AI Code Security Validation",
+    "description":"This cluster describes patterns for integrating AI-powered tools and coding assistants directly into the development workflow to provide real-time security validation. It aims to detect and remediate vulnerabilities, misconfigurations, and compliance issues as code (including IaC) is written or generated, enabling 'shift-left' security and improving developer productivity.",
+    "sub_patterns":[
+      "Deploy realtime coding security validation with Kiro",
+      "Real-time AI-Powered Coding Security Validation",
+      "Real-time Coding Security Validation with AI Assistants",
+      "Realtime AI-Assisted Code Security Validation"
+    ]
+  },
+  {
+    "cluster_id":48,
+    "short_name":"Advanced RAG-ReAct Chat Assistants",
+    "description":"This cluster details building advanced generative AI chat assistants. It leverages RAG for external knowledge grounding and ReAct prompting for multi-step reasoning, planning, and tool usage, creating highly intelligent and versatile conversational AI.",
+    "sub_patterns":[
+      "Develop AI chat-based assistants by using RAG and ReAct prompting",
+      "Advanced Generative AI Chat Assistant with RAG and ReAct",
+      "Develop Advanced Generative AI Chat Assistants with RAG and ReAct",
+      "Develop advanced generative AI chat-based assistants by using RAG and ReAct prompting"
+    ]
+  },
+  {
+    "cluster_id":49,
+    "short_name":"Voice-to-Knowledge Documentation",
+    "description":"This cluster focuses on leveraging AI, specifically Speech-to-Text and Large Language Models, to capture, transcribe, process, summarize, and document institutional knowledge or information from spoken conversations and audio inputs. It aims to convert informal verbal insights into structured, searchable, and preserved textual assets.",
+    "sub_patterns":[
+      "Voice-to-Knowledge Capture Workflow",
+      "Document institutional knowledge from voice inputs",
+      "AI-Powered Voice-to-Knowledge Documentation",
+      "LLM-based Summarization",
+      "Speech-to-Text Transcription"
+    ]
+  },
+  {
+    "cluster_id":50,
+    "short_name":"Personalized & Reranked Recommendations",
+    "description":"Delivers highly relevant, individualized recommendations and optimizes their order using Amazon Personalize. Boosts user engagement and conversion across various platforms.",
+    "sub_patterns":[
+      "Personalized and Reranked Recommendations",
+      "Generate personalized recommendations using Amazon Personalize",
+      "Generate personalized and reranked recommendations using Amazon Personalize"
+    ]
+  },
+  {
+    "cluster_id":51,
+    "short_name":"SageMaker Hydra ML Workflows",
+    "description":"Integrates Amazon SageMaker for scalable ML training and experimentation with Hydra for flexible configuration management. This enables reproducible, efficient, and unified ML workflows, streamlining development from local environments to cloud-scale experiments.",
+    "sub_patterns":[
+      "Streamline machine learning workows from local development to scalable experiments by using SageMaker AI and Hydra",
+      "Streamlined ML Workflows with SageMaker and Hydra",
+      "Scalable ML Experimentation with SageMaker and Hydra",
+      "Streamline ML workflows using SageMaker AI and Hydra",
+      "Unified ML Workflow (Local to Cloud)"
+    ]
+  },
+  {
+    "cluster_id":52,
+    "short_name":"AI Coding Assistant for Developers",
+    "description":"This cluster focuses on leveraging AI coding assistants, primarily Amazon Q Developer, to enhance developer productivity. Patterns describe integrating these tools into IDEs to automate code generation, provide real-time suggestions, assist with debugging, explain code, and answer technical questions, leading to faster development cycles and improved code quality.",
+    "sub_patterns":[
+      "Use Amazon Q Developer as a coding assistant",
+      "AI-Powered Coding Assistant with Amazon Q Developer",
+      "Use Amazon Q Developer as a coding assistant to increase your productivity",
+      "AI-Powered Developer Productivity with Coding Assistant",
+      "AI Coding Assistant Integration"
+    ]
+  },
+  {
+    "cluster_id":53,
+    "short_name":"Scalable ML Data Engineering",
+    "description":"This cluster focuses on patterns for efficiently and scalably performing data preparation, feature engineering, and batch processing for terabyte-scale machine learning datasets. It leverages distributed computing services like SageMaker Processing, EMR, and Glue to handle large volumes of data, optimize costs, and enable robust ML workflows, including synthetic data generation for testing.",
+    "sub_patterns":[
+      "Use SageMaker Processing for distributed feature engineering of terabyte-scale ML datasets",
+      "Distributed Feature Engineering with Macro\/Microsharding",
+      "Transient EMR Cluster for Batch ML Processing",
+      "Generate Synthetic Test Data for ML Workflows",
+      "Distributed Feature Engineering for Large-Scale ML Datasets"
+    ]
+  },
+  {
+    "cluster_id":54,
+    "short_name":"AIML Results Web Visualization",
+    "description":"This cluster describes patterns for building and deploying interactive web applications (using Flask) on AWS Elastic Beanstalk to visualize AI\/ML model results, predictions, and performance metrics, making them accessible and understandable for various users.",
+    "sub_patterns":[
+      "Visualize AIML model results using Flask and Elastic Beanstalk",
+      "Web-Based AIML Model Result Visualization",
+      "Visualize AIML Model Results with Web UI",
+      "AIML Model Results Visualization Web App",
+      "Visualize AI\/ML Model Results with Flask and Elastic Beanstalk",
+      "AIML Model Result Visualization"
+    ]
+  },
+  {
+    "cluster_id":55,
+    "short_name":"Redshift ML for SQL Analytics",
+    "description":"This cluster focuses on leveraging Amazon Redshift ML to enable data analysts and SQL users to build, train, and deploy machine learning models directly within their Redshift data warehouse using SQL commands. It automates complex ML processes, often via SageMaker Autopilot, for predictive and advanced analytics tasks like forecasting, churn prediction, and fraud detection.",
+    "sub_patterns":[
+      "Automated ML Model Training and Deployment (Redshift ML)",
+      "Perform ML analytics using Amazon Redshift ML",
+      "ML-Powered Advanced Analytics",
+      "Amazon Redshift ML for Advanced Analytics"
+    ]
+  },
+  {
+    "cluster_id":56,
+    "short_name":"Multi-Agent Systems on Bedrock",
+    "description":"This cluster describes patterns for building, orchestrating, and deploying complex multi-agent AI systems. It consistently uses the CrewAI framework for agent definition and collaboration, and Amazon Bedrock for foundational models. Emphasis is placed on scalable deployment, often via Infrastructure as Code, to automate complex workflows and create autonomous AI applications.",
+    "sub_patterns":[
+      "Deploy agentic systems on Amazon Bedrock with CrewAI",
+      "Deploy Agentic Systems with Frameworks",
+      "Agentic AI for Complex Task Orchestration",
+      "Automated Agentic Chat Assistant with Knowledge Base",
+      "Multi-Agent System Deployment with CrewAI and Bedrock",
+      "Agentic System Deployment with CrewAI on Bedrock",
+      "Deploy Agentic Systems on Amazon Bedrock with CrewAI",
+      "Agentic Systems on Bedrock with CrewAI",
+      "Deploy Agentic Systems with CrewAI on Bedrock"
+    ]
+  },
+  {
+    "cluster_id":57,
+    "short_name":"AI for Kubernetes Management",
+    "description":"This cluster encompasses patterns that leverage Artificial Intelligence to enhance Kubernetes cluster operations. It includes AI-driven diagnostics and troubleshooting for improved efficiency and reduced Mean Time To Resolution (MTTR), alongside intelligent scheduling and resource management for specialized AI\/ML workloads within Kubernetes environments.",
+    "sub_patterns":[
+      "Implement AI-powered Kubernetes diagnostics and troubleshooting with K8sGPT and Amazon Bedrock integration",
+      "AI-powered Kubernetes Diagnostics and Troubleshooting",
+      "AI-Powered Kubernetes Diagnostics and Troubleshooting",
+      "AI-Powered Kubernetes Diagnostics",
+      "Implement diagnostics with K8sGPT and Amazon Bedrock",
+      "AI-Powered Kubernetes Diagnostics with K8sGPT and Bedrock",
+      "Node Affinity, Taints, and Tolerations for Specialized AI Workloads"
+    ]
+  },
+  {
+    "cluster_id":58,
+    "short_name":"Automated Bot Lifecycle Management",
+    "description":"Automates the development, deployment, and lifecycle management of bots, primarily Amazon Lex conversational AI and also RPA bots. Leverages CI\/CD, IaC, and version control for efficient, consistent, and scalable bot operations.",
+    "sub_patterns":[
+      "Automated Workflow for Amazon Lex Bot Development and Deployment",
+      "Automated Amazon Lex Bot Development and Deployment Workflow",
+      "Streamline Amazon Lex workflows",
+      "Automated Amazon Lex Bot Development & Deployment",
+      "MLOps for Bot Development",
+      "Automated RPA Bot Deployment",
+      "Automated Lex Bot Workflow"
+    ]
+  },
+  {
+    "cluster_id":59,
+    "short_name":"AI-Driven Natural Language Insights",
+    "description":"This cluster focuses on leveraging generative AI, primarily Amazon Q, to enable natural language querying, automated insight generation, visualization, and data storytelling from complex datasets. It often applies to modernized mainframe (Db2 zOS) or supply chain data within business intelligence platforms, democratizing data access and accelerating decision-making for non-technical users.",
+    "sub_patterns":[
+      "AI-Assisted Db2 zOS Data Insights Generation with Amazon Q",
+      "Natural Language Querying for Business Intelligence",
+      "Generative AI for Db2 zOS Data Insights (using Amazon Q)",
+      "AI-Assisted Data Insight Generation",
+      "AI-Assisted Data Insights Generation with Amazon Q",
+      "Natural Language Data Storytelling",
+      "Generate insights using AWS Mainframe Modernization and Amazon Q",
+      "Generative AI for Mainframe Data Insights (using Amazon Q)",
+      "AI for Data Insights (Db2 zOS)",
+      "AI for Data Insights (Mainframe Modernization)",
+      "Generative AI Assistant for Supply Chain Analysis",
+      "AI-Powered Data Visualization & Analysis"
+    ]
+  },
+  {
+    "cluster_id":60,
+    "short_name":"Bedrock for AWS Ops & Compliance",
+    "description":"This cluster leverages Amazon Bedrock's generative AI and agentic capabilities to automate, optimize, and troubleshoot various AWS operational tasks. It encompasses streamlining infrastructure management via natural language, enhancing EC2 compliance monitoring and remediation, and accelerating Step Functions workflow debugging with AI-driven insights, ultimately boosting efficiency and reliability.",
+    "sub_patterns":[
+      "Bedrock for Step Functions Troubleshooting",
+      "Agentic AI for Compliance Management",
+      "Automate Infrastructure Operations with Generative AI",
+      "AI-Driven EC2 Compliance Remediation",
+      "Streamline EC2 Compliance Management with Bedrock Agents",
+      "Automate AWS infrastructure operations by using Amazon Bedrock",
+      "Bedrock-Assisted Step Functions Troubleshooting",
+      "Natural Language Infrastructure Automation",
+      "Bedrock-Powered Infrastructure Automation",
+      "Agentic AI for Troubleshooting",
+      "Streamline Amazon EC2 compliance management with Amazon Bedrock agents and AWS Config",
+      "Agentic AI for Infrastructure Operations"
+    ]
+  },
+  {
+    "cluster_id":61,
+    "short_name":"Natural Language to Query DSL",
+    "description":"This cluster focuses on enabling users to interact with complex search services (e.g., OpenSearch, Elasticsearch) using natural language by translating their queries into domain-specific query languages (DSL) through the use of Large Language Models (LLMs). It aims to abstract away technical complexity and improve user experience.",
+    "sub_patterns":[
+      "Natural Language to Query DSL Conversion",
+      "Natural Language to Query DSL Translation"
+    ]
+  },
+  {
+    "cluster_id":62,
+    "short_name":"LLM Database Interaction",
+    "description":"This cluster focuses on patterns where LLMs translate natural language into structured queries (e.g., SQL) to interact with and retrieve data from external databases, then summarize results for the user.",
+    "sub_patterns":[
+      "LLM-to-SQL (Database Query Service)"
+    ]
+  },
+  {
+    "cluster_id":63,
+    "short_name":"AI-Assisted DevSecOps Automation",
+    "description":"This cluster focuses on leveraging AI (Amazon Q Developer, CodeGuru) to automate and enhance DevSecOps. It integrates AI assistants into ChatOps for streamlined management of security findings (SAST) and uses AI-powered code analysis in CI\/CD pipelines for automated code quality and security reviews, thereby improving efficiency and accelerating remediation.",
+    "sub_patterns":[
+      "ChatOps for AI-Assisted Management",
+      "ChatOps with Amazon Q Developer for SAST Management",
+      "AI-Powered Code Review Automation",
+      "AI-Powered ChatOps for SAST Result Management",
+      "ChatOps with AI Assistant for SAST Management",
+      "ChatOps for SAST Scan Results with Amazon Q Developer"
+    ]
+  },
+  {
+    "cluster_id":64,
+    "short_name":"AI\/ML for Cloud Ops & Security",
+    "description":"This cluster leverages AI and Machine Learning services (e.g., Amazon Macie, GuardDuty, DevOps Guru, Bedrock, CloudWatch Anomaly Detection, IAM Access Analyzer) to enhance cloud security, streamline governance, and improve operational efficiency. Key themes include automated sensitive data discovery, proactive threat detection, AI-assisted policy management, dynamic least-privilege policy generation, and intelligent anomaly detection for operational insights across single or multi-account AWS environments.",
+    "sub_patterns":[
+      "Sensitive Data Identification for AI Artifacts",
+      "AI-Assisted Policy Management as Code",
+      "CloudWatch Anomaly Detection for Custom Metrics",
+      "Proactive Operational Performance Improvement with AI-driven Insights",
+      "Sensitive Data Discovery and Isolation",
+      "LLM-Powered Policy Change Summarization",
+      "Automated Malware Scanning and File Routing",
+      "Enable Amazon GuardDuty Conditionally",
+      "Automatically Enable Amazon GuardDuty for an Organization with Terraform",
+      "Multi-Account\/Region AIOps with Amazon DevOps Guru",
+      "Manage AWS Organizations Policies as Code with Amazon Bedrock",
+      "AI-Powered Threat Detection (Amazon GuardDuty)",
+      "Multi-Account\/Region AI-Driven Operational Insights with DevOps Guru",
+      "Dynamic Least-Privilege Policy Generation",
+      "Secure Sensitive Data in CloudWatch Logs with Amazon Macie",
+      "Dynamic IAM Policy Generation with Access Analyzer and Step Functions",
+      "Agentic AI for Policy Management"
+    ]
+  },
+  {
+    "cluster_id":65,
+    "short_name":"Serverless Financial Risk Calculation",
+    "description":"This cluster focuses on leveraging serverless architectures for highly scalable, real-time, and cost-efficient execution of complex financial computations like VaR, handling large data volumes and dynamic workloads.",
+    "sub_patterns":[
+      "Scalable Value at Risk (VaR) Calculation"
+    ]
+  },
+  {
+    "cluster_id":66,
+    "short_name":"AWS Glue ETL Unit Testing",
+    "description":"This cluster focuses on implementing automated unit testing for Python\/PySpark-based ETL jobs running on AWS Glue within a CI\/CD pipeline. It ensures data quality and reliability during ETL modernization, especially for data feeding ML models, by integrating containerized testing using `pytest`, `Moto`, AWS CodeBuild, and CodePipeline.",
+    "sub_patterns":[
+      "Unit Testing for AWS Glue ETL Jobs"
+    ]
+  },
+  {
+    "cluster_id":67,
+    "short_name":"SiteWise Metadata for Analytics",
+    "description":"This cluster focuses on patterns that enable the extraction and transformation of AWS IoT SiteWise metadata, making it queryable and accessible for machine learning, advanced analytics, and dashboarding through services like S3, Glue, and Athena.",
+    "sub_patterns":[
+      "IoT SiteWise Metadata for ML"
+    ]
+  },
+  {
+    "cluster_id":68,
+    "short_name":"Automated Cloud Migration Planning",
+    "description":"This cluster focuses on patterns that automate the assessment and segmentation of application portfolios for cloud migration, providing data-driven recommendations for migration strategies and suitable cloud services to streamline planning.",
+    "sub_patterns":[
+      "Application Migration Segmentation and Recommendation"
+    ]
+  },
+  {
+    "cluster_id":69,
+    "short_name":"AI-Driven Legacy Modernization",
+    "description":"This cluster encompasses AI patterns focused on automating and assisting the end-to-end modernization of legacy applications, particularly mainframes. It includes AI-driven code analysis, transformation, refactoring, documentation, infrastructure generation, and strategic planning, often leveraging generative AI and natural language interaction with human oversight.",
+    "sub_patterns":[
+      "Agentic Code Transformation",
+      "Agentic AI with Human-in-the-Loop Orchestration",
+      "AI-Assisted Infrastructure as Code (IaC) Generation",
+      "Natural Language Prompting for AI Tasking",
+      "AI-Powered Legacy Code Analysis",
+      "AI-Assisted Business Logic Extraction",
+      "AI-Driven Technical Documentation Generation",
+      "Generative AI Code Refactoring",
+      "AI-Optimized Migration Wave Planning",
+      "LLM-Enhanced Code Refinement",
+      "AI-Guided Monolith Decomposition"
+    ]
+  },
+  {
+    "cluster_id":70,
+    "short_name":"Multimodal RAG Data Strategies",
+    "description":"This cluster encompasses various strategies for integrating, processing, and enriching multimodal data (e.g., images, complex documents, metadata) within Retrieval Augmented Generation (RAG) systems. Patterns address data representation, storage, extraction, and context enrichment to enhance LLM understanding and output quality.",
+    "sub_patterns":[
+      "Multimodal Metadata Enrichment for RAG",
+      "Multimodal Embeddings with In-Database Media Storage",
+      "Layout-Aware Multimodal Data Extraction and Chunking",
+      "Embedding Text Descriptions of Non-Text Data",
+      "Text Embeddings with External Media Pointers"
+    ]
+  },
+  {
+    "cluster_id":71,
+    "short_name":"Agentic Task Management",
+    "description":"This cluster describes patterns for agents to manage and execute complex tasks. It involves decomposing problems into manageable steps (planning) and distributing them among specialized agents for collaborative, parallel processing, enhancing adaptability and scalability.",
+    "sub_patterns":[
+      "Planning",
+      "MultiAgent Collaboration"
+    ]
+  },
+  {
+    "cluster_id":72,
+    "short_name":"Hybrid RAG Retrieval",
+    "description":"This cluster focuses on combining different retrieval methods (e.g., sparse and dense) to overcome limitations of single approaches, enhancing accuracy and flexibility in RAG systems for diverse query types and contexts.",
+    "sub_patterns":[
+      "Hybrid Retrieval Strategies"
+    ]
+  },
+  {
+    "cluster_id":73,
+    "short_name":"Agent Self-Reflection & Learning",
+    "description":"This cluster focuses on patterns where LLM agents learn from past experiences and mistakes through self-reflection, generating insights to improve decision-making and performance in complex, multi-step tasks, thereby enhancing robustness and reducing errors.",
+    "sub_patterns":[
+      "Reflexion"
+    ]
+  },
+  {
+    "cluster_id":74,
+    "short_name":"LLM Agent Task Planning",
+    "description":"This cluster focuses on equipping LLM agents with explicit planning capabilities to break down complex tasks, sequence actions, select tools, and achieve multi-step goals autonomously, moving beyond simple text generation.",
+    "sub_patterns":[
+      "LLM Agent Planning"
+    ]
+  },
+  {
+    "cluster_id":75,
+    "short_name":"Human-in-Loop LLM Correction",
+    "description":"This cluster focuses on patterns enabling real-time human intervention to correct and guide agentic LLM behavior. It addresses issues like hallucinations or repetitive loops by allowing humans to inspect and directly edit the agent's internal reasoning traces, fostering better alignment and control in interactive systems.",
+    "sub_patterns":[
+      "Human-in-the-Loop Behavior Correction (for Agentic LLMs)"
+    ]
+  },
+  {
+    "cluster_id":76,
+    "short_name":"LLM External Knowledge Grounding",
+    "description":"This cluster focuses on enhancing LLMs by integrating external knowledge sources like web browsers or APIs. The goal is to overcome limitations such as hallucination and outdated internal knowledge, enabling LLMs to access, retrieve, and synthesize real-time, verifiable information for improved accuracy in knowledge-intensive tasks.",
+    "sub_patterns":[
+      "WebGPT (Browser-Assisted QA with Human Feedback)",
+      "Wikipedia API Integration for LLM Grounding"
+    ]
+  },
+  {
+    "cluster_id":0,
+    "short_name":"Misaligned Internal State\/Thought",
+    "description":"This cluster describes patterns where an agent's internal reasoning or understanding of the task state diverges from reality, leading to incorrect assumptions, skipped steps, or repetitive ineffective actions in multi-step interactive environments.",
+    "sub_patterns":[
+      "ReActIM (ReAct with Implicit Monitoring \/ Incorrect Thought)"
+    ]
+  },
+  {
+    "cluster_id":78,
+    "short_name":"Continuous Feedback Loop",
+    "description":"This cluster describes patterns where agents dynamically interact with an environment by continuously cycling through actions, observing the resulting changes, and adapting subsequent behaviors based on real-time feedback to achieve goals.",
+    "sub_patterns":[
+      "Observation-Action Loop"
+    ]
+  }
+]
