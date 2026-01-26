@@ -233,7 +233,7 @@ def weighted_vote_predict(prob_results, label_encoder, weights=None):
 
 if __name__ == "__main__":
     TARGET_COLUMN = "verified_pattern"
-    PREDICT_MODE = True  # Toggle: True = train on verified and predict unverified; False = CV eval
+    PREDICT_MODE = False  # Toggle: True = train on verified and predict unverified; False = CV eval
 
     labeled_data = pd.read_csv('/home/hasinthaka/Documents/Projects/AI/Pattern Mining/pipeline/data/datasets/labeled_data.csv')
     embeddings   = pd.read_csv('/home/hasinthaka/Documents/Projects/AI/Pattern Mining/pipeline/data/datasets/embeddings.csv')
