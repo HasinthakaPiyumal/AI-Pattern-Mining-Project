@@ -1,0 +1,228 @@
+[
+  [
+    {
+      "Pattern Name": "Feedback Loop (System-wide Improvement)",
+      "Problem": "Continuously improving the overall performance, accuracy, and relevance of a complex AI system like RAG over time, based on real-world usage and outcomes.",
+      "Context": "A deployed AI system (e.g., RAG) where user interactions, generated outputs, or external evaluations can provide valuable data for refinement.",
+      "Solution": "Implement mechanisms to iteratively feed the system's results back into its input or to finetune its trainable components. This can involve human feedback, automated evaluation metrics, or self-correction mechanisms.",
+      "Result": "The system learns and adapts over time, leading to continuous improvement in performance, accuracy, and user satisfaction.",
+      "Uses": "Continuous improvement of AI models and systems, adaptive learning, self-correction, human-in-the-loop systems.",
+      "Description": NaN,
+      "cluster": 10
+    }
+  ],
+  [
+    {
+      "Pattern Name": "Robust AI Evaluation",
+      "Problem": "Accurately measuring the performance and effectiveness of AI systems, especially those with complex outputs like generated text or question answering, is critical for improvement and ensuring quality.",
+      "Context": "Developing and deploying AI systems across various applications, where systematic assessment of their performance and identification of areas for improvement are necessary.",
+      "Solution": "Establishing robust evaluation metrics tailored to the specific AI task (e.g., BLEU scores for generated text quality, accuracy metrics for question-answering tasks) and consistently applying them to provide valuable insights.",
+      "Result": "Provides valuable insights into the system's effectiveness, helps identify areas for improvement, and ensures the AI system meets desired performance and quality standards.",
+      "Uses": "Assessing the quality of generated text, evaluating question-answering tasks, measuring overall system performance.",
+      "Description": NaN,
+      "cluster": 23
+    }
+  ],
+  [
+    {
+      "Pattern Name": "Parallelization",
+      "Problem": "Tasks require reduced latency and improved throughput, or increased confidence through multiple evaluations.",
+      "Context": "LLM-based applications where tasks can be divided into independent processes that can run simultaneously, or where multiple outputs can be generated and compared.",
+      "Solution": "Divide a task into independent processes that run concurrently. This can involve 'sectioning' (splitting subtasks) or 'voting' (generating multiple outputs and comparing them).",
+      "Result": "Reduced latency, improved throughput, and enhanced confidence in outputs (through voting/cross-checking).",
+      "Uses": "Content moderation (one model screens, another generates), code vulnerability cross-checking (multiple models), analyzing content moderation decisions.",
+      "Description": NaN,
+      "cluster": 26
+    },
+    {
+      "Pattern Name": "Parallelization",
+      "Problem": "Certain AI tasks can be broken down into independent sub-tasks, but processing them sequentially is inefficient and increases latency.",
+      "Context": "An AI agent needs to perform multiple independent operations, generate several alternative outputs, or explore different paths concurrently to save time or explore options more broadly.",
+      "Solution": "Distribute independent parts of a task across multiple AI models, processing units, or concurrent LLM calls, allowing them to execute simultaneously, and then aggregate their results.",
+      "Result": "Reduced latency, increased throughput, and improved efficiency for tasks with parallelizable components, enabling faster decision-making or broader exploration.",
+      "Uses": "Generating multiple drafts or ideas, exploring different reasoning paths, concurrent tool calls, A/B testing different prompts.",
+      "Description": NaN,
+      "cluster": 26
+    }
+  ],
+  [
+    {
+      "Pattern Name": "Simple RAG",
+      "Problem": "Need to generate factually accurate responses from a known, limited set of documents without complex data handling.",
+      "Context": "Situations where the database is relatively small and static, and doesn't require complex handling of large or dynamic datasets.",
+      "Solution": "The language model retrieves relevant documents from a static database in response to a query and then generates an output based on the retrieved information.",
+      "Result": "A straightforward implementation for generating responses grounded in real-world data, suitable for limited information scopes.",
+      "Uses": "FAQ systems, customer support bots where responses need to be factually accurate but the scope of information is limited to a known set of documents (e.g., product manual, knowledge base).",
+      "Description": NaN,
+      "cluster": 33
+    }
+  ],
+  [
+    {
+      "Pattern Name": "Simple RAG with Memory",
+      "Problem": "Traditional RAG lacks contextual awareness across multiple queries, making it less effective for continuous conversations or tasks requiring historical information.",
+      "Context": "Chatbots in customer service, personalized recommendation systems, or any application where ongoing interactions require the model to remember user preferences or prior issues.",
+      "Solution": "Introduces a storage component (memory) that allows the model to retain information from previous interactions. The model retrieves past interactions from memory, searches the external database for new relevant information, and combines both for generation.",
+      "Result": "More powerful for continuous conversations, remembers user preferences or prior issues, and improves the relevance of responses through historical data.",
+      "Uses": "Chatbots in customer service (ongoing interactions, remembering user preferences/prior issues), personalized recommendations (historical data improves relevance).",
+      "Description": NaN,
+      "cluster": 34
+    }
+  ],
+  [
+    {
+      "Pattern Name": "Single-agent System",
+      "Problem": "How to handle moderate to complex queries within a cohesive domain, allowing for dynamic, context-aware decisions and tool usage, without the overhead of multiple specialized agents.",
+      "Context": "Varied user queries within a cohesive domain or product area where certain queries or conditions warrant dynamic tool usage (e.g., fetching customer data), and more flexibility than a deterministic chain is required.",
+      "Solution": "An LLM orchestrates a single, coordinated flow of logic. It adaptively decides which tools to use, when to make additional LLM calls, and when to stop. It can reason, iterate through tool/LLM calls, integrate tool outputs, and return a cohesive response.",
+      "Result": "Provides flexibility, allowing the agent to adapt to new or unexpected queries and loop through repeated calls to refine results. It is simpler to debug than multi-agent setups but less predictable than deterministic chains. Risks include repeated/invalid tool calls and infinite loops if not properly constrained.",
+      "Uses": "Moderate to complex queries in the same domain, some dynamic decisions without the overhead of multiple specialized agents.",
+      "Description": NaN,
+      "cluster": 36
+    }
+  ],
+  [
+    {
+      "Pattern Name": "Model Versioning",
+      "Problem": "Updating deployed ML models (e.g., architecture changes, retraining on new data) can break existing client applications that rely on specific model behavior or output formats, and makes performance monitoring/A/B testing difficult.",
+      "Context": "Production ML systems requiring continuous updates to models while maintaining backward compatibility, enabling A/B testing, and facilitating performance monitoring across different model iterations.",
+      "Solution": "Deploy each changed model as a microservice with a different REST endpoint (or version identifier). This allows multiple versions of a model to be active simultaneously.",
+      "Result": "Ensures backward compatibility for existing users, enables fine-grained performance monitoring and analytics across versions, facilitates A/B testing of new models with subsets of users, and decouples model updates from application frontends.",
+      "Uses": "Flight delay prediction (XGBoost vs. TensorFlow versions), book genre prediction (older vs. newer data), adding explainability to a model.",
+      "Description": NaN,
+      "cluster": 37
+    }
+  ],
+  [
+    {
+      "Pattern Name": "LLM-to-SQL (Database Query Service)",
+      "Problem": "Users want to query structured databases using natural language, but traditional methods require knowledge of SQL or specific query interfaces. LLMs need a way to accurately translate natural language questions into executable SQL queries.",
+      "Context": "When a chat-based assistant needs to retrieve specific, structured data from a database (e.g., pricing data, product information) in response to a natural language query.",
+      "Solution": "An LLM is provided with database metadata (schema, table names, column names) and potentially sample rows from relevant tables. The LLM then converts the natural language input query into a structured SQL query. This SQL query is executed against the database, and the query results are then summarized by the LLM to provide a natural language response to the user.",
+      "Result": "Enables natural language interaction with structured databases, making data retrieval accessible to non-technical users and integrating database insights into conversational AI experiences.",
+      "Uses": "Business intelligence chatbots, data exploration tools, conversational interfaces for enterprise data.",
+      "Description": NaN,
+      "cluster": 62
+    }
+  ],
+  [
+    {
+      "Pattern Name": "Scalable Value at Risk (VaR) Calculation",
+      "Problem": "How to efficiently perform computationally intensive Value at Risk (VaR) calculations, which involve numerous mathematical and statistical operations, requiring dynamic scalability to handle unpredictable batch or real-time processing loads within service-level agreements.",
+      "Context": "Financial institutions or risk management departments needing to calculate VaR for portfolios, where input data (e.g., trade data, market data) can arrive as streams or batches. The calculations are often independent for different tasks, allowing for parallelization.",
+      "Solution": "A serverless architecture is employed. Trade data streams into Amazon Kinesis Data Streams. AWS Lambda functions process these orders, netting positions and writing consolidated messages for each ticker to an Amazon SQS risk queue. Another set of Lambda functions, acting as the risk calculation engine, consume messages from SQS, perform the complex VaR calculations (potentially using simulated ticker price series data), and update VaR/PnL information in an Amazon ElastiCache risk cache. Finally, a Lambda function retrieves results from ElastiCache and stores them in a database (e.g., Amazon Aurora MySQL-Compatible) and S3 for persistence and reporting. The system leverages automatic scaling of Lambda functions and SQS queues to adapt to varying compute demands.",
+      "Result": "A highly scalable, reliable, and cost-optimized system for VaR calculations that can process large volumes of data in real-time or batch, dynamically adjusting compute resources to meet performance requirements and minimize costs.",
+      "Uses": "Financial risk management, quantitative finance, large-scale statistical modeling, simulation-based analysis, computational finance.",
+      "Description": NaN,
+      "cluster": 65
+    }
+  ],
+  [
+    {
+      "Pattern Name": "Unit Testing for AWS Glue ETL Jobs",
+      "Problem": "Replicating local unit tests for Python ETL jobs (especially PySpark-based) in a DevOps pipeline is difficult and time-consuming. This challenge can lead to disruptions and quality issues when modernizing mainframe ETL processes, impacting the reliability of data used in downstream applications, including ML models.",
+      "Context": "Organizations are modernizing mainframe ETL processes on AWS technology stacks. They need to ensure existing functionality remains intact, avoid disruptions to key application functionality when releasing new features, and maintain high-quality software. The ETL jobs are Python-based and run on AWS Glue, often involving PySpark.",
+      "Solution": "Implement a robust unit testing framework for AWS Glue Python ETL jobs within an AWS CodePipeline-driven CI/CD pipeline. This involves:\n1.  **Local Development:** Develop Python ETL jobs (e.g., `sample.py`) and corresponding unit test files (e.g., `test_sample.py`) using the `pytest` framework and the `Moto` Python library for mocking AWS services.\n2.  **Containerized Testing:** Utilize AWS Glue public Amazon ECR images (which include necessary binaries for PySpark-based ETL tasks) as the runtime environment for unit tests within AWS CodeBuild.\n3.  **CI/CD Integration:** Integrate the unit testing process into AWS CodePipeline. Source code (ETL job, tests, CloudFormation template) is stored in S3. CodeBuild executes the unit tests using the ECR image, publishes test reports, and proceeds to deployment only if all tests pass.\n4.  **Deployment:** Deploy the AWS Glue task using a CloudFormation template.",
+      "Result": "Simplified and automated unit testing for Python ETL jobs in AWS Glue, ensuring data quality and reliability. This helps avoid disruptions during feature releases, maintains high-quality software, and accelerates the modernization of ETL processes by integrating testing directly into the DevOps pipeline.",
+      "Uses": "Ensuring the correctness and reliability of data transformation logic in ETL jobs that prepare data for machine learning models. Maintaining data quality in complex data pipelines, especially during modernization efforts. Automating quality gates in MLOps workflows for data processing components. Validating PySpark-based ETL tasks before deployment.",
+      "Description": NaN,
+      "cluster": 66
+    }
+  ],
+  [
+    {
+      "Pattern Name": "IoT SiteWise Metadata for ML",
+      "Problem": "AWS IoT SiteWise metadata attributes (e.g., site, plant details, equipment identifiers) are not directly queryable, which hinders their use for machine learning insights and streamlining engineering tasks.",
+      "Context": "Industrial IoT environments where valuable operational metadata is stored in AWS IoT SiteWise asset models and hierarchies, and there's a need to leverage this data for advanced analytics and machine learning.",
+      "Solution": "Extract the metadata attributes from AWS IoT SiteWise assets using a Python script (implemented as an AWS Lambda function or AWS Glue job) and ingest them into an Amazon S3 data lake. An AWS Glue crawler then processes this data to create queryable tables in an AWS Glue Data Catalog, accessible via Amazon Athena using standard SQL.",
+      "Result": "The previously inaccessible IoT SiteWise metadata becomes queryable and can be combined with other datasets (like measurement data) for machine learning analysis, enhanced monitoring, and dashboarding (e.g., Amazon QuickSight), thereby providing additional business value and insights.",
+      "Uses": "Preparing industrial IoT metadata for machine learning model training, enriching operational dashboards with contextual asset information, enabling advanced analytics on equipment attributes.",
+      "Description": NaN,
+      "cluster": 67
+    }
+  ],
+  [
+    {
+      "Pattern Name": "Application Migration Segmentation and Recommendation",
+      "Problem": "Organizations need an efficient and automated way to assess application readiness for cloud migration, determine optimal migration strategies, and identify suitable cloud services from a large portfolio.",
+      "Context": "A large portfolio of applications exists, each with unique technical characteristics, source code, and business impact. Manual assessment for cloud migration is time-consuming and prone to inconsistencies. The goal is to generate actionable recommendations for migration paths (e.g., Rehost, Refactor, Rearchitect, Rebuild, Retire) and target cloud services.",
+      "Solution": "Implement an intelligent system that automatically segments applications into recommended migration categories and identifies potential cloud services. This system analyzes various factors including source code analysis, cloud readiness scores, software resiliency, and business impact data collected through surveys. The segmentation and recommendations are generated based on these characteristics.",
+      "Result": "Provides clear, data-driven recommendations for application migration strategies and suitable AWS services, enabling organizations to plan and develop a portfolio roadmap for cloud migration more effectively and consistently.",
+      "Uses": "Cloud migration planning, application portfolio management, automated assessment and advisory systems, strategic IT planning.",
+      "Description": NaN,
+      "cluster": 68
+    }
+  ],
+  [
+    {
+      "Pattern Name": "Hybrid Retrieval Strategies",
+      "Problem": "No single retrieval method (sparse/keyword-based or dense/semantic) is optimal for all query types, leading to suboptimal accuracy across diverse applications.",
+      "Context": "Modular RAG systems and other RAG architectures aiming to maximize accuracy across a wide range of query types and data characteristics.",
+      "Solution": "Combine different retrieval methods, such as sparse retrieval (e.g., BM25) with dense retrieval techniques (e.g., DPR). The system can dynamically choose or combine these strategies based on the query or context.",
+      "Result": "Maximized accuracy across diverse query types by leveraging the strengths of both lexical and semantic matching, offering flexibility and customization.",
+      "Uses": "Financial analytics, multi-domain tasks, any RAG system needing robust retrieval for varied queries.",
+      "Description": NaN,
+      "cluster": 72
+    }
+  ],
+  [
+    {
+      "Pattern Name": "Reflexion",
+      "Problem": "LLM agents might get stuck in loops, make suboptimal decisions, or fail to learn from past mistakes and experiences in multi-step reasoning or interactive environments, leading to inefficient or incorrect task completion.",
+      "Context": "Developing robust and adaptive LLM agents that can learn and improve their performance over time, especially in tasks requiring sequential decision-making, long-term planning, or problem-solving where trial and error is involved.",
+      "Solution": "Agents maintain a 'reflection' or 'memory' of past actions, observations, and outcomes. They use verbal reinforcement learning, where the LLM itself generates reflections on its performance, identifies errors, and learns strategies to avoid similar mistakes or improve future actions, guiding subsequent steps.",
+      "Result": "Enhanced agent robustness, improved decision-making, ability to learn from experience, reduced errors in multi-step tasks, and more efficient goal achievement.",
+      "Uses": "Complex problem-solving, interactive environments, long-running agentic tasks, game playing, and autonomous task execution.",
+      "Description": NaN,
+      "cluster": 73
+    }
+  ],
+  [
+    {
+      "Pattern Name": "LLM Agent Planning",
+      "Problem": "LLMs, by default, are primarily text generators. For complex tasks, agents need to break down problems, sequence actions, select appropriate tools, and anticipate outcomes, which requires explicit planning capabilities beyond simple next-token prediction.",
+      "Context": "Developing LLM-based agents that can autonomously perform multi-step tasks, achieve specific goals, navigate complex environments, or orchestrate workflows, rather than just responding to single prompts.",
+      "Solution": "Equip the LLM agent with a planning module or integrate planning capabilities directly into the LLM's reasoning process (e.g., using Chain-of-Thought, Tree-of-Thought, or ReAct prompts). This module generates a sequence of steps, sub-goals, or actions to achieve a larger objective, often involving tool selection, condition checking, and iterative refinement of the plan.",
+      "Result": "Agents can tackle complex, multi-step problems; improved task completion rates; more robust and goal-oriented behavior; and enhanced autonomy in task execution.",
+      "Uses": "Autonomous agents, task automation, complex problem-solving, robotics, workflow orchestration, code generation.",
+      "Description": NaN,
+      "cluster": 74
+    }
+  ],
+  [
+    {
+      "Pattern Name": "Human-in-the-Loop Behavior Correction (for Agentic LLMs)",
+      "Problem": "Agentic LLMs can exhibit undesirable behaviors such as hallucinating thoughts, getting stuck in repetitive loops, or making incorrect decisions, which are difficult to correct in complex, black-box systems.",
+      "Context": "Interactive agentic LLM systems (like ReAct) where human oversight, interpretability, and the ability to correct or guide the agent's behavior on-the-fly are crucial for alignment and task success.",
+      "Solution": "Provide a mechanism for humans to inspect and directly edit the agent's internal reasoning traces (e.g., 'thoughts' in ReAct). By modifying or adding specific thoughts, a human can steer the agent's subsequent reasoning and actions, effectively correcting its behavior without retraining.",
+      "Result": "Enables efficient and intuitive human control over agent behavior, allowing for on-the-go policy edits. Significantly simplifies the correction process compared to traditional methods, fostering better human-machine collaboration and alignment.",
+      "Uses": "Correcting and guiding agent behavior in interactive environments (e.g., ALFWorld).",
+      "Description": NaN,
+      "cluster": 75
+    }
+  ],
+  [
+    {
+      "Pattern Name": "ReActIM (ReAct with Implicit Monitoring / Incorrect Thought)",
+      "Problem": "When an agent's internal 'thought' process or understanding of the task state becomes misaligned with the actual environment or the true requirements of the task, it can lead to incorrect actions and task failure. The agent might implicitly assume a condition is met when it is not.",
+      "Context": "Interactive, multi-step tasks where the agent needs to track the state of objects (e.g., whether an item is 'clean') and perform actions based on these states. The agent's internal representation of the task's progress can diverge from reality.",
+      "Solution": "The agent attempts to follow a ReAct-like pattern of interleaving thoughts and actions. However, its 'Thought' generation might contain an incorrect assumption or a misinterpretation of the current state or required subgoals (e.g., 'think I need to find a clean knife' when the knife is not yet cleaned), leading it to skip necessary steps or repeat ineffective actions.",
+      "Result": "The agent gets stuck in loops, fails to complete the task, or performs actions that do not advance the goal because its internal reasoning is based on a flawed understanding of the task's progress or object states. It highlights the challenge of maintaining consistent internal state and reasoning.",
+      "Uses": "ALFWorld (e.g., 'put a clean knife in countertop' where the agent fails to clean the knife due to an incorrect thought).",
+      "Description": NaN,
+      "cluster": 77
+    }
+  ],
+  [
+    {
+      "Pattern Name": "Observation-Action Loop",
+      "Problem": "Agents need to interact dynamically with an environment, adapting their behavior based on real-time feedback, rather than executing a pre-defined, static plan that might not account for environmental changes or unexpected outcomes.",
+      "Context": "Any interactive environment where an agent's actions change the state of the world, and the agent needs to perceive these changes (observations) to inform subsequent decisions and make progress towards a goal.",
+      "Solution": "The agent continuously cycles through a process of performing an 'Action', receiving an 'Observation' from the environment as a direct result of that action, and then using this observation (potentially after an internal 'Thought' step) to determine the next 'Action'. This creates a continuous feedback loop.",
+      "Result": "Enables agents to navigate dynamic environments, react to unforeseen circumstances, correct errors, and make progress towards a goal through iterative interaction, leading to more robust and adaptive behavior.",
+      "Uses": "ALFWorld (e.g., 'go to fridge 1' -> 'The fridge 1 is closed' -> 'open fridge 1' -> 'You open the fridge 1...'), FEVER (e.g., 'Action 1 SearchBermuda Triangle' -> 'Observation 1 Reportedly haunted locations'), Webshop (e.g., 'Action search' -> 'Observation Back to Search...').",
+      "Description": NaN,
+      "cluster": 78
+    }
+  ]
+]
