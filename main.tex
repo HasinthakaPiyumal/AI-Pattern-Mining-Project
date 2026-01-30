@@ -1,0 +1,351 @@
+\documentclass[10pt, letterpaper]{article}
+
+% Packages:
+\usepackage[
+    ignoreheadfoot,
+    top=2 cm,
+    bottom=2 cm,
+    left=2 cm,
+    right=2 cm,
+    footskip=1.0 cm,
+]{geometry}
+
+\usepackage{titlesec}
+\usepackage{array}
+\usepackage[dvipsnames]{xcolor}
+\definecolor{primaryColor}{RGB}{0, 0, 0}
+
+\usepackage{enumitem}
+\usepackage{fontawesome5}
+\usepackage{amsmath}
+
+\usepackage[
+    pdftitle={Hasinthaka Piyumal's CV},
+    pdfauthor={Hasinthaka Piyumal},
+    pdfcreator={LaTeX with RenderCV},
+    colorlinks=true,
+    urlcolor=primaryColor
+]{hyperref}
+
+\usepackage[pscoord]{eso-pic}
+\usepackage{calc}
+\usepackage{bookmark}
+\usepackage{lastpage}
+\usepackage{changepage}
+\usepackage{paracol}
+\usepackage{ifthen}
+\usepackage{needspace}
+\usepackage{iftex}
+
+% Ensure that generate pdf is machine readable/ATS parsable:
+\ifPDFTeX
+    \input{glyphtounicode}
+    \pdfgentounicode=1
+    \usepackage[T1]{fontenc}
+    \usepackage[utf8]{inputenc}
+    \usepackage{lmodern}
+\fi
+
+\usepackage{charter}
+
+% Some settings:
+\raggedright
+\AtBeginEnvironment{adjustwidth}{\partopsep0pt}
+\pagestyle{empty}
+\setcounter{secnumdepth}{0}
+\setlength{\parindent}{0pt}
+\setlength{\topskip}{0pt}
+\setlength{\columnsep}{0.15cm}
+\pagenumbering{gobble}
+
+\titleformat{\section}{\needspace{4\baselineskip}\bfseries\large}{}{0pt}{}[\vspace{1pt}\titlerule]
+\titlespacing{\section}{-1pt}{0.3 cm}{0.2 cm}
+
+\renewcommand\labelitemi{$\vcenter{\hbox{\small$\bullet$}}$}
+
+\newenvironment{highlights}{
+    \begin{itemize}[
+        topsep=0.10 cm,
+        parsep=0.10 cm,
+        partopsep=0pt,
+        itemsep=0pt,
+        leftmargin=0 cm + 10pt
+    ]
+}{
+    \end{itemize}
+}
+
+\newenvironment{onecolentry}{
+    \begin{adjustwidth}{0 cm + 0.00001 cm}{0 cm + 0.00001 cm}
+}{
+    \end{adjustwidth}
+}
+
+% ✅ PERFECT & SAFE Two column CV entry
+% usage:
+% \begin{twocolentry}
+%   \twocolitem{LEFT TEXT}{RIGHT TEXT}
+% \end{twocolentry}
+\newenvironment{twocolentry}{
+    \begin{onecolentry}
+    \begin{tabular}{@{}p{\dimexpr\textwidth-4.5cm\relax}>{\raggedleft\arraybackslash}p{4.5cm}@{}}
+}{
+    \end{tabular}
+    \end{onecolentry}
+}
+
+\newcommand{\twocolitem}[2]{#1 & \textit{#2} \\}
+
+\newenvironment{header}{
+    \setlength{\topsep}{0pt}\par\kern\topsep\centering\linespread{1.5}
+}{
+    \par\kern\topsep
+}
+
+\let\hrefWithoutArrow\href
+
+\begin{document}
+
+\newcommand{\AND}{\unskip
+    \cleaders\copy\ANDbox\hskip\wd\ANDbox
+    \ignorespaces
+}
+\newsavebox\ANDbox
+\sbox\ANDbox{$|$}
+
+% ===================== HEADER =====================
+\begin{header}
+    \fontsize{25 pt}{25 pt}\selectfont Hasinthaka Piyumal
+
+    \vspace{5 pt}
+
+    \normalsize
+    \mbox{Colombo, Sri Lanka}%
+    \kern 5.0 pt%
+    \AND%
+    \kern 5.0 pt%
+    \mbox{\hrefWithoutArrow{mailto:hasinthakapiyumal@gmail.com}{hasinthakapiyumal@gmail.com}}%
+    \kern 5.0 pt%
+    \AND%
+    \kern 5.0 pt%
+    \mbox{\hrefWithoutArrow{tel:+94763215389}{+94 76 321 5389}}%
+    \kern 5.0 pt%
+    \AND%
+    \kern 5.0 pt%
+    \mbox{\hrefWithoutArrow{https://linkedin.com/in/hasinthaka-piyumal}{\faLinkedin\ \,/hasinthaka-piyumal}}%
+    \kern 5.0 pt%
+    \AND%
+    \kern 5.0 pt%
+    \mbox{\hrefWithoutArrow{https://kaggle.com/hasinthakapiyumal}{\faKaggle\ \,/hasinthakapiyumal}}%
+    \kern 5.0 pt%
+    \AND%
+    \kern 5.0 pt%
+    \mbox{\hrefWithoutArrow{https://github.com/HasinthakaPiyumal}{\faGithub\ \,/HasinthakaPiyumal}}%
+\end{header}
+
+\vspace{5pt}
+
+% ===================== SUMMARY =====================
+\section{Professional Summary}
+\begin{onecolentry}
+\textbf{AI-focused Software Engineer} and final-year \textbf{Software Engineering} undergraduate, currently an \textbf{Software Engineer (Research) Intern at WSO2}. Experienced in designing and evaluating \textbf{LLM-based systems} including \textbf{RAG pipelines}, \textbf{agentic workflows} (\textbf{LangChain}, \textbf{LangGraph}), and \textbf{model fine-tuning}. Strong foundation in end-to-end \textbf{data-to-model} development, from data preparation and experimentation to deployment-ready solutions. Passionate about building \textbf{reliable, enterprise-grade AI} products with measurable improvements in accuracy, robustness, and developer experience.
+\end{onecolentry}
+
+% ===================== EDUCATION =====================
+\section{Education}
+\begin{twocolentry}
+\twocolitem{\textbf{University of Kelaniya}, B.Sc.\ (Hons.) Software Engineering}{July 2023 -- Present}
+\end{twocolentry}
+
+\vspace{0.08 cm}
+\begin{onecolentry}
+    \begin{highlights}
+        \item CGPA: 3.25/4.0
+        \item Specialization: Data Science, Net-Centric Applications, Mobile Development.
+    \end{highlights}
+\end{onecolentry}
+
+% ===================== CERTIFICATIONS =====================
+\section{Certifications}
+\begin{onecolentry}
+    \begin{highlights}
+        \item \textbf{Machine Learning Professional Certificate} (IBM)
+        \item \textbf{Intro to Machine Learning} (Kaggle)
+        \item \textbf{Developing Explainable AI (XAI)} (Duke University)
+    \end{highlights}
+\end{onecolentry}
+
+% ===================== WORK EXPERIENCE =====================
+\section{Work Experience}
+
+\begin{twocolentry}
+\twocolitem{\textbf{Software Engineering Intern (AI Research)} | WSO2 (On-site)}{Jan 2024 -- Present}
+\end{twocolentry}
+
+\vspace{0.06 cm}
+\begin{onecolentry}
+    \textbf{Supervisor:} Dr. Srinath Perera
+\end{onecolentry}
+
+\vspace{0.04 cm}
+\begin{onecolentry}
+    \textbf{Project:} Patterns for Modern AI Application
+\end{onecolentry}
+
+\vspace{0.08 cm}
+\begin{onecolentry}
+    \begin{highlights}
+        \item Built an end-to-end AI pattern mining and code intelligence pipeline, synthesizing \textbf{769} pattern candidates from \textbf{44} sources into a \textbf{14-class taxonomy} using \textbf{DBSCAN} clustering and LLM-assisted refinement.
+        \item Implemented large-scale static analysis across \textbf{100} GitHub AI repositories by generating procedure call graphs and extracting \textbf{2,442} \textbf{code communities} via \textbf{Louvain} community detection for pattern-aware chunking.
+        \item Designed \textbf{LangChain/LangGraph multi-agent workflows} to \textbf{plan, generate, and validate} domain-specific \textbf{synthetic code samples} for identified pattern classes, improving bootstrapping data quality for classification.
+        \item Developed a \textbf{human-in-the-loop active learning} workflow using \textbf{uncertainty/margin sampling} to optimize labeling and improve multi-class classification quality.
+        \item Fine-tuned \textbf{CodeBERT} for AI pattern classification and benchmarked against classical baselines (\textbf{SVC}, \textbf{KNN}, \textbf{Logistic Regression}) using \textbf{k-fold cross-validation} and ensemble weighting.
+        \item Estimated pattern prevalence using \textbf{confusion-matrix inversion} and produced confidence bounds via \textbf{multinomial bootstrapping} and \textbf{Monte Carlo simulation}.
+    \end{highlights}
+\end{onecolentry}
+
+\vspace{0.08 cm}
+\begin{onecolentry}
+\textbf{Tech:} Python, LangChain, LangGraph, LLM agents, CodeBERT, Transformers, Fine-tuning, Static Analysis, Call Graphs, Louvain, DBSCAN, UMAP, Embeddings, Active Learning, Uncertainty Sampling, SVC, KNN, Logistic Regression, Ensemble Learning, k-fold Cross-Validation, Bootstrapping, Monte Carlo Simulation
+\end{onecolentry}
+
+\vspace{0.18 cm}
+
+\begin{twocolentry}
+\twocolitem{\textbf{Full Stack Developer (Freelance)} | Self Employed}{Jan 2023 -- Present}
+\end{twocolentry}
+
+\vspace{0.08 cm}
+\begin{onecolentry}
+    \begin{highlights}
+        \item \textbf{Northstar-FaceUnlock:} Engineered a high-security biometric entry system utilizing \textbf{TensorFlow Lite} and \textbf{MobileFaceNet} for edge-based facial recognition. Implemented \textbf{anti-spoofing algorithms} to detect and mitigate presentation attacks (face spoofing) in real-time.
+        \item \textbf{Northstar Ecosystem:} Architected and deployed a comprehensive cross-platform fitness management suite using \textbf{Flutter}. Integrated \textbf{WebRTC} for in-app calling, \textbf{Socket.io} for synchronous messaging, and \textbf{HealthKit/Google Fit} for telemetry data synchronization.
+        \item Optimized backend integration for financial transactions (Gym Banks) and appointment scheduling, ensuring scalability for \textbf{App Store} and \textbf{Play Store} production environments.
+    \end{highlights}
+\end{onecolentry}
+
+\vspace{0.08 cm}
+\begin{onecolentry}
+\textbf{Tech:} Flutter, Dart, TensorFlow Lite, MobileFaceNet, Computer Vision, Firebase, WebRTC, WebSocket, Health Data API, RESTful APIs
+\end{onecolentry}
+
+% ===================== RESEARCH =====================
+\section{Research \& Publications}
+
+\begin{twocolentry}
+\twocolitem{\textbf{Optimizing Autonomous Agent Workflows in Enterprise Systems}}{Under Review}
+\end{twocolentry}
+
+\vspace{0.08 cm}
+\begin{onecolentry}
+\textbf{Authors:} \hrefWithoutArrow{https://linkedin.com/in/hasinthaka-piyumal}{\textbf{Hasinthaka Piyumal}}, \hrefWithoutArrow{https://scholar.google.com}{[Supervisor Name]}
+\end{onecolentry}
+
+\vspace{0.08 cm}
+\begin{onecolentry}
+    \begin{highlights}
+        \item \textbf{Scope:} Proposed a novel architectural pattern for reducing hallucination in multi-agent systems.
+        \item \textbf{Analysis:} Conducted comparative analysis of graph-based vs.\ linear agent workflows using LangGraph.
+    \end{highlights}
+\end{onecolentry}
+
+% ===================== TECHNICAL PROJECTS =====================
+\section{Technical Projects}
+
+\begin{twocolentry}
+\twocolitem{\textbf{EvaluationHour.ai -- Mock Interview Platform}}{April 2025 -- Present}
+\end{twocolentry}
+
+\vspace{0.08 cm}
+\begin{onecolentry}
+    \begin{highlights}
+        \item Building an AI-powered platform for mock interviews with real-time chat and voice interactions.
+        \item Uses \textbf{LangChain} to connect with LLMs, \textbf{Pinecone} for vector embeddings, and MongoDB.
+        \item \textbf{Tech Stack:} React.js, Python, FastAPI, LangChain, Pinecone, WebSockets.
+    \end{highlights}
+\end{onecolentry}
+
+\vspace{0.18 cm}
+
+\begin{twocolentry}
+\twocolitem{\textbf{FuelMaster -- Fuel Management System} (Academic)}{Jan 2025 -- Feb 2025}
+\end{twocolentry}
+
+\vspace{0.08 cm}
+\begin{onecolentry}
+    \begin{highlights}
+        \item Developed a full-stack fuel management system with QR code generation and quota updates.
+        \item \textbf{Tech Stack:} Spring Boot, PostgreSQL, React.js, Flutter, Tailwind CSS.
+    \end{highlights}
+\end{onecolentry}
+
+% ===================== HONORS & AWARDS =====================
+\section{Honors \& Awards}
+
+\begin{twocolentry}
+\twocolitem{\textbf{1st Runner Up} | Junior Hack 2025 Intra University Hackathon (SESA, UoK)}{2025}
+\end{twocolentry}
+
+\begin{twocolentry}
+\twocolitem{\textbf{Finalist} | CryptX 1.0 Hackathon (ICTS, USJ)}{2025}
+\end{twocolentry}
+
+% ===================== VOLUNTEERING =====================
+\section{Leadership \& Volunteering}
+
+\begin{twocolentry}
+\twocolitem{\textbf{Web Master} | Software Engineering Students’ Association (SESA)}{July 2024 -- Present}
+\end{twocolentry}
+
+\vspace{0.08 cm}
+\begin{onecolentry}
+    \begin{highlights}
+        \item Manage and maintain the official SESA website and digital registration systems.
+    \end{highlights}
+\end{onecolentry}
+
+% ===================== SKILLS =====================
+\section{Skills}
+
+\begin{onecolentry}
+\textbf{Programming:} Python, Go, TypeScript, Java, C\#, Dart
+\end{onecolentry}
+
+\vspace{0.08 cm}
+\begin{onecolentry}
+\textbf{AI \& ML:} LangChain, LangGraph, RAG, PyTorch, TensorFlow, Vector DBs (Pinecone, ChromaDB)
+\end{onecolentry}
+
+\vspace{0.08 cm}
+\begin{onecolentry}
+\textbf{Development:} React.js, Next.js, Flutter, FastAPI, Spring Boot, Unity
+\end{onecolentry}
+
+\vspace{0.08 cm}
+\begin{onecolentry}
+\textbf{Tools:} Docker, Azure, Firebase, Kafka, Git, Linux
+\end{onecolentry}
+
+\vspace{0.08 cm}
+\begin{onecolentry}
+\textbf{Spoken Languages:} Sinhala (Native), English (Professional Proficiency)
+\end{onecolentry}
+
+% ===================== REFERENCES =====================
+\section{References}
+
+\begin{onecolentry}
+\begin{paracol}{2}
+    \textbf{Dr. Nalin Warnajith}\\
+    Head / Senior Lecturer, Software Engineering Teaching Unit, University of Kelaniya\\
+    \hrefWithoutArrow{mailto:nwarnajith@gmail.com}{nwarnajith@gmail.com}
+
+    \switchcolumn
+
+    \textbf{Dr.\ (Mrs.) I.\ U.\ Hewapathirana}\\
+    Senior Lecturer, Software Engineering Teaching Unit, University of Kelaniya\\
+    \hrefWithoutArrow{mailto:ihewapathirana@kln.ac.lk}{ihewapathirana@kln.ac.lk}
+\end{paracol}
+\end{onecolentry}
+
+\end{document}

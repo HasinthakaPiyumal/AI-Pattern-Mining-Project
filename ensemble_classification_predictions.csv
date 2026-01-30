@@ -1,0 +1,331 @@
+file,true_label,weighted_pred
+https://github.com/HasinthakaPiyumal/AI-Pattern-Mining-Project/tree/main/notebooks/result/repo_callgraph_clusters/3DOD_thesis/cluster_0.py,LLM-based Multimodal Generative Prompting,none
+https://github.com/HasinthakaPiyumal/AI-Pattern-Mining-Project/tree/main/notebooks/result/repo_callgraph_clusters/3DOD_thesis/cluster_1.py,none,LLM-based Multimodal Generative Prompting
+https://github.com/HasinthakaPiyumal/AI-Pattern-Mining-Project/tree/main/notebooks/result/repo_callgraph_clusters/3DOD_thesis/cluster_10.py,LLM-based Multimodal Generative Prompting,LLM-based Multimodal Generative Prompting
+https://github.com/HasinthakaPiyumal/AI-Pattern-Mining-Project/tree/main/notebooks/result/repo_callgraph_clusters/3DOD_thesis/cluster_3.py,Preprocessing Text and Numerical Data,Preprocessing Text and Numerical Data
+https://github.com/HasinthakaPiyumal/AI-Pattern-Mining-Project/tree/main/notebooks/result/repo_callgraph_clusters/3DOD_thesis/cluster_4.py,none,LLM-based Multimodal Generative Prompting
+https://github.com/HasinthakaPiyumal/AI-Pattern-Mining-Project/tree/main/notebooks/result/repo_callgraph_clusters/3DOD_thesis/cluster_5.py,none,LLM-based Multimodal Generative Prompting
+https://github.com/HasinthakaPiyumal/AI-Pattern-Mining-Project/tree/main/notebooks/result/repo_callgraph_clusters/3DOD_thesis/cluster_8.py,LLM-based Multimodal Generative Prompting,LLM-based Multimodal Generative Prompting
+https://github.com/HasinthakaPiyumal/AI-Pattern-Mining-Project/tree/main/notebooks/result/repo_callgraph_clusters/3DOD_thesis/cluster_9.py,LLM-based Multimodal Generative Prompting,LLM-based Multimodal Generative Prompting
+https://github.com/HasinthakaPiyumal/AI-Pattern-Mining-Project/tree/main/notebooks/result/repo_callgraph_clusters/AIlice/cluster_1.py,Agent Architecture,Using Tools with LLMs
+https://github.com/HasinthakaPiyumal/AI-Pattern-Mining-Project/tree/main/notebooks/result/repo_callgraph_clusters/AIlice/cluster_10.py,Model Abstraction,Model Abstraction
+https://github.com/HasinthakaPiyumal/AI-Pattern-Mining-Project/tree/main/notebooks/result/repo_callgraph_clusters/AIlice/cluster_11.py,Model Abstraction,Model Abstraction
+https://github.com/HasinthakaPiyumal/AI-Pattern-Mining-Project/tree/main/notebooks/result/repo_callgraph_clusters/AIlice/cluster_14.py,none,none
+https://github.com/HasinthakaPiyumal/AI-Pattern-Mining-Project/tree/main/notebooks/result/repo_callgraph_clusters/AIlice/cluster_15.py,none,none
+https://github.com/HasinthakaPiyumal/AI-Pattern-Mining-Project/tree/main/notebooks/result/repo_callgraph_clusters/AIlice/cluster_16.py,Model Abstraction,Model Abstraction
+https://github.com/HasinthakaPiyumal/AI-Pattern-Mining-Project/tree/main/notebooks/result/repo_callgraph_clusters/AIlice/cluster_17.py,Using Tools with LLMs,none
+https://github.com/HasinthakaPiyumal/AI-Pattern-Mining-Project/tree/main/notebooks/result/repo_callgraph_clusters/AIlice/cluster_19.py,none,Using Tools with LLMs
+https://github.com/HasinthakaPiyumal/AI-Pattern-Mining-Project/tree/main/notebooks/result/repo_callgraph_clusters/AIlice/cluster_2.py,Model Abstraction,Model Abstraction
+https://github.com/HasinthakaPiyumal/AI-Pattern-Mining-Project/tree/main/notebooks/result/repo_callgraph_clusters/AIlice/cluster_21.py,LLM-based Multimodal Generative Prompting,LLM-based Multimodal Generative Prompting
+https://github.com/HasinthakaPiyumal/AI-Pattern-Mining-Project/tree/main/notebooks/result/repo_callgraph_clusters/AIlice/cluster_24.py,Using Tools with LLMs,Retrieval Augmented Generation(RAG)
+https://github.com/HasinthakaPiyumal/AI-Pattern-Mining-Project/tree/main/notebooks/result/repo_callgraph_clusters/AIlice/cluster_25.py,Using Tools with LLMs,Using Tools with LLMs
+https://github.com/HasinthakaPiyumal/AI-Pattern-Mining-Project/tree/main/notebooks/result/repo_callgraph_clusters/AIlice/cluster_26.py,LLM-based Multimodal Generative Prompting,LLM-based Multimodal Generative Prompting
+https://github.com/HasinthakaPiyumal/AI-Pattern-Mining-Project/tree/main/notebooks/result/repo_callgraph_clusters/AIlice/cluster_27.py,LLM-based Multimodal Generative Prompting,LLM-based Multimodal Generative Prompting
+https://github.com/HasinthakaPiyumal/AI-Pattern-Mining-Project/tree/main/notebooks/result/repo_callgraph_clusters/AIlice/cluster_28.py,LLM-based Multimodal Generative Prompting,LLM-based Multimodal Generative Prompting
+https://github.com/HasinthakaPiyumal/AI-Pattern-Mining-Project/tree/main/notebooks/result/repo_callgraph_clusters/AIlice/cluster_29.py,LLM-based Multimodal Generative Prompting,LLM-based Multimodal Generative Prompting
+https://github.com/HasinthakaPiyumal/AI-Pattern-Mining-Project/tree/main/notebooks/result/repo_callgraph_clusters/AIlice/cluster_3.py,Agent Architecture,Using Tools with LLMs
+https://github.com/HasinthakaPiyumal/AI-Pattern-Mining-Project/tree/main/notebooks/result/repo_callgraph_clusters/AIlice/cluster_30.py,Using Tools with LLMs,Using Tools with LLMs
+https://github.com/HasinthakaPiyumal/AI-Pattern-Mining-Project/tree/main/notebooks/result/repo_callgraph_clusters/AIlice/cluster_33.py,Using Tools with LLMs,Agent Architecture
+https://github.com/HasinthakaPiyumal/AI-Pattern-Mining-Project/tree/main/notebooks/result/repo_callgraph_clusters/AIlice/cluster_34.py,Agent Architecture,Using Tools with LLMs
+https://github.com/HasinthakaPiyumal/AI-Pattern-Mining-Project/tree/main/notebooks/result/repo_callgraph_clusters/AIlice/cluster_35.py,Using Tools with LLMs,none
+https://github.com/HasinthakaPiyumal/AI-Pattern-Mining-Project/tree/main/notebooks/result/repo_callgraph_clusters/AIlice/cluster_36.py,Preprocessing Text and Numerical Data,none
+https://github.com/HasinthakaPiyumal/AI-Pattern-Mining-Project/tree/main/notebooks/result/repo_callgraph_clusters/AIlice/cluster_37.py,none,Preprocessing Text and Numerical Data
+https://github.com/HasinthakaPiyumal/AI-Pattern-Mining-Project/tree/main/notebooks/result/repo_callgraph_clusters/AIlice/cluster_38.py,LLM-based Multimodal Generative Prompting,LLM-based Multimodal Generative Prompting
+https://github.com/HasinthakaPiyumal/AI-Pattern-Mining-Project/tree/main/notebooks/result/repo_callgraph_clusters/AIlice/cluster_4.py,Using Tools with LLMs,Using Tools with LLMs
+https://github.com/HasinthakaPiyumal/AI-Pattern-Mining-Project/tree/main/notebooks/result/repo_callgraph_clusters/AIlice/cluster_5.py,Retrieval Augmented Generation(RAG),Using Tools with LLMs
+https://github.com/HasinthakaPiyumal/AI-Pattern-Mining-Project/tree/main/notebooks/result/repo_callgraph_clusters/AIlice/cluster_6.py,Model Abstraction,Model Abstraction
+https://github.com/HasinthakaPiyumal/AI-Pattern-Mining-Project/tree/main/notebooks/result/repo_callgraph_clusters/AIlice/cluster_7.py,Using Tools with LLMs,Model Abstraction
+https://github.com/HasinthakaPiyumal/AI-Pattern-Mining-Project/tree/main/notebooks/result/repo_callgraph_clusters/AIlice/cluster_8.py,Agent Architecture,Model Abstraction
+https://github.com/HasinthakaPiyumal/AI-Pattern-Mining-Project/tree/main/notebooks/result/repo_callgraph_clusters/AIlice/cluster_9.py,LLM-based Multimodal Generative Prompting,none
+https://github.com/HasinthakaPiyumal/AI-Pattern-Mining-Project/tree/main/notebooks/result/repo_callgraph_clusters/AgentBench/cluster_10.py,Using Tools with LLMs,Retrieval Augmented Generation(RAG)
+https://github.com/HasinthakaPiyumal/AI-Pattern-Mining-Project/tree/main/notebooks/result/repo_callgraph_clusters/AgentBench/cluster_11.py,Using Tools with LLMs,none
+https://github.com/HasinthakaPiyumal/AI-Pattern-Mining-Project/tree/main/notebooks/result/repo_callgraph_clusters/AgentBench/cluster_20.py,Using Tools with LLMs,Using Tools with LLMs
+https://github.com/HasinthakaPiyumal/AI-Pattern-Mining-Project/tree/main/notebooks/result/repo_callgraph_clusters/AgentBench/cluster_7.py,Using Tools with LLMs,Preprocessing Text and Numerical Data
+https://github.com/HasinthakaPiyumal/AI-Pattern-Mining-Project/tree/main/notebooks/result/repo_callgraph_clusters/AgentBench/cluster_9.py,Preprocessing Text and Numerical Data,none
+https://github.com/HasinthakaPiyumal/AI-Pattern-Mining-Project/tree/main/notebooks/result/repo_callgraph_clusters/ArxivDigest/cluster_0.py,Retrieval Augmented Generation(RAG),Retrieval Augmented Generation(RAG)
+https://github.com/HasinthakaPiyumal/AI-Pattern-Mining-Project/tree/main/notebooks/result/repo_callgraph_clusters/ArxivDigest/cluster_2.py,Preprocessing Text and Numerical Data,Preprocessing Text and Numerical Data
+https://github.com/HasinthakaPiyumal/AI-Pattern-Mining-Project/tree/main/notebooks/result/repo_callgraph_clusters/Automatic_Speech_Recognition/cluster_0.py,Preprocessing Text and Numerical Data,Preprocessing Text and Numerical Data
+https://github.com/HasinthakaPiyumal/AI-Pattern-Mining-Project/tree/main/notebooks/result/repo_callgraph_clusters/Automatic_Speech_Recognition/cluster_1.py,Forecasting with Classical Models,Preprocessing Text and Numerical Data
+https://github.com/HasinthakaPiyumal/AI-Pattern-Mining-Project/tree/main/notebooks/result/repo_callgraph_clusters/Automatic_Speech_Recognition/cluster_10.py,LLM-based Multimodal Generative Prompting,LLM-based Multimodal Generative Prompting
+https://github.com/HasinthakaPiyumal/AI-Pattern-Mining-Project/tree/main/notebooks/result/repo_callgraph_clusters/Automatic_Speech_Recognition/cluster_12.py,Forecasting with Classical Models,Forecasting with Classical Models
+https://github.com/HasinthakaPiyumal/AI-Pattern-Mining-Project/tree/main/notebooks/result/repo_callgraph_clusters/Automatic_Speech_Recognition/cluster_14.py,Forecasting with Classical Models,LLM-based Multimodal Generative Prompting
+https://github.com/HasinthakaPiyumal/AI-Pattern-Mining-Project/tree/main/notebooks/result/repo_callgraph_clusters/Automatic_Speech_Recognition/cluster_16.py,LLM-based Multimodal Generative Prompting,Preprocessing Text and Numerical Data
+https://github.com/HasinthakaPiyumal/AI-Pattern-Mining-Project/tree/main/notebooks/result/repo_callgraph_clusters/Automatic_Speech_Recognition/cluster_18.py,Preprocessing Text and Numerical Data,Preprocessing Text and Numerical Data
+https://github.com/HasinthakaPiyumal/AI-Pattern-Mining-Project/tree/main/notebooks/result/repo_callgraph_clusters/Automatic_Speech_Recognition/cluster_4.py,Preprocessing Text and Numerical Data,Forecasting with Classical Models
+https://github.com/HasinthakaPiyumal/AI-Pattern-Mining-Project/tree/main/notebooks/result/repo_callgraph_clusters/Automatic_Speech_Recognition/cluster_5.py,Forecasting with Classical Models,Forecasting with Classical Models
+https://github.com/HasinthakaPiyumal/AI-Pattern-Mining-Project/tree/main/notebooks/result/repo_callgraph_clusters/Automatic_Speech_Recognition/cluster_6.py,Preprocessing Text and Numerical Data,Preprocessing Text and Numerical Data
+https://github.com/HasinthakaPiyumal/AI-Pattern-Mining-Project/tree/main/notebooks/result/repo_callgraph_clusters/Automatic_Speech_Recognition/cluster_7.py,Preprocessing Text and Numerical Data,Preprocessing Text and Numerical Data
+https://github.com/HasinthakaPiyumal/AI-Pattern-Mining-Project/tree/main/notebooks/result/repo_callgraph_clusters/Automatic_Speech_Recognition/cluster_9.py,none,Forecasting with Classical Models
+https://github.com/HasinthakaPiyumal/AI-Pattern-Mining-Project/tree/main/notebooks/result/repo_callgraph_clusters/Autonomous-Driving-in-Carla-using-Deep-Reinforcement-Learning/cluster_0.py,Forecasting with Classical Models,Forecasting with Classical Models
+https://github.com/HasinthakaPiyumal/AI-Pattern-Mining-Project/tree/main/notebooks/result/repo_callgraph_clusters/Autonomous-Driving-in-Carla-using-Deep-Reinforcement-Learning/cluster_1.py,Forecasting with Classical Models,Forecasting with Classical Models
+https://github.com/HasinthakaPiyumal/AI-Pattern-Mining-Project/tree/main/notebooks/result/repo_callgraph_clusters/Autonomous-Driving-in-Carla-using-Deep-Reinforcement-Learning/cluster_4.py,Forecasting with Classical Models,Forecasting with Classical Models
+https://github.com/HasinthakaPiyumal/AI-Pattern-Mining-Project/tree/main/notebooks/result/repo_callgraph_clusters/Autonomous-Driving-in-Carla-using-Deep-Reinforcement-Learning/cluster_5.py,Using Tools with LLMs,none
+https://github.com/HasinthakaPiyumal/AI-Pattern-Mining-Project/tree/main/notebooks/result/repo_callgraph_clusters/Autonomous-Driving-in-Carla-using-Deep-Reinforcement-Learning/cluster_7.py,Forecasting with Classical Models,Forecasting with Classical Models
+https://github.com/HasinthakaPiyumal/AI-Pattern-Mining-Project/tree/main/notebooks/result/repo_callgraph_clusters/CAAFE/cluster_2.py,Preprocessing Text and Numerical Data,Retrieval Augmented Generation(RAG)
+https://github.com/HasinthakaPiyumal/AI-Pattern-Mining-Project/tree/main/notebooks/result/repo_callgraph_clusters/CAAFE/cluster_3.py,none,LLM-based Multimodal Generative Prompting
+https://github.com/HasinthakaPiyumal/AI-Pattern-Mining-Project/tree/main/notebooks/result/repo_callgraph_clusters/CAAFE/cluster_8.py,Preprocessing Text and Numerical Data,Preprocessing Text and Numerical Data
+https://github.com/HasinthakaPiyumal/AI-Pattern-Mining-Project/tree/main/notebooks/result/repo_callgraph_clusters/ChatSim/cluster_10.py,LLM-based Multimodal Generative Prompting,LLM-based Multimodal Generative Prompting
+https://github.com/HasinthakaPiyumal/AI-Pattern-Mining-Project/tree/main/notebooks/result/repo_callgraph_clusters/ChatSim/cluster_103.py,Forecasting with Classical Models,Forecasting with Classical Models
+https://github.com/HasinthakaPiyumal/AI-Pattern-Mining-Project/tree/main/notebooks/result/repo_callgraph_clusters/ChatSim/cluster_106.py,Forecasting with Classical Models,Forecasting with Classical Models
+https://github.com/HasinthakaPiyumal/AI-Pattern-Mining-Project/tree/main/notebooks/result/repo_callgraph_clusters/ChatSim/cluster_107.py,Preprocessing Text and Numerical Data,Preprocessing Text and Numerical Data
+https://github.com/HasinthakaPiyumal/AI-Pattern-Mining-Project/tree/main/notebooks/result/repo_callgraph_clusters/ChatSim/cluster_114.py,Forecasting with Classical Models,Forecasting with Classical Models
+https://github.com/HasinthakaPiyumal/AI-Pattern-Mining-Project/tree/main/notebooks/result/repo_callgraph_clusters/ChatSim/cluster_12.py,none,LLM-based Multimodal Generative Prompting
+https://github.com/HasinthakaPiyumal/AI-Pattern-Mining-Project/tree/main/notebooks/result/repo_callgraph_clusters/ChatSim/cluster_139.py,LLM-based Multimodal Generative Prompting,Forecasting with Classical Models
+https://github.com/HasinthakaPiyumal/AI-Pattern-Mining-Project/tree/main/notebooks/result/repo_callgraph_clusters/ChatSim/cluster_143.py,none,LLM-based Multimodal Generative Prompting
+https://github.com/HasinthakaPiyumal/AI-Pattern-Mining-Project/tree/main/notebooks/result/repo_callgraph_clusters/ChatSim/cluster_146.py,Forecasting with Classical Models,Forecasting with Classical Models
+https://github.com/HasinthakaPiyumal/AI-Pattern-Mining-Project/tree/main/notebooks/result/repo_callgraph_clusters/ChatSim/cluster_159.py,LLM-based Multimodal Generative Prompting,LLM-based Multimodal Generative Prompting
+https://github.com/HasinthakaPiyumal/AI-Pattern-Mining-Project/tree/main/notebooks/result/repo_callgraph_clusters/ChatSim/cluster_161.py,LLM-based Multimodal Generative Prompting,LLM-based Multimodal Generative Prompting
+https://github.com/HasinthakaPiyumal/AI-Pattern-Mining-Project/tree/main/notebooks/result/repo_callgraph_clusters/ChatSim/cluster_4.py,Forecasting with Classical Models,Forecasting with Classical Models
+https://github.com/HasinthakaPiyumal/AI-Pattern-Mining-Project/tree/main/notebooks/result/repo_callgraph_clusters/ChatSim/cluster_41.py,none,Forecasting with Classical Models
+https://github.com/HasinthakaPiyumal/AI-Pattern-Mining-Project/tree/main/notebooks/result/repo_callgraph_clusters/ChatSim/cluster_50.py,LLM-based Multimodal Generative Prompting,Forecasting with Classical Models
+https://github.com/HasinthakaPiyumal/AI-Pattern-Mining-Project/tree/main/notebooks/result/repo_callgraph_clusters/ChatSim/cluster_51.py,Forecasting with Classical Models,LLM-based Multimodal Generative Prompting
+https://github.com/HasinthakaPiyumal/AI-Pattern-Mining-Project/tree/main/notebooks/result/repo_callgraph_clusters/ChatSim/cluster_53.py,LLM-based Multimodal Generative Prompting,LLM-based Multimodal Generative Prompting
+https://github.com/HasinthakaPiyumal/AI-Pattern-Mining-Project/tree/main/notebooks/result/repo_callgraph_clusters/ChatSim/cluster_6.py,LLM-based Multimodal Generative Prompting,LLM-based Multimodal Generative Prompting
+https://github.com/HasinthakaPiyumal/AI-Pattern-Mining-Project/tree/main/notebooks/result/repo_callgraph_clusters/ChatSim/cluster_63.py,none,Preprocessing Text and Numerical Data
+https://github.com/HasinthakaPiyumal/AI-Pattern-Mining-Project/tree/main/notebooks/result/repo_callgraph_clusters/ChatSim/cluster_67.py,LLM-based Multimodal Generative Prompting,LLM-based Multimodal Generative Prompting
+https://github.com/HasinthakaPiyumal/AI-Pattern-Mining-Project/tree/main/notebooks/result/repo_callgraph_clusters/ChatSim/cluster_76.py,Forecasting with Classical Models,LLM-based Multimodal Generative Prompting
+https://github.com/HasinthakaPiyumal/AI-Pattern-Mining-Project/tree/main/notebooks/result/repo_callgraph_clusters/ChatSim/cluster_79.py,Forecasting with Classical Models,Forecasting with Classical Models
+https://github.com/HasinthakaPiyumal/AI-Pattern-Mining-Project/tree/main/notebooks/result/repo_callgraph_clusters/ChatSim/cluster_84.py,Forecasting with Classical Models,Forecasting with Classical Models
+https://github.com/HasinthakaPiyumal/AI-Pattern-Mining-Project/tree/main/notebooks/result/repo_callgraph_clusters/ChatSim/cluster_96.py,Forecasting with Classical Models,Forecasting with Classical Models
+https://github.com/HasinthakaPiyumal/AI-Pattern-Mining-Project/tree/main/notebooks/result/repo_callgraph_clusters/ChatSim/cluster_97.py,Forecasting with Classical Models,Forecasting with Classical Models
+https://github.com/HasinthakaPiyumal/AI-Pattern-Mining-Project/tree/main/notebooks/result/repo_callgraph_clusters/Copilot-Agent-365/cluster_1.py,Retrieval Augmented Generation(RAG),Using Tools with LLMs
+https://github.com/HasinthakaPiyumal/AI-Pattern-Mining-Project/tree/main/notebooks/result/repo_callgraph_clusters/Copilot-Agent-365/cluster_2.py,Using Tools with LLMs,Agent Architecture
+https://github.com/HasinthakaPiyumal/AI-Pattern-Mining-Project/tree/main/notebooks/result/repo_callgraph_clusters/CyberScraper-2077/cluster_5.py,none,Preprocessing Text and Numerical Data
+https://github.com/HasinthakaPiyumal/AI-Pattern-Mining-Project/tree/main/notebooks/result/repo_callgraph_clusters/CyberScraper-2077/cluster_7.py,Model Abstraction,Model Abstraction
+https://github.com/HasinthakaPiyumal/AI-Pattern-Mining-Project/tree/main/notebooks/result/repo_callgraph_clusters/DLTA-AI/cluster_0.py,LLM-based Multimodal Generative Prompting,LLM-based Multimodal Generative Prompting
+https://github.com/HasinthakaPiyumal/AI-Pattern-Mining-Project/tree/main/notebooks/result/repo_callgraph_clusters/DLTA-AI/cluster_100.py,LLM-based Multimodal Generative Prompting,LLM-based Multimodal Generative Prompting
+https://github.com/HasinthakaPiyumal/AI-Pattern-Mining-Project/tree/main/notebooks/result/repo_callgraph_clusters/DLTA-AI/cluster_110.py,Forecasting with Classical Models,Preprocessing Text and Numerical Data
+https://github.com/HasinthakaPiyumal/AI-Pattern-Mining-Project/tree/main/notebooks/result/repo_callgraph_clusters/DLTA-AI/cluster_112.py,Preprocessing Text and Numerical Data,Preprocessing Text and Numerical Data
+https://github.com/HasinthakaPiyumal/AI-Pattern-Mining-Project/tree/main/notebooks/result/repo_callgraph_clusters/DLTA-AI/cluster_113.py,Preprocessing Text and Numerical Data,Preprocessing Text and Numerical Data
+https://github.com/HasinthakaPiyumal/AI-Pattern-Mining-Project/tree/main/notebooks/result/repo_callgraph_clusters/DLTA-AI/cluster_116.py,Forecasting with Classical Models,Forecasting with Classical Models
+https://github.com/HasinthakaPiyumal/AI-Pattern-Mining-Project/tree/main/notebooks/result/repo_callgraph_clusters/DLTA-AI/cluster_121.py,LLM-based Multimodal Generative Prompting,LLM-based Multimodal Generative Prompting
+https://github.com/HasinthakaPiyumal/AI-Pattern-Mining-Project/tree/main/notebooks/result/repo_callgraph_clusters/DLTA-AI/cluster_2.py,none,none
+https://github.com/HasinthakaPiyumal/AI-Pattern-Mining-Project/tree/main/notebooks/result/repo_callgraph_clusters/DLTA-AI/cluster_24.py,LLM-based Multimodal Generative Prompting,LLM-based Multimodal Generative Prompting
+https://github.com/HasinthakaPiyumal/AI-Pattern-Mining-Project/tree/main/notebooks/result/repo_callgraph_clusters/DLTA-AI/cluster_26.py,none,Forecasting with Classical Models
+https://github.com/HasinthakaPiyumal/AI-Pattern-Mining-Project/tree/main/notebooks/result/repo_callgraph_clusters/DLTA-AI/cluster_28.py,LLM-based Multimodal Generative Prompting,LLM-based Multimodal Generative Prompting
+https://github.com/HasinthakaPiyumal/AI-Pattern-Mining-Project/tree/main/notebooks/result/repo_callgraph_clusters/DLTA-AI/cluster_31.py,Forecasting with Classical Models,Forecasting with Classical Models
+https://github.com/HasinthakaPiyumal/AI-Pattern-Mining-Project/tree/main/notebooks/result/repo_callgraph_clusters/DLTA-AI/cluster_33.py,Forecasting with Classical Models,LLM-based Multimodal Generative Prompting
+https://github.com/HasinthakaPiyumal/AI-Pattern-Mining-Project/tree/main/notebooks/result/repo_callgraph_clusters/DLTA-AI/cluster_36.py,Preprocessing Text and Numerical Data,LLM-based Multimodal Generative Prompting
+https://github.com/HasinthakaPiyumal/AI-Pattern-Mining-Project/tree/main/notebooks/result/repo_callgraph_clusters/DLTA-AI/cluster_37.py,LLM-based Multimodal Generative Prompting,Preprocessing Text and Numerical Data
+https://github.com/HasinthakaPiyumal/AI-Pattern-Mining-Project/tree/main/notebooks/result/repo_callgraph_clusters/DLTA-AI/cluster_38.py,LLM-based Multimodal Generative Prompting,LLM-based Multimodal Generative Prompting
+https://github.com/HasinthakaPiyumal/AI-Pattern-Mining-Project/tree/main/notebooks/result/repo_callgraph_clusters/DLTA-AI/cluster_39.py,LLM-based Multimodal Generative Prompting,LLM-based Multimodal Generative Prompting
+https://github.com/HasinthakaPiyumal/AI-Pattern-Mining-Project/tree/main/notebooks/result/repo_callgraph_clusters/DLTA-AI/cluster_40.py,Preprocessing Text and Numerical Data,LLM-based Multimodal Generative Prompting
+https://github.com/HasinthakaPiyumal/AI-Pattern-Mining-Project/tree/main/notebooks/result/repo_callgraph_clusters/DLTA-AI/cluster_47.py,none,Forecasting with Classical Models
+https://github.com/HasinthakaPiyumal/AI-Pattern-Mining-Project/tree/main/notebooks/result/repo_callgraph_clusters/DLTA-AI/cluster_48.py,LLM-based Multimodal Generative Prompting,Forecasting with Classical Models
+https://github.com/HasinthakaPiyumal/AI-Pattern-Mining-Project/tree/main/notebooks/result/repo_callgraph_clusters/DLTA-AI/cluster_6.py,LLM-based Multimodal Generative Prompting,LLM-based Multimodal Generative Prompting
+https://github.com/HasinthakaPiyumal/AI-Pattern-Mining-Project/tree/main/notebooks/result/repo_callgraph_clusters/DLTA-AI/cluster_62.py,Forecasting with Classical Models,Forecasting with Classical Models
+https://github.com/HasinthakaPiyumal/AI-Pattern-Mining-Project/tree/main/notebooks/result/repo_callgraph_clusters/DLTA-AI/cluster_65.py,Preprocessing Text and Numerical Data,Forecasting with Classical Models
+https://github.com/HasinthakaPiyumal/AI-Pattern-Mining-Project/tree/main/notebooks/result/repo_callgraph_clusters/DLTA-AI/cluster_70.py,LLM-based Multimodal Generative Prompting,LLM-based Multimodal Generative Prompting
+https://github.com/HasinthakaPiyumal/AI-Pattern-Mining-Project/tree/main/notebooks/result/repo_callgraph_clusters/DLTA-AI/cluster_71.py,LLM-based Multimodal Generative Prompting,LLM-based Multimodal Generative Prompting
+https://github.com/HasinthakaPiyumal/AI-Pattern-Mining-Project/tree/main/notebooks/result/repo_callgraph_clusters/DLTA-AI/cluster_91.py,LLM-based Multimodal Generative Prompting,LLM-based Multimodal Generative Prompting
+https://github.com/HasinthakaPiyumal/AI-Pattern-Mining-Project/tree/main/notebooks/result/repo_callgraph_clusters/DRL-Pytorch/cluster_5.py,Forecasting with Classical Models,Forecasting with Classical Models
+https://github.com/HasinthakaPiyumal/AI-Pattern-Mining-Project/tree/main/notebooks/result/repo_callgraph_clusters/DRL-Pytorch/cluster_6.py,Forecasting with Classical Models,Forecasting with Classical Models
+https://github.com/HasinthakaPiyumal/AI-Pattern-Mining-Project/tree/main/notebooks/result/repo_callgraph_clusters/EvoAgentX/cluster_1.py,Retrieval Augmented Generation(RAG),Retrieval Augmented Generation(RAG)
+https://github.com/HasinthakaPiyumal/AI-Pattern-Mining-Project/tree/main/notebooks/result/repo_callgraph_clusters/EvoAgentX/cluster_12.py,none,Preprocessing Text and Numerical Data
+https://github.com/HasinthakaPiyumal/AI-Pattern-Mining-Project/tree/main/notebooks/result/repo_callgraph_clusters/EvoAgentX/cluster_16.py,Using Tools with LLMs,Using Tools with LLMs
+https://github.com/HasinthakaPiyumal/AI-Pattern-Mining-Project/tree/main/notebooks/result/repo_callgraph_clusters/EvoAgentX/cluster_17.py,none,Model Abstraction
+https://github.com/HasinthakaPiyumal/AI-Pattern-Mining-Project/tree/main/notebooks/result/repo_callgraph_clusters/EvoAgentX/cluster_52.py,Model Abstraction,Model Abstraction
+https://github.com/HasinthakaPiyumal/AI-Pattern-Mining-Project/tree/main/notebooks/result/repo_callgraph_clusters/EvoAgentX/cluster_55.py,Model Abstraction,Using Tools with LLMs
+https://github.com/HasinthakaPiyumal/AI-Pattern-Mining-Project/tree/main/notebooks/result/repo_callgraph_clusters/EvoAgentX/cluster_58.py,Preprocessing Text and Numerical Data,Preprocessing Text and Numerical Data
+https://github.com/HasinthakaPiyumal/AI-Pattern-Mining-Project/tree/main/notebooks/result/repo_callgraph_clusters/EvoAgentX/cluster_60.py,Agent Architecture,Agent Architecture
+https://github.com/HasinthakaPiyumal/AI-Pattern-Mining-Project/tree/main/notebooks/result/repo_callgraph_clusters/EvoAgentX/cluster_65.py,Agent Architecture,Using Tools with LLMs
+https://github.com/HasinthakaPiyumal/AI-Pattern-Mining-Project/tree/main/notebooks/result/repo_callgraph_clusters/EvoAgentX/cluster_72.py,Using Tools with LLMs,none
+https://github.com/HasinthakaPiyumal/AI-Pattern-Mining-Project/tree/main/notebooks/result/repo_callgraph_clusters/EvoAgentX/cluster_75.py,Using Tools with LLMs,Using Tools with LLMs
+https://github.com/HasinthakaPiyumal/AI-Pattern-Mining-Project/tree/main/notebooks/result/repo_callgraph_clusters/EvoAgentX/cluster_76.py,Using Tools with LLMs,none
+https://github.com/HasinthakaPiyumal/AI-Pattern-Mining-Project/tree/main/notebooks/result/repo_callgraph_clusters/FinceptTerminal/cluster_10.py,Preprocessing Text and Numerical Data,none
+https://github.com/HasinthakaPiyumal/AI-Pattern-Mining-Project/tree/main/notebooks/result/repo_callgraph_clusters/FinceptTerminal/cluster_16.py,Preprocessing Text and Numerical Data,Preprocessing Text and Numerical Data
+https://github.com/HasinthakaPiyumal/AI-Pattern-Mining-Project/tree/main/notebooks/result/repo_callgraph_clusters/FinceptTerminal/cluster_2.py,Preprocessing Text and Numerical Data,none
+https://github.com/HasinthakaPiyumal/AI-Pattern-Mining-Project/tree/main/notebooks/result/repo_callgraph_clusters/FinceptTerminal/cluster_25.py,Preprocessing Text and Numerical Data,Preprocessing Text and Numerical Data
+https://github.com/HasinthakaPiyumal/AI-Pattern-Mining-Project/tree/main/notebooks/result/repo_callgraph_clusters/FinceptTerminal/cluster_27.py,none,Forecasting with Classical Models
+https://github.com/HasinthakaPiyumal/AI-Pattern-Mining-Project/tree/main/notebooks/result/repo_callgraph_clusters/FinceptTerminal/cluster_34.py,Using Tools with LLMs,none
+https://github.com/HasinthakaPiyumal/AI-Pattern-Mining-Project/tree/main/notebooks/result/repo_callgraph_clusters/FinceptTerminal/cluster_53.py,Agent Architecture,none
+https://github.com/HasinthakaPiyumal/AI-Pattern-Mining-Project/tree/main/notebooks/result/repo_callgraph_clusters/FinceptTerminal/cluster_62.py,Retrieval Augmented Generation(RAG),none
+https://github.com/HasinthakaPiyumal/AI-Pattern-Mining-Project/tree/main/notebooks/result/repo_callgraph_clusters/FuxiCTR/cluster_40.py,none,Forecasting with Classical Models
+https://github.com/HasinthakaPiyumal/AI-Pattern-Mining-Project/tree/main/notebooks/result/repo_callgraph_clusters/FuxiCTR/cluster_5.py,Preprocessing Text and Numerical Data,Preprocessing Text and Numerical Data
+https://github.com/HasinthakaPiyumal/AI-Pattern-Mining-Project/tree/main/notebooks/result/repo_callgraph_clusters/FuxiCTR/cluster_51.py,LLM-based Multimodal Generative Prompting,Preprocessing Text and Numerical Data
+https://github.com/HasinthakaPiyumal/AI-Pattern-Mining-Project/tree/main/notebooks/result/repo_callgraph_clusters/FuxiCTR/cluster_54.py,Forecasting with Classical Models,Forecasting with Classical Models
+https://github.com/HasinthakaPiyumal/AI-Pattern-Mining-Project/tree/main/notebooks/result/repo_callgraph_clusters/FuxiCTR/cluster_8.py,Forecasting with Classical Models,Forecasting with Classical Models
+https://github.com/HasinthakaPiyumal/AI-Pattern-Mining-Project/tree/main/notebooks/result/repo_callgraph_clusters/GPT_Vuln-analyzer/cluster_10.py,Model Abstraction,Using Tools with LLMs
+https://github.com/HasinthakaPiyumal/AI-Pattern-Mining-Project/tree/main/notebooks/result/repo_callgraph_clusters/GPT_Vuln-analyzer/cluster_6.py,Using Tools with LLMs,Model Abstraction
+https://github.com/HasinthakaPiyumal/AI-Pattern-Mining-Project/tree/main/notebooks/result/repo_callgraph_clusters/GPT_Vuln-analyzer/cluster_9.py,Using Tools with LLMs,none
+https://github.com/HasinthakaPiyumal/AI-Pattern-Mining-Project/tree/main/notebooks/result/repo_callgraph_clusters/GoBigger/cluster_13.py,Agent Architecture,Forecasting with Classical Models
+https://github.com/HasinthakaPiyumal/AI-Pattern-Mining-Project/tree/main/notebooks/result/repo_callgraph_clusters/GoBigger/cluster_16.py,Forecasting with Classical Models,Forecasting with Classical Models
+https://github.com/HasinthakaPiyumal/AI-Pattern-Mining-Project/tree/main/notebooks/result/repo_callgraph_clusters/GoBigger/cluster_17.py,Forecasting with Classical Models,Forecasting with Classical Models
+https://github.com/HasinthakaPiyumal/AI-Pattern-Mining-Project/tree/main/notebooks/result/repo_callgraph_clusters/GoBigger/cluster_19.py,Model Abstraction,Forecasting with Classical Models
+https://github.com/HasinthakaPiyumal/AI-Pattern-Mining-Project/tree/main/notebooks/result/repo_callgraph_clusters/GoBigger/cluster_7.py,none,Forecasting with Classical Models
+https://github.com/HasinthakaPiyumal/AI-Pattern-Mining-Project/tree/main/notebooks/result/repo_callgraph_clusters/HuixiangDou/cluster_1.py,Preprocessing Text and Numerical Data,none
+https://github.com/HasinthakaPiyumal/AI-Pattern-Mining-Project/tree/main/notebooks/result/repo_callgraph_clusters/HuixiangDou/cluster_31.py,none,Retrieval Augmented Generation(RAG)
+https://github.com/HasinthakaPiyumal/AI-Pattern-Mining-Project/tree/main/notebooks/result/repo_callgraph_clusters/HuixiangDou/cluster_34.py,Retrieval Augmented Generation(RAG),none
+https://github.com/HasinthakaPiyumal/AI-Pattern-Mining-Project/tree/main/notebooks/result/repo_callgraph_clusters/HuixiangDou/cluster_38.py,Forecasting with Classical Models,none
+https://github.com/HasinthakaPiyumal/AI-Pattern-Mining-Project/tree/main/notebooks/result/repo_callgraph_clusters/HuixiangDou/cluster_4.py,Retrieval Augmented Generation(RAG),Retrieval Augmented Generation(RAG)
+https://github.com/HasinthakaPiyumal/AI-Pattern-Mining-Project/tree/main/notebooks/result/repo_callgraph_clusters/HuixiangDou/cluster_42.py,none,Retrieval Augmented Generation(RAG)
+https://github.com/HasinthakaPiyumal/AI-Pattern-Mining-Project/tree/main/notebooks/result/repo_callgraph_clusters/HuixiangDou/cluster_53.py,Preprocessing Text and Numerical Data,Preprocessing Text and Numerical Data
+https://github.com/HasinthakaPiyumal/AI-Pattern-Mining-Project/tree/main/notebooks/result/repo_callgraph_clusters/HuixiangDou/cluster_58.py,Preprocessing Text and Numerical Data,Retrieval Augmented Generation(RAG)
+https://github.com/HasinthakaPiyumal/AI-Pattern-Mining-Project/tree/main/notebooks/result/repo_callgraph_clusters/HuixiangDou/cluster_60.py,Retrieval Augmented Generation(RAG),Retrieval Augmented Generation(RAG)
+https://github.com/HasinthakaPiyumal/AI-Pattern-Mining-Project/tree/main/notebooks/result/repo_callgraph_clusters/HuixiangDou/cluster_65.py,Retrieval Augmented Generation(RAG),Retrieval Augmented Generation(RAG)
+https://github.com/HasinthakaPiyumal/AI-Pattern-Mining-Project/tree/main/notebooks/result/repo_callgraph_clusters/HuixiangDou/cluster_69.py,Retrieval Augmented Generation(RAG),Retrieval Augmented Generation(RAG)
+https://github.com/HasinthakaPiyumal/AI-Pattern-Mining-Project/tree/main/notebooks/result/repo_callgraph_clusters/MIRNetv2/cluster_12.py,LLM-based Multimodal Generative Prompting,LLM-based Multimodal Generative Prompting
+https://github.com/HasinthakaPiyumal/AI-Pattern-Mining-Project/tree/main/notebooks/result/repo_callgraph_clusters/MIRNetv2/cluster_15.py,Forecasting with Classical Models,LLM-based Multimodal Generative Prompting
+https://github.com/HasinthakaPiyumal/AI-Pattern-Mining-Project/tree/main/notebooks/result/repo_callgraph_clusters/MIRNetv2/cluster_6.py,LLM-based Multimodal Generative Prompting,LLM-based Multimodal Generative Prompting
+https://github.com/HasinthakaPiyumal/AI-Pattern-Mining-Project/tree/main/notebooks/result/repo_callgraph_clusters/MassGen/cluster_2.py,Agent Architecture,Agent Architecture
+https://github.com/HasinthakaPiyumal/AI-Pattern-Mining-Project/tree/main/notebooks/result/repo_callgraph_clusters/MassGen/cluster_31.py,none,none
+https://github.com/HasinthakaPiyumal/AI-Pattern-Mining-Project/tree/main/notebooks/result/repo_callgraph_clusters/MassGen/cluster_34.py,Agent Architecture,Agent Architecture
+https://github.com/HasinthakaPiyumal/AI-Pattern-Mining-Project/tree/main/notebooks/result/repo_callgraph_clusters/MassGen/cluster_4.py,Using Tools with LLMs,none
+https://github.com/HasinthakaPiyumal/AI-Pattern-Mining-Project/tree/main/notebooks/result/repo_callgraph_clusters/MassGen/cluster_5.py,Model Abstraction,Using Tools with LLMs
+https://github.com/HasinthakaPiyumal/AI-Pattern-Mining-Project/tree/main/notebooks/result/repo_callgraph_clusters/MiniMax-M1/cluster_0.py,Forecasting with Classical Models,Forecasting with Classical Models
+https://github.com/HasinthakaPiyumal/AI-Pattern-Mining-Project/tree/main/notebooks/result/repo_callgraph_clusters/OpenLearning4DeepRecsys/cluster_0.py,Forecasting with Classical Models,Forecasting with Classical Models
+https://github.com/HasinthakaPiyumal/AI-Pattern-Mining-Project/tree/main/notebooks/result/repo_callgraph_clusters/PentestAgent/cluster_2.py,Agent Architecture,Using Tools with LLMs
+https://github.com/HasinthakaPiyumal/AI-Pattern-Mining-Project/tree/main/notebooks/result/repo_callgraph_clusters/RealtimeVoiceChat/cluster_1.py,Model Abstraction,Model Abstraction
+https://github.com/HasinthakaPiyumal/AI-Pattern-Mining-Project/tree/main/notebooks/result/repo_callgraph_clusters/RealtimeVoiceChat/cluster_5.py,LLM-based Multimodal Generative Prompting,Retrieval Augmented Generation(RAG)
+https://github.com/HasinthakaPiyumal/AI-Pattern-Mining-Project/tree/main/notebooks/result/repo_callgraph_clusters/Reinforcement_Learning_in_Python/cluster_2.py,Forecasting with Classical Models,Forecasting with Classical Models
+https://github.com/HasinthakaPiyumal/AI-Pattern-Mining-Project/tree/main/notebooks/result/repo_callgraph_clusters/Reinforcement_Learning_in_Python/cluster_3.py,Forecasting with Classical Models,Forecasting with Classical Models
+https://github.com/HasinthakaPiyumal/AI-Pattern-Mining-Project/tree/main/notebooks/result/repo_callgraph_clusters/Stride-AI-Agents/cluster_0.py,Retrieval Augmented Generation(RAG),Retrieval Augmented Generation(RAG)
+https://github.com/HasinthakaPiyumal/AI-Pattern-Mining-Project/tree/main/notebooks/result/repo_callgraph_clusters/Stride-AI-Agents/cluster_3.py,Using Tools with LLMs,Using Tools with LLMs
+https://github.com/HasinthakaPiyumal/AI-Pattern-Mining-Project/tree/main/notebooks/result/repo_callgraph_clusters/Stride-AI-Agents/cluster_5.py,Retrieval Augmented Generation(RAG),Retrieval Augmented Generation(RAG)
+https://github.com/HasinthakaPiyumal/AI-Pattern-Mining-Project/tree/main/notebooks/result/repo_callgraph_clusters/Stride-AI-Agents/cluster_7.py,Using Tools with LLMs,Using Tools with LLMs
+https://github.com/HasinthakaPiyumal/AI-Pattern-Mining-Project/tree/main/notebooks/result/repo_callgraph_clusters/VectorizedMultiAgentSimulator/cluster_16.py,Model Abstraction,none
+https://github.com/HasinthakaPiyumal/AI-Pattern-Mining-Project/tree/main/notebooks/result/repo_callgraph_clusters/VectorizedMultiAgentSimulator/cluster_28.py,Forecasting with Classical Models,Forecasting with Classical Models
+https://github.com/HasinthakaPiyumal/AI-Pattern-Mining-Project/tree/main/notebooks/result/repo_callgraph_clusters/VectorizedMultiAgentSimulator/cluster_6.py,Forecasting with Classical Models,Forecasting with Classical Models
+https://github.com/HasinthakaPiyumal/AI-Pattern-Mining-Project/tree/main/notebooks/result/repo_callgraph_clusters/WebShop/cluster_2.py,none,none
+https://github.com/HasinthakaPiyumal/AI-Pattern-Mining-Project/tree/main/notebooks/result/repo_callgraph_clusters/WebShop/cluster_22.py,Forecasting with Classical Models,Forecasting with Classical Models
+https://github.com/HasinthakaPiyumal/AI-Pattern-Mining-Project/tree/main/notebooks/result/repo_callgraph_clusters/chipper/cluster_11.py,Retrieval Augmented Generation(RAG),Model Abstraction
+https://github.com/HasinthakaPiyumal/AI-Pattern-Mining-Project/tree/main/notebooks/result/repo_callgraph_clusters/chipper/cluster_8.py,Retrieval Augmented Generation(RAG),Retrieval Augmented Generation(RAG)
+https://github.com/HasinthakaPiyumal/AI-Pattern-Mining-Project/tree/main/notebooks/result/repo_callgraph_clusters/chipper/cluster_9.py,Retrieval Augmented Generation(RAG),Retrieval Augmented Generation(RAG)
+https://github.com/HasinthakaPiyumal/AI-Pattern-Mining-Project/tree/main/notebooks/result/repo_callgraph_clusters/clai/cluster_2.py,Agent Architecture,Agent Architecture
+https://github.com/HasinthakaPiyumal/AI-Pattern-Mining-Project/tree/main/notebooks/result/repo_callgraph_clusters/clai/cluster_27.py,Preprocessing Text and Numerical Data,LLM-based Multimodal Generative Prompting
+https://github.com/HasinthakaPiyumal/AI-Pattern-Mining-Project/tree/main/notebooks/result/repo_callgraph_clusters/clai/cluster_3.py,Agent Architecture,Agent Architecture
+https://github.com/HasinthakaPiyumal/AI-Pattern-Mining-Project/tree/main/notebooks/result/repo_callgraph_clusters/clai/cluster_34.py,Forecasting with Classical Models,Using Tools with LLMs
+https://github.com/HasinthakaPiyumal/AI-Pattern-Mining-Project/tree/main/notebooks/result/repo_callgraph_clusters/deep_recommenders/cluster_10.py,Forecasting with Classical Models,Preprocessing Text and Numerical Data
+https://github.com/HasinthakaPiyumal/AI-Pattern-Mining-Project/tree/main/notebooks/result/repo_callgraph_clusters/deep_recommenders/cluster_12.py,Forecasting with Classical Models,Forecasting with Classical Models
+https://github.com/HasinthakaPiyumal/AI-Pattern-Mining-Project/tree/main/notebooks/result/repo_callgraph_clusters/deep_recommenders/cluster_3.py,Preprocessing Text and Numerical Data,LLM-based Multimodal Generative Prompting
+https://github.com/HasinthakaPiyumal/AI-Pattern-Mining-Project/tree/main/notebooks/result/repo_callgraph_clusters/dia/cluster_2.py,LLM-based Multimodal Generative Prompting,Forecasting with Classical Models
+https://github.com/HasinthakaPiyumal/AI-Pattern-Mining-Project/tree/main/notebooks/result/repo_callgraph_clusters/discrete_distribution_networks/cluster_9.py,LLM-based Multimodal Generative Prompting,Forecasting with Classical Models
+https://github.com/HasinthakaPiyumal/AI-Pattern-Mining-Project/tree/main/notebooks/result/repo_callgraph_clusters/drl_grasping/cluster_12.py,Forecasting with Classical Models,Forecasting with Classical Models
+https://github.com/HasinthakaPiyumal/AI-Pattern-Mining-Project/tree/main/notebooks/result/repo_callgraph_clusters/drl_grasping/cluster_13.py,Forecasting with Classical Models,Forecasting with Classical Models
+https://github.com/HasinthakaPiyumal/AI-Pattern-Mining-Project/tree/main/notebooks/result/repo_callgraph_clusters/drl_grasping/cluster_18.py,Forecasting with Classical Models,Forecasting with Classical Models
+https://github.com/HasinthakaPiyumal/AI-Pattern-Mining-Project/tree/main/notebooks/result/repo_callgraph_clusters/evadb/cluster_103.py,none,none
+https://github.com/HasinthakaPiyumal/AI-Pattern-Mining-Project/tree/main/notebooks/result/repo_callgraph_clusters/evadb/cluster_12.py,none,none
+https://github.com/HasinthakaPiyumal/AI-Pattern-Mining-Project/tree/main/notebooks/result/repo_callgraph_clusters/evadb/cluster_18.py,LLM-based Multimodal Generative Prompting,none
+https://github.com/HasinthakaPiyumal/AI-Pattern-Mining-Project/tree/main/notebooks/result/repo_callgraph_clusters/evadb/cluster_20.py,none,none
+https://github.com/HasinthakaPiyumal/AI-Pattern-Mining-Project/tree/main/notebooks/result/repo_callgraph_clusters/evadb/cluster_39.py,Retrieval Augmented Generation(RAG),none
+https://github.com/HasinthakaPiyumal/AI-Pattern-Mining-Project/tree/main/notebooks/result/repo_callgraph_clusters/evadb/cluster_54.py,none,none
+https://github.com/HasinthakaPiyumal/AI-Pattern-Mining-Project/tree/main/notebooks/result/repo_callgraph_clusters/evadb/cluster_60.py,none,none
+https://github.com/HasinthakaPiyumal/AI-Pattern-Mining-Project/tree/main/notebooks/result/repo_callgraph_clusters/evadb/cluster_68.py,none,none
+https://github.com/HasinthakaPiyumal/AI-Pattern-Mining-Project/tree/main/notebooks/result/repo_callgraph_clusters/evadb/cluster_72.py,Preprocessing Text and Numerical Data,Preprocessing Text and Numerical Data
+https://github.com/HasinthakaPiyumal/AI-Pattern-Mining-Project/tree/main/notebooks/result/repo_callgraph_clusters/evolving-agents/cluster_4.py,Model Abstraction,Agent Architecture
+https://github.com/HasinthakaPiyumal/AI-Pattern-Mining-Project/tree/main/notebooks/result/repo_callgraph_clusters/evolving-agents/cluster_6.py,Agent Architecture,Retrieval Augmented Generation(RAG)
+https://github.com/HasinthakaPiyumal/AI-Pattern-Mining-Project/tree/main/notebooks/result/repo_callgraph_clusters/factorio-learning-environment/cluster_10.py,none,none
+https://github.com/HasinthakaPiyumal/AI-Pattern-Mining-Project/tree/main/notebooks/result/repo_callgraph_clusters/factorio-learning-environment/cluster_14.py,Agent Architecture,Using Tools with LLMs
+https://github.com/HasinthakaPiyumal/AI-Pattern-Mining-Project/tree/main/notebooks/result/repo_callgraph_clusters/factorio-learning-environment/cluster_17.py,none,none
+https://github.com/HasinthakaPiyumal/AI-Pattern-Mining-Project/tree/main/notebooks/result/repo_callgraph_clusters/factorio-learning-environment/cluster_2.py,Retrieval Augmented Generation(RAG),Retrieval Augmented Generation(RAG)
+https://github.com/HasinthakaPiyumal/AI-Pattern-Mining-Project/tree/main/notebooks/result/repo_callgraph_clusters/factorio-learning-environment/cluster_21.py,Agent Architecture,Agent Architecture
+https://github.com/HasinthakaPiyumal/AI-Pattern-Mining-Project/tree/main/notebooks/result/repo_callgraph_clusters/factorio-learning-environment/cluster_22.py,none,Using Tools with LLMs
+https://github.com/HasinthakaPiyumal/AI-Pattern-Mining-Project/tree/main/notebooks/result/repo_callgraph_clusters/factorio-learning-environment/cluster_32.py,Model Abstraction,none
+https://github.com/HasinthakaPiyumal/AI-Pattern-Mining-Project/tree/main/notebooks/result/repo_callgraph_clusters/factorio-learning-environment/cluster_33.py,Using Tools with LLMs,LLM-based Multimodal Generative Prompting
+https://github.com/HasinthakaPiyumal/AI-Pattern-Mining-Project/tree/main/notebooks/result/repo_callgraph_clusters/factorio-learning-environment/cluster_40.py,Using Tools with LLMs,none
+https://github.com/HasinthakaPiyumal/AI-Pattern-Mining-Project/tree/main/notebooks/result/repo_callgraph_clusters/factorio-learning-environment/cluster_49.py,Preprocessing Text and Numerical Data,none
+https://github.com/HasinthakaPiyumal/AI-Pattern-Mining-Project/tree/main/notebooks/result/repo_callgraph_clusters/factorio-learning-environment/cluster_68.py,Agent Architecture,Agent Architecture
+https://github.com/HasinthakaPiyumal/AI-Pattern-Mining-Project/tree/main/notebooks/result/repo_callgraph_clusters/factorio-learning-environment/cluster_8.py,LLM-based Multimodal Generative Prompting,LLM-based Multimodal Generative Prompting
+https://github.com/HasinthakaPiyumal/AI-Pattern-Mining-Project/tree/main/notebooks/result/repo_callgraph_clusters/factorio-learning-environment/cluster_80.py,none,Forecasting with Classical Models
+https://github.com/HasinthakaPiyumal/AI-Pattern-Mining-Project/tree/main/notebooks/result/repo_callgraph_clusters/fast-graphrag/cluster_13.py,Retrieval Augmented Generation(RAG),Preprocessing Text and Numerical Data
+https://github.com/HasinthakaPiyumal/AI-Pattern-Mining-Project/tree/main/notebooks/result/repo_callgraph_clusters/fast-graphrag/cluster_17.py,Retrieval Augmented Generation(RAG),Retrieval Augmented Generation(RAG)
+https://github.com/HasinthakaPiyumal/AI-Pattern-Mining-Project/tree/main/notebooks/result/repo_callgraph_clusters/jodie/cluster_1.py,Model Abstraction,Preprocessing Text and Numerical Data
+https://github.com/HasinthakaPiyumal/AI-Pattern-Mining-Project/tree/main/notebooks/result/repo_callgraph_clusters/ladi-vton/cluster_4.py,Forecasting with Classical Models,Forecasting with Classical Models
+https://github.com/HasinthakaPiyumal/AI-Pattern-Mining-Project/tree/main/notebooks/result/repo_callgraph_clusters/mcp-agent/cluster_1.py,none,Using Tools with LLMs
+https://github.com/HasinthakaPiyumal/AI-Pattern-Mining-Project/tree/main/notebooks/result/repo_callgraph_clusters/mcp-agent/cluster_2.py,none,Agent Architecture
+https://github.com/HasinthakaPiyumal/AI-Pattern-Mining-Project/tree/main/notebooks/result/repo_callgraph_clusters/mcp-agent/cluster_25.py,none,Preprocessing Text and Numerical Data
+https://github.com/HasinthakaPiyumal/AI-Pattern-Mining-Project/tree/main/notebooks/result/repo_callgraph_clusters/mcp-agent/cluster_52.py,none,LLM-based Multimodal Generative Prompting
+https://github.com/HasinthakaPiyumal/AI-Pattern-Mining-Project/tree/main/notebooks/result/repo_callgraph_clusters/mcp-agent/cluster_61.py,Using Tools with LLMs,Agent Architecture
+https://github.com/HasinthakaPiyumal/AI-Pattern-Mining-Project/tree/main/notebooks/result/repo_callgraph_clusters/mcp-agent/cluster_67.py,Model Abstraction,Model Abstraction
+https://github.com/HasinthakaPiyumal/AI-Pattern-Mining-Project/tree/main/notebooks/result/repo_callgraph_clusters/mcp-agent/cluster_68.py,Using Tools with LLMs,Model Abstraction
+https://github.com/HasinthakaPiyumal/AI-Pattern-Mining-Project/tree/main/notebooks/result/repo_callgraph_clusters/mcp-agent/cluster_70.py,Using Tools with LLMs,Model Abstraction
+https://github.com/HasinthakaPiyumal/AI-Pattern-Mining-Project/tree/main/notebooks/result/repo_callgraph_clusters/mcp-agent/cluster_9.py,Using Tools with LLMs,Model Abstraction
+https://github.com/HasinthakaPiyumal/AI-Pattern-Mining-Project/tree/main/notebooks/result/repo_callgraph_clusters/mcp-agent/cluster_94.py,none,Using Tools with LLMs
+https://github.com/HasinthakaPiyumal/AI-Pattern-Mining-Project/tree/main/notebooks/result/repo_callgraph_clusters/mindpalace/cluster_2.py,none,none
+https://github.com/HasinthakaPiyumal/AI-Pattern-Mining-Project/tree/main/notebooks/result/repo_callgraph_clusters/monkey-net/cluster_0.py,Forecasting with Classical Models,Forecasting with Classical Models
+https://github.com/HasinthakaPiyumal/AI-Pattern-Mining-Project/tree/main/notebooks/result/repo_callgraph_clusters/monkey-net/cluster_15.py,Forecasting with Classical Models,Forecasting with Classical Models
+https://github.com/HasinthakaPiyumal/AI-Pattern-Mining-Project/tree/main/notebooks/result/repo_callgraph_clusters/monkey-net/cluster_2.py,Forecasting with Classical Models,Forecasting with Classical Models
+https://github.com/HasinthakaPiyumal/AI-Pattern-Mining-Project/tree/main/notebooks/result/repo_callgraph_clusters/monkey-net/cluster_3.py,none,Forecasting with Classical Models
+https://github.com/HasinthakaPiyumal/AI-Pattern-Mining-Project/tree/main/notebooks/result/repo_callgraph_clusters/monkey-net/cluster_9.py,LLM-based Multimodal Generative Prompting,LLM-based Multimodal Generative Prompting
+https://github.com/HasinthakaPiyumal/AI-Pattern-Mining-Project/tree/main/notebooks/result/repo_callgraph_clusters/nuplan-devkit/cluster_118.py,none,none
+https://github.com/HasinthakaPiyumal/AI-Pattern-Mining-Project/tree/main/notebooks/result/repo_callgraph_clusters/nuplan-devkit/cluster_13.py,LLM-based Multimodal Generative Prompting,LLM-based Multimodal Generative Prompting
+https://github.com/HasinthakaPiyumal/AI-Pattern-Mining-Project/tree/main/notebooks/result/repo_callgraph_clusters/nuplan-devkit/cluster_14.py,LLM-based Multimodal Generative Prompting,LLM-based Multimodal Generative Prompting
+https://github.com/HasinthakaPiyumal/AI-Pattern-Mining-Project/tree/main/notebooks/result/repo_callgraph_clusters/nuplan-devkit/cluster_144.py,Preprocessing Text and Numerical Data,Preprocessing Text and Numerical Data
+https://github.com/HasinthakaPiyumal/AI-Pattern-Mining-Project/tree/main/notebooks/result/repo_callgraph_clusters/nuplan-devkit/cluster_148.py,Preprocessing Text and Numerical Data,Preprocessing Text and Numerical Data
+https://github.com/HasinthakaPiyumal/AI-Pattern-Mining-Project/tree/main/notebooks/result/repo_callgraph_clusters/nuplan-devkit/cluster_151.py,none,none
+https://github.com/HasinthakaPiyumal/AI-Pattern-Mining-Project/tree/main/notebooks/result/repo_callgraph_clusters/nuplan-devkit/cluster_154.py,none,none
+https://github.com/HasinthakaPiyumal/AI-Pattern-Mining-Project/tree/main/notebooks/result/repo_callgraph_clusters/nuplan-devkit/cluster_176.py,Preprocessing Text and Numerical Data,none
+https://github.com/HasinthakaPiyumal/AI-Pattern-Mining-Project/tree/main/notebooks/result/repo_callgraph_clusters/nuplan-devkit/cluster_2.py,none,LLM-based Multimodal Generative Prompting
+https://github.com/HasinthakaPiyumal/AI-Pattern-Mining-Project/tree/main/notebooks/result/repo_callgraph_clusters/nuplan-devkit/cluster_20.py,none,LLM-based Multimodal Generative Prompting
+https://github.com/HasinthakaPiyumal/AI-Pattern-Mining-Project/tree/main/notebooks/result/repo_callgraph_clusters/nuplan-devkit/cluster_25.py,Preprocessing Text and Numerical Data,Preprocessing Text and Numerical Data
+https://github.com/HasinthakaPiyumal/AI-Pattern-Mining-Project/tree/main/notebooks/result/repo_callgraph_clusters/nuplan-devkit/cluster_28.py,LLM-based Multimodal Generative Prompting,LLM-based Multimodal Generative Prompting
+https://github.com/HasinthakaPiyumal/AI-Pattern-Mining-Project/tree/main/notebooks/result/repo_callgraph_clusters/nuplan-devkit/cluster_3.py,none,none
+https://github.com/HasinthakaPiyumal/AI-Pattern-Mining-Project/tree/main/notebooks/result/repo_callgraph_clusters/nuplan-devkit/cluster_34.py,LLM-based Multimodal Generative Prompting,none
+https://github.com/HasinthakaPiyumal/AI-Pattern-Mining-Project/tree/main/notebooks/result/repo_callgraph_clusters/nuplan-devkit/cluster_35.py,none,none
+https://github.com/HasinthakaPiyumal/AI-Pattern-Mining-Project/tree/main/notebooks/result/repo_callgraph_clusters/nuplan-devkit/cluster_41.py,Preprocessing Text and Numerical Data,none
+https://github.com/HasinthakaPiyumal/AI-Pattern-Mining-Project/tree/main/notebooks/result/repo_callgraph_clusters/nuplan-devkit/cluster_43.py,Preprocessing Text and Numerical Data,LLM-based Multimodal Generative Prompting
+https://github.com/HasinthakaPiyumal/AI-Pattern-Mining-Project/tree/main/notebooks/result/repo_callgraph_clusters/nuplan-devkit/cluster_54.py,none,none
+https://github.com/HasinthakaPiyumal/AI-Pattern-Mining-Project/tree/main/notebooks/result/repo_callgraph_clusters/nuplan-devkit/cluster_61.py,LLM-based Multimodal Generative Prompting,none
+https://github.com/HasinthakaPiyumal/AI-Pattern-Mining-Project/tree/main/notebooks/result/repo_callgraph_clusters/nuplan-devkit/cluster_64.py,Preprocessing Text and Numerical Data,none
+https://github.com/HasinthakaPiyumal/AI-Pattern-Mining-Project/tree/main/notebooks/result/repo_callgraph_clusters/nuplan-devkit/cluster_96.py,Forecasting with Classical Models,Forecasting with Classical Models
+https://github.com/HasinthakaPiyumal/AI-Pattern-Mining-Project/tree/main/notebooks/result/repo_callgraph_clusters/nuplan-devkit/cluster_98.py,Forecasting with Classical Models,Forecasting with Classical Models
+https://github.com/HasinthakaPiyumal/AI-Pattern-Mining-Project/tree/main/notebooks/result/repo_callgraph_clusters/oasis/cluster_17.py,Forecasting with Classical Models,Forecasting with Classical Models
+https://github.com/HasinthakaPiyumal/AI-Pattern-Mining-Project/tree/main/notebooks/result/repo_callgraph_clusters/oasis/cluster_19.py,Forecasting with Classical Models,none
+https://github.com/HasinthakaPiyumal/AI-Pattern-Mining-Project/tree/main/notebooks/result/repo_callgraph_clusters/optillm/cluster_1.py,Agent Architecture,Preprocessing Text and Numerical Data
+https://github.com/HasinthakaPiyumal/AI-Pattern-Mining-Project/tree/main/notebooks/result/repo_callgraph_clusters/optillm/cluster_18.py,Model Abstraction,Model Abstraction
+https://github.com/HasinthakaPiyumal/AI-Pattern-Mining-Project/tree/main/notebooks/result/repo_callgraph_clusters/optillm/cluster_19.py,Model Abstraction,Model Abstraction
+https://github.com/HasinthakaPiyumal/AI-Pattern-Mining-Project/tree/main/notebooks/result/repo_callgraph_clusters/optillm/cluster_23.py,Retrieval Augmented Generation(RAG),Using Tools with LLMs
+https://github.com/HasinthakaPiyumal/AI-Pattern-Mining-Project/tree/main/notebooks/result/repo_callgraph_clusters/optillm/cluster_38.py,Forecasting with Classical Models,Forecasting with Classical Models
+https://github.com/HasinthakaPiyumal/AI-Pattern-Mining-Project/tree/main/notebooks/result/repo_callgraph_clusters/optillm/cluster_39.py,Forecasting with Classical Models,Forecasting with Classical Models
+https://github.com/HasinthakaPiyumal/AI-Pattern-Mining-Project/tree/main/notebooks/result/repo_callgraph_clusters/optillm/cluster_40.py,none,Forecasting with Classical Models
+https://github.com/HasinthakaPiyumal/AI-Pattern-Mining-Project/tree/main/notebooks/result/repo_callgraph_clusters/optillm/cluster_49.py,Agent Architecture,Agent Architecture
+https://github.com/HasinthakaPiyumal/AI-Pattern-Mining-Project/tree/main/notebooks/result/repo_callgraph_clusters/optillm/cluster_6.py,Forecasting with Classical Models,Forecasting with Classical Models
+https://github.com/HasinthakaPiyumal/AI-Pattern-Mining-Project/tree/main/notebooks/result/repo_callgraph_clusters/pomdp-baselines/cluster_10.py,Forecasting with Classical Models,Forecasting with Classical Models
+https://github.com/HasinthakaPiyumal/AI-Pattern-Mining-Project/tree/main/notebooks/result/repo_callgraph_clusters/pomdp-baselines/cluster_8.py,Forecasting with Classical Models,Forecasting with Classical Models
+https://github.com/HasinthakaPiyumal/AI-Pattern-Mining-Project/tree/main/notebooks/result/repo_callgraph_clusters/pybroker/cluster_21.py,none,Forecasting with Classical Models
+https://github.com/HasinthakaPiyumal/AI-Pattern-Mining-Project/tree/main/notebooks/result/repo_callgraph_clusters/scattertext/cluster_11.py,Preprocessing Text and Numerical Data,Preprocessing Text and Numerical Data
+https://github.com/HasinthakaPiyumal/AI-Pattern-Mining-Project/tree/main/notebooks/result/repo_callgraph_clusters/scattertext/cluster_115.py,Retrieval Augmented Generation(RAG),Preprocessing Text and Numerical Data
+https://github.com/HasinthakaPiyumal/AI-Pattern-Mining-Project/tree/main/notebooks/result/repo_callgraph_clusters/scattertext/cluster_14.py,Preprocessing Text and Numerical Data,Preprocessing Text and Numerical Data
+https://github.com/HasinthakaPiyumal/AI-Pattern-Mining-Project/tree/main/notebooks/result/repo_callgraph_clusters/scattertext/cluster_18.py,Preprocessing Text and Numerical Data,Preprocessing Text and Numerical Data
+https://github.com/HasinthakaPiyumal/AI-Pattern-Mining-Project/tree/main/notebooks/result/repo_callgraph_clusters/scattertext/cluster_26.py,Forecasting with Classical Models,Preprocessing Text and Numerical Data
+https://github.com/HasinthakaPiyumal/AI-Pattern-Mining-Project/tree/main/notebooks/result/repo_callgraph_clusters/scattertext/cluster_43.py,Preprocessing Text and Numerical Data,Preprocessing Text and Numerical Data
+https://github.com/HasinthakaPiyumal/AI-Pattern-Mining-Project/tree/main/notebooks/result/repo_callgraph_clusters/scattertext/cluster_53.py,Preprocessing Text and Numerical Data,Forecasting with Classical Models
+https://github.com/HasinthakaPiyumal/AI-Pattern-Mining-Project/tree/main/notebooks/result/repo_callgraph_clusters/scattertext/cluster_6.py,Preprocessing Text and Numerical Data,Preprocessing Text and Numerical Data
+https://github.com/HasinthakaPiyumal/AI-Pattern-Mining-Project/tree/main/notebooks/result/repo_callgraph_clusters/scattertext/cluster_63.py,Preprocessing Text and Numerical Data,Preprocessing Text and Numerical Data
+https://github.com/HasinthakaPiyumal/AI-Pattern-Mining-Project/tree/main/notebooks/result/repo_callgraph_clusters/scattertext/cluster_78.py,Preprocessing Text and Numerical Data,Preprocessing Text and Numerical Data
+https://github.com/HasinthakaPiyumal/AI-Pattern-Mining-Project/tree/main/notebooks/result/repo_callgraph_clusters/semantic-router/cluster_12.py,Retrieval Augmented Generation(RAG),none
+https://github.com/HasinthakaPiyumal/AI-Pattern-Mining-Project/tree/main/notebooks/result/repo_callgraph_clusters/semantic-router/cluster_14.py,none,Retrieval Augmented Generation(RAG)
+https://github.com/HasinthakaPiyumal/AI-Pattern-Mining-Project/tree/main/notebooks/result/repo_callgraph_clusters/semantic-router/cluster_2.py,Retrieval Augmented Generation(RAG),Retrieval Augmented Generation(RAG)
+https://github.com/HasinthakaPiyumal/AI-Pattern-Mining-Project/tree/main/notebooks/result/repo_callgraph_clusters/semantic-router/cluster_20.py,Retrieval Augmented Generation(RAG),Retrieval Augmented Generation(RAG)
+https://github.com/HasinthakaPiyumal/AI-Pattern-Mining-Project/tree/main/notebooks/result/repo_callgraph_clusters/semantic-router/cluster_21.py,Retrieval Augmented Generation(RAG),Retrieval Augmented Generation(RAG)
+https://github.com/HasinthakaPiyumal/AI-Pattern-Mining-Project/tree/main/notebooks/result/repo_callgraph_clusters/semantic-router/cluster_26.py,Model Abstraction,Retrieval Augmented Generation(RAG)
+https://github.com/HasinthakaPiyumal/AI-Pattern-Mining-Project/tree/main/notebooks/result/repo_callgraph_clusters/semantic-router/cluster_40.py,none,Retrieval Augmented Generation(RAG)
+https://github.com/HasinthakaPiyumal/AI-Pattern-Mining-Project/tree/main/notebooks/result/repo_callgraph_clusters/semantic-router/cluster_7.py,Using Tools with LLMs,Model Abstraction
+https://github.com/HasinthakaPiyumal/AI-Pattern-Mining-Project/tree/main/notebooks/result/repo_callgraph_clusters/surpriver/cluster_0.py,Preprocessing Text and Numerical Data,Preprocessing Text and Numerical Data
+https://github.com/HasinthakaPiyumal/AI-Pattern-Mining-Project/tree/main/notebooks/result/repo_callgraph_clusters/synthetic-data-generator/cluster_27.py,Forecasting with Classical Models,Forecasting with Classical Models
+https://github.com/HasinthakaPiyumal/AI-Pattern-Mining-Project/tree/main/notebooks/result/repo_callgraph_clusters/synthetic-data-generator/cluster_34.py,Preprocessing Text and Numerical Data,none
+https://github.com/HasinthakaPiyumal/AI-Pattern-Mining-Project/tree/main/notebooks/result/repo_callgraph_clusters/synthetic-data-generator/cluster_49.py,Forecasting with Classical Models,Preprocessing Text and Numerical Data
+https://github.com/HasinthakaPiyumal/AI-Pattern-Mining-Project/tree/main/notebooks/result/repo_callgraph_clusters/synthetic-data-generator/cluster_51.py,Forecasting with Classical Models,none
+https://github.com/HasinthakaPiyumal/AI-Pattern-Mining-Project/tree/main/notebooks/result/repo_callgraph_clusters/synthetic-data-generator/cluster_59.py,Preprocessing Text and Numerical Data,Forecasting with Classical Models
+https://github.com/HasinthakaPiyumal/AI-Pattern-Mining-Project/tree/main/notebooks/result/repo_callgraph_clusters/synthetic-data-generator/cluster_62.py,none,Preprocessing Text and Numerical Data
+https://github.com/HasinthakaPiyumal/AI-Pattern-Mining-Project/tree/main/notebooks/result/repo_callgraph_clusters/synthetic-data-generator/cluster_77.py,none,none
+https://github.com/HasinthakaPiyumal/AI-Pattern-Mining-Project/tree/main/notebooks/result/repo_callgraph_clusters/tabby/cluster_0.py,none,none
+https://github.com/HasinthakaPiyumal/AI-Pattern-Mining-Project/tree/main/notebooks/result/repo_callgraph_clusters/tabby/cluster_2.py,none,none
+https://github.com/HasinthakaPiyumal/AI-Pattern-Mining-Project/tree/main/notebooks/result/repo_callgraph_clusters/tf.fashionAI/cluster_20.py,Forecasting with Classical Models,Forecasting with Classical Models
+https://github.com/HasinthakaPiyumal/AI-Pattern-Mining-Project/tree/main/notebooks/result/repo_callgraph_clusters/tf.fashionAI/cluster_24.py,LLM-based Multimodal Generative Prompting,LLM-based Multimodal Generative Prompting
+https://github.com/HasinthakaPiyumal/AI-Pattern-Mining-Project/tree/main/notebooks/result/repo_callgraph_clusters/tf.fashionAI/cluster_25.py,Preprocessing Text and Numerical Data,LLM-based Multimodal Generative Prompting
+https://github.com/HasinthakaPiyumal/AI-Pattern-Mining-Project/tree/main/notebooks/result/repo_callgraph_clusters/tf.gans-comparison/cluster_2.py,Forecasting with Classical Models,Forecasting with Classical Models
+https://github.com/HasinthakaPiyumal/AI-Pattern-Mining-Project/tree/main/notebooks/result/repo_callgraph_clusters/torchio/cluster_13.py,Preprocessing Text and Numerical Data,LLM-based Multimodal Generative Prompting
+https://github.com/HasinthakaPiyumal/AI-Pattern-Mining-Project/tree/main/notebooks/result/repo_callgraph_clusters/traceroot/cluster_22.py,none,Preprocessing Text and Numerical Data
+https://github.com/HasinthakaPiyumal/AI-Pattern-Mining-Project/tree/main/notebooks/result/repo_callgraph_clusters/traceroot/cluster_25.py,Preprocessing Text and Numerical Data,none
+https://github.com/HasinthakaPiyumal/AI-Pattern-Mining-Project/tree/main/notebooks/result/repo_callgraph_clusters/traceroot/cluster_8.py,Agent Architecture,Model Abstraction
+https://github.com/HasinthakaPiyumal/AI-Pattern-Mining-Project/tree/main/notebooks/result/repo_callgraph_clusters/transfuser/cluster_19.py,none,none
+https://github.com/HasinthakaPiyumal/AI-Pattern-Mining-Project/tree/main/notebooks/result/repo_callgraph_clusters/transfuser/cluster_21.py,none,none
+https://github.com/HasinthakaPiyumal/AI-Pattern-Mining-Project/tree/main/notebooks/result/repo_callgraph_clusters/transfuser/cluster_23.py,none,none
+https://github.com/HasinthakaPiyumal/AI-Pattern-Mining-Project/tree/main/notebooks/result/repo_callgraph_clusters/transfuser/cluster_30.py,none,none
+https://github.com/HasinthakaPiyumal/AI-Pattern-Mining-Project/tree/main/notebooks/result/repo_callgraph_clusters/v2x-vit/cluster_12.py,LLM-based Multimodal Generative Prompting,LLM-based Multimodal Generative Prompting
+https://github.com/HasinthakaPiyumal/AI-Pattern-Mining-Project/tree/main/notebooks/result/repo_callgraph_clusters/v2x-vit/cluster_23.py,LLM-based Multimodal Generative Prompting,LLM-based Multimodal Generative Prompting
+https://github.com/HasinthakaPiyumal/AI-Pattern-Mining-Project/tree/main/notebooks/result/repo_callgraph_clusters/vigil-llm/cluster_10.py,Retrieval Augmented Generation(RAG),Retrieval Augmented Generation(RAG)
+https://github.com/HasinthakaPiyumal/AI-Pattern-Mining-Project/tree/main/notebooks/result/repo_callgraph_clusters/vigil-llm/cluster_2.py,Retrieval Augmented Generation(RAG),Retrieval Augmented Generation(RAG)
+https://github.com/HasinthakaPiyumal/AI-Pattern-Mining-Project/tree/main/notebooks/result/repo_callgraph_clusters/vigil-llm/cluster_7.py,Retrieval Augmented Generation(RAG),Retrieval Augmented Generation(RAG)
+https://github.com/HasinthakaPiyumal/AI-Pattern-Mining-Project/tree/main/notebooks/result/repo_callgraph_clusters/viral-clips-crew/cluster_1.py,LLM-based Multimodal Generative Prompting,LLM-based Multimodal Generative Prompting

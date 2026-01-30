@@ -22,3 +22,5 @@ models/
 !notebooks/embeddings_result/embeddings_call_graph_clusters_v4_coderank.csv
 .env
 *.pdf
+src/steps.zip
+notebooks/result/communities.zip
