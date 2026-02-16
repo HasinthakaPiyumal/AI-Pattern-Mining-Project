@@ -419,6 +419,7 @@
     "Uses": "Forms the fundamental structure of the application, enabling the use of other microservice-specific patterns.",
     "Thinking": "The text explicitly refers to 'Microservice architecture microserviceshtml' as a pattern that has been applied, providing the foundational context for the other patterns discussed. It's presented as the overarching architectural style."
   },
+
   {
     "Pattern Name": "Service Integration Contract Test",
     "Problem": "How to easily test that a service provides an API that its clients expect.",
@@ -750,6 +751,16 @@
     "Thinking": "Explicitly mentioned as a 'pattern/solution for implementing queries that span services' and listed under 'Related patterns.' The text describes its mechanism (materialized views, event subscription) and purpose."
   },
   {
+    "Pattern Name": "Microservice architecture pattern",
+    "Problem": "Not detailed in this text, but implied as the overarching architectural style that necessitates solutions for distributed data management and transactions, as well as promoting loose coupling and independent deployability.",
+    "Context": "The fundamental architectural style being discussed, serving as the foundation for building applications like the online store example, where services are designed to be loosely coupled and independently deployable.",
+    "Solution": "Not detailed in this text, as this pattern is the architectural style itself, not a specific solution within it.",
+    "Result": "Not detailed in this text, but implied benefits include loose coupling, independent development, deployment, and scaling of services, which in turn creates the need for patterns like 'Database per service'.",
+    "Related Patterns": "Database per service (is a sub-pattern or consequence of this, as it 'creates the need for this pattern').",
+    "Uses": "The foundation for building applications that require loose coupling, independent deployment, and scalability, as exemplified by the online store application.",
+    "Thinking": "Explicitly mentioned as the 'Microservice architecture pattern' and stated that it 'creates the need for this pattern (Database per service).' While not fully described with problem/solution, it's a foundational pattern within the microservices domain."
+  },
+  {
     "Pattern Name": "Shared Database antipattern",
     "Problem": "Microservices sharing a single database, which leads to tight coupling between services, reduced independence in development and deployment, and difficulty in choosing appropriate database technologies for individual services. This violates the principle of service encapsulation.",
     "Context": "A microservices environment where services are tempted to share a common database, often as a legacy from monolithic architectures or an attempt to simplify data management, leading to unintended dependencies.",
@@ -758,6 +769,466 @@
     "Related Patterns": "Database per service (is the recommended alternative to this antipattern).",
     "Uses": "Describes the problems that result from microservices sharing a database, serving as a warning against this design choice to maintain service autonomy and loose coupling.",
     "Thinking": "Explicitly called out as an 'antipattern' and linked to 'describes the problems that result from microservices sharing a database.' While an antipattern, it is a recognized design concept within the microservices domain that highlights what to avoid and why."
+  },
+  {
+    "Pattern Name": "Frontend integration",
+    "Problem": "Not explicitly detailed in the provided text.",
+    "Context": "Not explicitly detailed in the provided text.",
+    "Solution": "Not explicitly detailed in the provided text.",
+    "Result": "Not explicitly detailed in the provided text.",
+    "Related Patterns": "Not explicitly detailed in the provided text.",
+    "Uses": "Not explicitly detailed in the provided text. No tool is listed as detecting this pattern in Table IV.",
+    "Thinking": "Identified as a Microservice API Pattern (MAP) from Table I, categorized under 'Foundation'. The text explicitly lists this pattern as one of the 46 MAPs considered in the survey."
+  },
+  {
+    "Pattern Name": "Backend integration",
+    "Problem": "Not explicitly detailed in the provided text.",
+    "Context": "Involves internal implementation details of microservices.",
+    "Solution": "Not explicitly detailed in the provided text.",
+    "Result": "Not explicitly detailed in the provided text.",
+    "Related Patterns": "Not explicitly detailed in the provided text.",
+    "Uses": "Not explicitly detailed in the provided text. No tool is listed as detecting this pattern in Table IV.",
+    "Thinking": "Identified as a Microservice API Pattern (MAP) from Table I, categorized under 'Foundation'. The text explicitly lists this pattern as one of the 46 MAPs considered and provides a brief contextual detail about its internal implementation aspect."
+  },
+  {
+    "Pattern Name": "Public API",
+    "Problem": "Not explicitly detailed in the provided text.",
+    "Context": "Not explicitly detailed in the provided text.",
+    "Solution": "Not explicitly detailed in the provided text.",
+    "Result": "Not explicitly detailed in the provided text.",
+    "Related Patterns": "Not explicitly detailed in the provided text.",
+    "Uses": "Not explicitly detailed in the provided text. No tool is listed as detecting this pattern in Table IV.",
+    "Thinking": "Identified as a Microservice API Pattern (MAP) from Table I, categorized under 'Foundation'. The text explicitly lists this pattern as one of the 46 MAPs considered."
+  },
+  {
+    "Pattern Name": "Community API",
+    "Problem": "Not explicitly detailed in the provided text.",
+    "Context": "Not explicitly detailed in the provided text.",
+    "Solution": "Not explicitly detailed in the provided text.",
+    "Result": "Not explicitly detailed in the provided text.",
+    "Related Patterns": "Not explicitly detailed in the provided text.",
+    "Uses": "Not explicitly detailed in the provided text. No tool is listed as detecting this pattern in Table IV.",
+    "Thinking": "Identified as a Microservice API Pattern (MAP) from Table I, categorized under 'Foundation'. The text explicitly lists this pattern as one of the 46 MAPs considered."
+  },
+  {
+    "Pattern Name": "Solution Internal API",
+    "Problem": "Not explicitly detailed in the provided text.",
+    "Context": "Not explicitly detailed in the provided text.",
+    "Solution": "Not explicitly detailed in the provided text.",
+    "Result": "Not explicitly detailed in the provided text.",
+    "Related Patterns": "Not explicitly detailed in the provided text.",
+    "Uses": "Not explicitly detailed in the provided text. No tool is listed as detecting this pattern in Table IV.",
+    "Thinking": "Identified as a Microservice API Pattern (MAP) from Table I, categorized under 'Foundation'. The text explicitly lists this pattern as one of the 46 MAPs considered."
+  },
+  {
+    "Pattern Name": "API Description",
+    "Problem": "Not explicitly detailed in the provided text.",
+    "Context": "Not explicitly detailed in the provided text.",
+    "Solution": "Not explicitly detailed in the provided text.",
+    "Result": "Not explicitly detailed in the provided text.",
+    "Related Patterns": "Not explicitly detailed in the provided text.",
+    "Uses": "The pattern is detected by tools T25, T26, T27, T28, T29, T36, T37, T46, T52, as indicated in Table IV.",
+    "Thinking": "Identified as a Microservice API Pattern (MAP) from Table I, categorized under 'Foundation'. The text explicitly lists this pattern as one of the 46 MAPs considered and mentions its detection by multiple tools."
+  },
+  {
+    "Pattern Name": "Processing Resource",
+    "Problem": "Not explicitly detailed in the provided text.",
+    "Context": "Not explicitly detailed in the provided text.",
+    "Solution": "Not explicitly detailed in the provided text.",
+    "Result": "Not explicitly detailed in the provided text.",
+    "Related Patterns": "Not explicitly detailed in the provided text.",
+    "Uses": "The pattern is detected by tools T7 (code2ow) and T35 (pycallgraph), as indicated in Table IV.",
+    "Thinking": "Identified as a Microservice API Pattern (MAP) from Table I, categorized under 'Responsibility'. The text explicitly lists this pattern as one of the 46 MAPs considered and mentions its detection by tools."
+  },
+  {
+    "Pattern Name": "Information Holder Resource",
+    "Problem": "Not explicitly detailed in the provided text.",
+    "Context": "Not explicitly detailed in the provided text.",
+    "Solution": "Not explicitly detailed in the provided text.",
+    "Result": "Not explicitly detailed in the provided text.",
+    "Related Patterns": "Not explicitly detailed in the provided text.",
+    "Uses": "The pattern is detected by tools T7 (code2ow) and T35 (pycallgraph), as indicated in Table IV.",
+    "Thinking": "Identified as a Microservice API Pattern (MAP) from Table I, categorized under 'Responsibility'. The text explicitly lists this pattern as one of the 46 MAPs considered and mentions its detection by tools."
+  },
+  {
+    "Pattern Name": "Computation Function",
+    "Problem": "Not explicitly detailed in the provided text.",
+    "Context": "Not explicitly detailed in the provided text.",
+    "Solution": "Not explicitly detailed in the provided text.",
+    "Result": "Not explicitly detailed in the provided text.",
+    "Related Patterns": "Not explicitly detailed in the provided text.",
+    "Uses": "The pattern is detected by tools T7 (code2ow) and T35 (pycallgraph), as indicated in Table IV.",
+    "Thinking": "Identified as a Microservice API Pattern (MAP) from Table I, categorized under 'Responsibility'. The text explicitly lists this pattern as one of the 46 MAPs considered and mentions its detection by tools."
+  },
+  {
+    "Pattern Name": "State recreation operation",
+    "Problem": "Not explicitly detailed in the provided text.",
+    "Context": "Not explicitly detailed in the provided text.",
+    "Solution": "Not explicitly detailed in the provided text.",
+    "Result": "Not explicitly detailed in the provided text.",
+    "Related Patterns": "Not explicitly detailed in the provided text.",
+    "Uses": "The pattern is detected by tools T7 (code2ow) and T35 (pycallgraph), as indicated in Table IV.",
+    "Thinking": "Identified as a Microservice API Pattern (MAP) from Table I (as 'State Creation Operation') and Table IV (as 'State recreation operation'), categorized under 'Responsibility'. The text explicitly lists this pattern as one of the 46 MAPs considered and mentions its detection by tools. The name is updated to match Table IV for consistency."
+  },
+  {
+    "Pattern Name": "Retrieval Operation",
+    "Problem": "Not explicitly detailed in the provided text.",
+    "Context": "Not explicitly detailed in the provided text.",
+    "Solution": "Not explicitly detailed in the provided text.",
+    "Result": "Not explicitly detailed in the provided text.",
+    "Related Patterns": "Not explicitly detailed in the provided text.",
+    "Uses": "The pattern is detected by tools T7 (code2ow) and T35 (pycallgraph), as indicated in Table IV.",
+    "Thinking": "Identified as a Microservice API Pattern (MAP) from Table I, categorized under 'Responsibility'. The text explicitly lists this pattern as one of the 46 MAPs considered and mentions its detection by tools."
+  },
+  {
+    "Pattern Name": "State Transition Operation",
+    "Problem": "Not explicitly detailed in the provided text.",
+    "Context": "Not explicitly detailed in the provided text.",
+    "Solution": "Not explicitly detailed in the provided text.",
+    "Result": "Not explicitly detailed in the provided text.",
+    "Related Patterns": "Not explicitly detailed in the provided text.",
+    "Uses": "The pattern is detected by tools T7 (code2ow) and T35 (pycallgraph), as indicated in Table IV.",
+    "Thinking": "Identified as a Microservice API Pattern (MAP) from Table I, categorized under 'Responsibility'. The text explicitly lists this pattern as one of the 46 MAPs considered and mentions its detection by tools."
+  },
+  {
+    "Pattern Name": "Operational Data Holder",
+    "Problem": "Not explicitly detailed in the provided text.",
+    "Context": "Not explicitly detailed in the provided text.",
+    "Solution": "Not explicitly detailed in the provided text.",
+    "Result": "Not explicitly detailed in the provided text.",
+    "Related Patterns": "Not explicitly detailed in the provided text.",
+    "Uses": "The pattern is detected by tools T7 (code2ow) and T35 (pycallgraph), as indicated in Table IV.",
+    "Thinking": "Identified as a Microservice API Pattern (MAP) from Table I, categorized under 'Responsibility'. The text explicitly lists this pattern as one of the 46 MAPs considered and mentions its detection by tools."
+  },
+  {
+    "Pattern Name": "Master Data Holder",
+    "Problem": "Not explicitly detailed in the provided text.",
+    "Context": "Not explicitly detailed in the provided text.",
+    "Solution": "Not explicitly detailed in the provided text.",
+    "Result": "Not explicitly detailed in the provided text.",
+    "Related Patterns": "Not explicitly detailed in the provided text.",
+    "Uses": "The pattern is detected by tools T7 (code2ow) and T35 (pycallgraph), as indicated in Table IV.",
+    "Thinking": "Identified as a Microservice API Pattern (MAP) from Table I, categorized under 'Responsibility'. The text explicitly lists this pattern as one of the 46 MAPs considered and mentions its detection by tools."
+  },
+  {
+    "Pattern Name": "Reference Data Holder",
+    "Problem": "Not explicitly detailed in the provided text.",
+    "Context": "Not explicitly detailed in the provided text.",
+    "Solution": "Not explicitly detailed in the provided text.",
+    "Result": "Not explicitly detailed in the provided text.",
+    "Related Patterns": "Not explicitly detailed in the provided text.",
+    "Uses": "The pattern is detected by tools T7 (code2ow) and T35 (pycallgraph), as indicated in Table IV.",
+    "Thinking": "Identified as a Microservice API Pattern (MAP) from Table I, categorized under 'Responsibility'. The text explicitly lists this pattern as one of the 46 MAPs considered and mentions its detection by tools."
+  },
+  {
+    "Pattern Name": "Data Transfer Resource",
+    "Problem": "Not explicitly detailed in the provided text.",
+    "Context": "Not explicitly detailed in the provided text.",
+    "Solution": "Not explicitly detailed in the provided text.",
+    "Result": "Not explicitly detailed in the provided text.",
+    "Related Patterns": "Not explicitly detailed in the provided text.",
+    "Uses": "The pattern is detected by tools T7 (code2ow) and T35 (pycallgraph), as indicated in Table IV.",
+    "Thinking": "Identified as a Microservice API Pattern (MAP) from Table I, categorized under 'Responsibility'. The text explicitly lists this pattern as one of the 46 MAPs considered and mentions its detection by tools."
+  },
+  {
+    "Pattern Name": "Link Lookup Resource",
+    "Problem": "Not explicitly detailed in the provided text.",
+    "Context": "Not explicitly detailed in the provided text.",
+    "Solution": "Not explicitly detailed in the provided text.",
+    "Result": "Not explicitly detailed in the provided text.",
+    "Related Patterns": "Not explicitly detailed in the provided text.",
+    "Uses": "The pattern is detected by tools T7 (code2ow) and T35 (pycallgraph), as indicated in Table IV.",
+    "Thinking": "Identified as a Microservice API Pattern (MAP) from Table I, categorized under 'Responsibility'. The text explicitly lists this pattern as one of the 46 MAPs considered and mentions its detection by tools."
+  },
+  {
+    "Pattern Name": "Atomic Parameter",
+    "Problem": "Not explicitly detailed in the provided text.",
+    "Context": "Not explicitly detailed in the provided text.",
+    "Solution": "Not explicitly detailed in the provided text.",
+    "Result": "Not explicitly detailed in the provided text.",
+    "Related Patterns": "Not explicitly detailed in the provided text.",
+    "Uses": "The pattern is detected by tools T3, T6, T13, T31, T36, T37, as indicated in Table IV.",
+    "Thinking": "Identified as a Microservice API Pattern (MAP) from Table I, categorized under 'Structure'. The text explicitly lists this pattern as one of the 46 MAPs considered and mentions its detection by tools."
+  },
+  {
+    "Pattern Name": "Atomic Parameter List",
+    "Problem": "Not explicitly detailed in the provided text.",
+    "Context": "Not explicitly detailed in the provided text.",
+    "Solution": "Not explicitly detailed in the provided text.",
+    "Result": "Not explicitly detailed in the provided text.",
+    "Related Patterns": "Not explicitly detailed in the provided text.",
+    "Uses": "The pattern is detected by tools T3, T6, T13, T31, T36, T37, as indicated in Table IV.",
+    "Thinking": "Identified as a Microservice API Pattern (MAP) from Table I, categorized under 'Structure'. The text explicitly lists this pattern as one of the 46 MAPs considered and mentions its detection by tools."
+  },
+  {
+    "Pattern Name": "Parameter Tree",
+    "Problem": "Not explicitly detailed in the provided text.",
+    "Context": "Not explicitly detailed in the provided text.",
+    "Solution": "Not explicitly detailed in the provided text.",
+    "Result": "Not explicitly detailed in the provided text.",
+    "Related Patterns": "Not explicitly detailed in the provided text.",
+    "Uses": "The pattern is detected by tools T3, T6, T13, T31, T36, T37, as indicated in Table IV.",
+    "Thinking": "Identified as a Microservice API Pattern (MAP) from Table I, categorized under 'Structure'. The text explicitly lists this pattern as one of the 46 MAPs considered and mentions its detection by tools."
+  },
+  {
+    "Pattern Name": "Parameter Forest",
+    "Problem": "Not explicitly detailed in the provided text.",
+    "Context": "Not explicitly detailed in the provided text.",
+    "Solution": "Not explicitly detailed in the provided text.",
+    "Result": "Not explicitly detailed in the provided text.",
+    "Related Patterns": "Not explicitly detailed in the provided text.",
+    "Uses": "The pattern is detected by tools T3, T6, T13, T31, T36, T37, as indicated in Table IV.",
+    "Thinking": "Identified as a Microservice API Pattern (MAP) from Table I, categorized under 'Structure'. The text explicitly lists this pattern as one of the 46 MAPs considered and mentions its detection by tools."
+  },
+  {
+    "Pattern Name": "Data Element",
+    "Problem": "Not explicitly detailed in the provided text.",
+    "Context": "Not explicitly detailed in the provided text.",
+    "Solution": "Not explicitly detailed in the provided text.",
+    "Result": "Not explicitly detailed in the provided text.",
+    "Related Patterns": "Not explicitly detailed in the provided text.",
+    "Uses": "The pattern is detected by tools T6, T13, T31, T36, T37, as indicated in Table IV.",
+    "Thinking": "Identified as a Microservice API Pattern (MAP) from Table I, categorized under 'Structure'. The text explicitly lists this pattern as one of the 46 MAPs considered and mentions its detection by tools."
+  },
+  {
+    "Pattern Name": "Id element",
+    "Problem": "Not explicitly detailed in the provided text.",
+    "Context": "Not explicitly detailed in the provided text.",
+    "Solution": "Not explicitly detailed in the provided text.",
+    "Result": "Not explicitly detailed in the provided text.",
+    "Related Patterns": "Not explicitly detailed in the provided text.",
+    "Uses": "The pattern is detected by tools T3, T6, T13, T31, T36, T37, as indicated in Table IV.",
+    "Thinking": "Identified as a Microservice API Pattern (MAP) from Table I (as 'Resource Id Element') and Table IV (as 'Id element'), categorized under 'Structure'. The text explicitly lists this pattern as one of the 46 MAPs considered and mentions its detection by tools. The name is updated to match Table IV for consistency."
+  },
+  {
+    "Pattern Name": "Link element",
+    "Problem": "Not explicitly detailed in the provided text.",
+    "Context": "Not explicitly detailed in the provided text.",
+    "Solution": "Not explicitly detailed in the provided text.",
+    "Result": "Not explicitly detailed in the provided text.",
+    "Related Patterns": "Not explicitly detailed in the provided text.",
+    "Uses": "The pattern is detected by tools T6, T13, T31, T36, T37, as indicated in Table IV.",
+    "Thinking": "Identified as a Microservice API Pattern (MAP) from Table I (as 'Resource Link Element') and Table IV (as 'Link element'), categorized under 'Structure'. The text explicitly lists this pattern as one of the 46 MAPs considered and mentions its detection by tools. The name is updated to match Table IV for consistency."
+  },
+  {
+    "Pattern Name": "Metadata Element",
+    "Problem": "Not explicitly detailed in the provided text.",
+    "Context": "Not explicitly detailed in the provided text.",
+    "Solution": "Not explicitly detailed in the provided text.",
+    "Result": "Not explicitly detailed in the provided text.",
+    "Related Patterns": "Not explicitly detailed in the provided text.",
+    "Uses": "The pattern is detected by tools T13, T31, T36, T37, as indicated in Table IV.",
+    "Thinking": "Identified as a Microservice API Pattern (MAP) from Table I (as 'Evolution Metadata Element') and Table IV (as 'Metadata element'), categorized under 'Structure'. The text explicitly lists this pattern as one of the 46 MAPs considered and mentions its detection by tools. The name is updated to match Table IV for consistency."
+  },
+  {
+    "Pattern Name": "Context Representation",
+    "Problem": "Not explicitly detailed in the provided text.",
+    "Context": "Not explicitly detailed in the provided text.",
+    "Solution": "Not explicitly detailed in the provided text.",
+    "Result": "Not explicitly detailed in the provided text.",
+    "Related Patterns": "Not explicitly detailed in the provided text.",
+    "Uses": "The pattern is detected by tool T13, as indicated in Table IV.",
+    "Thinking": "Identified as a Microservice API Pattern (MAP) from Table I, categorized under 'Structure'. The text explicitly lists this pattern as one of the 46 MAPs considered and mentions its detection by a tool."
+  },
+  {
+    "Pattern Name": "Pagination",
+    "Problem": "Not explicitly detailed in the provided text.",
+    "Context": "Not explicitly detailed in the provided text.",
+    "Solution": "Not explicitly detailed in the provided text.",
+    "Result": "Not explicitly detailed in the provided text.",
+    "Related Patterns": "Not explicitly detailed in the provided text.",
+    "Uses": "The pattern is detected by tools T13, T31, T36, T37, as indicated in Table IV.",
+    "Thinking": "Identified as a Microservice API Pattern (MAP) from Table IV, categorized under 'Structure'. Although not explicitly listed in Table I, its inclusion in Table IV with detected tools implies it is considered a Microservice API Pattern by the authors of the research text, making it one of the 46 MAPs."
+  },
+  {
+    "Pattern Name": "API Key",
+    "Problem": "Not explicitly detailed in the provided text.",
+    "Context": "Not explicitly detailed in the provided text.",
+    "Solution": "Not explicitly detailed in the provided text.",
+    "Result": "Not explicitly detailed in the provided text.",
+    "Related Patterns": "Not explicitly detailed in the provided text.",
+    "Uses": "The pattern is detected by tools T13, T36, T37, as indicated in Table IV. It can also be identified by extracting request/response headers from HTTP calls, as mentioned in the discussion.",
+    "Thinking": "Identified as a Microservice API Pattern (MAP) from Table I, categorized under 'Quality'. The text explicitly lists this pattern as one of the 46 MAPs considered and mentions its detection by tools."
+  },
+  {
+    "Pattern Name": "Rate Limit",
+    "Problem": "Not explicitly detailed in the provided text.",
+    "Context": "Not explicitly detailed in the provided text.",
+    "Solution": "Not explicitly detailed in the provided text.",
+    "Result": "Not explicitly detailed in the provided text.",
+    "Related Patterns": "Not explicitly detailed in the provided text.",
+    "Uses": "The pattern is detected by tools T36, T37, T53, as indicated in Table IV.",
+    "Thinking": "Identified as a Microservice API Pattern (MAP) from Table I, categorized under 'Quality'. The text explicitly lists this pattern as one of the 46 MAPs considered and mentions its detection by tools."
+  },
+  {
+    "Pattern Name": "Rate Plan",
+    "Problem": "Relates to the legal use of the API.",
+    "Context": "Not explicitly detailed in the provided text.",
+    "Solution": "Not explicitly detailed in the provided text. Its detection might require considering organizational policies which are often not in a machine-readable format.",
+    "Result": "Not explicitly detailed in the provided text.",
+    "Related Patterns": "Not explicitly detailed in the provided text.",
+    "Uses": "No tool can detect this pattern, as indicated in Table IV and the discussion.",
+    "Thinking": "Identified as a Microservice API Pattern (MAP) from Table I, categorized under 'Quality'. The text explicitly lists this pattern as one of the 46 MAPs considered and provides a brief problem description."
+  },
+  {
+    "Pattern Name": "Service Level Agreement",
+    "Problem": "Relates to the legal use of the API.",
+    "Context": "Not explicitly detailed in the provided text.",
+    "Solution": "Not explicitly detailed in the provided text. Its detection might require considering organizational policies which are often not in a machine-readable format.",
+    "Result": "Not explicitly detailed in the provided text.",
+    "Related Patterns": "Not explicitly detailed in the provided text.",
+    "Uses": "No tool can detect this pattern, as indicated in Table IV and the discussion.",
+    "Thinking": "Identified as a Microservice API Pattern (MAP) from Table I, categorized under 'Quality'. The text explicitly lists this pattern as one of the 46 MAPs considered and provides a brief problem description (referred to as 'SLA')."
+  },
+  {
+    "Pattern Name": "Error Report",
+    "Problem": "Not explicitly detailed in the provided text.",
+    "Context": "Not explicitly detailed in the provided text.",
+    "Solution": "Not explicitly detailed in the provided text.",
+    "Result": "Not explicitly detailed in the provided text.",
+    "Related Patterns": "Not explicitly detailed in the provided text.",
+    "Uses": "The pattern is detected by tools T13, T36, T37, as indicated in Table IV.",
+    "Thinking": "Identified as a Microservice API Pattern (MAP) from Table I, categorized under 'Quality'. The text explicitly lists this pattern as one of the 46 MAPs considered and mentions its detection by tools."
+  },
+  {
+    "Pattern Name": "Conditional Request",
+    "Problem": "Not explicitly detailed in the provided text.",
+    "Context": "Not explicitly detailed in the provided text.",
+    "Solution": "Not explicitly detailed in the provided text.",
+    "Result": "Not explicitly detailed in the provided text.",
+    "Related Patterns": "Not explicitly detailed in the provided text.",
+    "Uses": "The pattern is detected by tools T13, T36, T37, as indicated in Table IV.",
+    "Thinking": "Identified as a Microservice API Pattern (MAP) from Table I, categorized under 'Quality'. The text explicitly lists this pattern as one of the 46 MAPs considered and mentions its detection by tools."
+  },
+  {
+    "Pattern Name": "Request Bundle",
+    "Problem": "Not explicitly detailed in the provided text.",
+    "Context": "Not explicitly detailed in the provided text.",
+    "Solution": "Not explicitly detailed in the provided text.",
+    "Result": "Not explicitly detailed in the provided text.",
+    "Related Patterns": "Not explicitly detailed in the provided text.",
+    "Uses": "The pattern is detected by tool T13, as indicated in Table IV.",
+    "Thinking": "Identified as a Microservice API Pattern (MAP) from Table I, categorized under 'Quality'. The text explicitly lists this pattern as one of the 46 MAPs considered and mentions its detection by a tool."
+  },
+  {
+    "Pattern Name": "Wish list",
+    "Problem": "Not explicitly detailed in the provided text.",
+    "Context": "Not explicitly detailed in the provided text.",
+    "Solution": "Not explicitly detailed in the provided text.",
+    "Result": "Not explicitly detailed in the provided text.",
+    "Related Patterns": "Not explicitly detailed in the provided text.",
+    "Uses": "The pattern is detected by tools T36, T37, as indicated in Table IV.",
+    "Thinking": "Identified as a Microservice API Pattern (MAP) from Table I (as 'Resource Wish List') and Table IV (as 'Wish list'), categorized under 'Quality'. The text explicitly lists this pattern as one of the 46 MAPs considered and mentions its detection by tools. The name is updated to match Table IV for consistency."
+  },
+  {
+    "Pattern Name": "Wish template",
+    "Problem": "Not explicitly detailed in the provided text.",
+    "Context": "Not explicitly detailed in the provided text.",
+    "Solution": "Not explicitly detailed in the provided text.",
+    "Result": "Not explicitly detailed in the provided text.",
+    "Related Patterns": "Not explicitly detailed in the provided text.",
+    "Uses": "No tool can detect this pattern, as indicated in Table IV and the discussion.",
+    "Thinking": "Identified as a Microservice API Pattern (MAP) from Table I (as 'Resource Wish Template') and Table IV (as 'Wish template'), categorized under 'Quality'. The text explicitly lists this pattern as one of the 46 MAPs considered. The name is updated to match Table IV for consistency."
+  },
+  {
+    "Pattern Name": "Embedded Entity",
+    "Problem": "Not explicitly detailed in the provided text.",
+    "Context": "Not explicitly detailed in the provided text.",
+    "Solution": "Not explicitly detailed in the provided text.",
+    "Result": "Not explicitly detailed in the provided text.",
+    "Related Patterns": "Not explicitly detailed in the provided text.",
+    "Uses": "The pattern is detected by tool T13, as indicated in Table IV.",
+    "Thinking": "Identified as a Microservice API Pattern (MAP) from Table I, categorized under 'Quality'. The text explicitly lists this pattern as one of the 46 MAPs considered and mentions its detection by a tool."
+  },
+  {
+    "Pattern Name": "Linked Information Holder",
+    "Problem": "Not explicitly detailed in the provided text.",
+    "Context": "Not explicitly detailed in the provided text.",
+    "Solution": "Not explicitly detailed in the provided text.",
+    "Result": "Not explicitly detailed in the provided text.",
+    "Related Patterns": "Not explicitly detailed in the provided text.",
+    "Uses": "The pattern is detected by tool T13, as indicated in Table IV.",
+    "Thinking": "Identified as a Microservice API Pattern (MAP) from Table I, categorized under 'Quality'. The text explicitly lists this pattern as one of the 46 MAPs considered and mentions its detection by a tool."
+  },
+  {
+    "Pattern Name": "Version identier",
+    "Problem": "Not explicitly detailed in the provided text.",
+    "Context": "Not explicitly detailed in the provided text.",
+    "Solution": "Not explicitly detailed in the provided text.",
+    "Result": "Not explicitly detailed in the provided text.",
+    "Related Patterns": "Not explicitly detailed in the provided text.",
+    "Uses": "The pattern is detected by tools T6, T10, T13, T45, as indicated in Table IV.",
+    "Thinking": "Identified as a Microservice API Pattern (MAP) from Table I (as 'Version Identier') and Table IV (as 'Version identier'), categorized under 'Evolution'. The text explicitly lists this pattern as one of the 46 MAPs considered and mentions its detection by tools. The name is updated to match Table IV for consistency."
+  },
+  {
+    "Pattern Name": "Semantic Versioning",
+    "Problem": "Not explicitly detailed in the provided text.",
+    "Context": "Not explicitly detailed in the provided text.",
+    "Solution": "Tools discovering this pattern do not simply tell if the project has followed the SemVer specification, but instead tell the correct identifier increment based on changes in the source. It is up to the developer/researcher to compare it to the one actually used.",
+    "Result": "Not explicitly detailed in the provided text.",
+    "Related Patterns": "Not explicitly detailed in the provided text.",
+    "Uses": "The pattern is detected by tools T2, T9, T13, T19, T38, T40, T42, T43, T44, T45, as indicated in Table IV.",
+    "Thinking": "Identified as a Microservice API Pattern (MAP) from Table I, categorized under 'Evolution'. The text explicitly lists this pattern as one of the 46 MAPs considered and provides a brief description of how its detection works."
+  },
+  {
+    "Pattern Name": "Two In Production",
+    "Problem": "Not explicitly detailed in the provided text.",
+    "Context": "Not explicitly detailed in the provided text.",
+    "Solution": "Not explicitly detailed in the provided text.",
+    "Result": "Not explicitly detailed in the provided text.",
+    "Related Patterns": "Not explicitly detailed in the provided text.",
+    "Uses": "No tool can detect this pattern, as indicated in Table IV.",
+    "Thinking": "Identified as a Microservice API Pattern (MAP) from Table I, categorized under 'Evolution'. The text explicitly lists this pattern as one of the 46 MAPs considered."
+  },
+  {
+    "Pattern Name": "Aggresive obsolesense",
+    "Problem": "Not explicitly detailed in the provided text.",
+    "Context": "Not explicitly detailed in the provided text.",
+    "Solution": "Not explicitly detailed in the provided text.",
+    "Result": "Not explicitly detailed in the provided text.",
+    "Related Patterns": "Not explicitly detailed in the provided text.",
+    "Uses": "No tool can detect this pattern, as indicated in Table IV.",
+    "Thinking": "Identified as a Microservice API Pattern (MAP) from Table I (as 'Aggressive Obsolescence') and Table IV (as 'Aggresive obsolesense'), categorized under 'Evolution'. The text explicitly lists this pattern as one of the 46 MAPs considered. The name is updated to match Table IV for consistency."
+  },
+  {
+    "Pattern Name": "Experimental Preview",
+    "Problem": "Not explicitly detailed in the provided text.",
+    "Context": "Not explicitly detailed in the provided text.",
+    "Solution": "Not explicitly detailed in the provided text.",
+    "Result": "Not explicitly detailed in the provided text.",
+    "Related Patterns": "Not explicitly detailed in the provided text.",
+    "Uses": "No tool can detect this pattern, as indicated in Table IV.",
+    "Thinking": "Identified as a Microservice API Pattern (MAP) from Table I, categorized under 'Evolution'. The text explicitly lists this pattern as one of the 46 MAPs considered."
+  },
+  {
+    "Pattern Name": "Limited Lifetime Guarantee",
+    "Problem": "Not explicitly detailed in the provided text.",
+    "Context": "Not explicitly detailed in the provided text.",
+    "Solution": "Not explicitly detailed in the provided text.",
+    "Result": "Not explicitly detailed in the provided text.",
+    "Related Patterns": "Not explicitly detailed in the provided text.",
+    "Uses": "The pattern is detected by tools T2, T13, T40, as indicated in Table IV.",
+    "Thinking": "Identified as a Microservice API Pattern (MAP) from Table I, categorized under 'Evolution'. The text explicitly lists this pattern as one of the 46 MAPs considered and mentions its detection by tools."
+  },
+  {
+    "Pattern Name": "Eternal Lifetime Guarantee",
+    "Problem": "Not explicitly detailed in the provided text.",
+    "Context": "Not explicitly detailed in the provided text.",
+    "Solution": "Not explicitly detailed in the provided text.",
+    "Result": "Not explicitly detailed in the provided text.",
+    "Related Patterns": "Not explicitly detailed in the provided text.",
+    "Uses": "The pattern is detected by tools T2, T13, T40, as indicated in Table IV.",
+    "Thinking": "Identified as a Microservice API Pattern (MAP) from Table I, categorized under 'Evolution'. The text explicitly lists this pattern as one of the 46 MAPs considered and mentions its detection by tools."
+  },
+  {
+    "Pattern Name": "Annotated Parameter Collection",
+    "Problem": "Not explicitly detailed in the provided text.",
+    "Context": "Not explicitly detailed in the provided text.",
+    "Solution": "Not explicitly detailed in the provided text.",
+    "Result": "Not explicitly detailed in the provided text.",
+    "Related Patterns": "Not explicitly detailed in the provided text.",
+    "Uses": "The text explicitly states: 'W e have however excluded the pattern Annotated P arameter Collection as it lacked a detailed description.' This implies no tools are listed for it in Table IV.",
+    "Thinking": "Identified as a Microservice API Pattern (MAP) from Table I, categorized under 'Evolution'. The text explicitly lists this pattern as one of the 46 MAPs considered, although it notes it was excluded from detailed description due to lack of information."
   },
   {
     "Pattern Name": "Retry Pattern",
@@ -963,9 +1434,9 @@
     "Pattern Name": "Private API Gateway",
     "Problem": "Backend services are of various sensitivities and priorities, meaning a 'one size fits all' security strategy (e.g., a simple STS with an external API Gateway) is insufficient. Some 'premium services or admin services' require an 'extra level of security' beyond what the primary gateway provides.",
     "Context": "A microservices architecture where an external API Gateway is already in place, but certain internal services (e.g., premium, admin) contain highly sensitive data or functionality and require an additional, more stringent layer of security.",
-    "Solution": "Implement an additional layer of security in the form of a 'private API gateway' that is not exposed to external callers. This private gateway includes its own additional filter and authorization scheme. Callers needing to access these inner secure layers must do so via façade services and pass an extra level of authorization.",
+    "Solution": "Implement an additional layer of security in the form of a 'private API gateway' that is not exposed to external callers. This private gateway includes its own additional filter and authorization scheme. Callers needing to access these inner secure layers must do so via fa\u00e7ade services and pass an extra level of authorization.",
     "Result": "Provides enhanced, layered security for sensitive internal services, implementing a 'defense in depth' strategy by adding an unexposed, internal access control point with stricter authorization requirements.",
-    "Related Patterns": "API Gateway (external), Defense in Depth (security principle), Façade Services (implied for access).",
+    "Related Patterns": "API Gateway (external), Defense in Depth (security principle), Fa\u00e7ade Services (implied for access).",
     "Uses": "Securing 'premium or admin services' that demand a higher level of protection and authorization, by creating an internal, unexposed security boundary.",
     "Thinking": "The text describes a specific architectural component ('private API gateway') as a solution to a distinct problem (varying service sensitivities requiring layered security) within MSA, making it a true microservices design pattern."
   },
@@ -1121,7 +1592,7 @@
   },
   {
     "Pattern Name": "Clientside service discovery",
-    "Problem": "How does the client of a service – the API gateway or another service – discover the location of a service instance?",
+    "Problem": "How does the client of a service \u2013 the API gateway or another service \u2013 discover the location of a service instance?",
     "Context": "Services typically need to call one another. In a modern microservice-based application, services run in virtualized or containerized environments where the number of instances of a service and their locations changes dynamically. Consequently, a mechanism is needed for clients to make requests to a dynamically changing set of ephemeral service instances. Each service instance exposes a remote API at a particular host and port. The number of service instances and their locations changes dynamically, often with dynamic IP addresses and autoscaling groups adjusting instance counts based on load.",
     "Solution": "When making a request to a service, the client obtains the location of a service instance by querying a Service Registry, which knows the locations of all service instances. This is typically handled by a Microservice chassis framework.",
     "Result": "Benefits: Fewer moving parts and network hops compared to Serverside Discovery. Drawbacks: Couples the client to the Service Registry. Requires implementing clientside service discovery logic for each programming language/framework used by the application (e.g., Java/Scala, JavaScript/NodeJS). Potential security concerns if clients directly call service endpoints without an API Gateway.",
@@ -1158,6 +1629,26 @@
     "Related Patterns": "The Transactional Outbox pattern creates the need for this pattern. The Polling publisher pattern is an alternative solution.",
     "Uses": "Eventuate Tram framework implements this pattern. Described in the book 'Microservices patterns book'.",
     "Thinking": "The text explicitly labels 'Pattern Transaction log tailing' and then provides dedicated sections for its Context, Problem, Solution, Resulting context (benefits and drawbacks), and Related patterns, along with examples of its implementation (Eventuate Tram framework). This comprehensive description clearly identifies it as a true Microservices design pattern within the provided text."
+  },
+  {
+    "Pattern Name": "Transactional Outbox",
+    "Problem": "Not provided in text.",
+    "Context": "Not provided in text.",
+    "Solution": "Not provided in text.",
+    "Result": "Not provided in text.",
+    "Related Patterns": "Creates the need for the Transaction log tailing pattern.",
+    "Uses": "Not provided in text.",
+    "Thinking": "The text explicitly refers to 'Transactional Outbox' as a 'pattern' ('Transactional Outbox transactionaloutboxhtml pattern') and states that it 'creates the need' for the 'Transaction log tailing' pattern. While its full description (Problem, Context, Solution, Result, Uses) is not detailed in this specific text snippet, its identity as a pattern and its relationship to another pattern are clearly established."
+  },
+  {
+    "Pattern Name": "Polling publisher",
+    "Problem": "Not provided in text.",
+    "Context": "Not provided in text.",
+    "Solution": "Not provided in text.",
+    "Result": "Not provided in text.",
+    "Related Patterns": "An alternative solution to the Transaction log tailing pattern.",
+    "Uses": "Not provided in text.",
+    "Thinking": "The text explicitly refers to 'Polling publisher' as a 'pattern' ('Polling publisher pollingpublisherhtml pattern') and states that it is 'an alternative solution' to the 'Transaction log tailing' pattern. While its full description (Problem, Context, Solution, Result, Uses) is not detailed in this specific text snippet, its identity as a pattern and its relationship to another pattern are clearly established."
   },
   {
     "Pattern Name": "Database per service pattern",
@@ -1278,6 +1769,16 @@
     "Related Patterns": "Clientside UI composition (as an alternative approach).",
     "Uses": "Amazon-style product detail pages, eBay's extended implementation for mobile/desktop web apps, and composition of reusable modules like Marketing, Ads, or Merchandising modules.",
     "Thinking": "The text explicitly labels 'Serverside page fragment composition' as a 'Pattern' and provides dedicated sections for its Context, Problem, and Solution, which are standard elements of a design pattern description. It also discusses related patterns and provides real-world examples of its application."
+  },
+  {
+    "Pattern Name": "Clientside UI composition",
+    "Problem": "How to implement a UI screen or page that displays data from multiple services.",
+    "Context": "You have applied the Microservice architecture pattern. Services are developed by business capability decomposition or subdomain decomposition oriented teams that are also responsible for the user experience. Some UI screens/pages display data from multiple services, where each data item corresponds to a separate service and its display is the responsibility of a different team.",
+    "Solution": "The text describes this as an 'alternative approach' to Serverside page fragment composition, implying that the aggregation of UI fragments from multiple services occurs on the client side (e.g., in the user's browser) rather than on the server.",
+    "Result": "Not explicitly detailed in the provided text, but generally aims to compose a unified UI from multiple microservices, with the aggregation logic residing in the client application.",
+    "Related Patterns": "Serverside page fragment composition (as an alternative approach).",
+    "Uses": "Not explicitly detailed in the provided text.",
+    "Thinking": "The text explicitly refers to 'Clientside UI composition' as a 'pattern' and an 'alternative approach' to the detailed 'Serverside page fragment composition' pattern. While its specific details are not elaborated, its explicit mention as a pattern and an alternative makes it a true Microservices design pattern within the context of the provided text."
   },
   {
     "Pattern Name": "Decompose by Business Capability",
@@ -1710,6 +2211,16 @@
     "Thinking": "This was identified as a Microservices design pattern because the text explicitly labels it as 'Pattern Serverside service discovery' and follows a standard pattern structure, including dedicated sections for Context, Problem, Solution, Result, and Related Patterns. It addresses a core challenge in dynamic microservices environments: how clients find service instances."
   },
   {
+    "Pattern Name": "Domain-specific protocol",
+    "Problem": "Services in a microservice architecture need to handle requests from clients and collaborate with other services, requiring an interprocess communication protocol.",
+    "Context": "You have applied the Microservice architecture pattern. Services must handle requests from the applications' clients. Furthermore, services must sometimes collaborate to handle those requests. They must use an interprocess communication protocol.",
+    "Solution": "Use a domain-specific protocol for interservice communication.",
+    "Result": "",
+    "Related Patterns": "Messaging, RPI",
+    "Uses": "For defining the interprocess communication mechanism between microservices, especially when the communication needs are specific to the domain. Examples include email protocols (SMTP, IMAP) and media streaming protocols (RTMP, HLS, HDS).",
+    "Thinking": "The text explicitly labels 'Pattern Domainspecific protocol' and provides dedicated sections for its Context, Solution, and Related Patterns, clearly defining it as a microservices design pattern within the provided content."
+  },
+  {
     "Pattern Name": "Remote Procedure Invocation (RPI)",
     "Problem": "How do services in a microservice architecture communicate?",
     "Context": "You have applied the Microservice architecture pattern. Services must handle requests from the applications clients. Furthermore, services must sometimes collaborate to handle those requests. They must use an interprocess communication protocol.",
@@ -1725,7 +2236,7 @@
     "Context": "Develop multiple versions of the product details user interface. Each service is deployed as a set of service instances.",
     "Solution": "A service that provides each client with unied interface to services",
     "Result": "Addresses Maintainability, Availability, Scalability.",
-    "Related Patterns": "Similar to the Façade pattern from object-oriented design.",
+    "Related Patterns": "Similar to the Fa\u00e7ade pattern from object-oriented design.",
     "Uses": "Implemented using frameworks like Spring Cloud Gateway, Zuul, Kong, Ocelot.",
     "Thinking": "This pattern is explicitly listed in Table V as one of the nine identified microservices architectural patterns. The discussion in Section IV.E states that these nine patterns are characterized as 'correctly of microservices' because the authors 'could not find evidence about their use in SOA sources' for them."
   },
@@ -2040,6 +2551,36 @@
     "Thinking": "The text explicitly identifies 'Pattern Transactional outbox' and provides a structured description including Problem, Context, Solution, Result, and Related Patterns. It addresses a fundamental challenge in distributed systems, specifically interservice communication and data consistency in a microservices context, where services manage their own data and communicate asynchronously without relying on distributed transactions. The mention of 'My book Microservices patterns book describes this pattern' further confirms its identity as a Microservices design pattern."
   },
   {
+    "Pattern Name": "Saga",
+    "Problem": "Not explicitly detailed in this text snippet. (Implied: managing distributed transactions across multiple services.)",
+    "Context": "A service needs to participate in a distributed business transaction that spans multiple services, requiring updates to business entities and sending messages/events.",
+    "Solution": "Not explicitly detailed in this text snippet. (Implied: a sequence of local transactions, each updating a service's database and publishing an event, with a coordination mechanism.)",
+    "Result": "Not explicitly detailed in this text snippet.",
+    "Related Patterns": "Creates the need for the Transactional Outbox pattern.",
+    "Uses": "Services that need to coordinate operations across multiple services as a single logical business transaction.",
+    "Thinking": "The text identifies 'Saga patterns' and 'The Saga sagahtml ... patterns' as a distinct concept that 'creates the need for this pattern [Transactional Outbox]'. This indicates it's a higher-level microservice design pattern for distributed transaction management. However, the provided text only mentions its existence and its relationship to Transactional Outbox, without detailing its own Problem, Solution, etc."
+  },
+  {
+    "Pattern Name": "Domain Event",
+    "Problem": "Not explicitly detailed in this text snippet. (Implied: communicating significant changes within a domain or between services in an event-driven manner.)",
+    "Context": "A service needs to publish an event representing a significant change to an aggregate (business entity) after updating it.",
+    "Solution": "Not explicitly detailed in this text snippet. (Implied: defining and publishing events that represent facts about what happened in the domain.)",
+    "Result": "Not explicitly detailed in this text snippet.",
+    "Related Patterns": "Creates the need for the Transactional Outbox pattern.",
+    "Uses": "Services that need to publish events representing significant domain changes, often for inter-service communication or to trigger reactions in other parts of the system.",
+    "Thinking": "The text identifies 'domain event domaineventhtml' as a pattern that 'creates the need for this pattern [Transactional Outbox]'. This identifies it as a distinct microservice design pattern for event-driven communication and state propagation. Similar to Saga, the provided text only mentions its existence and its relationship to Transactional Outbox, without detailing its own Problem, Solution, etc."
+  },
+  {
+    "Pattern Name": "Event Sourcing",
+    "Problem": "Not explicitly detailed in this text snippet. (Implied: reliably capturing all changes to application state as a sequence of events, enabling reconstruction of state and auditability, and publishing events.)",
+    "Context": "Not explicitly detailed in this text snippet. (Implied: when a service needs to maintain a complete history of changes to its aggregates and publish these changes as events.)",
+    "Solution": "Not explicitly detailed in this text snippet. (Implied: persisting all changes to application state as a sequence of immutable events, rather than just the current state.)",
+    "Result": "Not explicitly detailed in this text snippet.",
+    "Related Patterns": "Presented as an alternative solution to the problem addressed by Transactional Outbox (atomically updating the database and sending messages).",
+    "Uses": "Not explicitly detailed in this text snippet. (Implied: for services requiring a full audit log, temporal querying, or robust event publishing.)",
+    "Thinking": "The text explicitly states 'The Event sourcing eventsourcinghtml is an alternative solution' to the problem Transactional Outbox addresses. This clearly identifies it as a distinct and significant microservice design pattern, offering an alternative approach to event publishing and state management. However, the provided text only mentions its existence and its relationship as an alternative, without detailing its own Problem, Solution, etc."
+  },
+  {
     "Pattern Name": "Domain-Driven Design",
     "Problem": "Designing and implementing quality and high-value software, both strategically and tactically, and integrating it with the business, especially when decomposing a system into small microservices.",
     "Context": "Developing a vision of the system, generating a business domain model, extracting knowledge of business functionalities, identifying subdomains, related functionalities, priorities, dependencies, and external calls.",
@@ -2300,6 +2841,26 @@
     "Thinking": "The text refers to 'Database per Service' as a 'pattern' and describes its core characteristic (each service has its own database) as a foundational context for the Saga pattern. This indicates its role as a fundamental microservices design pattern."
   },
   {
+    "Pattern Name": "Event Sourcing",
+    "Problem": "How to reliably update a service's database state and publish a corresponding message or event atomically, without using traditional distributed transactions that span the database and message broker.",
+    "Context": "A service in a microservices architecture needs to ensure that its state changes and the publication of events reflecting those changes are treated as a single, atomic operation, especially when participating in sagas and needing to be reliable.",
+    "Solution": "The text implies it's a mechanism to 'atomically update state and publish messages/events'. (The full solution details are not provided in this text, but it's referenced as a known pattern for this specific problem).",
+    "Result": "Ensures atomicity and reliability when a service updates its database and publishes events, which is crucial for maintaining consistency in event-driven microservices and sagas.",
+    "Related Patterns": "Listed as a way to address a reliability issue for the Saga pattern, alongside Transactional Outbox.",
+    "Uses": "To implement reliable event publishing and state changes within a microservice, often in conjunction with event-driven architectures and sagas.",
+    "Thinking": "The text explicitly calls 'Event Sourcing' a 'pattern' and positions it as a solution to a critical reliability problem ('atomically update its database and publish a message/event') that arises in microservices, particularly when implementing sagas."
+  },
+  {
+    "Pattern Name": "Transactional Outbox",
+    "Problem": "How to reliably update a service's database state and publish a corresponding message or event atomically, without using traditional distributed transactions that span the database and message broker.",
+    "Context": "A service in a microservices architecture needs to ensure that its state changes and the publication of events reflecting those changes are treated as a single, atomic operation, especially when participating in sagas and needing to be reliable.",
+    "Solution": "The text implies it's a mechanism to 'atomically update state and publish messages/events'. (The full solution details are not provided in this text, but it's referenced as a known pattern for this specific problem).",
+    "Result": "Ensures atomicity and reliability when a service updates its database and publishes events, which is crucial for maintaining consistency in event-driven microservices and sagas.",
+    "Related Patterns": "Listed as a way to address a reliability issue for the Saga pattern, alongside Event Sourcing.",
+    "Uses": "To implement reliable event publishing and state changes within a microservice, often in conjunction with event-driven architectures and sagas.",
+    "Thinking": "The text explicitly calls 'Transactional Outbox' a 'pattern' and positions it as a solution to a critical reliability problem ('atomically update its database and publish a message/event') that arises in microservices, particularly when implementing sagas."
+  },
+  {
     "Pattern Name": "Decompose on Business Capabilities",
     "Problem": "Microservices are highly coupled, involve process calls, exhibit frontend/ORM microservices, or have deployment dependencies. This makes delivering business capabilities harder, causes maintenance issues, reduces performance, complicates testing, and increases infrastructure complexity. It also leads to overly large (Mega Microservice) or overly small (Nano Microservice) services that are coupled.",
     "Context": "A microservice-based system where services should be independent, encapsulate a group of functionalities, be owned, developed, and deployed by a single team, and fulfill a single purpose. This applies to initial system decomposition and refactoring existing systems.",
@@ -2550,6 +3111,56 @@
     "Thinking": "This pattern is the primary focus of the provided text, with explicit sections detailing its Problem, Context, Solution, Result (benefits and drawbacks), and Related Patterns. This comprehensive description clearly identifies it as a true Microservices design pattern within the text."
   },
   {
+    "Pattern Name": "Database per Service",
+    "Problem": "Not explicitly detailed as a problem it solves. The text states a problem it creates: 'it is no longer straightforward to implement queries that join data from multiple services' when this pattern is applied.",
+    "Context": "Applied within a Microservices architecture, where each service manages its own data store.",
+    "Solution": "Not explicitly detailed. A comment suggests it's 'just a way of isolating the way data is accessed and updated' for each service.",
+    "Result": "Not explicitly detailed. A consequence mentioned is the difficulty in implementing queries that join data from multiple services.",
+    "Related Patterns": "Creates the need for the Command Query Responsibility Segregation (CQRS) pattern.",
+    "Uses": "Implied to be a common pattern applied in microservices architectures ('You have applied the ... Database per service pattern').",
+    "Thinking": "Explicitly named and described as a pattern applied within a microservices architecture, creating a specific challenge (cross-service queries) that CQRS addresses. This indicates its foundational role in microservices data management."
+  },
+  {
+    "Pattern Name": "Event Sourcing",
+    "Problem": "Not explicitly detailed as a problem it solves. The text states a problem it creates: 'the data is no longer easily queried' when this pattern is applied.",
+    "Context": "Applied within a Microservices architecture, often in conjunction with other patterns like CQRS.",
+    "Solution": "Not explicitly detailed in the provided text.",
+    "Result": "Not explicitly detailed. A consequence mentioned is that 'the data is no longer easily queried'.",
+    "Related Patterns": "Command Query Responsibility Segregation (CQRS) is often used with Event Sourcing. The Domain event pattern generates the events that are central to Event Sourcing.",
+    "Uses": "Implied to be used in microservices architectures ('if you have applied the Event sourcing pattern').",
+    "Thinking": "Explicitly named and linked to CQRS and Microservices architecture. It's described as a pattern that, when applied, makes data 'no longer easily queried,' thus creating a need for CQRS. This indicates it's a significant pattern within the microservices ecosystem."
+  },
+  {
+    "Pattern Name": "API Composition",
+    "Problem": "How to implement a query that retrieves data from multiple services in a microservice architecture (same problem as CQRS, as it's an alternative solution).",
+    "Context": "Within a microservices architecture, when needing to implement queries that retrieve data from multiple services or design operations that span multiple services.",
+    "Solution": "An alternative solution to Command Query Responsibility Segregation (CQRS) for implementing queries that retrieve data from multiple services. It implies composing data from multiple service APIs.",
+    "Result": "Not explicitly detailed in the provided text.",
+    "Related Patterns": "An alternative solution to Command Query Responsibility Segregation (CQRS). Mentioned alongside Saga and CQRS.",
+    "Uses": "Taught in a self-paced online bootcamp for 'design operations that span multiple services'.",
+    "Thinking": "Explicitly named and presented as an 'alternative solution' to CQRS for cross-service queries, placing it firmly as a microservices design pattern. Its mention in the bootcamp for 'design operations that span multiple services' further solidifies its role."
+  },
+  {
+    "Pattern Name": "Saga",
+    "Problem": "Not explicitly detailed, but implied to address challenges with 'design operations that span multiple services' in a distributed environment.",
+    "Context": "Within a microservices architecture, when designing operations that span multiple services, typically involving distributed transactions or complex workflows.",
+    "Solution": "Not explicitly detailed, but implied to be a method for 'design operations that span multiple services'.",
+    "Result": "Not explicitly detailed in the provided text.",
+    "Related Patterns": "Mentioned alongside API Composition and CQRS.",
+    "Uses": "Taught in a self-paced online bootcamp for 'design operations that span multiple services'.",
+    "Thinking": "Explicitly named and described as a pattern used to 'design operations that span multiple services' in a microservices context, which is a core challenge in distributed systems."
+  },
+  {
+    "Pattern Name": "Domain Event",
+    "Problem": "Not explicitly detailed as a problem it solves. It serves as a mechanism for communication and data synchronization.",
+    "Context": "Within a microservices architecture, where services need to publish changes and other services (e.g., CQRS view databases) need to subscribe and react to these changes.",
+    "Solution": "Generates events that represent significant occurrences within a domain. These events are then published and can be subscribed to by other services to keep their data up to date.",
+    "Result": "Not explicitly detailed in the provided text.",
+    "Related Patterns": "Generates the events used by the Command Query Responsibility Segregation (CQRS) pattern to update its view database. A comment distinguishes it from 'integration events'.",
+    "Uses": "Used by the CQRS pattern to keep its view database up to date: 'The application keeps the database up to date by subscribing to Domain events published by the service that own the data.'",
+    "Thinking": "Explicitly named and described as a mechanism for inter-service communication and data synchronization, directly supporting patterns like CQRS. It's a fundamental building block for event-driven microservices."
+  },
+  {
     "Pattern Name": "Decompose by subdomain",
     "Problem": "How to decompose an application into services",
     "Context": "You are developing a large complex application and want to use the microservice architecture. The microservice architecture structures an application as a set of loosely coupled services, aiming to accelerate software development by enabling continuous delivery/deployment. This requires careful functional decomposition into services that are small, cohesive, testable, loosely coupled, conform to the Single Responsibility Principle (SRP) and Common Closure Principle (CCP), and can be developed by small, autonomous teams.",
@@ -2600,6 +3211,16 @@
     "Thinking": "This pattern is explicitly introduced with 'Pattern Exception tracking' and then fully described with dedicated sections for Context, Problem, Solution, Result, and Related Patterns, clearly indicating it as a true Microservices design pattern within the provided text."
   },
   {
+    "Pattern Name": "Commandside replica",
+    "Problem": "",
+    "Context": "",
+    "Solution": "Maintain a queryable replica of the data in the service that implements the Commandside replica.",
+    "Result": "",
+    "Related Patterns": "",
+    "Uses": "",
+    "Thinking": "The phrase 'Maintain a queryable replica of the data in the service that implements the Commandside replica' explicitly names 'Commandside replica' and describes its core solution. This indicates it as a distinct Microservices design pattern mentioned in the text. However, the full Problem, Context, Result, Related Patterns, and Uses are not detailed in this specific snippet and are therefore left blank."
+  },
+  {
     "Pattern Name": "Decomposition of an SOA Service to Microservices",
     "Problem": "How to split the monolithic services in the SOA based application to microservices? How to extract the microservices from the SOA services?",
     "Context": "There is a complex SOA based application and the software architects plan to migrate the application to the microservices architecture which will reduce the scalability issues and increase application performance. Also the effort required for migration should be reduced. There are few monolithic services in the application and few basic services that can be called microservices. The presence of monolithic services makes the application complex and the best approach is to migrate the application to microservices.",
@@ -2617,7 +3238,7 @@
     "Result": "Provides a conceptual definition for the 'size' of a microservice, guiding architects to design microservices that perform a single business task, aligning with the Single Responsibility Principle.",
     "Related Patterns": "Single Responsibility Principle (SRP), Service Graph, Task Graph, Decomposition of an SOA Service to Microservices (Pattern 1).",
     "Uses": "This pattern is used when designing the microservices or extracting from service oriented based applications.",
-    "Thinking": "This pattern is explicitly presented in Section 4 as a 'Migration Pattern' for microservices. It addresses a core design consideration for microservices – their granularity and size – by linking it to the Single Responsibility Principle and the task graph model, which is crucial for effective microservice architecture."
+    "Thinking": "This pattern is explicitly presented in Section 4 as a 'Migration Pattern' for microservices. It addresses a core design consideration for microservices \u2013 their granularity and size \u2013 by linking it to the Single Responsibility Principle and the task graph model, which is crucial for effective microservice architecture."
   },
   {
     "Pattern Name": "Bug Detection in Complex Microservices Application",
@@ -2649,6 +3270,7 @@
     "Uses": "Used in microservice architectures to accelerate the creation of new services, standardize the implementation of build logic and cross-cutting concerns (like security, logging, health checks, metrics, distributed tracing, service registration/discovery, and circuit breakers), and ensure consistency across a large number of services.",
     "Thinking": "The text explicitly labels 'Pattern Service Template' and provides dedicated sections for its Context, Problem, Solution, and Result. It directly addresses challenges and concerns specific to developing and managing multiple services within a microservice architecture, such as rapid service creation and standardized handling of microservice-specific cross-cutting concerns (e.g., service registration/discovery, circuit breakers)."
   },
+
   {
     "Pattern Name": "Messaging",
     "Problem": "How do services in a microservice architecture communicate?",
@@ -2668,6 +3290,26 @@
     "Related Patterns": "Multiple Service Instances per Host pattern, Single Service per Host pattern (these are alternative deployment solutions, and the serverless infrastructure itself might internally use Single Service per Host).",
     "Uses": "AWS Lambda, Google Cloud Functions, Azure Functions. Specifically, AWS Lambda functions can be invoked in response to events from AWS services (S3, DynamoDB, Kinesis, SES), via the AWS Lambda Gateway for HTTP requests, explicitly using the AWS Lambda Web Service API, or periodically using a cron-like mechanism.",
     "Thinking": "The text explicitly labels 'Serverless deployment' as a 'Pattern' and provides a comprehensive description including its Context, Problem, Solution, Examples, Resulting context (benefits and drawbacks), and Related patterns, all within the scope of deploying microservices."
+  },
+  {
+    "Pattern Name": "Multiple Service Instances per Host pattern",
+    "Problem": "Not detailed in the provided text.",
+    "Context": "Not detailed in the provided text.",
+    "Solution": "Not detailed in the provided text.",
+    "Result": "Not detailed in the provided text.",
+    "Related Patterns": "Serverless Deployment (as an alternative deployment solution).",
+    "Uses": "Not detailed in the provided text.",
+    "Thinking": "This pattern is explicitly mentioned as an 'alternative deployment solution' to Serverless Deployment, indicating it is a microservices deployment pattern. However, its specific problem, context, solution, and results are not described in the provided text."
+  },
+  {
+    "Pattern Name": "Single Service per Host pattern",
+    "Problem": "Not detailed in the provided text.",
+    "Context": "Not detailed in the provided text.",
+    "Solution": "Not detailed in the provided text.",
+    "Result": "Not detailed in the provided text.",
+    "Related Patterns": "Serverless Deployment (as an alternative deployment solution, and potentially used internally by serverless infrastructure).",
+    "Uses": "Not detailed in the provided text.",
+    "Thinking": "This pattern is explicitly mentioned as an 'alternative deployment solution' to Serverless Deployment, and the text suggests serverless infrastructure might internally use it. This indicates it is a microservices deployment pattern. However, its specific problem, context, solution, and results are not described in the provided text."
   },
   {
     "Pattern Name": "Service Instance per VM",
@@ -2696,7 +3338,7 @@
     "Solution": "A helpful software architecture is a set of important things in the system communicated through simple textual or visual artifacts. Key items for microservices migration planning include Component and Service Architecture (understanding inner domain, service calls, business logic), Technology Architecture (identifying current stack, libraries, databases), and Deployment Architecture and Procedure (understanding current deployment to move towards continuous delivery). Involve developers and operations teams to establish a common understanding and foster DevOps collaboration. Store artifacts in a shared repository.",
     "Result": "A clear, shared understanding of the current system architecture is established, serving as the initial state for microservices migration planning.",
     "Related Patterns": "None",
-    "Uses": "Create the migration plan’s initial state; understand the current situation of an application.",
+    "Uses": "Create the migration plan\u2019s initial state; understand the current situation of an application.",
     "Thinking": "This pattern is crucial for any microservices migration project as it emphasizes understanding the existing monolithic system's architecture before attempting decomposition. It's a foundational step to define the 'as-is' state, which is essential for effective 'to-be' microservices design."
   },
   {
@@ -2761,7 +3403,7 @@
   },
   {
     "Pattern Name": "Introduce External Load Balancer",
-    "Problem": "How can the load on a service between its instances be balanced with the least changes in the services’ code? How can a centralized load balancing approach be used for all of the services?",
+    "Problem": "How can the load on a service between its instances be balanced with the least changes in the services\u2019 code? How can a centralized load balancing approach be used for all of the services?",
     "Context": "A software system has been decomposed to a set of small services to use a microservices architectural style, and a service registry has been set up. Numerous instances of each service exist, and services act as clients to others.",
     "Solution": "An external load balancer can be set up which retrieves the list of available instances from the service registry and uses a centralized algorithm for load balancing. This load balancer can act either as a proxy (not recommended) or as an instance address locator. Alternatively, a service registry with built-in load balancing support can be used.",
     "Result": "Load on a service is balanced between its instances with minimal changes to service code; a centralized load balancing approach is used for all services.",
@@ -2781,7 +3423,7 @@
   },
   {
     "Pattern Name": "Introduce Configuration Server",
-    "Problem": "How can the running instances’ configurations be changed without redeploying them?",
+    "Problem": "How can the running instances\u2019 configurations be changed without redeploying them?",
     "Context": "A software system has been decomposed to a set of small services to use a microservices architectural style. Each service has numerous instances running in production, and their list is accessible via a service registry.",
     "Solution": "Maintain separate repositories for source code and software configurations, allowing them to evolve independently. Changes to the configuration repository should be propagated to running instances, which then adapt accordingly.",
     "Result": "Running instances' configurations can be changed without redeploying them, reducing downtime and enabling dynamic adjustments.",
@@ -2811,7 +3453,7 @@
   },
   {
     "Pattern Name": "Deploy into a Cluster and Orchestrate Containers",
-    "Problem": "How can a service’s instances be deployed into a cluster? How can the deployment and redeployment of all of the services be orchestrated with the least effort?",
+    "Problem": "How can a service\u2019s instances be deployed into a cluster? How can the deployment and redeployment of all of the services be orchestrated with the least effort?",
     "Context": "A software system has been architected based on a microservices architectural style and a working continuous integration pipeline is in place and is working. Therefore, a production-ready container image is available for the deployment of each service. A large number of services exist and thereby their deployment and redeployment are complex, cumbersome, and unmanageable.",
     "Solution": "Implement a cluster management system (e.g., Kubernetes) to deploy container images on demand, manage instances across nodes, handle instance failures (restarting them), and provide autoscaling. The tool should support declarative deployment architecture, delegating autoscaling and failure management to it. An internal name resolution strategy is beneficial.",
     "Result": "Service instances are deployed into a cluster; deployment and redeployment of all services are orchestrated with minimal effort; the system handles instance failures and provides autoscaling capabilities.",
@@ -2823,7 +3465,7 @@
     "Pattern Name": "Monitor the System and Provide Feedback",
     "Problem": "How can the underlying infrastructure be monitored? How can the gathered data be used to rearchitect the system by providing feedbacks to the development team?",
     "Context": "A software system has been architected based on a microservices architectural style. The whole system is being run on a cluster of containers with each service having a number of instances in production.",
-    "Solution": "Each service should have its independent monitoring facility owned by the operational part of the services team. These facilities should include the required components to gather the monitoring information (e.g., the CPU and RAM usages) and send them to a monitoring server. Therefore, the following components should be added to each service container’s image and be configured either during the creation of the container images or the creation of actual containers. In the monitoring server, this information should be parsed and aggregated into structured information and stored somewhere that can be queried efficiently, such as in an indexing server or a time series database. Having a pool of timely monitoring information, a visualization tool can be used to obtain an overall view on the status of the system. This information helps the development part of the services team to refactor the architecture to remove performance bottlenecks or other detected anomalies.",
+    "Solution": "Each service should have its independent monitoring facility owned by the operational part of the services team. These facilities should include the required components to gather the monitoring information (e.g., the CPU and RAM usages) and send them to a monitoring server. Therefore, the following components should be added to each service container\u2019s image and be configured either during the creation of the container images or the creation of actual containers. In the monitoring server, this information should be parsed and aggregated into structured information and stored somewhere that can be queried efficiently, such as in an indexing server or a time series database. Having a pool of timely monitoring information, a visualization tool can be used to obtain an overall view on the status of the system. This information helps the development part of the services team to refactor the architecture to remove performance bottlenecks or other detected anomalies.",
     "Result": "The underlying infrastructure is monitored effectively; gathered data is used to rearchitect the system by providing feedback to the development team, enabling the removal of performance bottlenecks or detected anomalies.",
     "Related Patterns": "None",
     "Uses": "Monitor running service instances; provide feedback to the development team; enable observability and continuous improvement of the microservices architecture.",
@@ -2920,6 +3562,36 @@
     "Thinking": "Reference 31 (Newman's 'Building Microservices') is a key source for this pattern, which is explicitly about migrating to microservices. Given the paper's title and abstract ('migration and rearchitecting patterns... to a cloud-native microservices-based architecture'), the Strangler Fig pattern is highly relevant and a true 'Microservices design pattern' in the context of *how* one designs the transition to microservices."
   },
   {
+    "Pattern Name": "Saga",
+    "Problem": "Not explicitly detailed in the text, but implied to be about managing distributed transactions or operations that span multiple services.",
+    "Context": "Not explicitly detailed in the text.",
+    "Solution": "Not explicitly detailed in the text.",
+    "Result": "Not explicitly detailed in the text.",
+    "Related Patterns": "API Composition, CQRS (mentioned as patterns used alongside Saga in a bootcamp). Command-side replica (mentioned as an alternative solution).",
+    "Uses": "To design operations that span multiple services.",
+    "Thinking": "The text explicitly refers to 'Saga' as a 'pattern' and mentions its use in 'design operations that span multiple services', indicating it's a true Microservices design pattern."
+  },
+  {
+    "Pattern Name": "API Composition",
+    "Problem": "Not explicitly detailed in the text.",
+    "Context": "Not explicitly detailed in the text.",
+    "Solution": "Not explicitly detailed in the text.",
+    "Result": "Not explicitly detailed in the text.",
+    "Related Patterns": "Saga, CQRS (mentioned as patterns used alongside API Composition in a bootcamp).",
+    "Uses": "To design operations that span multiple services.",
+    "Thinking": "The text explicitly refers to 'API Composition' as a 'pattern' and mentions its use in 'design operations that span multiple services', indicating it's a true Microservices design pattern."
+  },
+  {
+    "Pattern Name": "CQRS (Command Query Responsibility Segregation)",
+    "Problem": "Not explicitly detailed in the text.",
+    "Context": "Not explicitly detailed in the text.",
+    "Solution": "Not explicitly detailed in the text.",
+    "Result": "Not explicitly detailed in the text.",
+    "Related Patterns": "Saga, API Composition (mentioned as patterns used alongside CQRS in a bootcamp). Command-side replica (stated as 'structurally identical').",
+    "Uses": "To design operations that span multiple services.",
+    "Thinking": "The text explicitly refers to 'CQRS' as a 'pattern' and mentions its use in 'design operations that span multiple services'. Additionally, it states that the 'Command-side replica' pattern is 'structurally identical to CQRS', reinforcing its status as a recognized pattern."
+  },
+  {
     "Pattern Name": "Command-side replica",
     "Problem": "How can a service that implements a command retrieve data from another service?",
     "Context": "You have applied the Microservices architecture pattern and the Database per service pattern. As a result, a service that implements a system command often needs to query other services. For example, the createOrder command implemented by the Order Service needs to retrieve the restaurants menu from the Restaurant Service to price and validate line items.",
@@ -2945,6 +3617,36 @@
     "Related Patterns": "Microservices architecture pattern, Database per Service pattern (creates the need), Saga (alternative solution), Domain event (generates the events), CQRS (structurally identical).",
     "Uses": "To allow a command-implementing service to retrieve data from another service without direct, potentially inefficient or tightly coupled, queries, by maintaining a local read-only replica.",
     "Thinking": "This pattern is the primary subject of the research text, with dedicated sections for 'Pattern Name', 'Context', 'Problem', 'Solution', 'Resulting context' (Benefits/Drawbacks), and 'Related patterns'. This comprehensive description clearly identifies it as a true Microservices design pattern."
+  },
+  {
+    "Pattern Name": "Microservices architecture pattern",
+    "Problem": "Not explicitly detailed in the text. It serves as the architectural context for other problems and patterns.",
+    "Context": "The overarching architectural style for building distributed systems.",
+    "Solution": "Not explicitly detailed in the text.",
+    "Result": "Not explicitly detailed in the text.",
+    "Related Patterns": "Database per Service pattern, Command-side replica (applied within this architecture).",
+    "Uses": "As the foundational architectural style for building distributed systems, providing the context for other microservices patterns.",
+    "Thinking": "The text explicitly refers to 'Microservices architecture pattern' and states that it has been 'applied' as a prerequisite for the 'Command-side replica' pattern, indicating its status as a fundamental architectural pattern in the microservices domain."
+  },
+  {
+    "Pattern Name": "Database per Service pattern",
+    "Problem": "Not explicitly detailed in the text, but implied to be the isolation of data, which then creates the need for patterns like Command-side replica when cross-service data is required.",
+    "Context": "Applied within the Microservices architecture pattern, where each service manages its own database.",
+    "Solution": "Not explicitly detailed in the text.",
+    "Result": "Not explicitly detailed in the text.",
+    "Related Patterns": "Command-side replica (creates the need for this pattern).",
+    "Uses": "To ensure data encapsulation and autonomy for individual microservices, leading to independent deployment and scaling.",
+    "Thinking": "The text explicitly refers to 'Database per Service pattern' and states that it 'creates the need for this pattern' (Command-side replica), clearly identifying it as a true Microservices design pattern that addresses data isolation."
+  },
+  {
+    "Pattern Name": "Domain event",
+    "Problem": "Not explicitly detailed in the text, but implied to be about communicating state changes or significant occurrences within a domain across service boundaries.",
+    "Context": "Used by a Provider service to notify other services (like a Command service) about data changes.",
+    "Solution": "The pattern 'generates the events' which are 'published by the provider service'.",
+    "Result": "Enables services to keep replicas up to date by subscribing to these events.",
+    "Related Patterns": "Command-side replica (uses this pattern to update its replica).",
+    "Uses": "To publish events representing significant domain changes, allowing other services to react and maintain consistency (e.g., updating a replica).",
+    "Thinking": "The text explicitly refers to 'Domain event' as a 'pattern' and describes its crucial role in the 'Command-side replica' pattern, stating that it 'generates the events' used for replica updates. This confirms its status as a true Microservices design pattern."
   },
   {
     "Pattern Name": "3rd Party Registration",
@@ -3247,6 +3949,56 @@
     "Thinking": "The text explicitly states '...Decompose by business capability... are patterns for identifying services and organizing them around business functionality.' This directly identifies it as a pattern and describes its purpose within the microservice context."
   },
   {
+    "Pattern Name": "Clientside UI composition",
+    "Problem": "How to implement a UI screen or page that displays data from multiple services",
+    "Context": "You have applied the Microservice architecture pattern. Services are developed by business capability decomposition/subdomain decomposition oriented teams that are also responsible for the user experience. Some UI screens/pages display data from multiple service. Consider for example an Amazon style product detail page which displays numerous data items including Basic information about the book such as title author price etc, Your purchase history for the book, Availability, Buying options, Other items that are frequently bought with this book, Other items bought by customers who bought this book, Customer reviews, Sellers ranking. Each data item corresponds to a separate service and how it is displayed is therefore the responsibility of a different team.",
+    "Solution": "Each team develops a clientside UI component such an AngularJS directive that implements the region of the page/screen for their service. A UI team is responsible implementing the page skeletons that build pages/screens by composing multiple service-specific UI components.",
+    "Result": "Not explicitly mentioned in this text.",
+    "Related Patterns": "Serverside page fragment composition",
+    "Uses": "Not explicitly mentioned in this text.",
+    "Thinking": "This pattern is explicitly introduced with 'Pattern Clientside UI composition' and has dedicated sections for Context, Problem, Solution, and Related Patterns, clearly defining it as a microservices design pattern."
+  },
+  {
+    "Pattern Name": "Serverside page fragment composition",
+    "Problem": "Not explicitly mentioned in this text.",
+    "Context": "Not explicitly mentioned in this text.",
+    "Solution": "Not explicitly mentioned in this text.",
+    "Result": "Not explicitly mentioned in this text.",
+    "Related Patterns": "Clientside UI composition",
+    "Uses": "Not explicitly mentioned in this text.",
+    "Thinking": "The text explicitly refers to 'The Serverside page fragment composition serversidepagefragmentcompositionhtml pattern' and states it is an 'alternative approach' to Clientside UI composition, confirming its status as a microservices design pattern, even if its full details are not provided here."
+  },
+  {
+    "Pattern Name": "Commandside replica",
+    "Problem": "Not explicitly mentioned in this text.",
+    "Context": "Not explicitly mentioned in this text.",
+    "Solution": "Maintain a queryable replica of the data in the service that implements the Commandside replica.",
+    "Result": "Not explicitly mentioned in this text.",
+    "Related Patterns": "Not explicitly mentioned in this text.",
+    "Uses": "Not explicitly mentioned in this text.",
+    "Thinking": "The text mentions 'Commandside replica' and provides a brief description of its function ('Maintain a queryable replica of the data in the service that implements the Commandside replica'), indicating it is a recognized pattern."
+  },
+  {
+    "Pattern Name": "Business Capability Decomposition",
+    "Problem": "Not explicitly mentioned in this text.",
+    "Context": "Services are developed by business capability decomposition...oriented teams within a Microservice architecture.",
+    "Solution": "Not explicitly mentioned in this text.",
+    "Result": "Not explicitly mentioned in this text.",
+    "Related Patterns": "Subdomain Decomposition",
+    "Uses": "Not explicitly mentioned in this text.",
+    "Thinking": "The text states 'Services are developed by business capability decomposition...oriented teams,' identifying it as a fundamental method or strategy for structuring services in a microservices architecture, which is a form of design pattern for service boundary definition."
+  },
+  {
+    "Pattern Name": "Subdomain Decomposition",
+    "Problem": "Not explicitly mentioned in this text.",
+    "Context": "Services are developed by...subdomain decomposition...oriented teams within a Microservice architecture.",
+    "Solution": "Not explicitly mentioned in this text.",
+    "Result": "Not explicitly mentioned in this text.",
+    "Related Patterns": "Business Capability Decomposition",
+    "Uses": "Not explicitly mentioned in this text.",
+    "Thinking": "The text states 'Services are developed by...subdomain decomposition...oriented teams,' identifying it as a fundamental method or strategy for structuring services in a microservices architecture, often associated with Domain-Driven Design, which is a form of design pattern for service boundary definition."
+  },
+  {
     "Pattern Name": "Polling publisher",
     "Problem": "How to publish messages/events into the outbox in the database to the message broker",
     "Context": "You have applied the Transactional Outbox transactionaloutboxhtml pattern",
@@ -3255,6 +4007,26 @@
     "Related Patterns": "The Transactional Outbox transactionaloutboxhtml pattern creates the need for this pattern. The Transaction log tailing transactionlogtailinghtml pattern is an alternative solution.",
     "Uses": "Eventuate Tram framework",
     "Thinking": "The text explicitly labels 'Pattern Polling publisher' and provides a complete description including Problem, Context, Solution, Result, Related Patterns, and Uses, clearly identifying it as a Microservices design pattern."
+  },
+  {
+    "Pattern Name": "Transactional Outbox",
+    "Problem": "",
+    "Context": "",
+    "Solution": "",
+    "Result": "",
+    "Related Patterns": "Creates the need for 'Polling publisher'.",
+    "Uses": "",
+    "Thinking": "This pattern is explicitly referred to as 'Transactional Outbox transactionaloutboxhtml pattern' and is stated to create the need for the 'Polling publisher' pattern. While its name and relationship are clear, the provided text snippet does not contain its specific problem, context, solution, result, or uses."
+  },
+  {
+    "Pattern Name": "Transaction log tailing",
+    "Problem": "",
+    "Context": "",
+    "Solution": "",
+    "Result": "",
+    "Related Patterns": "An alternative solution to 'Polling publisher'.",
+    "Uses": "",
+    "Thinking": "This pattern is explicitly referred to as 'Transaction log tailing transactionlogtailinghtml pattern' and is stated to be an 'alternative solution' to the 'Polling publisher' pattern. While its name and relationship are clear, the provided text snippet does not contain its specific problem, context, solution, result, or uses."
   },
   {
     "Pattern Name": "Decompose by Business Capability",
@@ -3278,7 +4050,7 @@
   },
   {
     "Pattern Name": "Strangler Pattern",
-    "Problem": "The design patterns discussed so far (decomposition) are for greenfield applications, but 80% of the work is with brownfield applications (big monolithic applications). Applying all the above design patterns to them will be difficult – breaking them into smaller pieces at the same time it's being used is a big task.",
+    "Problem": "The design patterns discussed so far (decomposition) are for greenfield applications, but 80% of the work is with brownfield applications (big monolithic applications). Applying all the above design patterns to them will be difficult \u2013 breaking them into smaller pieces at the same time it's being used is a big task.",
     "Context": "Migrating a large, existing monolithic application (brownfield) to a microservices architecture without significant downtime or a complete rewrite.",
     "Solution": "Gradually refactor the monolith by creating new microservices that implement specific functionalities. These new services run alongside the monolith, taking over parts of its functionality. The idea is to do it one domain at a time, eventually 'strangling' or replacing the original application until the monolith can be shut off.",
     "Result": "Enables a gradual, low-risk migration from a monolith to microservices, reducing downtime and allowing the system to remain operational during the transition.",
@@ -3338,7 +4110,7 @@
   },
   {
     "Pattern Name": "Command Query Responsibility Segregation (CQRS)",
-    "Problem": "Once 'Database per Service' is implemented, there is a requirement to query which requires joint data from multiple services – it's not possible. So how do we implement queries in a microservices architecture?",
+    "Problem": "Once 'Database per Service' is implemented, there is a requirement to query which requires joint data from multiple services \u2013 it's not possible. So how do we implement queries in a microservices architecture?",
     "Context": "When using 'Database per Service' and needing to perform complex queries that span multiple service boundaries without violating data ownership.",
     "Solution": "Split the application into two parts: the command side (handles Create, Update, Delete requests) and the query side (handles queries using materialized views). Materialized views are kept up-to-date by subscribing to a stream of events.",
     "Result": "Enables efficient querying across multiple services without violating data ownership, optimizes read and write models independently, and improves scalability for read-heavy operations.",
@@ -3887,6 +4659,26 @@
     "Thinking": "The text explicitly names 'Pattern Health Check API' and provides dedicated sections for its Problem, Context, Solution, Result, and Related Patterns, clearly defining it as a distinct Microservices design pattern. All required fields are directly extractable from the provided text."
   },
   {
+    "Pattern Name": "Service Registry",
+    "Problem": "How to ensure that load balancers or other clients do not route requests to a failed service instance.",
+    "Context": "You have applied the Microservice architecture pattern. Service instances can become incapable of handling requests, and clients (like load balancers) need a mechanism to avoid sending requests to these unhealthy instances.",
+    "Solution": "A service registry is a component that, among other functions, periodically invokes the health check API endpoint of service instances to check their health. Based on this health information, it ensures that requests are not routed to failed service instances.",
+    "Result": "Not explicitly detailed in this text, but implied: improved reliability by avoiding routing requests to failed service instances.",
+    "Related Patterns": "Health Check API (the service registry invokes the health check endpoint).",
+    "Uses": "Used by load balancers and monitoring systems to determine which service instances are healthy and available for routing requests.",
+    "Thinking": "The text explicitly mentions 'Service registry' multiple times, linking to `serviceregistryhtml`, and describes its role in preventing requests from being routed to failed service instances by periodically invoking health check endpoints. This clearly identifies it as a distinct Microservices design pattern, and its problem and solution are inferable from its described interaction with the Health Check API within this text."
+  },
+  {
+    "Pattern Name": "Microservice Chassis",
+    "Problem": "How to provide various common capabilities (like health checks) to microservice instances in a consistent and efficient manner.",
+    "Context": "You are building microservices and need to implement common cross-cutting concerns and operational features for each service instance.",
+    "Solution": "A Microservice Chassis provides a set of foundational capabilities and components (e.g., Spring Boot and Spring Cloud are mentioned as examples) that microservice instances can use. These capabilities include, but are not limited to, health check endpoints.",
+    "Result": "Not explicitly detailed in this text, but implied: simplifies development and ensures consistency of common features across services.",
+    "Related Patterns": "Health Check API (the Microservice Chassis provides the implementation for the health check endpoint).",
+    "Uses": "Used as a base framework or set of libraries for developing microservices, offering out-of-the-box features. (Example: Spring Boot and Spring Cloud).",
+    "Thinking": "The text mentions 'Microservice chassis patternsmicroservicechassishtml' and states that 'They provide various capabilities including a health check endpoint.' This identifies it as a distinct Microservices design pattern that offers common functionalities to services, with the Health Check API being one such capability. Its role and purpose are inferable from this description."
+  },
+  {
     "Pattern Name": "Externalized configuration",
     "Problem": "How to enable a service to run in multiple environments without modification",
     "Context": "An application typically uses one or more infrastructure and 3rd party services. Examples of infrastructure services include a Service registry, a message broker, and a database server. Examples of 3rd party services include payment processing, email, and messaging etc.",
@@ -3895,6 +4687,26 @@
     "Related Patterns": "Serverside service discovery, Client-side service discovery",
     "Uses": "Spring Boot externalized configuration, OS environment variables, property files, command line arguments, RegistrationServiceProxy from the Microservices Example application.",
     "Thinking": "This pattern is explicitly defined with clear sections for Problem, Context, Solution, and Result, which are hallmarks of a well-described design pattern. The text also tags it as 'pattern' and 'service design', confirming its nature as a design pattern relevant to microservices."
+  },
+  {
+    "Pattern Name": "Serverside service discovery",
+    "Problem": "how a service knows the network location of other application services",
+    "Context": "",
+    "Solution": "",
+    "Result": "",
+    "Related Patterns": "Client-side service discovery",
+    "Uses": "",
+    "Thinking": "This is explicitly named as a 'service discovery pattern' and its problem is stated in the text. However, the provided text does not elaborate on its specific Context, Solution, Result, or Uses."
+  },
+  {
+    "Pattern Name": "Client-side service discovery",
+    "Problem": "how a service knows the network location of other application services",
+    "Context": "",
+    "Solution": "",
+    "Result": "",
+    "Related Patterns": "Serverside service discovery",
+    "Uses": "",
+    "Thinking": "This is explicitly named as a 'service discovery pattern' and its problem is stated in the text. However, the provided text does not elaborate on its specific Context, Solution, Result, or Uses."
   },
   {
     "Pattern Name": "Idempotent Consumer",
@@ -3947,6 +4759,16 @@
     "Thinking": "Identified directly from Table 3. It describes a client-side load balancing mechanism, which is a common microservices pattern for improving scalability and resilience."
   },
   {
+    "Pattern Name": "External load balancer",
+    "Problem": "How to balance the load on a service between its instances based on the conditions of the client? How to load balance a service without setting up an load balancer?",
+    "Context": "A software system has been decomposed to a set of small services to use microservices architectural style and a Service Discovery has been set up.",
+    "Solution": "An internal load balancer removes the burden of setting up an external load balancer and brings in the possibility of having direct load balancing mechanism in different clients of a service.",
+    "Result": "Not explicitly provided for the External Load Balancer itself, as the solution describes the benefits of an Internal Load Balancer.",
+    "Related Patterns": "Belongs to 'Load balancer patterns'. It would typically rely on 'Service discovery'.",
+    "Uses": "Used for 'X-axis scaling' (cloning entities or data and distributing work evenly across workers/layers) and associated with 'Communication components' architectural decomposition.",
+    "Thinking": "Identified by name and problem from Table 3. However, the 'Solution' provided in the text for 'External load balancer' is actually a description of the benefits of an 'Internal load balancer'. This makes the pattern's solution undefined within the provided text, but the pattern name and context are clearly stated."
+  },
+  {
     "Pattern Name": "Deploy Cluster",
     "Problem": "How to deploy a services instances into a cluster? How to orchestrate the deployment and redeployment of all of the services with the least effort?",
     "Context": "A software system has been architected based on microservices architectural style and a Continuous Integration pipeline is in place and is working.",
@@ -3965,6 +4787,26 @@
     "Related Patterns": "Belongs to 'Decomposition patterns'. It is a resilience pattern for distributed systems.",
     "Uses": "Used for 'Y-axis scaling' (separating work evenly by activity or data components) and associated with 'Services' architectural decomposition. In the case study, it's used to handle failures and prevent malfunctioning, satisfying availability, reliability, and performance NFRs.",
     "Thinking": "Identified directly from Table 3. The solution combines two sentences from the text that together describe the core mechanism of a circuit breaker pattern in microservices for fault tolerance."
+  },
+  {
+    "Pattern Name": "Container",
+    "Problem": "How to make the development and production produce the same results for the same code? How to remove the complexity of configuration management tools or difficulties of manual deployment?",
+    "Context": "A software system has been decomposed to a set of small services to use microservices architectural style and a Continuous Integration pipeline is in place and is working.",
+    "Solution": "The circuit breaker checks health status or remember the number of unsuccessful calls and trips if a certain threshold is reached.",
+    "Result": "Not explicitly provided, as the solution is misattributed. However, the problem implies achieving consistent environments and simplified deployment.",
+    "Related Patterns": "Belongs to 'Grouping patterns'. Often used in conjunction with 'Deploy Cluster'.",
+    "Uses": "Used for 'Z-axis scaling' (grouping related items) and associated with 'Service discovery components' architectural decomposition. In the case study, it's used to decompose the software system into small services, satisfying availability, reliability, and performance NFRs.",
+    "Thinking": "Identified by name, context, and problem from Table 3. However, the 'Solution' provided in the text for 'Container' is clearly a description of the 'Circuit breaker' pattern. This makes the solution for the 'Container' pattern itself undefined within the provided text, but the pattern name and problem are relevant to microservices."
+  },
+  {
+    "Pattern Name": "Database per service",
+    "Problem": "What's the database architectural in a microservices application?",
+    "Context": "Most services of a microservices-based system need to persist data in some kind of database.",
+    "Solution": "The addition of new behaviors and business logic at the database level may be a possible approach to reduce complexity and thus the related risks and also to gain improvements in terms of speed and scalability.",
+    "Result": "Not explicitly provided, but the pattern name and common understanding imply data isolation for each service, leading to independent evolution, scalability, and technology choice for data persistence. The provided solution vaguely points to complexity reduction and scalability improvements.",
+    "Related Patterns": "Belongs to 'Decomposition patterns'. It is a key pattern for data management in microservices.",
+    "Uses": "Used for 'Y-axis scaling' (separating services and data along noun or verb boundaries) and associated with 'Services' architectural decomposition.",
+    "Thinking": "Identified directly from Table 3. While the pattern name is a well-known microservices pattern, the 'Solution' provided in the text is quite vague and does not directly describe the core principle of data isolation for each service. It rather describes a potential benefit or approach within a database. I have extracted the solution exactly as written in the text."
   },
   {
     "Pattern Name": "Event Sourcing",
