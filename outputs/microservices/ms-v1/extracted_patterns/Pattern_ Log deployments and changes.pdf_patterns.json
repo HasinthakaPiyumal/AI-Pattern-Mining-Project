@@ -1,0 +1,12 @@
+[
+  {
+    "Pattern Name": "Log deployments and changes",
+    "Problem": "How to understand the behavior of an application and troubleshoot problems",
+    "Context": "You have applied the Microservice architecture pattern.",
+    "Solution": "Log every deployment and every change to the production environment.",
+    "Result": "Enables deployments and changes to be easily correlated with issues leading to faster resolution.",
+    "Related Patterns": "Observability",
+    "Uses": "Deployment tools can publish pseudometrics (e.g., application metrics) when deploying new service versions, allowing correlation of application behavior changes with deployments. Examples include tracking releases (as described by Mike Brittain) and using services like AWS Cloud Trail for logging API calls.",
+    "Thinking": "The text explicitly labels 'Log deployments and changes' as a 'Pattern' and provides dedicated sections for 'Context', 'Problem', 'Solution', 'Examples' (which inform 'Uses'), 'Resulting Context' (which informs 'Result'), and 'Related patterns'. The context also explicitly mentions the 'Microservice architecture pattern', confirming its relevance to microservices."
+  }
+]

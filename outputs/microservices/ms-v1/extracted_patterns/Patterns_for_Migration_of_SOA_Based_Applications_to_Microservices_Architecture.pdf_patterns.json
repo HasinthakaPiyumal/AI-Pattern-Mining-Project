@@ -1,0 +1,42 @@
+[
+  {
+    "Pattern Name": "Decomposition of an SOA Service to Microservices",
+    "Problem": "How to split the monolithic services in the SOA based application to microservices? How to extract the microservices from the SOA services?",
+    "Context": "There is a complex SOA based application and the software architects plan to migrate the application to the microservices architecture which will reduce the scalability issues and increase application performance. Also the effort required for migration should be reduced. There are few monolithic services in the application and few basic services that can be called microservices. The presence of monolithic services makes the application complex and the best approach is to migrate the application to microservices.",
+    "Solution": "Graph theory is used to represent components and their dependencies as a service graph along with internal task graphs. This formal representation helps identify monolithic services. Microservices follow the Single Responsibility Principle (SRP), meaning each service performs only one business function. SOA services performing a single task can be directly considered microservices, reducing migration effort. For monolithic services (those with a task graph order greater than one), the graph partition method (22) is used to break them into microservices, where independent task graph nodes represent the new microservices. This process uses the service graph to identify complex services and generate microservices.",
+    "Result": "Monolithic SOA services are successfully decomposed and extracted into smaller, independently deployable microservices, leading to reduced scalability issues, increased application performance, and decreased migration effort.",
+    "Related Patterns": "Single Responsibility Principle (SRP), Graph Partition Method (22), Service Graph, Task Graph.",
+    "Uses": "This pattern is used to address the recurring challenge faced by software architects while migrating legacy SOA based applications to microservices.",
+    "Thinking": "This pattern is explicitly presented in Section 4 as a 'Migration Pattern' for microservices. It directly addresses the fundamental microservices design challenge of decomposition, specifically from an SOA context, providing a structured approach to identify and create microservices."
+  },
+  {
+    "Pattern Name": "Size of Each Microservice",
+    "Problem": "What should be the size of each microservice? On what basis can we measure the size of the microservices?",
+    "Context": "There is a complex SOA based application and the architects want to migrate the application to microservices architecture. During migration the SOA services are partitioned to generate the microservices. Yet one of the main issues faced by software architects, microservices developers and practitioners is what the size of each microservice will be. By definition microservices are small, independent and scalable services that are deployed using cloud based technologies. So the question is how small each microservice should be.",
+    "Solution": "Microservices follow the Single Responsibility Principle (SRP), requiring each service to perform only one business function (task-level services). In contrast, SOA applications often have feature-level services comprising many tasks. Using the service graph representation of the SOA application, each task in the task graph is considered a microservice. The size of a microservice is not a measurable metric; rather, a service is considered a microservice if it performs only one specific operation.",
+    "Result": "Provides a conceptual definition for the 'size' of a microservice, guiding architects to design microservices that perform a single business task, aligning with the Single Responsibility Principle.",
+    "Related Patterns": "Single Responsibility Principle (SRP), Service Graph, Task Graph, Decomposition of an SOA Service to Microservices (Pattern 1).",
+    "Uses": "This pattern is used when designing the microservices or extracting from service oriented based applications.",
+    "Thinking": "This pattern is explicitly presented in Section 4 as a 'Migration Pattern' for microservices. It addresses a core design consideration for microservices \u2013 their granularity and size \u2013 by linking it to the Single Responsibility Principle and the task graph model, which is crucial for effective microservice architecture."
+  },
+  {
+    "Pattern Name": "Bug Detection in Complex Microservices Application",
+    "Problem": "How to trace the service which is responsible for the bug? How to identify the location of the bug among all available microservices in the application?",
+    "Context": "An SOA based application is migrated to microservices architecture with the help of Pattern 1 and Pattern 2. When the number of services increases in microservices based application it is difficult to detect the bug if it happens. Among those multiple microservices it is difficult to trace the bug and recognize the service that causes the bug in the entire application.",
+    "Solution": "The service graph model is used to map business requirements to the services that fulfill them. Each workflow of a business requirement is mapped to a sequence of service nodes in the service graph. These sequences of service numbers are stored in a database. If a particular service fails, all sequences involving that service are checked. If a business request fails, its corresponding service sequence is retrieved, allowing tracing only within the services involved in that specific sequence to pinpoint the bug's location.",
+    "Result": "Enables efficient tracing and identification of the root cause of bugs in complex microservices applications by mapping business workflows to service execution sequences, simplifying debugging in a distributed environment.",
+    "Related Patterns": "Service Graph, Distributed Tracing (conceptual relation, though not explicitly named), Monitoring.",
+    "Uses": "This pattern is used to monitor and find bugs after migrating SOA based applications to the microservice architecture.",
+    "Thinking": "This pattern is explicitly presented in Section 4 as a 'Migration Pattern' for microservices. It addresses a significant operational challenge inherent in microservices architectures (debugging distributed systems) by leveraging the 'service graph' model, which is central to the paper's approach to microservices."
+  },
+  {
+    "Pattern Name": "Strangler Pattern",
+    "Problem": "How to migrate a monolithic application (or monolithic SOA services) to microservices without a complete rewrite, minimizing risk and allowing incremental migration?",
+    "Context": "Existing monolithic SOA applications that are complex and difficult to manage, where a full rewrite is too risky or costly. The goal is to gradually replace parts of the monolith with microservices.",
+    "Solution": "Introduce new microservices alongside the existing monolithic application. Intercept requests to the monolith and redirect them to the new microservices for specific functionalities. Over time, more functionality is moved to microservices, and the old monolithic code is 'strangled' until it can be retired.",
+    "Result": "Gradual, low-risk migration of monolithic applications to microservices, allowing new features to be developed in the microservice style while the legacy system continues to operate.",
+    "Related Patterns": "Monolith, Microservices, Incremental Migration, Anti-Corruption Layer (often used in conjunction).",
+    "Uses": "This pattern is used for migrating legacy monolithic applications (specifically SOA applications in this paper's context) to microservices incrementally.",
+    "Thinking": "The text explicitly names 'strangler pattern' in Section 2 and describes its core mechanism: 'adds new microservices to the monolithic code' and 'In the long run the monolithic services will gradually be replaced with microservices.' This directly identifies it as a well-known microservices migration pattern."
+  }
+]

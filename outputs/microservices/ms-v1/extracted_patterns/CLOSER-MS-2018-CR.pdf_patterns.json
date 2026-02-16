@@ -1,0 +1,92 @@
+[
+  {
+    "Pattern Name": "API Gateway Pattern",
+    "Problem": "End-user applications require server-side aggregation of functions from multiple microservices, leading to complex client-side logic, increased requests, and direct exposure of microservice details.",
+    "Context": "When creating end-user applications that consume functions from multiple microservices, especially in systems with diverse clients (web, mobile) or where shared concerns like authentication and rate limiting are needed.",
+    "Solution": "Introduce a single entry point (API Gateway) for the system. This gateway routes requests to appropriate microservices, invokes multiple services, aggregates results, provides tailored APIs for different clients, and implements shared logic (e.g., authentication, rate limiting, protocol translation).",
+    "Result": "Advantages: Ease of Extension, Market-centric Architecture, Backward Compatibility. Disadvantages: Potential Bottleneck, Implementation complexity, API reuse must be considered carefully, Scalability issues if not designed for exploding microservices.",
+    "Related Patterns": "Resembles SOA principles more than REST, without an Enterprise Service Bus (ESB). Contrasted with Server-Side Discovery where clients talk directly.",
+    "Uses": "Implemented in cloud-native applications (S2, S3, S11, S12, S14, S21, S31, S34, S37, S39). Often used for migrating monolithic systems.",
+    "Thinking": "The text explicitly names this as 'The APIGateway Pattern' and provides a detailed description including its concept, goal, properties, advantages, and disadvantages, clearly identifying it as a microservices design pattern."
+  },
+  {
+    "Pattern Name": "Client-Side Service Discovery Pattern",
+    "Problem": "Multiple instances of microservices run dynamically, and clients need to efficiently communicate with the appropriate, dynamically changing instances.",
+    "Context": "In environments where microservice instances are dynamic (e.g., virtualized containers/VMs) and clients need to locate and connect to them directly.",
+    "Solution": "Clients are made 'registry-aware.' They query a Service Registry (a database of available service instances) to get the network locations of available instances. The client then uses a load-balancing algorithm to select an instance and makes a direct request.",
+    "Result": "Advantages: Ease of development (clients are aware of service instance locations and connect directly). Disadvantages: High coupling between the client and the service registry.",
+    "Related Patterns": "Differentiated from Server-Side Discovery.",
+    "Uses": "Generally used when ease of development and direct client connection are prioritized. Specific paper IDs for this sub-pattern are not explicitly listed.",
+    "Thinking": "The text explicitly names this as 'The ClientSide Discovery Pattern' and describes its concept, goal, and reported usage with clear advantages and disadvantages, distinguishing it from other discovery patterns."
+  },
+  {
+    "Pattern Name": "Server-Side Service Discovery Pattern",
+    "Problem": "Clients need to communicate with dynamically changing microservice instances without being directly coupled to the service registry or managing load balancing themselves.",
+    "Context": "Similar to client-side discovery, but when there's a need to abstract the discovery logic from the client, often involving a load balancer.",
+    "Solution": "Clients make requests via a load balancer. The load balancer queries the Service Registry (which acts like a DNS server, knowing dynamic locations) to find an available instance and forwards the request to it. The registry ensures service availability before forwarding the location. Clients then communicate directly with the required services.",
+    "Result": "Advantages: Increased Maintainability, Ease of Communication, Health Management/Resilience/Scalability, Failure Safety, Software Understandability, Ease of Development, Ease of Migration. Disadvantages: Interface Design Must be Fixed, Service Registry Complexity, Reuse (registry can be a bottleneck), Distributed System Complexity (communication, transactions, testing).",
+    "Related Patterns": "Differentiated from Client-Side Discovery. Contrasted with API Gateway where clients don't talk directly to services.",
+    "Uses": "Implemented in eleven papers (S25, S13, S9, S10, S24, S26, S16, S30, S38, S23, S36). S23 proposes a variant using NoSQL DB for registry. S36 reports partial migration with legacy SOA.",
+    "Thinking": "The text explicitly names this as 'The ServerSide Discovery Pattern' and provides a detailed description of its goal, properties, and reported usage with clear advantages and disadvantages, identifying it as a distinct microservices design pattern."
+  },
+  {
+    "Pattern Name": "Hybrid Pattern (Orchestration/Coordination)",
+    "Problem": "Migrating existing SOA applications to microservices while leveraging existing infrastructure and minimizing the learning curve for teams familiar with SOA.",
+    "Context": "When migrating from a Service-Oriented Architecture (SOA) where an Enterprise Service Bus (ESB) is already in place, and there's a desire to gradually introduce microservices.",
+    "Solution": "Combine Service Registry and API Gateway concepts by replacing the API Gateway with a message bus (similar to an ESB). Clients communicate with this message bus, which acts as a registry and routes requests. Microservices also communicate with each other through this message bus.",
+    "Result": "Advantages: Ease of Migration (ESB can be used as a communication layer for microservices, gradually replacing legacy services), Learning Curve (easy for those familiar with SOA). Disadvantages: SOA Issues (does not fully benefit from microservices' IDEAL properties, still communicates through ESB).",
+    "Related Patterns": "Combines Service Registry and API Gateway. Uses a message bus similar to an Enterprise Service Bus (ESB) from SOA.",
+    "Uses": "Implemented in six works (S27, S33, S32, S35, S4, S3).",
+    "Thinking": "The text introduces 'Hyrbid Patterns' as a category and then describes a specific pattern combining Service Registry and API Gateway with a message bus, detailing its concept, goal, properties, and reported usage, making it a true pattern."
+  },
+  {
+    "Pattern Name": "Multiple Service per Host Pattern",
+    "Problem": "Efficiently deploying and scaling multiple microservice instances on available host infrastructure.",
+    "Context": "When deploying microservices, especially in containerized or virtualized environments, where resource utilization and rapid deployment are key.",
+    "Solution": "Run multiple microservice instances on the same host node. This can be achieved by deploying multiple services into containers (Service Instance per Container) or multiple services into virtual machines (Service Instance per Virtual Machine).",
+    "Result": "Advantages: Scalability (systems can easily scale to deploy multiple service instances), Performance (multiple containers allow rapid deployment of new services compared to VMs). Disadvantages: Not explicitly listed, but implied trade-offs with isolation compared to single service per host.",
+    "Related Patterns": "Contrasted with 'Single Service per Host Pattern.' Sub-patterns: 'Service Instance per Container' and 'Service Instance per Virtual Machine.'",
+    "Uses": "Four works implemented the general approach (S19, S7, S30, S33). Fifteen works adopted 'Service Instance per Container' (S25, S10, S35, S8, S9, S11, S32, S34, S36, S37, S38, S40, S41, S16, S22). Two works implemented 'Service Instance per Virtual Machine' (S27, S31).",
+    "Thinking": "The text explicitly names 'The Multiple Service per Host Pattern Principle' and describes its deployment strategy, including sub-patterns (per container, per VM), and lists its advantages, confirming it as a microservices deployment pattern."
+  },
+  {
+    "Pattern Name": "Single Service per Host Pattern",
+    "Problem": "Achieving complete isolation for individual microservices.",
+    "Context": "In scenarios where maximum isolation between services is desired, potentially for security or resource guarantees, at the expense of efficiency.",
+    "Solution": "Deploy every microservice in its own dedicated host (e.g., a dedicated physical server or a very large, isolated VM).",
+    "Result": "Advantages: Complete isolation of services, reducing the possibility of conflicting resources. Disadvantages: Dramatically reduces performance and scalability, considered counterproductive to the basic idea of microservices in practice.",
+    "Related Patterns": "Contrasted with 'Multiple Service per Host Pattern.'",
+    "Uses": "Mentioned by S2. The text notes that in practice, it's often counterproductive to the basic idea of microservices.",
+    "Thinking": "The text explicitly states 'a Single Service per Host Pattern could be identified' and describes its principle, main advantage, and significant disadvantages, indicating it as a recognized (though often discouraged) deployment pattern in microservices."
+  },
+  {
+    "Pattern Name": "Database per Service Pattern",
+    "Problem": "Ensuring data independence, scalability, and security for individual microservices, avoiding shared database issues.",
+    "Context": "When designing microservices where each service needs its own data store, or when migrating existing monoliths with existing databases where data can be cleanly partitioned.",
+    "Solution": "Each microservice accesses its private database. This means the database schema and data are owned and managed solely by that specific microservice.",
+    "Result": "Advantages: Scalability (database can be easily scaled independently), Independent Development (teams work independently on a service without influencing others' DB schema changes), Security Mechanism (prevents other microservices from accessing/corrupting unneeded data). Disadvantages: Data needs to be split, Data consistency across services becomes a challenge (implied).",
+    "Related Patterns": "Contrasted with Database Cluster Pattern and Shared Database Server Pattern.",
+    "Uses": "Adopted by six works (S12, S23, S36, S11, S24, S26). Often used to migrate existing monoliths.",
+    "Thinking": "The text explicitly names 'The DatabaseperService Pattern' and describes its principle, properties, and reported usage with clear advantages, identifying it as a fundamental data storage pattern for microservices."
+  },
+  {
+    "Pattern Name": "Database Cluster Pattern",
+    "Problem": "Improving scalability and resilience of data storage for microservices, especially with huge data traffic, while maintaining some level of data consistency or isolation.",
+    "Context": "For microservices requiring high scalability and performance for their data storage, where data can be distributed across a cluster, and some form of logical isolation (e.g., schema per service) is maintained.",
+    "Solution": "Store microservice data on a database cluster. To preserve data consistency and isolation, microservices either have a subset of database tables accessible only from a single microservice, or each microservice may have a private database schema within the cluster.",
+    "Result": "Advantages: Improves scalability (recommended for implementations with huge data traffic). Disadvantages: Increased Complexity (due to cluster architecture), Risk of Failure (introduction of another component and distributed mechanism).",
+    "Related Patterns": "Similar to Shared Database Server Pattern from the microservice's point of view (accesses a single database), but differs internally.",
+    "Uses": "Implemented by S27, S6, and S15 (using separated DB schema for each service). S15 also proposed it for replicating data across DBs.",
+    "Thinking": "The text explicitly names 'The Database Cluster Pattern' and describes its principle, properties, and reported usage with clear advantages and disadvantages, confirming it as a microservices data storage pattern."
+  },
+  {
+    "Pattern Name": "Shared Database Server Pattern",
+    "Problem": "Simplifying migration from monolithic applications by reusing existing database schemas and codebases, while still adopting microservices for other aspects.",
+    "Context": "When migrating from monolithic applications where a single, large database is already in use, and the goal is to minimize changes to the data access layer during the initial microservice adoption.",
+    "Solution": "All microservices access a single, shared database server.",
+    "Result": "Advantages: Simplicity of migration from monolithic applications (existing schemas can be reused without changes, existing code base can be migrated without major changes to data access layer). Disadvantages: Lack of data isolation, Data consistency challenges (implied), Scalability issues (the shared DB can become a bottleneck).",
+    "Related Patterns": "Similar to Database Cluster Pattern, but without the distributed nature of the cluster.",
+    "Uses": "Adopted by six implementations (S13, S39, S25, S18, S30, S16), all accessing data concurrently without data isolation.",
+    "Thinking": "The text explicitly names 'The Shared Database Server Pattern' and describes its principle, properties, and reported usage with clear advantages, identifying it as a microservices data storage pattern, particularly for migration."
+  }
+]

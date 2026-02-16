@@ -1,0 +1,72 @@
+[
+  {
+    "Pattern Name": "Service registry",
+    "Problem": "How do clients of a service in the case of Clientside discovery and/or routers in the case of Serverside discovery know about the available instances of a service?",
+    "Context": "Clients of a service use either Clientside discovery or Serverside discovery to determine the location of a service instance to which to send requests. Each instance of a service exposes a remote API such as HTTP/REST or Thrift etc at a particular location (host and port). The number of services instances and their locations changes dynamically. Virtual machines and containers are usually assigned a dynamic IP address. An EC2 Autoscaling Group for example adjusts the number of instances based on load.",
+    "Solution": "Implement a service registry which is a database of services, their instances and their locations. Service instances are registered with the service registry on startup and deregistered on shutdown. Client of the service and/or routers query the service registry to find the available instances of a service. A service registry might invoke a service instance's health check API to verify that it is able to handle requests.",
+    "Result": "Benefits: Clients of the service and/or routers can discover the location of service instances. Drawbacks: It is another infrastructure component that must be setup, configured, and managed, and it is a critical system component that must be highly available. Clients should cache data provided by the service registry, but if the registry fails, data will eventually become out of date. You need to decide how service instances are registered with the service registry, with two options: Self registration or 3rd party registration. The clients of the service registry need to know the locations of the service registry instances, which must be deployed on fixed and well-known IP addresses.",
+    "Related Patterns": "Clientside discovery and Serverside discovery create the need for a service registry. Self registration and 3rd party registration are two different ways that service instances can be registered with the service registry. Health Check API is invoked by the service registry to verify that a service instance is able to handle requests.",
+    "Uses": "Netflix Eureka (used with Spring Boot and Spring Cloud), Apache Zookeeper, Consul, Etcd. Some systems such as Kubernetes, Marathon, and AWS ELB have an implicit service registry.",
+    "Thinking": "This was identified as a true Microservices design pattern because the text explicitly labels it as 'Pattern Service registry' and provides dedicated sections for 'Context', 'Problem', 'Solution', 'Resulting context' (which covers benefits and drawbacks), and 'Related patterns'. This structure perfectly aligns with the definition and description of a design pattern, and it includes concrete examples of its implementation in a microservices context."
+  },
+  {
+    "Pattern Name": "Clientside discovery",
+    "Problem": "How do clients of a service determine the location of a service instance to which to send requests?",
+    "Context": "Clients need to send requests to service instances, but the number and locations of these instances change dynamically. Each instance of a service exposes a remote API at a particular location (host and port).",
+    "Solution": "The client itself queries a service registry to find available instances of a service.",
+    "Result": "Clients can directly discover the location of service instances. This approach requires the client to implement discovery logic.",
+    "Related Patterns": "Service registry (creates the need for it), Serverside discovery (alternative).",
+    "Uses": "The Microservices Example application (uses clientside service discovery with Netflix Eureka).",
+    "Thinking": "Explicitly mentioned as a mechanism for clients to find services ('Clients of a service use either Clientside discovery... to determine the location of a service instance') and as a related pattern to Service Registry. The text describes its role in the context of service location and problem statement for Service Registry."
+  },
+  {
+    "Pattern Name": "Serverside discovery",
+    "Problem": "How do routers (or load balancers) determine the location of a service instance to which to send requests?",
+    "Context": "Routers need to forward requests to service instances, but the number and locations of these instances change dynamically. Each instance of a service exposes a remote API at a particular location (host and port).",
+    "Solution": "A router (or load balancer) queries a service registry to find available instances of a service and forwards requests to them.",
+    "Result": "Routers can discover the location of service instances, abstracting discovery logic from the client. This approach requires the router/load balancer to implement discovery logic.",
+    "Related Patterns": "Service registry (creates the need for it), Clientside discovery (alternative).",
+    "Uses": "Implied by systems like Kubernetes, Marathon, and AWS ELB which have an implicit service registry, often facilitating serverside discovery.",
+    "Thinking": "Explicitly mentioned as a mechanism for routers to find services ('routers in the case of Serverside discovery... know about the available instances of a service') and as a related pattern to Service Registry. The text describes its role in the context of service location and problem statement for Service Registry."
+  },
+  {
+    "Pattern Name": "Self registration",
+    "Problem": "How are service instances registered with the service registry?",
+    "Context": "Service instances need to be registered with a service registry so that clients and/or routers can discover their locations. There are different ways to manage this registration.",
+    "Solution": "Service instances register themselves with the service registry upon startup and deregister themselves upon shutdown.",
+    "Result": "Service instances automatically manage their registration lifecycle with the service registry. This places the responsibility for registration directly on the service instance.",
+    "Related Patterns": "Service registry (it's a way to implement registration for it), 3rd party registration (alternative).",
+    "Uses": "Not explicitly detailed in this text, but it's a common approach for services using a service registry like Netflix Eureka.",
+    "Thinking": "Explicitly called a 'Self registration pattern' and described as one of two options for how service instances can be registered with a service registry ('service instances register themselves'). Sufficient detail is provided to extract the core components of a pattern."
+  },
+  {
+    "Pattern Name": "3rd party registration",
+    "Problem": "How are service instances registered with the service registry, especially when services themselves should not be responsible for registration?",
+    "Context": "Service instances need to be registered with a service registry, but the service code might be kept simpler by offloading registration to an external entity. There are different ways to manage this registration.",
+    "Solution": "A separate 3rd party component (e.g., a registration agent or infrastructure component) registers the service instances with the service registry.",
+    "Result": "Service instances are registered by an external entity, potentially simplifying the service instance's own logic and deployment. This shifts the responsibility for registration away from the service instance.",
+    "Related Patterns": "Service registry (it's a way to implement registration for it), Self registration (alternative).",
+    "Uses": "Not explicitly detailed in this text.",
+    "Thinking": "Explicitly called a '3rd party registration pattern' and described as one of two options for how service instances can be registered with a service registry ('a 3rd party registers the service instances with the service registry'). Sufficient detail is provided to extract the core components of a pattern."
+  },
+  {
+    "Pattern Name": "Health Check API",
+    "Problem": "How can a service registry or other monitoring system verify that a service instance is healthy and capable of handling requests?",
+    "Context": "Service instances can become unhealthy or unresponsive, and it's crucial to prevent requests from being routed to them. The service registry needs a mechanism to verify instance health.",
+    "Solution": "A service instance exposes a dedicated API endpoint (a Health Check API) that the service registry (or other monitoring system) can periodically invoke to ascertain its operational status.",
+    "Result": "The service registry can accurately determine the health and availability of service instances, ensuring that only healthy instances receive traffic. This improves system reliability and fault tolerance.",
+    "Related Patterns": "Service registry (uses it to verify instance health).",
+    "Uses": "Implied by its use with Service Registry, which 'might invoke a service instances health check API observabilityhealthcheckapihtml to verify that it is able to handle requests'.",
+    "Thinking": "Explicitly mentioned as 'Health Check API' and described in its function related to the Service Registry. It's listed as a 'Related pattern' and its purpose is clearly defined within the text."
+  },
+  {
+    "Pattern Name": "Microservice chassis",
+    "Problem": "How to provide common, cross-cutting capabilities (like service discovery, configuration, logging, metrics) to multiple microservice instances without duplicating code or configuration in each service?",
+    "Context": "Microservices often require a consistent set of infrastructure concerns, and implementing these repeatedly in every service can lead to redundancy, inconsistency, and increased development effort.",
+    "Solution": "Implement a 'Microservice chassis' as a framework or library that encapsulates these common capabilities. New services are built upon or integrate with this chassis.",
+    "Result": "Reduces boilerplate code, promotes consistency across services, simplifies development, and allows developers to focus on business logic rather than infrastructure concerns.",
+    "Related Patterns": "Service registry (a capability often provided by a chassis), Health Check API (another capability often provided).",
+    "Uses": "Spring Boot and Spring Cloud are mentioned as examples that provide 'various capabilities including a Netflix Eureka service registry' as a Microservice chassis.",
+    "Thinking": "Explicitly called 'Microservice chassis' and described as providing 'various capabilities including a Netflix Eureka service registry'. This clearly defines its purpose and role in a microservices ecosystem, making it a true design pattern."
+  }
+]

@@ -1,0 +1,182 @@
+[
+  {
+    "Pattern Name": "Ambassador",
+    "Problem": "A consumer service or application needs helper services for network requests, and there's a desire to offload peripheral concerns and reduce internal implementation complexity.",
+    "Context": "A consumer service or application needs to send network requests.",
+    "Solution": "Provides helper services that send network requests on behalf of a consumer service or application.",
+    "Result": "Improves cohesion. Reduces internal implementation complexity. Favors code reuse of peripheral tasks.",
+    "Related Patterns": "Not explicitly mentioned in the provided text.",
+    "Uses": "Offloading peripheral concerns related to network communication from the main service logic.",
+    "Thinking": "Explicitly listed in the 'PATTERNS ANALYZED' section. Its description and analysis of effects (improving cohesion, reducing internal complexity, offloading peripheral concerns) align with microservices design principles."
+  },
+  {
+    "Pattern Name": "Asynchronous Request-Reply",
+    "Problem": "A system needs to operate and process data in the background, freeing up user interfaces and systems from waiting for task completion.",
+    "Context": "A request needs to be processed asynchronously, and the reply can be delivered later.",
+    "Solution": "It involves making a request that is processed asynchronously, often queued for processing, and the reply is delivered once the processing is completed.",
+    "Result": "Allows a system to operate and process data in the background, freeing up user interfaces and systems from waiting. Adds complexity to the implementation related to the infrastructure required for communication and data management.",
+    "Related Patterns": "Not explicitly mentioned in the provided text.",
+    "Uses": "Background data processing, non-blocking operations, improving system responsiveness.",
+    "Thinking": "Explicitly listed in the 'PATTERNS ANALYZED' section. It describes a communication pattern fundamental to achieving decoupling and responsiveness in distributed microservice systems."
+  },
+  {
+    "Pattern Name": "Backends for Frontends",
+    "Problem": "The need for separate backend services tailored to be consumed by specific frontend applications or interfaces.",
+    "Context": "Multiple distinct frontend applications or interfaces need to consume services.",
+    "Solution": "Creates separate backend services to be consumed by specific frontend applications or interfaces.",
+    "Result": "Improves cohesion by specializing microservices by features. Reduces direct dependency to other parts of the system. Favors decoupling (communication, data structure, or functional) at the expense of increasing external implementation complexity.",
+    "Related Patterns": "Not explicitly mentioned in the provided text.",
+    "Uses": "Serving specific frontend applications (e.g., mobile, web) with tailored APIs, allowing independent evolution of frontends.",
+    "Thinking": "Explicitly listed in the 'PATTERNS ANALYZED' section. It addresses a common microservice challenge of serving diverse clients and promotes independent evolution of services."
+  },
+  {
+    "Pattern Name": "Choreography",
+    "Problem": "The need for services involved in a business operation to act independently and interact without a central orchestrator.",
+    "Context": "A business operation spans multiple services that need to coordinate through events.",
+    "Solution": "Each service involved in a business operation is designed to act independently and interact with other services through events. There's no central orchestrator dictating how each step of the business operation is carried out; instead, each service knows what step in the operation to execute based on events it receives.",
+    "Result": "Reduces direct dependency to other parts of the system. Decouples services from data structures to functional and communication. Removes a centralized orchestrator, reducing communication coupling.",
+    "Related Patterns": "Not explicitly mentioned in the provided text.",
+    "Uses": "Event-driven business operations, decentralized service coordination, achieving loose coupling.",
+    "Thinking": "Explicitly listed in the 'PATTERNS ANALYZED' section. It describes a core communication and coordination pattern for microservices, emphasizing decoupling and independent service action."
+  },
+  {
+    "Pattern Name": "Claim Check",
+    "Problem": "Preventing the message bus and client from being overwhelmed by large messages.",
+    "Context": "Large messages need to be transmitted between services via a message bus.",
+    "Solution": "Splits a large message into a claim check and a payload.",
+    "Result": "Adds more processing to the microservice. Adds complexity to the implementation related to the infrastructure required for communication and data management. Increases complexity for handling the payload of messages.",
+    "Related Patterns": "Not explicitly mentioned in the provided text.",
+    "Uses": "Handling large data in message-based communication, preventing message bus overload.",
+    "Thinking": "Explicitly listed in the 'PATTERNS ANALYZED' section. It addresses a practical concern in message-driven microservice architectures."
+  },
+  {
+    "Pattern Name": "Command-Side Replica",
+    "Problem": "The need to validate commands efficiently without needing to query the primary read-side data store, especially when read and update operations are separated.",
+    "Context": "A system separates read and update operations for a data store (e.g., using CQRS).",
+    "Solution": "Maintains a replica of the data store on the command side where updates are handled, which can be used to validate commands without needing to query the primary read-side data store.",
+    "Result": "Improves cohesion. Reduces direct dependency to other parts of the system. Reduces internal implementation complexity by separation of concerns.",
+    "Related Patterns": "CommandQuery Responsibility Segregation (implied by context).",
+    "Uses": "Optimizing command validation in systems with separated read/write models, improving performance of write operations.",
+    "Thinking": "Explicitly listed in the 'PATTERNS ANALYZED' section. It's a data management pattern often used in conjunction with CQRS, a common microservice pattern."
+  },
+  {
+    "Pattern Name": "CommandQuery Responsibility Segregation",
+    "Problem": "The need to separate read and write operations into different models to optimize for distinct data access patterns.",
+    "Context": "An application has distinct and often conflicting requirements for data reading and data writing.",
+    "Solution": "Separates read and write into different models using commands to update data and queries to read data.",
+    "Result": "Favors cohesion and reduces functional coupling at the cost of additional internal implementation complexity. Favors decoupling (communication, data structure, or functional) at the expense of increasing external implementation complexity. Has a negative impact due to increased internal implementation complexity but proposes gains in cohesion.",
+    "Related Patterns": "Not explicitly mentioned in the provided text.",
+    "Uses": "Optimizing read and write operations, complex domains, event-driven architectures, scaling data access.",
+    "Thinking": "Explicitly listed in the 'PATTERNS ANALYZED' section. It's a well-known architectural pattern frequently applied in microservices for scalability and flexibility in data handling."
+  },
+  {
+    "Pattern Name": "Database per Service",
+    "Problem": "The need for each microservice to manage its own data to ensure loose coupling and data consistency, avoiding shared database issues.",
+    "Context": "Designing a microservice architecture where services need independent data management, deployment, and technology choices.",
+    "Solution": "Each microservice has its own database.",
+    "Result": "Ensures loose coupling and data consistency. Different microservices depend on each other to perform their data-related operations (negative on functional coupling). Offers challenges to external implementation complexity and to functional coupling but favors decoupling of data structures.",
+    "Related Patterns": "Shared Database (as an alternative/opposite).",
+    "Uses": "Achieving data encapsulation, independent service evolution, polyglot persistence.",
+    "Thinking": "Explicitly listed in the 'PATTERNS ANALYZED' section. It's a fundamental pattern for microservices, directly supporting independent deployability and data ownership."
+  },
+  {
+    "Pattern Name": "Decompose by Business Capability",
+    "Problem": "How to effectively break down an application into microservices in a way that promotes cohesion and loose coupling.",
+    "Context": "Decomposing an application into microservices or designing a new microservice system.",
+    "Solution": "Decomposes an application into services organized around business capabilities.",
+    "Result": "Improves cohesion by defining strong business-driven boundaries between microservices.",
+    "Related Patterns": "Not explicitly mentioned in the provided text.",
+    "Uses": "Initial decomposition strategy for microservices, aligning services with business domains.",
+    "Thinking": "Explicitly listed in the 'PATTERNS ANALYZED' section. It's a primary decomposition strategy for microservices, crucial for defining service boundaries and achieving microservice benefits."
+  },
+  {
+    "Pattern Name": "Decompose by Subdomain",
+    "Problem": "How to decompose an application into services based on subdomains within a complex business domain.",
+    "Context": "Decomposing an application into microservices within a complex business domain, often following Domain-Driven Design principles.",
+    "Solution": "Decomposes an application into services based on subdomains within the business domain.",
+    "Result": "Improves cohesion by defining strong business-driven boundaries between microservices.",
+    "Related Patterns": "Not explicitly mentioned in the provided text.",
+    "Uses": "Advanced decomposition strategy for complex domains, leveraging DDD principles to create highly cohesive and loosely coupled services.",
+    "Thinking": "Explicitly listed in the 'PATTERNS ANALYZED' section. It's a sophisticated decomposition strategy highly relevant to microservices, especially when applying Domain-Driven Design."
+  },
+  {
+    "Pattern Name": "Event Sourcing",
+    "Problem": "The need to preserve the history of aggregates by storing all state changes as a sequence of events, enabling auditing, temporal queries, and integration with event-driven systems.",
+    "Context": "An application needs to maintain a complete audit trail of changes, reconstruct past states, or integrate seamlessly with event-driven systems.",
+    "Solution": "Preserves the history of aggregates by storing all state changes as a sequence of events.",
+    "Result": "Adds more processing to the microservice for querying data. Decouples services from data structures to functional and communication. Has a negative impact due to increased internal implementation complexity but favors communication decoupling.",
+    "Related Patterns": "Not explicitly mentioned in the provided text.",
+    "Uses": "Auditing, temporal queries, debugging, integrating with event-driven systems, enabling complex business logic.",
+    "Thinking": "Explicitly listed in the 'PATTERNS ANALYZED' section. It's a powerful data management pattern often combined with CQRS and event-driven microservices."
+  },
+  {
+    "Pattern Name": "Gatekeeper",
+    "Problem": "Protecting applications and shared resources from issues such as system overloads and malicious usage.",
+    "Context": "Applications and shared resources need to be shielded from potentially harmful or overwhelming requests.",
+    "Solution": "Uses a gatekeeper component that validates and sanitizes requests before they reach a shared resource or service.",
+    "Result": "Improves cohesion. Offloads concerns.",
+    "Related Patterns": "Not explicitly mentioned in the provided text.",
+    "Uses": "Security (authentication, authorization), input validation, rate limiting, traffic management, protecting backend services.",
+    "Thinking": "Explicitly listed in the 'PATTERNS ANALYZED' section. It describes a security and resilience pattern crucial for microservice deployments."
+  },
+  {
+    "Pattern Name": "Gateway Routing",
+    "Problem": "Clients need a single entry point to a microservice system, and requests need to be efficiently routed to the correct backend service.",
+    "Context": "A microservice system with multiple services, and clients need a unified and managed way to access them.",
+    "Solution": "Routes requests from clients to services using a gateway service.",
+    "Result": "Reduces direct dependency to other parts of the system. Decouples services from data structures to functional and communication.",
+    "Related Patterns": "Not explicitly mentioned in the provided text.",
+    "Uses": "Centralized request routing, load balancing, service discovery, authentication/authorization, request aggregation.",
+    "Thinking": "Explicitly listed in the 'PATTERNS ANALYZED' section. It's a fundamental pattern for managing client-service interactions in a microservice architecture, providing a crucial layer of abstraction and control."
+  },
+  {
+    "Pattern Name": "Messaging",
+    "Problem": "Direct service-to-service invocation creates tight coupling, hindering independent evolution. Services need to communicate in a loosely coupled manner.",
+    "Context": "Services need to communicate asynchronously and resiliently, allowing them to evolve independently.",
+    "Solution": "Instead of services directly invoking each other, they communicate via messages. These messages are self-contained pieces of information that are sent over a message channel. A service sends a message into the channel, and that message is processed by another service that has subscribed to that channel.",
+    "Result": "Decouples the services from each other, allowing them to evolve independently. Favors decoupling (communication, data structure, or functional) at the expense of increasing external implementation complexity. Adds an indirection layer in the middle of the communication, reducing communication coupling.",
+    "Related Patterns": "Not explicitly mentioned in the provided text.",
+    "Uses": "Asynchronous communication, event-driven architectures, decoupling services, enabling scalability and resilience.",
+    "Thinking": "Explicitly listed in the 'PATTERNS ANALYZED' section. It's a cornerstone communication pattern in microservices, enabling loose coupling and independent evolution."
+  },
+  {
+    "Pattern Name": "Pipes and Filters",
+    "Problem": "Complex processing tasks can become monolithic and difficult to maintain, test, and reuse.",
+    "Context": "A task performs complex processing that can be broken down into a series of separate, reusable elements.",
+    "Solution": "Breaks down a task that performs complex processing into a series of separate elements that can be reused.",
+    "Result": "Improves cohesion. Reduces direct dependency to other parts of the system. Favors decoupling (communication, data structure, or functional) at the expense of increasing external implementation complexity.",
+    "Related Patterns": "Not explicitly mentioned in the provided text.",
+    "Uses": "Data transformation, ETL processes, complex workflow processing, modularizing internal service logic.",
+    "Thinking": "Explicitly listed in the 'PATTERNS ANALYZED' section. While a general architectural pattern, it's highly applicable within a microservice context for structuring internal service logic or composing services into a processing pipeline."
+  },
+  {
+    "Pattern Name": "Queue-based Load Levelling",
+    "Problem": "Services can be overwhelmed by sudden spikes in demand (peak loads), leading to performance degradation or failures.",
+    "Context": "A service experiences variable and unpredictable load, and needs to maintain responsiveness and stability during peak periods.",
+    "Solution": "Uses a queue to level the load on a service and minimize the impact of peak load periods.",
+    "Result": "Favors cohesion and reduces functional coupling at the cost of additional internal implementation complexity. Favors decoupling (communication, data structure, or functional) at the expense of increasing external implementation complexity. Has a negative impact due to increased internal implementation complexity but proposes gains in cohesion.",
+    "Related Patterns": "Not explicitly mentioned in the provided text.",
+    "Uses": "Handling bursty traffic, improving resilience, decoupling producers from consumers, ensuring stable service performance.",
+    "Thinking": "Explicitly listed in the 'PATTERNS ANALYZED' section. It's a critical resilience and scalability pattern for microservices, directly addressing how to handle variable load in a distributed environment."
+  },
+  {
+    "Pattern Name": "Shared Database",
+    "Problem": "While seemingly simpler initially, sharing a database across microservices creates tight coupling, hindering independent evolution, deployment, and technology choices.",
+    "Context": "Multiple microservices need to access common data, and there's a temptation to use a single, common database.",
+    "Solution": "Multiple microservices use a shared database; each service can use data accessible to other services.",
+    "Result": "Increases coupling on data structures. Different microservices depend on each other to perform their data-related operations. Data gets blocked to one when the other is accessing. Compromises functional and data structure coupling while reducing external implementation complexity.",
+    "Related Patterns": "Database per Service (as an alternative/opposite).",
+    "Uses": "(Often considered an anti-pattern in pure microservices) Can be used in transitional architectures from monolith to microservices, or in very specific cases where data consistency and tight coupling are acceptable tradeoffs for simplicity.",
+    "Thinking": "Explicitly listed in the 'PATTERNS ANALYZED' section. The text analyzes its *negative* impact on microservice principles (coupling), indicating it's a pattern relevant to microservice design, even if often as an anti-pattern."
+  },
+  {
+    "Pattern Name": "Sidecar",
+    "Problem": "An application needs helper components (e.g., logging, monitoring, configuration) that share its lifecycle but need to be isolated from the main application code.",
+    "Context": "A microservice requires auxiliary functionalities that are not part of its core business logic but are essential for its operation (e.g., observability, connectivity, security).",
+    "Solution": "Deploys helper components of an application into a separate process or container to provide isolation and encapsulation.",
+    "Result": "Reduces direct dependency to other parts of the system. Reduces internal implementation complexity by separation of concerns. Decouples services from data structures to functional and communication. Favors code reuse of peripheral tasks or by removing the need of application code to handle the communication between parts.",
+    "Related Patterns": "Not explicitly mentioned in the provided text.",
+    "Uses": "Centralized logging, monitoring, configuration management, network proxies (e.g., service mesh proxies), circuit breakers, security agents.",
+    "Thinking": "Explicitly listed in the 'PATTERNS ANALYZED' section. It's a widely adopted deployment pattern in cloud-native and microservice environments, particularly with container orchestration platforms, to manage cross-cutting concerns and improve modularity."
+  }
+]

@@ -1,0 +1,242 @@
+[
+  {
+    "Pattern Name": "Enable Continuous Integration",
+    "Problem": "Considering that by adopting microservices the number of services will be increased, how can we always have available production-ready artifacts? How can the system be prepared for introducing continuous delivery?",
+    "Context": "There is a working monolithic software system and the team responsible for maintaining the system has decided to migrate this system to microservices.",
+    "Solution": "The first step toward continuous delivery is to set up continuous integration. Continuous integration automates the build and test processes and ensures the availability of production-ready artifacts. Each service should be placed in a separate repository, and a continuous integration job should be created for each service. This job fetches new code, runs tests, builds artifacts, and pushes them to an artifact repository. Failures should terminate the job and inform the development team.",
+    "Result": "Always have available production-ready artifacts; the system is prepared for introducing continuous delivery.",
+    "Related Patterns": "None",
+    "Uses": "Build the continuous integration pipeline; automate build and test processes; ensure the availability of production-ready artifacts.",
+    "Thinking": "Continuous Integration is a fundamental practice and enabler for microservices, allowing independent deployment and faster release cycles, which are core tenets of the microservices architectural style."
+  },
+  {
+    "Pattern Name": "Recover the Current Architecture",
+    "Problem": "What is the big picture of the system? What high-level information is needed for planning the migration to microservices?",
+    "Context": "There is a working monolithic software system and the team responsible for maintaining the system has decided to migrate this system to microservices. In order to plan the migration, the team needs to know the current system architecture which either does not exist or is rather obsolete.",
+    "Solution": "A helpful software architecture is a set of important things in the system communicated through simple textual or visual artifacts. Key items for microservices migration planning include Component and Service Architecture (understanding inner domain, service calls, business logic), Technology Architecture (identifying current stack, libraries, databases), and Deployment Architecture and Procedure (understanding current deployment to move towards continuous delivery). Involve developers and operations teams to establish a common understanding and foster DevOps collaboration. Store artifacts in a shared repository.",
+    "Result": "A clear, shared understanding of the current system architecture is established, serving as the initial state for microservices migration planning.",
+    "Related Patterns": "None",
+    "Uses": "Create the migration plan\u2019s initial state; understand the current situation of an application.",
+    "Thinking": "This pattern is crucial for any microservices migration project as it emphasizes understanding the existing monolithic system's architecture before attempting decomposition. It's a foundational step to define the 'as-is' state, which is essential for effective 'to-be' microservices design."
+  },
+  {
+    "Pattern Name": "Decompose the Monolith (using Domain-Driven Design)",
+    "Problem": "How can the system be decomposed into smaller chunks? How big should these chunks (components) be?",
+    "Context": "There is a monolithic software system with a complex domain which has at least one of the following attributes: low comprehensibility of source code, different non-functional requirements for different parts, or every change requires a whole redeployment.",
+    "Solution": "Domain-driven design (DDD) should be used to identify subdomains of the business, with each subdomain constituting a bounded context (BC) that is a deployable unit. Further decomposition can occur based on different change frequency rates or non-functional requirements. It is recommended to start with a low number of services and incrementally add more as the system grows.",
+    "Result": "The system is decomposed into smaller, manageable chunks (bounded contexts/services), benefiting from microservices characteristics like independent scalability and modifiability.",
+    "Related Patterns": "MP4 Decompose the monolith based on data ownership, MP5 Change code dependency to service call",
+    "Uses": "Rearchitect a monolithic software system to a set of services using Domain-Driven Design; address system complexity, varied non-functional requirements, and frequent changes.",
+    "Thinking": "This pattern describes a core strategy for defining service boundaries and decomposing a monolithic application, which is a foundational design activity in microservices architecture."
+  },
+  {
+    "Pattern Name": "Decompose the Monolith based on Data Ownership",
+    "Problem": "How can the system be decomposed into smaller chunks? How big should these chunks (components) be?",
+    "Context": "There is a monolithic software system with a noncomplex domain which has at least one of the following attributes: low comprehensibility of source code, different non-functional requirements for different parts, or every change requires a whole redeployment.",
+    "Solution": "Decompose the system based on the ownership of data. Identify cohesive sets of data entities that can be grouped as a unit with a unique owner. Package each group and its business logic into a service. Each entity should be modified or created only through its owning service. Other services can have copies, but synchronization is crucial. Further decomposition can happen based on change frequency or non-functional requirements.",
+    "Result": "The system is decomposed into smaller, data-centric services, benefiting from microservices characteristics like independent scalability and modifiability.",
+    "Related Patterns": "MP3 Decompose the monolith, MP5 Change code dependency to service call",
+    "Uses": "Rearchitect a monolithic software system to a set of services using data ownership; address system complexity, varied non-functional requirements, and frequent changes, especially in non-complex domains.",
+    "Thinking": "This pattern provides an alternative, data-centric approach to service decomposition, which is a key design principle for establishing autonomous microservices with their own data stores."
+  },
+  {
+    "Pattern Name": "Change Code Dependency to Service Call",
+    "Problem": "When is it appropriate to change this code-level dependency to a service-level dependency and when is it not?",
+    "Context": "A software system has been decomposed to a set of small services to use a microservices architectural style. There is a component in the system that is acting as a dependency to other services or components.",
+    "Solution": "Keep services' code as separate as possible. While common, rarely changing libraries can be shared, sharing internal entities or interface schemas should be avoided to prevent tight coupling. If sharing is not ideal, expose the functionality as a separate service. This allows independent scaling and evolution of the functionality.",
+    "Result": "Services' code is kept separate, reducing tight coupling; services can be scaled independently.",
+    "Related Patterns": "MP3 Decompose the monolith, MP4 Decompose the monolith based on data ownership",
+    "Uses": "Transform code-level dependencies to service-level dependencies; enable independent scaling and evolution of services.",
+    "Thinking": "This pattern addresses the crucial aspect of inter-service communication in microservices, advocating for loose coupling via service calls over tight code dependencies, which is fundamental to microservices design."
+  },
+  {
+    "Pattern Name": "Introduce Service Registry",
+    "Problem": "How can services locate each other dynamically? How can an edge server or a load balancer know the list of instances of a service to which it can route the traffic?",
+    "Context": "A software system has been decomposed to a set of small services to use a microservices architectural style, and each service has one or more instances deployed. The number of instances can change dynamically, and they can be deployed on different systems.",
+    "Solution": "Set up a service registry to store service instance addresses. Each service registers itself upon initiation. Instances are removed from the registry if heartbeats are not received or upon explicit termination. An edge server, load balancer, or other services can then dynamically locate desired services through the registry. The service registry is a vital component and requires high availability mechanisms like replication.",
+    "Result": "Services can locate each other dynamically; edge servers and load balancers can dynamically route traffic to available service instances; communication between system parts is enabled and highly available.",
+    "Related Patterns": "None",
+    "Uses": "Introduce the dynamic location of service instances; enable dynamic service discovery for services, edge servers, and load balancers.",
+    "Thinking": "The Service Registry is a canonical Microservices design pattern essential for dynamic service discovery in a distributed environment, enabling flexible deployment and scaling."
+  },
+  {
+    "Pattern Name": "Introduce Service Registry Client",
+    "Problem": "How does the service registry know a new instance has been deployed? How can it know an instance has been terminated?",
+    "Context": "A software system has been decomposed to a set of small services to use a microservices architectural style, and a service registry has been set up. The number of instances of each service can change dynamically, and they can be deployed on different systems.",
+    "Solution": "Each service should include a client that knows the service registry's address. This client registers the service instance during initiation and sends periodic heartbeats to keep it in the available instances list. Instance removal can occur by stopping heartbeats (failure scenario) or explicitly informing the registry of termination.",
+    "Result": "The service registry is dynamically updated with information about new and terminated service instances.",
+    "Related Patterns": "None",
+    "Uses": "Facilitate dynamic location of service instances; enable services to register and de-register with the service registry.",
+    "Thinking": "This pattern describes the client-side component necessary to interact with a Service Registry, making it an integral part of implementing the Service Discovery pattern in microservices."
+  },
+  {
+    "Pattern Name": "Introduce Internal Load Balancer",
+    "Problem": "How can the load on a service between its instances be balanced based on the conditions of the client? How can the load on a service be balanced without setting up an external load balancer?",
+    "Context": "A software system has been decomposed to a set of small services to use a microservices architectural style, and a service registry has been set up. Numerous instances of each service exist, and services act as clients to others.",
+    "Solution": "Each service, acting as a client, should have an internal load balancer. This component fetches the list of available instances from the service registry (e.g., via a service registry client) and balances the load using local metrics (e.g., response time). This approach removes the need for an external load balancer and brings in the possibility of having different load balancing mechanisms in different clients of a service.",
+    "Result": "Load on a service is balanced between its instances based on client conditions; the burden of setting up an external load balancer is removed; different load balancing mechanisms can be used by different clients.",
+    "Related Patterns": "MP9 Introduce external load balancer",
+    "Uses": "Introduce load balancing between instances of a service using an internal load balancer; distribute load based on client-side metrics.",
+    "Thinking": "This pattern describes client-side load balancing, a common approach in microservices for distributing requests among service instances, often used in conjunction with service discovery."
+  },
+  {
+    "Pattern Name": "Introduce External Load Balancer",
+    "Problem": "How can the load on a service between its instances be balanced with the least changes in the services\u2019 code? How can a centralized load balancing approach be used for all of the services?",
+    "Context": "A software system has been decomposed to a set of small services to use a microservices architectural style, and a service registry has been set up. Numerous instances of each service exist, and services act as clients to others.",
+    "Solution": "An external load balancer can be set up which retrieves the list of available instances from the service registry and uses a centralized algorithm for load balancing. This load balancer can act either as a proxy (not recommended) or as an instance address locator. Alternatively, a service registry with built-in load balancing support can be used.",
+    "Result": "Load on a service is balanced between its instances with minimal changes to service code; a centralized load balancing approach is used for all services.",
+    "Related Patterns": "MP8 Introduce internal load balancer",
+    "Uses": "Introduce load balancing between instances of a service using an external load balancer; provide a centralized load balancing approach.",
+    "Thinking": "This pattern describes server-side or external load balancing, another common strategy in microservices for distributing incoming requests across multiple service instances, often at the network edge or within the cluster."
+  },
+  {
+    "Pattern Name": "Introduce Circuit Breaker",
+    "Problem": "How can a system fail fast and not wait until reaching a service call timeout when calling a recently unavailable service? How can the system be more resilient when an unavailable service is called?",
+    "Context": "A software system has been decomposed to a set of small services to use a microservices architectural style. Some end-user requests require interservice communications.",
+    "Solution": "The service consumer uses a circuit breaker when calling a service provider. It monitors responses and, if failures exceed a threshold, 'opens the circuit' (e.g., returns a meaningful error or cached data) to prevent further calls. After a timeout, it enters a 'half-open' state to re-check availability, closing the circuit on success or reopening it on failure.",
+    "Result": "The system fails fast, avoiding long timeouts for unavailable services; the system becomes more resilient to service failures, preventing cascading issues.",
+    "Related Patterns": "None",
+    "Uses": "Introduce fault tolerance in interservice communications; prevent cascading failures in distributed systems.",
+    "Thinking": "The Circuit Breaker is a well-known and critical Microservices design pattern for building resilient distributed systems by gracefully handling failures and preventing them from propagating."
+  },
+  {
+    "Pattern Name": "Introduce Configuration Server",
+    "Problem": "How can the running instances\u2019 configurations be changed without redeploying them?",
+    "Context": "A software system has been decomposed to a set of small services to use a microservices architectural style. Each service has numerous instances running in production, and their list is accessible via a service registry.",
+    "Solution": "Maintain separate repositories for source code and software configurations, allowing them to evolve independently. Changes to the configuration repository should be propagated to running instances, which then adapt accordingly.",
+    "Result": "Running instances' configurations can be changed without redeploying them, reducing downtime and enabling dynamic adjustments.",
+    "Related Patterns": "None",
+    "Uses": "Change a system's configuration at runtime; enable dynamic configuration updates for microservices.",
+    "Thinking": "The Configuration Server is a common pattern in microservices for externalizing and dynamically managing configurations, which is crucial for independent deployment and operational flexibility."
+  },
+  {
+    "Pattern Name": "Introduce Edge Server",
+    "Problem": "How can the internal service structure complexity and evolution be hidden from the end users? How can the overall status and usage of a service in production be monitored?",
+    "Context": "A software system has been decomposed to a set of small services to use a microservices architectural style. New services can be easily introduced, and existing services rearchitected.",
+    "Solution": "Introduce an edge server as a front door, acting as a layer of indirection. This layer performs dynamic routing based on configuration, fetching service instance addresses from a service registry or using hard-coded values. End-users interact only with this interface, shielding them from internal changes. All traffic passes through this layer, making it an ideal point for monitoring overall service usage.",
+    "Result": "Internal service structure complexity and evolution are hidden from end users; the overall status and usage of services in production can be monitored effectively.",
+    "Related Patterns": "None",
+    "Uses": "Enable dynamic rerouting of external requests to internal services; hide internal service complexity and evolution; monitor overall service usage.",
+    "Thinking": "The Edge Server (API Gateway) is a fundamental Microservices design pattern that acts as a single entry point for external clients, handling routing, request aggregation, security, and cross-cutting concerns."
+  },
+  {
+    "Pattern Name": "Containerize the Services",
+    "Problem": "How can the development and the production environments produce the same results for the same code? How can the complexity of configuration management tools or difficulties of manual deployments be eliminated?",
+    "Context": "A software system has been decomposed to a set of small services to use a microservices architectural style, with a working continuous integration pipeline. Each service requires a specific environment, leading to inconsistencies between dev and prod.",
+    "Solution": "Use containerization (e.g., Docker) for lightweight isolation and reproducible environments. Add a step to the continuous integration pipeline to build container images and store them. These images run consistently across dev and prod. Environment variables should be used for configuration keys that differ between environments, injected during container creation.",
+    "Result": "Development and production environments produce the same results for the same code; the complexity of configuration management and manual deployments is eliminated; lightweight, isolated, and reproducible environments are achieved.",
+    "Related Patterns": "None",
+    "Uses": "Achieve consistent behavior across development and production environments; simplify deployment and configuration management; improve resource efficiency.",
+    "Thinking": "While primarily an operational/deployment pattern, containerization is a critical enabler for microservices, providing the necessary isolation, portability, and consistent environments that simplify development and deployment in a microservices architecture."
+  },
+  {
+    "Pattern Name": "Deploy into a Cluster and Orchestrate Containers",
+    "Problem": "How can a service\u2019s instances be deployed into a cluster? How can the deployment and redeployment of all of the services be orchestrated with the least effort?",
+    "Context": "A software system has been architected based on a microservices architectural style and a working continuous integration pipeline is in place and is working. Therefore, a production-ready container image is available for the deployment of each service. A large number of services exist and thereby their deployment and redeployment are complex, cumbersome, and unmanageable.",
+    "Solution": "Implement a cluster management system (e.g., Kubernetes) to deploy container images on demand, manage instances across nodes, handle instance failures (restarting them), and provide autoscaling. The tool should support declarative deployment architecture, delegating autoscaling and failure management to it. An internal name resolution strategy is beneficial.",
+    "Result": "Service instances are deployed into a cluster; deployment and redeployment of all services are orchestrated with minimal effort; the system handles instance failures and provides autoscaling capabilities.",
+    "Related Patterns": "None",
+    "Uses": "Deploy service instances container images in a cluster; orchestrate container deployment, scaling, and management; ensure high availability and resource efficiency.",
+    "Thinking": "Container orchestration is an essential operational pattern for microservices, enabling the automated deployment, scaling, and management of numerous containerized services in a distributed environment, which is fundamental to microservices at scale."
+  },
+  {
+    "Pattern Name": "Monitor the System and Provide Feedback",
+    "Problem": "How can the underlying infrastructure be monitored? How can the gathered data be used to rearchitect the system by providing feedbacks to the development team?",
+    "Context": "A software system has been architected based on a microservices architectural style. The whole system is being run on a cluster of containers with each service having a number of instances in production.",
+    "Solution": "Each service should have its independent monitoring facility owned by the operational part of the services team. These facilities should include the required components to gather the monitoring information (e.g., the CPU and RAM usages) and send them to a monitoring server. Therefore, the following components should be added to each service container\u2019s image and be configured either during the creation of the container images or the creation of actual containers. In the monitoring server, this information should be parsed and aggregated into structured information and stored somewhere that can be queried efficiently, such as in an indexing server or a time series database. Having a pool of timely monitoring information, a visualization tool can be used to obtain an overall view on the status of the system. This information helps the development part of the services team to refactor the architecture to remove performance bottlenecks or other detected anomalies.",
+    "Result": "The underlying infrastructure is monitored effectively; gathered data is used to rearchitect the system by providing feedback to the development team, enabling the removal of performance bottlenecks or detected anomalies.",
+    "Related Patterns": "None",
+    "Uses": "Monitor running service instances; provide feedback to the development team; enable observability and continuous improvement of the microservices architecture.",
+    "Thinking": "Monitoring and observability are critical operational patterns for microservices, providing insights into system health, performance, and behavior, which are essential for managing and evolving distributed systems."
+  },
+  {
+    "Pattern Name": "Domain-Driven Design",
+    "Problem": "How to manage complexity in large software systems and define clear, cohesive boundaries for services, especially in a microservices context, ensuring they align with business capabilities.",
+    "Context": "Developing complex business applications where understanding and modeling the core domain is crucial. Particularly relevant when decomposing a monolithic application into microservices or designing new microservices from scratch.",
+    "Solution": "Focus on the core domain, collaborate closely with domain experts, and create a shared understanding (Ubiquitous Language). Identify and model key domain concepts like Entities, Value Objects, Aggregates, and Domain Events. Define explicit boundaries for different parts of the domain, known as Bounded Contexts, each with its own model and language.",
+    "Result": "Software systems that are more aligned with business needs, easier to understand, maintain, and evolve. In microservices, it leads to well-defined, cohesive, and loosely coupled services that correspond to distinct business capabilities, reducing inter-service dependencies and improving autonomy.",
+    "Related Patterns": "Bounded Context, Ubiquitous Language, Aggregate, Entity, Value Object, Domain Event (these are concepts within DDD, but DDD itself is the pattern mentioned).",
+    "Uses": "Primarily used for strategic design in microservices architectures to identify and define service boundaries, ensuring each microservice encapsulates a distinct business capability. It guides the decomposition of large systems into smaller, manageable services.",
+    "Thinking": "Reference 19 explicitly names 'Domain-Driven Design' by Eric Evans, a foundational methodology. While DDD is a methodology rather than a concrete architectural pattern like 'API Gateway', it is universally recognized as a critical *design* approach for microservices, guiding how service boundaries are identified and defined. It is therefore a 'Microservices design pattern' in the sense that it dictates how microservices are fundamentally designed."
+  },
+  {
+    "Pattern Name": "Continuous Delivery",
+    "Problem": "How to reliably and frequently release software changes to production, especially in a complex system with many independently deployable services, without causing downtime or instability.",
+    "Context": "Developing and operating microservices architectures where each service can be developed, tested, and deployed independently. The goal is to achieve rapid feedback loops and quick time-to-market for new features and bug fixes.",
+    "Solution": "Implement an automated, reliable, and repeatable software release process. This involves continuous integration (CI), automated testing (unit, integration, end-to-end), automated deployment to various environments (dev, test, staging, production), and robust release management. The pipeline ensures that code changes are always in a deployable state.",
+    "Result": "Faster time-to-market, reduced risk of deployments, higher quality software, improved collaboration between development and operations teams, and the ability to respond quickly to market changes. For microservices, it enables independent deployment of services, reducing coordination overhead.",
+    "Related Patterns": "Continuous Integration, Automated Testing, Automated Deployment, DevOps.",
+    "Uses": "Essential for enabling the independent deployment and rapid iteration cycles inherent in microservices architectures. It ensures that changes to individual microservices can be safely and quickly released without impacting other services or the overall system.",
+    "Thinking": "Reference 18 explicitly names 'Continuous Delivery' by Humble and Farley, a seminal work on the topic. While not an architectural pattern for service structure, Continuous Delivery is a fundamental *enabling practice* or *operational design pattern* for microservices. It dictates how microservices are *designed to be deployed and evolved*, which is a critical aspect of their overall system design. The paper's focus on 'cloud-native microservices-based architecture' strongly implies the need for such practices."
+  },
+  {
+    "Pattern Name": "DevOps",
+    "Problem": "How to bridge the gap between development and operations teams to improve collaboration, accelerate software delivery, and enhance operational stability and reliability, especially in dynamic microservices environments.",
+    "Context": "Organizations adopting microservices architectures often face challenges with traditional siloed development and operations teams, leading to slow deployments, communication breakdowns, and blame games. Microservices require a high degree of automation and shared responsibility for service lifecycle.",
+    "Solution": "Foster a culture of collaboration, communication, and shared responsibility between development and operations. Implement automation across the entire software delivery pipeline, from code commit to production deployment and monitoring. This includes practices like Infrastructure as Code, Continuous Integration, Continuous Delivery, and comprehensive monitoring and logging.",
+    "Result": "Faster and more frequent software releases, improved system reliability and stability, quicker recovery from failures, better communication and trust between teams, and a more efficient and agile software development lifecycle. For microservices, it enables teams to own their services end-to-end, from development to production.",
+    "Related Patterns": "Continuous Integration, Continuous Delivery, Infrastructure as Code, Site Reliability Engineering (SRE).",
+    "Uses": "DevOps is a cultural and operational paradigm that is crucial for the successful adoption and operation of microservices. It influences how microservices are designed, developed, deployed, and maintained, emphasizing automation, monitoring, and cross-functional team ownership.",
+    "Thinking": "Reference 30 explicitly names 'DevOps' by Bass, Weber, and Zhu, a key book on the subject from an architect's perspective. Similar to Continuous Delivery, DevOps is a foundational *enabling practice* or *operational design pattern* for microservices. It defines the *culture and processes* necessary for microservices to achieve their benefits, making it an integral part of designing a microservices-based system."
+  },
+  {
+    "Pattern Name": "Circuit Breaker",
+    "Problem": "How to prevent a single failing service from cascading failures throughout a microservices system, especially when dealing with transient network issues or slow responses from dependent services.",
+    "Context": "In a distributed microservices architecture, services often depend on other services. If a dependent service becomes unavailable or slow, the calling service can become blocked, exhaust its resources (e.g., thread pools), and eventually fail itself, leading to a system-wide outage.",
+    "Solution": "Implement a circuit breaker pattern around calls to remote services. The circuit breaker monitors calls for failures (e.g., timeouts, network errors). If the failure rate exceeds a threshold, the circuit 'opens,' preventing further calls to the failing service and immediately returning an error or a fallback response. After a configurable timeout, the circuit enters a 'half-open' state, allowing a limited number of test requests to see if the service has recovered. If successful, the circuit 'closes' and normal operation resumes.",
+    "Result": "Improved system resilience and fault tolerance. Prevents cascading failures, allows failing services time to recover without being overwhelmed by requests, and provides immediate feedback to the calling service, enabling graceful degradation or fallback mechanisms.",
+    "Related Patterns": "Bulkhead, Retry, Timeout, Fallback.",
+    "Uses": "Crucial for building robust and resilient microservices. It's applied to any outgoing call from one microservice to another (or to external systems) to protect against failures and ensure the calling service remains responsive.",
+    "Thinking": "Reference 20 (Nygard's 'Release It!') is a primary source for resilience patterns, including Circuit Breaker. References 31 (Newman's 'Building Microservices') and 32 (Krause's 'Microservices Patterns and Applications') would undoubtedly cover this pattern as a fundamental microservices design pattern for fault tolerance. The paper's context of 'cloud-native microservices-based architecture' inherently requires robust fault tolerance, making Circuit Breaker a true design pattern for such systems."
+  },
+  {
+    "Pattern Name": "Bulkhead",
+    "Problem": "How to isolate resources used by different services or components within a microservice, preventing failures or resource exhaustion in one area from affecting others and causing system-wide instability.",
+    "Context": "In a microservices architecture, a single service might interact with multiple other services or external resources. If one of these dependencies becomes slow or unresponsive, it can consume all available resources (e.g., database connections, thread pools) of the calling service, leading to its own failure and potentially impacting other, healthy dependencies.",
+    "Solution": "Partition resources (e.g., thread pools, connection pools) based on the type of dependency or client. Each dependency or client gets its own dedicated set of resources. If one dependency starts to fail or consume excessive resources, only the resources allocated to that specific dependency are affected, leaving other parts of the service and its interactions with other dependencies unaffected.",
+    "Result": "Enhanced fault isolation and resilience. Prevents resource exhaustion and cascading failures by containing problems to specific areas. Allows the system to degrade gracefully rather than failing entirely.",
+    "Related Patterns": "Circuit Breaker, Rate Limiter, Timeout.",
+    "Uses": "Applied within a microservice to isolate calls to different external services or internal components, ensuring that a problem with one dependency doesn't bring down the entire service. It's a key pattern for designing resilient microservices.",
+    "Thinking": "Similar to Circuit Breaker, Reference 20 (Nygard's 'Release It!') is a primary source for resilience patterns, including Bulkhead. References 31 (Newman's 'Building Microservices') and 32 (Krause's 'Microservices Patterns and Applications') would also cover this pattern as a fundamental microservices design pattern for fault tolerance and resource management. It's essential for the robustness of 'cloud-native microservices-based architecture.'"
+  },
+  {
+    "Pattern Name": "API Gateway",
+    "Problem": "How to provide a single, unified entry point for external clients to access multiple microservices, handling cross-cutting concerns like routing, authentication, authorization, and rate limiting.",
+    "Context": "In a microservices architecture, clients (web browsers, mobile apps) often need to interact with many different services to perform a single business operation. Directly calling individual microservices can lead to complex client-side logic, increased network latency, and expose internal service details.",
+    "Solution": "Introduce an API Gateway as a single entry point for all client requests. The API Gateway acts as a reverse proxy, routing requests to the appropriate microservices. It can also aggregate responses from multiple services, perform protocol translation, handle authentication/authorization, implement rate limiting, and provide caching.",
+    "Result": "Simplified client-side development, reduced network round trips, improved security by hiding internal service topology, and centralized handling of cross-cutting concerns. It provides a clear boundary between external clients and the internal microservices architecture.",
+    "Related Patterns": "Backend for Frontend (BFF), Service Discovery, Load Balancer.",
+    "Uses": "A fundamental pattern for exposing microservices to external clients. It's used to manage external access, simplify client interactions, and centralize common concerns that would otherwise be duplicated across many microservices or handled by clients.",
+    "Thinking": "References 31 (Newman's 'Building Microservices') and 32 (Krause's 'Microservices Patterns and Applications') are dedicated to microservices patterns and would prominently feature API Gateway as a core design pattern. The need for a unified entry point and handling cross-cutting concerns is a direct consequence of adopting a 'microservices-based architecture.'"
+  },
+  {
+    "Pattern Name": "Service Discovery",
+    "Problem": "How do client services or API Gateways find the network location (IP address and port) of other microservices instances, especially in dynamic cloud environments where service instances are frequently created, destroyed, and scaled.",
+    "Context": "In a microservices architecture, service instances are often ephemeral, dynamically scaled, and deployed to various hosts with non-static network locations. Hardcoding service locations is impractical and brittle.",
+    "Solution": "Implement a Service Discovery mechanism. This typically involves a service registry where microservice instances register their network locations upon startup and deregister upon shutdown. Client services (or an API Gateway) then query this registry to find available instances of a target service. There are two main types: Client-side Discovery (client queries registry directly) and Server-side Discovery (router/load balancer queries registry).",
+    "Result": "Decoupling of services from their physical locations, enabling dynamic scaling, deployment, and resilience. Services can be deployed and moved without reconfiguring clients. Improved system flexibility and operational efficiency.",
+    "Related Patterns": "API Gateway, Load Balancer, Health Check.",
+    "Uses": "Essential for any dynamic microservices environment, particularly in cloud-native deployments. It allows services to find and communicate with each other without manual configuration, supporting elasticity and fault tolerance.",
+    "Thinking": "References 31 (Newman's 'Building Microservices') and 32 (Krause's 'Microservices Patterns and Applications') are dedicated to microservices patterns and would prominently feature Service Discovery as a core design pattern. The dynamic nature of 'cloud-native microservices-based architecture' makes this pattern indispensable."
+  },
+  {
+    "Pattern Name": "Database per Service",
+    "Problem": "How to ensure strong encapsulation and autonomy for each microservice, preventing tight coupling through a shared database and enabling independent technology choices and scaling.",
+    "Context": "In a monolithic application, all components typically share a single database. When decomposing into microservices, continuing to use a shared database creates a 'monolithic database' anti-pattern, leading to tight coupling, schema conflicts, and hindering independent deployment and scaling.",
+    "Solution": "Each microservice owns its own private database. This database is only accessible by that specific microservice. Other services that need to access data owned by another service must do so through the owning service's API, not by directly accessing its database. This allows services to choose the most appropriate database technology (polyglot persistence) and scale their data stores independently.",
+    "Result": "Stronger service encapsulation, reduced coupling between services, independent deployment and scaling of services and their data stores, and flexibility in choosing database technologies. However, it introduces challenges for data consistency (distributed transactions) and querying across services.",
+    "Related Patterns": "Saga, Event Sourcing, API Gateway (for data access).",
+    "Uses": "A fundamental principle and design pattern for achieving true independence and autonomy in microservices. It's applied when defining service boundaries and data ownership, ensuring that each microservice is a truly independent deployable unit.",
+    "Thinking": "References 31 (Newman's 'Building Microservices') and 32 (Krause's 'Microservices Patterns and Applications') are dedicated to microservices patterns and would prominently feature Database per Service as a core design pattern. It's a direct consequence of the 'microservices-based architecture' principle of strong encapsulation and autonomy."
+  },
+  {
+    "Pattern Name": "Strangler Fig",
+    "Problem": "How to gradually migrate a large, monolithic application to a microservices architecture without a risky 'big bang' rewrite, ensuring continuous operation and incremental delivery of value.",
+    "Context": "Organizations often have large, complex monolithic applications that are difficult to maintain, scale, and evolve. A complete rewrite is too risky and expensive. The goal is to incrementally replace parts of the monolith with new microservices.",
+    "Solution": "Identify a specific functional area within the monolith to be extracted. Build a new microservice that implements this functionality. Place a 'strangler' (e.g., a reverse proxy or API Gateway) in front of the monolith. This strangler intercepts requests for the extracted functionality and routes them to the new microservice, while requests for remaining functionality continue to go to the monolith. Over time, more functionality is 'strangled' out of the monolith and replaced by new microservices, until the monolith eventually shrinks and can be retired.",
+    "Result": "Reduced risk during migration, continuous delivery of value, ability to learn and adapt during the migration process, and a gradual transition to a microservices architecture. The old system remains operational throughout the process.",
+    "Related Patterns": "API Gateway, Anti-Corruption Layer, Bounded Context.",
+    "Uses": "Primarily a migration pattern, but it's a crucial *design strategy* for evolving existing systems into microservices. It dictates how the new microservices architecture is *designed to integrate* with and eventually replace the legacy system.",
+    "Thinking": "Reference 31 (Newman's 'Building Microservices') is a key source for this pattern, which is explicitly about migrating to microservices. Given the paper's title and abstract ('migration and rearchitecting patterns... to a cloud-native microservices-based architecture'), the Strangler Fig pattern is highly relevant and a true 'Microservices design pattern' in the context of *how* one designs the transition to microservices."
+  }
+]

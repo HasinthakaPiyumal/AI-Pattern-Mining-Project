@@ -1,0 +1,12 @@
+[
+  {
+    "Pattern Name": "Service instance per container",
+    "Problem": "How are services packaged and deployed, considering that services are written using various languages and frameworks, require multiple instances for throughput and availability, must be independently deployable and scalable, need isolation, quick build/deployment, resource constraints (CPU/memory), monitoring, reliability, and cost-effectiveness.",
+    "Context": "You have applied the Microservice architecture pattern and architected your system as a set of services. Each service is deployed as a set of service instances for throughput and availability.",
+    "Solution": "Package the service as a Docker container image and deploy each service instance as a container.",
+    "Result": "Benefits include: straightforward scaling by changing the number of container instances; encapsulation of technology details, allowing uniform start/stop; isolation of each service instance; imposition of CPU and memory limits; and extremely fast build and start times. Drawbacks include: the infrastructure for deploying containers is not as rich as that for virtual machines.",
+    "Related Patterns": "This pattern is a refinement of the Service Instance per Host pattern. The Service Instance per VM pattern and the Serverless deployment pattern are alternative solutions.",
+    "Uses": "Docker, Kubernetes, Marathon/Mesos, Amazon EC2 Container Service.",
+    "Thinking": "The text explicitly introduces 'Pattern Service instance per container' and then systematically describes its Context, Problem, Solution, Result, and Related Patterns, which are the defining characteristics of a design pattern description. The 'pattern tagspattern' also reinforces its identification as a pattern."
+  }
+]

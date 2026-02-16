@@ -1,0 +1,42 @@
+[
+  {
+    "Pattern Name": "Decompose by subdomain",
+    "Problem": "How to decompose an application into services",
+    "Context": "You are developing a large complex application and want to use the microservice architecture. The microservice architecture structures an application as a set of loosely coupled services, aiming to accelerate software development by enabling continuous delivery/deployment. This requires careful functional decomposition into services that are small, cohesive, testable, loosely coupled, conform to the Single Responsibility Principle (SRP) and Common Closure Principle (CCP), and can be developed by small, autonomous teams.",
+    "Solution": "Define services corresponding to Domain-Driven Design (DDD) subdomains. DDD refers to the application's problem space (the business) as the domain, which consists of multiple subdomains. Each subdomain corresponds to a different part of the business and can be classified as Core, Supporting, or Generic. For an online store, examples include Product catalog, Inventory management, Order management, and Delivery management.",
+    "Result": "A stable architecture since subdomains are relatively stable. Development teams are cross-functional, autonomous, and organized around delivering business value. Services are cohesive and loosely coupled. Issues include identifying subdomains, which requires understanding the business, its organizational structure, and often involves an iterative process, using organization structure or high-level domain models as starting points.",
+    "Related Patterns": "The Decompose by business capability pattern is an alternative pattern.",
+    "Uses": "This pattern is used to functionally decompose a large application into microservices by aligning service boundaries with the natural subdomains of the business, as defined by Domain-Driven Design. It helps create stable, cohesive, and loosely coupled services that support autonomous, cross-functional teams and independent deployment.",
+    "Thinking": "This pattern is explicitly introduced with 'Pattern Decompose by subdomain' and is followed by clear sections for Context, Problem, Solution, Resulting Context (Result), and Related patterns, making it a direct extraction."
+  },
+  {
+    "Pattern Name": "Command-side replica",
+    "Problem": "How to maintain a queryable view of data within a service, potentially separating read concerns from write concerns.",
+    "Context": "A microservice architecture where services manage their own data, and there is a need to provide efficient and flexible query access to this data, possibly with different access patterns or performance requirements than the primary command operations.",
+    "Solution": "Maintain a queryable replica of the data in the service that implements the Command-side replica.",
+    "Result": "Improved query performance, separation of read/write concerns, and the ability to optimize the read model independently from the command model.",
+    "Related Patterns": "Not explicitly mentioned in the text.",
+    "Uses": "This pattern is used to provide optimized and potentially denormalized data for querying within a service, often as part of a Command Query Responsibility Segregation (CQRS) strategy, allowing the service to handle commands and queries with different data models or performance characteristics.",
+    "Thinking": "The phrase 'Maintain a queryable replica of the data in the service that implements the Command-side replica' directly describes a specific solution to a data management problem within a microservice, indicating a design pattern."
+  },
+  {
+    "Pattern Name": "Decompose by business capability",
+    "Problem": "How to decompose an application into services.",
+    "Context": "You are developing a large complex application and want to use the microservice architecture to accelerate software development by enabling continuous delivery/deployment. This requires careful functional decomposition of the application into services that are small, cohesive, and support autonomous teams.",
+    "Solution": "Decompose the application into services based on distinct 'business capabilities'. This involves dividing the application according to how the business works, its organizational structure, or parts of the business that have a common goal. For example, an e-commerce business might have capabilities like Manufacturing, Purchase, Finance, or Marketing.",
+    "Result": "Services that are cohesive and align with business functions, enabling autonomous teams to own specific capabilities end-to-end. This approach helps ensure that changes impacting a business capability are localized to a single service or a small set of services.",
+    "Related Patterns": "The Decompose by subdomain pattern is an alternative pattern.",
+    "Uses": "This pattern is used to structure microservices around distinct business functions or organizational units, enabling teams to have end-to-end ownership of specific business areas. It aligns service boundaries with the operational structure and goals of the business.",
+    "Thinking": "This is explicitly mentioned as an 'alternative pattern' to 'Decompose by subdomain' and is discussed in the comments, providing enough detail to infer its problem, solution, and context as a distinct microservices decomposition pattern."
+  },
+  {
+    "Pattern Name": "Decompose by Bounded Context",
+    "Problem": "How to decompose an application into services, ensuring clear boundaries and preventing model inconsistencies, especially in complex domains.",
+    "Context": "You are developing a large complex application using microservices, and you are applying Domain-Driven Design (DDD). You need to define service boundaries that encapsulate specific domain models and their associated logic, preventing ambiguity and ensuring consistency.",
+    "Solution": "Form microservices around DDD Bounded Contexts. A Bounded Context defines an explicit boundary within which a particular domain model is valid and consistent. Each service would correspond to a single Bounded Context, owning its specific model and logic.",
+    "Result": "Services with clear, explicit boundaries, preventing model contamination and ensuring consistency within each service's domain. This leads to more cohesive services and reduces coupling between services, as each service's internal model is protected.",
+    "Related Patterns": "Decompose by subdomain, Decompose by business capability.",
+    "Uses": "This pattern is used to define robust and consistent service boundaries in a microservice architecture, particularly when leveraging Domain-Driven Design principles. It ensures that each service has a well-defined scope and a consistent internal domain model, facilitating independent development and deployment.",
+    "Thinking": "Tengiz Tutisani explicitly suggests: 'I would suggest that the microservices must be formed around DDD bounded contexts and not subdomains.' This directly identifies 'Bounded Contexts' as a basis for forming microservices, implying a distinct decomposition pattern."
+  }
+]

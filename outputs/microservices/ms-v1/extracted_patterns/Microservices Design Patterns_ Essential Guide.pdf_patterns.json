@@ -1,0 +1,182 @@
+[
+  {
+    "Pattern Name": "Decompose by Business Capability",
+    "Problem": "Microservices are all about making services loosely coupled, thus applying the single responsibility principle. However, breaking an application into smaller pieces has to be done logically. How do we decompose an application into small services?",
+    "Context": "When designing a new microservices application (greenfield) or refactoring an existing one, the challenge is to logically break down the application into independent, loosely coupled services.",
+    "Solution": "Decompose the application based on its business capabilities. A business capability is something a business does to generate value (e.g., sales, marketing, claims processing). Each business capability can be thought of as a service.",
+    "Result": "Services are business-oriented, loosely coupled, and adhere to the single responsibility principle, making them easier to develop, deploy, and scale independently.",
+    "Related Patterns": "None explicitly mentioned.",
+    "Uses": "For an insurance company, capabilities include sales, marketing, underwriting, claims processing, billing, compliance.",
+    "Thinking": "This is explicitly identified as 'Pattern 1' under 'Decomposition Design Patterns' and provides a clear problem, solution, and context for microservice decomposition."
+  },
+  {
+    "Pattern Name": "Decompose by Subdomain",
+    "Problem": "Decomposing an application using business capabilities might be a good start, but you will come across so-called 'God Classes' which will not be easy to decompose. These classes will be common among multiple services (e.g., the Order class used in Order Management, Order Taking, Order Delivery). How do we decompose them?",
+    "Context": "When decomposing an application, especially when encountering complex, shared domain objects ('God Classes') that span multiple business capabilities.",
+    "Solution": "Apply Domain-Driven Design (DDD) concepts: subdomains and bounded contexts. DDD breaks the whole domain model into subdomains, each with its own model and scope (bounded context). Each microservice is then developed around a bounded context.",
+    "Result": "Solves the 'God Classes' issue by providing a more granular and context-specific decomposition, leading to well-defined microservice boundaries and reduced coupling.",
+    "Related Patterns": "Domain-Driven Design (DDD) concepts.",
+    "Uses": "Example of an 'Order' class being used across Order Management, Order Taking, Order Delivery.",
+    "Thinking": "This is explicitly identified as 'Pattern 2' under 'Decomposition Design Patterns' and details a microservice decomposition strategy using DDD principles."
+  },
+  {
+    "Pattern Name": "Strangler Pattern",
+    "Problem": "The design patterns discussed so far (decomposition) are for greenfield applications, but 80% of the work is with brownfield applications (big monolithic applications). Applying all the above design patterns to them will be difficult \u2013 breaking them into smaller pieces at the same time it's being used is a big task.",
+    "Context": "Migrating a large, existing monolithic application (brownfield) to a microservices architecture without significant downtime or a complete rewrite.",
+    "Solution": "Gradually refactor the monolith by creating new microservices that implement specific functionalities. These new services run alongside the monolith, taking over parts of its functionality. The idea is to do it one domain at a time, eventually 'strangling' or replacing the original application until the monolith can be shut off.",
+    "Result": "Enables a gradual, low-risk migration from a monolith to microservices, reducing downtime and allowing the system to remain operational during the transition.",
+    "Related Patterns": "None explicitly mentioned.",
+    "Uses": "Works well with web applications where calls go back and forth, allowing services to be broken into different domains for each URI call.",
+    "Thinking": "This is explicitly identified as 'Pattern 3' under 'Decomposition Design Patterns' and describes a well-known strategy for migrating monolithic applications to microservices."
+  },
+  {
+    "Pattern Name": "API Gateway Pattern",
+    "Problem": "When an application is broken down into smaller microservices, concerns arise: 1. How to call multiple microservices, abstracting producer information? 2. Different channels (desktop, mobile, tablets) need different data for the same backend service. 3. Different consumers might need different response formats or field manipulation. 4. How to handle different types of protocols, some not supported by producer microservices?",
+    "Context": "When clients (web, mobile, third-party applications) need to interact with a microservices-based backend, and there's a need to simplify client-side complexity, handle cross-cutting concerns, and provide client-specific APIs.",
+    "Solution": "An API Gateway acts as a single point of entry for all microservice calls. It can route requests to concerned microservices, fan out requests to multiple services and aggregate results, create fine-grained APIs for specific client types, convert protocols, and offload authentication/authorization.",
+    "Result": "Simplifies client-side interaction, abstracts microservice complexity, handles protocol translation, provides client-specific APIs, and offloads cross-cutting concerns like security, improving overall system manageability and client experience.",
+    "Related Patterns": "Aggregator Pattern (can be implemented by API Gateway).",
+    "Uses": "None explicitly mentioned as a specific product, but its functionalities are described.",
+    "Thinking": "This is explicitly identified as 'Pattern 4' under 'Integration Patterns' and describes a fundamental component for microservices integration."
+  },
+  {
+    "Pattern Name": "Aggregator Pattern",
+    "Problem": "When business functionality is broken into several smaller logical pieces of code, it becomes necessary to think about how to collaborate the data returned by each service. This responsibility cannot be left with the consumer, as then it might need to understand the internal implementation of the producer application.",
+    "Context": "When a single consumer request requires data from multiple microservices, and the aggregation logic should not reside in the client to avoid exposing internal service details.",
+    "Solution": "Aggregate data from different services and then send the final response to the consumer. This can be done in two ways: 1. A composite microservice makes calls to all required microservices, consolidates, and transforms the data. 2. An API Gateway partitions the request to multiple microservices and aggregates the data. A composite microservice is recommended if business logic is applied; otherwise, the API Gateway is suitable.",
+    "Result": "Simplifies data consumption for clients, prevents clients from needing to understand internal service composition, and centralizes data aggregation logic, improving maintainability and reducing client-side complexity.",
+    "Related Patterns": "API Gateway Pattern (can implement aggregation).",
+    "Uses": "None explicitly mentioned.",
+    "Thinking": "This is explicitly identified as 'Pattern 5' under 'Integration Patterns' and describes a common strategy for combining data from multiple microservices."
+  },
+  {
+    "Pattern Name": "Client-Side UI Composition",
+    "Problem": "When services are developed by decomposing business capabilities/subdomains, the services responsible for user experience have to pull data from several microservices. In a monolithic architecture, there was only one call from the UI to a backend service. Now, we need to understand how to do it.",
+    "Context": "Developing user interfaces for applications built with microservices, where different parts of the UI are backed by different services.",
+    "Solution": "Design the UI as a skeleton with multiple sections/regions. Each section makes a call to an individual backend microservice to pull its specific data. This is known as composing UI components specific to services.",
+    "Result": "Enables independent development and deployment of UI components, allows refreshing specific regions of the screen (Single Page Applications - SPA), and aligns UI structure with microservice boundaries, improving agility.",
+    "Related Patterns": "None explicitly mentioned.",
+    "Uses": "Frameworks like AngularJS and ReactJS help to do that easily. These screens are known as Single Page Applications (SPA).",
+    "Thinking": "This is explicitly identified as 'Pattern 6' and describes a UI architecture pattern specifically tailored for microservices."
+  },
+  {
+    "Pattern Name": "Database per Service",
+    "Problem": "Teams often face challenges around how to define their database architecture for microservices: 1. Services must be loosely coupled, developed, deployed, and scaled independently. 2. Business transactions may enforce invariants that span multiple services. 3. Some business transactions need to query data owned by multiple services. 4. Databases must sometimes be replicated and sharded to scale. 5. Different services have different data storage requirements.",
+    "Context": "Designing the data architecture for microservices, especially in greenfield applications or when aiming for maximum autonomy and loose coupling.",
+    "Solution": "Each microservice must be designed with its own private database, accessible only by that service's API. It cannot be accessed directly by other services.",
+    "Result": "Ensures loose coupling, independent scaling, and technology heterogeneity for data storage. Promotes data ownership by services, improving autonomy and reducing inter-service dependencies.",
+    "Related Patterns": "Shared Database per Service (as an alternative/anti-pattern), Command Query Responsibility Segregation (CQRS) (as a solution for cross-service queries).",
+    "Uses": "For relational databases, examples include private tables per service, schema per service, or database server per service. Each microservice should have a separate database ID.",
+    "Thinking": "This is explicitly identified as 'Pattern 7' under 'Database Patterns' and describes the fundamental data ownership principle in microservices."
+  },
+  {
+    "Pattern Name": "Shared Database per Service",
+    "Problem": "While 'Database per Service' is ideal for greenfield applications developed with DDD, it's not easy to denormalize a monolithic database when trying to break it into microservices. So what is the most suitable architecture in that case?",
+    "Context": "Migrating brownfield monolithic applications to microservices where immediate, full database decomposition into 'Database per Service' is not feasible.",
+    "Solution": "One database can be aligned with more than one microservice, but it has to be restricted to 2-3 maximum. While often considered an anti-pattern for ideal microservices, it serves as a working solution and a good starting point for brownfield applications.",
+    "Result": "Provides a pragmatic starting point for brownfield migrations, allowing gradual decomposition. However, it compromises scaling autonomy and independence if not managed carefully.",
+    "Related Patterns": "Database per Service (as the ideal alternative).",
+    "Uses": "Brownfield applications trying to break into microservices.",
+    "Thinking": "This is explicitly identified as 'Pattern 8' under 'Database Patterns' and describes a pragmatic, albeit less ideal, database strategy for microservices, particularly during migration."
+  },
+  {
+    "Pattern Name": "Command Query Responsibility Segregation (CQRS)",
+    "Problem": "Once 'Database per Service' is implemented, there is a requirement to query which requires joint data from multiple services \u2013 it's not possible. So how do we implement queries in a microservices architecture?",
+    "Context": "When using 'Database per Service' and needing to perform complex queries that span multiple service boundaries without violating data ownership.",
+    "Solution": "Split the application into two parts: the command side (handles Create, Update, Delete requests) and the query side (handles queries using materialized views). Materialized views are kept up-to-date by subscribing to a stream of events.",
+    "Result": "Enables efficient querying across multiple services without violating data ownership, optimizes read and write models independently, and improves scalability for read-heavy operations.",
+    "Related Patterns": "Event Sourcing (generally used along with CQRS).",
+    "Uses": "None explicitly mentioned as a specific product.",
+    "Thinking": "This is explicitly identified as 'Pattern 9' under 'Database Patterns' and describes a well-known pattern for handling cross-service queries in a microservices context."
+  },
+  {
+    "Pattern Name": "Saga Pattern",
+    "Problem": "When each service has its own database and a business transaction spans multiple services, how do we ensure data consistency across services? For example, for an e-commerce application where customers have a credit limit, the application must ensure that a new order will not exceed the customer's credit limit. Since Orders and Customers are in different databases, the application cannot simply use a local ACID transaction.",
+    "Context": "Implementing distributed transactions and ensuring data consistency across multiple services, each with its own database, where traditional ACID transactions are not feasible.",
+    "Solution": "A Saga represents a high-level business process consisting of several sub-requests, each updating data within a single service. Each request has a compensating request that is executed when the request fails. It can be implemented in two ways: 1. Choreography (services produce/listen to events). 2. Orchestration (an orchestrator object manages the saga's logic).",
+    "Result": "Ensures eventual data consistency in distributed transactions, handles failures gracefully through compensating actions, and avoids the need for distributed ACID transactions, improving system reliability.",
+    "Related Patterns": "None explicitly mentioned.",
+    "Uses": "E-commerce application example (order and customer credit limit).",
+    "Thinking": "This is explicitly identified as 'Pattern 10' and describes a critical pattern for managing distributed transactions in microservices."
+  },
+  {
+    "Pattern Name": "Log Aggregation",
+    "Problem": "An application consists of multiple service instances running on multiple machines. Requests often span multiple service instances. Each service instance generates a log file in a standardized format. How can we understand the application behavior through logs for a particular request?",
+    "Context": "Monitoring and troubleshooting microservices applications with many instances generating logs across a distributed environment.",
+    "Solution": "A centralized logging service aggregates logs from each service instance. Users can search and analyze the logs and configure alerts that are triggered when certain messages appear in the logs.",
+    "Result": "Provides a unified view of logs across all services, enables centralized searching, analysis, and alerting, simplifying troubleshooting and operational insights in a distributed system.",
+    "Related Patterns": "Distributed Tracing (complementary for understanding request flow).",
+    "Uses": "PCF Loggeregator, AWS CloudWatch.",
+    "Thinking": "This is explicitly identified as 'Pattern 11' under 'Observability Patterns' and describes a standard practice for microservices observability."
+  },
+  {
+    "Pattern Name": "Performance Metrics",
+    "Problem": "When the service portfolio increases due to microservice architecture, it becomes critical to keep a watch on the transactions so that patterns can be monitored and alerts sent when an issue happens. How should we collect metrics to monitor application performance?",
+    "Context": "Monitoring the performance and health of individual microservices and the overall system in a distributed environment.",
+    "Solution": "A metrics service gathers statistics about individual operations, aggregates them, and provides reporting and alerting. There are two models: 1. Push (service pushes metrics to the metrics service). 2. Pull (metrics service pulls metrics from the service).",
+    "Result": "Provides insights into application performance, enables proactive monitoring, pattern identification, and alerting for operational issues, improving system stability and responsiveness.",
+    "Related Patterns": "None explicitly mentioned.",
+    "Uses": "Push model: New Relic, AppDynamics. Pull model: Prometheus.",
+    "Thinking": "This is explicitly identified as 'Pattern 12' under 'Observability Patterns' and describes a core component of microservices monitoring."
+  },
+  {
+    "Pattern Name": "Distributed Tracing",
+    "Problem": "In a microservices architecture, requests often span multiple services. Each service handles a request by performing one or more operations across multiple services. Then how do we trace a request end to end to troubleshoot the problem?",
+    "Context": "Troubleshooting performance issues, latency, or failures in a distributed microservices environment where requests flow through multiple services.",
+    "Solution": "A service that: assigns each external request a unique external request ID, passes this ID to all services, includes the ID in all log messages, and records information (e.g., start time, end time) about requests and operations in a centralized service.",
+    "Result": "Provides end-to-end visibility into request flow across multiple services, enabling easier identification of bottlenecks, latency issues, and failures in a distributed system.",
+    "Related Patterns": "Log Aggregation (complementary for detailed logs).",
+    "Uses": "Spring Cloud Sleuth along with Zipkin server is a common example implementation.",
+    "Thinking": "This is explicitly identified as 'Pattern 13' under 'Observability Patterns' and describes a crucial pattern for understanding request lifecycles in microservices."
+  },
+  {
+    "Pattern Name": "Health Check",
+    "Problem": "When a microservices architecture is implemented, there is a chance that a service might be up yet not able to handle transactions. In that case, how do you ensure a request doesn't go to those failed instances? (This can be addressed via a load balancing pattern implementation).",
+    "Context": "Ensuring that only healthy service instances receive traffic, especially when used with load balancers or service discovery mechanisms.",
+    "Solution": "Each service needs to have an endpoint (e.g., `/health`) that can be used to check the health of the application. This API should check the status of the host, the connection to other services/infrastructure, and any specific logic.",
+    "Result": "Enables load balancers and service registries to identify and route traffic away from unhealthy instances, improving system reliability, availability, and user experience.",
+    "Related Patterns": "Service Discovery, Load Balancing (mentioned as a way to use health checks).",
+    "Uses": "Spring Boot Actuator does implement a `/health` endpoint, and the implementation can be customized.",
+    "Thinking": "This is explicitly identified as 'Pattern 14' under 'Observability Patterns' and describes a fundamental pattern for operational readiness in microservices."
+  },
+  {
+    "Pattern Name": "Externalized Configuration",
+    "Problem": "A service typically calls other services and databases. For each environment (dev, QA, UAT, prod), the endpoint URL or other configuration properties might be different. A change in any of those properties might require a rebuild as well as redeploy of the service. How do we avoid code modification for configuration changes?",
+    "Context": "Managing configuration properties for microservices across different deployment environments without requiring code changes or redeployments.",
+    "Solution": "Externalize configuration, including endpoint URLs and credentials. The application should load these properties either at startup or on the fly.",
+    "Result": "Decouples configuration from code, allows dynamic updates without redeployment, and simplifies environment management, improving agility and reducing operational overhead.",
+    "Related Patterns": "None explicitly mentioned.",
+    "Uses": "The Spring Cloud config server provides the option to externalize properties to GitHub and load them as environment properties. These can be accessed by the application on startup or refreshed without a server restart.",
+    "Thinking": "This is explicitly identified as 'Pattern 15' under 'Cross-Cutting Concern Patterns' and addresses a common operational challenge in microservices."
+  },
+  {
+    "Pattern Name": "Service Discovery",
+    "Problem": "When microservices come into the picture, we need to address a few issues in terms of calling services: 1. With container technology, IP addresses are dynamically allocated to service instances, breaking consumer services if addresses change. 2. Each service URL has to be remembered by the consumer, leading to tight coupling. So how does the consumer or router know all the available service instances and locations?",
+    "Context": "Managing the dynamic locations of microservice instances in a distributed environment, especially with containerization and dynamic scaling.",
+    "Solution": "A service registry is created to log the metadata of each producer service. A service instance registers upon starting and deregisters upon shutting down. Consumers or routers query the registry to find service locations. The registry also conducts health checks. There are two types: client-side and server-side discovery.",
+    "Result": "Enables dynamic routing to service instances, decouples consumers from specific service locations, and improves system resilience by using health checks to ensure only working instances are consumed.",
+    "Related Patterns": "Health Check (used by service registry).",
+    "Uses": "Client-side discovery: Netflix Eureka. Server-side discovery: AWS ALB.",
+    "Thinking": "This is explicitly identified as 'Pattern 16' under 'Cross-Cutting Concern Patterns' and describes a fundamental pattern for dynamic service location in microservices."
+  },
+  {
+    "Pattern Name": "Circuit Breakers",
+    "Problem": "A service generally calls other services to retrieve data, and there is a chance that the downstream service may be down. There are two problems: first, the request will keep going to the down service, exhausting network resources and slowing performance; second, the user experience will be poor and unpredictable. How do we avoid cascading service failures and handle failures gracefully?",
+    "Context": "Protecting microservices from cascading failures when dependent services are unavailable or performing poorly.",
+    "Solution": "The consumer invokes a remote service via a proxy that behaves like an electrical circuit breaker. When consecutive failures cross a threshold, the circuit breaker 'trips,' causing immediate failures for a timeout period. After the timeout, it allows a limited number of test requests. If successful, it resumes normal operation; otherwise, the timeout period begins again.",
+    "Result": "Prevents cascading failures, improves system resilience, provides graceful degradation, and enhances user experience by failing fast and allowing recovery.",
+    "Related Patterns": "Fallback mechanism (mentioned as a feature of Hystrix).",
+    "Uses": "Netflix Hystrix is a good implementation of the circuit breaker pattern. It also helps define a fallback mechanism.",
+    "Thinking": "This is explicitly identified as 'Pattern 17' under 'Cross-Cutting Concern Patterns' and describes a critical resilience pattern for microservices."
+  },
+  {
+    "Pattern Name": "Blue/Green Deployments",
+    "Problem": "With microservices architecture, one application can have many microservices. If we stop all services and then deploy an enhanced version, the downtime can be huge and impact the business. Additionally, any rollback will be a nightmare. So how do we avoid or reduce downtime of the services during deployment?",
+    "Context": "Deploying new versions of microservices with minimal or no downtime and enabling fast, low-risk rollbacks.",
+    "Solution": "Run two identical production environments, 'Blue' and 'Green'. One (e.g., Green) is the existing live instance serving all production traffic. The new version (Blue) is deployed to the inactive environment. Once tested, traffic is switched to Blue. If issues arise, traffic can be quickly switched back to Green.",
+    "Result": "Reduces or eliminates downtime during deployments, enables quick and safe rollbacks, and improves deployment confidence and system availability.",
+    "Related Patterns": "None explicitly mentioned.",
+    "Uses": "All cloud platforms provide options for implementing a blue/green deployment.",
+    "Thinking": "This is explicitly identified as 'Pattern 18' and describes a common deployment strategy specifically beneficial for microservices."
+  }
+]

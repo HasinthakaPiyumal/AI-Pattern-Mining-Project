@@ -1,0 +1,62 @@
+[
+  {
+    "Pattern Name": "Database per service",
+    "Problem": "What is the database architecture in a microservices application? Services must be loosely coupled for independent development, deployment, and scaling. Some business transactions must enforce invariants or update data spanning multiple services. Some queries need to join data owned by multiple services. Databases must sometimes be replicated and sharded for scaling. Different services have different data storage requirements (e.g., relational, NoSQL, graph).",
+    "Context": "Developing an online store application using the Microservice architecture pattern, where most services need to persist data (e.g., Order Service stores order info, Customer Service stores customer info).",
+    "Solution": "Keep each microservice's persistent data private to that service and accessible only via its API. A service's transactions only involve its database. This can be implemented in a few ways: Private tables per service (each service owns a set of tables), Schema per service (each service has a private database schema), or Database server per service (each service has its own database server). Barriers (e.g., different database user IDs, access control mechanisms like grants) should be created to enforce this modularity and prevent direct data access.",
+    "Result": "Benefits: Ensures services are loosely coupled (changes to one service's database don't impact others). Each service can use the type of database best suited to its needs (e.g., ElasticSearch for text search, Neo4j for social graph). Drawbacks: Implementing business transactions that span multiple services is not straightforward (distributed transactions are best avoided). Implementing queries that join data across multiple databases is challenging. Increases the complexity of managing multiple SQL and NoSQL databases.",
+    "Related Patterns": "Microservice architecture pattern (creates the need for this pattern), Saga pattern (for transactions spanning services), API Composition (for queries spanning services), Command Query Responsibility Segregation (CQRS) (for queries spanning services), Shared Database antipattern (describes the problems of sharing a database).",
+    "Uses": "The FTGO application uses this approach, where each service has database credentials that only grant it access to its own logical database on a shared MySQL server.",
+    "Thinking": "This pattern is explicitly defined with dedicated sections for Context, Problem, Solution, Result, and Related Patterns, clearly identifying it as a core microservices design pattern within the text."
+  },
+  {
+    "Pattern Name": "Saga pattern",
+    "Problem": "Implementing business transactions that span multiple services when using 'Database per service,' as distributed transactions are best avoided due to the CAP theorem and lack of support in many modern NoSQL databases.",
+    "Context": "A microservices architecture where each service has its own private database, and a business transaction needs to update data owned by multiple services while maintaining eventual consistency.",
+    "Solution": "Use the Saga pattern to implement eventually consistent transactions. Rollback is implemented using compensating transactions. Coordination can be achieved through event-based choreography (services communicate directly via events) or orchestration (a central orchestrator service manages the sequence of steps).",
+    "Result": "Enables complex business transactions across services without relying on problematic distributed transactions, ensuring eventual consistency.",
+    "Related Patterns": "Database per service (creates the need for this solution).",
+    "Uses": "Implementing transactions that span services in a microservices architecture.",
+    "Thinking": "Explicitly mentioned as a 'pattern/solution for implementing transactions that span services' and listed under 'Related patterns.' The text also clarifies its mechanism (compensating transactions, choreography/orchestration)."
+  },
+  {
+    "Pattern Name": "API Composition",
+    "Problem": "Implementing queries that join data that is now in multiple databases due to 'Database per service,' making traditional database joins impossible or inefficient.",
+    "Context": "A microservices architecture where data needed for a query is distributed across multiple services' private databases, and a client or gateway needs to aggregate this data.",
+    "Solution": "The application (e.g., a service or the API gateway) performs the join rather than the database. It retrieves data from different services and combines it programmatically.",
+    "Result": "Enables querying data across multiple services without direct database joins, allowing for flexible data aggregation and presentation to clients.",
+    "Related Patterns": "Database per service (creates the need for this solution).",
+    "Uses": "Retrieving a customer and their orders by first getting the customer from the customer service and then querying the order service to return the customer's most recent orders.",
+    "Thinking": "Explicitly mentioned as a 'pattern/solution for implementing queries that span services' and listed under 'Related patterns.' The text describes its mechanism of combining data from multiple services."
+  },
+  {
+    "Pattern Name": "Command Query Responsibility Segregation (CQRS)",
+    "Problem": "Implementing queries that join data that is now in multiple databases due to 'Database per service,' especially for complex joins, performance-critical queries, or when a denormalized view is beneficial.",
+    "Context": "A microservices architecture where data needed for a query is distributed across multiple services' private databases, and a materialized view is desired for efficient querying.",
+    "Solution": "Maintain one or more materialized views that contain data from multiple services. These views are kept updated by services that subscribe to events published by other services when they update their data. For example, a service could maintain a view that joins customers and orders by subscribing to customer and order events.",
+    "Result": "Provides efficient querying capabilities for data spanning multiple services by pre-joining and denormalizing data into a dedicated view, improving query performance and simplifying query logic for complex cross-service queries.",
+    "Related Patterns": "Database per service (creates the need for this solution).",
+    "Uses": "Implementing a query that finds customers in a particular region and their recent orders by maintaining a view that joins customers and orders, updated by subscribing to customer and order events.",
+    "Thinking": "Explicitly mentioned as a 'pattern/solution for implementing queries that span services' and listed under 'Related patterns.' The text describes its mechanism (materialized views, event subscription) and purpose."
+  },
+  {
+    "Pattern Name": "Microservice architecture pattern",
+    "Problem": "Not detailed in this text, but implied as the overarching architectural style that necessitates solutions for distributed data management and transactions, as well as promoting loose coupling and independent deployability.",
+    "Context": "The fundamental architectural style being discussed, serving as the foundation for building applications like the online store example, where services are designed to be loosely coupled and independently deployable.",
+    "Solution": "Not detailed in this text, as this pattern is the architectural style itself, not a specific solution within it.",
+    "Result": "Not detailed in this text, but implied benefits include loose coupling, independent development, deployment, and scaling of services, which in turn creates the need for patterns like 'Database per service'.",
+    "Related Patterns": "Database per service (is a sub-pattern or consequence of this, as it 'creates the need for this pattern').",
+    "Uses": "The foundation for building applications that require loose coupling, independent deployment, and scalability, as exemplified by the online store application.",
+    "Thinking": "Explicitly mentioned as the 'Microservice architecture pattern' and stated that it 'creates the need for this pattern (Database per service).' While not fully described with problem/solution, it's a foundational pattern within the microservices domain."
+  },
+  {
+    "Pattern Name": "Shared Database antipattern",
+    "Problem": "Microservices sharing a single database, which leads to tight coupling between services, reduced independence in development and deployment, and difficulty in choosing appropriate database technologies for individual services. This violates the principle of service encapsulation.",
+    "Context": "A microservices environment where services are tempted to share a common database, often as a legacy from monolithic architectures or an attempt to simplify data management, leading to unintended dependencies.",
+    "Solution": "Avoid sharing a database. Instead, adopt patterns like 'Database per service' to ensure data encapsulation and service independence, where each service owns its data and exposes it only via its API.",
+    "Result": "Leads to problems such as tight coupling (changes to one service's database schema can break others), inability to evolve services independently, technology lock-in, and increased risk of breaking other services when database schemas change, undermining the benefits of microservices.",
+    "Related Patterns": "Database per service (is the recommended alternative to this antipattern).",
+    "Uses": "Describes the problems that result from microservices sharing a database, serving as a warning against this design choice to maintain service autonomy and loose coupling.",
+    "Thinking": "Explicitly called out as an 'antipattern' and linked to 'describes the problems that result from microservices sharing a database.' While an antipattern, it is a recognized design concept within the microservices domain that highlights what to avoid and why."
+  }
+]

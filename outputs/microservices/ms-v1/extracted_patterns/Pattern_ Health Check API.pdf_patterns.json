@@ -1,0 +1,32 @@
+[
+  {
+    "Pattern Name": "Health Check API",
+    "Problem": "How to detect that a running service instance is unable to handle requests",
+    "Context": "You have applied the Microservice architecture pattern. Sometimes a service instance can be incapable of handling requests yet still be running (e.g., it might have ran out of database connections). When this occurs, the monitoring system should generate an alert, and the load balancer or service registry should not route requests to the failed service instance.",
+    "Solution": "A service has a health check API endpoint (e.g., HTTP /health) that returns the health of the service. The API endpoint handler performs various checks such as the status of connections to infrastructure services, the status of the host (e.g., disk space), and application-specific logic. A health check client (a monitoring service, service registry, or load balancer) periodically invokes the endpoint to check the health of the service instance.",
+    "Result": "Benefits: The health check endpoint enables the health of a service instance to be periodically tested. Drawbacks: The health check might not be sufficiently comprehensive or the service instance might fail between health checks, potentially leading to requests still being routed to a failed service instance.",
+    "Related Patterns": "Service registry",
+    "Uses": "Monitoring systems, Load balancers, Service registries. (Example implementation mentioned: Spring Boot Actuator)",
+    "Thinking": "The text explicitly names 'Pattern Health Check API' and provides dedicated sections for its Problem, Context, Solution, Result, and Related Patterns, clearly defining it as a distinct Microservices design pattern. All required fields are directly extractable from the provided text."
+  },
+  {
+    "Pattern Name": "Service Registry",
+    "Problem": "How to ensure that load balancers or other clients do not route requests to a failed service instance.",
+    "Context": "You have applied the Microservice architecture pattern. Service instances can become incapable of handling requests, and clients (like load balancers) need a mechanism to avoid sending requests to these unhealthy instances.",
+    "Solution": "A service registry is a component that, among other functions, periodically invokes the health check API endpoint of service instances to check their health. Based on this health information, it ensures that requests are not routed to failed service instances.",
+    "Result": "Not explicitly detailed in this text, but implied: improved reliability by avoiding routing requests to failed service instances.",
+    "Related Patterns": "Health Check API (the service registry invokes the health check endpoint).",
+    "Uses": "Used by load balancers and monitoring systems to determine which service instances are healthy and available for routing requests.",
+    "Thinking": "The text explicitly mentions 'Service registry' multiple times, linking to `serviceregistryhtml`, and describes its role in preventing requests from being routed to failed service instances by periodically invoking health check endpoints. This clearly identifies it as a distinct Microservices design pattern, and its problem and solution are inferable from its described interaction with the Health Check API within this text."
+  },
+  {
+    "Pattern Name": "Microservice Chassis",
+    "Problem": "How to provide various common capabilities (like health checks) to microservice instances in a consistent and efficient manner.",
+    "Context": "You are building microservices and need to implement common cross-cutting concerns and operational features for each service instance.",
+    "Solution": "A Microservice Chassis provides a set of foundational capabilities and components (e.g., Spring Boot and Spring Cloud are mentioned as examples) that microservice instances can use. These capabilities include, but are not limited to, health check endpoints.",
+    "Result": "Not explicitly detailed in this text, but implied: simplifies development and ensures consistency of common features across services.",
+    "Related Patterns": "Health Check API (the Microservice Chassis provides the implementation for the health check endpoint).",
+    "Uses": "Used as a base framework or set of libraries for developing microservices, offering out-of-the-box features. (Example: Spring Boot and Spring Cloud).",
+    "Thinking": "The text mentions 'Microservice chassis patternsmicroservicechassishtml' and states that 'They provide various capabilities including a health check endpoint.' This identifies it as a distinct Microservices design pattern that offers common functionalities to services, with the Health Check API being one such capability. Its role and purpose are inferable from this description."
+  }
+]

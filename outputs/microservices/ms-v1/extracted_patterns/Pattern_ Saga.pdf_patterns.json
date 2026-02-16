@@ -1,0 +1,42 @@
+[
+  {
+    "Pattern Name": "Saga",
+    "Problem": "How to implement transactions that span services.",
+    "Context": "You have applied the Database per Service pattern, meaning each service has its own database. Some business transactions, however, span multiple services, so you need a mechanism to implement transactions that span services. For example, an ecommerce application must ensure a new order will not exceed a customer's credit limit, but Orders and Customers are in different databases owned by different services, preventing the use of a local ACID transaction.",
+    "Solution": "Implement each business transaction that spans multiple services as a saga. A saga is a sequence of local transactions. Each local transaction updates its database and publishes a message or event to trigger the next local transaction in the saga. If a local transaction fails because it violates a business rule, the saga executes a series of compensating transactions that undo the changes made by preceding local transactions. Sagas can be coordinated in two ways: Choreography (each local transaction publishes domain events that trigger local transactions in other services) or Orchestration (an orchestrator object tells participants what local transactions to execute).",
+    "Result": "This pattern enables an application to maintain data consistency across multiple services without using distributed transactions. However, it lacks automatic rollback (developers must design compensating transactions) and isolation (risk of data anomalies, requiring countermeasures like semantic locking, reordering, commutative updates, version file, or optimistic lock by value). Services must also atomically update their database and publish messages/events, and clients need a way to determine the saga's outcome.",
+    "Related Patterns": "The Database per Service pattern creates the need for this pattern. Event Sourcing and Transactional Outbox are patterns for atomically updating state and publishing messages/events. Aggregates and Domain Events can be used for choreography-based sagas. Command-side replica is an alternative pattern that can replace saga steps that query data.",
+    "Uses": "Transaction management, service collaboration, and implementing commands that span multiple services in a microservices architecture, especially when maintaining data consistency across independent services without distributed transactions.",
+    "Thinking": "The text explicitly labels 'Saga' as a 'Pattern' and provides a comprehensive description covering its problem, context, solution, results (benefits and drawbacks), and related patterns, making it a clear microservices design pattern."
+  },
+  {
+    "Pattern Name": "Database per Service",
+    "Problem": "Not explicitly stated as a problem solved by this pattern in the text, but rather a foundational choice. Implicitly, it addresses the problem of tight coupling and lack of autonomy that can arise from shared databases in a monolithic architecture.",
+    "Context": "A microservices architecture where each service needs to be autonomous and own its data. This pattern is a prerequisite for the Saga pattern, as the Saga pattern is needed when business transactions span multiple services, each with its own database.",
+    "Solution": "Each service has its own private database, ensuring data independence and decoupling from other services.",
+    "Result": "Enables service autonomy and independent evolution of data schemas. However, it creates the need for distributed transaction management patterns like Saga when business transactions span multiple services.",
+    "Related Patterns": "Creates the need for the Saga pattern.",
+    "Uses": "As a foundational principle in microservices architecture to achieve strong service encapsulation and data independence.",
+    "Thinking": "The text refers to 'Database per Service' as a 'pattern' and describes its core characteristic (each service has its own database) as a foundational context for the Saga pattern. This indicates its role as a fundamental microservices design pattern."
+  },
+  {
+    "Pattern Name": "Event Sourcing",
+    "Problem": "How to reliably update a service's database state and publish a corresponding message or event atomically, without using traditional distributed transactions that span the database and message broker.",
+    "Context": "A service in a microservices architecture needs to ensure that its state changes and the publication of events reflecting those changes are treated as a single, atomic operation, especially when participating in sagas and needing to be reliable.",
+    "Solution": "The text implies it's a mechanism to 'atomically update state and publish messages/events'. (The full solution details are not provided in this text, but it's referenced as a known pattern for this specific problem).",
+    "Result": "Ensures atomicity and reliability when a service updates its database and publishes events, which is crucial for maintaining consistency in event-driven microservices and sagas.",
+    "Related Patterns": "Listed as a way to address a reliability issue for the Saga pattern, alongside Transactional Outbox.",
+    "Uses": "To implement reliable event publishing and state changes within a microservice, often in conjunction with event-driven architectures and sagas.",
+    "Thinking": "The text explicitly calls 'Event Sourcing' a 'pattern' and positions it as a solution to a critical reliability problem ('atomically update its database and publish a message/event') that arises in microservices, particularly when implementing sagas."
+  },
+  {
+    "Pattern Name": "Transactional Outbox",
+    "Problem": "How to reliably update a service's database state and publish a corresponding message or event atomically, without using traditional distributed transactions that span the database and message broker.",
+    "Context": "A service in a microservices architecture needs to ensure that its state changes and the publication of events reflecting those changes are treated as a single, atomic operation, especially when participating in sagas and needing to be reliable.",
+    "Solution": "The text implies it's a mechanism to 'atomically update state and publish messages/events'. (The full solution details are not provided in this text, but it's referenced as a known pattern for this specific problem).",
+    "Result": "Ensures atomicity and reliability when a service updates its database and publishes events, which is crucial for maintaining consistency in event-driven microservices and sagas.",
+    "Related Patterns": "Listed as a way to address a reliability issue for the Saga pattern, alongside Event Sourcing.",
+    "Uses": "To implement reliable event publishing and state changes within a microservice, often in conjunction with event-driven architectures and sagas.",
+    "Thinking": "The text explicitly calls 'Transactional Outbox' a 'pattern' and positions it as a solution to a critical reliability problem ('atomically update its database and publish a message/event') that arises in microservices, particularly when implementing sagas."
+  }
+]

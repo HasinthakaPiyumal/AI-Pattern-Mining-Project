@@ -1,0 +1,12 @@
+[
+  {
+    "Pattern Name": "Self Registration",
+    "Problem": "How are service instances registered with and unregistered from the service registry",
+    "Context": "You have applied either the Clientside Service Discovery pattern or the Serverside Service Discovery pattern. Service instances must be registered with the service registry on startup so that they can be discovered and unregistered on shutdown.",
+    "Solution": "A service instance is responsible for registering itself with the service registry. On startup, the service instance registers itself (host and IP address) with the service registry and makes itself available for discovery. The client must typically periodically renew its registration so that the registry knows it is still alive. On shutdown, the service instance unregisters itself from the service registry. This is typically handled by a Microservice chassis framework.",
+    "Result": "Benefits: A service instance knows its own state so can implement a state model that's more complex than UPDOWN (e.g., STARTING, AVAILABLE). Drawbacks: Couples the service to the Service Registry. You must implement service registration logic in each programming language/framework that you use to write your services (e.g., NodeJS/JavaScript, Java/Scala etc.). A service instance that is running yet unable to handle requests will often lack the self-awareness to unregister itself from the service registry.",
+    "Related Patterns": "Service Registry, Client Side Discovery, Server Side Discovery, Microservice chassis, 3rd Party Registration",
+    "Uses": "The Microservices Example application is an example of an application that uses self-registration. It is written in Scala and uses Spring Boot and Spring Cloud as the Microservice chassis. The application uses the Eureka Service Registry, which is a Netflix OSS component. Service registration is configured using the EnableEurekaClient on a Java config class.",
+    "Thinking": "The text explicitly introduces 'Pattern Self Registration' with dedicated sections for Problem, Context, Solution, Resulting context (benefits and drawbacks), and Related patterns, clearly defining it as a Microservices design pattern within the provided content."
+  }
+]

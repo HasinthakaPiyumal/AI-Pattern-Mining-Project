@@ -1,0 +1,62 @@
+[
+  {
+    "Pattern Name": "Single Service Instance per Host",
+    "Problem": "How are services packaged and deployed? The challenges include services written using a variety of languages/frameworks, needing multiple service instances for throughput and availability, requiring independent deployability and scalability, needing isolation between service instances, needing quick build and deployment, needing to constrain resources (CPU and memory), needing to monitor each service instance, wanting reliable deployment, and needing to deploy cost-effectively.",
+    "Context": "You have applied the Microservice architecture pattern and architected your system as a set of services. Each service is deployed as a set of service instances for throughput and availability.",
+    "Solution": "Deploy each single service instance on its own host.",
+    "Result": "Benefits include: Service instances are isolated from one another, there is no possibility of conflicting resource requirements or dependency versions, a service instance can only consume at most the resources of a single host, and it's straightforward to monitor, manage, and redeploy each service instance. Drawbacks include: Potentially less efficient resource utilization compared to Multiple Services per Host because there are more hosts.",
+    "Related Patterns": "Multiple Service Instances per Host (alternative solution), Service Instance per VM (refinement), Service Instance per Container (refinement), Serverless deployment (alternative solution).",
+    "Uses": "This pattern is used when deploying microservices to achieve strong isolation between service instances, prevent dependency conflicts, enable independent scalability and resource management, simplify monitoring and management, and facilitate quick and reliable deployments, especially in environments with diverse technology stacks.",
+    "Thinking": "This was identified as a true Microservices design pattern because it is explicitly labeled 'Pattern Single Service Instance per Host' and is presented with all the standard sections of a design pattern: Context, Problem, Solution, Result (including benefits and drawbacks), and Related Patterns. This structured description clearly defines a recurring solution to a common problem in microservices deployment."
+  },
+  {
+    "Pattern Name": "Multiple Service Instances per Host",
+    "Problem": "How to efficiently utilize host resources when deploying multiple service instances, potentially small ones, while balancing isolation and operational complexity. The problem is related to the potential for less efficient resource utilization if each instance gets its own host.",
+    "Context": "You have applied the Microservice architecture pattern and have multiple service instances. You are looking for a deployment strategy that optimizes resource utilization by placing more than one service instance on a single physical or virtual host.",
+    "Solution": "Deploy multiple service instances on a single host.",
+    "Result": "Benefits include potentially more efficient resource utilization compared to 'Single Service Instance per Host' by consolidating instances. Drawbacks include reduced isolation between service instances, increased possibility of conflicting resource requirements or dependency versions, and more complex monitoring and management due to shared resources.",
+    "Related Patterns": "Single Service Instance per Host (alternative solution), Service Instance per VM (a VM can be considered a host for this pattern), Service Instance per Container (can be used to host multiple containers on a single host).",
+    "Uses": "This pattern is used when resource efficiency is a primary concern, and the overhead of dedicated hosts per instance is too high. It's suitable for smaller services or when services can share resources without significant contention, often managed by container orchestration platforms.",
+    "Thinking": "This pattern is explicitly mentioned as an 'alternative solution' to 'Single Service Instance per Host' and is described as a 'pattern' in the text. Its problem and solution are the inverse of the already extracted pattern, focusing on resource efficiency in deployment."
+  },
+  {
+    "Pattern Name": "Service Instance per VM",
+    "Problem": "How to deploy a single service instance with strong isolation and dedicated resources using virtualization technology, building upon the 'Single Service Instance per Host' principle.",
+    "Context": "You have decided to deploy each service instance on its own host (following 'Single Service Instance per Host') and choose Virtual Machines (VMs) as the underlying host abstraction to provide strong isolation and a consistent environment.",
+    "Solution": "Deploy each single service instance within its own Virtual Machine (VM).",
+    "Result": "Benefits include strong isolation between service instances, dedicated virtualized resources, and a consistent operating environment. VMs can be easily managed, snapshotted, and redeployed. Drawbacks include higher resource overhead (CPU, memory, storage) compared to containers or bare metal, slower startup times, and potentially higher operational costs due to managing more VMs.",
+    "Related Patterns": "Single Service Instance per Host (refinement), Service Instance per Container (alternative refinement), Multiple Service Instances per Host (a VM can host multiple service instances if not following the 'per VM' rule strictly).",
+    "Uses": "This pattern is used when strong isolation, dedicated resources, and established virtualization tooling are preferred. It's often chosen in traditional enterprise environments, for services with specific OS requirements, or when a higher level of security and resource guarantees is needed.",
+    "Thinking": "This pattern is explicitly mentioned as a 'refinement' of 'Single Service Instance per Host' and described as a 'pattern' in the text. It specifies a particular technology (VMs) for implementing the host concept in microservices deployment."
+  },
+  {
+    "Pattern Name": "Service Instance per Container",
+    "Problem": "How to deploy a single service instance with lightweight isolation, fast startup times, and efficient resource utilization, building upon the 'Single Service Instance per Host' principle.",
+    "Context": "You have decided to deploy each service instance on its own host (following 'Single Service Instance per Host') and choose containers (e.g., Docker) as the underlying host abstraction to provide lightweight isolation and portability.",
+    "Solution": "Deploy each single service instance within its own container.",
+    "Result": "Benefits include lightweight isolation, fast startup times, efficient resource utilization (sharing the host OS kernel), and high portability across different environments. Drawbacks include less isolation than VMs, potential for host kernel dependencies, and increased complexity in managing container orchestration.",
+    "Related Patterns": "Single Service Instance per Host (refinement), Service Instance per VM (alternative refinement), Serverless Deployment (alternative for even lighter deployment).",
+    "Uses": "This pattern is widely used in modern cloud-native microservices deployments where lightweight isolation, rapid deployment, and efficient resource usage are critical. It's often combined with container orchestration platforms like Kubernetes.",
+    "Thinking": "This pattern is explicitly mentioned as a 'refinement' of 'Single Service Instance per Host' and described as a 'pattern' in the text. It specifies a particular technology (containers) for implementing the host concept in microservices deployment."
+  },
+  {
+    "Pattern Name": "Serverless Deployment",
+    "Problem": "How to deploy and run microservice code without managing servers, paying only for actual execution time, and achieving automatic scaling and high availability.",
+    "Context": "You have applied the Microservice architecture pattern and want to further reduce operational overhead, optimize costs by paying only for usage, and leverage platform-managed scaling and availability for your service instances.",
+    "Solution": "Deploy service code as functions or services in a serverless platform (e.g., AWS Lambda, Azure Functions, Google Cloud Functions). The platform handles all underlying infrastructure management, scaling, and patching.",
+    "Result": "Benefits include no server management, automatic scaling to zero and up, a pay-per-execution cost model, and inherent high availability. Drawbacks include potential vendor lock-in, 'cold start' issues for infrequently invoked functions, execution duration limits, and challenges with debugging and monitoring distributed serverless applications.",
+    "Related Patterns": "Single Service Instance per Host (alternative solution), Service Instance per Container (containers can be used in serverless platforms like AWS Fargate).",
+    "Uses": "This pattern is ideal for event-driven services, background tasks, APIs with spiky or unpredictable traffic, or when minimizing operational overhead and cost for idle resources is paramount. It's particularly effective for fine-grained microservices (functions).",
+    "Thinking": "This pattern is explicitly mentioned as an 'alternative solution' to 'Single Service Instance per Host' and described as a 'pattern' in the text. It represents a distinct and significant deployment strategy for microservices."
+  },
+  {
+    "Pattern Name": "Command-side replica",
+    "Problem": "How to provide a queryable view of data for a service whose primary responsibility is command processing, without coupling query logic directly to the command-side data model or impacting its performance. The text implies the problem is needing to 'Maintain a queryable replica of the data in the service that implements the Commandside replica'.",
+    "Context": "A microservice follows a Command-Query Responsibility Segregation (CQRS) approach or has a domain model optimized for writes/commands. External services or user interfaces need to query this service's data, but the command-side data model is not optimized for reads, or querying it directly would impact command processing performance.",
+    "Solution": "Maintain a separate, queryable replica of the data. This replica is often denormalized, optimized for reads, and updated asynchronously from the command-side service's primary data store (e.g., via event sourcing or change data capture).",
+    "Result": "Benefits include decoupling of read and write models, improved query performance and scalability, the ability to optimize read models independently, and reduced load on the command-side service. Drawbacks include eventual consistency between the command-side and query-side data, increased data duplication, and added complexity in managing data synchronization and consistency.",
+    "Related Patterns": "CQRS (Command Query Responsibility Segregation), Event Sourcing (often used to populate the replica), Materialized View.",
+    "Uses": "This pattern is used when read and write operations have different scaling requirements, data models, or performance characteristics, and eventual consistency is acceptable for queries. It's crucial for implementing CQRS in microservices.",
+    "Thinking": "The phrase 'Maintain a queryable replica of the data in the service that implements the Commandside replica' strongly suggests a pattern. 'Commandside replica' itself is a common pattern name in the context of CQRS and microservices data management, describing a specific solution to a data access problem."
+  }
+]

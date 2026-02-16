@@ -1,0 +1,112 @@
+[
+  {
+    "Pattern Name": "Microservice chassis",
+    "Problem": "How can a team quickly create and setup a maintainable code base for a productionready service so they can start developing its business logic",
+    "Context": "When you start the development of an application you often spend a significant amount of time writing the build logic and putting in place the mechanisms to handle crosscutting concerns. If you are developing an application that has the microservice architecture, there are tens or hundreds of services, and you will frequently create new services each of which will only take days or weeks to develop. You cannot afford to spend a few days setting up every service. In a microservice architecture, there are additional crosscutting concerns such as service registration and discovery and circuit breakers for reliably handling partial failure.",
+    "Solution": "Create a microservice chassis framework that can be the foundation for developing your microservices. The chassis implements reusable build logic that builds and tests a service, and mechanisms that handle crosscutting concerns by assembling and configuring a collection of frameworks and libraries.",
+    "Result": "It's faster and easier to keep the dependencies, build logic, and crosscutting concern logic up to date. You simply release a new version of the microservice chassis framework and update each service to use the new version. One issue is that you need a microservice chassis for each programming language/framework, which can be an obstacle to adopting new technologies.",
+    "Related Patterns": "Service Template, Microservices, Self Registration, Clientside discovery, Circuit Breaker, Distributed tracing",
+    "Uses": "Implementing reusable build logic (e.g., Gradle Plugins) and handling crosscutting concerns such as Security, Externalized configuration, Logging, Health check, Metrics, Distributed tracing, Service registration and discovery, and Circuit breakers. Examples include Spring Boot, Spring Cloud, Dropwizard (Java), Gizmo, Micro, Go kit (Go).",
+    "Thinking": "This pattern is explicitly defined with dedicated sections for Context, Problem, Solution, and Resulting Context, and is tagged as a pattern within the text."
+  },
+  {
+    "Pattern Name": "Service Template",
+    "Problem": "The text implies the problem is similar to Microservice Chassis: quickly starting development of a new service. However, its drawback is that it leads to 'copypaste programming' where 'when the build logic and crosscutting concerns logic needs to change each service must be updated individually'.",
+    "Context": "It is presented as 'One solution' to the problem of quickly setting up new services in a microservice architecture, often considered an alternative to or a component that uses the Microservice Chassis pattern.",
+    "Solution": "A source code template that a developer can copy in order to quickly start developing a new service.",
+    "Result": "Allows developers to quickly start new services, but suffers from 'copypaste programming' where updates to common logic require individual service modifications.",
+    "Related Patterns": "Microservice Chassis (either an alternative or uses it)",
+    "Uses": "Quickly starting the development of new microservices by providing a pre-configured code base.",
+    "Thinking": "This pattern is explicitly mentioned as a 'solution' with a clear 'drawback' and is listed as a related pattern to Microservice Chassis, indicating it's a distinct pattern discussed in the text."
+  },
+  {
+    "Pattern Name": "Access Token",
+    "Problem": "How to secure REST APIs and control access to microservices.",
+    "Context": "In a microservice architecture, REST APIs are common interfaces, and they require robust security mechanisms to prevent unauthorized access and ensure data integrity. Security is a crosscutting concern.",
+    "Solution": "Implement a mechanism that requires an 'Access Token' for securing REST APIs. This token is typically issued after successful authentication and presented with each request to authorize access.",
+    "Result": "REST APIs are secured, ensuring that only authorized clients can interact with services, thereby protecting sensitive data and functionality.",
+    "Related Patterns": "Handled by Microservice chassis (as a crosscutting concern).",
+    "Uses": "Securing REST APIs in microservices by requiring a token for authentication and authorization.",
+    "Thinking": "The text explicitly mentions 'Access Token' as an example of how 'Security' (a crosscutting concern) is handled, linking to `securityaccesstokenhtml`. This suggests it's a specific, recognized pattern for securing microservices."
+  },
+  {
+    "Pattern Name": "Externalized configuration",
+    "Problem": "Applications need to manage configuration data, such as credentials and network locations of external services (databases, message brokers), which should not be hardcoded within the application.",
+    "Context": "It is identified as a 'crosscutting concern' that needs to be handled in application development, particularly relevant for microservices that interact with various external infrastructure services.",
+    "Solution": "A mechanism that 'includes credentials and network locations of external services such as databases and message brokers'.",
+    "Result": "Allows configuration to be managed and updated independently of the application's deployment, enhancing flexibility and security.",
+    "Related Patterns": "Handled by Microservice chassis.",
+    "Uses": "Storing and providing access to sensitive or environment-specific configuration data like credentials and service locations.",
+    "Thinking": "Explicitly linked as `patternsexternalizedconfigurationhtml` and described as a 'crosscutting concern' with a brief explanation of its purpose, indicating it's a recognized pattern."
+  },
+  {
+    "Pattern Name": "Logging (Application Logging)",
+    "Problem": "Applications need to record events and operational information for debugging, monitoring, and auditing purposes.",
+    "Context": "It is identified as a 'crosscutting concern' in application development, requiring the 'configuring of a logging framework'.",
+    "Solution": "The 'configuring of a logging framework such as log4j or logback' to capture application events.",
+    "Result": "Provides visibility into the application's runtime behavior, aiding in troubleshooting and operational analysis.",
+    "Related Patterns": "Handled by Microservice chassis.",
+    "Uses": "Recording application events and operational data using frameworks like log4j or logback.",
+    "Thinking": "Explicitly linked as `patternsobservabilityapplicationlogginghtml` and described as a 'crosscutting concern' with examples of frameworks, indicating it's a recognized pattern."
+  },
+  {
+    "Pattern Name": "Health check (Health Check API)",
+    "Problem": "A monitoring service needs a reliable way to determine if an application instance is running correctly and is ready to serve requests.",
+    "Context": "It is identified as a 'crosscutting concern' for applications, especially in environments where automated monitoring and orchestration are used.",
+    "Solution": "Providing 'a url that a monitoring service can ping to determine the health of the application'.",
+    "Result": "Enables monitoring systems to automatically detect unhealthy instances, facilitating self-healing and reliable service operation.",
+    "Related Patterns": "Handled by Microservice chassis.",
+    "Uses": "Exposing an endpoint for monitoring services to query the operational status of an application.",
+    "Thinking": "Explicitly linked as `patternsobservabilityhealthcheckapihtml` and described as a 'crosscutting concern' with a clear definition of its function, indicating it's a recognized pattern."
+  },
+  {
+    "Pattern Name": "Metrics (Application Metrics)",
+    "Problem": "Operators and developers need 'measurements that provide insight into what the application is doing and how it is performing'.",
+    "Context": "It is identified as a 'crosscutting concern' for applications, crucial for understanding performance and behavior in production.",
+    "Solution": "Implementing mechanisms to collect 'measurements that provide insight into what the application is doing and how it is performing'.",
+    "Result": "Provides quantitative data for performance analysis, capacity planning, and proactive issue detection.",
+    "Related Patterns": "Handled by Microservice chassis.",
+    "Uses": "Collecting performance and operational data to gain insights into application behavior.",
+    "Thinking": "Explicitly linked as `patternsobservabilityapplicationmetricshtml` and described as a 'crosscutting concern' with a clear statement of its purpose, indicating it's a recognized pattern."
+  },
+  {
+    "Pattern Name": "Distributed tracing",
+    "Problem": "In a microservice architecture, an external request often traverses multiple services, making it challenging to track its end-to-end flow and diagnose latency or errors.",
+    "Context": "It is identified as a 'crosscutting concern' that is particularly important in microservice architectures to understand the flow of requests across service boundaries.",
+    "Solution": "To 'instrument services with code that assigns each external request an unique identifier that is passed between services'.",
+    "Result": "Enables the visualization and analysis of request paths through a distributed system, simplifying performance bottleneck identification and error diagnosis.",
+    "Related Patterns": "Handled by Microservice chassis (the chassis 'might instrument the code').",
+    "Uses": "Tracking the flow of individual requests across multiple services in a distributed system.",
+    "Thinking": "Explicitly linked as `patternsobservabilitydistributedtracinghtml` and described as a 'crosscutting concern', and also listed as a related pattern to Microservice Chassis, indicating it's a recognized pattern."
+  },
+  {
+    "Pattern Name": "Self Registration",
+    "Problem": "Services in a microservice architecture need to make their network locations known to a service registry so that other services can discover and communicate with them.",
+    "Context": "It is an 'additional crosscutting concern' in a microservice architecture related to 'service registration and discovery'.",
+    "Solution": "The 'microservice chassis is often responsible for registering the service with the service registry'.",
+    "Result": "Services automatically become discoverable by clients and other services, simplifying service management and deployment.",
+    "Related Patterns": "Microservice chassis (often responsible for it), Clientside discovery.",
+    "Uses": "Automatically registering a service's instance details (e.g., network address) with a service registry upon startup.",
+    "Thinking": "Explicitly listed as a 'Related Pattern' to Microservice Chassis and described as a responsibility of the chassis, indicating it's a recognized pattern."
+  },
+  {
+    "Pattern Name": "Clientside discovery",
+    "Problem": "Clients (other services or applications) need to find the network location of available service instances to invoke them.",
+    "Context": "It is an 'additional crosscutting concern' in a microservice architecture related to 'service registration and discovery'.",
+    "Solution": "The 'microservice chassis is often responsible for client side service discovery'. This implies a client-side component queries a service registry to get service instance locations.",
+    "Result": "Clients can dynamically locate and communicate with service instances without hardcoding network addresses, improving resilience and flexibility.",
+    "Related Patterns": "Microservice chassis (often responsible for it), Self Registration.",
+    "Uses": "Clients querying a service registry to resolve the network location of a service instance.",
+    "Thinking": "Explicitly listed as a 'Related Pattern' to Microservice Chassis and described as a responsibility of the chassis, indicating it's a recognized pattern."
+  },
+  {
+    "Pattern Name": "Circuit Breaker",
+    "Problem": "In a distributed system, a service calling another service might experience delays or failures, which can cascade and degrade the performance or availability of the calling service and potentially the entire system.",
+    "Context": "It is an 'additional crosscutting concern' in a microservice architecture, necessary 'for reliably handling partial failure'.",
+    "Solution": "The 'microservice chassis framework might implement this pattern'. The pattern itself involves preventing a service from repeatedly trying to invoke a failing remote service, thus 'breaking' the circuit.",
+    "Result": "Prevents cascading failures in distributed systems by quickly failing calls to services that are likely to be down, improving system resilience and fault tolerance.",
+    "Related Patterns": "Microservice chassis (might implement it).",
+    "Uses": "Improving the reliability of inter-service communication by preventing repeated calls to failing services.",
+    "Thinking": "Explicitly listed as a 'Related Pattern' to Microservice Chassis and described as a mechanism 'for reliably handling partial failure', indicating it's a recognized pattern."
+  }
+]

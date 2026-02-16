@@ -1,0 +1,292 @@
+[
+  {
+    "Pattern Name": "Microservice Architecture",
+    "Problem": "How to organize the subdomains into one or more deployable/executable components.",
+    "Context": "You are developing a business-critical enterprise application. You need to deliver changes rapidly, frequently, and reliably, as measured by DORA metrics, for your business to thrive. Your engineering organization is organized into small, loosely coupled, cross-functional teams practicing DevOps and continuous deployment. Each team is responsible for one or more subdomains (business capabilities) that implement the application's behavior.",
+    "Solution": "Design an architecture that structures the application as a set of two or more independently deployable, loosely coupled components (services). Each service consists of one or more subdomains and is owned by a team. Services typically have their own source code repository and deployment pipeline. An API Gateway is usually the application's entry point. Distributed system operations are implemented using service collaboration patterns.",
+    "Result": "Benefits include: simple services (easier to understand and maintain), team autonomy (independent development, testing, deployment), fast deployment pipeline (small, fast-to-test services), support for multiple technology stacks (different services can use different stacks), and segregation of subdomains by characteristics (improving scalability, availability, security). Drawbacks include: potentially complex/inefficient distributed operations, complex eventually consistent non-ACID transaction management, and risk of tight runtime/design-time coupling.",
+    "Related Patterns": "Monolithic architecture (alternative), API Gateway, Service Collaboration Patterns (Saga, Command-side replica, API composition, CQRS), Messaging, Remote Procedure Invocation, Database per Service, Client-side Discovery, Server-side Discovery, Testing patterns (Service Component Test, Service Integration Contract Test), Circuit Breaker, Access Token, Observability patterns (Log aggregation, Application metrics, Audit logging, Distributed tracing, Exception tracking, Health check API, Log deployments and changes), UI patterns (Server-side page fragment composition, Client-side UI composition), Deployment patterns (Single Service per Host, Multiple Services per Host), Cross-cutting concerns patterns (Microservice chassis, Externalized configuration).",
+    "Uses": "Netflix, Amazon.com, eBay.com, Chris Richardson's examples.",
+    "Thinking": "This is the primary pattern explicitly defined in the text with dedicated sections for Context, Problem, Solution, Resulting context (Benefits/Drawbacks), Related patterns, and Known uses."
+  },
+  {
+    "Pattern Name": "Saga",
+    "Problem": "How to implement a distributed command that spans multiple services, especially when each service has its own database, requiring a series of local transactions to maintain consistency.",
+    "Context": "Implementing distributed operations in a Microservice Architecture where each service has its own database and loose coupling is desired, making traditional ACID transactions across services difficult.",
+    "Solution": "Implements a distributed command as a series of local transactions. It typically uses asynchronous messaging.",
+    "Result": "Enables distributed commands across services while maintaining eventual consistency, but can lead to complex eventually consistent non-ACID transaction management.",
+    "Related Patterns": "Command-side replica, API composition, CQRS (as service collaboration patterns), Transaction Outbox (used for atomic updates and message sending).",
+    "Uses": "Not explicitly mentioned in the text for this specific pattern.",
+    "Thinking": "Explicitly listed as one of the 'service collaboration patterns' with a clear description of its implementation ('implements a distributed command as a series of local transactions')."
+  },
+  {
+    "Pattern Name": "Command-side Replica",
+    "Problem": "How to efficiently access read-only data from another service when implementing a command, without introducing tight coupling or inefficient network calls, especially when services have independent databases.",
+    "Context": "Implementing distributed operations in a Microservice Architecture where a service needs read-only data from another service to execute a command, and services maintain their own databases.",
+    "Solution": "Replicas read-only data to the service that implements a command. It typically uses asynchronous messaging.",
+    "Result": "Improves performance and reduces coupling for commands requiring external read-only data by providing a local copy.",
+    "Related Patterns": "Saga, API composition, CQRS (as service collaboration patterns).",
+    "Uses": "Not explicitly mentioned in the text for this specific pattern.",
+    "Thinking": "Explicitly listed as one of the 'service collaboration patterns' with a clear description of its function ('replicas readonly data to the service that implements a command')."
+  },
+  {
+    "Pattern Name": "API Composition",
+    "Problem": "How to implement a distributed query that aggregates data from multiple services, especially when each service has its own database, to present a unified view to a client.",
+    "Context": "Implementing distributed operations in a Microservice Architecture where a client needs to query data that is distributed across several services, each with its own database.",
+    "Solution": "Implements a distributed query as a series of local queries.",
+    "Result": "Enables clients to retrieve aggregated data from multiple services, but can lead to complex and potentially inefficient distributed operations.",
+    "Related Patterns": "Saga, Command-side replica, CQRS (as service collaboration patterns).",
+    "Uses": "Not explicitly mentioned in the text for this specific pattern.",
+    "Thinking": "Explicitly listed as one of the 'service collaboration patterns' with a clear description of its implementation ('implements a distributed query as a series of local queries')."
+  },
+  {
+    "Pattern Name": "CQRS",
+    "Problem": "How to implement a distributed query, potentially with different data models or read optimizations than the command side, especially when each service has its own database, to improve query performance and flexibility.",
+    "Context": "Implementing distributed operations in a Microservice Architecture where services have independent databases, and there's a need to optimize query operations separately from command operations.",
+    "Solution": "Implements a distributed query as a series of local queries. It typically uses asynchronous messaging.",
+    "Result": "Improves query performance and scalability by allowing separate optimization of read models, but adds complexity due to data replication and eventual consistency.",
+    "Related Patterns": "Saga, Command-side replica, API composition (as service collaboration patterns).",
+    "Uses": "Not explicitly mentioned in the text for this specific pattern.",
+    "Thinking": "Explicitly listed as one of the 'service collaboration patterns' with a clear description of its implementation ('implements a distributed query as a series of local queries')."
+  },
+  {
+    "Pattern Name": "Transaction Outbox",
+    "Problem": "How to atomically update persistent business entities and send a message in a distributed system, ensuring that either both operations succeed or both fail, especially when using asynchronous messaging.",
+    "Context": "Services in a Microservice Architecture using asynchronous messaging (e.g., with Saga, Command-side replica, CQRS patterns) need to atomically update their database and publish a message to ensure data consistency.",
+    "Solution": "Atomically updates persistent business entities and sends a message.",
+    "Result": "Ensures reliable message delivery and data consistency in distributed transactions by preventing partial failures between database updates and message publishing.",
+    "Related Patterns": "Saga, Command-side replica, CQRS (as patterns that use asynchronous messaging).",
+    "Uses": "Not explicitly mentioned in the text for this specific pattern.",
+    "Thinking": "Explicitly mentioned as a pattern that 'Services typically need to use... to atomically update persistent business entities and send a message' in the context of asynchronous messaging patterns."
+  },
+  {
+    "Pattern Name": "Messaging",
+    "Problem": "How services can communicate in a loosely coupled, asynchronous manner, enabling independent evolution and resilience to failures.",
+    "Context": "Services in a Microservice Architecture need to communicate with each other.",
+    "Solution": "Services communicate using messaging.",
+    "Result": "Promotes loose coupling, asynchronous communication, and resilience, allowing services to evolve independently and handle temporary unavailability of other services.",
+    "Related Patterns": "Remote Procedure Invocation (alternative communication style).",
+    "Uses": "Not explicitly mentioned in the text for this specific pattern.",
+    "Thinking": "Explicitly listed as one of 'two different ways that services can communicate'."
+  },
+  {
+    "Pattern Name": "Remote Procedure Invocation (RPI)",
+    "Problem": "How services can communicate in a synchronous, request/response manner, enabling direct interaction and immediate feedback.",
+    "Context": "Services in a Microservice Architecture need to communicate with each other.",
+    "Solution": "Services communicate using remote procedure invocation.",
+    "Result": "Enables direct, synchronous interaction between services, but can introduce tight coupling and reduce resilience compared to asynchronous messaging.",
+    "Related Patterns": "Messaging (alternative communication style).",
+    "Uses": "Not explicitly mentioned in the text for this specific pattern.",
+    "Thinking": "Explicitly listed as one of 'two different ways that services can communicate'."
+  },
+  {
+    "Pattern Name": "Database per Service",
+    "Problem": "How to ensure loose coupling between services and enable independent evolution of data schemas, avoiding the coupling issues of shared databases.",
+    "Context": "Designing a Microservice Architecture where loose coupling is a key requirement, and services need to manage their own persistent data.",
+    "Solution": "Each service has its own database.",
+    "Result": "Maximizes loose coupling between services, allowing independent development, deployment, and scaling of services and their data stores. It also enables different services to use different database technologies.",
+    "Related Patterns": "Microservice Architecture (it's a core principle/pattern within it), Saga, Command-side replica, API composition, CQRS (these patterns are often needed *because* of Database per Service).",
+    "Uses": "Not explicitly mentioned in the text for this specific pattern.",
+    "Thinking": "Explicitly mentioned as a pattern that 'describes how each service has its own database in order to ensure loose coupling'. The problem and result are clearly stated."
+  },
+  {
+    "Pattern Name": "API Gateway",
+    "Problem": "How clients access services in a microservice architecture, dealing with concerns like routing requests to appropriate services, handling protocol translation, and centralizing cross-cutting concerns.",
+    "Context": "Clients (e.g., UI, mobile apps) need to interact with multiple backend services in a Microservice Architecture.",
+    "Solution": "Defines how clients access the services in a microservice architecture, typically acting as the application's entry point.",
+    "Result": "Provides a single, well-defined entry point for clients, simplifying client-side logic, centralizing concerns like security and throttling, and abstracting the internal microservice structure.",
+    "Related Patterns": "Microservice Architecture (it's a component of it), Client-side Discovery, Server-side Discovery (used for routing behind the gateway).",
+    "Uses": "Not explicitly mentioned in the text for this specific pattern.",
+    "Thinking": "Explicitly mentioned as a pattern that 'defines how clients access the services in a microservice architecture' and is 'typically the applications entry point'."
+  },
+  {
+    "Pattern Name": "Client-side Discovery",
+    "Problem": "How a client can find and route requests to an available instance of a service in a dynamic microservice environment where service instances frequently change.",
+    "Context": "A client in a Microservice Architecture needs to make requests to a service that may have multiple, dynamically changing instances.",
+    "Solution": "Used to route requests for a client to an available service instance in a microservice architecture, where the client is responsible for looking up service instances.",
+    "Result": "Enables clients to dynamically discover and connect to available service instances, supporting elastic scaling and resilience.",
+    "Related Patterns": "Server-side Discovery (alternative), API Gateway (can incorporate discovery).",
+    "Uses": "Not explicitly mentioned in the text for this specific pattern.",
+    "Thinking": "Explicitly listed as a pattern that is 'used to route requests for a client to an available service instance in a microservice architecture'."
+  },
+  {
+    "Pattern Name": "Server-side Discovery",
+    "Problem": "How a client can find and route requests to an available instance of a service, offloading the discovery logic from the client to an intermediary.",
+    "Context": "A client in a Microservice Architecture needs to make requests to a service that may have multiple, dynamically changing instances, and the client prefers not to handle discovery logic directly.",
+    "Solution": "Used to route requests for a client to an available service instance in a microservice architecture, where an intermediary (e.g., load balancer, router) is responsible for looking up service instances.",
+    "Result": "Simplifies client-side logic by abstracting service discovery, and allows for centralized management of routing and load balancing.",
+    "Related Patterns": "Client-side Discovery (alternative), API Gateway (can incorporate discovery).",
+    "Uses": "Not explicitly mentioned in the text for this specific pattern.",
+    "Thinking": "Explicitly listed as a pattern that is 'used to route requests for a client to an available service instance in a microservice architecture'."
+  },
+  {
+    "Pattern Name": "Single Service per Host",
+    "Problem": "How to deploy microservices to maximize isolation between services, simplify resource management, and enable independent scaling and upgrades.",
+    "Context": "Deploying services in a Microservice Architecture.",
+    "Solution": "One service instance is deployed per host (physical or virtual machine, or container).",
+    "Result": "Provides strong isolation between services, simplifies resource allocation and monitoring for individual services, and enables independent scaling and upgrades.",
+    "Related Patterns": "Multiple Services per Host (alternative deployment strategy).",
+    "Uses": "Not explicitly mentioned in the text for this specific pattern.",
+    "Thinking": "Explicitly listed as one of 'two different deployment strategies' for microservices."
+  },
+  {
+    "Pattern Name": "Multiple Services per Host",
+    "Problem": "How to deploy microservices to optimize resource utilization and reduce operational overhead, especially for smaller services, by sharing host resources.",
+    "Context": "Deploying services in a Microservice Architecture, particularly when resource efficiency is a concern.",
+    "Solution": "Multiple service instances are deployed on a single host (physical or virtual machine, or container).",
+    "Result": "Optimizes resource utilization and reduces infrastructure costs, but might lead to less isolation between services and more complex resource management.",
+    "Related Patterns": "Single Service per Host (alternative deployment strategy).",
+    "Uses": "Not explicitly mentioned in the text for this specific pattern.",
+    "Thinking": "Explicitly listed as one of 'two different deployment strategies' for microservices."
+  },
+  {
+    "Pattern Name": "Service Component Test",
+    "Problem": "How to thoroughly test an individual microservice in isolation, ensuring its internal logic and interactions with its immediate dependencies (like its database) work correctly, without deploying the entire system.",
+    "Context": "Developing and deploying microservices, where each service needs to be independently testable to support continuous deployment and rapid feedback.",
+    "Solution": "A testing strategy focused on a single service, including its internal logic and its interaction with its own database, but without involving other services.",
+    "Result": "Enables fast and reliable testing of individual services, providing confidence in their correctness before integration. Reduces the complexity and time of integration testing.",
+    "Related Patterns": "Service Integration Contract Test (complementary), Microservice Architecture.",
+    "Uses": "Not explicitly mentioned in the text for this specific pattern.",
+    "Thinking": "Identified from the 'Related patterns' section. The name clearly indicates a testing pattern for a service component. The problem, context, and solution are inferred from the common understanding of component testing in a microservices context."
+  },
+  {
+    "Pattern Name": "Service Integration Contract Test",
+    "Problem": "How to ensure that services can correctly interact with each other, verifying that the API contracts between them are honored, without requiring full end-to-end integration tests.",
+    "Context": "Developing and deploying microservices that communicate with each other, where changes in one service's API could break consumers, and full integration tests are slow and complex.",
+    "Solution": "A testing strategy focused on contracts between services. Contract tests verify that a service (provider) meets the expectations of its consumers, and that consumers correctly use the provider's API.",
+    "Result": "Provides fast feedback on breaking API changes between services, enabling independent development and deployment while maintaining compatibility. Reduces the need for extensive and brittle end-to-end tests.",
+    "Related Patterns": "Service Component Test (complementary), Microservice Architecture.",
+    "Uses": "Not explicitly mentioned in the text for this specific pattern.",
+    "Thinking": "Identified from the 'Related patterns' section. The name clearly indicates a testing pattern for integration contracts between services. The problem, context, and solution are inferred from the common understanding of contract testing in a microservices context."
+  },
+  {
+    "Pattern Name": "Circuit Breaker",
+    "Problem": "How to prevent a microservice from repeatedly trying to invoke a failing remote service, which can lead to cascading failures and resource exhaustion in a distributed system.",
+    "Context": "A microservice architecture where services communicate with each other over a network, and remote calls can fail due to various reasons (network issues, service overload, bugs).",
+    "Solution": "Wraps a function call to a remote service, monitoring for failures. If failures exceed a threshold, it 'opens' the circuit, preventing further calls to the failing service for a period, and returning an error immediately. After a timeout, it allows a limited number of calls to 'half-open' the circuit and test if the service has recovered.",
+    "Result": "Improves the resilience and fault tolerance of microservices by preventing cascading failures, allowing failing services to recover, and providing graceful degradation.",
+    "Related Patterns": "Microservice Architecture, Remote Procedure Invocation, Client-side Discovery, Server-side Discovery.",
+    "Uses": "Not explicitly mentioned in the text for this specific pattern.",
+    "Thinking": "Identified from the 'Related patterns' section. The name and the link to 'reliabilitycircuitbreakerhtml' strongly suggest its purpose. The problem, context, and solution are inferred from the common understanding of the Circuit Breaker pattern in distributed systems."
+  },
+  {
+    "Pattern Name": "Access Token",
+    "Problem": "How to securely authenticate and authorize requests from clients to microservices, ensuring that only legitimate and authorized users/applications can access specific resources.",
+    "Context": "A microservice architecture where clients (users, other services) need to access protected resources provided by various services, and security is a critical concern.",
+    "Solution": "A credential that represents the authorization granted to a client. It is typically issued by an authorization server after successful authentication and then presented by the client with each request to access protected resources.",
+    "Result": "Provides a standardized and secure way to manage authentication and authorization in a distributed microservice environment, enabling fine-grained access control and reducing the burden on individual services for authentication.",
+    "Related Patterns": "API Gateway (often handles token validation), Microservice Architecture.",
+    "Uses": "Not explicitly mentioned in the text for this specific pattern.",
+    "Thinking": "Identified from the 'Related patterns' section. The name and the link to 'securityaccesstokenhtml' strongly suggest its purpose. The problem, context, and solution are inferred from the common understanding of access tokens in API security."
+  },
+  {
+    "Pattern Name": "Log Aggregation",
+    "Problem": "How to effectively collect, store, and analyze logs generated by numerous microservice instances running across multiple hosts, to facilitate debugging, monitoring, and auditing.",
+    "Context": "A microservice architecture with many services, each generating its own logs, making it difficult to get a holistic view of system behavior or troubleshoot issues by checking individual service logs.",
+    "Solution": "Collecting logs from all service instances into a centralized logging system (e.g., ELK stack, Splunk).",
+    "Result": "Provides a centralized view of system activity, enabling easier debugging, monitoring, and auditing across the entire microservice landscape. Improves operational visibility.",
+    "Related Patterns": "Observability patterns (Application Metrics, Distributed Tracing, etc.), Microservice Architecture.",
+    "Uses": "Not explicitly mentioned in the text for this specific pattern.",
+    "Thinking": "Identified from the 'Observability patterns' list. The name clearly describes its function. The problem, context, and solution are inferred from the common understanding of log aggregation in distributed systems."
+  },
+  {
+    "Pattern Name": "Application Metrics",
+    "Problem": "How to collect and monitor key performance indicators (KPIs) and operational data from individual microservices to understand their health, performance, and resource utilization.",
+    "Context": "A microservice architecture where understanding the runtime behavior and performance of individual services and the system as a whole is crucial for monitoring, alerting, and capacity planning.",
+    "Solution": "Instrumenting services to collect various metrics (e.g., request rates, error rates, response times, CPU/memory usage) and sending them to a centralized metrics system (e.g., Prometheus, Grafana).",
+    "Result": "Provides real-time insights into service performance and health, enabling proactive issue detection, performance optimization, and informed scaling decisions.",
+    "Related Patterns": "Observability patterns (Log Aggregation, Distributed Tracing, etc.), Microservice Architecture.",
+    "Uses": "Not explicitly mentioned in the text for this specific pattern.",
+    "Thinking": "Identified from the 'Observability patterns' list. The name clearly describes its function. The problem, context, and solution are inferred from the common understanding of application metrics in distributed systems."
+  },
+  {
+    "Pattern Name": "Audit Logging",
+    "Problem": "How to record significant business events and user actions within microservices for security, compliance, and accountability purposes.",
+    "Context": "A microservice architecture where regulatory compliance, security auditing, or tracking user activity is required.",
+    "Solution": "Capturing specific events (e.g., user login, data modification, critical business transactions) with relevant context (who, what, when, where) and storing them in a secure, immutable audit log.",
+    "Result": "Provides a verifiable record of system and user activities, essential for security investigations, compliance audits, and understanding business process flows.",
+    "Related Patterns": "Observability patterns (Log Aggregation), Microservice Architecture.",
+    "Uses": "Not explicitly mentioned in the text for this specific pattern.",
+    "Thinking": "Identified from the 'Observability patterns' list. The name clearly describes its function. The problem, context, and solution are inferred from the common understanding of audit logging."
+  },
+  {
+    "Pattern Name": "Distributed Tracing",
+    "Problem": "How to trace the flow of a single request as it propagates through multiple microservices, each potentially running on different hosts and communicating asynchronously, to understand latency and pinpoint failures.",
+    "Context": "A microservice architecture where a single user request often involves interactions across many services, making it challenging to diagnose performance bottlenecks or errors that span multiple service boundaries.",
+    "Solution": "Assigning a unique trace ID to each request at its entry point and propagating this ID through all subsequent service calls. Each service records its operations (spans) with the trace ID, and these spans are sent to a centralized tracing system (e.g., Jaeger, Zipkin) for visualization.",
+    "Result": "Provides end-to-end visibility into request flows across services, enabling identification of latency issues, error propagation paths, and performance bottlenecks in complex distributed systems.",
+    "Related Patterns": "Observability patterns (Log Aggregation, Application Metrics), Microservice Architecture.",
+    "Uses": "Not explicitly mentioned in the text for this specific pattern.",
+    "Thinking": "Identified from the 'Observability patterns' list. The name clearly describes its function. The problem, context, and solution are inferred from the common understanding of distributed tracing."
+  },
+  {
+    "Pattern Name": "Exception Tracking",
+    "Problem": "How to effectively capture, report, and analyze exceptions and errors occurring across all microservices in a distributed system, to quickly identify and resolve issues.",
+    "Context": "A microservice architecture where errors can occur in any service, and it's crucial to have a centralized mechanism to track, categorize, and prioritize these exceptions for debugging and maintenance.",
+    "Solution": "Configuring services to automatically report unhandled exceptions and errors to a centralized exception tracking service (e.g., Sentry, Bugsnag), often including stack traces and contextual information.",
+    "Result": "Provides a comprehensive overview of errors across the system, facilitating rapid detection, diagnosis, and resolution of software defects.",
+    "Related Patterns": "Observability patterns (Log Aggregation), Microservice Architecture.",
+    "Uses": "Not explicitly mentioned in the text for this specific pattern.",
+    "Thinking": "Identified from the 'Observability patterns' list. The name clearly describes its function. The problem, context, and solution are inferred from the common understanding of exception tracking."
+  },
+  {
+    "Pattern Name": "Health Check API",
+    "Problem": "How to determine the operational status and readiness of a microservice instance, allowing infrastructure (e.g., load balancers, orchestrators) to route traffic appropriately and manage deployments.",
+    "Context": "A microservice architecture where services are dynamically deployed, scaled, and managed by orchestration platforms, which need to know if a service instance is healthy and ready to receive requests.",
+    "Solution": "Each service exposes an HTTP endpoint (e.g., `/health` or `/ready`) that returns a status indicating its health. This check can include verifying database connections, external service dependencies, and internal state.",
+    "Result": "Enables automated monitoring, load balancing, and orchestration of microservices, ensuring that traffic is only routed to healthy instances and unhealthy instances are removed or restarted.",
+    "Related Patterns": "Observability patterns, Client-side Discovery, Server-side Discovery, Single Service per Host, Multiple Services per Host, Microservice Architecture.",
+    "Uses": "Not explicitly mentioned in the text for this specific pattern.",
+    "Thinking": "Identified from the 'Observability patterns' list. The name clearly describes its function. The problem, context, and solution are inferred from the common understanding of health check APIs in microservices."
+  },
+  {
+    "Pattern Name": "Log Deployments and Changes",
+    "Problem": "How to correlate system behavior, performance changes, or errors with specific deployments or configuration changes, to quickly identify the root cause of issues.",
+    "Context": "A microservice architecture with continuous deployment, where frequent changes are pushed to production, making it difficult to track which deployment or change might have introduced a problem.",
+    "Solution": "Automatically logging details about every deployment (e.g., version, timestamp, deployer, affected services) and significant configuration changes to a centralized system, often alongside application logs and metrics.",
+    "Result": "Provides crucial context for troubleshooting by allowing operators to easily see what changes were deployed around the time an issue occurred, speeding up root cause analysis.",
+    "Related Patterns": "Observability patterns (Log Aggregation, Distributed Tracing), Microservice Architecture.",
+    "Uses": "Not explicitly mentioned in the text for this specific pattern.",
+    "Thinking": "Identified from the 'Observability patterns' list. The name clearly describes its function. The problem, context, and solution are inferred from the common understanding of logging deployment events."
+  },
+  {
+    "Pattern Name": "Server-side Page Fragment Composition",
+    "Problem": "How to compose a single web page or user interface from multiple independent microservices, where each service contributes a specific UI fragment, to enable independent development and deployment of UI components.",
+    "Context": "Building user interfaces for a microservice architecture where different teams own different business capabilities, and each team wants to develop and deploy its UI components independently.",
+    "Solution": "A server-side component (e.g., an API Gateway or a dedicated UI composition service) aggregates HTML fragments or other UI components rendered by different backend services into a single page before sending it to the client.",
+    "Result": "Enables independent development and deployment of UI components by different teams, aligning UI architecture with microservice boundaries. Can improve initial page load times compared to client-side composition.",
+    "Related Patterns": "UI patterns (Client-side UI Composition - alternative), API Gateway, Microservice Architecture.",
+    "Uses": "Not explicitly mentioned in the text for this specific pattern.",
+    "Thinking": "Identified from the 'UI patterns' list. The name clearly describes its function. The problem, context, and solution are inferred from the common understanding of server-side UI composition in microservices."
+  },
+  {
+    "Pattern Name": "Client-side UI Composition",
+    "Problem": "How to compose a single web page or user interface from multiple independent microservices, where the client-side application (e.g., browser, mobile app) is responsible for fetching and assembling UI fragments from different services.",
+    "Context": "Building user interfaces for a microservice architecture where different teams own different business capabilities, and each team wants to develop and deploy its UI components independently, with the client handling the aggregation.",
+    "Solution": "The client-side application (e.g., a single-page application) makes multiple requests to different microservices (or an API Gateway) to fetch UI components (e.g., JSON data, HTML snippets, Web Components) and then assembles them into a complete user interface.",
+    "Result": "Enables independent development and deployment of UI components by different teams, aligning UI architecture with microservice boundaries. Provides flexibility for rich client-side experiences.",
+    "Related Patterns": "UI patterns (Server-side Page Fragment Composition - alternative), API Gateway, Microservice Architecture.",
+    "Uses": "The comment section mentions 'BFF pattern encourage different APIs for different clients so thats desktopBFF iosBFF and androidBFF etc'.",
+    "Thinking": "Identified from the 'UI patterns' list. The name clearly describes its function. The problem, context, and solution are inferred from the common understanding of client-side UI composition in microservices."
+  },
+  {
+    "Pattern Name": "Microservice Chassis",
+    "Problem": "How to standardize and encapsulate common cross-cutting concerns (e.g., configuration, logging, health checks, metrics, discovery) across all microservices, reducing boilerplate code and ensuring consistency.",
+    "Context": "Developing a microservice architecture with many services, where each service needs to implement a set of common functionalities, leading to duplication and potential inconsistencies.",
+    "Solution": "A framework or library that provides a common set of functionalities and conventions for building microservices. It handles cross-cutting concerns, allowing developers to focus on business logic.",
+    "Result": "Accelerates development, ensures consistency across services, and simplifies maintenance by centralizing common infrastructure concerns.",
+    "Related Patterns": "Externalized Configuration, Health Check API, Log Aggregation, Application Metrics, Client-side Discovery, Server-side Discovery, Microservice Architecture.",
+    "Uses": "Not explicitly mentioned in the text for this specific pattern.",
+    "Thinking": "Identified from the 'Crosscutting concerns patterns' list. The name clearly describes its function. The problem, context, and solution are inferred from the common understanding of a microservice chassis."
+  },
+  {
+    "Pattern Name": "Externalized Configuration",
+    "Problem": "How to manage configuration data for microservices independently of their deployment artifacts, allowing changes to configuration without redeploying services and supporting different environments.",
+    "Context": "A microservice architecture where services need different configurations (e.g., database connection strings, API keys, feature toggles) for different environments (development, testing, production) or during runtime.",
+    "Solution": "Storing configuration data outside of the service's deployable package, typically in a centralized configuration server or a version-controlled repository, and loading it at runtime.",
+    "Result": "Enables dynamic configuration updates, simplifies deployment across environments, and promotes consistency by centralizing configuration management.",
+    "Related Patterns": "Microservice Chassis (often includes configuration management), Microservice Architecture.",
+    "Uses": "Not explicitly mentioned in the text for this specific pattern.",
+    "Thinking": "Identified from the 'Crosscutting concerns patterns' list. The name clearly describes its function. The problem, context, and solution are inferred from the common understanding of externalized configuration."
+  }
+]

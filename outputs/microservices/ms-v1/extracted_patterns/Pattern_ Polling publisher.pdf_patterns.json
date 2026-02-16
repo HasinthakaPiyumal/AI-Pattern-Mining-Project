@@ -1,0 +1,32 @@
+[
+  {
+    "Pattern Name": "Polling publisher",
+    "Problem": "How to publish messages/events into the outbox in the database to the message broker",
+    "Context": "You have applied the Transactional Outbox transactionaloutboxhtml pattern",
+    "Solution": "Publish messages by polling the database's outbox table",
+    "Result": "This pattern has the following benefits: Works with any SQL database. This pattern has the following drawbacks: Tricky to publish events in order, Not all NoSQL databases support this pattern.",
+    "Related Patterns": "The Transactional Outbox transactionaloutboxhtml pattern creates the need for this pattern. The Transaction log tailing transactionlogtailinghtml pattern is an alternative solution.",
+    "Uses": "Eventuate Tram framework",
+    "Thinking": "The text explicitly labels 'Pattern Polling publisher' and provides a complete description including Problem, Context, Solution, Result, Related Patterns, and Uses, clearly identifying it as a Microservices design pattern."
+  },
+  {
+    "Pattern Name": "Transactional Outbox",
+    "Problem": "",
+    "Context": "",
+    "Solution": "",
+    "Result": "",
+    "Related Patterns": "Creates the need for 'Polling publisher'.",
+    "Uses": "",
+    "Thinking": "This pattern is explicitly referred to as 'Transactional Outbox transactionaloutboxhtml pattern' and is stated to create the need for the 'Polling publisher' pattern. While its name and relationship are clear, the provided text snippet does not contain its specific problem, context, solution, result, or uses."
+  },
+  {
+    "Pattern Name": "Transaction log tailing",
+    "Problem": "",
+    "Context": "",
+    "Solution": "",
+    "Result": "",
+    "Related Patterns": "An alternative solution to 'Polling publisher'.",
+    "Uses": "",
+    "Thinking": "This pattern is explicitly referred to as 'Transaction log tailing transactionlogtailinghtml pattern' and is stated to be an 'alternative solution' to the 'Polling publisher' pattern. While its name and relationship are clear, the provided text snippet does not contain its specific problem, context, solution, result, or uses."
+  }
+]

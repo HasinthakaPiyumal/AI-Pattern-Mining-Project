@@ -1,0 +1,12 @@
+[
+  {
+    "Pattern Name": "Strangler application",
+    "Problem": "How to migrate a legacy monolithic application to a microservice architecture without undertaking a complete, risky, time-consuming, and expensive rewrite.",
+    "Context": "An organization needs to modernize a legacy monolithic application and transition it to a modern microservice architecture. The goal is to evolve the system gradually while maintaining existing functionality and demonstrating business value.",
+    "Solution": "Incrementally develop a new 'strangler application' with a microservice architecture around the legacy monolithic application. This involves:\n1. **Incremental Replacement**: Gradually replacing parts of the monolith with new microservices that provide the same functionality, or implementing new features as microservices.\n2. **Parallel Coexistence**: Allowing the monolithic application and the newly developed microservices to coexist during the transition.\n3. **Redirection and Routing**: Selectively routing existing application traffic to the new microservices using mechanisms like API gateways or reverse proxies, ensuring seamless integration.\nThis process is done piece by piece, potentially one function at a time, until the monolith is 'strangled' and eventually phased out.",
+    "Result": "The system evolves gradually, allowing for seamless integration of new services without disrupting the end-user experience. It demonstrates the value of using microservices to the business and ultimately leads to the modernization and phasing out of the legacy monolith.",
+    "Related Patterns": "Refactoring (as a process/example)",
+    "Uses": "Migrating legacy monolithic applications to a microservice architecture; Modernizing applications; Transitioning from legacy systems to modern architectures without a complete rewrite; In migration projects.",
+    "Thinking": "The text explicitly identifies 'Pattern Strangler application' and provides a comprehensive description covering its problem, context, solution, and results, all within the scope of microservices adoption and refactoring from monoliths. The solution directly involves creating and integrating microservices."
+  }
+]

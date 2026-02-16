@@ -1,0 +1,42 @@
+[
+  {
+    "Pattern Name": "Service per team",
+    "Problem": "How to define the ownership and responsibility relationship between development teams and microservices, balancing team autonomy, loose coupling, cognitive capacity, and the benefits/complexities of service granularity.",
+    "Context": "A high-performance development organization with small, autonomous, loosely coupled, cross-functional teams (typically 5-9 people) needs a loosely coupled architecture. Microservice architecture is used, and services are identified by business functionality (e.g., Decompose by Subdomain, Decompose by Business Capability). The challenge is defining the relationship between services and teams, specifically regarding ownership, to maximize team autonomy and minimize coordination, while considering team cognitive capacity and service complexity. Shared ownership models lead to increased coordination and poor code quality, making a code/service ownership model preferred.",
+    "Solution": "Each service is owned by a single team, which has sole responsibility for its changes. Ideally, each team owns only one service, but can own multiple if there's a proven need (e.g., significantly reducing lead time, improving scalability or fault tolerance). The team's code base (one or more modules/services) is sized to fit its cognitive capacity and is responsible for one or more business functions/capabilities.",
+    "Result": "Benefits: Increased team autonomy, minimal coordination with other teams, loose coupling, improved code quality due to long-term ownership, and achieves team autonomy and loose coupling with the minimum number of services. Drawbacks: Teams are not necessarily aligned with end-user features, and implementing features that span services is more complicated, requiring teams to collaborate.",
+    "Related Patterns": "Microservice Architecture, Decompose by Subdomain, Decompose by Business Capability.",
+    "Uses": "Structuring development teams and their ownership of services in a microservice architecture to maximize team autonomy, loose coupling, and code quality.",
+    "Thinking": "The text explicitly introduces 'Service per team' as a 'pattern' with dedicated sections for Context, Problem, Solution, Result, and Related Patterns. This structure aligns perfectly with the requested pattern definition components, indicating it is a true Microservices design pattern described within the text."
+  },
+  {
+    "Pattern Name": "Microservice Architecture",
+    "Problem": "How to structure an application to achieve loose coupling, support autonomous teams, and enable high-performance development.",
+    "Context": "An organization consisting of loosely coupled teams needs a loosely coupled architecture, as per Conway's Law. Traditional monolithic architectures often hinder team autonomy and increase coordination.",
+    "Solution": "Structure an application as a loosely coupled set of services.",
+    "Result": "Enables a loosely coupled architecture, supports autonomous teams, and creates the need for patterns like 'Service per team' and service identification patterns.",
+    "Related Patterns": "Service per team (creates the need for it), Decompose by Subdomain, Decompose by Business Capability (patterns for identifying services within it).",
+    "Uses": "As a foundational application style for structuring software systems to support organizational agility and technical flexibility.",
+    "Thinking": "The text explicitly refers to 'the microservice architecture pattern' and describes it as 'an application style that structures an application as a loosely coupled set of services.' It also states that this pattern 'creates the need for' the 'Service per team' pattern, indicating its fundamental role as a design pattern."
+  },
+  {
+    "Pattern Name": "Decompose by Subdomain",
+    "Problem": "How to identify and organize services effectively within a microservice architecture.",
+    "Context": "When adopting a microservice architecture, there is a need for clear guidelines on how to break down a large application into smaller, manageable services that align with business functionality.",
+    "Solution": "Identify services by decomposing the application based on subdomains, which are distinct areas of knowledge within the business domain.",
+    "Result": "Services are identified and organized around specific business functionality, promoting clear boundaries and responsibilities.",
+    "Related Patterns": "Microservice Architecture (it's a pattern for microservices), Decompose by Business Capability (another pattern for identifying services), Service per team (relates to how these identified services are owned).",
+    "Uses": "Identifying service boundaries and defining the scope of individual microservices during the design phase of a microservice architecture.",
+    "Thinking": "The text explicitly states 'Decompose by Subdomain... are patterns for identifying services and organizing them around business functionality.' This directly identifies it as a pattern and describes its purpose within the microservice context."
+  },
+  {
+    "Pattern Name": "Decompose by Business Capability",
+    "Problem": "How to identify and organize services effectively within a microservice architecture.",
+    "Context": "When adopting a microservice architecture, there is a need for clear guidelines on how to break down a large application into smaller, manageable services that align with business functionality.",
+    "Solution": "Identify services by decomposing the application based on business capabilities, which are things a business does to achieve its goals.",
+    "Result": "Services are identified and organized around specific business functionality, promoting clear boundaries and responsibilities.",
+    "Related Patterns": "Microservice Architecture (it's a pattern for microservices), Decompose by Subdomain (another pattern for identifying services), Service per team (relates to how these identified services are owned).",
+    "Uses": "Identifying service boundaries and defining the scope of individual microservices during the design phase of a microservice architecture.",
+    "Thinking": "The text explicitly states '...Decompose by business capability... are patterns for identifying services and organizing them around business functionality.' This directly identifies it as a pattern and describes its purpose within the microservice context."
+  }
+]

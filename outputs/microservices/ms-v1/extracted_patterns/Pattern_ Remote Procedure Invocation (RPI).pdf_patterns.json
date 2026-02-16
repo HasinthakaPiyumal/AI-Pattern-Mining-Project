@@ -1,0 +1,12 @@
+[
+  {
+    "Pattern Name": "Remote Procedure Invocation (RPI)",
+    "Problem": "How do services in a microservice architecture communicate?",
+    "Context": "You have applied the Microservice architecture pattern. Services must handle requests from the applications clients. Furthermore, services must sometimes collaborate to handle those requests. They must use an interprocess communication protocol.",
+    "Solution": "Use RPI for interservice communication. The client uses a request-reply-based protocol to make requests to a service.",
+    "Result": "Benefits: Simple and familiar; Request-reply is easy; Simpler system since there is no intermediate broker. Drawbacks: Usually only supports request-reply and not other interaction patterns such as notifications, request-async response, publish-subscribe, publish-async response; Reduced availability since the client and the service must be available for the duration of the interaction. Issues: Client needs to discover locations of service instances.",
+    "Related Patterns": "Alternative patterns: Domain-specific protocol, Messaging. Supporting patterns: Externalized configuration (supplies logical network location), Client-side discovery, Server-side discovery (to locate service instances), Circuit Breaker (to improve reliability).",
+    "Uses": "Examples include REST, gRPC, Apache Thrift. The provided code snippet demonstrates a `RegistrationServiceProxy` making a REST request using Spring Framework's `RestTemplate`.",
+    "Thinking": "The text explicitly introduces 'Pattern Remote Procedure Invocation (RPI)' with dedicated sections for Context, Problem, Solution, Resulting context (benefits, drawbacks, issues), and Related patterns. This structured presentation clearly identifies it as a true Microservices design pattern."
+  }
+]

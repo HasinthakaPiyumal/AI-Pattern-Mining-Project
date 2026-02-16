@@ -65,9 +65,9 @@ def extract_patterns_from_text(text):
     iter_2 = llm.invoke(prompt_2.format(text=text, extracted_patterns=iter_1.content))
     pbar.update(1)
 
-    # pbar.set_description("Stage 3: Pattern Refinement II")
-    # iter_3 = llm.invoke(prompt_2.format(text=text, extracted_patterns=iter_2.content))
-    # pbar.update(1)
+    pbar.set_description("Stage 3: Pattern Refinement II")
+    iter_3 = llm.invoke(prompt_2.format(text=text, extracted_patterns=iter_2.content))
+    pbar.update(1)
 
     pbar.close()
     return parse_json_safe(iter_2.content)

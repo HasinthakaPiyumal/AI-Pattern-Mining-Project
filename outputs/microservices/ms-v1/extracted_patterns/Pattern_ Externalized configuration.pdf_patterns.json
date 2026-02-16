@@ -1,0 +1,32 @@
+[
+  {
+    "Pattern Name": "Externalized configuration",
+    "Problem": "How to enable a service to run in multiple environments without modification",
+    "Context": "An application typically uses one or more infrastructure and 3rd party services. Examples of infrastructure services include a Service registry, a message broker, and a database server. Examples of 3rd party services include payment processing, email, and messaging etc.",
+    "Solution": "Externalize all application configuration including the database credentials and network location. On startup, a service reads the configuration from an external source (e.g., OS environment variables etc.).",
+    "Result": "The application runs in multiple environments without modification and/or recompilation. An issue is how to ensure that when an application is deployed, the supplied configuration matches what is expected.",
+    "Related Patterns": "Serverside service discovery, Client-side service discovery",
+    "Uses": "Spring Boot externalized configuration, OS environment variables, property files, command line arguments, RegistrationServiceProxy from the Microservices Example application.",
+    "Thinking": "This pattern is explicitly defined with clear sections for Problem, Context, Solution, and Result, which are hallmarks of a well-described design pattern. The text also tags it as 'pattern' and 'service design', confirming its nature as a design pattern relevant to microservices."
+  },
+  {
+    "Pattern Name": "Serverside service discovery",
+    "Problem": "how a service knows the network location of other application services",
+    "Context": "",
+    "Solution": "",
+    "Result": "",
+    "Related Patterns": "Client-side service discovery",
+    "Uses": "",
+    "Thinking": "This is explicitly named as a 'service discovery pattern' and its problem is stated in the text. However, the provided text does not elaborate on its specific Context, Solution, Result, or Uses."
+  },
+  {
+    "Pattern Name": "Client-side service discovery",
+    "Problem": "how a service knows the network location of other application services",
+    "Context": "",
+    "Solution": "",
+    "Result": "",
+    "Related Patterns": "Serverside service discovery",
+    "Uses": "",
+    "Thinking": "This is explicitly named as a 'service discovery pattern' and its problem is stated in the text. However, the provided text does not elaborate on its specific Context, Solution, Result, or Uses."
+  }
+]

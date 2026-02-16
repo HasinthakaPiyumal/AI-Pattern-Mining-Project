@@ -1,5 +1,5 @@
 from config.settings import Config
-Config(tag="all v2",run_output="20260126_014938 - Run ")
+Config(tag="microservices",run_output="ms-v1")
 
 from stages.patterns_embedding import main as embed_patterns
 

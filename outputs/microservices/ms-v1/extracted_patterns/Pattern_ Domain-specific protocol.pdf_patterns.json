@@ -1,0 +1,12 @@
+[
+  {
+    "Pattern Name": "Domain-specific protocol",
+    "Problem": "Services in a microservice architecture need to handle requests from clients and collaborate with other services, requiring an interprocess communication protocol.",
+    "Context": "You have applied the Microservice architecture pattern. Services must handle requests from the applications' clients. Furthermore, services must sometimes collaborate to handle those requests. They must use an interprocess communication protocol.",
+    "Solution": "Use a domain-specific protocol for interservice communication.",
+    "Result": "",
+    "Related Patterns": "Messaging, RPI",
+    "Uses": "For defining the interprocess communication mechanism between microservices, especially when the communication needs are specific to the domain. Examples include email protocols (SMTP, IMAP) and media streaming protocols (RTMP, HLS, HDS).",
+    "Thinking": "The text explicitly labels 'Pattern Domainspecific protocol' and provides dedicated sections for its Context, Solution, and Related Patterns, clearly defining it as a microservices design pattern within the provided content."
+  }
+]

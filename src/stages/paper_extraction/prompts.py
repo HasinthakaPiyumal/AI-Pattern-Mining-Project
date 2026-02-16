@@ -2,10 +2,12 @@
 # 01 Prompt Templates for Pattern Extraction
 #################################################################################################
 
-optimized_prompt = """
-You are an AI design pattern mining expert.
+PATTERN_TYPE = "Microservices"
 
-Extract all **true AI design patterns** mentioned in the following research text. Ignore general software engineering, DevOps, or data engineering patterns.
+optimized_prompt = f"""
+You are an {PATTERN_TYPE} design pattern mining expert.
+
+Extract all **true {PATTERN_TYPE} design patterns** mentioned in the following research text.
 
 For each pattern, include:
 - Pattern Name :str
@@ -14,27 +16,13 @@ For each pattern, include:
 - Solution :str
 - Result :str
 - Related Patterns :str
-- Category :str
 - Uses: str
-- Thinking: Explain briefly how you identified this as an AI design pattern from the text.
-
-Categories field must be one of the following: 
-1. Classical AI
-2. Generative AI
-3. Agentic AI
-4. Prompt Design
-5. MLOps (only if specific to ML workflows, not general deployment)
-6. AI–Human Interaction
-7. LLM-specific
-8. Tools Integration
-9. Knowledge & Reasoning
-10. Planning
-11. Personalization
+- Thinking: Explain briefly how you identified this as an {PATTERN_TYPE} design pattern from the text.
 
 Return only a JSON array. Do not include markdown, extra text, or commentary.
 
 Text:
-{text}
+{'{text}'}
 """
 
 
@@ -59,9 +47,9 @@ Extracted patterns so far:
 # 03 Summary Prompt
 #################################################################################################
 
-summary_prompt = """
-You are an expert in AI design patterns. 
-Your task is to combine the following AI design patterns into a single, unified pattern. 
+summary_prompt = f"""
+You are an expert in {PATTERN_TYPE} design patterns. 
+Your task is to combine the following {PATTERN_TYPE} design patterns into a single, unified pattern. 
 Use information from all patterns to produce one coherent pattern that includes:
 
 - Pattern Name :str
@@ -76,7 +64,7 @@ Use information from all patterns to produce one coherent pattern that includes:
 Return strictly as JSON. Do not add extra text, explanations, or formatting.
 
 Patterns to combine:
-{patterns_text}
+{'{patterns_text}'}
 """
 
 
@@ -85,12 +73,12 @@ Patterns to combine:
 # 04 Merge Prompt
 #################################################################################################
 
-merge_prompt = """
-Combine all the following JSON arrays of AI patterns into one deduplicated, coherent JSON array.
+merge_prompt = f"""
+Combine all the following JSON arrays of {PATTERN_TYPE} patterns into one deduplicated, coherent JSON array.
 If multiple patterns describe similar problems or solutions, merge them carefully.
 Return only the final JSON array.
 
 All extracted pattern lists:
-{partial_jsons}
+{'{partial_jsons}'}
 """
 #################################################################################################

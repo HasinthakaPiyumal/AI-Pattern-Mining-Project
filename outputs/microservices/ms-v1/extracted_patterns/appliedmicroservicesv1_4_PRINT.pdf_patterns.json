@@ -1,0 +1,362 @@
+[
+  {
+    "Pattern Name": "API Proxy Pattern",
+    "Problem": "Clients need a single, consistent entry point to interact with multiple Microservices, and there's a need to manage routing and potentially cross-cutting concerns.",
+    "Context": "When you have a suite of Microservices and clients (e.g., UI applications) that need to consume their functionalities, but direct client-to-service communication is undesirable due to complexity, security, or performance concerns.",
+    "Solution": "Introduce an API Proxy (also referred to as API Gateway) as a single entry point for all client requests. This proxy routes requests to the appropriate backend Microservice, potentially performing aggregation, authentication, or other cross-cutting tasks.",
+    "Result": "Simplifies client interaction by abstracting the underlying Microservices architecture, centralizes routing logic, enables service aggregation and orchestration, and can remove the need for client-side service discovery in simpler systems.",
+    "Related Patterns": "Orchestrated API Pattern, Server-Side Discovery Pattern",
+    "Uses": "Routing UI components and services, service aggregation and orchestration, handling service-to-service communication, providing a REST API interface for external clients.",
+    "Thinking": "Explicitly listed under 'API Patterns' in Chapter 11 and described with its function in multiple chapters (4, 5, 8, 11) with accompanying figures (e.g., Figure 12, 13, 22)."
+  },
+  {
+    "Pattern Name": "Orchestrated API Pattern",
+    "Problem": "A single client request requires data or actions from multiple underlying Microservices, and the client should not be burdened with coordinating these interactions itself.",
+    "Context": "When a client needs a composite response or needs to trigger a complex workflow that spans several Microservices, and you want to simplify the client's interaction model.",
+    "Solution": "Implement an Orchestrated API, often as part of an API Gateway, that receives a client request, orchestrates calls to multiple backend Microservices, aggregates their responses, and returns a single, coherent response to the client.",
+    "Result": "Simplifies client interaction by providing a single API endpoint that handles complex multi-service workflows, reduces network chattiness between client and services, and centralizes business logic related to cross-service coordination.",
+    "Related Patterns": "API Proxy Pattern",
+    "Uses": "When a client needs a composite response from multiple services (e.g., a dashboard view), or when complex workflows involving multiple services need to be exposed as a single API endpoint.",
+    "Thinking": "Explicitly listed under 'API Patterns' in Chapter 11 and shown in Figure 23. The concept of 'orchestration' is mentioned in relation to the API Gateway in Chapter 5."
+  },
+  {
+    "Pattern Name": "Client-Side Discovery Pattern",
+    "Problem": "Clients (or other services) need to find the network location (IP address and port) of available service instances in a dynamic Microservices environment where instances are frequently scaled, started, or stopped.",
+    "Context": "In a distributed system where service instances are ephemeral and their network locations are not static, and clients are capable of implementing discovery logic.",
+    "Solution": "The client is responsible for querying a Service Registry to retrieve a list of available service instances. The client then uses a load-balancing algorithm to select an instance from the list and sends the request directly to that instance.",
+    "Result": "Clients can dynamically find and connect to service instances, enabling flexible scaling and deployment. However, it adds discovery logic to each client.",
+    "Related Patterns": "Service Registry Pattern, Server-Side Discovery Pattern (alternative)",
+    "Uses": "When clients are intelligent enough to handle service discovery and load balancing, often used in conjunction with a Service Registry like Eureka or Consul.",
+    "Thinking": "Explicitly listed under 'Discovery Patterns' in Chapter 11 and described with its mechanism and purpose, accompanied by Figure 24."
+  },
+  {
+    "Pattern Name": "Server-Side Discovery Pattern",
+    "Problem": "Clients need to find the network location of service instances, but the discovery logic should be abstracted away from the client, often through an intermediary.",
+    "Context": "Similar to client-side discovery, but when you want to simplify clients by offloading discovery responsibilities to an intermediary component, such as a load balancer or API Gateway.",
+    "Solution": "A router, load balancer, or API Gateway queries the Service Registry to get available service instances. The client makes requests to this intermediary, which then routes the request to an appropriate service instance without the client knowing the specific instance's location.",
+    "Result": "Clients are simplified as they don't need to implement discovery logic. Discovery and load balancing are centralized, making it easier to manage and update.",
+    "Related Patterns": "Service Registry Pattern, Client-Side Discovery Pattern (alternative), API Proxy Pattern (often the intermediary)",
+    "Uses": "When clients should not be burdened with service discovery logic, or when a centralized entry point (like an API Gateway) is already in place.",
+    "Thinking": "Explicitly listed under 'Discovery Patterns' in Chapter 11 and described with its mechanism and purpose, accompanied by Figure 25."
+  },
+  {
+    "Pattern Name": "Service Registry Pattern",
+    "Problem": "How to maintain an up-to-date database of available service instances and their network locations in a dynamic Microservices environment?",
+    "Context": "In a distributed system where service instances are frequently started, stopped, or scaled, and clients or intermediaries need to discover their locations.",
+    "Solution": "Implement a Service Registry, which is a database containing the network locations of all available service instances. Service instances register themselves (or are registered by a third party) upon startup and de-register upon shutdown. Clients or routers query this registry to find service instances.",
+    "Result": "Provides a centralized, dynamic, and up-to-date source of truth for service locations, enabling dynamic service discovery and flexible deployment.",
+    "Related Patterns": "Client-Side Discovery Pattern, Server-Side Discovery Pattern, Self-Registration Pattern, Third-Party Registration Pattern",
+    "Uses": "Essential component for dynamic service discovery in Microservices architectures, often implemented using tools like ZooKeeper, etcd, or Consul.",
+    "Thinking": "Explicitly listed under 'Registration Patterns' in Chapter 11 and described as a core component for discovery, accompanied by Figure 26."
+  },
+  {
+    "Pattern Name": "Self-Registration Pattern",
+    "Problem": "How do service instances register their network locations with the Service Registry without external intervention?",
+    "Context": "When service instances are designed to be aware of the Service Registry and capable of managing their own registration lifecycle.",
+    "Solution": "Service instances register themselves with the Service Registry upon startup, providing their network location and other metadata. They typically send periodic heartbeats to keep their registration current and de-register themselves upon graceful shutdown.",
+    "Result": "Service instances manage their own registration lifecycle, reducing external dependencies for registration. This simplifies deployment and management from an operational perspective.",
+    "Related Patterns": "Service Registry Pattern, Third-Party Registration Pattern (alternative)",
+    "Uses": "Common approach for services to announce their availability, especially when services are built with frameworks that integrate with service registries.",
+    "Thinking": "Explicitly listed under 'Registration Patterns' in Chapter 11 and described, accompanied by Figure 27."
+  },
+  {
+    "Pattern Name": "Third-Party Registration Pattern",
+    "Problem": "How to register service instances with a Service Registry when the service instances themselves cannot or should not handle registration logic (e.g., legacy services, platform-managed services)?",
+    "Context": "When service instances are 'legacy,' lack built-in registration capabilities, or when registration is managed by an external agent (e.g., a deployment platform or orchestrator).",
+    "Solution": "An external agent (e.g., a deployer, orchestrator like Kubernetes, or a dedicated registrar service) is responsible for registering and de-registering service instances with the Service Registry. This agent monitors the service instances and updates the registry accordingly.",
+    "Result": "Service instances are decoupled from registration logic, simplifying their implementation. Centralizes registration management, which can be beneficial in highly automated deployment environments.",
+    "Related Patterns": "Service Registry Pattern, Self-Registration Pattern (alternative)",
+    "Uses": "For services that cannot self-register, or in environments where a platform (like Kubernetes or Mesos) manages the service lifecycle and integrates with a service registry.",
+    "Thinking": "Explicitly listed under 'Registration Patterns' in Chapter 11 and described, accompanied by Figure 28."
+  },
+  {
+    "Pattern Name": "Multiple Service Instances per Host Pattern",
+    "Problem": "How to efficiently utilize host resources when running multiple service instances, especially for smaller services or when resource isolation is not paramount?",
+    "Context": "When you want to maximize resource utilization on a single physical or virtual host by running multiple instances of the same or different services, and the overhead of dedicated hosts per instance is too high.",
+    "Solution": "Run multiple instances of a service (or different services) on a single host. This can be achieved by running multiple processes directly on the OS, or by using lightweight isolation mechanisms like containers.",
+    "Result": "Higher resource utilization, potentially lower infrastructure costs, and simpler management for a smaller number of hosts. However, it offers weaker isolation between service instances.",
+    "Related Patterns": "Single Service Instance per Host Pattern (alternative), Service Instance per VM Pattern (alternative), Service Instance per Container Pattern (often an implementation)",
+    "Uses": "For smaller, less resource-intensive services, or in development/testing environments where resource efficiency is prioritized over strict isolation.",
+    "Thinking": "Explicitly listed under 'Instantiation Patterns' in Chapter 11 and described, accompanied by Figure 29."
+  },
+  {
+    "Pattern Name": "Single Service Instance per Host Pattern",
+    "Problem": "How to achieve strong isolation, dedicated resources, and simplified deployment/management for each service instance?",
+    "Context": "When strong isolation, dedicated resources, and simplified deployment/scaling are desired for each service instance, and the overhead of dedicated hosts is acceptable.",
+    "Solution": "Each service instance runs on its own dedicated host. This host can be a physical machine, a virtual machine (VM), or a container with dedicated resources.",
+    "Result": "Strong isolation between service instances, simplified resource allocation and monitoring, and easier troubleshooting. However, it can lead to higher resource overhead and potentially higher infrastructure costs.",
+    "Related Patterns": "Multiple Service Instances per Host Pattern (alternative), Service Instance per VM Pattern (a common implementation), Service Instance per Container Pattern (a common implementation)",
+    "Uses": "For critical services, or when strict resource isolation and predictable performance are required, often implemented using VMs or containers.",
+    "Thinking": "Explicitly listed under 'Instantiation Patterns' in Chapter 11 and described, accompanied by Figure 30."
+  },
+  {
+    "Pattern Name": "Service Instance per VM Pattern",
+    "Problem": "How to achieve strong isolation and a consistent runtime environment for each service instance using virtualization technology?",
+    "Context": "When using Virtual Machines (VMs) as the deployment unit and desiring strong isolation, a full operating system environment, and consistent deployment for each service instance.",
+    "Solution": "Each service instance is deployed within its own Virtual Machine. The VM provides a complete, isolated operating system environment for the service.",
+    "Result": "Strong isolation, consistent environment, simplified deployment (via VM images), and clear resource boundaries. However, it incurs higher resource overhead and slower startup times compared to containers.",
+    "Related Patterns": "Single Service Instance per Host Pattern (VM is a type of host), Service Instance per Container Pattern (alternative)",
+    "Uses": "Traditional virtualization environments, when strong isolation and a full OS environment per service are needed, or for services with specific OS dependencies.",
+    "Thinking": "Explicitly listed under 'Instantiation Patterns' in Chapter 11 and described, accompanied by Figure 31."
+  },
+  {
+    "Pattern Name": "Service Instance per Container Pattern",
+    "Problem": "How to achieve lightweight isolation, rapid deployment, and portability for each service instance using containerization technology?",
+    "Context": "When using containers (e.g., Docker) as the deployment unit and desiring lightweight, portable isolation, and efficient resource utilization for each service instance.",
+    "Solution": "Each service instance is packaged and deployed within its own container. The container provides a lightweight, isolated runtime environment that shares the host OS kernel.",
+    "Result": "Lightweight isolation, rapid startup, high portability across different environments, and efficient resource utilization. This is a modern and popular approach for Microservices deployment.",
+    "Related Patterns": "Single Service Instance per Host Pattern (container is a type of lightweight host), Service Instance per VM Pattern (alternative)",
+    "Uses": "Modern Microservices deployments leveraging Docker, Kubernetes, and other container orchestration platforms.",
+    "Thinking": "Explicitly listed under 'Instantiation Patterns' in Chapter 11 and described, accompanied by Figure 32. The text also mentions Docker in Chapter 9 as a container technology."
+  },
+  {
+    "Pattern Name": "Message Broker",
+    "Problem": "How to enable asynchronous communication and decouple services, especially for event-driven architectures or long-running processes, ensuring reliability and resilience?",
+    "Context": "When services need to communicate without direct coupling, allowing them to operate independently and handle failures gracefully, or when implementing event-driven interactions.",
+    "Solution": "Introduce a Message Broker (e.g., a message queue or topic) as an intermediary. Services communicate by sending messages to and receiving messages from the broker. The broker stores messages reliably until they can be processed by consuming services.",
+    "Result": "Asynchronous communication, increased decoupling between services, improved resilience (messages can be queued if a service is temporarily unavailable), easier integration, and support for event-driven architectures.",
+    "Related Patterns": "Command Query Responsibility Segregation (CQRS), Event-Driven Architecture",
+    "Uses": "Event-driven communication, command queuing, reliable asynchronous workflows, integrating services, ensuring 'ordered messages' (Chapter 4) and 'failsafe' operations (Chapter 5).",
+    "Thinking": "Explicitly listed under 'System Patterns' in Chapter 11 and described in multiple chapters (4, 5, 6, 11) with figures (e.g., Figure 5, 11, 33)."
+  },
+  {
+    "Pattern Name": "Command Query Responsibility Segregation (CQRS)",
+    "Problem": "How to optimize read and write operations when they have different scaling, performance, and data modeling requirements, or when a single data model becomes overly complex?",
+    "Context": "When an application has distinct requirements for handling commands (data modifications) and queries (data retrievals), and a single data model or database becomes a bottleneck or overly complex to manage both.",
+    "Solution": "Separate the model for updating information (the 'command' side) from the model for reading information (the 'query' side). This often involves using separate data stores optimized for each purpose, with changes from the command side propagated to the query side, typically asynchronously.",
+    "Result": "Optimized performance for reads and writes, independent scaling of read and write sides, simpler models for each side, increased flexibility in choosing appropriate data storage technologies, and improved system resilience.",
+    "Related Patterns": "Message Broker (often used to propagate changes between command and query sides)",
+    "Uses": "High-performance applications, complex domains where read and write operations are significantly different, event-sourcing architectures, and scenarios where 'scalable database backends' are needed (Chapter 2).",
+    "Thinking": "Explicitly listed under 'System Patterns' in Chapter 11 and described with its core concept and purpose, accompanied by Figure 34."
+  },
+  {
+    "Pattern Name": "Twelve-Factor App",
+    "Problem": "How to build robust, scalable, and maintainable applications that are suitable for deployment on modern cloud platforms, especially in a Microservices context.",
+    "Context": "Developing Microservices or any cloud-native application that needs to be independently deployable, scalable, and resilient, often across different environments.",
+    "Solution": "Adhere to the twelve principles (factors) for building software-as-a-service applications:\n1.  **Codebase**: One codebase tracked in revision control, many deploys.\n2.  **Dependencies**: Explicitly declare and isolate dependencies.\n3.  **Config**: Store config in the environment.\n4.  **Backing services**: Treat backing services as attached resources.\n5.  **Build, release, run**: Strictly separate build and run stages.\n6.  **Processes**: Execute the app as one or more stateless processes.\n7.  **Port binding**: Export services via port binding.\n8.  **Concurrency**: Scale out via the process model.\n9.  **Disposability**: Maximize robustness with fast startup and graceful shutdown.\n10. **Dev/prod parity**: Keep development, staging, and production as similar as possible.\n11. **Logs**: Treat logs as event streams.\n12. **Admin processes**: Run admin/management tasks as one-off processes.",
+    "Result": "Applications that are more portable, scalable, resilient, and easier to deploy and manage in cloud environments, aligning well with Microservices principles.",
+    "Related Patterns": "Service Instance per Container Pattern, Message Broker (for logs)",
+    "Uses": "Guiding principles for developing cloud-native applications, including Microservices, to ensure operational efficiency and scalability.",
+    "Thinking": "Explicitly listed as a 'System Pattern' in Chapter 11, with a direct reference to 'The Twelve Factors'. Chapter 3 also mentions Heroku's 'twelve factor' practices."
+  },
+  {
+    "Pattern Name": "Circuit Breaker",
+    "Problem": "How to prevent a distributed system from cascading failures when a service dependency is unavailable or performing poorly, and to allow the failing service time to recover?",
+    "Context": "When a service calls another service (or external resource) that might fail or become slow, and you want to prevent the calling service from being blocked indefinitely, exhausting its resources, or causing a ripple effect of failures.",
+    "Solution": "Implement a Circuit Breaker, which acts as a proxy for a remote service call. It monitors for failures (e.g., timeouts, errors). If failures exceed a predefined threshold, the circuit 'opens,' preventing further calls to the failing service for a period and returning an error immediately. After a timeout, it allows a limited number of calls to 'half-open' and test if the service has recovered.",
+    "Result": "Prevents cascading failures, improves resilience, provides graceful degradation for the calling service, and allows the failing service time to recover without being overwhelmed by continuous requests.",
+    "Related Patterns": "Bulkhead Pattern",
+    "Uses": "Protecting against failures in external service calls, database calls, or any remote dependency, ensuring 'failsafe' states for services (Chapter 8).",
+    "Thinking": "Explicitly listed under 'System Patterns' in Chapter 11 and described with its mechanism and purpose, accompanied by Figure 35."
+  },
+  {
+    "Pattern Name": "Bulkhead Pattern",
+    "Problem": "How to isolate failures or resource exhaustion in one part of a service or system to prevent them from affecting other parts, thereby improving overall resilience?",
+    "Context": "When a service has multiple dependencies or handles different types of requests, and a failure or overload related to one dependency or request type should not bring down the entire service or impact other functionalities.",
+    "Solution": "Isolate resources (e.g., thread pools, connection pools, memory) for each dependency or type of request within a service. This creates 'bulkheads' so that a failure or overload in one 'bulkhead' does not exhaust resources needed by others.",
+    "Result": "Improved fault isolation, increased resilience, prevents cascading failures within a service, and allows for graceful degradation of specific functionalities while others remain operational.",
+    "Related Patterns": "Circuit Breaker Pattern",
+    "Uses": "Isolating calls to different external services, separating different types of requests within a service (e.g., critical vs. non-critical), and managing 'dependency' risks (Chapter 8).",
+    "Thinking": "Explicitly listed under 'System Patterns' in Chapter 11 and described with its mechanism and purpose, accompanied by Figure 36."
+  },
+  {
+    "Pattern Name": "Database per Service",
+    "Problem": "How to ensure autonomy, independent deployment, and technology freedom for each Microservice, avoiding the coupling and bottlenecks of a shared monolithic database.",
+    "Context": "When decomposing a monolithic application or designing greenfield Microservices, where each service needs to manage its own data independently, potentially using different data storage technologies.",
+    "Solution": "Each Microservice owns its own private database. Other services can only access this data through the owning service's API, never directly. This allows each service to choose the most suitable database technology for its specific needs (e.g., relational, document, graph, key-value).",
+    "Result": "Increased service autonomy, independent scalability of data stores, freedom to choose the 'right tool for the job' (polyglot persistence), reduced coupling between services, and simplified data model evolution within each service.",
+    "Related Patterns": "Command Query Responsibility Segregation (CQRS)",
+    "Uses": "Fundamental principle for Microservices architecture to achieve loose coupling and independent evolution. Used when migrating from a monolithic database or designing new services.",
+    "Thinking": "Chapter 7 is dedicated to 'Data' and states: 'Each Microservice should have its own databases and the big win here is that with the isolation of a Microservice we gain advantages to using the right tool for the job'. It discusses the 'freedom' this provides and contrasts it with sharing data. This is a core Microservices architectural pattern, even if not explicitly named 'Database per Service' in Chapter 11's pattern list, it's a fundamental solution described in the book."
+  },
+  {
+    "Pattern Name": "Side-by-Side Versioning",
+    "Problem": "How to introduce breaking changes to a service API without forcing all clients to upgrade simultaneously, ensuring continuous availability and independent client evolution.",
+    "Context": "When a service needs to evolve and introduce a new, incompatible version of its API, but existing clients cannot (or should not) be upgraded at the exact same time.",
+    "Solution": "Deploy multiple versions of the same service (or different endpoints of the same service) concurrently. The old version continues to serve existing clients, while the new version serves new or upgraded clients. A router or API Gateway directs requests to the appropriate service version based on client-provided version information (e.g., in the URL, headers). The old version is deprecated and eventually decommissioned once all clients have migrated.",
+    "Result": "Allows for independent evolution of services and their clients, minimizes downtime during API changes, and provides a graceful migration path for clients.",
+    "Related Patterns": "API Proxy Pattern, Service Registry Pattern",
+    "Uses": "Managing breaking API changes, enabling clients to upgrade at their own pace, ensuring backward compatibility during transitions.",
+    "Thinking": "Chapter 8, 'Versioning', explicitly discusses 'keeping the old version and new version of the service running side-by-side' as the 'recommended scenario' and shows figures (Figure 17, 18) illustrating this. It describes the problem of 'breaking changes' and the solution of having 'two endpoints of the same service on different versions' or 'two services separately on different versions'. This clearly defines a pattern."
+  },
+  {
+    "Pattern Name": "API Proxy Pattern",
+    "Problem": "How do clients of Microservices access the individual services? Challenges include: Microservices granularity is often finer than client needs, different clients require different data, service instance numbers and locations change dynamically, and service partitioning should be hidden from clients.",
+    "Context": "Exposing services to various client systems (rich client, mobile, other services) where each client type may expect different data, load, scalability needs, and service collections.",
+    "Solution": "The API Gateway acts as a single entry point for all access to the Microservices. It can proxy/route individual requests to specific service instances and can implement security measures.",
+    "Result": "Benefits: Hides the fine-grained nature and partitioning of microservices from clients, allows for tailored data responses for different client types, and manages dynamic changes in service instances. Drawbacks: Implied complexity of managing the gateway itself.",
+    "Related Patterns": "Depends on either the Client-side discovery pattern or Server-side discovery pattern for routing requests.",
+    "Uses": "Exposing Microservices to diverse client types (e.g., native mobile, HTML5 browsers) with varying requirements and abstracting the underlying service structure.",
+    "Thinking": "This is explicitly named 'API PROXY PATTERN' under 'API PATTERNS' in the Microservices chapter, directly addressing client access challenges specific to Microservices architectures."
+  },
+  {
+    "Pattern Name": "Orchestrated API Pattern",
+    "Problem": "Microservices granularity is often more fine-grained than what a client would need, different clients need aggregated data, and the partitioning of services should be hidden from clients.",
+    "Context": "When an API needs to combine and orchestrate access to multiple backend services, similar to a service dependency, but with a clear workflow or orchestration requirement.",
+    "Solution": "The Orchestrated API takes generically modeled services and data, then prepares them in a more targeted and specific way. It solves the aggregation problem and can implement client-specific needs.",
+    "Result": "Benefits: Solves the data aggregation problem, enables client-specific data customization, and hides service partitioning from clients. Drawbacks: More complex than the Proxy API pattern.",
+    "Related Patterns": "Can implement some client-specific needs more possible with the Proxy API pattern.",
+    "Uses": "Combining and orchestrating multiple fine-grained microservices to deliver aggregated or client-specific data, especially when a clear workflow is involved.",
+    "Thinking": "This is explicitly named 'ORCHESTRATED API PATTERN' under 'API PATTERNS' in the Microservices chapter, addressing the challenge of aggregating data from fine-grained microservices for client consumption."
+  },
+  {
+    "Pattern Name": "Client-Side Discovery Pattern",
+    "Problem": "In Microservices, service instances change dynamically, and their locations (host, port) cannot be hardcoded. A method is needed to dynamically connect to a service whose location is unstable.",
+    "Context": "Microservices expose data using protocols like REST, with host and port details that change dynamically, especially when hosted in cloud environments.",
+    "Solution": "The client queries a service registry to obtain the connection details (location) of a specific service instance, and then directly calls that service instance.",
+    "Result": "Benefits: Fewer network hops and lower latency compared to server-side discovery. Drawbacks: The client is tightly coupled directly to the service registry, and supporting many different client architectures can be challenging.",
+    "Related Patterns": "Service Registry Pattern (it queries it).",
+    "Uses": "Dynamically finding and connecting to microservice instances when their network locations are not stable or predictable.",
+    "Thinking": "This is explicitly named 'CLIENTSIDE DISCOVERY PATTERN' under 'DISCOVERY PATTERNS' in the Microservices chapter, providing a solution for dynamic service location in a distributed microservices environment."
+  },
+  {
+    "Pattern Name": "Server-Side Discovery Pattern",
+    "Problem": "Similar to client-side discovery, microservice instances change dynamically, and their locations cannot be hardcoded. A method is needed to dynamically connect to a service whose location is unstable.",
+    "Context": "Microservices expose data using protocols like REST, with host and port details that change dynamically, especially when hosted in cloud environments.",
+    "Solution": "The client queries a router or gateway, which in turn queries a service registry to get the location details of a service instance, and then routes the client's request to that instance.",
+    "Result": "Benefits: Easier to support as clients do not need direct registry awareness (only the router does), and it's commonly built into cloud infrastructure. Drawbacks: More network hops and higher latency than client-side discovery; challenging to build, replicate, and configure a router to scale if not part of cloud infrastructure.",
+    "Related Patterns": "Service Registry Pattern (it queries it), API Gateway (can act as the router/gateway).",
+    "Uses": "Dynamically finding and connecting to microservice instances, abstracting the discovery logic from the client by using an intermediary router or gateway.",
+    "Thinking": "This is explicitly named 'SERVERSIDE DISCOVERY PATTERN' under 'DISCOVERY PATTERNS' in the Microservices chapter, offering an alternative solution for dynamic service location in microservices."
+  },
+  {
+    "Pattern Name": "Service Registry Pattern",
+    "Problem": "Microservice instances are dynamic, and their specific locations (host, port, version) need to be stored and made available for clients or routers to find them.",
+    "Context": "A dynamic Microservices environment where services are frequently started, stopped, or crash, requiring a centralized catalog of available services.",
+    "Solution": "A catalog or database that stores service data, including specific instance details like host, port, and version. Services register themselves on startup and are removed on shutdown or crash. This registry is then used by clients or routers to dynamically find service instances.",
+    "Result": "Benefits: Allows for dynamic discovery of service instances. Drawbacks: Challenging to build a scalable and managed catalog from scratch if not part of cloud infrastructure; the registry itself needs a fixed, well-known address.",
+    "Related Patterns": "Client-Side Discovery Pattern, Server-Side Discovery Pattern (both use it), Self-Registration Pattern, Third-Party Registration Pattern (mechanisms to populate it).",
+    "Uses": "Storing and providing dynamic location and status details for microservice instances, enabling dynamic service discovery.",
+    "Thinking": "This is explicitly named 'SERVICE REGISTRY PATTERN' under 'REGISTRATION PATTERNS' in the Microservices chapter, serving as a foundational component for dynamic service discovery in microservices."
+  },
+  {
+    "Pattern Name": "Self-Registration Pattern",
+    "Problem": "How do microservices register themselves with a service registry to become accessible to clients in a dynamic environment?",
+    "Context": "A Microservices environment where services need to be dynamically discoverable, and the service itself is responsible for managing its registration status.",
+    "Solution": "The service itself implements the logic to register with the service registry upon startup, periodically renew its registration, and remove itself from the registry upon shutdown, crash, or reaching capacity.",
+    "Result": "Benefits: The service that registers itself has detailed knowledge of its own state. Drawbacks: Service registration logic is programmed in the same language as the service, leading to coupling with the service registry; services might not easily detect if they are at capacity.",
+    "Related Patterns": "Service Registry Pattern (it populates it).",
+    "Uses": "Microservices managing their own registration and de-registration lifecycle with a service registry.",
+    "Thinking": "This is explicitly named 'SELFREGISTRATION PATTERN' under 'REGISTRATION PATTERNS' in the Microservices chapter, describing a specific mechanism for how microservices make themselves discoverable."
+  },
+  {
+    "Pattern Name": "Third-Party Registration Pattern",
+    "Problem": "How do microservices register themselves with a service registry without embedding the registration logic directly within the service code?",
+    "Context": "A Microservices environment where services need to be dynamically discoverable, and there's a desire to separate the concerns of service logic from registration logic.",
+    "Solution": "A separate third-party component or service (a 'registrar') is responsible for monitoring other services and registering/de-registering them with the service registry. This registrar also handles renewing registrations periodically.",
+    "Result": "Benefits: The service code is less complex as registration is separated out; the registrar can more easily detect the health and capacity of the service. Drawbacks: The third-party registrar may not support all specific features (e.g., custom health checks); it introduces another system that needs to be installed, maintained, and configured if not part of existing infrastructure.",
+    "Related Patterns": "Service Registry Pattern (it populates it).",
+    "Uses": "Externalizing the registration logic for microservices to a dedicated component, often used in container orchestration platforms.",
+    "Thinking": "This is explicitly named 'THIRDPARTY REGISTRATION PATTERN' under 'REGISTRATION PATTERNS' in the Microservices chapter, offering an alternative mechanism for microservice registration."
+  },
+  {
+    "Pattern Name": "Multiple Service Instances Per Host Pattern",
+    "Problem": "How to efficiently instantiate and deploy multiple microservice instances on a single host, especially when services are written on different technology stacks, need independent scalability, and configurable resource usage.",
+    "Context": "Deploying microservices where resource efficiency is a concern, and services might share a language-level virtual machine (e.g., JVM).",
+    "Solution": "Multiple service instances are deployed on a single host, typically using a language-level virtual machine. Each service instance can be in a separate VM or share a single VM.",
+    "Result": "Benefits: More efficient than the single service instance per host pattern. Drawbacks: Risk of high memory usage; dependencies within JVMs can be a technical challenge; does not control the resource consumption of individual service instances; no isolation or controlled resource consumption if services share a JVM instance.",
+    "Related Patterns": "Contrasts with Single Service Instance Per Host Pattern.",
+    "Uses": "Deploying multiple microservice instances on a single host to maximize resource utilization, often within a shared runtime environment like a JVM.",
+    "Thinking": "This is explicitly named 'MULTIPLE SERVICE INSTANCES PER HOST PATTERN' under 'INSTANTIATION PATTERNS' in the Microservices chapter, describing a specific deployment strategy for microservices."
+  },
+  {
+    "Pattern Name": "Single Service Instance Per Host Pattern",
+    "Problem": "How to instantiate and deploy microservices with strong isolation and contained resource usage.",
+    "Context": "Deploying microservices where maximum isolation and controlled resource consumption are primary concerns, often on bare metal or dedicated virtual machines.",
+    "Solution": "Each service instance is deployed on its own dedicated host or physical machine.",
+    "Result": "Benefits: Services are isolated; resource usage and dependencies are contained. Drawbacks: Less efficient than the multiple services per host pattern due to underutilization of resources.",
+    "Related Patterns": "Contrasts with Multiple Service Instances Per Host Pattern.",
+    "Uses": "Deploying microservice instances with maximum isolation and dedicated resource control, often for critical services or those with specific hardware requirements.",
+    "Thinking": "This is explicitly named 'SINGLE SERVICE INSTANCE PER HOST PATTERN' under 'INSTANTIATION PATTERNS' in the Microservices chapter, describing a specific deployment strategy for microservices."
+  },
+  {
+    "Pattern Name": "Service Instance Per VM Pattern",
+    "Problem": "How to instantiate and deploy microservices with robust isolation, efficient resource usage, and leveraging existing cloud platform support for virtualization.",
+    "Context": "Deploying microservices where robust isolation and compatibility with cloud platform virtual machine infrastructure are important.",
+    "Solution": "Each service instance is deployed within its own virtual machine image.",
+    "Result": "Benefits: Services are isolated using a robust technology; more efficient with resources (compared to physical hosts); supported by many different cloud platforms; VMs allow for CPU and resource limitations. Drawbacks: VMs take up more space than containers; VMs take more time to set up.",
+    "Related Patterns": "Contrasts with Service Instance Per Container Pattern.",
+    "Uses": "Deploying microservice instances with robust isolation and leveraging cloud VM infrastructure for resource management and deployment.",
+    "Thinking": "This is explicitly named 'SERVICE INSTANCE PER VM PATTERN' under 'INSTANTIATION PATTERNS' in the Microservices chapter, describing a specific deployment strategy for microservices using virtualization."
+  },
+  {
+    "Pattern Name": "Service Instance Per Container Pattern",
+    "Problem": "How to instantiate and deploy microservices quickly, predictably, with isolation, and limited resource usage, leveraging modern container technology.",
+    "Context": "Deploying microservices where speed, predictability, isolation, and efficient resource usage are critical, using container technologies like Docker, Rocket, or Glassware 2.0.",
+    "Solution": "Each service instance is packaged and deployed within its own container.",
+    "Result": "Benefits: Scaling is straightforward and predictable; services are isolated; containers limit resource usage; containers are 100x faster than virtual machine images; containers use less memory than virtual machines. Drawbacks: Infrastructure support is not as fully featured as virtual machines; containers are newer technology thus not as proven; more challenging to configure with SSL or other security requirements.",
+    "Related Patterns": "Contrasts with Service Instance Per VM Pattern.",
+    "Uses": "Packaging and deploying microservice instances using containerization for rapid deployment, scaling, and resource isolation.",
+    "Thinking": "This is explicitly named 'SERVICE INSTANCE PER CONTAINER PATTERN' under 'INSTANTIATION PATTERNS' in the Microservices chapter, describing a modern and highly relevant deployment strategy for microservices."
+  },
+  {
+    "Pattern Name": "Message Broker",
+    "Problem": "How to manage the complexity of interactions between many distributed services and decouple them, preventing direct connections from getting out of hand.",
+    "Context": "A Microservices architecture with numerous distributed services that need to communicate without tight coupling, often asynchronously.",
+    "Solution": "Services do not connect directly but communicate via events using a Message Broker, typically employing a Publish/Subscribe connectivity mechanism.",
+    "Result": "Benefits: Decouples services from each other, reduces the complexity of service interactions, and allows for advanced functionality like persistent messages or guaranteed message order. Drawbacks: Risk of failure, requiring a scalable and reliable messaging system.",
+    "Related Patterns": "Often used in event-driven architectures.",
+    "Uses": "Decoupling communication between microservices, enabling asynchronous and event-driven interactions, and managing complex message flows.",
+    "Thinking": "This is explicitly named 'MESSAGE BROKER' under 'SYSTEM PATTERNS' in the Microservices chapter, describing a core communication pattern for distributed microservices."
+  },
+  {
+    "Pattern Name": "Command Query Responsibility Segregation (CQRS)",
+    "Problem": "How to improve performance, security, and maintenance in systems where read and write operations have different requirements, frequencies, and risks, and to decouple read logic from write logic.",
+    "Context": "Applications with a high ratio of reads to writes (e.g., 90% reads, 10% writes), where writing data is typically more validation-intensive and prone to risk.",
+    "Solution": "Separating the services responsible for reading data (queries) from the services responsible for writing data (commands).",
+    "Result": "Benefits: Decouples read logic from write logic, making the system more resilient; clearly shows how data access is used by the systems; easier to improve performance in complex systems. Drawbacks: More complicated interaction pattern; usually implemented using events and some complex interactions for writing and reading at the same time.",
+    "Related Patterns": "Usually implemented using events (often implying a Message Broker).",
+    "Uses": "Optimizing performance, security, and maintainability in microservices by separating read and write concerns, allowing independent scaling and optimization of each.",
+    "Thinking": "This is explicitly named 'COMMAND QUERY RESPONSIBILITY SEGREGATION CQRS' under 'SYSTEM PATTERNS' in the Microservices chapter, describing a data access pattern highly relevant to microservices."
+  },
+  {
+    "Pattern Name": "Twelve Factor App",
+    "Problem": "Building and deploying software delivered as a service, especially for cloud platforms, with best practices for maintenance and management.",
+    "Context": "Developing applications for the cloud, aiming for best-in-breed maintenance and management. Many of these factors align with Microservice principles.",
+    "Solution": "A methodology comprising twelve factors: Codebase, Dependencies, Config, Backing Services, Build/Release/Run, Processes, Port Binding, Concurrency, Disposability, Dev/Prod Parity, Logs, and Admin Processes.",
+    "Result": "Benefits: Provides best practices for cloud-native applications, aligning with Microservices principles, leading to easier maintenance and management. Drawbacks: Not explicitly listed, but implementing all factors can be a significant undertaking.",
+    "Related Patterns": "Many of these factors are part of Microservice principles.",
+    "Uses": "Guiding the development and deployment of cloud-native applications, including microservices, to ensure robustness, scalability, and maintainability.",
+    "Thinking": "Although described as a 'methodology,' the text explicitly lists it under 'SYSTEM PATTERNS' and details its 'factors' as a set of prescriptive guidelines for building services, which functions as a pattern language for cloud-native/microservices development."
+  },
+  {
+    "Pattern Name": "Circuit Breaker",
+    "Problem": "Preventing an entire system from going offline due to a broken or slow service, and avoiding long timeout issues that can lead to cascading failures.",
+    "Context": "Distributed systems where services can fail or become unresponsive, and cascading failures need to be prevented to maintain overall system stability.",
+    "Solution": "Detects a broken service and disables future calls to that system by bypassing it. A circuit breaker can have more advanced features where it intelligently resets itself.",
+    "Result": "Benefits: Prevents cascading failures, provides partial features or success, and avoids long timeout issues by quickly failing. Drawbacks: Should not be used as part of a desired use case but as a fault-tolerance mechanism.",
+    "Related Patterns": "Often used in conjunction with Bulkheads for resilience.",
+    "Uses": "Improving the fault tolerance and resilience of microservices by preventing calls to failing services and isolating failures.",
+    "Thinking": "This is explicitly named 'CIRCUIT BREAKER' under 'SYSTEM PATTERNS' in the Microservices chapter, describing a crucial fault-tolerance pattern for distributed microservices."
+  },
+  {
+    "Pattern Name": "Bulkheads",
+    "Problem": "Ensuring the availability of critical systems by containing failures, preventing a single failure from bringing down the entire system.",
+    "Context": "Distributed systems, especially microservices, where redundancy and isolation are needed at various levels to withstand failures and prevent cascading effects.",
+    "Solution": "Allocating resources (e.g., thread pools, service instances) to different components or services such that a failure in one does not impact others. It is commonly implemented using redundancy at the service level, thread pool level, router, or system level. Containers simplify implementation.",
+    "Result": "Benefits: Contains problems, prevents cascading failures, and improves the availability of critical systems. Drawbacks: The challenge lies in the coordination of instantiation and reservation of resources for the containers.",
+    "Related Patterns": "Often used with Circuit Breaker. Containers make implementation simpler.",
+    "Uses": "Implementing fault isolation and redundancy in microservices to enhance system availability and resilience by segmenting resources.",
+    "Thinking": "This is explicitly named 'BULKHEADS' under 'SYSTEM PATTERNS' in the Microservices chapter, describing a crucial fault-tolerance pattern for distributed microservices."
+  },
+  {
+    "Pattern Name": "Service Decomposition by Use Case (Verb)",
+    "Problem": "How to effectively partition a monolithic system or a new system into appropriately sized microservices, avoiding 'nanoservices' and respecting the Single Responsibility Principle.",
+    "Context": "When designing a Microservices architecture, especially when breaking down a larger system or defining new service boundaries.",
+    "Solution": "Decompose services based on business scenarios or use cases (verbs). Each service encapsulates a specific business function or workflow.",
+    "Result": "Easier to understand each service and functional requirements, faster to deploy, easier to test, easier and cheaper to scale, improved fault isolation.",
+    "Related Patterns": "Single Responsibility Principle (SRP), Bounded Context, Service Decomposition by Resource (Noun).",
+    "Uses": "Defining microservice boundaries around specific business capabilities or workflows, such as 'fulfillment' or 'payment' in an e-commerce system.",
+    "Thinking": "The text explicitly lists 'Partition services by Verb or usecase' as an 'approach to decomposition' for microservices on page 101, which is a fundamental design decision in microservices architecture."
+  },
+  {
+    "Pattern Name": "Service Decomposition by Resource (Noun)",
+    "Problem": "How to effectively partition a monolithic system or a new system into appropriately sized microservices, avoiding 'nanoservices' and respecting the Single Responsibility Principle.",
+    "Context": "When designing a Microservices architecture, especially when breaking down a larger system or defining new service boundaries.",
+    "Solution": "Decompose services based on resource types (nouns). Each service operates on a specific type of resource.",
+    "Result": "Easier to understand each service and functional requirements, faster to deploy, easier to test, easier and cheaper to scale, improved fault isolation.",
+    "Related Patterns": "Single Responsibility Principle (SRP), Bounded Context, Service Decomposition by Use Case (Verb).",
+    "Uses": "Defining microservice boundaries around specific data entities or resources, such as a 'user service' or 'account service' that manages user or account data.",
+    "Thinking": "The text explicitly lists 'Partition services by noun or resources' as an 'approach to decomposition' for microservices on page 101, which is a fundamental design decision in microservices architecture."
+  }
+]

@@ -1,0 +1,62 @@
+[
+  {
+    "Pattern Name": "API Composition",
+    "Problem": "How to implement queries in a microservice architecture that join data from multiple services.",
+    "Context": "You have applied the Microservices architecture pattern and the Database per Service pattern. As a result, it is no longer straightforward to implement queries that join data from multiple services.",
+    "Solution": "Implement a query by defining an an API Composer which invokes the services that own the data and performs an in-memory join of the results.",
+    "Result": "Benefits: It is a simple way to query data in a microservice architecture. Drawbacks: Some queries would result in inefficient in-memory joins of large datasets. Can lead to long call chains across multiple microservices and serving outdated data without wise use of caching. Can become a 'mess' if not carefully designed.",
+    "Related Patterns": "The Database per Service pattern creates the need for this pattern. The CQRS pattern is an alternative solution. An API Gateway often does API composition (though this is debated in the comments).",
+    "Uses": "Implementing queries that join data from multiple services, designing operations that span multiple services.",
+    "Thinking": "This pattern is explicitly introduced with the heading 'Pattern API Composition' and has dedicated sections for Context, Problem, Solution, Result, and Related Patterns, clearly defining it as a microservices design pattern within the text."
+  },
+  {
+    "Pattern Name": "Microservices Architecture",
+    "Problem": "Not explicitly stated in the text, but implied as the architectural style that introduces challenges like cross-service data queries and necessitates other patterns.",
+    "Context": "The overarching architectural style that has been applied, serving as the foundation for other patterns like Database per Service and API Composition.",
+    "Solution": "Not explicitly stated in the text, but generally involves structuring an application as a collection of loosely coupled services.",
+    "Result": "Not explicitly stated in the text, but implied to enable the application of other patterns like Database per Service, leading to challenges in data querying.",
+    "Related Patterns": "API Composition, Database per Service (mentioned as patterns applied within this architecture).",
+    "Uses": "The foundational architectural style for the system being discussed.",
+    "Thinking": "The text refers to 'the Microservices architecture pattern' as a prerequisite context for the API Composition pattern, indicating it is a fundamental pattern that has been applied."
+  },
+  {
+    "Pattern Name": "Database per Service",
+    "Problem": "Not explicitly stated as a problem solved by this pattern, but its consequence is a problem: 'it is no longer straightforward to implement queries that join data from multiple services'. The pattern itself addresses data coupling and promotes service autonomy.",
+    "Context": "You have applied the Microservices architecture pattern.",
+    "Solution": "Not explicitly stated in the text, but the name implies each service owns and manages its own database, separate from other services.",
+    "Result": "As a result, 'it is no longer straightforward to implement queries that join data from multiple services'.",
+    "Related Patterns": "Microservices Architecture (prerequisite). Creates the need for the API Composition pattern. CQRS is an alternative solution for the problems it creates regarding cross-service queries.",
+    "Uses": "Implied to achieve data independence and autonomy for individual microservices.",
+    "Thinking": "This pattern is explicitly referred to as 'the Database per service pattern' and its direct consequence, which necessitates other patterns like API Composition, is clearly described in the text."
+  },
+  {
+    "Pattern Name": "CQRS",
+    "Problem": "How to implement queries in a microservice architecture, especially complex or cross-service queries, efficiently and consistently, when direct joins are difficult or inefficient (as an alternative to API Composition).",
+    "Context": "Microservices architecture, where implementing queries that join data from multiple services is challenging due to patterns like Database per Service.",
+    "Solution": "Use events emitted by the services owning the data to maintain an up-to-date read-only replica of the data needed just to answer the cross-service queries. A dedicated service maintains this replica and answers queries from its own data store.",
+    "Result": "Benefits: Easier to achieve consistency and performance for cross-service queries, provides additional decoupling. Trades additional cost for storage. Drawbacks: Makes the overall system harder to understand and debug, increases network load, and introduces potential data staleness (small bit of data staleness in the time interval after an event was emitted but before it was handled).",
+    "Related Patterns": "API Composition (alternative solution). Mentioned alongside Saga in the context of designing operations that span multiple services.",
+    "Uses": "Implementing queries in a microservice architecture, particularly as an alternative to API Composition for complex or large dataset joins, designing operations that span multiple services.",
+    "Thinking": "The text explicitly mentions 'the CQRS pattern' as an 'alternative solution' to API Composition for implementing queries. A detailed description of a common CQRS implementation and its pros/cons is provided in the comments, directly relating to the pattern's solution and result."
+  },
+  {
+    "Pattern Name": "Saga",
+    "Problem": "Not explicitly stated in the text, but implied to be related to managing distributed operations or transactions that span multiple services, ensuring data consistency across multiple independent services.",
+    "Context": "Microservices architecture, where operations often need to span multiple independent services, and traditional distributed transactions (2PC) are not suitable.",
+    "Solution": "Not explicitly stated in the text, but generally involves a sequence of local transactions, where each transaction updates data within a single service and publishes an event to trigger the next step in the saga, with compensating transactions for failures.",
+    "Result": "Not explicitly stated in the text, but generally enables consistency for distributed operations.",
+    "Related Patterns": "API Composition, CQRS (mentioned together in the context of designing operations that span multiple services).",
+    "Uses": "Designing operations that span multiple services.",
+    "Thinking": "The text explicitly refers to 'the Saga pattern' in the context of a bootcamp that 'teaches you how to use the Saga API Composition and CQRS patterns to design operations that span multiple services', clearly identifying it as a microservices design pattern."
+  },
+  {
+    "Pattern Name": "API Gateway",
+    "Problem": "How to handle external client interactions with a microservices-based system, providing common cross-cutting concerns and a single entry point.",
+    "Context": "A microservices-based system with multiple services that need to be exposed to external clients.",
+    "Solution": "Implement an API Gateway that sits in front of the microservices system. It acts as a proxy for external clients, handling concerns like resiliency mechanisms, service discovery, authentication, authorization checks, and distributed tracing. It is independent of the particular business logic encapsulated in the microservices behind it.",
+    "Result": "Benefits: Provides a single entry point for external clients, centralizes cross-cutting concerns (resiliency, service discovery, authentication, authorization, distributed tracing). Drawbacks: Can become a bottleneck or a 'mess' if business logic is tied to it (e.g., API composition), needs to be treated like any other service from a development perspective.",
+    "Related Patterns": "API Composition (can be implemented by an API Gateway, though its suitability for this is debated).",
+    "Uses": "Exposing microservices to external clients, centralizing cross-cutting concerns for external interactions, providing a facade for a microservices system.",
+    "Thinking": "The text explicitly mentions 'An API Gateway apigatewayhtml often does API composition' and a commenter elaborates on its core responsibilities: 'They implement resiliency mechanisms service discovery authentication and authorization checks distributed tracing and other highly generic stuff for external clients of microservices based systems.' This clearly defines its role and functions as a distinct pattern in a microservices context."
+  }
+]

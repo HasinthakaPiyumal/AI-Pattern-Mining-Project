@@ -1,0 +1,22 @@
+[
+  {
+    "Pattern Name": "API Gateway",
+    "Problem": "The text does not explicitly state a problem for this pattern, but rather discusses its nature and placement within an architecture.",
+    "Context": "The text does not explicitly state a context for this pattern, but implies its use in microservice compositions where different communication channels might be needed.",
+    "Solution": "API Gateway patterns essentially are separate components that can be crafted manually or rely on wellestablished solutions like Kong.",
+    "Result": "This allows having such patterns as rstclass citizens in the MICO application model but only if the metamodel is extended with other forms of communication channels as discussed previously.",
+    "Related Patterns": "derivatives of the Gateway13 pattern such as Messaging Gateway 6",
+    "Uses": "model such patterns as API Gateway 33 or Microservice Chassis 33 as parts of the MICO application.",
+    "Thinking": "The text explicitly identifies 'API Gateway' as a 'microservice-centric pattern' (referencing C. Richardson's 'Microservices Patterns' [33]), distinguishing it from general Enterprise Integration Patterns. It describes it as a 'separate component' that can be a 'rstclass citizen' in a microservice application model."
+  },
+  {
+    "Pattern Name": "Microservice Chassis",
+    "Problem": "The text does not explicitly state a problem for this pattern.",
+    "Context": "The text does not explicitly state a context for this pattern, but describes it as an internal part of a microservice.",
+    "Solution": "The Microservice Chassis pattern has a similar effect as it is intended to be an internal part of a microservice hence also being encapsulated in Microservice entities.",
+    "Result": "hence also being encapsulated in Microservice entities.",
+    "Related Patterns": "Not explicitly stated in the text.",
+    "Uses": "model such patterns as API Gateway 33 or Microservice Chassis 33 as parts of the MICO application.",
+    "Thinking": "The text explicitly identifies 'Microservice Chassis' as a 'microservice-centric pattern' (referencing C. Richardson's 'Microservices Patterns' [33]), distinguishing it from general Enterprise Integration Patterns. It describes it as an 'internal part of a microservice' that would be 'encapsulated in Microservice entities'."
+  }
+]

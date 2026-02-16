@@ -1,0 +1,22 @@
+[
+  {
+    "Pattern Name": "Domain event",
+    "Problem": "How does a service publish an event when it updates its data?",
+    "Context": "A service often needs to publish events when it updates its data. These events might be needed, for example, to update a CQRS view or for the service to participate in a choreography-based saga which uses events for coordination.",
+    "Solution": "Organize the business logic of a service as a collection of DDD aggregates that emit domain events when they are created or updated. The service publishes these domain events so that they can be consumed by other services.",
+    "Result": "The service successfully publishes events when its data is updated, enabling other services to consume them for various purposes.",
+    "Related Patterns": "Saga, CQRS, Aggregate, Transactional outbox, Event sourcing",
+    "Uses": "To update a CQRS view, for coordination in a choreography-based saga, and to allow other services to react to data changes.",
+    "Thinking": "The text explicitly labels 'Domain event' as a 'Pattern' and provides dedicated, structured sections for 'Context', 'Problem', 'Solution', and 'Related patterns'. It also references 'My book Microservices patterns book', confirming its direct relevance and detailed description as a Microservices design pattern within this text."
+  },
+  {
+    "Pattern Name": "Transactional outbox",
+    "Problem": "How to reliably publish events from a service such that the event publication is atomic with the database transaction that updates the service's data?",
+    "Context": "A microservice needs to update its internal data and then publish corresponding domain events to other services or systems. It is crucial that these two operations (data update and event publication) succeed or fail together to maintain data consistency.",
+    "Solution": "The pattern 'is used to publish events as part of a database transaction.' This implies a mechanism where events are persisted within the same transaction as the business data, typically to an outbox table, before being asynchronously published.",
+    "Result": "Ensures that events are published reliably and atomically with the service's data updates, preventing inconsistencies that could arise from partial failures.",
+    "Related Patterns": "Domain event (it's a mechanism for reliably publishing domain events).",
+    "Uses": "To publish events as part of a database transaction, ensuring atomicity and reliability.",
+    "Thinking": "The text explicitly identifies 'Transactional outbox' as a 'pattern' and clearly states its core purpose: 'is used to publish events as part of a database transaction.' This describes a specific solution to a common challenge in microservices regarding reliable and atomic event publishing, making it a true Microservices design pattern."
+  }
+]

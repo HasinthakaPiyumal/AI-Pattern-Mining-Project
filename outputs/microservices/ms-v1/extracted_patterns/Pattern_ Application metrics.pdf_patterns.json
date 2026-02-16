@@ -1,0 +1,12 @@
+[
+  {
+    "Pattern Name": "Application metrics",
+    "Problem": "How to understand the behavior of an application and troubleshoot problems",
+    "Context": "You have applied the Microservice architecture pattern microserviceshtml",
+    "Solution": "Instrument a service to gather statistics about individual operations. Aggregate metrics in centralized metrics service which provides reporting and alerting. There are two models for aggregating metrics: push (the service pushes metrics to the metrics service) and pull (the metrics services pulls metrics from the service).",
+    "Result": "This pattern has the following benefits: It provides deep insight into application behavior. This pattern has the following drawbacks: Metrics code is intertwined with business logic making it more complicated. This pattern has the following issues: Aggregating metrics can require significant infrastructure.",
+    "Related Patterns": "Not explicitly mentioned as specific related patterns, but tagged under 'observability' and 'service design'.",
+    "Uses": "Instrumentation libraries (Coda Hale/Yammer Java Metrics Library, Prometheus client libraries), Metrics aggregation services (Prometheus, AWS Cloud Watch).",
+    "Thinking": "This is explicitly identified as 'Pattern Application metrics' in the text and is described with a clear structure including Problem, Context, Solution, and Result, which are hallmarks of a design pattern. It addresses a specific concern within a microservices environment (observability)."
+  }
+]

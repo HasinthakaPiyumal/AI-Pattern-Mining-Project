@@ -1,0 +1,12 @@
+[
+  {
+    "Pattern Name": "Service deployment platform",
+    "Problem": "How are services packaged and deployed?",
+    "Context": "You have applied the Microservice architecture pattern and architected your system as a set of services. Each service is deployed as a set of service instances for throughput and availability.",
+    "Solution": "Use a deployment platform which is automated infrastructure for application deployment. It provides a service abstraction which is a named set of highly available (e.g., load balanced) service instances.",
+    "Result": "Enables independent deployability and scalability of services, isolation of service instances, quick build and deployment, ability to constrain resources (CPU and memory), monitoring of service instance behavior, reliable deployment, and cost-effective deployment.",
+    "Related Patterns": "Service Registry, Server-Side discovery, Deployment Service per Container, Deployment Service per VM.",
+    "Uses": "Docker orchestration frameworks (e.g., Docker swarm mode, Kubernetes), Serverless platforms (e.g., AWS Lambda), PaaS (e.g., Cloud Foundry, AWS Elastic Beanstalk).",
+    "Thinking": "This was identified as a true Microservices design pattern because the text explicitly labels 'Pattern Service deployment platform' and then provides dedicated sections for its 'Context', 'Problem', 'Solution', 'Examples' (which map to 'Uses'), and 'Related patterns', fitting the requested pattern structure. The 'Forces' section was used to derive the 'Result' of applying the solution."
+  }
+]

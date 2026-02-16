@@ -1,0 +1,12 @@
+[
+  {
+    "Pattern Name": "Idempotent Consumer",
+    "Problem": "How does a message consumer handle duplicate messages correctly?",
+    "Context": "In an enterprise application, it's usually a good idea to use a message broker that guarantees at-least-once delivery. At-least-once delivery guarantees that a message broker will deliver a message to a consumer even if errors occur. One side effect, however, is that the consumer can be invoked repeatedly for the same message. Consequently, a consumer must be idempotent; the outcome of processing the same message repeatedly must be the same as processing the message once. If a consumer is not idempotent, multiple invocations can cause bugs. For example, a consumer of an AccountDebited message that subtracts the debit amount from the current balance would calculate the incorrect balance.",
+    "Solution": "Make a consumer idempotent by having it record the IDs of processed messages in the database. When processing a message, a consumer can detect and discard duplicates by querying the database. There are a couple of different places to store the message IDs. One option is for the consumer to use a separate PROCESSEDMESSAGES table. The other option is for the consumer to store the IDs in the business entities that it creates or updates. Here's how a consumer can use the PROCESSEDMESSAGES table: After starting the database transaction, the message handler inserts the message's ID into the PROCESSEDMESSAGE table. Since the subscriberId, messageID is the PROCESSEDMESSAGE table's primary key, the INSERT will fail if the message has been already processed successfully. The message handler can then rollback the transaction and ignore the message.",
+    "Result": "The consumer becomes idempotent, meaning the outcome of processing the same message repeatedly is the same as processing the message once, thereby preventing bugs caused by duplicate message processing (e.g., incorrect account balances).",
+    "Related Patterns": "None explicitly mentioned as other patterns.",
+    "Uses": "The Eventuate framework implements this pattern.",
+    "Thinking": "This was identified as a Microservices design pattern because the text explicitly labels it as 'Pattern Idempotent Consumer' and provides a structured description including Context, Problem, and Solution, which are standard components of a design pattern definition. The problem it addresses (handling duplicate messages from a message broker) is a common challenge in distributed systems and microservices architectures."
+  }
+]

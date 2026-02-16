@@ -1,0 +1,12 @@
+[
+  {
+    "Pattern Name": "Messaging",
+    "Problem": "How do services in a microservice architecture communicate?",
+    "Context": "You have applied the Microservice architecture pattern. Services must handle requests from client applications and often collaborate to handle those requests. Consequently, they must use an interprocess communication protocol.",
+    "Solution": "Use asynchronous messaging for interservice communication. Services communicate by exchanging messages over messaging channels. This includes several styles of asynchronous communication such as Request/response, Notifications, Request/asynchronous response, Publish/subscribe, and Publish/asynchronous response.",
+    "Result": "Benefits: Loose runtime coupling (decouples message sender from consumer), improved availability (message broker buffers messages until consumer can process them), supports a variety of communication patterns. Drawbacks: Additional complexity of the message broker, which must be highly available. Issues: Request/reply-style communication is more complex.",
+    "Related Patterns": "The Saga pattern and CQRS pattern use messaging. The Transactional Outbox pattern enables messages to be sent as part of a database transaction. The Externalized configuration pattern supplies logical message channel names and the location of the message broker. The Domainspecific protocol pattern and RPI pattern are alternative patterns.",
+    "Uses": "Interservice communication, service API, service design, publishing events (e.g., 'Order Created' event).",
+    "Thinking": "The text explicitly labels 'Messaging' as a 'Pattern' and provides a comprehensive description following a standard pattern structure, including Problem, Context, Solution, Result, and Related Patterns. This clearly identifies it as a true Microservices design pattern described within the provided text."
+  }
+]

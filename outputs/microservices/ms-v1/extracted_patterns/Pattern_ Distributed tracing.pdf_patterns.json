@@ -1,0 +1,12 @@
+[
+  {
+    "Pattern Name": "Distributed tracing",
+    "Problem": "How to understand the behavior of an application and troubleshoot problems",
+    "Context": "You have applied the Microservice architecture pattern. Requests often span multiple services. Each service handles a request by performing one or more operations (e.g., database queries, publishes messages, etc.).",
+    "Solution": "Instrument services with code that:\n- Assigns each external request a unique external request id.\n- Passes the external request id to all services that are involved in handling the request.\n- Includes the external request id in all log messages.\n- Records information (e.g., start time, end time) about the requests and operations performed when handling an external request in a centralized service.\nThis instrumentation might be part of the functionality provided by a Microservice Chassis framework.",
+    "Result": "Benefits:\n- Provides useful insight into the behavior of the system, including the sources of latency.\n- Enables developers to see how an individual request is handled by searching across aggregated logs for its external request id.\nIssues:\n- Aggregating and storing traces can require significant infrastructure.",
+    "Related Patterns": "Log aggregation",
+    "Uses": "The Microservices Example application uses Spring Boot and Spring Cloud as the Microservice chassis. Spring Cloud Sleuth provides support for distributed tracing by instrumenting Spring components to gather trace information and delivering it to a Zipkin Server via RabbitMQ. Zipkin Server is a Spring Boot application that gathers and displays traces.",
+    "Thinking": "The text explicitly labels 'Distributed tracing' as a 'Pattern' and provides dedicated sections for 'Context', 'Problem', 'Solution', 'Resulting Context' (which covers benefits and issues), and 'Related patterns'. It also includes an 'Examples' section detailing its practical application, all of which are hallmarks of a well-defined design pattern description."
+  }
+]

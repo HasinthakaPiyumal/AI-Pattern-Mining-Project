@@ -1,0 +1,12 @@
+[
+  {
+    "Pattern Name": "Anticorruption layer",
+    "Problem": "How do you prevent a legacy monoliths domain model from polluting the domain model of a new service",
+    "Context": "Integrating a new service (potentially a microservice) with an existing legacy monolith, where the legacy system has a distinct domain model that should not directly influence or corrupt the new service's domain model.",
+    "Solution": "Define an anticorruption layer which translates between the two domain models",
+    "Result": "Not explicitly stated in the text.",
+    "Related Patterns": "Not explicitly stated in the text.",
+    "Uses": "Used when integrating a new service with a legacy system to protect the new service's domain model from the legacy system's model by providing a translation layer.",
+    "Thinking": "The text explicitly labels 'Anticorruption layer' as a 'Pattern' and provides a clear problem and solution. The problem statement directly addresses the integration of a 'new service' with a 'legacy monolith,' which is a common scenario in microservices adoption and modernization efforts. The mention of 'domain model' further aligns it with architectural concerns relevant to microservices."
+  }
+]

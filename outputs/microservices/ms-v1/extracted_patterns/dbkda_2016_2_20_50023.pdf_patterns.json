@@ -1,0 +1,62 @@
+[
+  {
+    "Pattern Name": "The API Gateway Pattern",
+    "Problem": "Clients need to interact with multiple fine-grained microservices, different clients have different data needs and network performance, and dynamic service instances/locations should be hidden from clients.",
+    "Context": "Microservice architecture with fine-grained APIs and dynamic service instances.",
+    "Solution": "An API gateway acts as a single entry point for all clients, proxying/routing requests to appropriate services, fanning out to multiple services, exposing different APIs per client, and potentially implementing security.",
+    "Result": "Benefits: Single entry point, handles fine-grained APIs, client-specific APIs, security. Drawbacks: Increased complexity (another moving part), increased response time (additional network hop, though often insignificant).",
+    "Related Patterns": "",
+    "Uses": "General microservice architectures.",
+    "Thinking": "The text explicitly names 'The API Gateway pattern' and provides a clear description of its problem, context, solution, and results (benefits and drawbacks), fitting the definition of a design pattern."
+  },
+  {
+    "Pattern Name": "Clientside Discovery Pattern",
+    "Problem": "In virtualized or containerized microservice environments, the number and locations of service instances change dynamically, requiring clients to make requests to a transient set of instances.",
+    "Context": "Microservice applications in dynamic environments where service instances are transient.",
+    "Solution": "Clients obtain the location of a service instance by querying a Service Registry which knows the locations of all service instances.",
+    "Result": "Benefits: Fewer moving parts and network hops compared to Serverside Discovery. Drawbacks: Clients are coupled to the Service Registry, and client-side service discovery logic must be implemented for each programming language/framework.",
+    "Related Patterns": "Service Registry (used by it), Serverside Discovery (alternative).",
+    "Uses": "General microservice architectures.",
+    "Thinking": "The text explicitly names 'Clientside Discovery pattern' and details its problem, context, solution, and results (benefits and drawbacks), identifying it as a microservices design pattern."
+  },
+  {
+    "Pattern Name": "Serverside Discovery Pattern",
+    "Problem": "In virtualized or containerized microservice environments, the number and locations of service instances change dynamically, requiring clients to make requests to a transient set of instances.",
+    "Context": "Microservice applications in dynamic environments where service instances are transient.",
+    "Solution": "When making a request to a service, the client makes a request via a router (aka load balancer) that runs at a well-known location. The router queries a service registry (which might be built into the router) and forwards the request to an available service instance.",
+    "Result": "Benefits: Simpler client code (does not have to deal with discovery). Drawbacks: More network hops are required.",
+    "Related Patterns": "Service Registry (used by it), Clientside Discovery (alternative).",
+    "Uses": "The proposed 'The Database is the Service' pattern uses this for routing client requests.",
+    "Thinking": "The text explicitly names 'Serverside Discovery pattern' and details its problem, context, solution, and results (benefits and drawbacks), identifying it as a microservices design pattern."
+  },
+  {
+    "Pattern Name": "The Service Registry Pattern",
+    "Problem": "To track the instances and locations of services in a dynamic microservice environment so that clients and/or routers can find available instances.",
+    "Context": "Microservice architectures where service instances are dynamic and need to be discoverable.",
+    "Solution": "A service registry acts as a database of services, their instances, and locations. Service instances register with the service registry on startup and deregister on shutdown.",
+    "Result": "Benefits: Enables dynamic service discovery. Drawbacks: Another infrastructure component to set up, configure, and manage; it is a critical system component requiring high availability.",
+    "Related Patterns": "Clientside Discovery, Serverside Discovery (both query the Service Registry).",
+    "Uses": "General microservice architectures.",
+    "Thinking": "The text explicitly names 'The Service Registry Pattern' and describes its function, context, and drawbacks, clearly defining it as a microservices design pattern."
+  },
+  {
+    "Pattern Name": "The Database per Service Pattern",
+    "Problem": "To manage persistent data for microservices in a way that ensures data privacy, independent scaling, and avoids tight coupling or shared database bottlenecks.",
+    "Context": "Microservice architecture where each service requires its own persistent data.",
+    "Solution": "Each microservice keeps its persistent data private, accessible only via its API. This can be achieved through private tables per service, schema per service, or a dedicated database server per service.",
+    "Result": "Benefits: Data privacy, independent scaling of services and their databases. Drawbacks: Not explicitly listed, but implies managing multiple data stores and potential data consistency challenges across services.",
+    "Related Patterns": "The proposed 'The Database is the Service' pattern starts from the 'DatabaseServer per Service Pattern' (a variation of this).",
+    "Uses": "Figure 5 illustrates its application with a scaled service using a database cluster.",
+    "Thinking": "The text explicitly names 'The Database per Service Pattern' and describes its core principle and variations, identifying it as a microservices design pattern."
+  },
+  {
+    "Pattern Name": "The Database is the Service Pattern",
+    "Problem": "To reduce architectural complexity and risks, and gain improvements in speed and scalability, especially when using the 'DatabaseServer per Service' pattern with its own database cluster.",
+    "Context": "Microservice architecture, specifically when a service's data is managed by its own database cluster, and the database has an open architecture with extension capabilities.",
+    "Solution": "Embed business logic directly into the database, making the database itself act as a business service. This is possible when the database has an open architecture and provides hooks for extensions.",
+    "Result": "Benefits: Removal of traditional service layer (hosts, application servers/containers), instant data access (no cost, no network issues), reduced complexity, interactions, and potential risks. Further simplification if clients can directly access the database cluster (no balancer, cluster provides Service Registry capabilities). Drawbacks: Strong dependency on the chosen database engine, testing/debugging involves the database, requires open-source database with available source code.",
+    "Related Patterns": "DatabaseServer per Service Pattern (starts from this), Serverside Discovery Pattern (used for routing), Clientside Discovery Pattern (contrasted with, as cluster can provide similar capabilities).",
+    "Uses": "Proof of concept involved adding ebXML registry capabilities to an OrientDB NoSQL database.",
+    "Thinking": "This is the novel pattern proposed and detailed in the paper, explicitly named 'The Database is the Service Pattern' with a clear problem, context, solution, and results, making it a true microservices design pattern as per the text."
+  }
+]

@@ -1,0 +1,462 @@
+[
+  {
+    "Pattern Name": "Frontend integration",
+    "Problem": "Not explicitly detailed in the provided text.",
+    "Context": "Not explicitly detailed in the provided text.",
+    "Solution": "Not explicitly detailed in the provided text.",
+    "Result": "Not explicitly detailed in the provided text.",
+    "Related Patterns": "Not explicitly detailed in the provided text.",
+    "Uses": "Not explicitly detailed in the provided text. No tool is listed as detecting this pattern in Table IV.",
+    "Thinking": "Identified as a Microservice API Pattern (MAP) from Table I, categorized under 'Foundation'. The text explicitly lists this pattern as one of the 46 MAPs considered in the survey."
+  },
+  {
+    "Pattern Name": "Backend integration",
+    "Problem": "Not explicitly detailed in the provided text.",
+    "Context": "Involves internal implementation details of microservices.",
+    "Solution": "Not explicitly detailed in the provided text.",
+    "Result": "Not explicitly detailed in the provided text.",
+    "Related Patterns": "Not explicitly detailed in the provided text.",
+    "Uses": "Not explicitly detailed in the provided text. No tool is listed as detecting this pattern in Table IV.",
+    "Thinking": "Identified as a Microservice API Pattern (MAP) from Table I, categorized under 'Foundation'. The text explicitly lists this pattern as one of the 46 MAPs considered and provides a brief contextual detail about its internal implementation aspect."
+  },
+  {
+    "Pattern Name": "Public API",
+    "Problem": "Not explicitly detailed in the provided text.",
+    "Context": "Not explicitly detailed in the provided text.",
+    "Solution": "Not explicitly detailed in the provided text.",
+    "Result": "Not explicitly detailed in the provided text.",
+    "Related Patterns": "Not explicitly detailed in the provided text.",
+    "Uses": "Not explicitly detailed in the provided text. No tool is listed as detecting this pattern in Table IV.",
+    "Thinking": "Identified as a Microservice API Pattern (MAP) from Table I, categorized under 'Foundation'. The text explicitly lists this pattern as one of the 46 MAPs considered."
+  },
+  {
+    "Pattern Name": "Community API",
+    "Problem": "Not explicitly detailed in the provided text.",
+    "Context": "Not explicitly detailed in the provided text.",
+    "Solution": "Not explicitly detailed in the provided text.",
+    "Result": "Not explicitly detailed in the provided text.",
+    "Related Patterns": "Not explicitly detailed in the provided text.",
+    "Uses": "Not explicitly detailed in the provided text. No tool is listed as detecting this pattern in Table IV.",
+    "Thinking": "Identified as a Microservice API Pattern (MAP) from Table I, categorized under 'Foundation'. The text explicitly lists this pattern as one of the 46 MAPs considered."
+  },
+  {
+    "Pattern Name": "Solution Internal API",
+    "Problem": "Not explicitly detailed in the provided text.",
+    "Context": "Not explicitly detailed in the provided text.",
+    "Solution": "Not explicitly detailed in the provided text.",
+    "Result": "Not explicitly detailed in the provided text.",
+    "Related Patterns": "Not explicitly detailed in the provided text.",
+    "Uses": "Not explicitly detailed in the provided text. No tool is listed as detecting this pattern in Table IV.",
+    "Thinking": "Identified as a Microservice API Pattern (MAP) from Table I, categorized under 'Foundation'. The text explicitly lists this pattern as one of the 46 MAPs considered."
+  },
+  {
+    "Pattern Name": "API Description",
+    "Problem": "Not explicitly detailed in the provided text.",
+    "Context": "Not explicitly detailed in the provided text.",
+    "Solution": "Not explicitly detailed in the provided text.",
+    "Result": "Not explicitly detailed in the provided text.",
+    "Related Patterns": "Not explicitly detailed in the provided text.",
+    "Uses": "The pattern is detected by tools T25, T26, T27, T28, T29, T36, T37, T46, T52, as indicated in Table IV.",
+    "Thinking": "Identified as a Microservice API Pattern (MAP) from Table I, categorized under 'Foundation'. The text explicitly lists this pattern as one of the 46 MAPs considered and mentions its detection by multiple tools."
+  },
+  {
+    "Pattern Name": "Processing Resource",
+    "Problem": "Not explicitly detailed in the provided text.",
+    "Context": "Not explicitly detailed in the provided text.",
+    "Solution": "Not explicitly detailed in the provided text.",
+    "Result": "Not explicitly detailed in the provided text.",
+    "Related Patterns": "Not explicitly detailed in the provided text.",
+    "Uses": "The pattern is detected by tools T7 (code2ow) and T35 (pycallgraph), as indicated in Table IV.",
+    "Thinking": "Identified as a Microservice API Pattern (MAP) from Table I, categorized under 'Responsibility'. The text explicitly lists this pattern as one of the 46 MAPs considered and mentions its detection by tools."
+  },
+  {
+    "Pattern Name": "Information Holder Resource",
+    "Problem": "Not explicitly detailed in the provided text.",
+    "Context": "Not explicitly detailed in the provided text.",
+    "Solution": "Not explicitly detailed in the provided text.",
+    "Result": "Not explicitly detailed in the provided text.",
+    "Related Patterns": "Not explicitly detailed in the provided text.",
+    "Uses": "The pattern is detected by tools T7 (code2ow) and T35 (pycallgraph), as indicated in Table IV.",
+    "Thinking": "Identified as a Microservice API Pattern (MAP) from Table I, categorized under 'Responsibility'. The text explicitly lists this pattern as one of the 46 MAPs considered and mentions its detection by tools."
+  },
+  {
+    "Pattern Name": "Computation Function",
+    "Problem": "Not explicitly detailed in the provided text.",
+    "Context": "Not explicitly detailed in the provided text.",
+    "Solution": "Not explicitly detailed in the provided text.",
+    "Result": "Not explicitly detailed in the provided text.",
+    "Related Patterns": "Not explicitly detailed in the provided text.",
+    "Uses": "The pattern is detected by tools T7 (code2ow) and T35 (pycallgraph), as indicated in Table IV.",
+    "Thinking": "Identified as a Microservice API Pattern (MAP) from Table I, categorized under 'Responsibility'. The text explicitly lists this pattern as one of the 46 MAPs considered and mentions its detection by tools."
+  },
+  {
+    "Pattern Name": "State recreation operation",
+    "Problem": "Not explicitly detailed in the provided text.",
+    "Context": "Not explicitly detailed in the provided text.",
+    "Solution": "Not explicitly detailed in the provided text.",
+    "Result": "Not explicitly detailed in the provided text.",
+    "Related Patterns": "Not explicitly detailed in the provided text.",
+    "Uses": "The pattern is detected by tools T7 (code2ow) and T35 (pycallgraph), as indicated in Table IV.",
+    "Thinking": "Identified as a Microservice API Pattern (MAP) from Table I (as 'State Creation Operation') and Table IV (as 'State recreation operation'), categorized under 'Responsibility'. The text explicitly lists this pattern as one of the 46 MAPs considered and mentions its detection by tools. The name is updated to match Table IV for consistency."
+  },
+  {
+    "Pattern Name": "Retrieval Operation",
+    "Problem": "Not explicitly detailed in the provided text.",
+    "Context": "Not explicitly detailed in the provided text.",
+    "Solution": "Not explicitly detailed in the provided text.",
+    "Result": "Not explicitly detailed in the provided text.",
+    "Related Patterns": "Not explicitly detailed in the provided text.",
+    "Uses": "The pattern is detected by tools T7 (code2ow) and T35 (pycallgraph), as indicated in Table IV.",
+    "Thinking": "Identified as a Microservice API Pattern (MAP) from Table I, categorized under 'Responsibility'. The text explicitly lists this pattern as one of the 46 MAPs considered and mentions its detection by tools."
+  },
+  {
+    "Pattern Name": "State Transition Operation",
+    "Problem": "Not explicitly detailed in the provided text.",
+    "Context": "Not explicitly detailed in the provided text.",
+    "Solution": "Not explicitly detailed in the provided text.",
+    "Result": "Not explicitly detailed in the provided text.",
+    "Related Patterns": "Not explicitly detailed in the provided text.",
+    "Uses": "The pattern is detected by tools T7 (code2ow) and T35 (pycallgraph), as indicated in Table IV.",
+    "Thinking": "Identified as a Microservice API Pattern (MAP) from Table I, categorized under 'Responsibility'. The text explicitly lists this pattern as one of the 46 MAPs considered and mentions its detection by tools."
+  },
+  {
+    "Pattern Name": "Operational Data Holder",
+    "Problem": "Not explicitly detailed in the provided text.",
+    "Context": "Not explicitly detailed in the provided text.",
+    "Solution": "Not explicitly detailed in the provided text.",
+    "Result": "Not explicitly detailed in the provided text.",
+    "Related Patterns": "Not explicitly detailed in the provided text.",
+    "Uses": "The pattern is detected by tools T7 (code2ow) and T35 (pycallgraph), as indicated in Table IV.",
+    "Thinking": "Identified as a Microservice API Pattern (MAP) from Table I, categorized under 'Responsibility'. The text explicitly lists this pattern as one of the 46 MAPs considered and mentions its detection by tools."
+  },
+  {
+    "Pattern Name": "Master Data Holder",
+    "Problem": "Not explicitly detailed in the provided text.",
+    "Context": "Not explicitly detailed in the provided text.",
+    "Solution": "Not explicitly detailed in the provided text.",
+    "Result": "Not explicitly detailed in the provided text.",
+    "Related Patterns": "Not explicitly detailed in the provided text.",
+    "Uses": "The pattern is detected by tools T7 (code2ow) and T35 (pycallgraph), as indicated in Table IV.",
+    "Thinking": "Identified as a Microservice API Pattern (MAP) from Table I, categorized under 'Responsibility'. The text explicitly lists this pattern as one of the 46 MAPs considered and mentions its detection by tools."
+  },
+  {
+    "Pattern Name": "Reference Data Holder",
+    "Problem": "Not explicitly detailed in the provided text.",
+    "Context": "Not explicitly detailed in the provided text.",
+    "Solution": "Not explicitly detailed in the provided text.",
+    "Result": "Not explicitly detailed in the provided text.",
+    "Related Patterns": "Not explicitly detailed in the provided text.",
+    "Uses": "The pattern is detected by tools T7 (code2ow) and T35 (pycallgraph), as indicated in Table IV.",
+    "Thinking": "Identified as a Microservice API Pattern (MAP) from Table I, categorized under 'Responsibility'. The text explicitly lists this pattern as one of the 46 MAPs considered and mentions its detection by tools."
+  },
+  {
+    "Pattern Name": "Data Transfer Resource",
+    "Problem": "Not explicitly detailed in the provided text.",
+    "Context": "Not explicitly detailed in the provided text.",
+    "Solution": "Not explicitly detailed in the provided text.",
+    "Result": "Not explicitly detailed in the provided text.",
+    "Related Patterns": "Not explicitly detailed in the provided text.",
+    "Uses": "The pattern is detected by tools T7 (code2ow) and T35 (pycallgraph), as indicated in Table IV.",
+    "Thinking": "Identified as a Microservice API Pattern (MAP) from Table I, categorized under 'Responsibility'. The text explicitly lists this pattern as one of the 46 MAPs considered and mentions its detection by tools."
+  },
+  {
+    "Pattern Name": "Link Lookup Resource",
+    "Problem": "Not explicitly detailed in the provided text.",
+    "Context": "Not explicitly detailed in the provided text.",
+    "Solution": "Not explicitly detailed in the provided text.",
+    "Result": "Not explicitly detailed in the provided text.",
+    "Related Patterns": "Not explicitly detailed in the provided text.",
+    "Uses": "The pattern is detected by tools T7 (code2ow) and T35 (pycallgraph), as indicated in Table IV.",
+    "Thinking": "Identified as a Microservice API Pattern (MAP) from Table I, categorized under 'Responsibility'. The text explicitly lists this pattern as one of the 46 MAPs considered and mentions its detection by tools."
+  },
+  {
+    "Pattern Name": "Atomic Parameter",
+    "Problem": "Not explicitly detailed in the provided text.",
+    "Context": "Not explicitly detailed in the provided text.",
+    "Solution": "Not explicitly detailed in the provided text.",
+    "Result": "Not explicitly detailed in the provided text.",
+    "Related Patterns": "Not explicitly detailed in the provided text.",
+    "Uses": "The pattern is detected by tools T3, T6, T13, T31, T36, T37, as indicated in Table IV.",
+    "Thinking": "Identified as a Microservice API Pattern (MAP) from Table I, categorized under 'Structure'. The text explicitly lists this pattern as one of the 46 MAPs considered and mentions its detection by tools."
+  },
+  {
+    "Pattern Name": "Atomic Parameter List",
+    "Problem": "Not explicitly detailed in the provided text.",
+    "Context": "Not explicitly detailed in the provided text.",
+    "Solution": "Not explicitly detailed in the provided text.",
+    "Result": "Not explicitly detailed in the provided text.",
+    "Related Patterns": "Not explicitly detailed in the provided text.",
+    "Uses": "The pattern is detected by tools T3, T6, T13, T31, T36, T37, as indicated in Table IV.",
+    "Thinking": "Identified as a Microservice API Pattern (MAP) from Table I, categorized under 'Structure'. The text explicitly lists this pattern as one of the 46 MAPs considered and mentions its detection by tools."
+  },
+  {
+    "Pattern Name": "Parameter Tree",
+    "Problem": "Not explicitly detailed in the provided text.",
+    "Context": "Not explicitly detailed in the provided text.",
+    "Solution": "Not explicitly detailed in the provided text.",
+    "Result": "Not explicitly detailed in the provided text.",
+    "Related Patterns": "Not explicitly detailed in the provided text.",
+    "Uses": "The pattern is detected by tools T3, T6, T13, T31, T36, T37, as indicated in Table IV.",
+    "Thinking": "Identified as a Microservice API Pattern (MAP) from Table I, categorized under 'Structure'. The text explicitly lists this pattern as one of the 46 MAPs considered and mentions its detection by tools."
+  },
+  {
+    "Pattern Name": "Parameter Forest",
+    "Problem": "Not explicitly detailed in the provided text.",
+    "Context": "Not explicitly detailed in the provided text.",
+    "Solution": "Not explicitly detailed in the provided text.",
+    "Result": "Not explicitly detailed in the provided text.",
+    "Related Patterns": "Not explicitly detailed in the provided text.",
+    "Uses": "The pattern is detected by tools T3, T6, T13, T31, T36, T37, as indicated in Table IV.",
+    "Thinking": "Identified as a Microservice API Pattern (MAP) from Table I, categorized under 'Structure'. The text explicitly lists this pattern as one of the 46 MAPs considered and mentions its detection by tools."
+  },
+  {
+    "Pattern Name": "Data Element",
+    "Problem": "Not explicitly detailed in the provided text.",
+    "Context": "Not explicitly detailed in the provided text.",
+    "Solution": "Not explicitly detailed in the provided text.",
+    "Result": "Not explicitly detailed in the provided text.",
+    "Related Patterns": "Not explicitly detailed in the provided text.",
+    "Uses": "The pattern is detected by tools T6, T13, T31, T36, T37, as indicated in Table IV.",
+    "Thinking": "Identified as a Microservice API Pattern (MAP) from Table I, categorized under 'Structure'. The text explicitly lists this pattern as one of the 46 MAPs considered and mentions its detection by tools."
+  },
+  {
+    "Pattern Name": "Id element",
+    "Problem": "Not explicitly detailed in the provided text.",
+    "Context": "Not explicitly detailed in the provided text.",
+    "Solution": "Not explicitly detailed in the provided text.",
+    "Result": "Not explicitly detailed in the provided text.",
+    "Related Patterns": "Not explicitly detailed in the provided text.",
+    "Uses": "The pattern is detected by tools T3, T6, T13, T31, T36, T37, as indicated in Table IV.",
+    "Thinking": "Identified as a Microservice API Pattern (MAP) from Table I (as 'Resource Id Element') and Table IV (as 'Id element'), categorized under 'Structure'. The text explicitly lists this pattern as one of the 46 MAPs considered and mentions its detection by tools. The name is updated to match Table IV for consistency."
+  },
+  {
+    "Pattern Name": "Link element",
+    "Problem": "Not explicitly detailed in the provided text.",
+    "Context": "Not explicitly detailed in the provided text.",
+    "Solution": "Not explicitly detailed in the provided text.",
+    "Result": "Not explicitly detailed in the provided text.",
+    "Related Patterns": "Not explicitly detailed in the provided text.",
+    "Uses": "The pattern is detected by tools T6, T13, T31, T36, T37, as indicated in Table IV.",
+    "Thinking": "Identified as a Microservice API Pattern (MAP) from Table I (as 'Resource Link Element') and Table IV (as 'Link element'), categorized under 'Structure'. The text explicitly lists this pattern as one of the 46 MAPs considered and mentions its detection by tools. The name is updated to match Table IV for consistency."
+  },
+  {
+    "Pattern Name": "Metadata Element",
+    "Problem": "Not explicitly detailed in the provided text.",
+    "Context": "Not explicitly detailed in the provided text.",
+    "Solution": "Not explicitly detailed in the provided text.",
+    "Result": "Not explicitly detailed in the provided text.",
+    "Related Patterns": "Not explicitly detailed in the provided text.",
+    "Uses": "The pattern is detected by tools T13, T31, T36, T37, as indicated in Table IV.",
+    "Thinking": "Identified as a Microservice API Pattern (MAP) from Table I (as 'Evolution Metadata Element') and Table IV (as 'Metadata element'), categorized under 'Structure'. The text explicitly lists this pattern as one of the 46 MAPs considered and mentions its detection by tools. The name is updated to match Table IV for consistency."
+  },
+  {
+    "Pattern Name": "Context Representation",
+    "Problem": "Not explicitly detailed in the provided text.",
+    "Context": "Not explicitly detailed in the provided text.",
+    "Solution": "Not explicitly detailed in the provided text.",
+    "Result": "Not explicitly detailed in the provided text.",
+    "Related Patterns": "Not explicitly detailed in the provided text.",
+    "Uses": "The pattern is detected by tool T13, as indicated in Table IV.",
+    "Thinking": "Identified as a Microservice API Pattern (MAP) from Table I, categorized under 'Structure'. The text explicitly lists this pattern as one of the 46 MAPs considered and mentions its detection by a tool."
+  },
+  {
+    "Pattern Name": "Pagination",
+    "Problem": "Not explicitly detailed in the provided text.",
+    "Context": "Not explicitly detailed in the provided text.",
+    "Solution": "Not explicitly detailed in the provided text.",
+    "Result": "Not explicitly detailed in the provided text.",
+    "Related Patterns": "Not explicitly detailed in the provided text.",
+    "Uses": "The pattern is detected by tools T13, T31, T36, T37, as indicated in Table IV.",
+    "Thinking": "Identified as a Microservice API Pattern (MAP) from Table IV, categorized under 'Structure'. Although not explicitly listed in Table I, its inclusion in Table IV with detected tools implies it is considered a Microservice API Pattern by the authors of the research text, making it one of the 46 MAPs."
+  },
+  {
+    "Pattern Name": "API Key",
+    "Problem": "Not explicitly detailed in the provided text.",
+    "Context": "Not explicitly detailed in the provided text.",
+    "Solution": "Not explicitly detailed in the provided text.",
+    "Result": "Not explicitly detailed in the provided text.",
+    "Related Patterns": "Not explicitly detailed in the provided text.",
+    "Uses": "The pattern is detected by tools T13, T36, T37, as indicated in Table IV. It can also be identified by extracting request/response headers from HTTP calls, as mentioned in the discussion.",
+    "Thinking": "Identified as a Microservice API Pattern (MAP) from Table I, categorized under 'Quality'. The text explicitly lists this pattern as one of the 46 MAPs considered and mentions its detection by tools."
+  },
+  {
+    "Pattern Name": "Rate Limit",
+    "Problem": "Not explicitly detailed in the provided text.",
+    "Context": "Not explicitly detailed in the provided text.",
+    "Solution": "Not explicitly detailed in the provided text.",
+    "Result": "Not explicitly detailed in the provided text.",
+    "Related Patterns": "Not explicitly detailed in the provided text.",
+    "Uses": "The pattern is detected by tools T36, T37, T53, as indicated in Table IV.",
+    "Thinking": "Identified as a Microservice API Pattern (MAP) from Table I, categorized under 'Quality'. The text explicitly lists this pattern as one of the 46 MAPs considered and mentions its detection by tools."
+  },
+  {
+    "Pattern Name": "Rate Plan",
+    "Problem": "Relates to the legal use of the API.",
+    "Context": "Not explicitly detailed in the provided text.",
+    "Solution": "Not explicitly detailed in the provided text. Its detection might require considering organizational policies which are often not in a machine-readable format.",
+    "Result": "Not explicitly detailed in the provided text.",
+    "Related Patterns": "Not explicitly detailed in the provided text.",
+    "Uses": "No tool can detect this pattern, as indicated in Table IV and the discussion.",
+    "Thinking": "Identified as a Microservice API Pattern (MAP) from Table I, categorized under 'Quality'. The text explicitly lists this pattern as one of the 46 MAPs considered and provides a brief problem description."
+  },
+  {
+    "Pattern Name": "Service Level Agreement",
+    "Problem": "Relates to the legal use of the API.",
+    "Context": "Not explicitly detailed in the provided text.",
+    "Solution": "Not explicitly detailed in the provided text. Its detection might require considering organizational policies which are often not in a machine-readable format.",
+    "Result": "Not explicitly detailed in the provided text.",
+    "Related Patterns": "Not explicitly detailed in the provided text.",
+    "Uses": "No tool can detect this pattern, as indicated in Table IV and the discussion.",
+    "Thinking": "Identified as a Microservice API Pattern (MAP) from Table I, categorized under 'Quality'. The text explicitly lists this pattern as one of the 46 MAPs considered and provides a brief problem description (referred to as 'SLA')."
+  },
+  {
+    "Pattern Name": "Error Report",
+    "Problem": "Not explicitly detailed in the provided text.",
+    "Context": "Not explicitly detailed in the provided text.",
+    "Solution": "Not explicitly detailed in the provided text.",
+    "Result": "Not explicitly detailed in the provided text.",
+    "Related Patterns": "Not explicitly detailed in the provided text.",
+    "Uses": "The pattern is detected by tools T13, T36, T37, as indicated in Table IV.",
+    "Thinking": "Identified as a Microservice API Pattern (MAP) from Table I, categorized under 'Quality'. The text explicitly lists this pattern as one of the 46 MAPs considered and mentions its detection by tools."
+  },
+  {
+    "Pattern Name": "Conditional Request",
+    "Problem": "Not explicitly detailed in the provided text.",
+    "Context": "Not explicitly detailed in the provided text.",
+    "Solution": "Not explicitly detailed in the provided text.",
+    "Result": "Not explicitly detailed in the provided text.",
+    "Related Patterns": "Not explicitly detailed in the provided text.",
+    "Uses": "The pattern is detected by tools T13, T36, T37, as indicated in Table IV.",
+    "Thinking": "Identified as a Microservice API Pattern (MAP) from Table I, categorized under 'Quality'. The text explicitly lists this pattern as one of the 46 MAPs considered and mentions its detection by tools."
+  },
+  {
+    "Pattern Name": "Request Bundle",
+    "Problem": "Not explicitly detailed in the provided text.",
+    "Context": "Not explicitly detailed in the provided text.",
+    "Solution": "Not explicitly detailed in the provided text.",
+    "Result": "Not explicitly detailed in the provided text.",
+    "Related Patterns": "Not explicitly detailed in the provided text.",
+    "Uses": "The pattern is detected by tool T13, as indicated in Table IV.",
+    "Thinking": "Identified as a Microservice API Pattern (MAP) from Table I, categorized under 'Quality'. The text explicitly lists this pattern as one of the 46 MAPs considered and mentions its detection by a tool."
+  },
+  {
+    "Pattern Name": "Wish list",
+    "Problem": "Not explicitly detailed in the provided text.",
+    "Context": "Not explicitly detailed in the provided text.",
+    "Solution": "Not explicitly detailed in the provided text.",
+    "Result": "Not explicitly detailed in the provided text.",
+    "Related Patterns": "Not explicitly detailed in the provided text.",
+    "Uses": "The pattern is detected by tools T36, T37, as indicated in Table IV.",
+    "Thinking": "Identified as a Microservice API Pattern (MAP) from Table I (as 'Resource Wish List') and Table IV (as 'Wish list'), categorized under 'Quality'. The text explicitly lists this pattern as one of the 46 MAPs considered and mentions its detection by tools. The name is updated to match Table IV for consistency."
+  },
+  {
+    "Pattern Name": "Wish template",
+    "Problem": "Not explicitly detailed in the provided text.",
+    "Context": "Not explicitly detailed in the provided text.",
+    "Solution": "Not explicitly detailed in the provided text.",
+    "Result": "Not explicitly detailed in the provided text.",
+    "Related Patterns": "Not explicitly detailed in the provided text.",
+    "Uses": "No tool can detect this pattern, as indicated in Table IV and the discussion.",
+    "Thinking": "Identified as a Microservice API Pattern (MAP) from Table I (as 'Resource Wish Template') and Table IV (as 'Wish template'), categorized under 'Quality'. The text explicitly lists this pattern as one of the 46 MAPs considered. The name is updated to match Table IV for consistency."
+  },
+  {
+    "Pattern Name": "Embedded Entity",
+    "Problem": "Not explicitly detailed in the provided text.",
+    "Context": "Not explicitly detailed in the provided text.",
+    "Solution": "Not explicitly detailed in the provided text.",
+    "Result": "Not explicitly detailed in the provided text.",
+    "Related Patterns": "Not explicitly detailed in the provided text.",
+    "Uses": "The pattern is detected by tool T13, as indicated in Table IV.",
+    "Thinking": "Identified as a Microservice API Pattern (MAP) from Table I, categorized under 'Quality'. The text explicitly lists this pattern as one of the 46 MAPs considered and mentions its detection by a tool."
+  },
+  {
+    "Pattern Name": "Linked Information Holder",
+    "Problem": "Not explicitly detailed in the provided text.",
+    "Context": "Not explicitly detailed in the provided text.",
+    "Solution": "Not explicitly detailed in the provided text.",
+    "Result": "Not explicitly detailed in the provided text.",
+    "Related Patterns": "Not explicitly detailed in the provided text.",
+    "Uses": "The pattern is detected by tool T13, as indicated in Table IV.",
+    "Thinking": "Identified as a Microservice API Pattern (MAP) from Table I, categorized under 'Quality'. The text explicitly lists this pattern as one of the 46 MAPs considered and mentions its detection by a tool."
+  },
+  {
+    "Pattern Name": "Version identier",
+    "Problem": "Not explicitly detailed in the provided text.",
+    "Context": "Not explicitly detailed in the provided text.",
+    "Solution": "Not explicitly detailed in the provided text.",
+    "Result": "Not explicitly detailed in the provided text.",
+    "Related Patterns": "Not explicitly detailed in the provided text.",
+    "Uses": "The pattern is detected by tools T6, T10, T13, T45, as indicated in Table IV.",
+    "Thinking": "Identified as a Microservice API Pattern (MAP) from Table I (as 'Version Identier') and Table IV (as 'Version identier'), categorized under 'Evolution'. The text explicitly lists this pattern as one of the 46 MAPs considered and mentions its detection by tools. The name is updated to match Table IV for consistency."
+  },
+  {
+    "Pattern Name": "Semantic Versioning",
+    "Problem": "Not explicitly detailed in the provided text.",
+    "Context": "Not explicitly detailed in the provided text.",
+    "Solution": "Tools discovering this pattern do not simply tell if the project has followed the SemVer specification, but instead tell the correct identifier increment based on changes in the source. It is up to the developer/researcher to compare it to the one actually used.",
+    "Result": "Not explicitly detailed in the provided text.",
+    "Related Patterns": "Not explicitly detailed in the provided text.",
+    "Uses": "The pattern is detected by tools T2, T9, T13, T19, T38, T40, T42, T43, T44, T45, as indicated in Table IV.",
+    "Thinking": "Identified as a Microservice API Pattern (MAP) from Table I, categorized under 'Evolution'. The text explicitly lists this pattern as one of the 46 MAPs considered and provides a brief description of how its detection works."
+  },
+  {
+    "Pattern Name": "Two In Production",
+    "Problem": "Not explicitly detailed in the provided text.",
+    "Context": "Not explicitly detailed in the provided text.",
+    "Solution": "Not explicitly detailed in the provided text.",
+    "Result": "Not explicitly detailed in the provided text.",
+    "Related Patterns": "Not explicitly detailed in the provided text.",
+    "Uses": "No tool can detect this pattern, as indicated in Table IV.",
+    "Thinking": "Identified as a Microservice API Pattern (MAP) from Table I, categorized under 'Evolution'. The text explicitly lists this pattern as one of the 46 MAPs considered."
+  },
+  {
+    "Pattern Name": "Aggresive obsolesense",
+    "Problem": "Not explicitly detailed in the provided text.",
+    "Context": "Not explicitly detailed in the provided text.",
+    "Solution": "Not explicitly detailed in the provided text.",
+    "Result": "Not explicitly detailed in the provided text.",
+    "Related Patterns": "Not explicitly detailed in the provided text.",
+    "Uses": "No tool can detect this pattern, as indicated in Table IV.",
+    "Thinking": "Identified as a Microservice API Pattern (MAP) from Table I (as 'Aggressive Obsolescence') and Table IV (as 'Aggresive obsolesense'), categorized under 'Evolution'. The text explicitly lists this pattern as one of the 46 MAPs considered. The name is updated to match Table IV for consistency."
+  },
+  {
+    "Pattern Name": "Experimental Preview",
+    "Problem": "Not explicitly detailed in the provided text.",
+    "Context": "Not explicitly detailed in the provided text.",
+    "Solution": "Not explicitly detailed in the provided text.",
+    "Result": "Not explicitly detailed in the provided text.",
+    "Related Patterns": "Not explicitly detailed in the provided text.",
+    "Uses": "No tool can detect this pattern, as indicated in Table IV.",
+    "Thinking": "Identified as a Microservice API Pattern (MAP) from Table I, categorized under 'Evolution'. The text explicitly lists this pattern as one of the 46 MAPs considered."
+  },
+  {
+    "Pattern Name": "Limited Lifetime Guarantee",
+    "Problem": "Not explicitly detailed in the provided text.",
+    "Context": "Not explicitly detailed in the provided text.",
+    "Solution": "Not explicitly detailed in the provided text.",
+    "Result": "Not explicitly detailed in the provided text.",
+    "Related Patterns": "Not explicitly detailed in the provided text.",
+    "Uses": "The pattern is detected by tools T2, T13, T40, as indicated in Table IV.",
+    "Thinking": "Identified as a Microservice API Pattern (MAP) from Table I, categorized under 'Evolution'. The text explicitly lists this pattern as one of the 46 MAPs considered and mentions its detection by tools."
+  },
+  {
+    "Pattern Name": "Eternal Lifetime Guarantee",
+    "Problem": "Not explicitly detailed in the provided text.",
+    "Context": "Not explicitly detailed in the provided text.",
+    "Solution": "Not explicitly detailed in the provided text.",
+    "Result": "Not explicitly detailed in the provided text.",
+    "Related Patterns": "Not explicitly detailed in the provided text.",
+    "Uses": "The pattern is detected by tools T2, T13, T40, as indicated in Table IV.",
+    "Thinking": "Identified as a Microservice API Pattern (MAP) from Table I, categorized under 'Evolution'. The text explicitly lists this pattern as one of the 46 MAPs considered and mentions its detection by tools."
+  },
+  {
+    "Pattern Name": "Annotated Parameter Collection",
+    "Problem": "Not explicitly detailed in the provided text.",
+    "Context": "Not explicitly detailed in the provided text.",
+    "Solution": "Not explicitly detailed in the provided text.",
+    "Result": "Not explicitly detailed in the provided text.",
+    "Related Patterns": "Not explicitly detailed in the provided text.",
+    "Uses": "The text explicitly states: 'W e have however excluded the pattern Annotated P arameter Collection as it lacked a detailed description.' This implies no tools are listed for it in Table IV.",
+    "Thinking": "Identified as a Microservice API Pattern (MAP) from Table I, categorized under 'Evolution'. The text explicitly lists this pattern as one of the 46 MAPs considered, although it notes it was excluded from detailed description due to lack of information."
+  }
+]

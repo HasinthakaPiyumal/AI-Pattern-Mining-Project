@@ -1,0 +1,122 @@
+[
+  {
+    "Pattern Name": "API Versioning",
+    "Problem": "APIs are not semantically versioned, leading to connection issues for consumers when APIs change, as returning data might be different or require different calls.",
+    "Context": "Microservices communicate via APIs, and these APIs evolve over time, requiring a strategy to manage changes and maintain compatibility for consumers.",
+    "Solution": "APIs need to be semantically versioned (e.g., v1.1, v1.2) to allow services to know whether they are communicating with the right version of the service or whether they need to adapt their communication to a new contract.",
+    "Result": "Prevents connection issues and ensures compatibility for API consumers when services evolve, allowing independent evolution of services while maintaining stable contracts.",
+    "Related Patterns": "API Gateway (can help manage API versions), Consumer-Driven Contracts.",
+    "Uses": "Managing API evolution, ensuring backward compatibility, and enabling independent deployment of services without breaking existing consumers.",
+    "Thinking": "Identified from the 'API Versioning' antipattern in Table 12. The antipattern describes the problem of non-semantically versioned APIs, and the solution explicitly states the need for semantic versioning, which is a recognized microservices pattern."
+  },
+  {
+    "Pattern Name": "Service Discovery",
+    "Problem": "Microservices connected with hardcoded IP addresses and ports lead to problems when their locations need to be changed, making the system inflexible and difficult to manage.",
+    "Context": "Microservices are dynamically deployed, scaled, and often run in containerized environments, meaning their network locations (IPs, ports) can change frequently.",
+    "Solution": "Adoption of a service discovery approach.",
+    "Result": "Microservices can find and communicate with each other dynamically, even if their network locations change, avoiding hardcoding and increasing flexibility, resilience, and scalability.",
+    "Related Patterns": "API Gateway (often integrates with service discovery), Load Balancing, Health Check API.",
+    "Uses": "Locating and communicating with microservices in a dynamic and elastic environment, enabling services to register themselves and clients to discover them.",
+    "Thinking": "Identified from the 'Hardcoded Endpoints' antipattern in Table 12. The antipattern describes the problem of hardcoded locations, and the solution explicitly recommends 'service discovery,' a fundamental microservices pattern."
+  },
+  {
+    "Pattern Name": "Distributed Logging",
+    "Problem": "Logs are stored locally in each microservice, hiding errors and microservices information inside individual containers, making it difficult to diagnose issues across the system.",
+    "Context": "A microservices system consists of many independent services, each generating its own logs, making centralized visibility crucial for operations and troubleshooting.",
+    "Solution": "The adoption of a distributed logging system eases the monitoring of the overall system.",
+    "Result": "Centralizes logs from all microservices, making it easier to monitor, troubleshoot, and analyze system behavior across the entire distributed architecture.",
+    "Related Patterns": "Monitoring, Distributed Tracing, Centralized Metrics.",
+    "Uses": "Collecting, storing, and analyzing logs from multiple microservices in a centralized location for operational insights and debugging.",
+    "Thinking": "Identified from the 'Local Logging' antipattern in Table 12. The antipattern highlights the problem of local logs, and the solution proposes a 'distributed logging system,' which is a standard operational pattern for microservices."
+  },
+  {
+    "Pattern Name": "API Gateway",
+    "Problem": "Microservices communicating directly with each other, and external consumers directly accessing individual microservices, increases system complexity, decreases ease of maintenance, and can lead to communication and maintenance issues as the number of services grows. Cyclic dependencies can also make services hard to maintain or reuse in isolation.",
+    "Context": "A system with many microservices where external clients and internal services need to communicate with various backend services, and cross-cutting concerns need to be managed.",
+    "Solution": "Application of an APIGateway pattern to reduce the communication complexity between microservices. It can also be applied to refine cyclic dependencies.",
+    "Result": "Simplifies client-to-service communication, reduces coupling, handles cross-cutting concerns (like authentication, routing, load balancing), and improves maintainability and security by providing a single entry point.",
+    "Related Patterns": "Service Discovery, Load Balancing, Authentication/Authorization, Circuit Breaker.",
+    "Uses": "Serving as the single entry point for external clients, routing requests to appropriate backend services, aggregating responses, and handling common concerns like security, monitoring, and rate limiting.",
+    "Thinking": "Explicitly mentioned as a solution to 'Cyclic Dependency' and 'No Gateway API' antipatterns in Table 13, with a clear description of its purpose to reduce communication complexity. It is a foundational microservices pattern."
+  },
+  {
+    "Pattern Name": "Message Bus",
+    "Problem": "Using an Enterprise Service Bus (ESB) for microservice communication adds complexities for registering and deregistering services, leading to a heavyweight and tightly coupled integration layer.",
+    "Context": "Microservices need to communicate asynchronously or integrate with other services without direct coupling, promoting event-driven architectures.",
+    "Solution": "Adopt a lightweight message bus instead of the ESB.",
+    "Result": "Provides a simpler, more flexible, and less complex mechanism for asynchronous communication and integration between microservices, promoting loose coupling and independent evolution.",
+    "Related Patterns": "Event-Driven Architecture, Publish/Subscribe, Command Bus.",
+    "Uses": "Enabling asynchronous communication, event-driven interactions, and decoupling services by allowing them to send and receive messages without direct knowledge of each other.",
+    "Thinking": "Derived from the 'ESB Usage' antipattern in Table 13. The antipattern describes the problems with ESB, and the solution suggests a 'lightweight message bus,' which is a common pattern for asynchronous communication in microservices."
+  },
+  {
+    "Pattern Name": "Shared Service",
+    "Problem": "Usage of shared libraries between different microservices tightly couples them together, leading to a loss of independence and requiring coordination between teams for modifications, hindering agile development.",
+    "Context": "Multiple microservices require common functionality or code that would otherwise be duplicated or shared via libraries, but without introducing tight coupling.",
+    "Solution": "Extract the shared library to a new shared service that can be deployed and developed independently by the connected microservices.",
+    "Result": "Reduces tight coupling caused by shared libraries, allows independent development and deployment of common functionality, and promotes service independence and autonomy.",
+    "Related Patterns": "Service Decomposition, Bounded Context, Common Library (antipattern if not managed well).",
+    "Uses": "Encapsulating common business logic, infrastructure concerns, or utility functions into a dedicated, independently deployable service that other microservices can consume via its API.",
+    "Thinking": "Derived from the 'Shared Libraries' antipattern in Table 13. The second proposed solution is to 'extract the library to a new shared service,' which is a pattern for managing shared functionality in a microservices context."
+  },
+  {
+    "Pattern Name": "Monitoring",
+    "Problem": "Lack of usage of monitoring systems means a service could be offline, or not responding correctly, and developers would not realize it without continuously checking manually, leading to undetected outages or performance issues.",
+    "Context": "A distributed microservices system where individual service health, performance, and availability need to be continuously observed to ensure system reliability.",
+    "Solution": "Adoption of a monitoring system.",
+    "Result": "Ensures that service health, performance, and availability are continuously tracked, allowing developers and operations teams to quickly detect, diagnose, and respond to issues, improving system reliability and uptime.",
+    "Related Patterns": "Distributed Logging, Health Check API, Alerting, Centralized Metrics.",
+    "Uses": "Observing the operational state of microservices, collecting metrics (e.g., CPU, memory, request rates, error rates), and detecting anomalies or failures.",
+    "Thinking": "Derived from the 'Lack of Monitoring' antipattern in Table 14. The antipattern describes the problem of not monitoring, and the solution is the 'adoption of a monitoring system,' which is an essential operational pattern for microservices."
+  },
+  {
+    "Pattern Name": "Database per Service",
+    "Problem": "Different microservices accessing the same relational database (Shared Persistence) highly couples them, reducing team and service independence, and creating a single point of failure or contention.",
+    "Context": "Microservices are designed to be autonomous, including their data storage, to maximize independence and allow technology diversity.",
+    "Solution": "Use independent databases for each service. (Other solutions like private tables/schemas are variations of data isolation).",
+    "Result": "Ensures strong data ownership and autonomy for each microservice, reducing coupling, increasing independence, and allowing services to choose the best data storage technology for their specific needs.",
+    "Related Patterns": "Saga (for distributed transactions), Event Sourcing, Bounded Context.",
+    "Uses": "Ensuring data isolation and autonomy for each microservice, where each service manages its own private database, schema, or set of tables.",
+    "Thinking": "Derived from the 'Shared Persistence' antipattern in Table 14. The antipattern describes the problem of shared databases, and the first solution explicitly states 'independent databases for each service,' which is a core microservices pattern."
+  },
+  {
+    "Pattern Name": "Continuous Integration/Continuous Delivery (CI/CD)",
+    "Problem": "The company does not employ CI/CD tools, and developers need to manually test and deploy the system, leading to slower productivity, inconsistent deployments, and possible deployment errors due to the lack of automation.",
+    "Context": "Microservices require frequent, independent deployments and rapid feedback cycles to realize their benefits of agility and speed.",
+    "Solution": "Implement CI/CD pipelines and adopt DevOps tools. The text also mentions 'fully functional DevOps tools pipeline including continuous testing integration and delivery' as important.",
+    "Result": "Enables faster, more reliable, and automated testing and deployment of microservices, increasing productivity, reducing errors, and accelerating time-to-market for new features.",
+    "Related Patterns": "Automated Testing, Infrastructure as Code, DevOps Culture, Blue/Green Deployment.",
+    "Uses": "Automating the build, test, and deployment processes for microservices, ensuring that code changes are continuously integrated, tested, and delivered to production environments.",
+    "Thinking": "Derived from the 'No DevOps Tools' antipattern in Table 16. The problem describes the lack of automation and its negative consequences. The solution is implicitly the adoption of the practices enabled by DevOps tools, which are 'continuous testing integration and delivery' (CI/CD) as mentioned earlier in the text."
+  },
+  {
+    "Pattern Name": "DevOps Culture / Cross-functional Teams",
+    "Problem": "Traditional organizational structures with independent Dev and Ops teams, manual testing, and common releases prevent companies from realizing the full benefits of microservices, leading to developers being bound by traditional processes.",
+    "Context": "Organizations migrating to microservices need to align their structure and processes with the architectural style to achieve agility, independent deployment, and continuous delivery.",
+    "Solution": "Adopt a DevOps culture, fostering collaboration between development and operations teams, and implement cross-functional teams. This includes establishing a fully functional DevOps tools pipeline for continuous testing, integration, and delivery.",
+    "Result": "Improved collaboration, faster and more reliable software delivery, increased agility, better system reliability, and the ability to fully leverage the benefits of microservices.",
+    "Related Patterns": "Continuous Integration/Continuous Delivery, Automated Testing, Infrastructure as Code.",
+    "Uses": "Transforming organizational structure and processes to support the microservices architectural style, enabling rapid and independent development and deployment.",
+    "Thinking": "Derived from the 'Legacy Organization' antipattern in Table 15, which describes the problem of traditional processes. The text also emphasizes the importance of 'alignment between the organization structure and the system architecture' and 'fully functional DevOps tools pipeline including continuous testing integration and delivery' in Section 1.3.1. This strongly points to the adoption of DevOps principles and cross-functional teams as the solution."
+  },
+  {
+    "Pattern Name": "Microservice Boilerplate/Template",
+    "Problem": "Each team developing microservices from scratch leads to wasted time, inconsistent implementations, and increased risk of errors, especially when connecting to shared infrastructure.",
+    "Context": "In an organization with multiple teams developing numerous microservices, there's a need for consistency, accelerated development, and standardized integration with common infrastructure components (e.g., API Gateway, logging, monitoring).",
+    "Solution": "Introduce a common code boilerplate or skeleton that provides a standardized starting point for new microservices, including pre-configured connections to shared infrastructure.",
+    "Result": "Speeds up the development of new microservices, ensures consistency across services, reduces the risk of common errors, and simplifies integration with the overall microservices ecosystem.",
+    "Related Patterns": "Standardized Tooling, Infrastructure as Code.",
+    "Uses": "Accelerating new service development, enforcing architectural standards, and simplifying integration with shared platform services.",
+    "Thinking": "Directly stated as the 'Adopted Solutions' for the 'Lack of Microservice Skeleton' antipattern in Table 16: 'introduction of a common code boilerplate'."
+  },
+  {
+    "Pattern Name": "Service Decomposition by Business Capability",
+    "Problem": "Microservices are incorrectly split based on technical layers (e.g., presentation, business, data) or become too large (megaservice), leading to increased coupling, maintenance issues, and reduced benefits of the microservices architecture.",
+    "Context": "When designing a microservices system, either from scratch or by refactoring a monolith, the critical decision of how to define service boundaries.",
+    "Solution": "Decompose applications into services based on independent business capabilities, ensuring each service has a single, clearly defined purpose and owns its domain.",
+    "Result": "Creates autonomous, loosely coupled services that are easier to develop, deploy, scale, and maintain independently, aligning the system architecture with the organization's business domains.",
+    "Related Patterns": "Bounded Context, Single Responsibility Principle, Database per Service.",
+    "Uses": "Defining the boundaries of microservices to ensure autonomy, loose coupling, and alignment with business domains.",
+    "Thinking": "The 'Wrong Cuts' antipattern in Table 14 explicitly states: 'Microservices should be split based on business capabilities not on technical layers'. The 'Megaservice' antipattern in Table 12 has the solution 'Decompose the megaservice into smaller microservices'. Together, these highlight the pattern of decomposing by business capability as a core principle and solution."
+  }
+]

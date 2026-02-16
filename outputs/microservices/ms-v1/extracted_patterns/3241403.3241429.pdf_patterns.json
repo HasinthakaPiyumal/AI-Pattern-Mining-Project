@@ -1,0 +1,92 @@
+[
+  {
+    "Pattern Name": "Decompose the Monolith",
+    "Problem": "How to decompose the system into smaller chunks? How big these chunks should be?",
+    "Context": "There is a monolithic software system with a complex domain which has at least one of the following attributes: Due to the complexity of the system, comprehensibility of the source code is low.",
+    "Solution": "Domain-Driven Design (DDD) should be used to identify subdomains of the business that the system is operating in. Then each subdomain can constitute a Bounded Context (BC) that is a deployable unit.",
+    "Result": "Implied: The system is broken down into smaller, more manageable, and independently deployable units (Bounded Contexts), improving comprehensibility and facilitating development and maintenance.",
+    "Related Patterns": "Belongs to 'Decomposition patterns'. It is a foundational pattern for adopting a microservices architectural style.",
+    "Uses": "Used for 'Y-axis scaling' (separating work evenly by activity or data components) and associated with 'Services' architectural decomposition. In the case study, it's implicitly used as the system is described as having 'small services'.",
+    "Thinking": "Identified directly from Table 3, which lists 'filtered patterns' for scalability. This pattern is a core strategy for transitioning from monolithic to microservices architecture, clearly described with its problem, context, and solution in the text."
+  },
+  {
+    "Pattern Name": "Change code dependency",
+    "Problem": "When it is appropriate to change this code-level dependency to service-level dependency? And when it is not?",
+    "Context": "A software system has been decomposed to a set of small services to use microservices architectural style.",
+    "Solution": "Try to keep the services code as separate as possible. When services shares code as a dependency, there is a high chance that a service developer can fail the build process of another by changing the shared code.",
+    "Result": "Implied: Services maintain greater independence, reducing the risk of breaking other services due to shared code changes and improving fault isolation and development agility.",
+    "Related Patterns": "Belongs to 'Decomposition patterns'. It is a principle for maintaining loose coupling in a microservices environment.",
+    "Uses": "Used for 'Y-axis scaling' (separating work evenly by activity or data components) and associated with 'Services' architectural decomposition.",
+    "Thinking": "Identified directly from Table 3. This pattern addresses a common challenge in microservices regarding shared code and promotes service independence, which is crucial for the microservices architectural style."
+  },
+  {
+    "Pattern Name": "Service discovery",
+    "Problem": "How can services locate each other dynamically? How an edge server or a load balancer knows the list of instances of a service to which it can route the track?",
+    "Context": "A software system has been decomposed to a set of small services to use microservices architectural style and each of these services has one or more instances deployed in the production environment.",
+    "Solution": "Setup a service discovery which stores service instances addresses. Each service registers itself during initiation.",
+    "Result": "Implied: Services can dynamically find and communicate with other services, enabling flexible deployment, scaling, and resilience in a distributed environment.",
+    "Related Patterns": "Belongs to 'Grouping patterns' (as per Table 1). It is a prerequisite for 'Internal load balancer' and 'External load balancer' patterns.",
+    "Uses": "Used for 'Z-axis scaling' (separating work according to the work requester/shards) and associated with 'Service discovery components' architectural decomposition.",
+    "Thinking": "Identified directly from Table 3. This is a fundamental pattern for dynamic service location in microservices, clearly described with its problem, context, and solution."
+  },
+  {
+    "Pattern Name": "Internal load balancer",
+    "Problem": "How to balance the load on a service between its instances based on the conditions of the client? How to load balance a service without setting up an load balancer?",
+    "Context": "A software system has been decomposed to a set of small services to use microservices architectural style and a Service Discovery has been set up.",
+    "Solution": "Each service as a client should have an internal load balancer which fetches the list of available instances of a desired service from the Service Discovery.",
+    "Result": "Implied: Client services can distribute requests across multiple instances of a target service, improving availability, performance, and resource utilization without requiring a separate external load balancer for internal communication.",
+    "Related Patterns": "Belongs to 'Load balancer patterns'. It relies on 'Service discovery'.",
+    "Uses": "Used for 'X-axis scaling' (cloning entities or data and distributing work evenly across workers/layers) and associated with 'Communication components' architectural decomposition. In the case study, it's used to balance load on the central server for capturing and processing data, satisfying availability and performance NFRs.",
+    "Thinking": "Identified directly from Table 3. It describes a client-side load balancing mechanism, which is a common microservices pattern for improving scalability and resilience."
+  },
+  {
+    "Pattern Name": "External load balancer",
+    "Problem": "How to balance the load on a service between its instances based on the conditions of the client? How to load balance a service without setting up an load balancer?",
+    "Context": "A software system has been decomposed to a set of small services to use microservices architectural style and a Service Discovery has been set up.",
+    "Solution": "An internal load balancer removes the burden of setting up an external load balancer and brings in the possibility of having direct load balancing mechanism in different clients of a service.",
+    "Result": "Not explicitly provided for the External Load Balancer itself, as the solution describes the benefits of an Internal Load Balancer.",
+    "Related Patterns": "Belongs to 'Load balancer patterns'. It would typically rely on 'Service discovery'.",
+    "Uses": "Used for 'X-axis scaling' (cloning entities or data and distributing work evenly across workers/layers) and associated with 'Communication components' architectural decomposition.",
+    "Thinking": "Identified by name and problem from Table 3. However, the 'Solution' provided in the text for 'External load balancer' is actually a description of the benefits of an 'Internal load balancer'. This makes the pattern's solution undefined within the provided text, but the pattern name and context are clearly stated."
+  },
+  {
+    "Pattern Name": "Deploy Cluster",
+    "Problem": "How to deploy a services instances into a cluster? How to orchestrate the deployment and redeployment of all of the services with the least effort?",
+    "Context": "A software system has been architected based on microservices architectural style and a Continuous Integration pipeline is in place and is working.",
+    "Solution": "There should exists a system that can manage a cluster of computing nodes. This management system should be able to deploy the services container images on-demand with specified number of instances and on different nodes.",
+    "Result": "Implied: Automated and orchestrated deployment and management of microservices instances across a cluster, leading to efficient scaling, resilience, and reduced operational overhead.",
+    "Related Patterns": "Belongs to 'Grouping patterns'. Often used in conjunction with the 'Container' pattern.",
+    "Uses": "Used for 'Z-axis scaling' (grouping related items) and associated with 'Service discovery components' architectural decomposition.",
+    "Thinking": "Identified directly from Table 3. This pattern describes the orchestration aspect of deploying microservices, which is crucial for managing distributed systems effectively."
+  },
+  {
+    "Pattern Name": "Circuit breaker",
+    "Problem": "How to fail fast and not wait until reaching a service call timeout when calling a recently unavailable service?",
+    "Context": "A software system has been decomposed to a set of small services to use microservices architectural style.",
+    "Solution": "The service consumer should use a circuit breaker when calling the service provider. When the service provider is available, this component would not do anything. The circuit breaker checks health status or remember the number of unsuccessful calls and trips if a certain threshold is reached.",
+    "Result": "Implied: Prevents cascading failures in a distributed system by quickly failing calls to unavailable services, improving system resilience and user experience.",
+    "Related Patterns": "Belongs to 'Decomposition patterns'. It is a resilience pattern for distributed systems.",
+    "Uses": "Used for 'Y-axis scaling' (separating work evenly by activity or data components) and associated with 'Services' architectural decomposition. In the case study, it's used to handle failures and prevent malfunctioning, satisfying availability, reliability, and performance NFRs.",
+    "Thinking": "Identified directly from Table 3. The solution combines two sentences from the text that together describe the core mechanism of a circuit breaker pattern in microservices for fault tolerance."
+  },
+  {
+    "Pattern Name": "Container",
+    "Problem": "How to make the development and production produce the same results for the same code? How to remove the complexity of configuration management tools or difficulties of manual deployment?",
+    "Context": "A software system has been decomposed to a set of small services to use microservices architectural style and a Continuous Integration pipeline is in place and is working.",
+    "Solution": "The circuit breaker checks health status or remember the number of unsuccessful calls and trips if a certain threshold is reached.",
+    "Result": "Not explicitly provided, as the solution is misattributed. However, the problem implies achieving consistent environments and simplified deployment.",
+    "Related Patterns": "Belongs to 'Grouping patterns'. Often used in conjunction with 'Deploy Cluster'.",
+    "Uses": "Used for 'Z-axis scaling' (grouping related items) and associated with 'Service discovery components' architectural decomposition. In the case study, it's used to decompose the software system into small services, satisfying availability, reliability, and performance NFRs.",
+    "Thinking": "Identified by name, context, and problem from Table 3. However, the 'Solution' provided in the text for 'Container' is clearly a description of the 'Circuit breaker' pattern. This makes the solution for the 'Container' pattern itself undefined within the provided text, but the pattern name and problem are relevant to microservices."
+  },
+  {
+    "Pattern Name": "Database per service",
+    "Problem": "What's the database architectural in a microservices application?",
+    "Context": "Most services of a microservices-based system need to persist data in some kind of database.",
+    "Solution": "The addition of new behaviors and business logic at the database level may be a possible approach to reduce complexity and thus the related risks and also to gain improvements in terms of speed and scalability.",
+    "Result": "Not explicitly provided, but the pattern name and common understanding imply data isolation for each service, leading to independent evolution, scalability, and technology choice for data persistence. The provided solution vaguely points to complexity reduction and scalability improvements.",
+    "Related Patterns": "Belongs to 'Decomposition patterns'. It is a key pattern for data management in microservices.",
+    "Uses": "Used for 'Y-axis scaling' (separating services and data along noun or verb boundaries) and associated with 'Services' architectural decomposition.",
+    "Thinking": "Identified directly from Table 3. While the pattern name is a well-known microservices pattern, the 'Solution' provided in the text is quite vague and does not directly describe the core principle of data isolation for each service. It rather describes a potential benefit or approach within a database. I have extracted the solution exactly as written in the text."
+  }
+]

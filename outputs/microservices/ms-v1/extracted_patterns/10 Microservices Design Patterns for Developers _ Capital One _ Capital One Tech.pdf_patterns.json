@@ -1,0 +1,102 @@
+[
+  {
+    "Pattern Name": "Database per service pattern",
+    "Problem": "Overlooking database organization, issues with scalability, robustness, and independence when using a single shared database. Coupling between services if they share a database.",
+    "Context": "Building microservices, especially when databases have different needs or access requirements (e.g., relational, NoSQL, vector database).",
+    "Solution": "Each microservice has its own dedicated database that cannot be accessed by other services. Alternatively, if a single physical database is shared, enforce logical boundaries (e.g., separate schemas, restricted read/write access).",
+    "Result": "Easier to scale and understand, reduces coupling (services communicate via published interfaces), allows using different database technologies for different services.",
+    "Related Patterns": "Single database shared by all services (mentioned as an alternative/anti-pattern in microservices context).",
+    "Uses": "E-commerce application where different services might need different database types.",
+    "Thinking": "The text explicitly names 'Database per service pattern' and discusses it as a fundamental building block for microservices architecture, addressing issues specific to distributed systems like coupling and scalability."
+  },
+  {
+    "Pattern Name": "Saga pattern",
+    "Problem": "Maintaining data consistency during distributed transactions in microservices applications.",
+    "Context": "Microservices applications requiring multiple transactions across different services, where traditional ACID transactions are not feasible.",
+    "Solution": "A series of local transactions, with rollback opportunities. Two approaches: Choreography (services perform a transaction and publish an event; other services react) or Orchestration (an orchestrator object tells participants what local transactions to execute and publishes events).",
+    "Result": "Maintained data consistency across multiple services without tight coupling.",
+    "Related Patterns": "Other design patterns for distributed transactions (implied as an alternative).",
+    "Uses": "E-commerce application where a customer purchases products using credit, involving order and customer databases.",
+    "Thinking": "The text explicitly names 'Saga pattern' and describes it as a solution for a common microservices challenge: distributed data consistency."
+  },
+  {
+    "Pattern Name": "API gateway pattern",
+    "Problem": "Clients needing to know how services are partitioned, how to find/communicate with a multitude of ever-changing services, managing authentication, SSL termination, caching, and security for multiple services.",
+    "Context": "Large applications with multiple clients and many microservices.",
+    "Solution": "Provides a single entry point for a group of microservices, acting as a reverse proxy between client apps and services. It can handle authentication, SSL termination, caching, and can be tailored for specific client types (e.g., Backends for Frontends).",
+    "Result": "Insulates clients from service partitioning details, simplifies client-side communication, improves ergonomics (e.g., fewer roundtrips with BFF), enhances security by reducing attack surface area and centralizing authorization/SSL. Allows partially failed requests to be utilized.",
+    "Related Patterns": "Backends for Frontends (BFF) (mentioned as a specific type of gateway).",
+    "Uses": "Decoupling internal microservices from client apps, handling security, authentication, SSL termination, caching.",
+    "Thinking": "The text explicitly names 'API gateway pattern' and describes it as a crucial component in microservices architecture for managing external communication, security, and client-service decoupling."
+  },
+  {
+    "Pattern Name": "Aggregator design pattern",
+    "Problem": "Collecting pieces of data from various microservices to return a combined result for processing.",
+    "Context": "When a request requires data from multiple independent microservices to form a single, aggregated response.",
+    "Solution": "Receives a request, sends out requests to multiple services, combines the results from all services, and initiates a response to the original request.",
+    "Result": "Consolidates data from multiple sources into a single response.",
+    "Related Patterns": "Backend for Frontend (BFF) (mentioned as similar but more generic).",
+    "Uses": "Collecting data from various microservices to present a unified view or for further processing.",
+    "Thinking": "The text explicitly names 'Aggregator design pattern' and describes it as a way to combine data from multiple microservices, a common need in distributed systems."
+  },
+  {
+    "Pattern Name": "Circuit breaker design pattern",
+    "Problem": "Preventing cascading failures across multiple systems when a single microservice is unresponsive or exhibiting high latency, leading to piling up calls and resource exhaustion.",
+    "Context": "Services communicating synchronously, where one service might fail or become slow.",
+    "Solution": "Implements a 'circuit breaker' object that monitors failure conditions. If failures exceed a threshold, the circuit 'trips' (Open state), causing subsequent calls to immediately fail or be redirected to a different service/default error message. It has three states: Closed (default), Open (failures exceeded threshold), and Half-open (periodically checks for resolution).",
+    "Result": "Prevents cascading failures, saves system resources, improves resilience and fault tolerance.",
+    "Related Patterns": "Not explicitly mentioned, but often used with Retry patterns.",
+    "Uses": "Between synchronously communicating services to handle unresponsiveness or high latency.",
+    "Thinking": "The text explicitly names 'Circuit breaker design pattern' and describes it as a critical resilience pattern for distributed microservices to prevent cascading failures."
+  },
+  {
+    "Pattern Name": "Command Query Responsibility Segregation (CQRS)",
+    "Problem": "Traditional database issues like data contention risk, complex app performance and security when objects are exposed to both reading and writing transactions.",
+    "Context": "Applications where read and write operations have different performance, scalability, or security requirements, or where data contention is an issue.",
+    "Solution": "Separates the responsibility of changing the state of an entity (commands) from returning the result (queries). The write side handles persistence events and acts as a data source for the read side, which generates highly denormalized views.",
+    "Result": "Reduces complexity by optimizing read and write sides separately, improves performance and security, provides multiple views for query purposes.",
+    "Related Patterns": "Not explicitly mentioned, but often combined with Event Sourcing.",
+    "Uses": "Situations where app performance and security are complex, and objects are exposed to both reading and writing transactions; when a solution to data contention risk is needed.",
+    "Thinking": "The text explicitly names 'Command query responsibility segregation CQRS' and describes it as a pattern for managing data operations in a microservices context, addressing performance and complexity challenges."
+  },
+  {
+    "Pattern Name": "Asynchronous messaging",
+    "Problem": "Services needing to communicate without waiting for an immediate response, avoiding tight coupling and dependencies.",
+    "Context": "When a service doesn't need to wait for a response and can continue processing, or when connecting multiple microservices without creating tight dependencies.",
+    "Solution": "Microservices communicate via messages, often using a message queue. The sender doesn't wait for the receiver to process the message.",
+    "Result": "Fast and responsive applications, maximized efficiency, minimized response delays, connects microservices without creating dependencies or tight coupling, flexible and scalable approach.",
+    "Related Patterns": "Event-driven communication (mentioned as an alternative name). Often used with Event Sourcing.",
+    "Uses": "When a service can continue running its code post-failure, connecting multiple microservices without tight coupling.",
+    "Thinking": "The text explicitly names 'Asynchronous messaging' and describes it as a fundamental communication pattern for microservices, enabling loose coupling and scalability."
+  },
+  {
+    "Pattern Name": "Event sourcing design pattern",
+    "Problem": "Capturing all changes in an entity's state, needing to reconstruct the current state, or avoiding changes to an existing data layer codebase.",
+    "Context": "When transactions are critical to the application, or when needing to track a complete history of state changes.",
+    "Solution": "Stores a series of state-changing events (e.g., in event stores like Kafka). The current state can be reconstructed by replaying these events. Event stores can also function as message brokers.",
+    "Result": "Captures all changes in an entity's state, provides a reliable audit trail, avoids changes to existing data layer codebase, facilitates communication between microservices.",
+    "Related Patterns": "Kafka (mentioned as an example of an event store/message broker). Often combined with CQRS.",
+    "Uses": "When transactions are critical, when changes to the existing data layer codebase need to be avoided, for tracking event changes.",
+    "Thinking": "The text explicitly names 'Event sourcing design pattern' and describes it as a way to manage state and data changes in a microservices environment, often linked to event-driven architectures."
+  },
+  {
+    "Pattern Name": "Strangler design pattern",
+    "Problem": "Incrementally transforming a monolithic application to microservices.",
+    "Context": "Migrating from a monolith to a microservices architecture.",
+    "Solution": "Replaces old functionality in the monolith with new microservices. A facade interface is used to expose individual services and functions. As new services take over, the old monolithic functionality is 'strangled' (removed or bypassed).",
+    "Result": "Gradual, incremental migration from monolith to microservices, reducing risk compared to a big-bang rewrite.",
+    "Related Patterns": "Not explicitly mentioned, but often used in conjunction with other decomposition patterns.",
+    "Uses": "Incrementally transforming a monolith application to microservices.",
+    "Thinking": "The text explicitly names 'Strangler design pattern' and describes it as a key migration pattern for moving from monolithic to microservices architecture."
+  },
+  {
+    "Pattern Name": "Decomposition patterns",
+    "Problem": "Breaking a monolithic application into smaller, more manageable microservices.",
+    "Context": "When starting a new microservices application or migrating from a monolith, and needing strategies to divide the application.",
+    "Solution": "Developers can achieve this in one of three ways: Decomposition by business capability (based on distinct business functions), Decomposition by subdomain (for large, complex applications based on domain-driven design subdomains), or Decomposition by transaction (for transactional operations with strict consistency requirements).",
+    "Result": "More focused, smaller services; faster iterations and experimentation; easier codebase management; faster development and deployment; improved consistency for transactional operations.",
+    "Related Patterns": "Strangler pattern (for migration).",
+    "Uses": "Breaking a monolithic application into microservices, managing large numbers of interrelated functions, handling complex business logic, ensuring strict consistency for transactional operations.",
+    "Thinking": "The text explicitly names 'Decomposition patterns' as the 10th pattern and describes it as a fundamental strategy for structuring microservices. It then details three specific approaches within this pattern, which are distinct ways to achieve microservice decomposition."
+  }
+]

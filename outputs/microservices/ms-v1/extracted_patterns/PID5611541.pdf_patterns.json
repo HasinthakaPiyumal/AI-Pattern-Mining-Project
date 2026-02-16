@@ -1,0 +1,92 @@
+[
+  {
+    "Pattern Name": "API Gateway",
+    "Problem": "How do external clients communicate with the services",
+    "Context": "Develop multiple versions of the product details user interface. Each service is deployed as a set of service instances.",
+    "Solution": "A service that provides each client with unied interface to services",
+    "Result": "Addresses Maintainability, Availability, Scalability.",
+    "Related Patterns": "Similar to the Fa\u00e7ade pattern from object-oriented design.",
+    "Uses": "Implemented using frameworks like Spring Cloud Gateway, Zuul, Kong, Ocelot.",
+    "Thinking": "This pattern is explicitly listed in Table V as one of the nine identified microservices architectural patterns. The discussion in Section IV.E states that these nine patterns are characterized as 'correctly of microservices' because the authors 'could not find evidence about their use in SOA sources' for them."
+  },
+  {
+    "Pattern Name": "Container",
+    "Problem": "How to simplify deploying applications",
+    "Context": "Each service is deployed as a set of service instances.",
+    "Solution": "Containers enclose the microservice itself including all required libraries and data",
+    "Result": "Addresses Maintainability.",
+    "Related Patterns": "The text mentions 'Containerize the Services [13] and Container [14] are quite similar indeed', indicating redundancy between pattern names describing the same concept.",
+    "Uses": "Implemented using frameworks like Docker, Kubernetes.",
+    "Thinking": "This pattern is explicitly listed in Table V as one of the nine identified microservices architectural patterns. The discussion in Section IV.E states that these nine patterns are characterized as 'correctly of microservices' because the authors 'could not find evidence about their use in SOA sources' for them."
+  },
+  {
+    "Pattern Name": "Log aggregator",
+    "Problem": "How can view and search all log les of different distributed runtimes",
+    "Context": "Is required debug problems that cross different components.",
+    "Solution": "Log Aggregator pulls all les together into a single searchable database",
+    "Result": "Addresses Performance, Observability.",
+    "Related Patterns": "Not explicitly mentioned in the provided text for this pattern.",
+    "Uses": "Implemented using frameworks like ELK Stack (Elasticsearch, Logstash, Kibana), Splunk.",
+    "Thinking": "This pattern is explicitly listed in Table V as one of the nine identified microservices architectural patterns. The discussion in Section IV.E states that these nine patterns are characterized as 'correctly of microservices' because the authors 'could not find evidence about their use in SOA sources' for them."
+  },
+  {
+    "Pattern Name": "Database is the service",
+    "Problem": "How to build the database architecture in a microservices",
+    "Context": "Most services need to persist data in some database.",
+    "Solution": "Each service has its own private database",
+    "Result": "Addresses Scalability, Availability.",
+    "Related Patterns": "Not explicitly mentioned in the provided text for this pattern.",
+    "Uses": "Implemented using frameworks like Spring Data, Hibernate.",
+    "Thinking": "This pattern is explicitly listed in Table V as one of the nine identified microservices architectural patterns. The discussion in Section IV.E states that these nine patterns are characterized as 'correctly of microservices' because the authors 'could not find evidence about their use in SOA sources' for them."
+  },
+  {
+    "Pattern Name": "Enable cont integration",
+    "Problem": "How can always have available productionready artifacts",
+    "Context": "The number of services is increasing.",
+    "Solution": "Automate the process through pipelines with code artifact and servers",
+    "Result": "Addresses Maintainability.",
+    "Related Patterns": "Not explicitly mentioned in the provided text for this pattern.",
+    "Uses": "Implemented using frameworks like Jenkins, Travis CI, GitLab CI.",
+    "Thinking": "This pattern is explicitly listed in Table V as one of the nine identified microservices architectural patterns. The discussion in Section IV.E states that these nine patterns are characterized as 'correctly of microservices' because the authors 'could not find evidence about their use in SOA sources' for them."
+  },
+  {
+    "Pattern Name": "Result cache",
+    "Problem": "How improve the performance when it makes many repeated calls to services",
+    "Context": "Making network calls to remote databases or services are expensive.",
+    "Solution": "Results cache shortcuts the need to make repeated calls to the same service",
+    "Result": "Addresses Performance.",
+    "Related Patterns": "Not explicitly mentioned in the provided text for this pattern.",
+    "Uses": "Implemented using frameworks like Redis, Memcached, Ehcache.",
+    "Thinking": "This pattern is explicitly listed in Table V as one of the nine identified microservices architectural patterns. The discussion in Section IV.E states that these nine patterns are characterized as 'correctly of microservices' because the authors 'could not find evidence about their use in SOA sources' for them."
+  },
+  {
+    "Pattern Name": "Page cache",
+    "Problem": "How to return more information that can be easily displayed",
+    "Context": "Its required use the Backend for Frontends Pattern to build dispatchers.",
+    "Solution": "Page Ccache presents an interface that allows to request a limited subsets of data",
+    "Result": "Addresses Performance.",
+    "Related Patterns": "Its context explicitly mentions the 'Backend for Frontends Pattern'.",
+    "Uses": "Implemented using frameworks like Varnish, Nginx.",
+    "Thinking": "This pattern is explicitly listed in Table V as one of the nine identified microservices architectural patterns. The discussion in Section IV.E states that these nine patterns are characterized as 'correctly of microservices' because the authors 'could not find evidence about their use in SOA sources' for them."
+  },
+  {
+    "Pattern Name": "BackEnd for FrontEnd",
+    "Problem": "How represent a channelspecic service interface to a specic client type",
+    "Context": "The client serverside functionality needs should be accessible through a single API.",
+    "Solution": "Implement customized different single APIs for different types of clients",
+    "Result": "Addresses Scalability.",
+    "Related Patterns": "Not explicitly mentioned in the provided text for this pattern, but its context relates to providing a single API, similar to API Gateway.",
+    "Uses": "Implemented using frameworks like Spring Cloud Netflix (Zuul), GraphQL.",
+    "Thinking": "This pattern is explicitly listed in Table V as one of the nine identified microservices architectural patterns. The discussion in Section IV.E states that these nine patterns are characterized as 'correctly of microservices' because the authors 'could not find evidence about their use in SOA sources' for them."
+  },
+  {
+    "Pattern Name": "Scalable store",
+    "Problem": "How do you represent persistent state in an application",
+    "Context": "The application need persistence to represent current and previous user interaction.",
+    "Solution": "Put all state in a scalable store where it can be available to application runtimes",
+    "Result": "Addresses Scalability, Availability.",
+    "Related Patterns": "Not explicitly mentioned in the provided text for this pattern.",
+    "Uses": "Implemented using frameworks like Cassandra, MongoDB, DynamoDB.",
+    "Thinking": "This pattern is explicitly listed in Table V as one of the nine identified microservices architectural patterns. The discussion in Section IV.E states that these nine patterns are characterized as 'correctly of microservices' because the authors 'could not find evidence about their use in SOA sources' for them."
+  }
+]

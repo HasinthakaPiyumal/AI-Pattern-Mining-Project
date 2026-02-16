@@ -1,0 +1,32 @@
+[
+  {
+    "Pattern Name": "Access Token",
+    "Problem": "How to communicate the identity of the requestor to the services that handle the request",
+    "Context": "You have applied the Microservice architecture and API Gateway patterns. The application consists of numerous services. The API gateway is the single entry point for client requests. It authenticates requests and forwards them to other services which might in turn invoke other services.",
+    "Solution": "The API Gateway authenticates the request and passes an access token (e.g., JSON Web Token) that securely identifies the requestor in each request to the services. A service can include the access token in requests it makes to other services.",
+    "Result": "The identity of the requestor is securely passed around the system; Services can verify that the requestor is authorized to perform an operation.",
+    "Related Patterns": "API Gateway (uses this pattern), Microservice architecture (context for application).",
+    "Uses": "JSON Web Token (as an example of an access token).",
+    "Thinking": "This pattern is explicitly defined with dedicated sections for Problem, Context, Solution, and Resulting context, clearly identifying it as a Microservices design pattern within the text."
+  },
+  {
+    "Pattern Name": "API Gateway",
+    "Problem": "How to provide a single entry point for client requests to an application consisting of numerous services, and manage initial authentication and request forwarding.",
+    "Context": "An application built with 'Microservice architecture' that 'consists of numerous services', where 'the API gateway is the single entry point for client requests'.",
+    "Solution": "Implement an 'API gateway' that serves as 'the single entry point for client requests', which 'authenticates requests and forwards them to other services'.",
+    "Result": "Client requests are managed through a single entry point, authenticated, and forwarded to the appropriate services.",
+    "Related Patterns": "Microservice architecture (as it's a component of this architecture), Access Token (as it 'uses this pattern').",
+    "Uses": "Authenticates requests, forwards requests, uses the Access Token pattern.",
+    "Thinking": "The text explicitly refers to 'API Gateway apigatewayhtml patterns' and describes its core functions and role within a microservice architecture. It is also identified as a pattern that 'uses' the Access Token pattern. Although its Problem, Context, Solution, and Result are not in dedicated sections, they can be clearly inferred from the detailed description of its role and interactions within the provided text."
+  },
+  {
+    "Pattern Name": "Microservice Architecture",
+    "Problem": "How to structure an application to consist of numerous, independent services.",
+    "Context": "An application requiring a modular structure where components are independent services.",
+    "Solution": "Apply the 'Microservice architecture' to build an application that 'consists of numerous services'.",
+    "Result": "An application composed of 'numerous services', providing the foundation for patterns like API Gateway and Access Token.",
+    "Related Patterns": "API Gateway (a pattern applied within this architecture), Access Token (a security pattern used within this architecture).",
+    "Uses": "Forms the fundamental structure of the application, enabling the use of other microservice-specific patterns.",
+    "Thinking": "The text explicitly refers to 'Microservice architecture microserviceshtml' as a pattern that has been applied, providing the foundational context for the other patterns discussed. It's presented as the overarching architectural style."
+  }
+]

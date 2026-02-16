@@ -1,0 +1,72 @@
+[
+  {
+    "Pattern Name": "API Gateway",
+    "Problem": "How do the clients of a Microservices-based application access the individual services?\n\nForces:\n- The granularity of APIs provided by microservices is often fine-grained, requiring clients to interact with multiple services.\n- Different clients (e.g., desktop, mobile, 3rd party) need different data and API structures.\n- Network performance varies significantly across client types (e.g., mobile networks are slower/higher latency than LANs).\n- The number and locations (host/port) of service instances change dynamically.\n- Service partitioning can change over time and should be hidden from clients.\n- Services might use diverse, non-web-friendly protocols internally.",
+    "Context": "An online store built with a Microservice architecture pattern, where a product details page needs to display information aggregated from multiple backend services (e.g., Product Info, Pricing, Order, Inventory, Review services). Clients include HTML5/JavaScript UIs, native mobile apps (Android/iPhone), and 3rd party applications, each with distinct API requirements and network characteristics.",
+    "Solution": "Implement a single entry point for all clients, an API gateway. This gateway can:\n- Proxy/route requests directly to the appropriate service.\n- Handle requests by fanning out to multiple services, aggregating their responses.\n- Expose different, client-specific APIs rather than a one-size-fits-all approach.\n- Implement security concerns like client authorization.",
+    "Result": "Benefits:\n- Insulates clients from the application's microservice partitioning.\n- Insulates clients from service instance location discovery.\n- Provides an optimal API tailored for each client.\n- Reduces the number of requests/roundtrips for clients (e.g., aggregating multiple service calls into one client request), which is crucial for mobile applications.\n- Simplifies client-side logic by offloading multi-service interaction to the gateway.\n- Translates between standard public web-friendly protocols and internal service protocols.\n\nDrawbacks:\n- Increased complexity due to an additional component to develop, deploy, and manage.\n- Potentially increased response time due to an extra network hop, though often insignificant.",
+    "Related Patterns": "Microservice architecture pattern (creates the need), Client-side Discovery pattern, Server-side Discovery pattern (for routing requests), Access Token (for security/authentication), Circuit Breaker (for reliability when invoking services), API Composition pattern (often implemented by the gateway).",
+    "Uses": "Netflix API gateway, Spring Cloud Gateway, example Java/Spring API gateway from Money Transfer application.",
+    "Thinking": "The text explicitly defines 'API Gateway' as a pattern, detailing its problem, context, solution, results (benefits and drawbacks), and related patterns. It's presented as a fundamental pattern for managing client interaction in a microservices environment."
+  },
+  {
+    "Pattern Name": "Backends for Frontends",
+    "Problem": "While an API Gateway addresses many client interaction issues, a single gateway might still struggle to optimally serve vastly different client types (e.g., web, mobile, 3rd party) due to their distinct data needs, UI requirements, and network performance characteristics.",
+    "Context": "An application serving multiple distinct client types, such as a web application (desktop/mobile browser), native mobile applications (Android/iPhone), and external 3rd party applications, each requiring a highly tailored API experience.",
+    "Solution": "Implement a separate API gateway (or backend service) specifically for each kind of client. Each client-specific gateway provides an API that is perfectly suited to its client's requirements, aggregating and transforming data from downstream microservices as needed.",
+    "Result": "Benefits:\n- Provides highly optimized APIs for each client type, leading to simpler client development and better user experience.\n- Allows client teams to evolve their specific backend without impacting other client types.\n- Inherits benefits of the API Gateway pattern, but with greater specialization.",
+    "Related Patterns": "API Gateway (it is a variation of this pattern).",
+    "Uses": "The text uses the example of having three different API gateways for a web application, a mobile application, and an external 3rd party application.",
+    "Thinking": "The text explicitly identifies 'Backends for frontends' as a 'variation' of the API Gateway pattern and provides a clear definition of its solution (separate gateway per client type) and the specific context where it applies (multiple distinct client types). This makes it a true, albeit specialized, microservices design pattern."
+  },
+  {
+    "Pattern Name": "Client-side Discovery",
+    "Problem": "How does a client (or API Gateway) find the network location (IP address and port) of an available service instance when service instances are dynamic and their locations change frequently?",
+    "Context": "A microservices architecture where service instances are dynamically provisioned, scaled, and de-provisioned, leading to non-static network locations. The API Gateway needs to route requests to these instances.",
+    "Solution": "The client (or API Gateway) is responsible for querying a service registry to obtain the list of available service instances. It then uses a load-balancing algorithm to select one instance and make a request directly to it.",
+    "Result": "Clients can dynamically locate and connect to service instances without hardcoding their network addresses. This supports dynamic scaling and resilience.",
+    "Related Patterns": "Server-side Discovery (alternative), Service Registry (implicit, as it's queried).",
+    "Uses": "The text states: 'The API gateway must use either the Clientside Discovery pattern clientsidediscoveryhtml or Server side Discovery pattern serversidediscoveryhtml to route requests to available service instances.'",
+    "Thinking": "The pattern is explicitly named 'Clientside Discovery pattern' and its purpose is described as enabling the API Gateway to 'route requests to available service instances,' addressing the dynamic nature of service locations mentioned in the API Gateway's problem section ('The number of service instances and their locations hostport changes dynamically')."
+  },
+  {
+    "Pattern Name": "Server-side Discovery",
+    "Problem": "How does a client (or API Gateway) find the network location of an available service instance when the client itself is not responsible for service lookup?",
+    "Context": "A microservices architecture where service instances are dynamically provisioned and de-provisioned. Clients might be simpler or prefer to delegate service lookup to an intermediary. The API Gateway needs to route requests to these instances.",
+    "Solution": "The client (or API Gateway) makes a request to a router, load balancer, or proxy. This intermediary is responsible for querying a service registry to find available service instances and then forwarding the request to one of them.",
+    "Result": "Clients are simplified as they do not need to implement service discovery logic. The discovery mechanism is centralized in the intermediary.",
+    "Related Patterns": "Client-side Discovery (alternative), Service Registry (implicit, as it's queried).",
+    "Uses": "The text states: 'The API gateway must use either the Clientside Discovery pattern clientsidediscoveryhtml or Server side Discovery pattern serversidediscoveryhtml to route requests to available service instances.'",
+    "Thinking": "The pattern is explicitly named 'Server side Discovery pattern' and presented as an alternative to Client-side Discovery for the API Gateway to 'route requests to available service instances,' addressing the dynamic nature of service locations."
+  },
+  {
+    "Pattern Name": "Access Token",
+    "Problem": "How can an API Gateway securely propagate user identity and authorization information to downstream microservices after initial authentication, without requiring each service to re-authenticate the user or handle raw credentials?",
+    "Context": "A distributed microservices environment where an API Gateway handles initial client requests, including authentication, and then needs to pass the authenticated user's context to multiple backend services for authorization and personalized data.",
+    "Solution": "The API Gateway, after authenticating the user, obtains or generates an Access Token (e.g., a JSON Web Token - JWT) that encapsulates information about the user's identity, roles, and permissions. This token is then included in subsequent requests from the API Gateway to backend services. Backend services can validate the token's authenticity and use its claims for fine-grained authorization.",
+    "Result": "Enables secure and efficient propagation of user context across services. Decouples authentication from individual services, centralizing it at the gateway.",
+    "Related Patterns": "API Gateway (uses it).",
+    "Uses": "The text states: 'The API Gateway may authenticate the user and pass an Access Token securityaccesstokenhtml containing information about the user to the services.'",
+    "Thinking": "Explicitly named 'Access Token' and described in the context of security, where the API Gateway 'authenticate[s] the user and pass[es] an Access Token ... containing information about the user to the services.' This clearly defines its role in a microservices security context."
+  },
+  {
+    "Pattern Name": "Circuit Breaker",
+    "Problem": "How to prevent a microservice from continuously attempting to invoke a remote service that is failing or unresponsive, thereby avoiding cascading failures and resource exhaustion in the calling service?",
+    "Context": "A distributed microservices environment where services depend on other services. Failures (e.g., network issues, service crashes, timeouts) are inevitable, and a single failing dependency can bring down an entire chain of services.",
+    "Solution": "When a service invokes a remote dependency, the call is wrapped by a circuit breaker. If a predefined number of consecutive failures or timeouts occur, the circuit breaker 'opens,' immediately failing subsequent calls without attempting to reach the remote service. After a configurable period, it transitions to a 'half-open' state, allowing a limited number of test requests to determine if the remote service has recovered. If successful, the circuit 'closes'; otherwise, it re-opens.",
+    "Result": "Improves system resilience by preventing cascading failures, allowing failing services time to recover, and providing immediate feedback to the calling service about the dependency's health.",
+    "Related Patterns": "API Gateway (uses it).",
+    "Uses": "The text states: 'An API Gateway will use a Circuit Breaker reliabilitycircuitbreakerhtml to invoke services.'",
+    "Thinking": "Explicitly named 'Circuit Breaker' and identified as a 'reliability' pattern that an API Gateway 'will use ... to invoke services.' This clearly positions it as a microservices reliability pattern."
+  },
+  {
+    "Pattern Name": "API Composition",
+    "Problem": "How to aggregate data from multiple fine-grained microservices to construct a single, more complex response required by a client, without burdening the client with the complexity of multiple service calls and data aggregation?",
+    "Context": "A microservices architecture where data related to a single logical entity (e.g., a product details page) is distributed across several independent, fine-grained services (e.g., Product Info, Pricing, Inventory, Reviews). Clients (e.g., UI for desktop, mobile) need a consolidated view of this data.",
+    "Solution": "An intermediary service (often the API Gateway itself, or a dedicated composition service) is responsible for invoking multiple backend microservices in parallel or sequence, collecting their individual responses, and then combining and transforming this data into a single, client-friendly response.",
+    "Result": "Simplifies client-side logic by abstracting away the complexity of service decomposition and data aggregation. Reduces the number of network roundtrips for the client, improving performance, especially for mobile applications.",
+    "Related Patterns": "API Gateway (often implements it).",
+    "Uses": "The text states: 'An API gateway often implements the API Composition pattern patternsdataapicompositionhtml.' The example of the product details page fetching data from multiple services (Product Info, Pricing, Order, Inventory, Review) directly illustrates the need for this pattern.",
+    "Thinking": "Explicitly named 'API Composition pattern' and stated that 'An API gateway often implements' it. The problem description for API Gateway (clients needing to fetch data from numerous services) and its solution (fanning out to multiple services) directly describe the essence of API Composition."
+  }
+]

@@ -1,0 +1,42 @@
+[
+  {
+    "Pattern Name": "Service Template",
+    "Problem": "How can a team quickly create and setup a maintainable code base for a productionready service so they can start developing its business logic",
+    "Context": "When developing an application using a microservice architecture, teams frequently create new services, each taking days or weeks to develop. It's not feasible to spend several days setting up each service, which involves writing build logic and implementing numerous cross-cutting concerns (e.g., security, externalized configuration, logging, health checks, metrics, distributed tracing, service registration and discovery, circuit breakers). These concerns also include boilerplate configuration specific to technologies like databases or message brokers.",
+    "Solution": "Create a source code template that a developer can copy to quickly start developing a new service. This template is a simple, runnable service that pre-implements the required build logic and cross-cutting concerns, along with sample application logic.",
+    "Result": "Benefits: Developers can quickly and easily start new microservices; cross-cutting concerns are implemented in a standardized and consistent way; encourages best practices. Drawbacks: It's a form of copy-paste programming, requiring individual updates to existing services when the template changes (though Git forking can mitigate divergence); requires a separate template for each programming language/framework, potentially hindering adoption of new technologies.",
+    "Related Patterns": "Microservice Chassis (either an alternative or used by the Service Template to contain common code and configuration).",
+    "Uses": "Used in microservice architectures to accelerate the creation of new services, standardize the implementation of build logic and cross-cutting concerns (like security, logging, health checks, metrics, distributed tracing, service registration/discovery, and circuit breakers), and ensure consistency across a large number of services.",
+    "Thinking": "The text explicitly labels 'Pattern Service Template' and provides dedicated sections for its Context, Problem, Solution, and Result. It directly addresses challenges and concerns specific to developing and managing multiple services within a microservice architecture, such as rapid service creation and standardized handling of microservice-specific cross-cutting concerns (e.g., service registration/discovery, circuit breakers)."
+  },
+  {
+    "Pattern Name": "Microservice Chassis",
+    "Problem": "Not explicitly detailed in this text. (Implied: How to standardize and encapsulate common cross-cutting concerns across multiple microservices without copy-pasting, and provide a consistent foundation.)",
+    "Context": "Not explicitly detailed in this text. (Implied: A microservice architecture with many services requiring consistent implementation of cross-cutting concerns like logging, metrics, health checks, security, etc., and a need to reduce boilerplate.)",
+    "Solution": "Not explicitly detailed in this text. The text states: 'the service template uses a Microservice Chassis and simply contains the code and configuration that doesnt belong in the chassis', implying it's a set of libraries or a framework that provides common functionality for cross-cutting concerns, which services can depend on.",
+    "Result": "Not explicitly detailed in this text. (Implied: Standardized implementation of cross-cutting concerns, reduced boilerplate, easier updates to common functionality across services.)",
+    "Related Patterns": "Service Template (either an alternative to the service template pattern or used by the Service Template).",
+    "Uses": "To provide a common foundation for microservices, handling shared cross-cutting concerns and boilerplate code, often used in conjunction with or as an alternative to a Service Template.",
+    "Thinking": "Explicitly mentioned as a 'Related pattern' to Service Template, with a clear description of its role in containing 'code and configuration that doesn't belong in the chassis,' indicating it's a distinct and foundational pattern for microservices. The text also links to `microservicechassishtml`."
+  },
+  {
+    "Pattern Name": "Service Registration and Discovery",
+    "Problem": "How do services in a microservice architecture find and communicate with each other when their network locations are dynamic? (Inferred from 'in a microservice architecture there are additional crosscutting concerns that you have to deal with including service registration and discovery')",
+    "Context": "A microservice architecture where services are frequently deployed, scaled, and moved, leading to dynamic network locations that cannot be hardcoded.",
+    "Solution": "Not explicitly detailed in this text. (Implied: A mechanism where services register their network locations with a central registry, and client services query this registry to find available instances.)",
+    "Result": "Not explicitly detailed in this text. (Implied: Enables dynamic service communication, resilience to service instance changes, and simplifies service deployment and scaling.)",
+    "Related Patterns": "Not mentioned in this text.",
+    "Uses": "Essential for enabling dynamic communication between services in a microservice architecture, allowing services to locate and invoke other services without hardcoding network addresses.",
+    "Thinking": "Explicitly identified as an 'additional crosscutting concern' that teams 'have to deal with' specifically 'in a microservice architecture.' This highlights its fundamental role and specificity to microservices, distinguishing it from more generic concerns."
+  },
+  {
+    "Pattern Name": "Circuit Breaker",
+    "Problem": "How to prevent cascading failures and gracefully handle partial failures when a microservice calls another service that is slow or unavailable? (Inferred from 'circuit breakers for reliably handling partial failure')",
+    "Context": "A microservice architecture where services make remote calls to other services, and these calls can fail or become slow due to network issues, service overload, or other problems, potentially leading to cascading failures across the system.",
+    "Solution": "Not explicitly detailed in this text. (Implied: A mechanism that wraps calls to external services, monitoring for failures and, if a predefined threshold is met, 'tripping' to prevent further calls for a period, allowing the failing service to recover and preventing resource exhaustion in the calling service.)",
+    "Result": "Not explicitly detailed in this text. (Implied: Improved system resilience, prevents cascading failures, provides graceful degradation, and isolates failures to individual services.)",
+    "Related Patterns": "Not mentioned in this text.",
+    "Uses": "To enhance the resilience of microservices by isolating failures and preventing a single failing service from bringing down the entire system, ensuring graceful degradation and stability in distributed environments.",
+    "Thinking": "Explicitly identified as an 'additional crosscutting concern' for 'reliably handling partial failure' specifically 'in a microservice architecture.' This marks it as a core microservice resilience pattern, crucial for distributed systems."
+  }
+]

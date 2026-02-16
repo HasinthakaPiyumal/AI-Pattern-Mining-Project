@@ -1,0 +1,152 @@
+[
+  {
+    "Pattern Name": "Service registry pattern",
+    "Problem": "Services need to communicate but their network locations are dynamic, eliminating the need for fixed addresses.",
+    "Context": "Microservices architecture where services are deployed dynamically and need to locate each other.",
+    "Solution": "Creates a central directory where services register their endpoints and health status. When services need to communicate, they query this registry to find available server instances.",
+    "Result": "Eliminates the need for fixed addresses, allows dynamic discovery of healthy service instances.",
+    "Related Patterns": "Service discovery pattern",
+    "Uses": "When a payment service needs to contact an inventory service, it checks the registry to locate healthy inventory instances.",
+    "Thinking": "Explicitly listed under 'Types of microservices design patterns' and 'Service communication and discovery'. The text clearly defines its purpose, mechanism, and provides an example."
+  },
+  {
+    "Pattern Name": "API gateway pattern",
+    "Problem": "Clients making separate calls to multiple backend microservices, leading to increased complexity for clients and potentially more network overhead.",
+    "Context": "Clients interacting with a microservices-based backend.",
+    "Solution": "Creates a single entry point between clients and multiple backend microservices. The API gateway receives one request, routes it to appropriate microservices, and combines the responses into a single result.",
+    "Result": "Simplifies client interaction, reduces the number of requests clients need to make, consolidates responses.",
+    "Related Patterns": "",
+    "Uses": "When loading a product page, the gateway can simultaneously fetch product details, pricing, inventory, and reviews from different services, returning all information in a single consolidated response to the client.",
+    "Thinking": "Explicitly listed under 'Types of microservices design patterns' and 'Service communication and discovery'. The text clearly defines its purpose, mechanism, and provides an example."
+  },
+  {
+    "Pattern Name": "Service discovery pattern",
+    "Problem": "Services locating each other in dynamic environments where network locations constantly change due to scaling or updates.",
+    "Context": "Dynamic microservices environments where services are frequently scaled up, down, or updated.",
+    "Solution": "Provides automated mechanisms for services to register themselves and find other services they need to communicate with.",
+    "Result": "Eliminates the need for hardcoded addresses, enables services to locate each other automatically in dynamic environments.",
+    "Related Patterns": "Service registry pattern (as an implementation detail or component of service discovery).",
+    "Uses": "Used as microservices scale up or are updated to a new version, and their network locations constantly change.",
+    "Thinking": "Explicitly listed under 'Types of microservices design patterns' and 'Service communication and discovery'. The text clearly defines its purpose and mechanism."
+  },
+  {
+    "Pattern Name": "Database per service pattern",
+    "Problem": "Shared data dependencies between services, leading to tight coupling and potential conflicts or complex data management.",
+    "Context": "Microservices architecture where data isolation is desired.",
+    "Solution": "Each microservice owns and manages its own database, preventing direct data access between services. Services communicate through APIs when they need information from other sources.",
+    "Result": "Eliminates shared data dependencies, reduces coupling between services, promotes independent development and deployment.",
+    "Related Patterns": "Bounded Context",
+    "Uses": "In an enterprise resource planning (ERP) system, the accounting service manages financial data independently from the HR service's employee database.",
+    "Thinking": "Explicitly listed under 'Types of microservices design patterns' and 'Data and transaction management'. The text clearly defines its purpose, mechanism, and provides an example."
+  },
+  {
+    "Pattern Name": "Saga pattern",
+    "Problem": "Managing transactions that span multiple microservices, where a failure in one step needs to be handled consistently across all services.",
+    "Context": "Distributed transactions in a microservices architecture.",
+    "Solution": "Breaks transactions into coordinated steps. Each service completes its local transaction and triggers the next step. If any step fails, the pattern automatically runs compensating actions to undo previous steps.",
+    "Result": "Ensures data consistency across multiple services in a distributed transaction, provides fault tolerance by undoing failed operations.",
+    "Related Patterns": "Event-driven pattern (often used for orchestration)",
+    "Uses": "When processing an online order, if payment fails after inventory is reserved, the saga automatically releases the reserved items.",
+    "Thinking": "Explicitly listed under 'Types of microservices design patterns' and 'Data and transaction management'. The text clearly defines its purpose, mechanism, and provides an example."
+  },
+  {
+    "Pattern Name": "CQRS command query responsibility segregation pattern",
+    "Problem": "Optimizing data modification (commands) and data retrieval (queries) when they have different performance and scaling requirements, and to minimize write contention.",
+    "Context": "Systems with distinct read and write workloads, where performance optimization for both is critical.",
+    "Solution": "Separates data modification commands from data retrieval queries by using dedicated models for each.",
+    "Result": "Allows independent optimization of read and write paths, minimizes write contention on the command side, reduces query latency on the read side.",
+    "Related Patterns": "Event-driven pattern (often used to populate read models)",
+    "Uses": "In an ecommerce system, placing an order uses the write-optimized command model, while generating a sales report leverages the read-optimized query model.",
+    "Thinking": "Explicitly listed under 'Types of microservices design patterns' and 'Data and transaction management'. The text clearly defines its purpose, mechanism, and provides an example."
+  },
+  {
+    "Pattern Name": "Circuit breaker pattern",
+    "Problem": "Preventing failures in one service from spreading throughout the entire system (cascading failures) when a downstream service becomes unresponsive.",
+    "Context": "Distributed systems where services depend on other services, and failures can propagate.",
+    "Solution": "Monitors calls to downstream services and stops requests when failures are detected. When a service becomes unresponsive, the circuit breaker 'trips' and blocks further calls for a period.",
+    "Result": "Prevents cascading failures, protects system resources, allows the rest of the system to continue functioning, provides fallback responses.",
+    "Related Patterns": "Bulkhead pattern",
+    "Uses": "If an inventory service goes down, the circuit breaker stops the order service from making repeated failed requests, allowing the rest of the system to function while providing fallback responses to customers.",
+    "Thinking": "Explicitly listed under 'Types of microservices design patterns' and 'Resilience and fault handling'. The text clearly defines its purpose, mechanism, and provides an example."
+  },
+  {
+    "Pattern Name": "Bulkhead pattern",
+    "Problem": "Preventing failures in one area (service or resource) from affecting the entire system.",
+    "Context": "Systems where resource isolation is needed to contain failures.",
+    "Solution": "Isolates system resources, like compartments in a ship's hull, separating different functions. It limits the number of concurrent requests or resources allocated to specific services.",
+    "Result": "Prevents failures from cascading, ensures that if one part fails, others remain operational.",
+    "Related Patterns": "Circuit breaker pattern",
+    "Uses": "Used to separate different functions or services to contain failures, similar to compartments in a ship's hull.",
+    "Thinking": "Explicitly listed under 'Types of microservices design patterns' and 'Resilience and fault handling'. The text clearly defines its purpose and mechanism."
+  },
+  {
+    "Pattern Name": "Backend for frontend BFF pattern",
+    "Problem": "Different frontend interfaces (e.g., mobile apps, web applications) have varying requirements (screen size, bandwidth, performance), leading to a single backend becoming complex or inefficient for all clients.",
+    "Context": "Systems serving multiple distinct client types with different needs.",
+    "Solution": "Creates a dedicated backend service tailored to each specific frontend interface.",
+    "Result": "Optimizes each backend for its particular frontend, allowing developers to meet specific client requirements (e.g., smaller screens, limited bandwidth).",
+    "Related Patterns": "API Gateway pattern (BFF can be seen as a specialized API Gateway)",
+    "Uses": "Optimizing backends for mobile apps versus web applications, which have different requirements like smaller screens, limited bandwidth, and varying performance capabilities.",
+    "Thinking": "Explicitly listed under 'Types of microservices design patterns' and 'Architecture and integration'. The text clearly defines its purpose, mechanism, and provides an example."
+  },
+  {
+    "Pattern Name": "Entity and aggregate pattern",
+    "Problem": "Organizing related data into logical units and ensuring data consistency when multiple related objects need to be updated together.",
+    "Context": "Domain-driven design (DDD) in microservices, where data integrity within a business concept is crucial.",
+    "Solution": "Organizes related data into logical units based on DDD concepts. An entity is a distinct object with a unique identity. An aggregate combines related entities that must be updated together as a single unit.",
+    "Result": "Ensures data integrity and consistency within a logical business unit, simplifies data management for complex domain objects.",
+    "Related Patterns": "Bounded Context",
+    "Uses": "In an ecommerce system, an order aggregate would include order details, line items, and shipping information, all of which need to stay synchronized when changes occur.",
+    "Thinking": "Explicitly listed under 'Types of microservices design patterns' and 'Architecture and integration'. The text clearly defines its purpose, mechanism, and provides an example."
+  },
+  {
+    "Pattern Name": "Strangler pattern",
+    "Problem": "Refactoring a large, complex monolithic application into a microservices architecture, which can be risky and difficult to do all at once.",
+    "Context": "Migrating from a monolithic application to microservices.",
+    "Solution": "New microservices are gradually built alongside the existing monolith, slowly taking over functionality until the old system is replaced completely.",
+    "Result": "Manages the process of refactoring safely, reduces risk during migration, allows gradual transition to microservices.",
+    "Related Patterns": "",
+    "Uses": "Gradually replacing functionality of a monolithic application with new microservices.",
+    "Thinking": "Explicitly listed under 'Types of microservices design patterns' and 'Architecture and integration'. The text clearly defines its purpose, mechanism, and provides an analogy."
+  },
+  {
+    "Pattern Name": "Event-driven pattern",
+    "Problem": "Tightly coupled services communicating synchronously, leading to dependencies and reduced independence.",
+    "Context": "Microservices needing to communicate asynchronously and maintain loose coupling.",
+    "Solution": "Microservices communicate asynchronously by publishing and consuming events. When a service completes an action, it broadcasts an event that other interested services can listen to and respond accordingly.",
+    "Result": "Creates loose coupling between services, allows services to operate independently while coordinating activities, enhances scalability and responsiveness.",
+    "Related Patterns": "Saga pattern, CQRS pattern",
+    "Uses": "When a service completes an action, it broadcasts an event that other interested services can listen to and respond accordingly.",
+    "Thinking": "Explicitly listed under 'Types of microservices design patterns' and 'Event and communication'. The text clearly defines its purpose, mechanism, and result."
+  },
+  {
+    "Pattern Name": "Sidecar pattern",
+    "Problem": "Handling cross-cutting concerns (e.g., logging, monitoring, security, observability) for a primary application without modifying its codebase, which can lead to code duplication or increased complexity within the main service.",
+    "Context": "Deploying auxiliary functionalities alongside a primary application in the same execution environment.",
+    "Solution": "Deploys a secondary container (the sidecar) alongside a primary application or service within the same execution environment. This sidecar handles cross-cutting concerns.",
+    "Result": "Extends the functionality of the main application without modifying its codebase, isolates cross-cutting concerns, simplifies development and maintenance of the primary service.",
+    "Related Patterns": "",
+    "Uses": "Handling logging, monitoring, security, and observability for a main application.",
+    "Thinking": "Explicitly listed under 'Types of microservices design patterns' and 'Event and communication'. The text clearly defines its purpose, mechanism, and provides examples of concerns it handles."
+  },
+  {
+    "Pattern Name": "Adapter microservices pattern",
+    "Problem": "Communication between incompatible systems or interfaces due to different data formats, protocols, or APIs.",
+    "Context": "Integrating microservices with legacy systems or third-party services that use different communication standards.",
+    "Solution": "Converts between different data formats, protocols, or APIs, acting like a travel adapter.",
+    "Result": "Enables communication between incompatible systems, facilitates integration with legacy or third-party services.",
+    "Related Patterns": "",
+    "Uses": "Integrating with legacy systems or third-party services that use different communication standards.",
+    "Thinking": "Explicitly listed under 'Types of microservices design patterns' and 'Event and communication'. The text clearly defines its purpose, mechanism, and use cases."
+  },
+  {
+    "Pattern Name": "Bounded Context",
+    "Problem": "How to define clear boundaries for microservices to ensure loose coupling, independent development, and maintain a consistent domain model within each service. Without clear boundaries, services can become entangled, leading to a distributed monolith.",
+    "Context": "Designing and decomposing a large application into microservices, especially when dealing with complex business domains.",
+    "Solution": "Design services around distinct business capabilities, establishing clear boundaries for each service. Within these boundaries, a specific domain model and ubiquitous language are maintained. Communication between services across these boundaries happens explicitly, often through APIs or events, converting data as needed.",
+    "Result": "Promotes loose coupling, allows independent development and deployment of services, ensures a consistent domain model within each service, and prevents domain model leakage.",
+    "Related Patterns": "Entity and Aggregate Pattern (as it operates within a Bounded Context), Database per Service (supports isolation of data within a context).",
+    "Uses": "Teams design services around business capabilities with clear boundaries called bounded contexts. For example, in an e-commerce system, 'Order Management' could be one bounded context, 'Customer Accounts' another, and 'Inventory' a third, each with its own domain model.",
+    "Thinking": "The text explicitly states, 'teams design services around business capabilities with clear boundaries called bounded contexts.' This describes a fundamental architectural approach for defining the scope and responsibilities of individual microservices, making it a core design pattern for microservice decomposition, even if not listed in the numbered 'Types' section. It's crucial for achieving the benefits of microservices like loose coupling and independent development."
+  }
+]

@@ -1,0 +1,32 @@
+[
+  {
+    "Pattern Name": "Transaction log tailing",
+    "Problem": "How to publish messages/events inserted into the outbox in the database to the message broker",
+    "Context": "You have applied the Transactional Outbox pattern.",
+    "Solution": "Tail the database transaction log and publish each message/event inserted into the outbox to the message broker. The mechanism for trailing the transaction log depends on the database (e.g., MySQL binlog, Postgres WAL, AWS DynamoDB table streams).",
+    "Result": "Benefits: No 2PC, Guaranteed to be accurate. Drawbacks: Relatively obscure (though becoming common), Requires database-specific solutions, Tricky to avoid duplicate publishing.",
+    "Related Patterns": "The Transactional Outbox pattern creates the need for this pattern. The Polling publisher pattern is an alternative solution.",
+    "Uses": "Eventuate Tram framework implements this pattern. Described in the book 'Microservices patterns book'.",
+    "Thinking": "The text explicitly labels 'Pattern Transaction log tailing' and then provides dedicated sections for its Context, Problem, Solution, Resulting context (benefits and drawbacks), and Related patterns, along with examples of its implementation (Eventuate Tram framework). This comprehensive description clearly identifies it as a true Microservices design pattern within the provided text."
+  },
+  {
+    "Pattern Name": "Transactional Outbox",
+    "Problem": "Not provided in text.",
+    "Context": "Not provided in text.",
+    "Solution": "Not provided in text.",
+    "Result": "Not provided in text.",
+    "Related Patterns": "Creates the need for the Transaction log tailing pattern.",
+    "Uses": "Not provided in text.",
+    "Thinking": "The text explicitly refers to 'Transactional Outbox' as a 'pattern' ('Transactional Outbox transactionaloutboxhtml pattern') and states that it 'creates the need' for the 'Transaction log tailing' pattern. While its full description (Problem, Context, Solution, Result, Uses) is not detailed in this specific text snippet, its identity as a pattern and its relationship to another pattern are clearly established."
+  },
+  {
+    "Pattern Name": "Polling publisher",
+    "Problem": "Not provided in text.",
+    "Context": "Not provided in text.",
+    "Solution": "Not provided in text.",
+    "Result": "Not provided in text.",
+    "Related Patterns": "An alternative solution to the Transaction log tailing pattern.",
+    "Uses": "Not provided in text.",
+    "Thinking": "The text explicitly refers to 'Polling publisher' as a 'pattern' ('Polling publisher pollingpublisherhtml pattern') and states that it is 'an alternative solution' to the 'Transaction log tailing' pattern. While its full description (Problem, Context, Solution, Result, Uses) is not detailed in this specific text snippet, its identity as a pattern and its relationship to another pattern are clearly established."
+  }
+]

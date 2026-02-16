@@ -1,0 +1,32 @@
+[
+  {
+    "Pattern Name": "Serverless Deployment",
+    "Problem": "How are services packaged and deployed?",
+    "Context": "You have applied the Microservice architecture pattern and architected your system as a set of services. Each service is deployed as a set of service instances for throughput and availability.",
+    "Solution": "Use a deployment infrastructure that hides any concept of servers (i.e., reserved or preallocated resources, physical or virtual hosts, or containers). The infrastructure takes your services code and runs it. You are charged for each request based on the resources consumed. To deploy your service, you package the code (e.g., as a ZIP file), upload it to the deployment infrastructure, and describe the desired performance characteristics. This infrastructure is typically operated by a public cloud provider and uses containers or virtual machines for isolation, but these details are hidden from you.",
+    "Result": "Benefits include: eliminating the need to manage low-level infrastructure, automatic scaling and elasticity, and a pay-per-request cost model. Drawbacks include: significant limitations and constraints (e.g., limited languages, suitable only for stateless applications), limited input sources, requirement for quick application startup, and risk of high latency due to cold starts or reactive scaling.",
+    "Related Patterns": "Multiple Service Instances per Host pattern, Single Service per Host pattern (these are alternative deployment solutions, and the serverless infrastructure itself might internally use Single Service per Host).",
+    "Uses": "AWS Lambda, Google Cloud Functions, Azure Functions. Specifically, AWS Lambda functions can be invoked in response to events from AWS services (S3, DynamoDB, Kinesis, SES), via the AWS Lambda Gateway for HTTP requests, explicitly using the AWS Lambda Web Service API, or periodically using a cron-like mechanism.",
+    "Thinking": "The text explicitly labels 'Serverless deployment' as a 'Pattern' and provides a comprehensive description including its Context, Problem, Solution, Examples, Resulting context (benefits and drawbacks), and Related patterns, all within the scope of deploying microservices."
+  },
+  {
+    "Pattern Name": "Multiple Service Instances per Host pattern",
+    "Problem": "Not detailed in the provided text.",
+    "Context": "Not detailed in the provided text.",
+    "Solution": "Not detailed in the provided text.",
+    "Result": "Not detailed in the provided text.",
+    "Related Patterns": "Serverless Deployment (as an alternative deployment solution).",
+    "Uses": "Not detailed in the provided text.",
+    "Thinking": "This pattern is explicitly mentioned as an 'alternative deployment solution' to Serverless Deployment, indicating it is a microservices deployment pattern. However, its specific problem, context, solution, and results are not described in the provided text."
+  },
+  {
+    "Pattern Name": "Single Service per Host pattern",
+    "Problem": "Not detailed in the provided text.",
+    "Context": "Not detailed in the provided text.",
+    "Solution": "Not detailed in the provided text.",
+    "Result": "Not detailed in the provided text.",
+    "Related Patterns": "Serverless Deployment (as an alternative deployment solution, and potentially used internally by serverless infrastructure).",
+    "Uses": "Not detailed in the provided text.",
+    "Thinking": "This pattern is explicitly mentioned as an 'alternative deployment solution' to Serverless Deployment, and the text suggests serverless infrastructure might internally use it. This indicates it is a microservices deployment pattern. However, its specific problem, context, solution, and results are not described in the provided text."
+  }
+]

@@ -1,0 +1,42 @@
+[
+  {
+    "Pattern Name": "Microservice Architecture",
+    "Problem": "Not explicitly detailed in this text.",
+    "Context": "Not explicitly detailed in this text.",
+    "Solution": "Not explicitly detailed in this text.",
+    "Result": "Not explicitly detailed in this text.",
+    "Related Patterns": "Service Integration Contract Test",
+    "Uses": "It is mentioned as a foundational architectural pattern that has been applied, leading to an application consisting of numerous services that often invoke other services.",
+    "Thinking": "The text explicitly refers to 'Microservice architecture Microserviceshtml pattern' as a foundational pattern that has been applied, serving as the context for other patterns like 'Service Integration Contract Test'. While its specific problem, solution, and results are not detailed in this snippet, its status as a pattern is clear within the domain."
+  },
+  {
+    "Pattern Name": "Service Integration Contract Test",
+    "Problem": "How to easily test that a service provides an API that its clients expect.",
+    "Context": "You have applied the Microservice architecture pattern. The application consists of numerous services, and services often invoke other services. You must write automated tests that verify that a service behaves correctly.",
+    "Solution": "A test suite for a service that is written by the developers of another service that consumes it. The test suite verifies that the service meets the consuming service's expectations.",
+    "Result": "Benefits: Testing a service in isolation is easier, faster, more reliable, and cheap. Drawbacks: Tests might pass but the application will fail in production. Issues: How to ensure that the consumer provided tests match what the consumer actually requires.",
+    "Related Patterns": "Service Component Test, Integration Contract Test",
+    "Uses": "To verify that a service behaves correctly and provides an API that its clients expect, especially in a Microservice architecture where services invoke other services.",
+    "Thinking": "The text explicitly labels this as 'Pattern Service Integration Contract Test' and provides a clear Problem, Context, Solution, and Result, which are the hallmarks of a well-described design pattern. It also explicitly states it's applied within a Microservice architecture."
+  },
+  {
+    "Pattern Name": "Service Component Test",
+    "Problem": "Not explicitly detailed in this text.",
+    "Context": "Not explicitly detailed in this text.",
+    "Solution": "Not explicitly detailed in this text.",
+    "Result": "Not explicitly detailed in this text.",
+    "Related Patterns": "Service Integration Contract Test",
+    "Uses": "Not explicitly detailed in this text, but implied to be a testing pattern related to services.",
+    "Thinking": "This pattern is explicitly referenced as 'See Service Component Test servicecomponenttesthtml' in the 'Related patterns' section of 'Service Integration Contract Test'. While its details (Problem, Context, Solution, Result) are not provided in this text snippet, its mention as a related pattern indicates it is a recognized pattern within the microservices domain, similar to how 'Microservice Architecture' was included despite lacking full details in this specific snippet."
+  },
+  {
+    "Pattern Name": "Integration Contract Test",
+    "Problem": "Not explicitly detailed in this text.",
+    "Context": "Not explicitly detailed in this text.",
+    "Solution": "Not explicitly detailed in this text.",
+    "Result": "Not explicitly detailed in this text.",
+    "Related Patterns": "Service Integration Contract Test",
+    "Uses": "Not explicitly detailed in this text, but implied to be a testing pattern, possibly a broader category for 'Service Integration Contract Test'.",
+    "Thinking": "This pattern is explicitly referenced as 'See Integration Contract Test' in the 'See also' section of 'Service Integration Contract Test'. Similar to 'Service Component Test' and 'Microservice Architecture', its details are not provided in this snippet, but its explicit mention as a related concept or pattern within the context of microservices testing warrants its inclusion."
+  }
+]

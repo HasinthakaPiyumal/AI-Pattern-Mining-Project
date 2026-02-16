@@ -1,0 +1,89 @@
+[
+  {
+    "Pattern Name": "Saga",
+    "Problem": "Not explicitly detailed in the text, but implied to be about managing distributed transactions or operations that span multiple services.",
+    "Context": "Not explicitly detailed in the text.",
+    "Solution": "Not explicitly detailed in the text.",
+    "Result": "Not explicitly detailed in the text.",
+    "Related Patterns": "API Composition, CQRS (mentioned as patterns used alongside Saga in a bootcamp). Command-side replica (mentioned as an alternative solution).",
+    "Uses": "To design operations that span multiple services.",
+    "Thinking": "The text explicitly refers to 'Saga' as a 'pattern' and mentions its use in 'design operations that span multiple services', indicating it's a true Microservices design pattern."
+  },
+  {
+    "Pattern Name": "API Composition",
+    "Problem": "Not explicitly detailed in the text.",
+    "Context": "Not explicitly detailed in the text.",
+    "Solution": "Not explicitly detailed in the text.",
+    "Result": "Not explicitly detailed in the text.",
+    "Related Patterns": "Saga, CQRS (mentioned as patterns used alongside API Composition in a bootcamp).",
+    "Uses": "To design operations that span multiple services.",
+    "Thinking": "The text explicitly refers to 'API Composition' as a 'pattern' and mentions its use in 'design operations that span multiple services', indicating it's a true Microservices design pattern."
+  },
+  {
+    "Pattern Name": "CQRS (Command Query Responsibility Segregation)",
+    "Problem": "Not explicitly detailed in the text.",
+    "Context": "Not explicitly detailed in the text.",
+    "Solution": "Not explicitly detailed in the text.",
+    "Result": "Not explicitly detailed in the text.",
+    "Related Patterns": "Saga, API Composition (mentioned as patterns used alongside CQRS in a bootcamp). Command-side replica (stated as 'structurally identical').",
+    "Uses": "To design operations that span multiple services.",
+    "Thinking": "The text explicitly refers to 'CQRS' as a 'pattern' and mentions its use in 'design operations that span multiple services'. Additionally, it states that the 'Command-side replica' pattern is 'structurally identical to CQRS', reinforcing its status as a recognized pattern."
+  },
+  {
+    "Pattern Name": "Command-side replica",
+    "Problem": "How can a service that implements a command retrieve data from another service?",
+    "Context": "You have applied the Microservices architecture pattern and the Database per service pattern. As a result, a service that implements a system command often needs to query other services. For example, the createOrder command implemented by the Order Service needs to retrieve the restaurants menu from the Restaurant Service to price and validate line items.",
+    "Solution": "The solution consists of a Command service (the service that implements the command), a Provider service (the service that owns the data), and a Replica database (a read-only replica of the data from the provider service). The command service keeps the replica up to date by subscribing to Domain events published by the provider service.",
+    "Result": {
+      "Benefits": [
+        "Support multiple technology stacks",
+        "Segregate by characteristics (provider service)",
+        "Simple interactions (command)",
+        "Efficient interactions (command)",
+        "Minimize runtime coupling"
+      ],
+      "Drawbacks": [
+        "Simple components (makes command service more complicated)",
+        "Team autonomy (provider services team might need to coordinate more frequently)",
+        "Fast deployment pipeline (command services deployment pipeline might be slower)",
+        "Segregate by characteristics (potentially increased complexity if replica contains regulated data)",
+        "Simple interactions (provider services commands must publish events)",
+        "Efficient interactions (provider service might publish a large volume of events)",
+        "Minimize design-time coupling (risk of tight design-time coupling)"
+      ]
+    },
+    "Related Patterns": "Microservices architecture pattern, Database per Service pattern (creates the need), Saga (alternative solution), Domain event (generates the events), CQRS (structurally identical).",
+    "Uses": "To allow a command-implementing service to retrieve data from another service without direct, potentially inefficient or tightly coupled, queries, by maintaining a local read-only replica.",
+    "Thinking": "This pattern is the primary subject of the research text, with dedicated sections for 'Pattern Name', 'Context', 'Problem', 'Solution', 'Resulting context' (Benefits/Drawbacks), and 'Related patterns'. This comprehensive description clearly identifies it as a true Microservices design pattern."
+  },
+  {
+    "Pattern Name": "Microservices architecture pattern",
+    "Problem": "Not explicitly detailed in the text. It serves as the architectural context for other problems and patterns.",
+    "Context": "The overarching architectural style for building distributed systems.",
+    "Solution": "Not explicitly detailed in the text.",
+    "Result": "Not explicitly detailed in the text.",
+    "Related Patterns": "Database per Service pattern, Command-side replica (applied within this architecture).",
+    "Uses": "As the foundational architectural style for building distributed systems, providing the context for other microservices patterns.",
+    "Thinking": "The text explicitly refers to 'Microservices architecture pattern' and states that it has been 'applied' as a prerequisite for the 'Command-side replica' pattern, indicating its status as a fundamental architectural pattern in the microservices domain."
+  },
+  {
+    "Pattern Name": "Database per Service pattern",
+    "Problem": "Not explicitly detailed in the text, but implied to be the isolation of data, which then creates the need for patterns like Command-side replica when cross-service data is required.",
+    "Context": "Applied within the Microservices architecture pattern, where each service manages its own database.",
+    "Solution": "Not explicitly detailed in the text.",
+    "Result": "Not explicitly detailed in the text.",
+    "Related Patterns": "Command-side replica (creates the need for this pattern).",
+    "Uses": "To ensure data encapsulation and autonomy for individual microservices, leading to independent deployment and scaling.",
+    "Thinking": "The text explicitly refers to 'Database per Service pattern' and states that it 'creates the need for this pattern' (Command-side replica), clearly identifying it as a true Microservices design pattern that addresses data isolation."
+  },
+  {
+    "Pattern Name": "Domain event",
+    "Problem": "Not explicitly detailed in the text, but implied to be about communicating state changes or significant occurrences within a domain across service boundaries.",
+    "Context": "Used by a Provider service to notify other services (like a Command service) about data changes.",
+    "Solution": "The pattern 'generates the events' which are 'published by the provider service'.",
+    "Result": "Enables services to keep replicas up to date by subscribing to these events.",
+    "Related Patterns": "Command-side replica (uses this pattern to update its replica).",
+    "Uses": "To publish events representing significant domain changes, allowing other services to react and maintain consistency (e.g., updating a replica).",
+    "Thinking": "The text explicitly refers to 'Domain event' as a 'pattern' and describes its crucial role in the 'Command-side replica' pattern, stating that it 'generates the events' used for replica updates. This confirms its status as a true Microservices design pattern."
+  }
+]

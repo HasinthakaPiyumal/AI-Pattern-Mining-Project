@@ -1,0 +1,52 @@
+[
+  {
+    "Pattern Name": "Clientside UI composition",
+    "Problem": "How to implement a UI screen or page that displays data from multiple services",
+    "Context": "You have applied the Microservice architecture pattern. Services are developed by business capability decomposition/subdomain decomposition oriented teams that are also responsible for the user experience. Some UI screens/pages display data from multiple service. Consider for example an Amazon style product detail page which displays numerous data items including Basic information about the book such as title author price etc, Your purchase history for the book, Availability, Buying options, Other items that are frequently bought with this book, Other items bought by customers who bought this book, Customer reviews, Sellers ranking. Each data item corresponds to a separate service and how it is displayed is therefore the responsibility of a different team.",
+    "Solution": "Each team develops a clientside UI component such an AngularJS directive that implements the region of the page/screen for their service. A UI team is responsible implementing the page skeletons that build pages/screens by composing multiple service-specific UI components.",
+    "Result": "Not explicitly mentioned in this text.",
+    "Related Patterns": "Serverside page fragment composition",
+    "Uses": "Not explicitly mentioned in this text.",
+    "Thinking": "This pattern is explicitly introduced with 'Pattern Clientside UI composition' and has dedicated sections for Context, Problem, Solution, and Related Patterns, clearly defining it as a microservices design pattern."
+  },
+  {
+    "Pattern Name": "Serverside page fragment composition",
+    "Problem": "Not explicitly mentioned in this text.",
+    "Context": "Not explicitly mentioned in this text.",
+    "Solution": "Not explicitly mentioned in this text.",
+    "Result": "Not explicitly mentioned in this text.",
+    "Related Patterns": "Clientside UI composition",
+    "Uses": "Not explicitly mentioned in this text.",
+    "Thinking": "The text explicitly refers to 'The Serverside page fragment composition serversidepagefragmentcompositionhtml pattern' and states it is an 'alternative approach' to Clientside UI composition, confirming its status as a microservices design pattern, even if its full details are not provided here."
+  },
+  {
+    "Pattern Name": "Commandside replica",
+    "Problem": "Not explicitly mentioned in this text.",
+    "Context": "Not explicitly mentioned in this text.",
+    "Solution": "Maintain a queryable replica of the data in the service that implements the Commandside replica.",
+    "Result": "Not explicitly mentioned in this text.",
+    "Related Patterns": "Not explicitly mentioned in this text.",
+    "Uses": "Not explicitly mentioned in this text.",
+    "Thinking": "The text mentions 'Commandside replica' and provides a brief description of its function ('Maintain a queryable replica of the data in the service that implements the Commandside replica'), indicating it is a recognized pattern."
+  },
+  {
+    "Pattern Name": "Business Capability Decomposition",
+    "Problem": "Not explicitly mentioned in this text.",
+    "Context": "Services are developed by business capability decomposition...oriented teams within a Microservice architecture.",
+    "Solution": "Not explicitly mentioned in this text.",
+    "Result": "Not explicitly mentioned in this text.",
+    "Related Patterns": "Subdomain Decomposition",
+    "Uses": "Not explicitly mentioned in this text.",
+    "Thinking": "The text states 'Services are developed by business capability decomposition...oriented teams,' identifying it as a fundamental method or strategy for structuring services in a microservices architecture, which is a form of design pattern for service boundary definition."
+  },
+  {
+    "Pattern Name": "Subdomain Decomposition",
+    "Problem": "Not explicitly mentioned in this text.",
+    "Context": "Services are developed by...subdomain decomposition...oriented teams within a Microservice architecture.",
+    "Solution": "Not explicitly mentioned in this text.",
+    "Result": "Not explicitly mentioned in this text.",
+    "Related Patterns": "Business Capability Decomposition",
+    "Uses": "Not explicitly mentioned in this text.",
+    "Thinking": "The text states 'Services are developed by...subdomain decomposition...oriented teams,' identifying it as a fundamental method or strategy for structuring services in a microservices architecture, often associated with Domain-Driven Design, which is a form of design pattern for service boundary definition."
+  }
+]

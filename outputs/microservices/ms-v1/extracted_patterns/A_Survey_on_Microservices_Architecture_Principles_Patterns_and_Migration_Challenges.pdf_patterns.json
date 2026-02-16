@@ -1,0 +1,212 @@
+[
+  {
+    "Pattern Name": "Domain-Driven Design",
+    "Problem": "Designing and implementing quality and high-value software, both strategically and tactically, and integrating it with the business, especially when decomposing a system into small microservices.",
+    "Context": "Developing a vision of the system, generating a business domain model, extracting knowledge of business functionalities, identifying subdomains, related functionalities, priorities, dependencies, and external calls.",
+    "Solution": "Utilize DDD tools to design and implement software, creating a common language between developers, architects, and domain experts. This involves generating diagrams to identify subdomains and functionalities, which helps in delimiting the boundaries of each microservice.",
+    "Result": "Microservices with high cohesion, better transparency when migrating to microservices due to separated business functionalities and loose coupling. It perfectly matches the principle of single responsibility when creating a microservice.",
+    "Related Patterns": "Single Responsibility Principle (implied correlation)",
+    "Uses": "Designing and implementing quality software, decomposing systems into microservices, defining delimited contexts for business problems, achieving high cohesion in microservices.",
+    "Thinking": "The text explicitly calls it a 'pattern' and describes its application in designing and decomposing systems into microservices, focusing on business domain modeling and achieving high cohesion."
+  },
+  {
+    "Pattern Name": "Service Discovery Pattern",
+    "Problem": "Microservices need to know the network locations (addresses) of other services they need to interact with, especially in dynamic environments where service instances frequently change.",
+    "Context": "When microservices are designed and created, they expose APIs and need to interact with each other. Services are started and stopped dynamically.",
+    "Solution": "Services register themselves in a 'Service Registry' upon startup, providing their name and address. The Service Registry maintains a record of all active services. Services send 'heartbeat' signals to the registry to confirm their availability. A load balancer uses the Service Registry to find the real location of a service when a request comes in.",
+    "Result": "Allows services to be run without knowing their physical addresses, enables dynamic scaling and management of service instances, ensures requests are redirected to available instances, and improves resilience by detecting and removing unavailable services.",
+    "Related Patterns": "Load Balancer",
+    "Uses": "Locating and managing microservice instances, enabling inter-service communication in a distributed system, handling dynamic service environments.",
+    "Thinking": "The text explicitly names it 'Service Discovery Pattern' and provides a clear description of its mechanism (Service Registry, heartbeats) and benefits for microservice communication."
+  },
+  {
+    "Pattern Name": "Data-Driven Design",
+    "Problem": "Optimizing application design, usability, and business outcomes by leveraging insights from user behavior and application analytics.",
+    "Context": "Organizations collect and manage data from application analytics, which can reveal important or relevant information about users and their interactions.",
+    "Solution": "Designs are created using data collected from application analytics. This data informs decisions to rethink visual design, facilitate usability and accessibility, and adapt content to user needs.",
+    "Result": "Improved transparency during migration to microservices (as business functionalities are already separated with loose coupling), potential to maximize sales, and better alignment of the application with user needs.",
+    "Related Patterns": "Domain-Driven Design (mentioned as microservices being inspired by DDD proposals, defining a delimited context)",
+    "Uses": "Optimizing application design and user experience, informing design decisions based on analytics, facilitating microservices migration by clarifying business functionalities.",
+    "Thinking": "Although 'Data-Driven Design' can be a broader design philosophy, the text presents it under 'PATTERNS PRACTICES AND PRINCIPLES FOR MICROSERVICES' and explicitly links its application to benefits for microservices, such as 'better transparency when migrating to microservices'."
+  },
+  {
+    "Pattern Name": "Backend for Frontend Pattern (BFF)",
+    "Problem": "Decoupling frontend applications (web, mobile, third-party) from a complex backend architecture, and tailoring data responses to the specific needs of different client types.",
+    "Context": "Multiple types of clients (browsers, mobile apps, external applications) interact with a microservices-based backend, and each client may require different data formats or aggregations.",
+    "Solution": "Create a dedicated backend service (BFF) for each frontend application or client type. This BFF acts as an intermediary, aggregating and transforming data from various microservices to suit the specific requirements of its corresponding frontend.",
+    "Result": "Decouples frontend applications from the backend, isolates the backend from frontend changes, allows code reuse across clients (if they share a BFF), simplifies client-side development, and avoids changes in frontend applications when new backend services are added (only the BFF needs adaptation).",
+    "Related Patterns": "API Gateway (implied, as BFF can be implemented as or alongside API Gateways)",
+    "Uses": "Serving multiple client types (web, mobile, third-party), simplifying client-side development, adapting backend responses to specific frontend needs, isolating frontend from backend complexity.",
+    "Thinking": "The text explicitly calls it 'Backend for Frontend BFF pattern' and describes its architectural structure and benefits for microservices, particularly in handling diverse client needs."
+  },
+  {
+    "Pattern Name": "Adapter Microservices Pattern",
+    "Problem": "Integrating modern, business-oriented microservices (typically using RESTful messaging) with existing legacy APIs or traditional SOAP-based services.",
+    "Context": "A development team needs to interact with existing services (e.g., legacy systems, SOAP-based Web Services) but wants to maintain a modern, entity-based REST interface for its microservices.",
+    "Solution": "An adapter microservice is created to wrap and translate existing legacy services into an entity-based REST interface. This adapter microservice treats each new entity interface as an independent microservice, managing and scaling it separately.",
+    "Result": "Enables seamless integration between new microservices and legacy systems, converts function-based interfaces (verbs) into business-concept-based interfaces (nouns), and allows independent management and scaling of the integration layer.",
+    "Related Patterns": "None explicitly mentioned.",
+    "Uses": "Integrating microservices with legacy systems, modernizing existing APIs, bridging different communication protocols (e.g., REST to SOAP).",
+    "Thinking": "The text explicitly names it 'Adapter Microservices Pattern' and details its purpose and mechanism for integrating microservices with existing, potentially legacy, services."
+  },
+  {
+    "Pattern Name": "Strangler Application Pattern",
+    "Problem": "Managing the refactoring of a large, monolithic application into microservices in a controlled, incremental manner, reducing the risk associated with a 'big-bang' rewrite.",
+    "Context": "Migrating a monolithic application, especially web applications where functionality can be divided by URIs (Uniform Resource Identifiers).",
+    "Solution": "Incrementally replace parts of the monolithic application with new microservices-based implementations. This process involves three steps: 1. **Transform:** Create a new parallel site and incrementally build new functionality. 2. **Coexist:** Run both the original monolith and the new microservices, gradually redirecting traffic for newly implemented functionality to the new system. 3. **Remove:** Eliminate the old functionality from the monolith and redirect all traffic to the new microservices.",
+    "Result": "Allows for an incremental adoption of microservices, minimizes risk by avoiding a complete rewrite, provides flexibility to change direction if needed, and supports refactoring both backend and frontend components.",
+    "Related Patterns": "None explicitly mentioned.",
+    "Uses": "Incremental migration from monolithic applications to microservices, refactoring large systems, reducing risk during architectural transitions.",
+    "Thinking": "The text explicitly names it 'Strangler Application Pattern' and provides a detailed, step-by-step explanation of this well-known migration strategy for microservices."
+  },
+  {
+    "Pattern Name": "Shared Data Microservice Design Pattern",
+    "Problem": "Facilitating a smoother transition phase during the migration of a legacy application to microservices, particularly concerning data management.",
+    "Context": "In the initial or transition phase of migrating a monolithic application to a microservices architecture, where separating data immediately for each microservice might be too complex or risky.",
+    "Solution": "Temporarily allow newly created microservices to share the same database repository as the legacy application. This approach requires clearly defined business functionality limits (often relying on Domain-Driven Design) to ensure microservices are created with loose coupling and high cohesion.",
+    "Result": "A smoother and less disruptive migration process, allowing for incremental data separation over time. However, the text notes that maintaining a single database repository at the end of the migration process is considered an anti-pattern.",
+    "Related Patterns": "Domain-Driven Design (DDD), Anti-pattern (if used long-term)",
+    "Uses": "Temporary data management strategy during monolithic to microservices migration, easing the transition phase.",
+    "Thinking": "The text explicitly names it 'Shared Data Microservice Design Pattern' and describes its specific use case and implications (temporary, potential anti-pattern) within the context of microservices migration."
+  },
+  {
+    "Pattern Name": "Aggregator Microservice Design Pattern",
+    "Problem": "Identifying and structuring microservices around specific business concepts, particularly when dealing with groups of related entities that need to be kept consistent.",
+    "Context": "Modeling business domains where entities (objects with unique identifiers) combine into aggregates, and consistency must be maintained within these groups. Business microservices often need to be stateful and own their data.",
+    "Solution": "Define 'aggregates' as a combination of entities that must be kept consistent. Identify a 'root' entity within each aggregate that defines the lifecycle of its dependent entities. These entity and aggregate patterns are then directly mapped into microservices, with each microservice performing end-to-end business functions and owning its data.",
+    "Result": "Clearer identification of specific business concepts for microservice boundaries, improved data consistency within a microservice's domain, and the creation of stateful microservices that manage their own data.",
+    "Related Patterns": "Entity (core concept), Domain-Driven Design (implied, as aggregates are a core DDD concept)",
+    "Uses": "Designing microservices based on business concepts and aggregates, managing data consistency within a microservice's domain, structuring stateful microservices.",
+    "Thinking": "The text explicitly names it 'Aggregator Microservice Design Pattern' and describes its application in structuring microservices based on business entities and aggregates, a fundamental concept in domain modeling for microservices."
+  },
+  {
+    "Pattern Name": "API Gateway",
+    "Problem": "How do external clients interact with a multitude of fine-grained microservices, and how can common cross-cutting concerns be handled centrally?",
+    "Context": "A microservices architecture with multiple services and various client applications (web, mobile, third-party) needing to access them.",
+    "Solution": "Introduce an API Gateway as a single entry point for all client requests. It routes requests to appropriate microservices, aggregates responses, and handles cross-cutting concerns like authentication, authorization, rate limiting, and logging.",
+    "Result": "Simplifies client applications, reduces network round trips, centralizes common concerns, improves security, and allows microservices to evolve independently without impacting clients.",
+    "Related Patterns": "Backend for Frontend (BFF) (BFFs can be implemented as specialized API Gateways), Service Discovery (API Gateway needs to discover microservices).",
+    "Uses": "Managing external access to microservices, simplifying client-side logic, centralizing common concerns, improving security and performance.",
+    "Thinking": "The text mentions 'API Gateways' in the example for the Backend for Frontend pattern ('In this example shown in Figure 8 there are three types of clients web application mobile application and thirdparty external application You can create one or three different API Gateways'). This direct mention, even in an example, indicates its presence and role as a distinct microservices pattern."
+  },
+  {
+    "Pattern Name": "Database per Service",
+    "Problem": "How to ensure data autonomy and loose coupling for each microservice, allowing independent evolution and technology choices for data storage?",
+    "Context": "A microservices architecture where services need to be independently deployable, scalable, and resilient, and where different services may have distinct data storage requirements.",
+    "Solution": "Each microservice owns and manages its own private database. Services communicate with each other via well-defined APIs, rather than directly accessing another service's database.",
+    "Result": "Services are loosely coupled regarding data, can evolve their data schemas independently, and can choose the most suitable database technology (polyglot persistence). This improves fault isolation and simplifies scaling of individual services.",
+    "Related Patterns": "Decentralized Data Management (principle), Shared Data Microservice Design Pattern (temporary anti-pattern during migration).",
+    "Uses": "Achieving data autonomy for microservices, enabling polyglot persistence, improving scalability and resilience, supporting independent evolution of services.",
+    "Thinking": "The text explicitly describes this pattern under the 'Decentralized data management' principle: 'It refers to the fact that that each microservice must manage or administer its own data which is to say that in the design of a microservice it must connect to its own database or storage.' This is a direct and clear description of the Database per Service pattern, a fundamental aspect of microservices architecture, and is also visually represented in Figure 4."
+  },
+  {
+    "Pattern Name": "Domain-Driven Design",
+    "Problem": "Defining the boundaries and responsibilities of each created microservice.",
+    "Context": "When designing and creating microservices, especially for complex business domains.",
+    "Solution": "Apply Domain-Driven Design principles to identify and define bounded contexts, which then form the basis for individual microservices.",
+    "Result": "Microservices with clearly defined boundaries and responsibilities, easily replaceable, hiding implementation details, and exposing functionality through smart endpoints. Each microservice has one and only one business responsibility.",
+    "Related Patterns": "Single Responsibility Principle, Smart Endpoints.",
+    "Uses": "Crucial for defining microservice boundaries and responsibilities, ensuring replaceability and clear business focus.",
+    "Thinking": "The text explicitly states 'Using a domain-driven design is crucial in order to define the boundaries and responsibilities of each created microservice' and reiterates 'microservices are created using domain-driven design so that can be easily replaceable that hide the details of their implementation and their use is only through smart endpoints that each microservice has one and only one business responsibility'. This clearly identifies DDD as a core microservices design pattern."
+  },
+  {
+    "Pattern Name": "Monitoring",
+    "Problem": "Overseeing the health status and correct operation of deployed microservices, especially as their number increases.",
+    "Context": "Operating and managing a microservices architecture in a production environment.",
+    "Solution": "Implement a solid monitoring process, supported by automated testing tools and monitoring tools. Microservices should be designed to produce logs to facilitate this.",
+    "Result": "Operators can review the correct operation and health status of microservices, enabling rapid identification and resolution of issues.",
+    "Related Patterns": "Not explicitly mentioned in the text.",
+    "Uses": "Overseeing health status, reviewing correct operation, identifying issues in deployed services.",
+    "Thinking": "The text explicitly recommends 'to have a solid monitoring process for deployed services allowing operators to oversee the health status of the microservices' and mentions 'when the microservices are created they must have logs in such a way that through monitoring tools the correct operation of the microservices can be reviewed'. This describes a fundamental operational design pattern for microservices."
+  },
+  {
+    "Pattern Name": "Micro Frontends",
+    "Problem": "Improving maintainability and scalability of complex large-scale web applications, especially as microservices architectures become more complex. Managing and expanding large-scale online applications.",
+    "Context": "Developing large-scale web applications with complex user interfaces, often integrated with microservices in the backend.",
+    "Solution": "Divide large-scale web applications into smaller, independent frontends. Each micro frontend is designed and deployed independently and is responsible for a specific aspect of the user interface.",
+    "Result": "Improved maintainability, scalability, and flexibility for large-scale online applications. Individual micro frontends can be changed without affecting the entire application, mirroring the benefits of microservices.",
+    "Related Patterns": "Microservices (explicitly mentioned as integrated with).",
+    "Uses": "Frontend development, improving maintainability and scalability of complex web applications, achieving similar benefits to microservices for the UI layer.",
+    "Thinking": "The text provides a clear definition and benefits: 'By dividing largescale web applications into smaller independent frontends now is called micro frontends Each micro frontend which may be designed and deployed independently is in charge of a certain aspect of the user interface'. It explicitly links its benefits to those of microservices, making it a true microservices-related design pattern for the UI layer."
+  },
+  {
+    "Pattern Name": "Containerization / Container Orchestration",
+    "Problem": "Running microservices in lightweight, isolated environments; managing and scaling microservices installations efficiently.",
+    "Context": "Deploying and operating microservices in a distributed environment.",
+    "Solution": "Use containers (e.g., Docker) to provide lightweight, isolated environments for microservices. Employ container orchestration solutions (e.g., Kubernetes) for managing and scaling these containerized microservices.",
+    "Result": "Easier deployment and maintenance of microservices, with isolated, portable, and scalable execution environments.",
+    "Related Patterns": "Not explicitly mentioned in the text.",
+    "Uses": "Running microservices, managing and scaling microservices installations, simplifying deployment and maintenance.",
+    "Thinking": "The text states 'Microservices can run in lightweight isolated environments thanks to containers' and 'For managing and scaling microservices installations container orchestration solutions like Kubernetes have seen a considerable increase in popularity'. This describes a widely adopted deployment and management pattern for microservices."
+  },
+  {
+    "Pattern Name": "Serverless Computing (for Microservices Deployment)",
+    "Problem": "Developers needing to manage underlying infrastructure concerns when deploying microservices; achieving more effective and scalable deployment approaches.",
+    "Context": "Deploying microservices, particularly in cloud-native environments where infrastructure management overhead needs to be minimized.",
+    "Solution": "Integrate serverless architectures with microservices. Serverless platforms abstract away infrastructure-related concerns, allowing developers to focus solely on code.",
+    "Result": "Developers can concentrate entirely on building code for individual microservices. Leads to more effective and scalable deployment approaches.",
+    "Related Patterns": "Cloud-native architecture, Microservices.",
+    "Uses": "Deploying microservices, abstracting infrastructure concerns, enabling developers to focus on business logic.",
+    "Thinking": "The text describes 'Serverless computing and microservices are likely to be progressively integrated opening the door to deployment approaches that are more effective and scalable' and 'Developers may concentrate entirely on building code for individual microservices thanks to serverless architectures which abstract away infrastructure-related concerns'. This clearly outlines a deployment pattern for microservices."
+  },
+  {
+    "Pattern Name": "Edge Computing (for Microservices Deployment)",
+    "Problem": "Processing data closer to the source for IoT devices; reducing reliance on centralized cloud resources; lowering latency and increasing reaction times in distributed IoT systems.",
+    "Context": "Developing IoT applications with a large and growing number of devices, where data processing needs to happen close to the source.",
+    "Solution": "Deploy microservices at the edge of the network, closer to the IoT devices and data sources.",
+    "Result": "Distributed processing, lower latency, increased reaction times, and reduced reliance on centralized cloud resources for IoT applications.",
+    "Related Patterns": "IoT applications, Microservices.",
+    "Uses": "Developing scalable, adaptable, and secure IoT applications, processing data closer to the source, optimizing for latency and resource usage in distributed environments.",
+    "Thinking": "The text states 'By deploying microservices at the edge it is possible to provide distributed processing and lower latency With this strategy reliance on centralized cloud resources can be reduced and reaction times can be increased'. This describes a specific deployment pattern for microservices in the context of IoT."
+  },
+  {
+    "Pattern Name": "AI-Enabled Microservices",
+    "Problem": "Enhancing microservice functionality with intelligent capabilities; enabling AI-driven tasks such as intelligent decision-making, predictive analytics, natural language processing, and computer vision.",
+    "Context": "When microservices need to incorporate artificial intelligence capabilities to offer advanced, intelligent, and adaptive services.",
+    "Solution": "Integrate AI algorithms and capabilities directly into microservices.",
+    "Result": "Microservices gain access to cutting-edge AI capabilities, allowing them to improve their functionality and offer intelligent and adaptive services.",
+    "Related Patterns": "Microservices, AI.",
+    "Uses": "Intelligent decision-making, predictive analytics, natural language processing, computer vision, offering intelligent and adaptive services.",
+    "Thinking": "The text describes 'AI algorithms can be integrated into microservices' to 'improve their functionality' and 'offer services that are intelligent and adaptive'. This is an integration/composition pattern for microservices, enhancing their capabilities."
+  },
+  {
+    "Pattern Name": "Smart Endpoints (and Dumb Pipes)",
+    "Problem": "How microservices interact and encapsulate their logic; avoiding centralized orchestration and ensuring loose coupling.",
+    "Context": "Designing the communication and internal logic of individual microservices within an architecture.",
+    "Solution": "Design microservices with 'smart endpoints' that encapsulate their business logic and hide implementation details. Communication between services should be simple, using 'dumb pipes' (e.g., lightweight messaging or REST).",
+    "Result": "Microservices are easily replaceable, autonomous, and interact through well-defined, self-contained interfaces, promoting loose coupling.",
+    "Related Patterns": "Domain-Driven Design, Single Responsibility Principle.",
+    "Uses": "Defining microservice interaction and encapsulation, promoting autonomy and loose coupling.",
+    "Thinking": "The text mentions 'their use is only through smart endpoints that each microservice has one and only one business responsibility'. This is a direct reference to a well-known microservices pattern that emphasizes service autonomy and decentralized intelligence."
+  },
+  {
+    "Pattern Name": "Single Responsibility Principle (for Microservices) / Bounded Context",
+    "Problem": "Defining the appropriate scope and purpose for individual microservices; ensuring that services are focused, maintainable, and easily replaceable.",
+    "Context": "When decomposing a monolithic system or designing new microservices.",
+    "Solution": "Design each microservice to have one and only one business responsibility, often derived from a Bounded Context in Domain-Driven Design.",
+    "Result": "Microservices are focused, cohesive, easily replaceable, and simpler to develop and maintain.",
+    "Related Patterns": "Domain-Driven Design.",
+    "Uses": "Designing individual microservices, defining their scope, promoting cohesion and loose coupling.",
+    "Thinking": "The text explicitly states 'each microservice has one and only one business responsibility'. This is a core principle and pattern for microservice granularity, often achieved through Domain-Driven Design's Bounded Context concept."
+  },
+  {
+    "Pattern Name": "Automated Testing",
+    "Problem": "Ensuring the correctness and reliability of an increasing number of microservices, especially in a distributed environment, and managing the complexity of testing multiple independent services.",
+    "Context": "Developing, maintaining, and evolving a microservices architecture where frequent changes and deployments are common.",
+    "Solution": "Implement a robust and comprehensive testing strategy that heavily relies on automated testing tools and practices. This includes unit tests, integration tests, contract tests between services, and potentially end-to-end tests.",
+    "Result": "Increased confidence in the functionality and reliability of individual microservices and the overall system. Faster feedback loops for developers, reduced manual effort, and improved ability to detect regressions early in the development cycle.",
+    "Related Patterns": "Automated Deployment / Continuous Delivery (CD).",
+    "Uses": "Verifying microservice functionality, ensuring system reliability, supporting continuous integration and delivery, managing complexity in distributed systems.",
+    "Thinking": "The text states: 'As the number of microservices increases it is necessary to consider implementing a robust testing process supported by automated testing tools'. This directly identifies the need for and solution of automated testing as a critical practice/pattern for microservices."
+  },
+  {
+    "Pattern Name": "Automated Deployment / Continuous Delivery (CD)",
+    "Problem": "Manual compilation and deployment of numerous microservices are slow, error-prone, and hinder the ability to react rapidly to business demands and achieve fast time-to-market.",
+    "Context": "Operating a microservices architecture where frequent updates, rapid iteration, and reliable deployments are essential.",
+    "Solution": "Automate the entire process of compiling, building, testing, and deploying microservices into various environments (e.g., development, staging, production). This typically involves setting up Continuous Integration (CI) and Continuous Delivery/Deployment (CD) pipelines.",
+    "Result": "Faster time-to-market for new features and bug fixes, reduced human error during deployments, increased deployment frequency, and improved overall efficiency and reliability of the software release process. It enables rapid reaction to business demand elasticity.",
+    "Related Patterns": "Automated Testing, Containerization / Container Orchestration.",
+    "Uses": "Rapid and reliable release of microservices, enabling continuous delivery, reducing operational overhead, achieving fast time-to-market.",
+    "Thinking": "The text explicitly recommends 'that both the compilation and deployment of the microservices created to be done in an automated way'. This is a direct description of the Automated Deployment or Continuous Delivery pattern, which is a cornerstone of microservices operations."
+  }
+]

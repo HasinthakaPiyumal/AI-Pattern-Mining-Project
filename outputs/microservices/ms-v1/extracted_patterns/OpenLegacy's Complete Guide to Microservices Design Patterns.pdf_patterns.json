@@ -1,0 +1,172 @@
+[
+  {
+    "Pattern Name": "API Gateway",
+    "Problem": "Problems caused by decomposing an application into separate services, such as issues with requesting information from multiple microservices or handling several protocol requests simultaneously.",
+    "Context": "When an application is broken down into separate microservices, and clients need a single entry point to interact with multiple services or handle various communication protocols.",
+    "Solution": "Acts as the entry point for all microservices, routing requests to the correct service(s) and sending results back to the consumer. It can expose client-specific APIs, tailor user experiences, and offload authentication and authorization responsibilities.",
+    "Result": "Simplifies client applications, reduces the number of requests to backend systems, provides tailored user experiences, and adds an extra layer of security. However, it adds an extra layer of complexity to the system.",
+    "Related Patterns": "Backend for Frontend (BFF) is a variant.",
+    "Uses": "Integrating multiple microservices, handling diverse client protocols, offloading security concerns, tailoring APIs for different clients.",
+    "Thinking": "The text explicitly names 'API gateway microservices pattern' and details its purpose, mechanism, and benefits/drawbacks in the context of microservices integration."
+  },
+  {
+    "Pattern Name": "Backend for Frontend (BFF)",
+    "Problem": "A single, 'bloated API' being used for multiple client applications (e.g., web, mobile, third-party) leading to suboptimal user experience and system performance.",
+    "Context": "When an application needs to serve multiple distinct client types, each with specific API requirements, and a single generic API is insufficient or inefficient.",
+    "Solution": "Introduces a separate gateway (API) for each client application, allowing for APIs tailored to specific client requirements. Each app can call its dedicated backend in parallel.",
+    "Result": "Improves user experience, enhances system performance, provides extensive business capabilities, and is ideal for continuous delivery on a large scale. However, it adds more complexity and setup requirements due to multiple gateways.",
+    "Related Patterns": "A variant of the API Gateway design pattern.",
+    "Uses": "Serving different client types (web, mobile, third-party) with tailored APIs, accommodating complex app functions, creating separate gateways for different business domains.",
+    "Thinking": "The text clearly defines 'Backend for Frontend' as a 'variant of the API gateway design pattern' and explains its specific application in microservices for client-specific APIs."
+  },
+  {
+    "Pattern Name": "Blue/Green Deployment",
+    "Problem": "Reducing the risks of latency and downtime caused by deploying new versions of microservices.",
+    "Context": "Deploying new versions of microservices to production environments where high availability and minimal disruption are critical.",
+    "Solution": "Involves running two identical production environments ('blue' and 'green'). Only one is live at any time, serving all production traffic. New versions are deployed to the inactive environment, tested, and then traffic is switched to the new version. The old version remains operational for rollback.",
+    "Result": "Significantly reduces downtime and increases the resilience of microservices architecture by allowing quick rollbacks if issues arise with the new version.",
+    "Related Patterns": "Often provided by cloud-native architecture platforms.",
+    "Uses": "Deploying new microservice versions, reducing deployment risks, ensuring high availability and resilience.",
+    "Thinking": "The text describes 'bluegreen deployment strategy' as a 'crosscutting concern pattern' specifically for microservices to reduce downtime and increase resilience during updates."
+  },
+  {
+    "Pattern Name": "Circuit Breaker Pattern",
+    "Problem": "Cascading failures in microservice architectures where a failed service can consume resources with unanswered calls, leading to widespread system issues.",
+    "Context": "Microservice architectures with numerous inter-service calls, where the failure of one service can impact others.",
+    "Solution": "Inspired by electrical circuit breakers, it breaks the connection to failed services. Calls to the failed service are routed to a different service or result in an error/default message for a set timeout period. After the timeout, a small number of requests are allowed through to check if the service has recovered.",
+    "Result": "Improves availability and performance by preventing network resources from being depleted and protecting against cascading failures. Requires balancing failure prevention with maintaining service levels.",
+    "Related Patterns": "Can be combined with the Bulkhead pattern for enhanced fault isolation.",
+    "Uses": "Protecting microservices from cascading failures, improving system resilience, managing inter-service communication in distributed systems.",
+    "Thinking": "The text explicitly names 'the circuit breaker pattern' and details its mechanism for preventing cascading failures in microservice communication."
+  },
+  {
+    "Pattern Name": "Service Discovery",
+    "Problem": "In dynamic environments (e.g., containerized microservices), IP addresses of service instances change frequently, causing consumer services to break and requiring manual adjustments.",
+    "Context": "Microservice architectures, especially those using container technology, where service instances are ephemeral and their network locations are dynamic.",
+    "Solution": "A 'Service Registry' database stores metadata for each producer service. Service instances register upon starting and deregister upon shutting down. Clients can then query this registry to find service locations.",
+    "Result": "Automates the process of finding service instances, preventing consumer services from breaking due to dynamic IP addresses. Offers two types: Clientside (client queries registry directly, fewer hops but complex client logic) and Serverside (client queries via load balancer, simpler client code but more moving parts and hops).",
+    "Related Patterns": "Often used with load balancers (Serverside discovery).",
+    "Uses": "Managing dynamic service instances in microservices architectures, especially with containerization, ensuring services can locate each other reliably.",
+    "Thinking": "The text identifies 'Service discovery' as a 'crosscutting concern pattern' that addresses the challenge of dynamic service location in microservices, detailing its two main types."
+  },
+  {
+    "Pattern Name": "CQRS (Command Query Responsibility Segregation)",
+    "Problem": "Managing large applications, especially those with a high read-to-write ratio, and the need for flexible, evolving systems.",
+    "Context": "Large applications reading data from an event store, often used alongside the Event Sourcing pattern, particularly when the number of data reads significantly exceeds the number of data writes.",
+    "Solution": "Separates the read and update (command) operations into distinct models. This separation of concerns allows for more manageable and flexible software development.",
+    "Result": "Enhances microservice application performance, security, and scalability. Its flexible nature benefits systems that evolve over time and allows for separate scaling of read and write models. However, it has the potential for code duplication and increased complexity.",
+    "Related Patterns": "Often used alongside the Event Sourcing pattern.",
+    "Uses": "Applications with high read-to-write ratios, systems requiring separate scaling of read/write models, evolving systems, large applications reading from an event store.",
+    "Thinking": "The text explicitly names 'The command query responsibility segregation CQRS pattern' and describes it as a 'data management pattern' for microservices, detailing its separation of concerns."
+  },
+  {
+    "Pattern Name": "Event Sourcing Pattern",
+    "Problem": "Maintaining consistency across autonomous microservices without synchronous communication, and tracking changes to application state.",
+    "Context": "Microservices needing to exchange data asynchronously for stable, highly scalable systems, where tracking historical state changes is important.",
+    "Solution": "Instead of storing the current state of a business entity, all state-changing or significant events are stored as a series of immutable events. The current state can be reconstructed by replaying these events. Services can replay events from a central event store to determine the correct state of their individual data stores.",
+    "Result": "Enables each service to maintain consistency without synchronous communication. Developers can query events to track changes and make necessary adjustments to the application's state. Implies a more complex data storage and retrieval mechanism.",
+    "Related Patterns": "Often used alongside the CQRS pattern.",
+    "Uses": "Stable, highly scalable microservices systems requiring asynchronous communication, tracking state changes, maintaining data consistency across services, auditing.",
+    "Thinking": "The text explicitly names 'Event sourcing pattern' and describes it as a 'data management pattern' for microservices, focusing on storing immutable events for state changes."
+  },
+  {
+    "Pattern Name": "Saga Design Pattern",
+    "Problem": "Managing transactions that span multiple microservices, which is a significant challenge in distributed architectures.",
+    "Context": "Microservices architectures where business transactions need to span across multiple autonomous services, requiring eventual consistency or atomicity across distributed components.",
+    "Solution": "Manages distributed transactions using a sequence of local transactions. Each local transaction is accompanied by an event that triggers the next stage. If one transaction fails, a rollback (compensation) transaction is triggered to undo the changes made by previous successful local transactions.",
+    "Result": "Enables the management of complex business transactions across multiple microservices. However, it requires a more complex programming model, as developers must design explicit rollback transactions and ensure coordination between services.",
+    "Related Patterns": "Often used in conjunction with event-driven architectures.",
+    "Uses": "Managing complex business transactions that span multiple microservices, ensuring data consistency in distributed systems where ACID properties are difficult to achieve.",
+    "Thinking": "The text explicitly names 'The saga pattern' and describes it as a solution for 'transactions that span multiple services' in microservices, detailing its local transaction and compensation mechanism."
+  },
+  {
+    "Pattern Name": "Distributed Tracing",
+    "Problem": "In microservice architectures, requests often span multiple services, making it difficult to track end-to-end requests and troubleshoot issues.",
+    "Context": "Complex microservice landscapes where understanding the flow of requests across numerous services and identifying performance bottlenecks or failures is crucial.",
+    "Solution": "A distributed tracer assigns a unique ID to each request and records information about the request's journey, including which services are called and which operations are performed. This information is then aggregated.",
+    "Result": "Helps developers find the root cause of issues, monitor how services interact, and pinpoint latency by providing an end-to-end view of requests. Implies instrumentation overhead.",
+    "Related Patterns": "Part of 'Observability patterns'.",
+    "Uses": "Troubleshooting, performance monitoring, understanding service interactions, and identifying latency in complex microservice systems.",
+    "Thinking": "The text explicitly names 'Distributed tracing' and describes it as an 'Observability pattern' for microservices, addressing the challenge of tracking requests across multiple services."
+  },
+  {
+    "Pattern Name": "Log Aggregation",
+    "Problem": "Each microservice generates its own log files, making it difficult to monitor and troubleshoot issues across multiple service instances in a distributed system.",
+    "Context": "Microservice architectures where numerous service instances generate logs, requiring a centralized system for effective monitoring and troubleshooting.",
+    "Solution": "Normalizes and consolidates logs from different microservices and stores them on a centralized platform. Developers can then search, analyze, and create alerts based on these aggregated logs.",
+    "Result": "Simplifies issue resolution, eliminates hours of manual labor, and provides a useful monitoring and troubleshooting tool by centralizing log data. Requires setting up and maintaining a centralized logging platform.",
+    "Related Patterns": "Part of 'Observability patterns'.",
+    "Uses": "Centralized monitoring, troubleshooting, and alerting for microservices, especially in environments with many service instances.",
+    "Thinking": "The text explicitly names 'log aggregation design pattern' and describes it as an 'Observability pattern' for microservices, focusing on centralizing logs from distributed services."
+  },
+  {
+    "Pattern Name": "Performance Metrics",
+    "Problem": "Monitoring transactions, patterns, and identifying problems becomes difficult with the increased service portfolio of microservices architectures.",
+    "Context": "Microservice architectures with many services, where a consolidated view of system performance is needed to identify bottlenecks and ensure optimal operation.",
+    "Solution": "Gathers data about individual operations (e.g., latency, CPU performance) and aggregates these metrics from different services into a single metrics service. This service offers reporting and alerting capabilities. It can use 'push' (services push metrics) or 'pull' (metrics service pulls metrics) models.",
+    "Result": "Provides a consolidated view of how the microservices infrastructure is performing, enabling effective reporting and alerting. Requires setting up and maintaining a metrics collection and aggregation system.",
+    "Related Patterns": "Part of 'Observability patterns'.",
+    "Uses": "Monitoring microservice performance, identifying bottlenecks, setting up alerts based on performance data, gaining a holistic view of system health.",
+    "Thinking": "The text explicitly names 'performance metrics pattern' and describes it as an 'Observability pattern' for microservices, focusing on aggregating performance data from distributed services."
+  },
+  {
+    "Pattern Name": "Decomposition by Business Capability",
+    "Problem": "How to logically break down monolithic applications into smaller, independent microservices.",
+    "Context": "Initial decomposition of an application into microservices, aiming for a stable and business-oriented architecture.",
+    "Solution": "Decomposes an application into services based on distinct business capabilities (e.g., sales, marketing, accounting). Each business capability is treated as a service.",
+    "Result": "Results in a stable microservices architecture because business capabilities are generally stable. However, its success relies on accurately identifying each specific business capability and can encounter 'God Classes' that are difficult to decompose due to commonality across multiple services.",
+    "Related Patterns": "Part of 'Decomposition patterns'. Contrasted with 'Decomposition by Subdomain' for solving 'God Class' issues.",
+    "Uses": "Initial decomposition of applications into microservices based on core business functions, when a stable and business-aligned architecture is desired.",
+    "Thinking": "The text describes 'By business capability' as a 'decomposition design pattern' for microservices, explaining how it breaks down applications based on business functions."
+  },
+  {
+    "Pattern Name": "Decomposition by Subdomain",
+    "Problem": "Resolving 'God Class' issues and other complexities encountered when decomposing applications, especially when using a business capability approach.",
+    "Context": "Decomposing complex applications, particularly when 'God Classes' or shared concepts make decomposition by business capability challenging. Requires a deep understanding of the business domain.",
+    "Solution": "Applies Domain-Driven Design (DDD) principles by breaking the domain model into subdomains (e.g., core, supporting activities). Each subdomain has a 'bounded context,' and microservices are developed based on these contexts.",
+    "Result": "Ideal for decomposing complex applications, supports agile development, and increases the flexibility and scalability of the architecture. Effectively resolves 'God Class' issues. Requires a thorough understanding of the business to identify relevant subdomains.",
+    "Related Patterns": "Part of 'Decomposition patterns'. Addresses a drawback of 'Decomposition by Business Capability'.",
+    "Uses": "Decomposing complex applications, leveraging Domain-Driven Design principles, when 'God Classes' or shared domain concepts are a concern.",
+    "Thinking": "The text describes 'By subdomain' as a 'decomposition design pattern' for microservices, explicitly linking it to Domain-Driven Design and solving 'God Class' issues."
+  },
+  {
+    "Pattern Name": "Decomposition by Transactions",
+    "Problem": "Problems arising when transactions span multiple services, such as increased latency and complexity.",
+    "Context": "When decomposing an application where business transactions naturally form distinct, self-contained units that can be isolated into individual services.",
+    "Solution": "Each transaction and its supporting components are assigned to a single microservice (e.g., an order management microservice and a payment processing microservice).",
+    "Result": "Simplifies the process of developing, testing, and maintaining the system by localizing transactions and reducing distributed transaction complexity. However, it has the potential for an excessive proliferation of microservices, which could increase overall complexity if not carefully managed.",
+    "Related Patterns": "Part of 'Decomposition patterns'.",
+    "Uses": "Decomposing applications where transactions are clearly defined and can be isolated into individual services, simplifying development and maintenance.",
+    "Thinking": "The text describes 'By transactions' as a 'decomposition design pattern' for microservices, explaining how it isolates transactions into individual services to reduce complexity."
+  },
+  {
+    "Pattern Name": "Sidecar Pattern",
+    "Problem": "Encapsulating supporting functions (like monitoring, configuration) for an application, enabling heterogeneous components, and providing isolation.",
+    "Context": "When an application needs auxiliary functions that can be isolated into a separate process, or when composing applications from different technologies/languages.",
+    "Solution": "Components of an application's supporting functions are placed in a separate processor container (the 'sidecar'). This sidecar is attached to a parent application, shares its lifecycle, and provides assisting features like monitoring, logging, or configuration management.",
+    "Result": "Provides isolation and encapsulation, aids fault isolation, and enables applications to be composed of heterogeneous components and technologies. Simplifies the parent application by offloading cross-cutting concerns. Adds another container/process to manage.",
+    "Related Patterns": "Also known as the 'Sidekick Pattern'. Often used with container orchestration platforms.",
+    "Uses": "Encapsulating supporting functions (monitoring, logging, configuration, security), enabling polyglot persistence/languages within an application, fault isolation for auxiliary services.",
+    "Thinking": "The text explicitly names 'sidecar pattern' (and 'sidekick pattern') and describes its mechanism for isolating and encapsulating supporting components in a microservice context."
+  },
+  {
+    "Pattern Name": "Bulkhead Pattern",
+    "Problem": "Preventing a failure in one part of an application from affecting other parts, especially under high load, ensuring partial service availability.",
+    "Context": "Applications needing to isolate failures, allowing some parts of the service to remain functional even if others fail, particularly useful for businesses that receive large volumes of customers at once.",
+    "Solution": "Isolates elements of an application into separate sections or 'partitions' based on consumer load and availability. If one section fails, the others can continue to function independently.",
+    "Result": "Isolates failures, allowing a service to remain functional for some customers even while others are experiencing issues. Useful for businesses with high customer volumes. Requires careful partitioning and resource allocation.",
+    "Related Patterns": "Can be combined with the Circuit Breaker pattern for enhanced fault isolation.",
+    "Uses": "Isolating failures in microservices, ensuring partial availability under stress, managing resources based on consumer load, improving resilience.",
+    "Thinking": "The text explicitly names 'bulkhead pattern' and describes its mechanism of isolating application elements into separate sections to prevent cascading failures, a key microservices resilience concern."
+  },
+  {
+    "Pattern Name": "Vine Pattern (Strangler Pattern)",
+    "Problem": "Migrating legacy (monolithic) applications to microservices without interrupting the user experience.",
+    "Context": "Modernizing existing monolithic applications to a microservices architecture, where a gradual, non-disruptive migration is required.",
+    "Solution": "Resembles a vine wrapping around a tree. New microservices are gradually built around the existing monolith, intercepting requests for specific functionalities (e.g., via URI calls). The new refactored app 'strangles' the original app until the older monolith can eventually be shut down.",
+    "Result": "Allows for gradual migration of data and features from the monolith to new microservices without interrupting the user experience. Requires both systems to access relevant resources during the migration period, which can be a long-term process.",
+    "Related Patterns": "Also known as the 'Strangler Pattern'. A common pattern for 'Legacy Modernization'.",
+    "Uses": "Gradual migration of monolithic applications to microservices, refactoring legacy systems, modernizing existing applications without downtime.",
+    "Thinking": "The text explicitly names 'vine pattern' (and 'strangler pattern') and describes it as a strategy for migrating legacy applications to microservices gradually and without interrupting users."
+  }
+]

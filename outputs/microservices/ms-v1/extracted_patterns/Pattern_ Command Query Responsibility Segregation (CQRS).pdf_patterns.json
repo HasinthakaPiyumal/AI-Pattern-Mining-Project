@@ -1,0 +1,62 @@
+[
+  {
+    "Pattern Name": "Command Query Responsibility Segregation (CQRS)",
+    "Problem": "How to implement a query that retrieves data from multiple services in a microservice architecture",
+    "Context": "You have applied the Microservices architecture pattern and the Database per service pattern. As a result, it is no longer straightforward to implement queries that join data from multiple services. Also, if you have applied the Event sourcing pattern then the data is no longer easily queried.",
+    "Solution": "Define a view database which is a readonly replica that is designed specifically to support that query or a group related queries. The application keeps the database up to date by subscribing to Domain events published by the service that own the data. The type of database and its schema are optimized for the query or queries. Its often a NoSQL database such as a document database or a keyvalue store.",
+    "Result": "Benefits: Supports multiple denormalized views that are scalable and performant; Improved separation of concerns - simpler command and query models; Necessary in an event sourced architecture. Drawbacks: Increased complexity; Potential code duplication; Replication lag/eventually consistent views.",
+    "Related Patterns": "The Database per Service pattern creates the need for this pattern. The API Composition pattern is an alternative solution. The Domain event pattern generates the events. CQRS is often used with Event sourcing.",
+    "Uses": "My books FTGO example application has the Order History Service which implements this pattern. There are several Eventuate-based example applications that illustrate how to use this pattern.",
+    "Thinking": "This pattern is the primary focus of the provided text, with explicit sections detailing its Problem, Context, Solution, Result (benefits and drawbacks), and Related Patterns. This comprehensive description clearly identifies it as a true Microservices design pattern within the text."
+  },
+  {
+    "Pattern Name": "Database per Service",
+    "Problem": "Not explicitly detailed as a problem it solves. The text states a problem it creates: 'it is no longer straightforward to implement queries that join data from multiple services' when this pattern is applied.",
+    "Context": "Applied within a Microservices architecture, where each service manages its own data store.",
+    "Solution": "Not explicitly detailed. A comment suggests it's 'just a way of isolating the way data is accessed and updated' for each service.",
+    "Result": "Not explicitly detailed. A consequence mentioned is the difficulty in implementing queries that join data from multiple services.",
+    "Related Patterns": "Creates the need for the Command Query Responsibility Segregation (CQRS) pattern.",
+    "Uses": "Implied to be a common pattern applied in microservices architectures ('You have applied the ... Database per service pattern').",
+    "Thinking": "Explicitly named and described as a pattern applied within a microservices architecture, creating a specific challenge (cross-service queries) that CQRS addresses. This indicates its foundational role in microservices data management."
+  },
+  {
+    "Pattern Name": "Event Sourcing",
+    "Problem": "Not explicitly detailed as a problem it solves. The text states a problem it creates: 'the data is no longer easily queried' when this pattern is applied.",
+    "Context": "Applied within a Microservices architecture, often in conjunction with other patterns like CQRS.",
+    "Solution": "Not explicitly detailed in the provided text.",
+    "Result": "Not explicitly detailed. A consequence mentioned is that 'the data is no longer easily queried'.",
+    "Related Patterns": "Command Query Responsibility Segregation (CQRS) is often used with Event Sourcing. The Domain event pattern generates the events that are central to Event Sourcing.",
+    "Uses": "Implied to be used in microservices architectures ('if you have applied the Event sourcing pattern').",
+    "Thinking": "Explicitly named and linked to CQRS and Microservices architecture. It's described as a pattern that, when applied, makes data 'no longer easily queried,' thus creating a need for CQRS. This indicates it's a significant pattern within the microservices ecosystem."
+  },
+  {
+    "Pattern Name": "API Composition",
+    "Problem": "How to implement a query that retrieves data from multiple services in a microservice architecture (same problem as CQRS, as it's an alternative solution).",
+    "Context": "Within a microservices architecture, when needing to implement queries that retrieve data from multiple services or design operations that span multiple services.",
+    "Solution": "An alternative solution to Command Query Responsibility Segregation (CQRS) for implementing queries that retrieve data from multiple services. It implies composing data from multiple service APIs.",
+    "Result": "Not explicitly detailed in the provided text.",
+    "Related Patterns": "An alternative solution to Command Query Responsibility Segregation (CQRS). Mentioned alongside Saga and CQRS.",
+    "Uses": "Taught in a self-paced online bootcamp for 'design operations that span multiple services'.",
+    "Thinking": "Explicitly named and presented as an 'alternative solution' to CQRS for cross-service queries, placing it firmly as a microservices design pattern. Its mention in the bootcamp for 'design operations that span multiple services' further solidifies its role."
+  },
+  {
+    "Pattern Name": "Saga",
+    "Problem": "Not explicitly detailed, but implied to address challenges with 'design operations that span multiple services' in a distributed environment.",
+    "Context": "Within a microservices architecture, when designing operations that span multiple services, typically involving distributed transactions or complex workflows.",
+    "Solution": "Not explicitly detailed, but implied to be a method for 'design operations that span multiple services'.",
+    "Result": "Not explicitly detailed in the provided text.",
+    "Related Patterns": "Mentioned alongside API Composition and CQRS.",
+    "Uses": "Taught in a self-paced online bootcamp for 'design operations that span multiple services'.",
+    "Thinking": "Explicitly named and described as a pattern used to 'design operations that span multiple services' in a microservices context, which is a core challenge in distributed systems."
+  },
+  {
+    "Pattern Name": "Domain Event",
+    "Problem": "Not explicitly detailed as a problem it solves. It serves as a mechanism for communication and data synchronization.",
+    "Context": "Within a microservices architecture, where services need to publish changes and other services (e.g., CQRS view databases) need to subscribe and react to these changes.",
+    "Solution": "Generates events that represent significant occurrences within a domain. These events are then published and can be subscribed to by other services to keep their data up to date.",
+    "Result": "Not explicitly detailed in the provided text.",
+    "Related Patterns": "Generates the events used by the Command Query Responsibility Segregation (CQRS) pattern to update its view database. A comment distinguishes it from 'integration events'.",
+    "Uses": "Used by the CQRS pattern to keep its view database up to date: 'The application keeps the database up to date by subscribing to Domain events published by the service that own the data.'",
+    "Thinking": "Explicitly named and described as a mechanism for inter-service communication and data synchronization, directly supporting patterns like CQRS. It's a fundamental building block for event-driven microservices."
+  }
+]

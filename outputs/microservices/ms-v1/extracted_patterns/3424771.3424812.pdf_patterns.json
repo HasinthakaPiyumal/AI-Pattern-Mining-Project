@@ -1,0 +1,142 @@
+[
+  {
+    "Pattern Name": "Decompose on Business Capabilities",
+    "Problem": "Microservices are highly coupled, involve process calls, exhibit frontend/ORM microservices, or have deployment dependencies. This makes delivering business capabilities harder, causes maintenance issues, reduces performance, complicates testing, and increases infrastructure complexity. It also leads to overly large (Mega Microservice) or overly small (Nano Microservice) services that are coupled.",
+    "Context": "A microservice-based system where services should be independent, encapsulate a group of functionalities, be owned, developed, and deployed by a single team, and fulfill a single purpose. This applies to initial system decomposition and refactoring existing systems.",
+    "Solution": "Decompose the system into microservices based on business capabilities and organizational teams. Each microservice should be an atomic business entity and implement all functionalities that fulfill a given business capability.",
+    "Result": "Teams can focus on single responsibilities, microservices become easier to maintain, deployments are more frequent, microservice boundaries are clear, deployment and testing are simplified, business capabilities are isolated, and overall system independence, efficiency, and ease of maintenance are increased.",
+    "Related Patterns": "Avoids 'Wrong Cut', 'Mega Microservice', and 'Nano Microservice' antipatterns.",
+    "Uses": "Initial design of microservice systems, refactoring monolithic applications, ensuring proper service granularity and autonomy.",
+    "Thinking": "This pattern is explicitly given as the 'Refactored solution name' for 'Wrong Cut', 'Mega Microservice', and 'Nano Microservice' antipatterns. It describes a fundamental approach to microservice decomposition."
+  },
+  {
+    "Pattern Name": "Group Dependent Microservices",
+    "Problem": "Microservices depend on each other in a cyclic way, leading to a loss of independence. Deployment of one microservice becomes dependent on others, and a failure in one cyclically dependent microservice causes failures in the others.",
+    "Context": "Microservices are intended to be independent processing units that communicate through lightweight mechanisms, avoiding dependency management and the 'distributed monolith' pitfall. Cyclic dependencies manifest through direct calls, frequent communications, or HTTP requests in callbacks.",
+    "Solution": "Avoid cyclic dependencies by grouping strongly dependent microservices into a single, cohesive microservice.",
+    "Result": "Removes dependencies between microservices, transforms cyclically dependent microservices into a singular unit that is easier to maintain and deploy.",
+    "Related Patterns": "Decompose on Business Capabilities (implied, as the resulting microservice should still fulfill one business capability and not become a 'Mega Service').",
+    "Uses": "Refactoring microservices exhibiting cyclic dependencies to improve independence and deployability.",
+    "Thinking": "This pattern is the 'Refactored solution name' for the 'Cyclic Dependencies' antipattern. It describes a specific refactoring strategy to achieve better service independence."
+  },
+  {
+    "Pattern Name": "Service Discovery",
+    "Problem": "Microservice IP addresses, ports, and endpoints are explicitly hardcoded in source code, configuration files, or environment variables. This makes tracking endpoints difficult, prevents running multiple instances with load balancers, and requires changing and redeploying other microservices when an endpoint changes.",
+    "Context": "Microservices need to communicate with one another, are independently deployed, and typically communicate via REST APIs. Their endpoints (IP addresses, port numbers) can be dynamic.",
+    "Solution": "Implement a service discovery mechanism (either client-side or server-side) to track microservice endpoints dynamically and facilitate communication among microservices.",
+    "Result": "Microservice endpoints can change dynamically without affecting other microservices. It simplifies the deployment of microservices on containers and virtual machines with dynamic IP addresses and provides a single, centralized registry for all microservice endpoints.",
+    "Related Patterns": "Load Balancer (implied by the problem description).",
+    "Uses": "Managing dynamic endpoints, enabling flexible deployment, and facilitating inter-service communication in a microservices architecture.",
+    "Thinking": "This pattern is explicitly named as the 'Refactored solution name' for the 'Hardcoded Endpoints' antipattern. It is a widely recognized and fundamental microservices pattern."
+  },
+  {
+    "Pattern Name": "API Gateway",
+    "Problem": "Consumer applications need to be aware of how the application is partitioned into microservices, manage and maintain endpoints for many microservices, and handle authentication and authorization per microservice. This occurs when microservices are exposed directly to consumers.",
+    "Context": "When building microservice-based systems, consumer applications (e.g., web, mobile) often need to communicate with multiple microservices, and each consumer may require a specific set of information or interaction patterns.",
+    "Solution": "Use an API gateway as the single entry point for all microservices.",
+    "Result": "The API gateway handles routing requests to corresponding microservices and performs common tasks such as authentication, authorization, input validation, and response transformation, simplifying client interactions.",
+    "Related Patterns": "N/A",
+    "Uses": "Centralizing entry points, handling cross-cutting concerns, simplifying client-side interactions, and providing a unified API for microservices.",
+    "Thinking": "This pattern is explicitly named as the 'Refactored solution name' for the 'No API Gateway' antipattern. It is a widely recognized and fundamental microservices pattern."
+  },
+  {
+    "Pattern Name": "Circuit Breaker",
+    "Problem": "Consumer applications experience timeouts and long waiting times when a service is unavailable or unresponsive. Setting the correct timeout value is difficult, leading to either premature timeout exceptions or excessive waiting for a down service.",
+    "Context": "In distributed systems, service availability and responsiveness are critical. Consumer applications or tasks often use timeouts to handle service unavailability or unresponsiveness.",
+    "Solution": "Implement circuit breakers, which are interceptors that regularly check for service health, availability, and responsiveness. They automatically decline requests if the microservice is down, preventing calls to failing services.",
+    "Result": "Consumer applications no longer need to wait until a timeout to fall back on service unavailability exception handling, avoiding unnecessary retrials. Circuit breakers automatically close (become passthrough) once the service is up again.",
+    "Related Patterns": "Health Check Endpoint (implied, as circuit breakers check service health).",
+    "Uses": "Improving fault tolerance, resilience, and responsiveness in distributed microservices systems by preventing cascading failures.",
+    "Thinking": "This pattern is explicitly named as the 'Refactored solution name' for the 'Timeouts' antipattern. It is a widely recognized microservices pattern for fault tolerance."
+  },
+  {
+    "Pattern Name": "Single Service Instance Per Host",
+    "Problem": "Multiple microservice instances deployed on a single host share the same resources, leading to resource contention. Scaling up or down a given host involves scaling all instances on that host, and technology-related conflicts may occur between microservice instances sharing the same host.",
+    "Context": "When deploying microservices, various strategies exist, including deploying each microservice instance in its own host or multiple instances in a single host.",
+    "Solution": "Deploy each microservice instance independently on a different host.",
+    "Result": "Allows independent use and scaling of resources for each microservice, provides an additional isolation layer, and prevents conflicts between technologies present in the same host.",
+    "Related Patterns": "Service Discovery, Load Balancing (implied by the tradeoffs mentioned).",
+    "Uses": "Achieving isolation, independent scaling, and efficient resource management for individual microservices, often facilitated by containerization.",
+    "Thinking": "This pattern is explicitly named as the 'Refactored solution name' for the 'Multiple Service Instances Per Host' antipattern. It describes a common deployment pattern in microservices."
+  },
+  {
+    "Pattern Name": "Database Per Service",
+    "Problem": "Multiple microservices share a single database, leading to coupling between services, harder maintenance, the need to adapt data to fit a single data store, and preventing microservices from being independently deployable.",
+    "Context": "Each microservice may need to persist and access data. To fully benefit from the microservices architecture, data storage must allow each microservice to store and access its data without affecting other microservices.",
+    "Solution": "Separate data based on how it is accessed and used. Choose the appropriate data store for every kind of data (Polyglot Persistence) and use a single database for each microservice.",
+    "Result": "Offers separation of concerns (each microservice owns its data), allows each microservice to be fully managed by a single team, and provides flexibility in terms of storage technologies.",
+    "Related Patterns": "Polyglot Persistence (explicitly mentioned as part of the solution).",
+    "Uses": "Ensuring data independence, autonomy, and flexibility in data storage for microservices, aligning with the 'share-nothing' philosophy.",
+    "Thinking": "This pattern is explicitly named as the 'Refactored solution name' for the 'Shared Persistence' antipattern. It is a fundamental microservices pattern."
+  },
+  {
+    "Pattern Name": "Polyglot Persistence",
+    "Problem": "Forcing all microservices to use a single database technology, which may not be optimal for all types of data or access patterns, leading to compromises in performance, scalability, or development efficiency for some services.",
+    "Context": "Microservices architecture promotes independent services, each potentially having unique data storage requirements based on its business capability and data access patterns.",
+    "Solution": "Choose the appropriate data store for every kind of data, allowing different microservices to use different database technologies (e.g., relational, NoSQL, graph databases) best suited for their specific data needs.",
+    "Result": "Provides flexibility in terms of storage technologies, allowing each microservice to optimize its data storage for its specific requirements, enhancing autonomy and performance.",
+    "Related Patterns": "Database Per Service (explicitly mentioned together).",
+    "Uses": "Optimizing data storage for individual microservices, enhancing autonomy and flexibility in data management across a microservices system.",
+    "Thinking": "This pattern is explicitly mentioned as a concept within the 'Refactored solution' for the 'Shared Persistence' antipattern, alongside 'Database per service'. It's a well-known microservices data pattern."
+  },
+  {
+    "Pattern Name": "API Versioning",
+    "Problem": "Changes to a microservice API will impact all consumers and may lead to breaking changes, causing several consumers to fail to use the new microservice.",
+    "Context": "Sometimes multiple versions of the exposed API of a given microservice must be supported, especially when a service API has undergone major changes and both new and old versions need to coexist for a period.",
+    "Solution": "Implement API versioning, where the version number can be part of the URI or included in the header of requests and responses.",
+    "Result": "Microservices can be upgraded without breaking changes, and consumers can continue using an older version of a microservice while gradually switching to the newer version.",
+    "Related Patterns": "N/A",
+    "Uses": "Managing API evolution, ensuring backward compatibility, and enabling independent deployment and upgrade of microservices.",
+    "Thinking": "This pattern is explicitly named as the 'Refactored solution name' for the 'No API Versioning' antipattern. It is a common practice/pattern for evolving APIs in distributed systems."
+  },
+  {
+    "Pattern Name": "Health Check Endpoint",
+    "Problem": "Consumers of a microservice may experience timeouts and long waiting times without getting a response if the microservice is down, because no endpoint is exposed to check its health.",
+    "Context": "The nature of microservices is volatile; a microservice can be deployed anywhere and can become unavailable for a particular amount of time or in a specific context.",
+    "Solution": "Add health check API endpoints to microservices to periodically verify their status and their ability to answer requests.",
+    "Result": "Microservices that are down no longer receive requests, and consumers get information about service unavailability before sending a request, preventing useless timeouts and waiting times.",
+    "Related Patterns": "Circuit Breaker (implied, as circuit breakers often rely on health checks).",
+    "Uses": "Monitoring service availability and responsiveness, enabling load balancers and service discovery to route requests correctly, and supporting fault tolerance mechanisms.",
+    "Thinking": "This pattern is explicitly named as the 'Refactored solution name' for the 'No Health Check' antipattern. It is a common pattern in microservices for operational visibility."
+  },
+  {
+    "Pattern Name": "Distributed Logging",
+    "Problem": "Each microservice writes its logs to local storage, making it very difficult to aggregate and analyze logs across the system. This slows down the monitoring process proportionally to the number of microservices and log size.",
+    "Context": "Each microservice produces a lot of information that is logged. This information is very useful in a monitoring context and should be easily accessed and stored.",
+    "Solution": "Implement a distributed logging system which will be responsible for aggregating logs for all microservices.",
+    "Result": "Provides a single log repository, forces microservices to use the same log formatting, and simplifies the monitoring and analysis processes.",
+    "Related Patterns": "Application Metrics (related to overall monitoring).",
+    "Uses": "Centralized collection, storage, and analysis of logs from multiple microservices for monitoring, debugging, and auditing.",
+    "Thinking": "This pattern is explicitly named as the 'Refactored solution name' for the 'Local Logging' antipattern. It is a common pattern in microservices for operational visibility."
+  },
+  {
+    "Pattern Name": "Application Metrics",
+    "Problem": "Performance and failures of microservices are not tracked, hindering maintenance activities. Failures become more difficult to catch, and tracking performance issues becomes more tedious, potentially affecting the ability to comply with SLAs.",
+    "Context": "Because provided microservices are often subject to Service Level Agreements (SLAs), monitoring their behavior and performance is crucial.",
+    "Solution": "Use a monitoring tool that will gather performance and failure data and statistics about every microservice in the system.",
+    "Result": "Provides a full understanding of the behavior of the application and generates data that can be used to enhance the performance and quality of the whole application.",
+    "Related Patterns": "Distributed Logging, Health Check Endpoint (implied, as these contribute to comprehensive monitoring).",
+    "Uses": "Observing and understanding the operational state, performance, and health of microservices, enabling proactive issue detection and performance optimization.",
+    "Thinking": "This pattern is explicitly named as the 'Refactored solution name' for the 'Insufficient Monitoring' antipattern. It is a common pattern in microservices for operational visibility."
+  },
+  {
+    "Pattern Name": "Shared Library Service",
+    "Problem": "Microservices share runtime libraries or files directly, leading to tight coupling, blurred service boundaries, and difficulties in independent change, evolution, testing, and deployment. This violates the principle of independent microservices.",
+    "Context": "In a microservices architecture, the goal is to have independent, isolated services with clear boundaries. Direct sharing of code or runtime libraries creates dependencies that hinder this goal.",
+    "Solution": "Instead of directly sharing runtime libraries or code, encapsulate common functionalities or shared libraries into their own dedicated microservice. Other microservices consume this functionality via its well-defined API, treating it as another independent service.",
+    "Result": "Microservices become truly independent and isolated with clear boundaries. Updates to the shared functionality are managed within a single service, reducing the impact on other services and simplifying maintenance, testing, and deployment.",
+    "Related Patterns": "Decompose on Business Capabilities (as the shared library service itself should ideally represent a cohesive business capability or utility).",
+    "Uses": "When common code or libraries are necessary across multiple microservices, but direct sharing would introduce undesirable coupling. Examples include common utility functions, domain models, or cross-cutting concerns that can be exposed as a service.",
+    "Thinking": "The text explicitly states under the 'Shared Libraries' antipattern's refactored solution: 'Shared libraries should be their own microservices'. This directly describes an architectural pattern for handling shared code."
+  },
+  {
+    "Pattern Name": "Centralized Configuration",
+    "Problem": "Manually configuring microservice instances, services, and hosts is time-consuming and error-prone. This is especially challenging when managing different configurations for development, testing, and production environments for a growing number of microservices.",
+    "Context": "Microservices architectures thrive on automation and operational efficiency. As the number of services and environments increases, manual configuration becomes a significant bottleneck and source of errors.",
+    "Solution": "Implement a centralized configuration server or service. This system automates the process of managing and distributing configuration data to microservices. It allows configurations to be managed in a single location, making it easier to share common elements and maintain consistency across different services and environments.",
+    "Result": "Configuration management becomes more efficient, less error-prone, and scalable. Developers can manage configurations centrally, ensuring consistency and simplifying updates across the microservice landscape. It also supports dynamic configuration changes without redeploying services.",
+    "Related Patterns": "Continuous Integration/Continuous Delivery (often integrated with automated configuration pipelines).",
+    "Uses": "Managing environment-specific settings, feature flags, database connection strings, and other dynamic parameters for a large number of microservices in a consistent and automated manner.",
+    "Thinking": "The text explicitly states under the 'Manual Configuration' antipattern's refactored solution: 'Use configuration servers and services to automate the configuration process'. This describes a distinct and widely recognized microservices design pattern."
+  }
+]

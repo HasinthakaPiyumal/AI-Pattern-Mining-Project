@@ -1,0 +1,32 @@
+[
+  {
+    "Pattern Name": "Clientside service discovery",
+    "Problem": "How does the client of a service \u2013 the API gateway or another service \u2013 discover the location of a service instance?",
+    "Context": "Services typically need to call one another. In a modern microservice-based application, services run in virtualized or containerized environments where the number of instances of a service and their locations changes dynamically. Consequently, a mechanism is needed for clients to make requests to a dynamically changing set of ephemeral service instances. Each service instance exposes a remote API at a particular host and port. The number of service instances and their locations changes dynamically, often with dynamic IP addresses and autoscaling groups adjusting instance counts based on load.",
+    "Solution": "When making a request to a service, the client obtains the location of a service instance by querying a Service Registry, which knows the locations of all service instances. This is typically handled by a Microservice chassis framework.",
+    "Result": "Benefits: Fewer moving parts and network hops compared to Serverside Discovery. Drawbacks: Couples the client to the Service Registry. Requires implementing clientside service discovery logic for each programming language/framework used by the application (e.g., Java/Scala, JavaScript/NodeJS). Potential security concerns if clients directly call service endpoints without an API Gateway.",
+    "Related Patterns": "Service Registry (an essential part of service discovery), Microservice chassis (responsible for clientside service discovery), Server Side Discovery (an alternative solution to this problem), API Gateway (often used in conjunction to address security and routing).",
+    "Uses": "The Microservices Example application (Scala, Spring Boot, Spring Cloud). Netflix OSS components like Eureka (as the Service Registry) and Ribbon (as the HTTP client that queries Eureka). Spring Cloud annotations such as @EnableEurekaClient and @LoadBalanced to configure clientside discovery with RestTemplate.",
+    "Thinking": "The text explicitly labels 'Clientside service discovery' as a 'Pattern' and provides dedicated sections for its Context, Problem, Solution, Resulting context (benefits and drawbacks), and Related patterns. It also includes concrete examples and implementation details, clearly defining it as a true Microservices design pattern within the provided text."
+  },
+  {
+    "Pattern Name": "Service Registry",
+    "Problem": "How to store and provide the dynamic network locations (host and port) of service instances to clients?",
+    "Context": "Microservice instances run in dynamic environments (virtualized, containerized, autoscaled) where their number and network locations (IP addresses, ports) change frequently. Clients of these services need a reliable way to discover the current location of an available instance to make requests.",
+    "Solution": "A central component that maintains a database of available service instances and their network locations. Service instances register themselves with the Service Registry upon startup, and clients query the registry to obtain the location of a service instance before making a request.",
+    "Result": "Enables clients to discover and connect to dynamically changing service instances. It is an essential part of any service discovery mechanism. However, it introduces a dependency for clients on the registry.",
+    "Related Patterns": "Clientside service discovery (an essential part of its implementation), Microservice chassis (often integrates with a Service Registry client).",
+    "Uses": "Eureka (from Netflix OSS) is explicitly mentioned as an example of a Service Registry.",
+    "Thinking": "The text describes 'Service Registry' as an 'essential part of service discovery' and explains its function: 'which knows the locations of all service instances'. It also provides an example (Eureka) and highlights its role in the 'Clientside service discovery' solution, indicating it's a distinct and fundamental pattern."
+  },
+  {
+    "Pattern Name": "Microservice chassis",
+    "Problem": "How to encapsulate common cross-cutting concerns and infrastructure logic for microservices, such as service discovery, configuration, and monitoring, to simplify service development and ensure consistency?",
+    "Context": "Developing microservices involves implementing various common infrastructure capabilities (e.g., service discovery, configuration management, health checks, metrics, logging, security). Duplicating this logic in every service is inefficient, error-prone, and leads to inconsistencies across the application.",
+    "Solution": "A framework or library that provides a set of common capabilities and infrastructure concerns for microservices. It abstracts away boilerplate code and handles responsibilities like clientside service discovery, making it easier for developers to focus on business logic.",
+    "Result": "Simplifies microservice development by abstracting common infrastructure concerns. Promotes consistency across services by providing a standardized way to implement cross-cutting functionalities. Reduces development effort and potential for errors.",
+    "Related Patterns": "Clientside service discovery (a responsibility it handles).",
+    "Uses": "Spring Boot and Spring Cloud are mentioned as examples of a Microservice chassis framework that provide various capabilities, including clientside discovery.",
+    "Thinking": "The text explicitly states 'This is typically handled by a Microservice chassis framework' and 'Microservice chassis microservicechassishtml Clientside service discovery is the responsibility the microservice chassis framework'. It identifies Spring Boot and Spring Cloud as concrete examples, clearly defining its role as a pattern for encapsulating common microservice infrastructure."
+  }
+]

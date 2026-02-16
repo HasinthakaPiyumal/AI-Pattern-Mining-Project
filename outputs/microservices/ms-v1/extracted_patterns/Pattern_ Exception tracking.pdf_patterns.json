@@ -1,0 +1,22 @@
+[
+  {
+    "Pattern Name": "Exception tracking",
+    "Problem": "How to understand the behavior of an application and troubleshoot problems. Exceptions must be deduplicated, recorded, investigated by developers, and the underlying issue resolved. Any solution should have minimal runtime overhead.",
+    "Context": "You have applied the Microservice architecture pattern. The application consists of multiple services and service instances that are running on multiple machines. Errors sometimes occur when handling requests. When an error occurs, a service instance throws an exception which contains an error message and a stack trace.",
+    "Solution": "Report all exceptions to a centralized exception tracking service that aggregates and tracks exceptions and notifies developers.",
+    "Result": "This pattern has the following benefits: It is easier to view exceptions and track their resolution. This pattern has the following drawbacks: The exception tracking service is additional infrastructure.",
+    "Related Patterns": "Log aggregation (exceptions should be logged as well as reported to a tracking service).",
+    "Uses": "Observability, Service Design.",
+    "Thinking": "This pattern is explicitly introduced with 'Pattern Exception tracking' and then fully described with dedicated sections for Context, Problem, Solution, Result, and Related Patterns, clearly indicating it as a true Microservices design pattern within the provided text."
+  },
+  {
+    "Pattern Name": "Commandside replica",
+    "Problem": "",
+    "Context": "",
+    "Solution": "Maintain a queryable replica of the data in the service that implements the Commandside replica.",
+    "Result": "",
+    "Related Patterns": "",
+    "Uses": "",
+    "Thinking": "The phrase 'Maintain a queryable replica of the data in the service that implements the Commandside replica' explicitly names 'Commandside replica' and describes its core solution. This indicates it as a distinct Microservices design pattern mentioned in the text. However, the full Problem, Context, Result, Related Patterns, and Uses are not detailed in this specific snippet and are therefore left blank."
+  }
+]

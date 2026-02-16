@@ -1,0 +1,102 @@
+[
+  {
+    "Pattern Name": "Aggregator",
+    "Problem": "When a client needs an output by combining data from multiple services. The source of output gets divided when a monolithic application is broken down into microservices.",
+    "Context": "A microservices architecture where a client request requires data from two or more services.",
+    "Solution": "A web page or a composite service that invokes various services to get the required information. Each transaction has a unique ID. Data is collected from individual services, business logic is applied, and the combined data is published to a REST endpoint for consumption by respective services or users. This pattern is based on the DRY principle, abstracting business logic into composite microservices and aggregating it into one service.",
+    "Result": "Provides a single, combined output from multiple services to the client. Abstracts business logic into composite microservices.",
+    "Related Patterns": "API Gateway (mentioned as a variation of aggregator service later).",
+    "Uses": "Combining data from multiple services for a single client request. Abstracting business logic into composite microservices.",
+    "Thinking": "The text explicitly introduces 'aggregator' as a microservices design pattern, defines its purpose (combining data), explains how it works (invokes services, collects data, applies logic), and mentions its benefit, including its basis on the DRY principle."
+  },
+  {
+    "Pattern Name": "API Gateway",
+    "Problem": "How to request information from multiple microservices; how different UIs require different data from the same backend service; how to transform data according to consumer requirements; how to handle multiple protocol requests; offloading authentication responsibility.",
+    "Context": "An application broken down into small autonomous services, where clients need to interact with multiple services, potentially with different requirements (UI, data format, protocols).",
+    "Solution": "A proxy service that acts as the entry point for all client requests. It routes requests to concerned microservices, can send requests to multiple services and aggregate results, creates fine-grained APIs for different client types, converts protocol requests, and can offload authentication. It works with load balancers and service discovery.",
+    "Result": "Solves concerns related to client interaction with multiple microservices, data transformation, protocol handling, and authentication. Provides a single entry point and fine-grained APIs.",
+    "Related Patterns": "Aggregator (mentioned as a variation), Service Discovery, Load Balancer.",
+    "Uses": "Routing client requests, aggregating responses, creating fine-grained APIs, protocol conversion, authentication offloading.",
+    "Thinking": "The text clearly identifies 'API Gateway' as a design pattern, lists specific problems it solves, describes its function as a proxy and entry point, and details its capabilities."
+  },
+  {
+    "Pattern Name": "Chain (or Chain of Responsibility)",
+    "Problem": "Producing a single output which is a combination of multiple chained outputs, where each service in the chain processes the request sequentially. A disadvantage is that the client has to wait until the entire chain is completed, which can be long.",
+    "Context": "A scenario where a client request needs to be processed by a sequence of microservices, each adding to or transforming the data, before a final response is generated.",
+    "Solution": "The client request is passed sequentially from one service to the next (e.g., Service A -> Service B -> Service C). Each service processes the request and potentially modifies it before passing it to the next. The response is then collected in reverse order (Service C -> Service B -> Service A) and finally sent to the client. Uses synchronous HTTP request/response. The request and response formats can differ between services in the chain.",
+    "Result": "A single, combined output from multiple services processed in a specific sequence. However, it can lead to long client waiting times if the chain is extensive.",
+    "Related Patterns": "Contrasts with Branch pattern and Asynchronous Messaging.",
+    "Uses": "Sequential processing of a client request across multiple services where the output of one service feeds into the next.",
+    "Thinking": "The text explicitly names 'Chain or Chain of Responsibility' as a design pattern, describes its sequential request/response flow, highlights its synchronous nature, and points out its disadvantage regarding client waiting time."
+  },
+  {
+    "Pattern Name": "Asynchronous Messaging",
+    "Problem": "Client waiting a long time for a response in synchronous messaging patterns, especially when multiple services are involved or sequential processing is not strictly necessary.",
+    "Context": "Microservices needing to communicate without blocking the client or requiring strict sequential processing.",
+    "Solution": "All services communicate with each other, but not necessarily sequentially. A single client request can be sent simultaneously to multiple services (e.g., Service C and Service B). Requests are placed in a queue. The response path is not strictly defined or sequential; a service might not send a response back to the sender directly.",
+    "Result": "Reduces client waiting time by allowing non-sequential and simultaneous processing of requests across services. Improves responsiveness and decouples services.",
+    "Related Patterns": "Presented as an alternative to synchronous messaging (like in Chain pattern).",
+    "Uses": "Non-sequential communication between microservices, simultaneous processing of requests, improving client responsiveness by not making them wait for a full chain completion, decoupling service interactions.",
+    "Thinking": "The text introduces 'Asynchronous Messaging design pattern' as a solution to the client waiting problem in synchronous patterns, explaining how services communicate non-sequentially and potentially simultaneously using queues."
+  },
+  {
+    "Pattern Name": "Database per Service / Shared Database per Service",
+    "Problem": "Duplication of data and inconsistency; different services having different kinds of storage requirements; few business transactions querying data with multiple services; denormalization of data is not easy.",
+    "Context": "Managing data storage in a microservices architecture where a monolithic application has been broken down, and each microservice needs sufficient data.",
+    "Solution": "Either each microservice has its own specific database ('Database per Service') which only it can access, preventing other services in the system from using that particular database. Or, two or three microservices together share a specific database ('Shared Database per Service') to align more than one database for each microservice, which helps with denormalization and gathering data for monolithic applications, but should be limited to avoid scaling problems.",
+    "Result": "Addresses data management challenges in microservices, allowing for independent data storage or controlled sharing. Database per Service prevents duplication and inconsistency, while Shared Database per Service aids denormalization and monolithic migration.",
+    "Related Patterns": "None explicitly mentioned.",
+    "Uses": "Database per Service: When each microservice needs independent data storage, to prevent data duplication, inconsistency, and accommodate varied storage requirements. Shared Database per Service: For denormalization issues or when a few services logically share data, especially during migration from monolithic applications, with a caution to limit sharing to 2-3 microservices.",
+    "Thinking": "The text clearly presents 'Database design pattern or Shared data design pattern' and then elaborates on two distinct approaches: 'database per service' and 'shared database per service,' detailing their problems and solutions."
+  },
+  {
+    "Pattern Name": "Event Sourcing",
+    "Problem": "Tracking changes in application state, understanding when and by whom changes were made, and being able to revert or adjust to past changes.",
+    "Context": "Applications where a complete audit trail of state changes is required, or where the ability to reconstruct past states is important.",
+    "Solution": "Creates events regarding changes in the application state. These events are stored as a sequence of events (an event store). Developers can track changes, adjust application state to cope with past changes, query events for data changes, and publish events from the event store. Once published, changes are visible on the presentation layer.",
+    "Result": "Provides a complete history of application state changes, enabling auditing, state reconstruction, and publishing of changes to update the presentation layer.",
+    "Related Patterns": "CQRS (mentioned as using Event Sourcing for materialized views).",
+    "Uses": "Tracking application state changes, auditing, time-travel debugging, replaying events, updating materialized views, and reflecting state changes on the presentation layer.",
+    "Thinking": "The text introduces 'Event Sourcing design pattern,' defines its core function (creating and storing events for state changes), and explains its benefits (tracking, adjusting state, querying, publishing)."
+  },
+  {
+    "Pattern Name": "Branch Pattern",
+    "Problem": "Needing to simultaneously process requests and responses from two or more independent microservices, potentially from multiple chains or a single chain, without strict sequential processing.",
+    "Context": "Scenarios where data needs to be retrieved from multiple sources concurrently, and these sources might involve independent microservice chains, such as in an e-commerce application needing data from various sources.",
+    "Solution": "Simultaneously processes requests and responses from two or more independent microservices. Unlike the Chain pattern, the request is not passed in a sequence but to two or more mutually exclusive microservice chains. It extends the Aggregator design pattern.",
+    "Result": "Provides flexibility to produce responses from multiple chains or a single chain concurrently, retrieving data from multiple sources simultaneously.",
+    "Related Patterns": "Aggregator (extends it), Chain (contrasts with it).",
+    "Uses": "Retrieving data from multiple sources concurrently, processing requests in parallel across independent microservice chains, especially when collaborative output from various services is needed.",
+    "Thinking": "The text explicitly names 'Branch pattern,' describes its core functionality (simultaneous processing from independent services), and contrasts it with the Chain pattern while relating it to the Aggregator pattern."
+  },
+  {
+    "Pattern Name": "Command Query Responsibility Segregator (CQRS)",
+    "Problem": "Limited access to databases when using 'database per service' or 'shared database per service' patterns, making it difficult to implement complex queries as data is limited to a single database or a small set.",
+    "Context": "Microservices architectures where data access for commands (create, update, delete) and queries (read) have different requirements, and complex queries are challenging with segregated databases.",
+    "Solution": "Divides the application into two parts: a 'command' part that handles requests related to create, update, and delete operations, and a 'query' part that takes care of materialized views. These materialized views are updated through a sequence of events created using the Event Sourcing pattern.",
+    "Result": "Provides good access to databases for both commands and queries, satisfies client requests, and ensures materialized views are updated, thereby overcoming limitations of segregated databases for complex queries.",
+    "Related Patterns": "Event Sourcing (used to update materialized views).",
+    "Uses": "Separating read and write operations, optimizing for different data access patterns, handling complex queries in a microservices environment where database access is otherwise limited.",
+    "Thinking": "The text introduces 'Command Query Responsibility Segregator design pattern or more commonly known as CQRS,' clearly states the problem it solves (limited query access), and describes its solution (dividing into command and query parts, using event sourcing)."
+  },
+  {
+    "Pattern Name": "Circuit Breaker",
+    "Problem": "Client continuously sending requests to a down service without knowledge of its state; network resources being exhausted with low performance and bad user experience due to clients waiting for responses from failing services.",
+    "Context": "Microservices architecture where services can fail, and clients might be unaware, leading to resource exhaustion and poor user experience.",
+    "Solution": "The client invokes a remote service via a proxy (the circuit breaker). If the number of failures crosses a threshold, the circuit breaker 'trips' for a specific timeout period. During this period, all attempts to invoke the remote service will fall in this timeout period and fail immediately. After the timeout, it allows a limited number of 'test' requests to pass through. If these succeed, it resumes normal operation; otherwise, it trips again.",
+    "Result": "Prevents network resource exhaustion, improves performance, and maintains a good user experience by quickly failing requests to unhealthy services and allowing them to recover gracefully.",
+    "Related Patterns": "None explicitly mentioned.",
+    "Uses": "Handling failures in remote service calls, preventing cascading failures, improving system resilience and responsiveness by quickly identifying and isolating failing services.",
+    "Thinking": "The text clearly names 'circuit break pattern,' describes the problems it addresses (client unawareness of service failure, resource exhaustion), and details its mechanism (proxy, tripping, timeout, test requests)."
+  },
+  {
+    "Pattern Name": "Decomposition Patterns (Business Capability, Subdomain, Strangler/Vine)",
+    "Problem": "Logically breaking down a monolithic application or a large application into small, autonomous microservices. Identifying subdomains or business capabilities can be challenging for big applications.",
+    "Context": "Migrating from a monolithic application to microservices, or designing a new microservices application from scratch.",
+    "Solution": "Applications can be decomposed based on 'business capability' (e.g., separate services for orders, products, customers in e-commerce) or based on 'subdomains' using Domain-Driven Design, where the whole domain model is broken down into subdomains, each with its own specific model or 'bounded context'. For big monolithic applications, the 'Strangler Pattern' (or 'Vine Pattern') is used, where a new refactored application gradually wraps around or replaces the original monolith until it can be shut down.",
+    "Result": "Enables logical breakdown of applications into microservices, facilitating development, deployment, and scaling. The Strangler pattern specifically allows for incremental migration of large monoliths.",
+    "Related Patterns": "Domain-Driven Design (for Subdomain decomposition).",
+    "Uses": "Business Capability: When the application's functions naturally align with distinct business capabilities. Subdomain: When a domain-driven approach is preferred, focusing on bounded contexts. Strangler Pattern: For incrementally migrating large, complex monolithic applications to microservices by gradually replacing functionality.",
+    "Thinking": "The text introduces 'decomposition design pattern' and then describes three distinct approaches: 'decompose an application based on the business capability,' 'decompose by subdomains' (mentioning Domain-Driven Design and bounded context), and 'wine pattern or the Strangler pattern' specifically for big monolithic applications."
+  }
+]

@@ -1,0 +1,22 @@
+[
+  {
+    "Pattern Name": "Retry Pattern",
+    "Problem": "An application needs to handle transient failures when invoking a remote service.",
+    "Context": "Distributed applications must be resilient to transient faults (e.g., momentary network loss, temporary service unavailability, timeouts due to busy services) that are typically self-correcting. If an action triggering such a fault is repeated after a suitable delay, it is likely to be successful.",
+    "Solution": "If an application detects a transient failure when it tries to send a request to a remote service, it should wait a suitable amount of time (backoff) before retrying the request. This process repeats until the request succeeds or a predefined failure threshold is reached, at which point the operation is considered to have failed definitively. The delay between retries can be increased incrementally or exponentially.",
+    "Result": "Enables an application to transparently handle transient failures, significantly reduces resource contention at the client side compared to continuously retrying failed requests, with only a moderate increase in execution time. The retry mechanism causes a noticeable reduction in the client service's expected contention time.",
+    "Related Patterns": "Circuit Breaker Pattern (for less-transient failures).",
+    "Uses": "When an application is likely to experience short-lived, self-correcting transient faults during interactions with remote services or resources.",
+    "Thinking": "The text explicitly defines 'Retry Pattern' with dedicated sections for 'Purpose', 'Context', 'Solution', and 'Implementation considerations', clearly outlining its role as a microservice resiliency pattern."
+  },
+  {
+    "Pattern Name": "Circuit Breaker Pattern",
+    "Problem": "An application needs to handle faults that may take a variable amount of time to recover from when invoking a remote service, preventing pointless retries and avoiding cascading failures caused by blocked requests during timeouts.",
+    "Context": "In distributed environments, calls to remote resources and services can fail due to unanticipated events (e.g., loss of connectivity, service failure) that take much longer to resolve than transient faults. In such situations, it's inefficient to continue retrying, and blocking concurrent requests due to timeouts can lead to cascading failures.",
+    "Solution": "A circuit breaker acts as a local proxy for potentially failing operations. It monitors recent failures and uses this information to decide whether to allow an operation to proceed or immediately return an error. It operates as a state machine with 'Closed', 'Open', and 'Half-Open' states. Initially 'Closed', it moves to 'Open' after a failure threshold is reached, immediately returning errors without invoking the service. After a timeout, it moves to 'Half-Open' to test if the service has recovered, returning to 'Closed' on success or 'Open' on failure.",
+    "Result": "Enables an application to handle faults with variable recovery times, prevents cascading failures by failing fast, reduces resource contention by not sending requests to a known-failing service, and allows the failing service time to recover. Properly configured, it can significantly reduce resource contention at the client side with only a moderate increase in execution time.",
+    "Related Patterns": "Retry Pattern (for transient failures).",
+    "Uses": "When remote services are expected to experience longer-lasting failures, to prevent cascading failures across the system, and to quickly accept failure rather than waiting for prolonged timeouts.",
+    "Thinking": "The text explicitly defines 'Circuit Breaker Pattern' with dedicated sections for 'Purpose', 'Context', 'Solution', and 'Implementation considerations', including a state machine diagram, clearly identifying it as a microservice resiliency pattern."
+  }
+]

@@ -1,0 +1,12 @@
+[
+  {
+    "Pattern Name": "Multiple service instances per host",
+    "Problem": "How are services packaged and deployed, considering a variety of languages/frameworks, the need for multiple instances for throughput/availability, independent deployability/scalability, instance isolation, quick build/deploy, resource constraints (CPU/memory), monitoring, reliability, and cost-effectiveness.",
+    "Context": "You have applied the Microservice architecture pattern and architected your system as a set of services. Each service is deployed as a set of service instances for throughput and availability.",
+    "Solution": "Run multiple instances of different services on a single host (physical or virtual machine). This can be achieved by deploying each service instance as a separate JVM process (e.g., Tomcat/Jetty instances) or by deploying multiple service instances within the same JVM (e.g., as web applications or OSGI bundles).",
+    "Result": "Benefits include more efficient resource utilization compared to the Single Service Instance per Host pattern. Drawbacks include the risk of conflicting resource requirements, conflicting dependency versions, difficulty in limiting resources consumed by a service instance, and challenges in monitoring and isolating instances if multiple services are deployed in the same process.",
+    "Related Patterns": "Single Service Instance per Host, Serverless deployment.",
+    "Uses": "Used when deploying microservices to achieve more efficient resource utilization and cost-effectiveness, especially when managing a large number of service instances across a limited number of hosts. It addresses the challenge of packaging and deploying services while balancing independent deployability, scalability, and resource management.",
+    "Thinking": "The text explicitly labels 'Pattern Multiple service instances per host' and then systematically describes its Context, Problem, Solution, Resulting context (benefits and drawbacks), and Related patterns. This structured presentation is a clear indicator of a defined Microservices design pattern."
+  }
+]

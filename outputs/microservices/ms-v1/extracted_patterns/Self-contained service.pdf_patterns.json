@@ -1,0 +1,32 @@
+[
+  {
+    "Pattern Name": "Selfcontained service",
+    "Problem": "How should a service collaborate with other services when handling a synchronous request?",
+    "Context": "The microservice architecture often distributes the responsibility of handling a request amongst multiple services. An operation is typically required to be highly available with a low response time. The availability of an operation is the product of the availabilities of the services that are invoked while handling a request. A service can retry a request to a failed collaborator but this increases response time. Example: The FTGO application's Order Service needs to collaborate with Restaurant, Consumer, Kitchen, and Accounting Services to create an order.",
+    "Solution": "Design a service so that it can respond to a synchronous request without waiting for the response from any other service. This can be achieved by: 1. Implementing needed functionality as a service module (merging services). 2. Collaborating with other services using the CQRS and Saga patterns. A selfcontained service uses the Saga pattern to asynchronously maintain data consistency and the CQRS pattern to maintain a replica of data owned by other services.",
+    "Result": "Benefits: Improved availability and response time. Drawbacks: Increased cost and complexity of using CQRS, increased complexity of using sagas, less straightforward API when using sagas, larger service due to functionality being implemented in the service instead of as a separate service.",
+    "Related Patterns": "Microservice architecture pattern (creates the need for this pattern), Saga (used to asynchronously maintain data consistency), CQRS (used to maintain a replica of data owned by other services).",
+    "Uses": "The Order Service in the FTGO application is an example. It queries a CQRS replica of data owned by the Restaurant Service to validate and price the order and then initiates a saga to finish the creation of the order.",
+    "Thinking": "The text explicitly names 'Selfcontained service' as a pattern, provides dedicated sections for its Problem, Context, Solution, Result, and Related Patterns, and gives a concrete example of its application within a microservices context."
+  },
+  {
+    "Pattern Name": "CQRS",
+    "Problem": "The need to synchronously fetch data from other services, which reduces availability and increases response time for synchronous requests.",
+    "Context": "When a service needs data owned by another service to fulfill a synchronous request, and synchronous communication with the data-owning service is undesirable due to availability concerns.",
+    "Solution": "Maintain a replica of data owned by other services locally within the service.",
+    "Result": "Eliminates the need to synchronously fetch data from other services, thereby improving availability and response time. However, it introduces increased cost and complexity.",
+    "Related Patterns": "Selfcontained service (uses CQRS to maintain data replicas), Saga (often used alongside CQRS for asynchronous consistency).",
+    "Uses": "The Order Service uses the CQRS pattern to maintain a replica of restaurant menus, eliminating the need to synchronously fetch data from the Restaurant Service. It queries this replica to validate and price orders.",
+    "Thinking": "The text explicitly refers to 'CQRS pattern' and describes its specific role in maintaining data replicas to avoid synchronous calls, directly addressing a problem in microservices communication and availability."
+  },
+  {
+    "Pattern Name": "Saga",
+    "Problem": "How to maintain data consistency across multiple services when an operation needs to be completed asynchronously to improve availability, especially when synchronous communication is not feasible or desired.",
+    "Context": "An operation involves multiple services, and the initiating service needs to respond quickly (synchronously) while the full operation completes asynchronously across collaborators. Ensuring eventual consistency without blocking is crucial.",
+    "Solution": "The initiating service creates an entity in a PENDING state and sends back a response. It then completes the creation of the order by communicating asynchronously with the other services, orchestrating a sequence of local transactions across services to achieve overall consistency.",
+    "Result": "Improves availability (the initiating service always responds). However, it increases complexity, makes the API less straightforward (client must poll for final status), and adds complexity to the system.",
+    "Related Patterns": "Selfcontained service (uses Saga to asynchronously maintain data consistency), CQRS (often used alongside Saga for data management).",
+    "Uses": "The Order Service uses the Saga pattern to asynchronously validate and complete the creation of an order after initially responding to the client. It initiates a saga to finish the creation of the order.",
+    "Thinking": "The text explicitly mentions 'Saga pattern' and details its use for asynchronous validation and completion of operations across services, specifically to improve availability while managing distributed consistency, which is a core microservices challenge."
+  }
+]

@@ -1,0 +1,92 @@
+[
+  {
+    "Pattern Name": "Edge-level Authorization",
+    "Problem": "How to centralize authorization enforcement for all downstream microservices and eliminate the need for each individual service to handle authentication and access control.",
+    "Context": "Simple microservice scenarios where an API Gateway is used as the entry point for external requests.",
+    "Solution": "The API Gateway is leveraged to centralize the enforcement of authorization. It can use access tokens (referenced or self-contained, transmitted via HTTP headers like Cookie or Authorization) or mTLS to authenticate external entities.",
+    "Result": "Centralized authorization enforcement, reducing the burden on individual microservices. However, it can become hard to manage in complex ecosystems, may become a single-point-of-decision, and can slow down velocity due to operational overhead.",
+    "Related Patterns": "Often combined with service-level authorization patterns (e.g., Centralized pattern with single PDP, Centralized pattern with embedded PDP) to provide defense in depth and handle fine-grained authorization.",
+    "Uses": "API Gateway.",
+    "Thinking": "The text explicitly describes 'Edge-level authorization' as an architectural pattern, detailing its mechanism, benefits, and drawbacks in a microservice context."
+  },
+  {
+    "Pattern Name": "Decentralized Authorization Pattern",
+    "Problem": "How to implement fine-grained, domain-specific access control directly within individual microservices.",
+    "Context": "Microservice architectures where development teams prefer to manage authorization logic within the service code, especially for domain-specific rules.",
+    "Solution": "The Policy Decision Point (PDP) and Policy Enforcement Point (PEP) are implemented directly at the microservice code level. Access control rules and attributes are defined and stored within each microservice. When a microservice receives a request with authorization metadata, it analyzes this metadata, generates an access control policy decision, and enforces authorization.",
+    "Result": "Enables highly fine-grained and domain-specific access control, as rules are tightly coupled with the microservice's business logic. However, it relies on manual configuration, is error-prone, and requires significant development effort for each service.",
+    "Related Patterns": "Can be combined with Edge-level Authorization for coarse-grained control at the perimeter.",
+    "Uses": "Existing programming language frameworks allow implementation of authorization at the microservice layer.",
+    "Thinking": "The text clearly identifies this as a 'decentralized pattern' for service-level authorization, explaining its implementation, advantages, and significant limitations within a microservice architecture."
+  },
+  {
+    "Pattern Name": "Centralized Authorization Pattern with Single Policy Decision Point (PDP)",
+    "Problem": "How to manage access control rules centrally, allow for dynamic updates without code changes, and share universal access control rules across an organization, while still enforcing authorization at the service level.",
+    "Context": "Microservice environments requiring centralized policy management and dynamic policy updates, where some latency for authorization decisions is acceptable or can be mitigated.",
+    "Solution": "Access control rules are defined using a Policy Administration Point (PAP) and delivered to a single, centralized Policy Decision Point (PDP). When a subject invokes a microservice endpoint, the microservice code makes a network call to the centralized PDP. The PDP evaluates the query input against access control rules and attributes, generates a decision, and the microservice then enforces authorization based on this decision. Caching authorization policy decisions at the microservice level can mitigate latency.",
+    "Result": "Enables centralized policy management, allows security/development teams to update rules without changing microservice source code, makes policies discoverable and shareable, and supports using rules for security anomaly detection. However, it introduces latency due to additional network calls and requires the PDP to be highly available.",
+    "Related Patterns": "Should be combined with Edge-level Authorization to avoid a single point of decision and enforce defense-in-depth.",
+    "Uses": "Languages like XACML and NGAC for defining access control rules.",
+    "Thinking": "The text explicitly names this a 'Centralized pattern with single policy decision point,' detailing its architecture, benefits, and challenges (like latency) in a microservice context."
+  },
+  {
+    "Pattern Name": "Centralized Authorization Pattern with Embedded Policy Decision Point (PDP)",
+    "Problem": "How to achieve the benefits of centralized policy management and dynamic updates without incurring the latency overhead of a remote Policy Decision Point (PDP).",
+    "Context": "Microservice architectures that require centralized policy definition and management but demand low-latency authorization decisions at the service level.",
+    "Solution": "Access control rules are defined centrally using a Policy Administration Point (PAP) and then distributed to and stored/evaluated by an embedded PDP within each microservice. The PDP code can be implemented as a microservice built-in library or a sidecar in a service mesh, ideally on the same host as the microservice. Embedded PDPs usually store authorization policy and policy-related data in-memory to minimize external dependencies and achieve low latency.",
+    "Result": "Provides centralized policy management and dynamic updates without affecting latency, as authorization decisions are made locally. Policies are kept up-to-date on the microservice side. However, it relies on manual policy rules, may not implement all business-specific rules, and requires careful management of policy updates.",
+    "Related Patterns": "Can be combined with Edge-level Authorization for defense-in-depth and with the Decentralized Pattern for business-specific access control rules that cannot be implemented centrally.",
+    "Uses": "Netflix's distributed authorization system (Policy portal, Policy repository, Aggregator, Distributor, PDP library). Open Policy Agent (OPA) in service mesh architectures.",
+    "Thinking": "This is clearly identified as a 'Centralized pattern with embedded policy decision point,' with a detailed explanation of its architecture, benefits, challenges, and real-world examples, making it a true microservices design pattern."
+  },
+  {
+    "Pattern Name": "External Entity Identity Propagation: Clear or Self-Signed Data Structures",
+    "Problem": "How to propagate an authenticated external entity's identity (e.g., user ID, roles) from the edge layer to downstream microservices for fine-grained authorization, in a highly trusted internal environment.",
+    "Context": "A highly trusted internal microservice environment where all microservices are developed by trusted teams following secure software development practices, and the risk of internal malicious actors is considered low.",
+    "Solution": "The calling microservice (typically at the edge layer) extracts the external entity identity from the incoming request (e.g., via parsing an incoming access token), creates a data structure (e.g., JSON or a self-signed JWT) containing the context, and passes this structure to internal microservices (e.g., via HTTP headers). The recipient microservice trusts the calling microservice.",
+    "Result": "A straightforward method for identity propagation within a trusted internal network. However, it is highly insecure if the calling microservice is untrusted, due to potential identity spoofing, and is not external access token agnostic.",
+    "Related Patterns": "This pattern is often contrasted with 'Using a data structures signed by a trusted issuer' for less trusted environments.",
+    "Uses": "Applicable in highly trusted environments.",
+    "Thinking": "The text describes this as one of 'two patterns to pass the external entity identity,' detailing its mechanism, context (highly trusted environment), and significant security drawbacks if used inappropriately, making it a distinct microservices pattern."
+  },
+  {
+    "Pattern Name": "External Entity Identity Propagation: Data Structures Signed by a Trusted Issuer",
+    "Problem": "How to securely propagate an authenticated external entity's identity from the edge layer to internal microservices, decoupling the external access token from its internal representation, and ensuring integrity in potentially less trusted internal environments.",
+    "Context": "After an external request is authenticated by an authentication service at the edge layer, and the internal services need to consume a reliable, verifiable representation of the external entity's identity.",
+    "Solution": "An authentication service at the edge layer (a trusted issuer) obtains a secret key, processes the external access token, resolves the external entity identity (e.g., user ID, roles, permissions), and generates a new, internal data structure (e.g., a 'Passport' containing user ID and attributes) that is signed or encrypted by the trusted issuer. This signed/encrypted structure is then propagated to internal microservices. Internal services can extract user identity from this structure and propagate it further if needed.",
+    "Result": "Provides an external access token agnostic system, decouples external entity identity from its internal representation, and ensures the integrity and authenticity of the propagated identity within the microservice ecosystem.",
+    "Related Patterns": "This is the recommended pattern over 'Send the external entity identity as a clear or self-signed data structures' for untrusted environments.",
+    "Uses": "Netflix's 'Passport' structure.",
+    "Thinking": "The text clearly presents this as a 'pattern' for identity propagation, detailing its secure mechanism, benefits (agnosticism, decoupling), and a real-world example, making it a true microservices design pattern."
+  },
+  {
+    "Pattern Name": "Service-to-Service Authentication: Mutual Transport Layer Security (mTLS)",
+    "Problem": "How microservices can mutually authenticate each other and ensure confidentiality and integrity of data transmitted between them.",
+    "Context": "Microservice deployments where strong identity verification and secure communication channels are required for inter-service calls.",
+    "Solution": "Each microservice in the deployment is provisioned with a public/private key pair. These key pairs are used to authenticate to recipient microservices via mTLS. This approach usually involves a self-hosted Public Key Infrastructure (PKI) for certificate management.",
+    "Result": "Each microservice can legitimately identify its communication partner, and the transmitted data achieves confidentiality and integrity. It is widely used and recommended. However, it introduces challenges related to key provisioning, trust bootstrap, certificate revocation, and key rotation.",
+    "Related Patterns": "Often used in conjunction with network segmentation or firewalling as a secondary security control.",
+    "Uses": "Widely adopted in the microservices community.",
+    "Thinking": "The text explicitly states 'mTLS is the most popular option to authenticate microservices' and describes it as one of 'two common ways to implement service-to-service authentication,' detailing its mechanism and challenges, confirming it as a microservices pattern."
+  },
+  {
+    "Pattern Name": "Service-to-Service Authentication: Token-based",
+    "Problem": "How microservices can authenticate to each other at the application layer, carrying caller identity and permissions.",
+    "Context": "Microservice architectures where application-layer authentication is desired, often over TLS for confidentiality and integrity.",
+    "Solution": "A caller microservice obtains a token (e.g., JSON Web Token - JWT) by invoking a special security token service, using its own service ID and password. This token, which can contain caller ID, microservice ID, and permissions/scopes, is then attached to every outgoing request (e.g., via HTTP headers). This typically operates over TLS to provide confidentiality and integrity of data in transit.",
+    "Result": "Enables application-layer authentication between microservices, allowing for the propagation of identity and permissions.",
+    "Related Patterns": "Often contrasted with mTLS as another common approach for service-to-service authentication.",
+    "Uses": "JSON Web Tokens (JWT).",
+    "Thinking": "The text describes this as one of 'two common ways to implement service-to-service authentication,' detailing its mechanism and purpose, making it a valid microservices pattern."
+  },
+  {
+    "Pattern Name": "Service-to-Service Authentication: Network Segmentation or Firewalling",
+    "Problem": "How to manage trust and communication security between microservices by relying on network-level controls, adopting a 'trust-the-network' approach.",
+    "Context": "Microservice deployments where the underlying network infrastructure is assumed to provide sufficient isolation and security, leading to a 'trust-the-network' approach for inter-service communication.",
+    "Solution": "Implement network segmentation or firewalling to control traffic between microservices. In this pattern, no additional application-layer security mechanisms (like mTLS or token-based authentication) are enforced for service-to-service communication, relying solely on network-level controls.",
+    "Result": "Simplifies application-layer security implementation by offloading trust to the network. However, it implements a 'trust-the-network' approach where no security is enforced in service-to-service communication at the application layer, making it not widely used as a primary security mechanism and potentially vulnerable if the network perimeter is breached.",
+    "Related Patterns": "Often contrasted with mTLS and Token-based authentication for service-to-service communication, which provide stronger application-layer security. Can be used as a secondary security control in a defense-in-depth strategy.",
+    "Uses": "Historically, or in highly controlled/isolated network segments where the network itself is considered the primary security boundary.",
+    "Thinking": "The text explicitly refers to 'Network segmentation or firewalling pattern' and describes its approach ('implements trust-the-network approach in which no security is enforced in service-to-service communication'), its current adoption ('not widely used by community as primary security mechanism'), and its purpose in service-to-service authentication. This clearly defines it as a pattern, even if it's a less recommended one for primary security."
+  }
+]

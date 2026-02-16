@@ -2,7 +2,7 @@ from stages.paper_extraction import extract_patterns as extract_,clean_all_pdfs
 from utils.file_utils import get_all_text_files
 from config import settings
 
-co = settings.Config(tag="all v2",run_output="20260126_014938 - Run ")
+co = settings.Config(tag="microservices",run_output="ms-v1")
 
 # Clean the PDFs if not already cleaned
 if co.CLEANED == False:        

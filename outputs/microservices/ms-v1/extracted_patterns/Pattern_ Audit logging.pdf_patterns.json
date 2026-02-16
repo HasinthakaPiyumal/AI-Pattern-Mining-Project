@@ -1,0 +1,12 @@
+[
+  {
+    "Pattern Name": "Audit logging",
+    "Problem": "How to understand the behavior of users and the application and troubleshoot problems",
+    "Context": "You have applied the Microservice architecture pattern",
+    "Solution": "Record user activity in a database",
+    "Result": "Benefits: Provides a record of user actions. Drawbacks: The auditing code is intertwined with the business logic which makes the business logic more complicated.",
+    "Related Patterns": "Event Sourcing is a reliable way to implement auditing.",
+    "Uses": "To know what actions a user has recently performed (customer support, compliance, security, etc.).",
+    "Thinking": "The text explicitly labels 'Audit logging' as a 'Pattern' and places it within the 'Microservice architecture pattern' context. The discussion in the comments also reinforces its application within microservices, with one user asking 'Does this audit logging use microservice' and another stating 'I have implemented this pattern using a dedicated microservice to log the audit logs'. This confirms its relevance as a Microservices design pattern."
+  }
+]
