@@ -34,18 +34,18 @@ from sklearn.decomposition import PCA
 
 # === Configuration ===
 CONFIG = {
-    "target_column": "verified_pattern",
-    "predict_mode": False,
-    "labeled_data_path": "/home/hasinthaka/Documents/Projects/AI/Pattern Mining/pipeline/data/datasets/labeled_data.csv",
+    "target_column": "label",
+    "predict_mode": True,
+    "labeled_data_path": "/home/hasinthaka/Documents/Projects/AI/Pattern Mining/pipeline/notebooks/result/metadata.csv",
     # "embeddings_path_optional": "/home/hasinthaka/Documents/Projects/AI/Pattern Mining/pipeline/data/datasets/summary_embeddings_768.csv",
-    "embeddings_path": "/home/hasinthaka/Documents/Projects/AI/Pattern Mining/pipeline/data/datasets/summary_embeddings_768.csv",
+    "embeddings_path": "/home/hasinthaka/Documents/Projects/AI/Pattern Mining/pipeline/notebooks/result/embeddings.csv",
     # "embeddings_path": "/home/hasinthaka/Documents/Projects/AI/Pattern Mining/pipeline/data/datasets/embeddings.csv",
-    "min_samples_per_class": 20,
+    "min_samples_per_class": 5,
     "n_splits": 5,
     "random_state": 42,
-    "none_label": "none",
+    "none_label": "Other",
     "dimensionality_reduction": {
-        "enabled": True,
+        "enabled": False,
         "method": "umap",
         "n_components_list": [64, 128, 256,512,700],
         "params": {},
@@ -66,7 +66,7 @@ MODEL_DEFAULTS = {
 
 MODEL_BUILDERS = {
     "LogReg": lambda params, seed: LogisticRegression(**params, random_state=seed, max_iter=2000),
-    "SVC": lambda params, seed: make_pipeline(StandardScaler(), SVC(**params, random_state=seed)),
+    "SVC": lambda params, seed: SVC(**params, random_state=seed),#make_pipeline(StandardScaler(), SVC(**params, random_state=seed)),
     "KNN": lambda params, _seed: make_pipeline(StandardScaler(), KNeighborsClassifier(**params)),
 }
 # Calibrate weights via averaged model F1 scores or researcher priors if one model should dominate
@@ -132,6 +132,7 @@ def run_all_ensembles(X, y, n_splits, model_params, random_state):
     prob_store = {name: np.zeros((len(y_encoded), len(global_classes))) for name in MODEL_BUILDERS}
 
     for fold_index, (train_idx, val_idx) in enumerate(skf.split(X_values, y_encoded), 1):
+        print(train_idx)
         X_train, X_val = X_values[train_idx], X_values[val_idx]
         y_train = y_encoded[train_idx]
 
@@ -296,7 +297,7 @@ def split_verified_sets(data, target_column, min_samples):
 
 
 def select_embedding_columns(df):
-    return [col for col in df.columns if col.startswith("dim_")]
+    return [col for col in df.columns if col.startswith("emb_")]
 
 
 def dimensionality_reduction(X, method, n_components, random_state, **kwargs):
