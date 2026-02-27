@@ -1,0 +1,238 @@
+file,true_label,weighted_pred
+https://github.com/HasinthakaPiyumal/AI-Pattern-Mining-Project/tree/main/notebooks/result/ms_repo_callgraph_clusters/train-ticket_java/cluster_81.java,Other,Microservices Test
+https://github.com/HasinthakaPiyumal/AI-Pattern-Mining-Project/tree/main/notebooks/result/ms_repo_callgraph_clusters/train-ticket_java/cluster_23.java,Other,Other
+https://github.com/HasinthakaPiyumal/AI-Pattern-Mining-Project/tree/main/notebooks/result/ms_repo_callgraph_clusters/train-ticket_java/cluster_20.java,Microservices Security,Microservices Security
+https://github.com/HasinthakaPiyumal/AI-Pattern-Mining-Project/tree/main/notebooks/result/ms_repo_callgraph_clusters/train-ticket_java/cluster_134.java,Other,Other
+https://github.com/HasinthakaPiyumal/AI-Pattern-Mining-Project/tree/main/notebooks/result/ms_repo_callgraph_clusters/train-ticket_java/cluster_130.java,Other,Other
+https://github.com/HasinthakaPiyumal/AI-Pattern-Mining-Project/tree/main/notebooks/result/ms_repo_callgraph_clusters/spring-petclinic_java/cluster_17.java,Microservices Test,Database with Microservices
+https://github.com/HasinthakaPiyumal/AI-Pattern-Mining-Project/tree/main/notebooks/result/ms_repo_callgraph_clusters/spring-petclinic_java/cluster_16.java,Other,Data Model/ Domain design
+https://github.com/HasinthakaPiyumal/AI-Pattern-Mining-Project/tree/main/notebooks/result/ms_repo_callgraph_clusters/spring-boot-based-microservices_java/cluster_22.java,Other,Microservices Test
+https://github.com/HasinthakaPiyumal/AI-Pattern-Mining-Project/tree/main/notebooks/result/ms_repo_callgraph_clusters/spring-boot-based-microservices_java/cluster_18.java,Data Model/ Domain design,Business Logic
+https://github.com/HasinthakaPiyumal/AI-Pattern-Mining-Project/tree/main/notebooks/result/ms_repo_callgraph_clusters/sample.plantsbywebsphere_java/cluster_36.java,Data Model/ Domain design,Data Model/ Domain design
+https://github.com/HasinthakaPiyumal/AI-Pattern-Mining-Project/tree/main/notebooks/result/ms_repo_callgraph_clusters/sample.daytrader7_java/cluster_78.java,Other,Backends for Frontends
+https://github.com/HasinthakaPiyumal/AI-Pattern-Mining-Project/tree/main/notebooks/result/ms_repo_callgraph_clusters/sample.daytrader7_java/cluster_56.java,Other,Business Logic
+https://github.com/HasinthakaPiyumal/AI-Pattern-Mining-Project/tree/main/notebooks/result/ms_repo_callgraph_clusters/sample.daytrader7_java/cluster_40.java,Microservices Test,Data Model/ Domain design
+https://github.com/HasinthakaPiyumal/AI-Pattern-Mining-Project/tree/main/notebooks/result/ms_repo_callgraph_clusters/Retail-Banking-System_java/cluster_21.java,Business Logic,Microservices Test
+https://github.com/HasinthakaPiyumal/AI-Pattern-Mining-Project/tree/main/notebooks/result/ms_repo_callgraph_clusters/RepoGenesis_java/cluster_8.java,Microservices Test,Microservices Test
+https://github.com/HasinthakaPiyumal/AI-Pattern-Mining-Project/tree/main/notebooks/result/ms_repo_callgraph_clusters/RepoGenesis_java/cluster_2.java,Microservices Test,Microservices Test
+https://github.com/HasinthakaPiyumal/AI-Pattern-Mining-Project/tree/main/notebooks/result/ms_repo_callgraph_clusters/piggymetrics_java/cluster_7.java,Microservices Security,Microservices Security
+https://github.com/HasinthakaPiyumal/AI-Pattern-Mining-Project/tree/main/notebooks/result/ms_repo_callgraph_clusters/piggymetrics_java/cluster_28.java,Microservices Test,Microservices Security
+https://github.com/HasinthakaPiyumal/AI-Pattern-Mining-Project/tree/main/notebooks/result/ms_repo_callgraph_clusters/piggymetrics_java/cluster_2.java,Microservices Test,Microservices Test
+https://github.com/HasinthakaPiyumal/AI-Pattern-Mining-Project/tree/main/notebooks/result/ms_repo_callgraph_clusters/micronaut-microservices-poc_java/cluster_48.java,Other,EDA
+https://github.com/HasinthakaPiyumal/AI-Pattern-Mining-Project/tree/main/notebooks/result/ms_repo_callgraph_clusters/jpetstore-6_java/cluster_5.java,Business Logic,Business Logic
+https://github.com/HasinthakaPiyumal/AI-Pattern-Mining-Project/tree/main/notebooks/result/ms_repo_callgraph_clusters/jpetstore-6_java/cluster_43.java,Microservices Test,Microservices Test
+https://github.com/HasinthakaPiyumal/AI-Pattern-Mining-Project/tree/main/notebooks/result/ms_repo_callgraph_clusters/jpetstore-6_java/cluster_39.java,Data Model/ Domain design,Data Model/ Domain design
+https://github.com/HasinthakaPiyumal/AI-Pattern-Mining-Project/tree/main/notebooks/result/ms_repo_callgraph_clusters/jpetstore-6_java/cluster_18.java,Business Logic,Business Logic
+https://github.com/HasinthakaPiyumal/AI-Pattern-Mining-Project/tree/main/notebooks/result/ms_repo_callgraph_clusters/jpetstore-6_java/cluster_16.java,Business Logic,Business Logic
+https://github.com/HasinthakaPiyumal/AI-Pattern-Mining-Project/tree/main/notebooks/result/ms_repo_callgraph_clusters/ita-challenges-backend_java/cluster_30.java,Microservices Test,Other
+https://github.com/HasinthakaPiyumal/AI-Pattern-Mining-Project/tree/main/notebooks/result/ms_repo_callgraph_clusters/Hands-on-Microservices-with-Python_python/cluster_1.py,Microservices Security,Business Logic
+https://github.com/HasinthakaPiyumal/AI-Pattern-Mining-Project/tree/main/notebooks/result/ms_repo_callgraph_clusters/ftgo-application_java/cluster_96.java,Microservices Security,Microservices Security
+https://github.com/HasinthakaPiyumal/AI-Pattern-Mining-Project/tree/main/notebooks/result/ms_repo_callgraph_clusters/ftgo-application_java/cluster_89.java,Microservices Security,Microservices Security
+https://github.com/HasinthakaPiyumal/AI-Pattern-Mining-Project/tree/main/notebooks/result/ms_repo_callgraph_clusters/ftgo-application_java/cluster_69.java,Other,Data Model/ Domain design
+https://github.com/HasinthakaPiyumal/AI-Pattern-Mining-Project/tree/main/notebooks/result/ms_repo_callgraph_clusters/ftgo-application_java/cluster_58.java,Data Model/ Domain design,Data Model/ Domain design
+https://github.com/HasinthakaPiyumal/AI-Pattern-Mining-Project/tree/main/notebooks/result/ms_repo_callgraph_clusters/ftgo-application_java/cluster_57.java,Data Model/ Domain design,Data Model/ Domain design
+https://github.com/HasinthakaPiyumal/AI-Pattern-Mining-Project/tree/main/notebooks/result/ms_repo_callgraph_clusters/ftgo-application_java/cluster_47.java,Business Logic,Data Model/ Domain design
+https://github.com/HasinthakaPiyumal/AI-Pattern-Mining-Project/tree/main/notebooks/result/ms_repo_callgraph_clusters/ftgo-application_java/cluster_28.java,Data Model/ Domain design,Data Model/ Domain design
+https://github.com/HasinthakaPiyumal/AI-Pattern-Mining-Project/tree/main/notebooks/result/ms_repo_callgraph_clusters/ftgo-application_java/cluster_150.java,EDA,Other
+https://github.com/HasinthakaPiyumal/AI-Pattern-Mining-Project/tree/main/notebooks/result/ms_repo_callgraph_clusters/ftgo-application_java/cluster_15.java,Data Model/ Domain design,Business Logic
+https://github.com/HasinthakaPiyumal/AI-Pattern-Mining-Project/tree/main/notebooks/result/ms_repo_callgraph_clusters/ftgo-application_java/cluster_139.java,Data Model/ Domain design,Other
+https://github.com/HasinthakaPiyumal/AI-Pattern-Mining-Project/tree/main/notebooks/result/ms_repo_callgraph_clusters/ftgo-application_java/cluster_135.java,Transactions/Saga,Data Model/ Domain design
+https://github.com/HasinthakaPiyumal/AI-Pattern-Mining-Project/tree/main/notebooks/result/ms_repo_callgraph_clusters/ftgo-application_java/cluster_113.java,EDA,EDA
+https://github.com/HasinthakaPiyumal/AI-Pattern-Mining-Project/tree/main/notebooks/result/ms_repo_callgraph_clusters/DeathStarBench_python/cluster_54.py,Business Logic,Microservices Security
+https://github.com/HasinthakaPiyumal/AI-Pattern-Mining-Project/tree/main/notebooks/result/ms_repo_callgraph_clusters/DeathStarBench_python/cluster_23.py,Business Logic,Business Logic
+https://github.com/HasinthakaPiyumal/AI-Pattern-Mining-Project/tree/main/notebooks/result/ms_repo_callgraph_clusters/DeathStarBench_python/cluster_17.py,Microservices Security,Business Logic
+https://github.com/HasinthakaPiyumal/AI-Pattern-Mining-Project/tree/main/notebooks/result/ms_repo_callgraph_clusters/DeathStarBench_python/cluster_11.py,Business Logic,Business Logic
+https://github.com/HasinthakaPiyumal/AI-Pattern-Mining-Project/tree/main/notebooks/result/ms_repo_callgraph_clusters/crypto_crawler_python/cluster_48.py,EDA,Other
+https://github.com/HasinthakaPiyumal/AI-Pattern-Mining-Project/tree/main/notebooks/result/ms_repo_callgraph_clusters/crypto_crawler_python/cluster_40.py,Other,Other
+https://github.com/HasinthakaPiyumal/AI-Pattern-Mining-Project/tree/main/notebooks/result/ms_repo_callgraph_clusters/acmeair_java/cluster_67.java,Other,Other
+https://github.com/HasinthakaPiyumal/AI-Pattern-Mining-Project/tree/main/notebooks/result/ms_repo_callgraph_clusters/acmeair_java/cluster_60.java,Other,Other
+https://github.com/HasinthakaPiyumal/AI-Pattern-Mining-Project/tree/main/notebooks/result/ms_repo_callgraph_clusters/acmeair_java/cluster_4.java,Data Model/ Domain design,Data Model/ Domain design
+https://github.com/HasinthakaPiyumal/AI-Pattern-Mining-Project/tree/main/notebooks/result/ms_repo_callgraph_clusters/saigonparking_java/cluster_31.java,Other,Other
+https://github.com/HasinthakaPiyumal/AI-Pattern-Mining-Project/tree/main/notebooks/result/ms_repo_callgraph_clusters/saigonparking_java/cluster_7.java,EDA,EDA
+https://github.com/HasinthakaPiyumal/AI-Pattern-Mining-Project/tree/main/notebooks/result/ms_repo_callgraph_clusters/saigonparking_java/cluster_44.java,Backends for Frontends,Business Logic
+https://github.com/HasinthakaPiyumal/AI-Pattern-Mining-Project/tree/main/notebooks/result/ms_repo_callgraph_clusters/saigonparking_java/cluster_21.java,Backends for Frontends,Data Model/ Domain design
+https://github.com/HasinthakaPiyumal/AI-Pattern-Mining-Project/tree/main/notebooks/result/ms_repo_callgraph_clusters/saigonparking_java/cluster_10.java,Business Logic,Business Logic
+https://github.com/HasinthakaPiyumal/AI-Pattern-Mining-Project/tree/main/notebooks/result/ms_repo_callgraph_clusters/saigonparking_java/cluster_2.java,EDA,Business Logic
+https://github.com/HasinthakaPiyumal/AI-Pattern-Mining-Project/tree/main/notebooks/result/ms_repo_callgraph_clusters/saigonparking_java/cluster_6.java,Microservices Security,Business Logic
+https://github.com/HasinthakaPiyumal/AI-Pattern-Mining-Project/tree/main/notebooks/result/ms_repo_callgraph_clusters/saigonparking_java/cluster_12.java,Business Logic,Backends for Frontends
+https://github.com/HasinthakaPiyumal/AI-Pattern-Mining-Project/tree/main/notebooks/result/ms_repo_callgraph_clusters/saigonparking_java/cluster_42.java,Business Logic,EDA
+https://github.com/HasinthakaPiyumal/AI-Pattern-Mining-Project/tree/main/notebooks/result/ms_repo_callgraph_clusters/saigonparking_java/cluster_22.java,Microservices Security,Microservices Security
+https://github.com/HasinthakaPiyumal/AI-Pattern-Mining-Project/tree/main/notebooks/result/ms_repo_callgraph_clusters/saigonparking_java/cluster_28.java,Data Model/ Domain design,Other
+https://github.com/HasinthakaPiyumal/AI-Pattern-Mining-Project/tree/main/notebooks/result/ms_repo_callgraph_clusters/saigonparking_java/cluster_15.java,Other,Microservices Security
+https://github.com/HasinthakaPiyumal/AI-Pattern-Mining-Project/tree/main/notebooks/result/ms_repo_callgraph_clusters/saigonparking_java/cluster_32.java,Microservices Security,Microservices Security
+https://github.com/HasinthakaPiyumal/AI-Pattern-Mining-Project/tree/main/notebooks/result/ms_repo_callgraph_clusters/saigonparking_java/cluster_3.java,Business Logic,Business Logic
+https://github.com/HasinthakaPiyumal/AI-Pattern-Mining-Project/tree/main/notebooks/result/ms_repo_callgraph_clusters/saigonparking_java/cluster_8.java,EDA,EDA
+https://github.com/HasinthakaPiyumal/AI-Pattern-Mining-Project/tree/main/notebooks/result/ms_repo_callgraph_clusters/saigonparking_java/cluster_30.java,Business Logic,EDA
+https://github.com/HasinthakaPiyumal/AI-Pattern-Mining-Project/tree/main/notebooks/result/ms_repo_callgraph_clusters/saigonparking_java/cluster_5.java,EDA,Other
+https://github.com/HasinthakaPiyumal/AI-Pattern-Mining-Project/tree/main/notebooks/result/ms_repo_callgraph_clusters/train-ticket_java/cluster_11.java,Microservices Security,Microservices Security
+https://github.com/HasinthakaPiyumal/AI-Pattern-Mining-Project/tree/main/notebooks/result/ms_repo_callgraph_clusters/train-ticket_java/cluster_53.java,Data Model/ Domain design,Data Model/ Domain design
+https://github.com/HasinthakaPiyumal/AI-Pattern-Mining-Project/tree/main/notebooks/result/ms_repo_callgraph_clusters/train-ticket_java/cluster_116.java,Business Logic,Business Logic
+https://github.com/HasinthakaPiyumal/AI-Pattern-Mining-Project/tree/main/notebooks/result/ms_repo_callgraph_clusters/train-ticket_java/cluster_9.java,Microservices Security,Microservices Security
+https://github.com/HasinthakaPiyumal/AI-Pattern-Mining-Project/tree/main/notebooks/result/ms_repo_callgraph_clusters/train-ticket_java/cluster_26.java,Other,Data Model/ Domain design
+https://github.com/HasinthakaPiyumal/AI-Pattern-Mining-Project/tree/main/notebooks/result/ms_repo_callgraph_clusters/train-ticket_java/cluster_10.java,Microservices Security,Microservices Security
+https://github.com/HasinthakaPiyumal/AI-Pattern-Mining-Project/tree/main/notebooks/result/ms_repo_callgraph_clusters/train-ticket_java/cluster_33.java,EDA,Business Logic
+https://github.com/HasinthakaPiyumal/AI-Pattern-Mining-Project/tree/main/notebooks/result/ms_repo_callgraph_clusters/train-ticket_java/cluster_2.java,Business Logic,Business Logic
+https://github.com/HasinthakaPiyumal/AI-Pattern-Mining-Project/tree/main/notebooks/result/ms_repo_callgraph_clusters/train-ticket_java/cluster_39.java,Business Logic,Business Logic
+https://github.com/HasinthakaPiyumal/AI-Pattern-Mining-Project/tree/main/notebooks/result/ms_repo_callgraph_clusters/train-ticket_java/cluster_12.java,Business Logic,Business Logic
+https://github.com/HasinthakaPiyumal/AI-Pattern-Mining-Project/tree/main/notebooks/result/ms_repo_callgraph_clusters/train-ticket_java/cluster_1.java,Microservices Security,Microservices Security
+https://github.com/HasinthakaPiyumal/AI-Pattern-Mining-Project/tree/main/notebooks/result/ms_repo_callgraph_clusters/train-ticket_java/cluster_42.java,Data Model/ Domain design,Data Model/ Domain design
+https://github.com/HasinthakaPiyumal/AI-Pattern-Mining-Project/tree/main/notebooks/result/ms_repo_callgraph_clusters/train-ticket_java/cluster_45.java,Data Model/ Domain design,Data Model/ Domain design
+https://github.com/HasinthakaPiyumal/AI-Pattern-Mining-Project/tree/main/notebooks/result/ms_repo_callgraph_clusters/train-ticket_java/cluster_16.java,Data Model/ Domain design,Data Model/ Domain design
+https://github.com/HasinthakaPiyumal/AI-Pattern-Mining-Project/tree/main/notebooks/result/ms_repo_callgraph_clusters/train-ticket_java/cluster_4.java,Business Logic,Business Logic
+https://github.com/HasinthakaPiyumal/AI-Pattern-Mining-Project/tree/main/notebooks/result/ms_repo_callgraph_clusters/train-ticket_java/cluster_18.java,Other,Other
+https://github.com/HasinthakaPiyumal/AI-Pattern-Mining-Project/tree/main/notebooks/result/ms_repo_callgraph_clusters/train-ticket_java/cluster_8.java,Microservices Security,Microservices Security
+https://github.com/HasinthakaPiyumal/AI-Pattern-Mining-Project/tree/main/notebooks/result/ms_repo_callgraph_clusters/train-ticket_java/cluster_30.java,Data Model/ Domain design,Other
+https://github.com/HasinthakaPiyumal/AI-Pattern-Mining-Project/tree/main/notebooks/result/ms_repo_callgraph_clusters/ita-challenges-backend_java/cluster_31.java,Microservices Security,Microservices Security
+https://github.com/HasinthakaPiyumal/AI-Pattern-Mining-Project/tree/main/notebooks/result/ms_repo_callgraph_clusters/ita-challenges-backend_java/cluster_7.java,Business Logic,Business Logic
+https://github.com/HasinthakaPiyumal/AI-Pattern-Mining-Project/tree/main/notebooks/result/ms_repo_callgraph_clusters/ita-challenges-backend_java/cluster_21.java,Microservices Security,Microservices Security
+https://github.com/HasinthakaPiyumal/AI-Pattern-Mining-Project/tree/main/notebooks/result/ms_repo_callgraph_clusters/ita-challenges-backend_java/cluster_2.java,EDA,Microservices Security
+https://github.com/HasinthakaPiyumal/AI-Pattern-Mining-Project/tree/main/notebooks/result/ms_repo_callgraph_clusters/ita-challenges-backend_java/cluster_45.java,Other,Data Model/ Domain design
+https://github.com/HasinthakaPiyumal/AI-Pattern-Mining-Project/tree/main/notebooks/result/ms_repo_callgraph_clusters/ita-challenges-backend_java/cluster_20.java,Database with Microservices,Data Model/ Domain design
+https://github.com/HasinthakaPiyumal/AI-Pattern-Mining-Project/tree/main/notebooks/result/ms_repo_callgraph_clusters/ita-challenges-backend_java/cluster_16.java,Business Logic,Business Logic
+https://github.com/HasinthakaPiyumal/AI-Pattern-Mining-Project/tree/main/notebooks/result/ms_repo_callgraph_clusters/ita-challenges-backend_java/cluster_40.java,Other,Business Logic
+https://github.com/HasinthakaPiyumal/AI-Pattern-Mining-Project/tree/main/notebooks/result/ms_repo_callgraph_clusters/ita-challenges-backend_java/cluster_36.java,Microservices Security,Microservices Security
+https://github.com/HasinthakaPiyumal/AI-Pattern-Mining-Project/tree/main/notebooks/result/ms_repo_callgraph_clusters/ita-challenges-backend_java/cluster_4.java,Microservices Security,Microservices Security
+https://github.com/HasinthakaPiyumal/AI-Pattern-Mining-Project/tree/main/notebooks/result/ms_repo_callgraph_clusters/ita-challenges-backend_java/cluster_17.java,Business Logic,Business Logic
+https://github.com/HasinthakaPiyumal/AI-Pattern-Mining-Project/tree/main/notebooks/result/ms_repo_callgraph_clusters/ita-challenges-backend_java/cluster_3.java,Microservices Security,Business Logic
+https://github.com/HasinthakaPiyumal/AI-Pattern-Mining-Project/tree/main/notebooks/result/ms_repo_callgraph_clusters/ita-challenges-backend_java/cluster_8.java,Business Logic,Business Logic
+https://github.com/HasinthakaPiyumal/AI-Pattern-Mining-Project/tree/main/notebooks/result/ms_repo_callgraph_clusters/ita-challenges-backend_java/cluster_5.java,Backends for Frontends,Business Logic
+https://github.com/HasinthakaPiyumal/AI-Pattern-Mining-Project/tree/main/notebooks/result/ms_repo_callgraph_clusters/springboot-kafka-microservices_java/cluster_7.java,Other,Other
+https://github.com/HasinthakaPiyumal/AI-Pattern-Mining-Project/tree/main/notebooks/result/ms_repo_callgraph_clusters/springboot-kafka-microservices_java/cluster_9.java,Microservices Security,Microservices Security
+https://github.com/HasinthakaPiyumal/AI-Pattern-Mining-Project/tree/main/notebooks/result/ms_repo_callgraph_clusters/springboot-kafka-microservices_java/cluster_39.java,Business Logic,EDA
+https://github.com/HasinthakaPiyumal/AI-Pattern-Mining-Project/tree/main/notebooks/result/ms_repo_callgraph_clusters/springboot-kafka-microservices_java/cluster_37.java,Microservices Security,Business Logic
+https://github.com/HasinthakaPiyumal/AI-Pattern-Mining-Project/tree/main/notebooks/result/ms_repo_callgraph_clusters/springboot-kafka-microservices_java/cluster_23.java,Microservices Security,Microservices Security
+https://github.com/HasinthakaPiyumal/AI-Pattern-Mining-Project/tree/main/notebooks/result/ms_repo_callgraph_clusters/springboot-kafka-microservices_java/cluster_20.java,Business Logic,Microservices Security
+https://github.com/HasinthakaPiyumal/AI-Pattern-Mining-Project/tree/main/notebooks/result/ms_repo_callgraph_clusters/springboot-kafka-microservices_java/cluster_16.java,Business Logic,Business Logic
+https://github.com/HasinthakaPiyumal/AI-Pattern-Mining-Project/tree/main/notebooks/result/ms_repo_callgraph_clusters/springboot-kafka-microservices_java/cluster_38.java,EDA,Business Logic
+https://github.com/HasinthakaPiyumal/AI-Pattern-Mining-Project/tree/main/notebooks/result/ms_repo_callgraph_clusters/springboot-kafka-microservices_java/cluster_32.java,Microservices Security,Microservices Security
+https://github.com/HasinthakaPiyumal/AI-Pattern-Mining-Project/tree/main/notebooks/result/ms_repo_callgraph_clusters/springboot-kafka-microservices_java/cluster_8.java,Database with Microservices,Business Logic
+https://github.com/HasinthakaPiyumal/AI-Pattern-Mining-Project/tree/main/notebooks/result/ms_repo_callgraph_clusters/springboot-kafka-microservices_java/cluster_5.java,Data Model/ Domain design,Data Model/ Domain design
+https://github.com/HasinthakaPiyumal/AI-Pattern-Mining-Project/tree/main/notebooks/result/ms_repo_callgraph_clusters/springboot-kafka-microservices_java/cluster_0.java,Business Logic,Microservices Security
+https://github.com/HasinthakaPiyumal/AI-Pattern-Mining-Project/tree/main/notebooks/result/ms_repo_callgraph_clusters/acmeair_java/cluster_10.java,Other,Other
+https://github.com/HasinthakaPiyumal/AI-Pattern-Mining-Project/tree/main/notebooks/result/ms_repo_callgraph_clusters/acmeair_java/cluster_6.java,Data Model/ Domain design,Database with Microservices
+https://github.com/HasinthakaPiyumal/AI-Pattern-Mining-Project/tree/main/notebooks/result/ms_repo_callgraph_clusters/acmeair_java/cluster_12.java,Database with Microservices,Data Model/ Domain design
+https://github.com/HasinthakaPiyumal/AI-Pattern-Mining-Project/tree/main/notebooks/result/ms_repo_callgraph_clusters/acmeair_java/cluster_5.java,Business Logic,Data Model/ Domain design
+https://github.com/HasinthakaPiyumal/AI-Pattern-Mining-Project/tree/main/notebooks/result/ms_repo_callgraph_clusters/jpetstore-6_java/cluster_40.java,Data Model/ Domain design,Business Logic
+https://github.com/HasinthakaPiyumal/AI-Pattern-Mining-Project/tree/main/notebooks/result/ms_repo_callgraph_clusters/sample.daytrader7_java/cluster_53.java,Data Model/ Domain design,Data Model/ Domain design
+https://github.com/HasinthakaPiyumal/AI-Pattern-Mining-Project/tree/main/notebooks/result/ms_repo_callgraph_clusters/sample.daytrader7_java/cluster_25.java,Business Logic,Business Logic
+https://github.com/HasinthakaPiyumal/AI-Pattern-Mining-Project/tree/main/notebooks/result/ms_repo_callgraph_clusters/sample.daytrader7_java/cluster_62.java,Data Model/ Domain design,Data Model/ Domain design
+https://github.com/HasinthakaPiyumal/AI-Pattern-Mining-Project/tree/main/notebooks/result/ms_repo_callgraph_clusters/sample.daytrader7_java/cluster_93.java,Backends for Frontends,Backends for Frontends
+https://github.com/HasinthakaPiyumal/AI-Pattern-Mining-Project/tree/main/notebooks/result/ms_repo_callgraph_clusters/sample.daytrader7_java/cluster_65.java,Data Model/ Domain design,Data Model/ Domain design
+https://github.com/HasinthakaPiyumal/AI-Pattern-Mining-Project/tree/main/notebooks/result/ms_repo_callgraph_clusters/sample.daytrader7_java/cluster_12.java,Business Logic,Backends for Frontends
+https://github.com/HasinthakaPiyumal/AI-Pattern-Mining-Project/tree/main/notebooks/result/ms_repo_callgraph_clusters/sample.daytrader7_java/cluster_24.java,Microservices Security,Backends for Frontends
+https://github.com/HasinthakaPiyumal/AI-Pattern-Mining-Project/tree/main/notebooks/result/ms_repo_callgraph_clusters/sample.daytrader7_java/cluster_54.java,Data Model/ Domain design,Data Model/ Domain design
+https://github.com/HasinthakaPiyumal/AI-Pattern-Mining-Project/tree/main/notebooks/result/ms_repo_callgraph_clusters/sample.daytrader7_java/cluster_16.java,Microservices Security,Backends for Frontends
+https://github.com/HasinthakaPiyumal/AI-Pattern-Mining-Project/tree/main/notebooks/result/ms_repo_callgraph_clusters/sample.daytrader7_java/cluster_50.java,Business Logic,Backends for Frontends
+https://github.com/HasinthakaPiyumal/AI-Pattern-Mining-Project/tree/main/notebooks/result/ms_repo_callgraph_clusters/sample.daytrader7_java/cluster_22.java,EDA,Data Model/ Domain design
+https://github.com/HasinthakaPiyumal/AI-Pattern-Mining-Project/tree/main/notebooks/result/ms_repo_callgraph_clusters/sample.daytrader7_java/cluster_52.java,Data Model/ Domain design,Data Model/ Domain design
+https://github.com/HasinthakaPiyumal/AI-Pattern-Mining-Project/tree/main/notebooks/result/ms_repo_callgraph_clusters/sample.daytrader7_java/cluster_15.java,Backends for Frontends,Data Model/ Domain design
+https://github.com/HasinthakaPiyumal/AI-Pattern-Mining-Project/tree/main/notebooks/result/ms_repo_callgraph_clusters/sample.daytrader7_java/cluster_58.java,Other,EDA
+https://github.com/HasinthakaPiyumal/AI-Pattern-Mining-Project/tree/main/notebooks/result/ms_repo_callgraph_clusters/sample.daytrader7_java/cluster_14.java,Backends for Frontends,Business Logic
+https://github.com/HasinthakaPiyumal/AI-Pattern-Mining-Project/tree/main/notebooks/result/ms_repo_callgraph_clusters/sample.daytrader7_java/cluster_32.java,Backends for Frontends,Business Logic
+https://github.com/HasinthakaPiyumal/AI-Pattern-Mining-Project/tree/main/notebooks/result/ms_repo_callgraph_clusters/sample.daytrader7_java/cluster_3.java,Business Logic,Data Model/ Domain design
+https://github.com/HasinthakaPiyumal/AI-Pattern-Mining-Project/tree/main/notebooks/result/ms_repo_callgraph_clusters/sample.daytrader7_java/cluster_27.java,Data Model/ Domain design,Business Logic
+https://github.com/HasinthakaPiyumal/AI-Pattern-Mining-Project/tree/main/notebooks/result/ms_repo_callgraph_clusters/sample.daytrader7_java/cluster_0.java,Data Model/ Domain design,Business Logic
+https://github.com/HasinthakaPiyumal/AI-Pattern-Mining-Project/tree/main/notebooks/result/ms_repo_callgraph_clusters/Retail-Banking-System_java/cluster_13.java,Microservices Test,Microservices Test
+https://github.com/HasinthakaPiyumal/AI-Pattern-Mining-Project/tree/main/notebooks/result/ms_repo_callgraph_clusters/Retail-Banking-System_java/cluster_2.java,Microservices Security,Microservices Security
+https://github.com/HasinthakaPiyumal/AI-Pattern-Mining-Project/tree/main/notebooks/result/ms_repo_callgraph_clusters/Retail-Banking-System_java/cluster_20.java,Other,Other
+https://github.com/HasinthakaPiyumal/AI-Pattern-Mining-Project/tree/main/notebooks/result/ms_repo_callgraph_clusters/Retail-Banking-System_java/cluster_22.java,Data Model/ Domain design,Data Model/ Domain design
+https://github.com/HasinthakaPiyumal/AI-Pattern-Mining-Project/tree/main/notebooks/result/ms_repo_callgraph_clusters/Retail-Banking-System_java/cluster_8.java,Database with Microservices,Microservices Security
+https://github.com/HasinthakaPiyumal/AI-Pattern-Mining-Project/tree/main/notebooks/result/ms_repo_callgraph_clusters/Retail-Banking-System_java/cluster_5.java,Business Logic,Business Logic
+https://github.com/HasinthakaPiyumal/AI-Pattern-Mining-Project/tree/main/notebooks/result/ms_repo_callgraph_clusters/sample.plantsbywebsphere_java/cluster_9.java,Data Model/ Domain design,Business Logic
+https://github.com/HasinthakaPiyumal/AI-Pattern-Mining-Project/tree/main/notebooks/result/ms_repo_callgraph_clusters/sample.plantsbywebsphere_java/cluster_13.java,Business Logic,Business Logic
+https://github.com/HasinthakaPiyumal/AI-Pattern-Mining-Project/tree/main/notebooks/result/ms_repo_callgraph_clusters/sample.plantsbywebsphere_java/cluster_62.java,Backends for Frontends,Backends for Frontends
+https://github.com/HasinthakaPiyumal/AI-Pattern-Mining-Project/tree/main/notebooks/result/ms_repo_callgraph_clusters/sample.plantsbywebsphere_java/cluster_6.java,Transactions/Saga,Business Logic
+https://github.com/HasinthakaPiyumal/AI-Pattern-Mining-Project/tree/main/notebooks/result/ms_repo_callgraph_clusters/sample.plantsbywebsphere_java/cluster_61.java,Backends for Frontends,Business Logic
+https://github.com/HasinthakaPiyumal/AI-Pattern-Mining-Project/tree/main/notebooks/result/ms_repo_callgraph_clusters/sample.plantsbywebsphere_java/cluster_54.java,Microservices Security,Microservices Security
+https://github.com/HasinthakaPiyumal/AI-Pattern-Mining-Project/tree/main/notebooks/result/ms_repo_callgraph_clusters/sample.plantsbywebsphere_java/cluster_16.java,Business Logic,Backends for Frontends
+https://github.com/HasinthakaPiyumal/AI-Pattern-Mining-Project/tree/main/notebooks/result/ms_repo_callgraph_clusters/sample.plantsbywebsphere_java/cluster_64.java,Backends for Frontends,Business Logic
+https://github.com/HasinthakaPiyumal/AI-Pattern-Mining-Project/tree/main/notebooks/result/ms_repo_callgraph_clusters/sample.plantsbywebsphere_java/cluster_52.java,Microservices Security,Microservices Security
+https://github.com/HasinthakaPiyumal/AI-Pattern-Mining-Project/tree/main/notebooks/result/ms_repo_callgraph_clusters/sample.plantsbywebsphere_java/cluster_55.java,Backends for Frontends,Microservices Security
+https://github.com/HasinthakaPiyumal/AI-Pattern-Mining-Project/tree/main/notebooks/result/ms_repo_callgraph_clusters/sample.plantsbywebsphere_java/cluster_63.java,Business Logic,Backends for Frontends
+https://github.com/HasinthakaPiyumal/AI-Pattern-Mining-Project/tree/main/notebooks/result/ms_repo_callgraph_clusters/sample.plantsbywebsphere_java/cluster_15.java,Business Logic,Business Logic
+https://github.com/HasinthakaPiyumal/AI-Pattern-Mining-Project/tree/main/notebooks/result/ms_repo_callgraph_clusters/sample.plantsbywebsphere_java/cluster_4.java,Business Logic,Business Logic
+https://github.com/HasinthakaPiyumal/AI-Pattern-Mining-Project/tree/main/notebooks/result/ms_repo_callgraph_clusters/sample.plantsbywebsphere_java/cluster_0.java,Business Logic,Business Logic
+https://github.com/HasinthakaPiyumal/AI-Pattern-Mining-Project/tree/main/notebooks/result/ms_repo_callgraph_clusters/spring-petclinic_java/cluster_11.java,Database with Microservices,Database with Microservices
+https://github.com/HasinthakaPiyumal/AI-Pattern-Mining-Project/tree/main/notebooks/result/ms_repo_callgraph_clusters/spring-petclinic_java/cluster_7.java,Data Model/ Domain design,Data Model/ Domain design
+https://github.com/HasinthakaPiyumal/AI-Pattern-Mining-Project/tree/main/notebooks/result/ms_repo_callgraph_clusters/spring-petclinic_java/cluster_25.java,Backends for Frontends,Data Model/ Domain design
+https://github.com/HasinthakaPiyumal/AI-Pattern-Mining-Project/tree/main/notebooks/result/ms_repo_callgraph_clusters/spring-petclinic_java/cluster_6.java,Data Model/ Domain design,Data Model/ Domain design
+https://github.com/HasinthakaPiyumal/AI-Pattern-Mining-Project/tree/main/notebooks/result/ms_repo_callgraph_clusters/spring-petclinic_java/cluster_12.java,Data Model/ Domain design,Data Model/ Domain design
+https://github.com/HasinthakaPiyumal/AI-Pattern-Mining-Project/tree/main/notebooks/result/ms_repo_callgraph_clusters/spring-petclinic_java/cluster_20.java,Data Model/ Domain design,Database with Microservices
+https://github.com/HasinthakaPiyumal/AI-Pattern-Mining-Project/tree/main/notebooks/result/ms_repo_callgraph_clusters/spring-petclinic_java/cluster_29.java,Other,Data Model/ Domain design
+https://github.com/HasinthakaPiyumal/AI-Pattern-Mining-Project/tree/main/notebooks/result/ms_repo_callgraph_clusters/spring-petclinic_java/cluster_28.java,Data Model/ Domain design,Backends for Frontends
+https://github.com/HasinthakaPiyumal/AI-Pattern-Mining-Project/tree/main/notebooks/result/ms_repo_callgraph_clusters/spring-petclinic_java/cluster_4.java,Data Model/ Domain design,Data Model/ Domain design
+https://github.com/HasinthakaPiyumal/AI-Pattern-Mining-Project/tree/main/notebooks/result/ms_repo_callgraph_clusters/spring-petclinic_java/cluster_18.java,Database with Microservices,Data Model/ Domain design
+https://github.com/HasinthakaPiyumal/AI-Pattern-Mining-Project/tree/main/notebooks/result/ms_repo_callgraph_clusters/spring-petclinic_java/cluster_3.java,Data Model/ Domain design,Data Model/ Domain design
+https://github.com/HasinthakaPiyumal/AI-Pattern-Mining-Project/tree/main/notebooks/result/ms_repo_callgraph_clusters/spring-petclinic_java/cluster_5.java,Data Model/ Domain design,Data Model/ Domain design
+https://github.com/HasinthakaPiyumal/AI-Pattern-Mining-Project/tree/main/notebooks/result/ms_repo_callgraph_clusters/spring-petclinic_java/cluster_27.java,Database with Microservices,Microservices Test
+https://github.com/HasinthakaPiyumal/AI-Pattern-Mining-Project/tree/main/notebooks/result/ms_repo_callgraph_clusters/spring-petclinic_java/cluster_0.java,Other,Other
+https://github.com/HasinthakaPiyumal/AI-Pattern-Mining-Project/tree/main/notebooks/result/ms_repo_callgraph_clusters/spring-boot-based-microservices_java/cluster_7.java,Business Logic,Business Logic
+https://github.com/HasinthakaPiyumal/AI-Pattern-Mining-Project/tree/main/notebooks/result/ms_repo_callgraph_clusters/spring-boot-based-microservices_java/cluster_23.java,Business Logic,Microservices Security
+https://github.com/HasinthakaPiyumal/AI-Pattern-Mining-Project/tree/main/notebooks/result/ms_repo_callgraph_clusters/spring-boot-based-microservices_java/cluster_4.java,Microservices Security,Microservices Security
+https://github.com/HasinthakaPiyumal/AI-Pattern-Mining-Project/tree/main/notebooks/result/ms_repo_callgraph_clusters/spring-boot-based-microservices_java/cluster_3.java,Microservices Security,Microservices Security
+https://github.com/HasinthakaPiyumal/AI-Pattern-Mining-Project/tree/main/notebooks/result/ms_repo_callgraph_clusters/spring-boot-based-microservices_java/cluster_8.java,Business Logic,Microservices Security
+https://github.com/HasinthakaPiyumal/AI-Pattern-Mining-Project/tree/main/notebooks/result/ms_repo_callgraph_clusters/spring-boot-based-microservices_java/cluster_0.java,Microservices Security,Business Logic
+https://github.com/HasinthakaPiyumal/AI-Pattern-Mining-Project/tree/main/notebooks/result/ms_repo_callgraph_clusters/micronaut-microservices-poc_java/cluster_11.java,Database with Microservices,Other
+https://github.com/HasinthakaPiyumal/AI-Pattern-Mining-Project/tree/main/notebooks/result/ms_repo_callgraph_clusters/micronaut-microservices-poc_java/cluster_19.java,Other,Other
+https://github.com/HasinthakaPiyumal/AI-Pattern-Mining-Project/tree/main/notebooks/result/ms_repo_callgraph_clusters/micronaut-microservices-poc_java/cluster_33.java,Business Logic,Data Model/ Domain design
+https://github.com/HasinthakaPiyumal/AI-Pattern-Mining-Project/tree/main/notebooks/result/ms_repo_callgraph_clusters/micronaut-microservices-poc_java/cluster_2.java,Business Logic,Data Model/ Domain design
+https://github.com/HasinthakaPiyumal/AI-Pattern-Mining-Project/tree/main/notebooks/result/ms_repo_callgraph_clusters/micronaut-microservices-poc_java/cluster_46.java,Other,Other
+https://github.com/HasinthakaPiyumal/AI-Pattern-Mining-Project/tree/main/notebooks/result/ms_repo_callgraph_clusters/micronaut-microservices-poc_java/cluster_39.java,Data Model/ Domain design,Data Model/ Domain design
+https://github.com/HasinthakaPiyumal/AI-Pattern-Mining-Project/tree/main/notebooks/result/ms_repo_callgraph_clusters/micronaut-microservices-poc_java/cluster_1.java,Data Model/ Domain design,Data Model/ Domain design
+https://github.com/HasinthakaPiyumal/AI-Pattern-Mining-Project/tree/main/notebooks/result/ms_repo_callgraph_clusters/micronaut-microservices-poc_java/cluster_20.java,Other,Other
+https://github.com/HasinthakaPiyumal/AI-Pattern-Mining-Project/tree/main/notebooks/result/ms_repo_callgraph_clusters/micronaut-microservices-poc_java/cluster_16.java,EDA,Business Logic
+https://github.com/HasinthakaPiyumal/AI-Pattern-Mining-Project/tree/main/notebooks/result/ms_repo_callgraph_clusters/micronaut-microservices-poc_java/cluster_50.java,Business Logic,Business Logic
+https://github.com/HasinthakaPiyumal/AI-Pattern-Mining-Project/tree/main/notebooks/result/ms_repo_callgraph_clusters/micronaut-microservices-poc_java/cluster_49.java,Data Model/ Domain design,Microservices Security
+https://github.com/HasinthakaPiyumal/AI-Pattern-Mining-Project/tree/main/notebooks/result/ms_repo_callgraph_clusters/micronaut-microservices-poc_java/cluster_36.java,Data Model/ Domain design,Business Logic
+https://github.com/HasinthakaPiyumal/AI-Pattern-Mining-Project/tree/main/notebooks/result/ms_repo_callgraph_clusters/micronaut-microservices-poc_java/cluster_28.java,Microservices Test,Database with Microservices
+https://github.com/HasinthakaPiyumal/AI-Pattern-Mining-Project/tree/main/notebooks/result/ms_repo_callgraph_clusters/micronaut-microservices-poc_java/cluster_4.java,Business Logic,Business Logic
+https://github.com/HasinthakaPiyumal/AI-Pattern-Mining-Project/tree/main/notebooks/result/ms_repo_callgraph_clusters/micronaut-microservices-poc_java/cluster_17.java,Other,Database with Microservices
+https://github.com/HasinthakaPiyumal/AI-Pattern-Mining-Project/tree/main/notebooks/result/ms_repo_callgraph_clusters/micronaut-microservices-poc_java/cluster_14.java,Microservices Test,Microservices Security
+https://github.com/HasinthakaPiyumal/AI-Pattern-Mining-Project/tree/main/notebooks/result/ms_repo_callgraph_clusters/micronaut-microservices-poc_java/cluster_18.java,Other,Other
+https://github.com/HasinthakaPiyumal/AI-Pattern-Mining-Project/tree/main/notebooks/result/ms_repo_callgraph_clusters/micronaut-microservices-poc_java/cluster_8.java,Business Logic,EDA
+https://github.com/HasinthakaPiyumal/AI-Pattern-Mining-Project/tree/main/notebooks/result/ms_repo_callgraph_clusters/micronaut-microservices-poc_java/cluster_27.java,Business Logic,Data Model/ Domain design
+https://github.com/HasinthakaPiyumal/AI-Pattern-Mining-Project/tree/main/notebooks/result/ms_repo_callgraph_clusters/micronaut-microservices-poc_java/cluster_43.java,EDA,EDA
+https://github.com/HasinthakaPiyumal/AI-Pattern-Mining-Project/tree/main/notebooks/result/ms_repo_callgraph_clusters/ftgo-application_java/cluster_109.java,Business Logic,Data Model/ Domain design
+https://github.com/HasinthakaPiyumal/AI-Pattern-Mining-Project/tree/main/notebooks/result/ms_repo_callgraph_clusters/ftgo-application_java/cluster_26.java,Data Model/ Domain design,Microservices Test
+https://github.com/HasinthakaPiyumal/AI-Pattern-Mining-Project/tree/main/notebooks/result/ms_repo_callgraph_clusters/ftgo-application_java/cluster_132.java,Transactions/Saga,EDA
+https://github.com/HasinthakaPiyumal/AI-Pattern-Mining-Project/tree/main/notebooks/result/ms_repo_callgraph_clusters/ftgo-application_java/cluster_37.java,Microservices Test,Transactions/Saga
+https://github.com/HasinthakaPiyumal/AI-Pattern-Mining-Project/tree/main/notebooks/result/ms_repo_callgraph_clusters/ftgo-application_java/cluster_120.java,Microservices Test,Business Logic
+https://github.com/HasinthakaPiyumal/AI-Pattern-Mining-Project/tree/main/notebooks/result/ms_repo_callgraph_clusters/ftgo-application_java/cluster_22.java,Transactions/Saga,Business Logic
+https://github.com/HasinthakaPiyumal/AI-Pattern-Mining-Project/tree/main/notebooks/result/ms_repo_callgraph_clusters/ftgo-application_java/cluster_49.java,Data Model/ Domain design,Business Logic
+https://github.com/HasinthakaPiyumal/AI-Pattern-Mining-Project/tree/main/notebooks/result/ms_repo_callgraph_clusters/ftgo-application_java/cluster_107.java,Data Model/ Domain design,Data Model/ Domain design
+https://github.com/HasinthakaPiyumal/AI-Pattern-Mining-Project/tree/main/notebooks/result/ms_repo_callgraph_clusters/ftgo-application_java/cluster_29.java,Business Logic,Business Logic
+https://github.com/HasinthakaPiyumal/AI-Pattern-Mining-Project/tree/main/notebooks/result/ms_repo_callgraph_clusters/ftgo-application_java/cluster_36.java,Database with Microservices,Database with Microservices
+https://github.com/HasinthakaPiyumal/AI-Pattern-Mining-Project/tree/main/notebooks/result/ms_repo_callgraph_clusters/ftgo-application_java/cluster_30.java,Transactions/Saga,Business Logic
+https://github.com/HasinthakaPiyumal/AI-Pattern-Mining-Project/tree/main/notebooks/result/ms_repo_callgraph_clusters/ftgo-application_java/cluster_27.java,Database with Microservices,Database with Microservices
+https://github.com/HasinthakaPiyumal/AI-Pattern-Mining-Project/tree/main/notebooks/result/ms_repo_callgraph_clusters/piggymetrics_java/cluster_19.java,Microservices Test,Business Logic
+https://github.com/HasinthakaPiyumal/AI-Pattern-Mining-Project/tree/main/notebooks/result/ms_repo_callgraph_clusters/piggymetrics_java/cluster_21.java,Business Logic,Microservices Security
+https://github.com/HasinthakaPiyumal/AI-Pattern-Mining-Project/tree/main/notebooks/result/ms_repo_callgraph_clusters/piggymetrics_java/cluster_26.java,Data Model/ Domain design,Data Model/ Domain design
+https://github.com/HasinthakaPiyumal/AI-Pattern-Mining-Project/tree/main/notebooks/result/ms_repo_callgraph_clusters/piggymetrics_java/cluster_6.java,Microservices Security,Business Logic
+https://github.com/HasinthakaPiyumal/AI-Pattern-Mining-Project/tree/main/notebooks/result/ms_repo_callgraph_clusters/piggymetrics_java/cluster_12.java,Data Model/ Domain design,Business Logic
+https://github.com/HasinthakaPiyumal/AI-Pattern-Mining-Project/tree/main/notebooks/result/ms_repo_callgraph_clusters/piggymetrics_java/cluster_24.java,Business Logic,Business Logic
+https://github.com/HasinthakaPiyumal/AI-Pattern-Mining-Project/tree/main/notebooks/result/ms_repo_callgraph_clusters/piggymetrics_java/cluster_4.java,Business Logic,Microservices Security
+https://github.com/HasinthakaPiyumal/AI-Pattern-Mining-Project/tree/main/notebooks/result/ms_repo_callgraph_clusters/piggymetrics_java/cluster_5.java,EDA,Business Logic
+https://github.com/HasinthakaPiyumal/AI-Pattern-Mining-Project/tree/main/notebooks/result/ms_repo_callgraph_clusters/piggymetrics_java/cluster_0.java,Other,Business Logic
+https://github.com/HasinthakaPiyumal/AI-Pattern-Mining-Project/tree/main/notebooks/result/ms_repo_callgraph_clusters/crypto_crawler_python/cluster_14.py,Business Logic,Other
+https://github.com/HasinthakaPiyumal/AI-Pattern-Mining-Project/tree/main/notebooks/result/ms_repo_callgraph_clusters/crypto_crawler_python/cluster_38.py,Other,Other
+https://github.com/HasinthakaPiyumal/AI-Pattern-Mining-Project/tree/main/notebooks/result/ms_repo_callgraph_clusters/crypto_crawler_python/cluster_16.py,Business Logic,Business Logic
+https://github.com/HasinthakaPiyumal/AI-Pattern-Mining-Project/tree/main/notebooks/result/ms_repo_callgraph_clusters/crypto_crawler_python/cluster_42.py,EDA,Other
+https://github.com/HasinthakaPiyumal/AI-Pattern-Mining-Project/tree/main/notebooks/result/ms_repo_callgraph_clusters/crypto_crawler_python/cluster_35.py,Business Logic,Business Logic
+https://github.com/HasinthakaPiyumal/AI-Pattern-Mining-Project/tree/main/notebooks/result/ms_repo_callgraph_clusters/crypto_crawler_python/cluster_36.py,Other,Business Logic
+https://github.com/HasinthakaPiyumal/AI-Pattern-Mining-Project/tree/main/notebooks/result/ms_repo_callgraph_clusters/crypto_crawler_python/cluster_3.py,Database with Microservices,Business Logic
+https://github.com/HasinthakaPiyumal/AI-Pattern-Mining-Project/tree/main/notebooks/result/ms_repo_callgraph_clusters/crypto_crawler_python/cluster_15.py,EDA,EDA
+https://github.com/HasinthakaPiyumal/AI-Pattern-Mining-Project/tree/main/notebooks/result/ms_repo_callgraph_clusters/crypto_crawler_python/cluster_44.py,Other,EDA
+https://github.com/HasinthakaPiyumal/AI-Pattern-Mining-Project/tree/main/notebooks/result/ms_repo_callgraph_clusters/crypto_crawler_python/cluster_45.py,Other,EDA
+https://github.com/HasinthakaPiyumal/AI-Pattern-Mining-Project/tree/main/notebooks/result/ms_repo_callgraph_clusters/crypto_crawler_python/cluster_20.py,EDA,EDA
+https://github.com/HasinthakaPiyumal/AI-Pattern-Mining-Project/tree/main/notebooks/result/ms_repo_callgraph_clusters/crypto_crawler_python/cluster_11.py,Data Model/ Domain design,Business Logic
+https://github.com/HasinthakaPiyumal/AI-Pattern-Mining-Project/tree/main/notebooks/result/ms_repo_callgraph_clusters/crypto_crawler_python/cluster_22.py,Business Logic,Business Logic
+https://github.com/HasinthakaPiyumal/AI-Pattern-Mining-Project/tree/main/notebooks/result/ms_repo_callgraph_clusters/crypto_crawler_python/cluster_10.py,Other,Business Logic
+https://github.com/HasinthakaPiyumal/AI-Pattern-Mining-Project/tree/main/notebooks/result/ms_repo_callgraph_clusters/crypto_crawler_python/cluster_27.py,Business Logic,Business Logic
+https://github.com/HasinthakaPiyumal/AI-Pattern-Mining-Project/tree/main/notebooks/result/ms_repo_callgraph_clusters/train-ticket_python/cluster_4.py,Business Logic,Business Logic
+https://github.com/HasinthakaPiyumal/AI-Pattern-Mining-Project/tree/main/notebooks/result/ms_repo_callgraph_clusters/DeathStarBench_python/cluster_32.py,Business Logic,Business Logic
+https://github.com/HasinthakaPiyumal/AI-Pattern-Mining-Project/tree/main/notebooks/result/ms_repo_callgraph_clusters/DeathStarBench_python/cluster_31.py,Other,Business Logic
+https://github.com/HasinthakaPiyumal/AI-Pattern-Mining-Project/tree/main/notebooks/result/ms_repo_callgraph_clusters/RepoGenesis_python/cluster_9.py,Other,Microservices Test
+https://github.com/HasinthakaPiyumal/AI-Pattern-Mining-Project/tree/main/notebooks/result/ms_repo_callgraph_clusters/RepoGenesis_python/cluster_0.py,Business Logic,Business Logic
+https://github.com/HasinthakaPiyumal/AI-Pattern-Mining-Project/tree/main/notebooks/result/ms_repo_callgraph_clusters/RepoGenesis_python/cluster_10.py,Microservices Security,Microservices Test
+https://github.com/HasinthakaPiyumal/AI-Pattern-Mining-Project/tree/main/notebooks/result/ms_repo_callgraph_clusters/RepoGenesis_python/cluster_12.py,Microservices Test,Other
+https://github.com/HasinthakaPiyumal/AI-Pattern-Mining-Project/tree/main/notebooks/result/ms_repo_callgraph_clusters/Hands-on-Microservices-with-Python_python/cluster_4.py,Business Logic,Business Logic

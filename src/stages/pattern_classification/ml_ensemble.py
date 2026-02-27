@@ -35,8 +35,8 @@ from sklearn.decomposition import PCA
 # === Configuration ===
 CONFIG = {
     "target_column": "label",
-    "predict_mode": True,
-    "labeled_data_path": "/home/hasinthaka/Documents/Projects/AI/Pattern Mining/pipeline/notebooks/result/metadata.csv",
+    "predict_mode": False,
+    "labeled_data_path": "/home/hasinthaka/Documents/Projects/AI/Pattern Mining/pipeline/notebooks/result/metadata-v3.csv",
     # "embeddings_path_optional": "/home/hasinthaka/Documents/Projects/AI/Pattern Mining/pipeline/data/datasets/summary_embeddings_768.csv",
     "embeddings_path": "/home/hasinthaka/Documents/Projects/AI/Pattern Mining/pipeline/notebooks/result/embeddings.csv",
     # "embeddings_path": "/home/hasinthaka/Documents/Projects/AI/Pattern Mining/pipeline/data/datasets/embeddings.csv",
