@@ -17,7 +17,7 @@ labeled_data = pd.read_csv("/home/hasinthaka/Documents/Projects/AI/Pattern Minin
 
 labeled_df = labeled_data['label'].value_counts().reset_index()
 labeled_df.columns = ['label', 'count']
-labeled_df['label_count_rank'] = labeled_df['count'].rank(method='first', ascending=False)
+labeled_df['label_count_rank'] = labeled_df['count'].rank(method='first', ascending=True)
 
 
 merged_df = data.merge(
